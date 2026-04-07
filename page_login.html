@@ -2,29 +2,20 @@
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <div class="login-screen-wrapper">
-  
-  <div class="edu-bg-icons">
-    <i class="fas fa-graduation-cap"></i>
-    <i class="fas fa-book-open"></i>
-    <i class="fas fa-school"></i>
-    <i class="fas fa-chalkboard-teacher"></i>
-    <i class="fas fa-pencil-alt"></i>
-    <i class="fas fa-globe-asia"></i>
-    <i class="fas fa-laptop-code"></i>
-    <i class="fas fa-award"></i>
-  </div>
 
   <style>
     /* ========================================================= */
-    /* PREMIUM THEME (IN-CARD TRANSITION)                        */
+    /* PREMIUM SAAS THEME (CLEAN & MINIMALIST)                   */
     /* ========================================================= */
 
     :root {
-      --maroon-primary: #38bdf8; /* Cyan/Light Blue for accents */
-      --maroon-gradient: linear-gradient(135deg, rgba(15, 32, 39, 0.7) 0%, rgba(32, 58, 67, 0.7) 100%);
-      --gold-luxury: #7dd3fc; /* Softer light blue/cyan */
-      --glass-bg: rgba(15, 32, 39, 0.4); 
-      --glass-border: rgba(255, 255, 255, 0.05);
+      --saas-primary: #4F46E5; /* Deep Indigo */
+      --saas-primary-hover: #4338CA;
+      --saas-bg: #F8FAFC; /* Off-white */
+      --saas-card: #FFFFFF;
+      --saas-border: #E2E8F0;
+      --saas-text-main: #0F172A;
+      --saas-text-muted: #64748B;
     }
 
     /* FIX Z-INDEX SWEETALERT (Hanya untuk Error) */
@@ -33,112 +24,96 @@
     /* WRAPPER */
     .login-screen-wrapper {
       position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
-      background: transparent; /* Changed to transparent to show body animated background */
-      font-family: 'Segoe UI', 'Inter', sans-serif;
-      z-index: 9999; overflow: hidden; 
-    }
-
-    /* BACKGROUND ICONS */
-    .edu-bg-icons i {
-      position: absolute; color: rgba(255, 215, 0, 0.05);
-      animation: floatUp 20s linear infinite; z-index: 0; pointer-events: none;
-    }
-    .edu-bg-icons i:nth-child(1) { left: 10%; font-size: 80px; animation-duration: 25s; bottom: -100px; }
-    .edu-bg-icons i:nth-child(2) { left: 80%; font-size: 100px; animation-duration: 22s; bottom: -120px; animation-delay: 1s; }
-    .edu-bg-icons i:nth-child(3) { left: 50%; font-size: 150px; animation-duration: 40s; bottom: -200px; opacity: 0.03 !important; }
-
-    @keyframes floatUp {
-      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-      100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+      background: var(--saas-bg);
+      font-family: 'Inter', -apple-system, sans-serif;
+      z-index: 9999; overflow: auto; 
     }
 
     /* LOGIN BOX */
     .login-box {
-      width: 400px; max-width: 90%; position: relative; z-index: 10;
-      opacity: 0; animation: zoomIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      width: 420px; max-width: 90%; position: relative; z-index: 10;
+      opacity: 0; animation: zoomIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    .card-glass {
-      background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-      border: 1px solid var(--glass-border); border-radius: 24px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    .card-saas {
+      background: var(--saas-card);
+      border: 1px solid var(--saas-border);
+      border-radius: 20px; 
+      box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05), 0 2px 10px rgba(0,0,0,0.02);
       overflow: hidden; transition: all 0.5s ease;
-      color: #fff; /* Ensure text is readable on transparent bg */
+      color: var(--saas-text-main);
     }
 
     .card-header-premium {
-      background: var(--maroon-gradient); padding: 40px 30px 50px; text-align: center;
-      border-bottom-left-radius: 50% 20px; border-bottom-right-radius: 50% 20px; margin-bottom: -20px;
-      position: relative; z-index: 2; box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-      transition: all 0.5s ease;
-      backdrop-filter: blur(10px); /* Add blur to header */
+      background: var(--saas-card);
+      padding: 40px 30px 20px; text-align: center;
+      position: relative; z-index: 2;
     }
 
     .logo-container {
-      width: 90px; height: 90px; background: white; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;
-      box-shadow: 0 0 0 5px rgba(255,255,255,0.2); border: 3px solid var(--gold-luxury);
-      transition: all 0.5s ease;
+      width: 70px; height: 70px; background: var(--saas-card); border-radius: 16px;
+      display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;
+      border: 1px solid var(--saas-border);
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+      color: var(--saas-primary);
     }
 
-    .login-body { padding: 50px 35px 30px; position: relative; min-height: 250px; }
+    .login-body { padding: 10px 35px 40px; position: relative; min-height: 250px; }
 
     .input-wrapper { position: relative; margin-bottom: 20px; }
     .input-wrapper i {
       position: absolute; left: 18px; top: 50%; transform: translateY(-50%);
-      color: #999; font-size: 18px; transition: 0.3s;
+      color: #94A3B8; font-size: 16px; transition: 0.3s;
     }
 
     .form-control-premium {
-      width: 100%; padding: 14px 15px 14px 50px; border: 2px solid transparent;
-      border-radius: 12px; background: rgba(255, 255, 255, 0.1); font-size: 15px; font-weight: 500;
-      transition: all 0.3s ease; outline: none; color: #fff;
+      width: 100%; padding: 14px 15px 14px 45px; border: 1px solid var(--saas-border);
+      border-radius: 10px; background: #FFFFFF; font-size: 14px; font-weight: 500;
+      transition: all 0.2s ease; outline: none; color: var(--saas-text-main);
+      box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
     }
-    .form-control-premium::placeholder { color: rgba(255, 255, 255, 0.6); }
-    .form-control-premium:focus { background: rgba(255, 255, 255, 0.2); border-color: var(--gold-luxury); box-shadow: 0 5px 15px rgba(255, 215, 0, 0.1); }
-    .form-control-premium:focus + i { color: var(--gold-luxury); }
+    .form-control-premium::placeholder { color: #94A3B8; }
+    .form-control-premium:focus { border-color: var(--saas-primary); box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15); }
+    .form-control-premium:focus + i { color: var(--saas-primary); }
 
     .btn-premium {
-      width: 100%; padding: 15px; border-radius: 12px; border: none;
-      background: var(--maroon-gradient); color: white; font-weight: 700; font-size: 15px;
-      letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease;
-      box-shadow: 0 5px 15px rgba(128, 0, 0, 0.3); text-transform: uppercase; margin-top: 10px;
+      width: 100%; padding: 14px; border-radius: 10px; border: none;
+      background: var(--saas-text-main); color: white; font-weight: 600; font-size: 14px;
+      cursor: pointer; transition: all 0.2s ease;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); margin-top: 10px;
     }
-    .btn-premium:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(128, 0, 0, 0.4); }
-    .btn-premium:disabled { background: #ccc; cursor: not-allowed; transform: none; box-shadow: none; }
+    .btn-premium:hover { background: #000000; box-shadow: 0 6px 12px rgba(0,0,0,0.15); transform: translateY(-1px); }
+    .btn-premium:disabled { background: #94A3B8; cursor: not-allowed; transform: none; box-shadow: none; }
 
     /* SUCCESS STATE STYLES */
     #viewSuccess {
-        display: none; /* Hidden by default */
-        text-align: center;
-        padding-top: 10px;
-        animation: fadeIn 0.8s ease;
+        display: none; text-align: center; padding-top: 10px; animation: fadeIn 0.6s ease;
     }
     
     .success-avatar {
-        width: 100px; height: 100px; border-radius: 50%; 
-        border: 4px solid var(--gold-luxury);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        margin-bottom: 20px;
-        object-fit: cover;
+        width: 90px; height: 90px; border-radius: 50%; 
+        border: 2px solid var(--saas-border);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        margin-bottom: 20px; object-fit: cover;
     }
     
-    .welcome-text { font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 5px; }
-    .user-name { font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.8); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;}
+    .welcome-text { font-size: 22px; font-weight: 700; color: var(--saas-text-main); margin-bottom: 5px; }
+    .user-name { font-size: 15px; font-weight: 500; color: var(--saas-text-muted); margin-bottom: 20px; }
     
     .loading-bar {
-        height: 4px; width: 50%; background: #eee; margin: 0 auto; border-radius: 2px; overflow: hidden;
+        height: 4px; width: 60%; background: #E2E8F0; margin: 0 auto; border-radius: 4px; overflow: hidden;
     }
     .loading-progress {
-        height: 100%; width: 0%; background: var(--maroon-gradient);
+        height: 100%; width: 0%; background: var(--saas-primary);
         animation: progressLoad 1.5s ease-in-out forwards;
     }
 
     .login-footer {
-      text-align: center; font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 25px;
-      border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;
+      text-align: center; font-size: 12px; color: var(--saas-text-muted); margin-top: 30px;
+      border-top: 1px solid var(--saas-border); padding-top: 20px;
     }
 
-    @keyframes zoomIn { from { opacity: 0; transform: scale(0.9) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes progressLoad { 0% { width: 0%; } 100% { width: 100%; } }
     @keyframes shake { 10%, 90% { transform: translate3d(-1px, 0, 0); } 20%, 80% { transform: translate3d(2px, 0, 0); } }
@@ -149,17 +124,15 @@
   </style>
 
   <div class="login-box">
-    <div class="card-glass" id="mainCard">
+    <div class="card-saas" id="mainCard">
       
       <div class="card-header-premium" id="cardHeader">
-        <div class="logo-container" id="logoBox" style="border-color: var(--maroon-primary);">
-          <i class="fas fa-book-reader fa-3x" style="color: var(--maroon-primary);"></i>
+        <div class="logo-container" id="logoBox">
+          <i class="fas fa-book-reader fa-2x"></i>
         </div>
         <div id="headerText">
-            <h2 class="font-weight-bold text-white mb-0" style="font-size: 24px; letter-spacing: 2px;">SIKS-REBORN</h2>
-            <p></p>
-            <p class="text-white-50 small mt-1 text-uppercase" style="letter-spacing: 1px;">SISTEM INFORMASI KORWIL SECANG<br>-<br>
-            Ruang Edukasi dan Layanan Berbasis Online Terintegrasi</p>
+            <h2 class="font-weight-bold mb-1" style="font-size: 22px; color: var(--saas-text-main);">SIKS-REBORN</h2>
+            <p class="small text-muted mt-0" style="font-weight: 500; font-size: 13px;">SISTEM INFORMASI KORWIL SECANG</p>
         </div>
       </div>
 
@@ -174,15 +147,14 @@
               <div class="input-wrapper">
                 <input type="password" id="password" name="password" class="form-control-premium" placeholder="Kata Sandi" required>
                 <i class="fas fa-lock"></i>
-                <i class="fas fa-eye" id="togglePass" style="left: auto; right: 15px; font-size: 16px; cursor: pointer; z-index:5;" onclick="togglePassword()"></i>
+                <i class="fas fa-eye" id="togglePass" style="left: auto; right: 15px; font-size: 15px; cursor: pointer; z-index:5;" onclick="togglePassword()"></i>
               </div>
               <button type="submit" id="tombolLogin" class="btn-premium">
-                <i class="fas fa-sign-in-alt mr-2"></i> MASUK APLIKASI
+                Masuk ke Dasbor &rarr;
               </button>
             </form>
             <div class="login-footer">
-              <strong>Layanan Pendidikan Terintegrasi</strong><br>
-              &copy; 2026 Korwil Disdikbud Kecamatan Secang
+              <span style="font-weight: 500;">&copy; 2026 Korwil Disdikbud Kec. Secang</span>
             </div>
         </div>
 
@@ -194,7 +166,7 @@
             <div class="loading-bar mt-3">
                 <div class="loading-progress"></div>
             </div>
-            <p class="small text-muted mt-2">Menyiapkan Dashboard...</p>
+            <p class="small text-muted mt-2">Menyiapkan Workspace...</p>
         </div>
 
       </div>
@@ -205,15 +177,15 @@
 <div id="confetti-wrapper"></div>
 
 <script>
-  console.log("🔥 Login Page Loaded v3 (In-Card).");
+  console.log("🚀 Login Page Loaded SaaS Minimalist Theme");
 
   function togglePassword() {
     var x = document.getElementById("password");
     var icon = document.getElementById("togglePass");
     if (x.type === "password") {
-      x.type = "text"; icon.classList.remove("fa-eye"); icon.classList.add("fa-eye-slash"); icon.style.color = "#800000";
+      x.type = "text"; icon.classList.remove("fa-eye"); icon.classList.add("fa-eye-slash"); icon.style.color = "var(--saas-primary)";
     } else {
-      x.type = "password"; icon.classList.remove("fa-eye-slash"); icon.classList.add("fa-eye"); icon.style.color = "#999";
+      x.type = "password"; icon.classList.remove("fa-eye-slash"); icon.classList.add("fa-eye"); icon.style.color = "#94A3B8";
     }
   }
 
@@ -225,7 +197,7 @@
          var timeLeft = animationEnd - Date.now();
          if (timeLeft <= 0) { return clearInterval(interval); }
          var particleCount = 50 * (timeLeft / duration);
-         confetti(Object.assign({}, defaults, { particleCount, origin: { x: Math.random(), y: Math.random() - 0.2 }, colors: ['#38bdf8', '#7dd3fc'] }));
+         confetti(Object.assign({}, defaults, { particleCount, origin: { x: Math.random(), y: Math.random() - 0.2 }, colors: ['#4F46E5', '#3B82F6', '#10B981'] }));
        }, 250);
     }
   }
@@ -238,15 +210,13 @@
     var box = $('.login-box');
 
     // UI Loading Button
-    btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin mr-2"></i> MEMERIKSA...');
+    btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin mr-2"></i> Mengautentikasi...');
     
     google.script.run
       .withSuccessHandler(function(res) {
         if (res && res.status === 'success') {
-          // --- SUKSES: JANGAN PAKAI ALERT, GANTI TAMPILAN KARTU ---
           console.log("✅ Login Sukses");
           
-          // 1. Simpan Session
           var fullName = "User";
           if (res.userData) {
              fullName = res.userData.nama_lengkap || res.userData.username;
@@ -254,37 +224,28 @@
              localStorage.setItem("siksUser", JSON.stringify(res.userData));
           }
 
-          // 2. Jalankan Kembang Api
           runFireworks();
 
-          // 3. TRANSISI UI (FADE OUT FORM -> FADE IN SUCCESS)
-          // Siapkan data tampilan sukses
           $('#welcomeName').text(fullName);
-          var avatarUrl = "https://ui-avatars.com/api/?name=" + encodeURIComponent(fullName) + "&background=800000&color=fff&bold=true";
-          if(res.userData.photo && res.userData.photo.startsWith("http")) avatarUrl = res.userData.photo;
-          else if(res.userData.photo) avatarUrl = "https://drive.google.com/thumbnail?id=" + res.userData.photo + "&sz=200";
+          var avatarUrl = "https://ui-avatars.com/api/?name=" + encodeURIComponent(fullName) + "&background=F1F5F9&color=0F172A&bold=true";
+          if(res.userData && res.userData.photo && res.userData.photo.startsWith("http")) avatarUrl = res.userData.photo;
+          else if(res.userData && res.userData.photo) avatarUrl = "https://drive.google.com/thumbnail?id=" + res.userData.photo + "&sz=200";
           $('#userAvatar').attr('src', avatarUrl);
 
-          // Animasi Header (Menyusut sedikit biar elegan)
           $('#logoBox').css('transform', 'scale(0.8)');
-          $('#headerText').slideUp(300); // Sembunyikan teks judul biar fokus ke user
-          $('.card-header-premium').css('padding-bottom', '20px');
+          $('#headerText').slideUp(300); 
+          $('.card-header-premium').css('padding-bottom', '10px');
 
-          // Ganti Konten Body
           $('#viewForm').fadeOut(300, function() {
               $('#viewSuccess').fadeIn(500);
           });
 
-          // 4. TRANSISI KE DASHBOARD (Setelah 2 detik menikmati animasi)
           setTimeout(function(){
-            // Gunakan updateNavbarUI global jika ada
             if(typeof updateNavbarUI === 'function' && res.userData) {
                 updateNavbarUI(res.userData);
             }
-            
-            // Fade Out Login Screen
             $('.login-screen-wrapper').fadeOut(600, function(){
-                $('#konten-aplikasi').fadeIn(600); // Tampilkan Dashboard
+                $('#konten-aplikasi').fadeIn(600); 
                 if(typeof loadContent === 'function') {
                     loadContent('home'); 
                 }
@@ -293,9 +254,8 @@
           }, 2000);
 
         } else {
-          // --- GAGAL (TETAP PAKAI TOAST) ---
           console.log("⛔ Login Gagal: " + res.message);
-          btn.prop('disabled', false).html('<i class="fas fa-sign-in-alt mr-2"></i> MASUK APLIKASI');
+          btn.prop('disabled', false).html('Masuk ke Dasbor &rarr;');
           
           box.addClass('shake-effect');
           setTimeout(() => box.removeClass('shake-effect'), 500);
@@ -303,17 +263,17 @@
           if(typeof Swal !== 'undefined'){
               const Toast = Swal.mixin({
                 toast: true, position: 'top', showConfirmButton: false, timer: 3000,
-                timerProgressBar: true, background: '#fff', color: '#333', iconColor: '#dc3545',
+                timerProgressBar: true, background: '#fff', color: '#333', iconColor: '#EF4444',
                 didOpen: (toast) => { toast.addEventListener('mouseenter', Swal.stopTimer); toast.addEventListener('mouseleave', Swal.resumeTimer); }
               });
-              Toast.fire({ icon: 'error', title: 'Login Gagal', text: res.message || "Periksa kembali data Anda." });
+              Toast.fire({ icon: 'error', title: 'Akses Ditolak', text: res.message || "Kredensial tidak sesuai." });
           } else {
               alert("LOGIN GAGAL: " + (res.message || "Username/Password Salah"));
           }
         }
       })
       .withFailureHandler(function(err) {
-        btn.prop('disabled', false).html('<i class="fas fa-sign-in-alt mr-2"></i> MASUK APLIKASI');
+        btn.prop('disabled', false).html('Masuk ke Dasbor &rarr;');
         alert("Koneksi Server Terputus!");
       })
       .processLogin({username: u, password: p});

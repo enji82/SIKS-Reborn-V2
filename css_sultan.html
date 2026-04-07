@@ -4,117 +4,101 @@
      Ganti --warna-maroon di sini, seluruh web otomatis berubah.
      =================================================================== */
   :root {
-    /* --- WARNA UTAMA (BRANDING BARU DARK BLUE) --- */
-    --warna-maroon: #2c5364;       /* Primary (tombol dll) */
-    --warna-maroon-dark: #0f2027;  /* Super gelap */
-    --warna-maroon-light: #203a43; /* Hover state */
+    /* --- WARNA UTAMA (SAAS PREMIUM) --- */
+    --warna-maroon: #0F172A;       /* Primary (Dark Slate/Charcoal) */
+    --warna-maroon-dark: #020617;  
+    --warna-maroon-light: #334155; 
     
     /* --- AKSEN LEVEL SIDEBAR --- */
-    --warna-emas: #38bdf8;         /* Kita ubah aksen utamanya jadi Cyan/Biru laut */
-    --warna-emas-soft: #7dd3fc;    
-    --warna-cyan: #34d399;         /* Level 2 (Mint Hijau) */
-    --warna-hijau: #a78bfa;        /* Level 3 (Ungu Soft) */
-    --warna-header-tabel: rgba(255, 255, 255, 0.05);
+    --warna-emas: #4F46E5;         /* Aksen aktif (Deep Indigo) */
+    --warna-emas-soft: #6366F1;    
+    --warna-cyan: #3B82F6;         
+    --warna-hijau: #10B981;        
+    --warna-header-tabel: #F8FAFC;
     
     /* --- UTILITY --- */
-    --warna-tegas: #94a3b8;
-    --warna-abu-bg: #0f172a;       /* Latar sangat gelap */
-    --shadow-sultan: 0 4px 6px -1px rgba(0,0,0,0.3);
-    --radius-sultan: 12px;         /* Sudut sedikit lebih membulat elegan */
+    --warna-tegas: #64748B;
+    --warna-abu-bg: #F8FAFC;       /* Off-White Background */
+    --shadow-sultan: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+    --radius-sultan: 12px;         
   }
 
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #152c38);
-    background-size: 400% 400%;
-    animation: gradientBG 20s ease infinite; /* Lebih pelan biar kalem */
-    color: #f8fafc !important; /* Off-white terang */
+    background: var(--warna-abu-bg) !important;
+    color: #334155 !important;
     min-height: 100vh;
   }
   
-  /* --- VAKSIN TEKS DARK MODE (Memaksa teks bawaan menjadi terang) --- */
-  h1, h2, h3, h4, h5, h6, p, label { color: #f1f5f9 !important; }
-  .text-dark { color: #f8fafc !important; }
-  .text-muted { color: #94a3b8 !important; }
-  .text-secondary { color: #cbd5e1 !important; }
-  .small, small { color: #94a3b8 !important; }
+  /* --- RESET TEKS GLOBAL --- */
+  h1, h2, h3, h4, h5, h6 { color: #0F172A !important; font-weight: 700 !important; }
+  p, label, span { color: #334155; }
+  .text-dark { color: #0F172A !important; }
+  .text-muted { color: #64748B !important; }
+  .text-secondary { color: #475569 !important; }
+  .small, small { color: #64748B !important; }
+  
   .form-control, .form-control-sultan { 
-      background: rgba(15, 32, 39, 0.6) !important; 
-      color: #fff !important; 
-      border: 1px solid rgba(255,255,255,0.2) !important; 
+      background: #FFFFFF !important; 
+      color: #0F172A !important; 
+      border: 1px solid #E2E8F0 !important; 
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
   }
-  .form-control::placeholder { color: rgba(255,255,255,0.4) !important; }
-  .form-control:focus { background: rgba(15, 32, 39, 0.9) !important; border-color: var(--warna-emas-soft) !important; color:#fff !important; }
-  
-  /* Select2 atau Dropdown panah */
-  select.form-control { background-image: none !important; }
-  select option { background: #0f2027; color: #fff; }
-  
-  /* Override paksa untuk elemen teks di breadcrumb / sidebar yg mungkin kelewatan */
-  .breadcrumb-item a { color: var(--warna-emas-soft) !important; }
-  .breadcrumb-item.active { color: #cbd5e1 !important; }
-
-  /* Animasi Background Fluid Maroon/Emas */
-  @keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+  .form-control::placeholder { color: #94A3B8 !important; }
+  .form-control:focus { 
+      border-color: var(--warna-emas-soft) !important; 
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2) !important; 
   }
+  
+  select.form-control { background-color: #fff !important; }
+  select option { background: #fff; color: #0F172A; }
+  
+  .breadcrumb-item a { color: var(--warna-emas-soft) !important; font-weight: 500; }
+  .breadcrumb-item.active { color: #64748B !important; }
 
-  /* KELAS UTILITAS GLASSMORPHISM UTAMA (DARK GLASS) */
+  /* KELAS UTILITAS PREMIUM SAAS */
   .glass-effect {
-      background: rgba(15, 32, 39, 0.4) !important; 
-      backdrop-filter: blur(16px) !important; 
-      -webkit-backdrop-filter: blur(16px) !important;
-      border: 1px solid rgba(255, 255, 255, 0.05) !important;
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4) !important;
+      background: #FFFFFF !important; 
+      border: 1px solid #F1F5F9 !important;
+      box-shadow: var(--shadow-sultan) !important;
   }
-
 
   /* ===================================================================
-     2. ADMINLTE OVERRIDES (DARK GLASSMORPHISM)
+     2. ADMINLTE OVERRIDES (CLEAN SAAS THEME)
      =================================================================== */
   
   /* A. NAVBAR (HEADER ATAS) */
   .main-header { 
-    background: rgba(15, 32, 39, 0.5) !important; /* Semi-transparent navy */
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    background: #FFFFFF !important;
+    border-bottom: 1px solid #E2E8F0 !important;
+    box-shadow: none !important;
   }
-  .main-header .nav-link { color: rgba(255,255,255,0.85) !important; }
+  .main-header .nav-link { color: #475569 !important; font-weight: 500; }
   .main-header .nav-link:hover { color: var(--warna-emas) !important; }
 
   /* B. SIDEBAR DASAR & LOGO */
   .main-sidebar, .sidebar-custom { 
-    background: rgba(10, 20, 25, 0.6) !important; /* Lebih gelap buat kontras */
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    background: #FFFFFF !important;
+    border-right: 1px solid #E2E8F0 !important;
+    box-shadow: none !important;
   }
   
   .brand-link { 
-    background: rgba(0,0,0,0.2) !important; /* Sedikit lebih gelap di logo */
-    border-bottom: 1px solid rgba(255,255,255,0.05) !important; 
-    color: #e2e8f0 !important;
+    background: #FFFFFF !important;
+    border-bottom: 1px solid #E2E8F0 !important; 
+    color: #0F172A !important;
   }
   .brand-link:hover { color: var(--warna-emas) !important; }
 
   /* C. FOOTER */
   .main-footer { 
-    position: fixed; bottom: 0; width: 100%; z-index: 1032; 
-    background: rgba(15, 32, 39, 0.4) !important;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(255, 255, 255, 0.05) !important; 
-    padding: 10px 20px; 
-    box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
-    color: #cbd5e1 !important;
+    background: #FFFFFF !important;
+    border-top: 1px solid #E2E8F0 !important; 
+    color: #64748B !important;
+    box-shadow: none !important;
   }
-  .main-footer a { color: var(--warna-emas); font-weight: bold; text-decoration: none; }
-  .main-footer strong { color: rgba(255,255,255,0.85) !important; }
+  .main-footer a { color: var(--warna-emas); font-weight: 600; text-decoration: none; }
+  .main-footer strong { color: #334155 !important; }
 
   /* D. CONTENT WRAPPER */
   .content-wrapper { padding-bottom: 70px !important; background: transparent !important; }
@@ -124,43 +108,39 @@
      =================================================================== */
   
   /* LEVEL 1 (BAPAK) */
-  .nav-sidebar > .nav-item > .nav-link { color: rgba(255, 255, 255, 0.9) !important; margin-bottom: 2px; }
-  .nav-sidebar > .nav-item > .nav-link > i, .nav-sidebar > .nav-item > .nav-link > p { color: #ffffff !important; }
+  .nav-sidebar > .nav-item > .nav-link { color: #475569 !important; margin-bottom: 4px; border-radius: 8px; font-weight: 500; }
+  .nav-sidebar > .nav-item > .nav-link > i, .nav-sidebar > .nav-item > .nav-link > p { color: #475569 !important; }
   
   /* Active State Level 1 */
   .nav-sidebar > .nav-item > .nav-link.active {
-    background-color: var(--warna-maroon) !important;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-    border-left: 4px solid var(--warna-emas);
+    background-color: #F1F5F9 !important;
+    box-shadow: none;
+    border-left: none; /* Buang border left gaya lama */
   }
   .nav-sidebar > .nav-item > .nav-link.active > i, .nav-sidebar > .nav-item > .nav-link.active > p {
-    color: var(--warna-emas) !important; font-weight: bold !important;
+    color: var(--warna-emas) !important; font-weight: 600 !important;
   }
 
   /* LEVEL 2 (ANAK) */
-  .nav-treeview { background-color: rgba(0, 0, 0, 0.25) !important; }
-  .nav-treeview > .nav-item > .nav-link { color: #d1d1d1 !important; padding-left: 30px !important; }
+  .nav-treeview { background-color: transparent !important; margin-left: 8px; }
+  .nav-treeview > .nav-item > .nav-link { color: #64748B !important; padding-left: 35px !important; border-radius: 6px; }
   .nav-treeview .nav-icon { display: none !important; }
   .nav-treeview > .nav-item > .nav-link::before {
-    content: "•"; position: absolute; left: 15px; top: 50%; transform: translateY(-50%);
-    font-size: 1.2em; color: rgba(255,255,255,0.4);
+    content: ""; /* Clean border list */
   }
   /* Active State Level 2 */
   .nav-treeview > .nav-item > .nav-link.active {
-    background-color: rgba(255, 255, 255, 0.1) !important;
-    color: var(--warna-cyan) !important; border-left: 3px solid var(--warna-cyan) !important; font-weight: 700 !important;
+    background-color: transparent !important;
+    color: var(--warna-emas) !important; border-left: none !important; font-weight: 600 !important;
   }
-  .nav-treeview > .nav-item > .nav-link.active::before { color: var(--warna-cyan) !important; }
 
   /* LEVEL 3 (CUCU) */
-  .nav-treeview .nav-treeview > .nav-item > .nav-link { background-color: rgba(0, 0, 0, 0.45) !important; padding-left: 45px !important; color: #aaa !important; }
-  .nav-treeview .nav-treeview > .nav-item > .nav-link::before { left: 30px; }
+  .nav-treeview .nav-treeview > .nav-item > .nav-link { background-color: transparent !important; padding-left: 45px !important; color: #94A3B8 !important; }
   /* Active State Level 3 */
   .nav-treeview .nav-treeview > .nav-item > .nav-link.active {
-    background-color: rgba(255, 255, 255, 0.05) !important;
-    color: var(--warna-hijau) !important; border-left: 3px solid var(--warna-hijau) !important; font-weight: 700 !important;
+    background-color: transparent !important;
+    color: var(--warna-emas) !important; font-weight: 600 !important;
   }
-  .nav-treeview .nav-treeview > .nav-item > .nav-link.active::before { color: var(--warna-hijau) !important; }
 
   /* ===================================================================
      4. KOMPONEN UI SULTAN (BUTTONS, CARDS, INPUTS)
@@ -181,30 +161,29 @@
     border-color: var(--warna-maroon-light) !important; 
   }
 
-  /* Card Sultan - Dark Glassmorphism */
+  /* Card Sultan - Clean Minimalist */
   .card-sultan, .card { 
-      border: 1px solid rgba(255,255,255,0.08) !important; 
+      border: 1px solid #E2E8F0 !important; 
       border-radius: var(--radius-sultan) !important; 
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4) !important; 
-      background: rgba(15, 32, 39, 0.5) !important; 
-      backdrop-filter: blur(14px) !important;
-      -webkit-backdrop-filter: blur(14px) !important;
+      box-shadow: var(--shadow-sultan) !important; 
+      background: #FFFFFF !important; 
       margin-bottom: 1.5rem; 
-      color: #e2e8f0 !important;
+      color: #334155 !important;
   }
   .card-header, .card-footer {
-      background: rgba(0,0,0,0.25) !important;
-      border-bottom: 1px solid rgba(255,255,255,0.05) !important;
-      color: #f8fafc !important;
+      background: #FFFFFF !important;
+      border-bottom: 1px solid #F1F5F9 !important;
+      color: #0F172A !important;
+      font-weight: 600;
   }
   
-  .border-left-dark { border-left: 5px solid var(--warna-tegas) !important; }
-  .style-sultan-solid { border: 0; height: 2px; background-color: rgba(255,255,255,0.3); margin: 1rem 0; }
+  .border-left-dark { border-left: 4px solid var(--warna-emas) !important; }
+  .style-sultan-solid { border: 0; height: 1px; background-color: #E2E8F0; margin: 1rem 0; }
 
   /* Form Controls */
-  .form-control-sultan { border-radius: 4px !important; border: 1px solid rgba(255,255,255,0.2) !important; height: calc(2.25rem + 2px) !important; font-size: 14px; }
-  .form-control-sultan:focus { border-color: var(--warna-emas) !important; box-shadow: 0 0 0 0.2rem rgba(56, 189, 248, 0.25) !important; }
-  .form-label-sultan { font-weight: 700 !important; font-size: 12px !important; color: #cbd5e1 !important; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .form-control-sultan { border-radius: 8px !important; border: 1px solid #E2E8F0 !important; height: calc(2.25rem + 2px) !important; font-size: 14px; background: #FFF !important; color: #0F172A !important; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
+  .form-control-sultan:focus { border-color: var(--warna-emas) !important; box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15) !important; }
+  .form-label-sultan { font-weight: 600 !important; font-size: 13px !important; color: #475569 !important; letter-spacing: 0.2px; margin-bottom: 6px; }
   
   /* VAKSIN ANTI-SPINNER (Hukum BAB II) */
   input[type="number"]::-webkit-inner-spin-button,
@@ -218,38 +197,39 @@
 
   /* User Capsule (Navbar Profile) */
   .user-capsule {
-    display: flex; align-items: center; background: rgba(255, 255, 255, 0.1);
-    padding: 3px 12px 3px 3px; border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.2); transition: all 0.3s ease;
+    display: flex; align-items: center; background: #F1F5F9;
+    padding: 4px 14px 4px 4px; border-radius: 50px;
+    border: 1px solid #E2E8F0; transition: all 0.2s ease;
   }
-  .user-capsule:hover { background: rgba(255, 255, 255, 0.2); border-color: var(--warna-emas); }
-  .user-capsule img { width: 30px; height: 30px; border-radius: 50%; border: 2px solid #fff; margin-right: 8px; }
-  .user-capsule span { color: #fff; font-size: 0.9rem; font-weight: 500; }
+  .user-capsule:hover { background: #E2E8F0; }
+  .user-capsule img { width: 30px; height: 30px; border-radius: 50%; margin-right: 8px; }
+  .user-capsule span { color: #0F172A; font-size: 0.9rem; font-weight: 600; }
 
   /* ===================================================================
      5. TABEL & DATA GRID (DARK PREMIUM STYLE)
      =================================================================== */
   
-  /* Header Tabel Dark Glass */
+  /* Header Tabel Minimalist */
   .table-premium thead th, table.dataTable thead th {
-    background-color: rgba(255, 255, 255, 0.05) !important; /* Redup */
-    color: var(--warna-emas-soft) !important; /* Teks Aksen */
-    font-weight: 700 !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important; 
+    background-color: #F8FAFC !important;
+    color: #64748B !important; 
+    font-weight: 600 !important;
+    border-bottom: 1px solid #E2E8F0 !important; 
     border-top: none !important;
-    vertical-align: middle !important; white-space: nowrap; font-size: 0.9rem; padding: 10px;
+    vertical-align: middle !important; white-space: nowrap; font-size: 0.85rem; padding: 12px;
+    text-transform: uppercase; letter-spacing: 0.5px;
   }
   
   /* Efek Hover Header */
   .table-premium thead th:hover, table.dataTable thead th:hover {
-      background-color: rgba(255, 255, 255, 0.1) !important; 
+      background-color: #F1F5F9 !important; 
   }
   
-  /* Sisanya Tetap Sama ... */
+  /* Badan Tabel */
   .table-premium tbody td, .table-sultan-compact tbody td, table.dataTable tbody td {
-    vertical-align: middle !important; font-size: 14px; padding: 8px 10px; 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
-    color: #e2e8f0;
+    vertical-align: middle !important; font-size: 14px; padding: 12px 10px; 
+    border-bottom: 1px solid #F1F5F9 !important;
+    color: #334155;
   }
   .table-sultan-compact tbody td { max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .table-premium tbody tr:hover td { background-color: #fff8f8 !important; }
@@ -289,24 +269,24 @@ thead th.col-sticky-center {
 
 
   /* ===================================================================
-   UPDATE HOVER TABLE (Agar terlihat jelas di tema gelap)
+   UPDATE HOVER TABLE (Minimalist)
    =================================================================== */
 
-/* 1. Warna Hover Baris Biasa (Terang sedikit) */
+/* 1. Warna Hover Baris Biasa */
 .table-premium tbody tr:hover, table.dataTable tbody tr:hover {
-    background-color: rgba(255, 255, 255, 0.08) !important;
+    background-color: #F8FAFC !important;
 }
 
 /* 2. PAKSA SEMUA SEL (td) MENGIKUTI WARNA HOVER BARIS */
 .table-premium tbody tr:hover td, table.dataTable tbody tr:hover td {
-    background-color: rgba(255, 255, 255, 0.02) !important; 
-    color: #fff !important; 
+    background-color: #F8FAFC !important; 
+    color: #0F172A !important; 
     cursor: default;
 }
 
 /* 3. FIX KHUSUS STICKY COLUMN SAAT HOVER */
 .table-premium tbody tr:hover td.col-sticky-left {
-    background-color: rgba(32, 58, 67, 0.9) !important;
+    background-color: #F8FAFC !important;
 }
 
   /* ===================================================================
