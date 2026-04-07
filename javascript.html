@@ -170,8 +170,12 @@ function loadContent(pageName) {
     .withSuccessHandler(function(html) {
       if (typeof NProgress !== 'undefined') NProgress.done();
       setTimeout(function() {
-          $content.html(html); void $content[0].offsetWidth; $content.css('opacity', '1');
-          setTimeout(function() { $content.css('min-height', ''); }, 300);
+          // VAKSIN: Transisi Slide-In-Right
+          $content.html('<div class="slide-in-right" id="slide-wrapper">' + html + '</div>'); 
+          void $content[0].offsetWidth; 
+          $('#slide-wrapper').addClass('active');
+          $content.css('opacity', '1');
+          setTimeout(function() { $content.css('min-height', ''); runCounterUp(); }, 300);
       }, 200);
     })
     .withFailureHandler(function(err){
@@ -419,21 +423,23 @@ function getBadgeSultan(status) {
     var stLower = s.toLowerCase();
     
     if (stLower.includes('revisi') || stLower.includes('perbaiki')) {
-         return `<div class="btn-icon-sultan btn-icon-sultan-warning" data-toggle="tooltip" title="${s}"><i class="fas fa-sync-alt"></i></div>`;
+         return `<div class="btn-icon-sultan btn-icon-sultan-warning badge-pulse-warning" data-toggle="tooltip" title="${s}"><i class="fas fa-sync-alt"></i></div>`;
     } else if (stLower.includes('tolak') || stLower.includes('x') || stLower.includes('salah')) {
-         return `<div class="btn-icon-sultan btn-icon-sultan-danger" data-toggle="tooltip" title="${s}"><i class="fas fa-times"></i></div>`;
+         return `<div class="btn-icon-sultan btn-icon-sultan-danger badge-pulse-danger" data-toggle="tooltip" title="${s}"><i class="fas fa-times"></i></div>`;
     } else if (stLower.includes('verif') || stLower.includes('setuju') || stLower.includes('ok') || stLower.includes('valid')) {
          return `<div class="btn-icon-sultan btn-icon-sultan-success" data-toggle="tooltip" title="${s}"><i class="fas fa-check"></i></div>`;
     } else if (s.length > 5 && (stLower.includes('proses') || stLower.includes('tunggu'))) {
-         return `<div class="btn-icon-sultan btn-icon-sultan-info" data-toggle="tooltip" title="${s}"><i class="fas fa-spinner fa-spin"></i></div>`;
+         return `<div class="btn-icon-sultan btn-icon-sultan-info badge-pulse-warning" data-toggle="tooltip" title="${s}"><i class="fas fa-spinner fa-spin"></i></div>`;
     }
     
     var pillColor = 'secondary';
+    var pulseClass = '';
     if (stLower.includes('hadir') || stLower.includes('aktif') || stLower.includes('sudah')) pillColor = 'success';
-    else if (stLower.includes('belum') || stLower.includes('absen')) pillColor = 'danger';
-    else if (stLower.includes('izin') || stLower.includes('sakit')) pillColor = 'warning';
+    else if (stLower.includes('belum') || stLower.includes('absen')) { pillColor = 'danger'; pulseClass = 'badge-pulse-danger'; }
+    else if (stLower.includes('izin') || stLower.includes('sakit') || stLower.includes('revisi')) { pillColor = 'warning'; pulseClass = 'badge-pulse-warning'; }
+    else if (stLower.includes('proses')) { pillColor = 'info'; pulseClass = 'badge-pulse-warning'; }
     
-    return `<span class="badge badge-pill badge-${pillColor} shadow-sm px-3 py-1 font-weight-bold">${s}</span>`;
+    return `<span class="badge badge-pill badge-${pillColor} ${pulseClass} shadow-sm px-3 py-1 font-weight-bold">${s}</span>`;
 }
 
 function renderBadgeSultan(text) { return getBadgeSultan(text); }
@@ -462,5 +468,27 @@ function initThemeMode() {
         $('body').addClass('theme-dark');
         $('#icon-theme').removeClass('fa-moon').addClass('fa-sun text-warning');
     }
+}
+
+function runCounterUp() {
+    $('.counter-up, .small-box h3, .info-box-number').each(function () {
+        var $this = $(this);
+        var text = $this.text().replace(/[^0-9]/g, '');
+        if (!text || text === "") return;
+        var num = parseInt(text);
+        if(num < 2) return;
+        
+        $this.prop('Counter', 0).animate({
+            Counter: num
+        }, {
+            duration: 1200,
+            easing: 'swing',
+            step: function (now) {
+                // Formatting back to string with dots if necessary
+                $this.text(Math.ceil(now).toLocaleString('id-ID'));
+            }
+        });
+        $this.removeClass('counter-up'); // Biar tidak run 2x
+    });
 }
 </script>
