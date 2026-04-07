@@ -28,9 +28,31 @@
     background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #152c38);
     background-size: 400% 400%;
     animation: gradientBG 20s ease infinite; /* Lebih pelan biar kalem */
-    color: #e2e8f0; /* Off-white yang tidak menyakiti mata */
+    color: #f8fafc !important; /* Off-white terang */
     min-height: 100vh;
   }
+  
+  /* --- VAKSIN TEKS DARK MODE (Memaksa teks bawaan menjadi terang) --- */
+  h1, h2, h3, h4, h5, h6, p, label { color: #f1f5f9 !important; }
+  .text-dark { color: #f8fafc !important; }
+  .text-muted { color: #94a3b8 !important; }
+  .text-secondary { color: #cbd5e1 !important; }
+  .small, small { color: #94a3b8 !important; }
+  .form-control, .form-control-sultan { 
+      background: rgba(15, 32, 39, 0.6) !important; 
+      color: #fff !important; 
+      border: 1px solid rgba(255,255,255,0.2) !important; 
+  }
+  .form-control::placeholder { color: rgba(255,255,255,0.4) !important; }
+  .form-control:focus { background: rgba(15, 32, 39, 0.9) !important; border-color: var(--warna-emas-soft) !important; color:#fff !important; }
+  
+  /* Select2 atau Dropdown panah */
+  select.form-control { background-image: none !important; }
+  select option { background: #0f2027; color: #fff; }
+  
+  /* Override paksa untuk elemen teks di breadcrumb / sidebar yg mungkin kelewatan */
+  .breadcrumb-item a { color: var(--warna-emas-soft) !important; }
+  .breadcrumb-item.active { color: #cbd5e1 !important; }
 
   /* Animasi Background Fluid Maroon/Emas */
   @keyframes gradientBG {
@@ -180,9 +202,9 @@
   .style-sultan-solid { border: 0; height: 2px; background-color: rgba(255,255,255,0.3); margin: 1rem 0; }
 
   /* Form Controls */
-  .form-control-sultan { border-radius: 4px !important; border: 1px solid #ced4da; height: calc(2.25rem + 2px) !important; font-size: 14px; }
-  .form-control-sultan:focus { border-color: var(--warna-maroon) !important; box-shadow: 0 0 0 0.2rem rgba(128, 0, 0, 0.25) !important; }
-  .form-label-sultan { font-weight: 700 !important; font-size: 12px !important; color: #555; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .form-control-sultan { border-radius: 4px !important; border: 1px solid rgba(255,255,255,0.2) !important; height: calc(2.25rem + 2px) !important; font-size: 14px; }
+  .form-control-sultan:focus { border-color: var(--warna-emas) !important; box-shadow: 0 0 0 0.2rem rgba(56, 189, 248, 0.25) !important; }
+  .form-label-sultan { font-weight: 700 !important; font-size: 12px !important; color: #cbd5e1 !important; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
   
   /* VAKSIN ANTI-SPINNER (Hukum BAB II) */
   input[type="number"]::-webkit-inner-spin-button,
