@@ -101,7 +101,6 @@ function checkUserRoleIsAdmin() {
    ============================================================= */
 $(document).ready(function() {
   console.log("SIKS-REBORN: Engine Started.");
-  initThemeMode(); /* VAKSIN: Terapkan Tema Tersimpan */
   $(document).on('show.bs.modal', '.modal', function () { $(this).appendTo('body'); });
   inisialisasiAplikasi();
 
@@ -447,28 +446,8 @@ function previewPDF(u){ $('#framePreview').attr('src',u.replace('/view','/previe
 function formatDateForInput(s){ if(!s) return ""; if(typeof s==='string'&&s.match(/^\d{4}-\d{2}-\d{2}$/)) return s; var d=new Date(s); return isNaN(d)?s:d.toISOString().split('T')[0]; }
 
 /* =============================================================
-   8. THEME ENGINE & FAB (SAAS PREMIUM)
+   8. STUDENT PORTAL SAAS ENGINE
    ============================================================= */
-function toggleThemeMode() {
-    var isDark = $('body').hasClass('theme-dark');
-    if (isDark) {
-        $('body').removeClass('theme-dark');
-        $('#icon-theme').removeClass('fa-sun text-warning').addClass('fa-moon');
-        localStorage.setItem('sultanTheme', 'light');
-    } else {
-        $('body').addClass('theme-dark');
-        $('#icon-theme').removeClass('fa-moon').addClass('fa-sun text-warning');
-        localStorage.setItem('sultanTheme', 'dark');
-    }
-}
-
-function initThemeMode() {
-    var savedTheme = localStorage.getItem('sultanTheme');
-    if (savedTheme === 'dark') {
-        $('body').addClass('theme-dark');
-        $('#icon-theme').removeClass('fa-moon').addClass('fa-sun text-warning');
-    }
-}
 
 function runCounterUp() {
     $('.counter-up, .small-box h3, .info-box-number').each(function () {

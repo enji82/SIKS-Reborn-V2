@@ -4,23 +4,24 @@
      Ganti --warna-maroon di sini, seluruh web otomatis berubah.
      =================================================================== */
   :root {
-    /* --- WARNA UTAMA (SAAS PREMIUM) --- */
-    --warna-maroon: #0F172A;       /* Primary (Dark Slate/Charcoal) */
-    --warna-maroon-dark: #020617;  
-    --warna-maroon-light: #334155; 
+    /* --- STUDENT PORTAL PALETTE --- */
+    --warna-maroon: #000000;       /* Primary Black */
+    --warna-maroon-dark: #18181B;  
+    --warna-maroon-light: #27272A; 
     
-    /* --- AKSEN LEVEL SIDEBAR --- */
-    --warna-emas: #4F46E5;         /* Aksen aktif (Deep Indigo) */
-    --warna-emas-soft: #6366F1;    
-    --warna-cyan: #3B82F6;         
-    --warna-hijau: #10B981;        
-    --warna-header-tabel: #F8FAFC;
+    /* --- AKSEN PASTEL SULTAN --- */
+    --warna-emas: #18181B;         /* Hover Black */
+    --warna-emas-soft: #3F3F46;    
+    --warna-cyan: #E0F2FF;         /* Light Blue (Informational) */
+    --warna-hijau: #C8F5A6;        /* Lime Green (Success) */
+    --warna-orange-pastel: #FFDAB9; /* Soft Peach (Warning) */
+    --warna-header-tabel: #FFFFFF;
     
     /* --- UTILITY --- */
-    --warna-tegas: #64748B;
-    --warna-abu-bg: #F8FAFC;       /* Off-White Background */
-    --shadow-sultan: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
-    --radius-sultan: 12px;         
+    --warna-tegas: #71717A;
+    --warna-abu-bg: #F8F9FB;       /* Off-White Background */
+    --shadow-sultan: 0 10px 40px rgba(0,0,0,0.03), 0 4px 10px rgba(0,0,0,0.02);
+    --radius-sultan: 24px;         
   }
 
   body {
@@ -108,17 +109,17 @@
      =================================================================== */
   
   /* LEVEL 1 (BAPAK) */
-  .nav-sidebar > .nav-item > .nav-link { color: #475569 !important; margin-bottom: 4px; border-radius: 8px; font-weight: 500; }
-  .nav-sidebar > .nav-item > .nav-link > i, .nav-sidebar > .nav-item > .nav-link > p { color: #475569 !important; }
+  .nav-sidebar > .nav-item > .nav-link { color: #71717A !important; margin-bottom: 4px; border-radius: 50px !important; font-weight: 500; padding: 12px 16px; margin: 0 8px 8px 8px; }
+  .nav-sidebar > .nav-item > .nav-link > i, .nav-sidebar > .nav-item > .nav-link > p { color: #71717A !important; }
   
   /* Active State Level 1 */
   .nav-sidebar > .nav-item > .nav-link.active {
-    background-color: #F1F5F9 !important;
-    box-shadow: none;
-    border-left: none; /* Buang border left gaya lama */
+    background-color: var(--warna-maroon) !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-left: none;
   }
   .nav-sidebar > .nav-item > .nav-link.active > i, .nav-sidebar > .nav-item > .nav-link.active > p {
-    color: var(--warna-emas) !important; font-weight: 600 !important;
+    color: #FFFFFF !important; font-weight: 600 !important;
   }
 
   /* LEVEL 2 (ANAK) */
@@ -1050,79 +1051,8 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
 }
 
 /* ==========================================================================
-   FITUR 3: ROOT DARK THEME SWITCH (Night Owl Mode)
-   Aktif jika body memiliki class .theme-dark
+   FITUR 3: REVERT DARK THEME (Deprecated for Student Portal Theme)
    ========================================================================== */
-body.theme-dark {
-    background: #020617 !important; /* Latar tergelap */
-    color: #F8FAFC !important;
-}
-
-/* Teks Base */
-body.theme-dark h1, body.theme-dark h2, body.theme-dark h3, body.theme-dark h4, body.theme-dark h5, body.theme-dark h6 { color: #F1F5F9 !important; }
-body.theme-dark p, body.theme-dark label, body.theme-dark span { color: #CBD5E1; }
-body.theme-dark .text-dark { color: #F8FAFC !important; }
-body.theme-dark .text-muted, body.theme-dark .small { color: #64748B !important; }
-
-/* Wrapper & Layout Utama */
-body.theme-dark .content-wrapper, body.theme-dark #gerbang-login { background: #020617 !important; }
-body.theme-dark .main-header, body.theme-dark .main-sidebar, body.theme-dark .sidebar-custom, body.theme-dark .brand-link, body.theme-dark .main-footer {
-    background: #0F172A !important;
-    border-color: #1E293B !important;
-}
-body.theme-dark .main-header .nav-link, body.theme-dark .nav-sidebar > .nav-item > .nav-link { color: #94A3B8 !important; }
-body.theme-dark .nav-sidebar > .nav-item > .nav-link.active { background-color: #1E293B !important; color: #818CF8 !important; }
-body.theme-dark .nav-treeview > .nav-item > .nav-link.active { color: #818CF8 !important; }
-
-/* Cards & Modals */
-body.theme-dark .card-sultan, body.theme-dark .card, body.theme-dark .modal-content {
-    background: #0F172A !important;
-    border-color: #1E293B !important;
-    color: #F1F5F9 !important;
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.5) !important;
-}
-body.theme-dark .card-header, body.theme-dark .card-footer, body.theme-dark .modal-header, body.theme-dark .modal-footer, body.theme-dark .modal-body {
-    background: #0F172A !important;
-    border-color: #1E293B !important;
-    color: #F1F5F9 !important;
-}
-
-/* Formulir (Input) */
-body.theme-dark .form-control, body.theme-dark .form-control-sultan {
-    background: #1E293B !important;
-    color: #F8FAFC !important;
-    border-color: #334155 !important;
-}
-body.theme-dark .form-control:focus, body.theme-dark .form-control-sultan:focus {
-    border-color: #818CF8 !important;
-    box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.2) !important;
-}
-
-/* Tabel */
-body.theme-dark .table-premium thead th, body.theme-dark table.dataTable thead th {
-    background: #1E293B !important;
-    color: #94A3B8 !important;
-    border-color: #334155 !important;
-}
-body.theme-dark .table-premium tbody td, body.theme-dark table.dataTable tbody td {
-    border-color: #1E293B !important;
-    color: #E2E8F0 !important;
-}
-body.theme-dark .table-premium tbody tr:hover, body.theme-dark table.dataTable tbody tr:hover,
-body.theme-dark .table-premium tbody tr:hover td, body.theme-dark table.dataTable tbody tr:hover td {
-    background-color: #1E293B !important;
-    color: #F8FAFC !important;
-}
-body.theme-dark .table-premium tbody tr:hover td.col-sticky-left { background-color: #1E293B !important; }
-
-/* Filter Tabel */
-body.theme-dark div.dataTables_wrapper div.dataTables_filter input, body.theme-dark div.dataTables_wrapper div.dataTables_length select {
-    background: #1E293B !important;
-    color: #F8FAFC !important;
-    border-color: #334155 !important;
-}
-
-/* Batas Dark Theme */
 
 /* ==========================================================================
    FITUR 4: FLOATING ACTION BUTTON (FAB) MOBILE
@@ -1174,9 +1104,6 @@ body.theme-dark div.dataTables_wrapper div.dataTables_filter input, body.theme-d
 }
 ::-webkit-scrollbar-thumb:hover {
     background: rgba(100, 116, 139, 0.6);
-}
-body.theme-dark ::-webkit-scrollbar-thumb {
-    background: rgba(148, 163, 184, 0.3);
 }
 
 /* ==========================================================================
