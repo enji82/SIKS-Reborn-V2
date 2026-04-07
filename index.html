@@ -43,6 +43,12 @@
       </ul>
 
       <ul class="navbar-nav ml-auto">
+        <!-- VAKSIN: TEMA GELAP/TERANG -->
+        <li class="nav-item">
+          <a class="nav-link cursor-pointer d-flex align-items-center" id="btn-toggle-theme" title="Ubah Tema" onclick="toggleThemeMode()">
+            <i class="fas fa-moon" id="icon-theme"></i>
+          </a>
+        </li>
         <li class="nav-item dropdown user-menu">
           <a href="#" class="nav-link d-flex align-items-center" data-toggle="dropdown">
             <div class="user-capsule">
@@ -301,6 +307,11 @@
 
   });
   </script>
+
+  <!-- VAKSIN: FLOATING ACTION BUTTON KERANGKA -->
+  <div class="fab-container" id="fabMainContainer" style="display:none;" onclick="$('.btn-tambah, .btn-primary, .btn-success').first().click()">
+      <button class="fab-button" id="fabMainBtn"><i class="fas fa-plus"></i></button>
+  </div>
 
 </body>
 </html>

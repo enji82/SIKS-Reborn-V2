@@ -1002,4 +1002,158 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     color: var(--warna-emas);
     margin-right: 8px;
 }
+
+/* ==========================================================================
+   FITUR 1: SKELETON LOADING (Tulang Bayangan)
+   ========================================================================== */
+@keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+}
+
+.skeleton-box {
+    display: inline-block;
+    height: 1em;
+    position: relative;
+    overflow: hidden;
+    background-color: #E2E8F0;
+    border-radius: 4px;
+}
+.skeleton-box::after {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    content: '';
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0, rgba(255,255,255,0.4) 20%, rgba(255,255,255,0.6) 60%, rgba(255,255,255,0) 100%);
+    background-size: 2000px 100%;
+    animation: shimmer 2s infinite linear;
+}
+
+/* ==========================================================================
+   FITUR 2: MICRO-INTERACTION TABEL (Hover Reveal)
+   Menyembunyikan aksi sampai ditunjuk mouse
+   ========================================================================== */
+@media (min-width: 992px) {
+    /* Khusus desktop, sembunyikan aksi default */
+    .table-premium tbody tr .td-aksi .btn-icon-sultan {
+        opacity: 0.1; /* Buat samar */
+        transform: scale(0.8);
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    /* Munculkan saat baris (tr) disentuh mouse */
+    .table-premium tbody tr:hover .td-aksi .btn-icon-sultan {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ==========================================================================
+   FITUR 3: ROOT DARK THEME SWITCH (Night Owl Mode)
+   Aktif jika body memiliki class .theme-dark
+   ========================================================================== */
+body.theme-dark {
+    background: #020617 !important; /* Latar tergelap */
+    color: #F8FAFC !important;
+}
+
+/* Teks Base */
+body.theme-dark h1, body.theme-dark h2, body.theme-dark h3, body.theme-dark h4, body.theme-dark h5, body.theme-dark h6 { color: #F1F5F9 !important; }
+body.theme-dark p, body.theme-dark label, body.theme-dark span { color: #CBD5E1; }
+body.theme-dark .text-dark { color: #F8FAFC !important; }
+body.theme-dark .text-muted, body.theme-dark .small { color: #64748B !important; }
+
+/* Wrapper & Layout Utama */
+body.theme-dark .content-wrapper, body.theme-dark #gerbang-login { background: #020617 !important; }
+body.theme-dark .main-header, body.theme-dark .main-sidebar, body.theme-dark .sidebar-custom, body.theme-dark .brand-link, body.theme-dark .main-footer {
+    background: #0F172A !important;
+    border-color: #1E293B !important;
+}
+body.theme-dark .main-header .nav-link, body.theme-dark .nav-sidebar > .nav-item > .nav-link { color: #94A3B8 !important; }
+body.theme-dark .nav-sidebar > .nav-item > .nav-link.active { background-color: #1E293B !important; color: #818CF8 !important; }
+body.theme-dark .nav-treeview > .nav-item > .nav-link.active { color: #818CF8 !important; }
+
+/* Cards & Modals */
+body.theme-dark .card-sultan, body.theme-dark .card, body.theme-dark .modal-content {
+    background: #0F172A !important;
+    border-color: #1E293B !important;
+    color: #F1F5F9 !important;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.5) !important;
+}
+body.theme-dark .card-header, body.theme-dark .card-footer, body.theme-dark .modal-header, body.theme-dark .modal-footer, body.theme-dark .modal-body {
+    background: #0F172A !important;
+    border-color: #1E293B !important;
+    color: #F1F5F9 !important;
+}
+
+/* Formulir (Input) */
+body.theme-dark .form-control, body.theme-dark .form-control-sultan {
+    background: #1E293B !important;
+    color: #F8FAFC !important;
+    border-color: #334155 !important;
+}
+body.theme-dark .form-control:focus, body.theme-dark .form-control-sultan:focus {
+    border-color: #818CF8 !important;
+    box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.2) !important;
+}
+
+/* Tabel */
+body.theme-dark .table-premium thead th, body.theme-dark table.dataTable thead th {
+    background: #1E293B !important;
+    color: #94A3B8 !important;
+    border-color: #334155 !important;
+}
+body.theme-dark .table-premium tbody td, body.theme-dark table.dataTable tbody td {
+    border-color: #1E293B !important;
+    color: #E2E8F0 !important;
+}
+body.theme-dark .table-premium tbody tr:hover, body.theme-dark table.dataTable tbody tr:hover,
+body.theme-dark .table-premium tbody tr:hover td, body.theme-dark table.dataTable tbody tr:hover td {
+    background-color: #1E293B !important;
+    color: #F8FAFC !important;
+}
+body.theme-dark .table-premium tbody tr:hover td.col-sticky-left { background-color: #1E293B !important; }
+
+/* Filter Tabel */
+body.theme-dark div.dataTables_wrapper div.dataTables_filter input, body.theme-dark div.dataTables_wrapper div.dataTables_length select {
+    background: #1E293B !important;
+    color: #F8FAFC !important;
+    border-color: #334155 !important;
+}
+
+/* Batas Dark Theme */
+
+/* ==========================================================================
+   FITUR 4: FLOATING ACTION BUTTON (FAB) MOBILE
+   ========================================================================== */
+.fab-container {
+    position: fixed;
+    bottom: 80px; /* Di atas footer adminLTE mobile */
+    right: 20px;
+    z-index: 999;
+}
+@media (min-width: 768px) {
+    .fab-container { display: none !important; } /* Sembunyikan di layar besar */
+}
+
+.fab-button {
+    width: 56px;
+    height: 56px;
+    background-color: var(--warna-emas);
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(79, 70, 229, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white !important;
+    font-size: 24px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+.fab-button:active {
+    transform: scale(0.9);
+}
+.fab-button.fab-danger { background-color: #EF4444; box-shadow: 0 4px 10px rgba(239, 68, 68, 0.4); }
+.fab-button.fab-success { background-color: #10B981; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.4); }
+
 </style>

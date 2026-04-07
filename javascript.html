@@ -101,6 +101,7 @@ function checkUserRoleIsAdmin() {
    ============================================================= */
 $(document).ready(function() {
   console.log("SIKS-REBORN: Engine Started.");
+  initThemeMode(); /* VAKSIN: Terapkan Tema Tersimpan */
   $(document).on('show.bs.modal', '.modal', function () { $(this).appendTo('body'); });
   inisialisasiAplikasi();
 
@@ -160,8 +161,10 @@ function loadContent(pageName) {
   
   if (typeof NProgress !== 'undefined') { NProgress.configure({ showSpinner: false, speed: 400 }); NProgress.start(); }
   
-  $content.css('min-height', $content.height() + 'px');
-  $content.css({'transition': 'opacity 0.2s ease', 'opacity': '0'});
+  $content.css('min-height', Math.max($content.height(), 400) + 'px');
+  // Tampilkan Skeleton Loading saat memuat
+  $content.html('<div class="p-4"><div class="skeleton-box mb-4" style="width:30%; height:40px;"></div><br><div class="skeleton-box w-100 mb-3" style="height:50px;"></div><div class="skeleton-box w-100 mb-2" style="height:30px;"></div><div class="skeleton-box w-100 mb-2" style="height:30px;"></div><div class="skeleton-box w-75" style="height:30px;"></div></div>');
+  $content.css('opacity', '1');
 
   google.script.run
     .withSuccessHandler(function(html) {
@@ -385,7 +388,11 @@ var SultanTable = {
             destroy: true,
             language: {
                 url: "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json",
-                emptyTable: emptyText || "Tidak ada data."
+                emptyTable: `<div class="text-center p-4">
+                               <img src="https://cdni.iconscout.com/illustration/premium/thumb/folder-is-empty-illustration-download-in-svg-png-gif-file-formats--no-data-missing-file-states-pack-design-development-illustrations-6169997.png" 
+                                    style="height:140px; opacity:0.9; margin-bottom:15px;">
+                               <h6 class="font-weight-bold text-muted">${emptyText || "Wah, belum ada data di sini. Yuk ditambahkan!"}</h6>
+                             </div>`
             },
             dom: "<'row mb-2'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
                  "<'row'<'col-sm-12 table-responsive'tr>>" +
@@ -432,4 +439,28 @@ function getBadgeSultan(status) {
 function renderBadgeSultan(text) { return getBadgeSultan(text); }
 function previewPDF(u){ $('#framePreview').attr('src',u.replace('/view','/preview')); $('#modalPreviewSK').modal('show'); }
 function formatDateForInput(s){ if(!s) return ""; if(typeof s==='string'&&s.match(/^\d{4}-\d{2}-\d{2}$/)) return s; var d=new Date(s); return isNaN(d)?s:d.toISOString().split('T')[0]; }
+
+/* =============================================================
+   8. THEME ENGINE & FAB (SAAS PREMIUM)
+   ============================================================= */
+function toggleThemeMode() {
+    var isDark = $('body').hasClass('theme-dark');
+    if (isDark) {
+        $('body').removeClass('theme-dark');
+        $('#icon-theme').removeClass('fa-sun text-warning').addClass('fa-moon');
+        localStorage.setItem('sultanTheme', 'light');
+    } else {
+        $('body').addClass('theme-dark');
+        $('#icon-theme').removeClass('fa-moon').addClass('fa-sun text-warning');
+        localStorage.setItem('sultanTheme', 'dark');
+    }
+}
+
+function initThemeMode() {
+    var savedTheme = localStorage.getItem('sultanTheme');
+    if (savedTheme === 'dark') {
+        $('body').addClass('theme-dark');
+        $('#icon-theme').removeClass('fa-moon').addClass('fa-sun text-warning');
+    }
+}
 </script>
