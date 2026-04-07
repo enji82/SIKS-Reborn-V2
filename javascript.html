@@ -119,7 +119,7 @@ $(document).ready(function() {
 });
 
 function inisialisasiAplikasi() {
-  var preloader = $('.preloader');
+  var preloader = $('#loading-awal, .preloader');
   try {
       var user = getSesiUser();
       if (!user) {
