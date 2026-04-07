@@ -4,24 +4,25 @@
      Ganti --warna-maroon di sini, seluruh web otomatis berubah.
      =================================================================== */
   :root {
-    /* --- STUDENT PORTAL PALETTE --- */
-    --warna-maroon: #000000;       /* Primary Black */
-    --warna-maroon-dark: #18181B;  
-    --warna-maroon-light: #27272A; 
+    /* --- INAPP THEME PALETTE --- */
+    --warna-maroon: #FF5722;       /* Primary Coral/Orange */
+    --warna-maroon-dark: #E53935;  
+    --warna-maroon-light: #FBE9E7; 
     
     /* --- AKSEN PASTEL SULTAN --- */
-    --warna-emas: #18181B;         /* Hover Black */
-    --warna-emas-soft: #3F3F46;    
-    --warna-cyan: #E0F2FF;         /* Light Blue (Informational) */
-    --warna-hijau: #C8F5A6;        /* Lime Green (Success) */
-    --warna-orange-pastel: #FFDAB9; /* Soft Peach (Warning) */
+    --warna-emas: #E53935;         
+    --warna-emas-soft: #FFCCBC;    
+    --warna-cyan: #E0F2FF;         
+    --warna-hijau: #C8F5A6;        
+    --warna-orange-pastel: #FFDAB9; 
     --warna-header-tabel: #FFFFFF;
     
     /* --- UTILITY --- */
-    --warna-tegas: #71717A;
+    --warna-tegas: #6C757D;
     --warna-abu-bg: #F8F9FB;       /* Off-White Background */
-    --shadow-sultan: 0 10px 40px rgba(0,0,0,0.03), 0 4px 10px rgba(0,0,0,0.02);
-    --radius-sultan: 24px;         
+    --shadow-sultan: 0 2px 4px rgba(0,0,0,0.04);
+    --radius-sultan: 8px;         
+    --border-sultan: 1px solid #E9ECEF;
   }
 
   body {
@@ -57,11 +58,12 @@
   .breadcrumb-item a { color: var(--warna-emas-soft) !important; font-weight: 500; }
   .breadcrumb-item.active { color: #64748B !important; }
 
-  /* KELAS UTILITAS PREMIUM SAAS */
+  /* KELAS UTILITAS INAPP */
   .glass-effect {
       background: #FFFFFF !important; 
-      border: 1px solid #F1F5F9 !important;
+      border: var(--border-sultan) !important;
       box-shadow: var(--shadow-sultan) !important;
+      border-radius: var(--radius-sultan) !important;
   }
 
   /* ===================================================================
@@ -109,17 +111,17 @@
      =================================================================== */
   
   /* LEVEL 1 (BAPAK) */
-  .nav-sidebar > .nav-item > .nav-link { color: #71717A !important; margin-bottom: 4px; border-radius: 50px !important; font-weight: 500; padding: 12px 16px; margin: 0 8px 8px 8px; }
-  .nav-sidebar > .nav-item > .nav-link > i, .nav-sidebar > .nav-item > .nav-link > p { color: #71717A !important; }
+  .nav-sidebar > .nav-item > .nav-link { color: #495057 !important; margin-bottom: 4px; border-radius: 8px !important; font-weight: 500; padding: 12px 16px; margin: 0 8px 8px 8px; transition: all 0.2s; }
+  .nav-sidebar > .nav-item > .nav-link > i, .nav-sidebar > .nav-item > .nav-link > p { color: #495057 !important; }
   
-  /* Active State Level 1 */
+  /* Active State Level 1 (INAPP) */
   .nav-sidebar > .nav-item > .nav-link.active {
-    background-color: var(--warna-maroon) !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    background-color: var(--warna-maroon-light) !important;
+    box-shadow: none;
     border-left: none;
   }
   .nav-sidebar > .nav-item > .nav-link.active > i, .nav-sidebar > .nav-item > .nav-link.active > p {
-    color: #FFFFFF !important; font-weight: 600 !important;
+    color: var(--warna-maroon) !important; font-weight: 600 !important;
   }
 
   /* LEVEL 2 (ANAK) */
@@ -162,20 +164,20 @@
     border-color: var(--warna-maroon-light) !important; 
   }
 
-  /* Card Sultan - Clean Minimalist */
+  /* Card Sultan - Clean Minimalist (INAPP) */
   .card-sultan, .card { 
-      border: 1px solid #E2E8F0 !important; 
+      border: var(--border-sultan) !important; 
       border-radius: var(--radius-sultan) !important; 
       box-shadow: var(--shadow-sultan) !important; 
       background: #FFFFFF !important; 
       margin-bottom: 1.5rem; 
-      color: #334155 !important;
+      color: #495057 !important;
   }
   .card-header, .card-footer {
       background: #FFFFFF !important;
-      border-bottom: 1px solid #F1F5F9 !important;
-      color: #0F172A !important;
-      font-weight: 600;
+      border-bottom: var(--border-sultan) !important;
+      color: #212529 !important;
+      font-weight: 700;
   }
   
   .border-left-dark { border-left: 4px solid var(--warna-emas) !important; }
@@ -212,14 +214,14 @@
      5. TABEL & DATA GRID (DARK PREMIUM STYLE)
      =================================================================== */
   
-  /* Header Tabel Minimalist */
+  /* Header Tabel Minimalist (INAPP) */
   .table-premium thead th, table.dataTable thead th {
-    background-color: #F8FAFC !important;
-    color: #64748B !important; 
-    font-weight: 600 !important;
-    border-bottom: 1px solid #E2E8F0 !important; 
+    background-color: #FFFFFF !important;
+    color: var(--warna-tegas) !important; 
+    font-weight: 700 !important;
+    border-bottom: var(--border-sultan) !important; 
     border-top: none !important;
-    vertical-align: middle !important; white-space: nowrap; font-size: 0.85rem; padding: 12px;
+    vertical-align: middle !important; white-space: nowrap; font-size: 0.85rem; padding: 12px 16px;
     text-transform: uppercase; letter-spacing: 0.5px;
   }
   
@@ -230,9 +232,9 @@
   
   /* Badan Tabel */
   .table-premium tbody td, .table-sultan-compact tbody td, table.dataTable tbody td {
-    vertical-align: middle !important; font-size: 14px; padding: 12px 10px; 
-    border-bottom: 1px solid #F1F5F9 !important;
-    color: #334155;
+    vertical-align: middle !important; font-size: 14px; padding: 12px 16px; 
+    border-bottom: var(--border-sultan) !important;
+    color: #495057;
   }
   .table-sultan-compact tbody td { max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .table-premium tbody tr:hover td { background-color: #fff8f8 !important; }
@@ -244,7 +246,7 @@
   }
   /* Sticky Header Khusus Kolom 1 (Ikut Warna Header Baru) */
   thead th.col-sticky-left {
-      background-color: #fff4d4 !important; /* SAMAKAN DENGAN HEADER */
+      background-color: #FFFFFF !important; /* SAMAKAN DENGAN HEADER */
       z-index: 10;
   }
 
@@ -263,7 +265,7 @@
 
 /* Sticky Header Kolom 1 */
 thead th.col-sticky-center {
-  background-color: #fff4d4 !important; /* samakan dengan header */
+  background-color: #FFFFFF !important; /* samakan dengan header */
   z-index: 10;
 
   /* RATA TENGAH HEADER */
