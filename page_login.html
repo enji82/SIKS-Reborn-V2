@@ -20,11 +20,11 @@
     /* ========================================================= */
 
     :root {
-      --maroon-primary: #800000;
-      --maroon-gradient: linear-gradient(135deg, rgba(128, 0, 0, 0.6) 0%, rgba(74, 4, 4, 0.6) 100%);
-      --gold-luxury: #FFD700;
-      --glass-bg: rgba(255, 255, 255, 0.05); /* Reduced opacity for better glass effect */
-      --glass-border: rgba(255, 255, 255, 0.2);
+      --maroon-primary: #38bdf8; /* Cyan/Light Blue for accents */
+      --maroon-gradient: linear-gradient(135deg, rgba(15, 32, 39, 0.7) 0%, rgba(32, 58, 67, 0.7) 100%);
+      --gold-luxury: #7dd3fc; /* Softer light blue/cyan */
+      --glass-bg: rgba(15, 32, 39, 0.4); 
+      --glass-border: rgba(255, 255, 255, 0.05);
     }
 
     /* FIX Z-INDEX SWEETALERT (Hanya untuk Error) */
@@ -152,8 +152,8 @@
     <div class="card-glass" id="mainCard">
       
       <div class="card-header-premium" id="cardHeader">
-        <div class="logo-container" id="logoBox">
-          <i class="fas fa-book-reader fa-3x text-maroon"></i>
+        <div class="logo-container" id="logoBox" style="border-color: var(--maroon-primary);">
+          <i class="fas fa-book-reader fa-3x" style="color: var(--maroon-primary);"></i>
         </div>
         <div id="headerText">
             <h2 class="font-weight-bold text-white mb-0" style="font-size: 24px; letter-spacing: 2px;">SIKS-REBORN</h2>
@@ -225,7 +225,7 @@
          var timeLeft = animationEnd - Date.now();
          if (timeLeft <= 0) { return clearInterval(interval); }
          var particleCount = 50 * (timeLeft / duration);
-         confetti(Object.assign({}, defaults, { particleCount, origin: { x: Math.random(), y: Math.random() - 0.2 }, colors: ['#FFD700', '#800000'] }));
+         confetti(Object.assign({}, defaults, { particleCount, origin: { x: Math.random(), y: Math.random() - 0.2 }, colors: ['#38bdf8', '#7dd3fc'] }));
        }, 250);
     }
   }

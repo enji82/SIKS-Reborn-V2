@@ -4,31 +4,31 @@
      Ganti --warna-maroon di sini, seluruh web otomatis berubah.
      =================================================================== */
   :root {
-    /* --- WARNA UTAMA (BRANDING) --- */
-    --warna-maroon: #800000;       /* Warna Dasar (Header, Tombol, Sidebar) */
-    --warna-maroon-dark: #4a0404;  /* Sidebar lebih gelap */
-    --warna-maroon-light: #a33b3b; /* Hover state */
+    /* --- WARNA UTAMA (BRANDING BARU DARK BLUE) --- */
+    --warna-maroon: #2c5364;       /* Primary (tombol dll) */
+    --warna-maroon-dark: #0f2027;  /* Super gelap */
+    --warna-maroon-light: #203a43; /* Hover state */
     
     /* --- AKSEN LEVEL SIDEBAR --- */
-    --warna-emas: #FFD700;         /* Level 1 (Bapak) */
-    --warna-emas-soft: #ffc107;    /* Aksen umum */
-    --warna-cyan: #00ffff;         /* Level 2 (Anak) */
-    --warna-hijau: #00ff00;        /* Level 3 (Cucu) */
-    --warna-header-tabel: #fff4d4;
+    --warna-emas: #38bdf8;         /* Kita ubah aksen utamanya jadi Cyan/Biru laut */
+    --warna-emas-soft: #7dd3fc;    
+    --warna-cyan: #34d399;         /* Level 2 (Mint Hijau) */
+    --warna-hijau: #a78bfa;        /* Level 3 (Ungu Soft) */
+    --warna-header-tabel: rgba(255, 255, 255, 0.05);
     
     /* --- UTILITY --- */
-    --warna-tegas: #343a40;
-    --warna-abu-bg: #f4cccc;       /* Background Body */
-    --shadow-sultan: 0 4px 6px -1px rgba(0,0,0,0.1);
-    --radius-sultan: 8px;
+    --warna-tegas: #94a3b8;
+    --warna-abu-bg: #0f172a;       /* Latar sangat gelap */
+    --shadow-sultan: 0 4px 6px -1px rgba(0,0,0,0.3);
+    --radius-sultan: 12px;         /* Sudut sedikit lebih membulat elegan */
   }
 
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    background: linear-gradient(-45deg, #4a0404, #800000, #b22222, #8b0000);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #152c38);
     background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
-    color: #fff;
+    animation: gradientBG 20s ease infinite; /* Lebih pelan biar kalem */
+    color: #e2e8f0; /* Off-white yang tidak menyakiti mata */
     min-height: 100vh;
   }
 
@@ -39,60 +39,60 @@
     100% { background-position: 0% 50%; }
   }
 
-  /* KELAS UTILITAS GLASSMORPHISM UTAMA */
+  /* KELAS UTILITAS GLASSMORPHISM UTAMA (DARK GLASS) */
   .glass-effect {
-      background: rgba(255, 255, 255, 0.05) !important; 
-      backdrop-filter: blur(16px) !important; /* Blur efek kaca */
+      background: rgba(15, 32, 39, 0.4) !important; 
+      backdrop-filter: blur(16px) !important; 
       -webkit-backdrop-filter: blur(16px) !important;
-      border: 1px solid rgba(255, 255, 255, 0.2) !important;
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
+      border: 1px solid rgba(255, 255, 255, 0.05) !important;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4) !important;
   }
 
 
   /* ===================================================================
-     2. ADMINLTE OVERRIDES (GLASSMORPHISM)
+     2. ADMINLTE OVERRIDES (DARK GLASSMORPHISM)
      =================================================================== */
   
   /* A. NAVBAR (HEADER ATAS) */
   .main-header { 
-    background: rgba(128, 0, 0, 0.4) !important; /* Semi-transparent maroon */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    background: rgba(15, 32, 39, 0.5) !important; /* Semi-transparent navy */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
   }
-  .main-header .nav-link { color: rgba(255,255,255,0.9) !important; }
+  .main-header .nav-link { color: rgba(255,255,255,0.85) !important; }
   .main-header .nav-link:hover { color: var(--warna-emas) !important; }
 
   /* B. SIDEBAR DASAR & LOGO */
   .main-sidebar, .sidebar-custom { 
-    background: rgba(74, 4, 4, 0.5) !important; /* Terang tembus pandang */
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    background: rgba(10, 20, 25, 0.6) !important; /* Lebih gelap buat kontras */
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
   }
   
   .brand-link { 
-    background: rgba(0,0,0,0.1) !important; /* Lebih transparan */
-    border-bottom: 1px solid rgba(255,255,255,0.1) !important; 
-    color: #fff !important;
+    background: rgba(0,0,0,0.2) !important; /* Sedikit lebih gelap di logo */
+    border-bottom: 1px solid rgba(255,255,255,0.05) !important; 
+    color: #e2e8f0 !important;
   }
   .brand-link:hover { color: var(--warna-emas) !important; }
 
   /* C. FOOTER */
   .main-footer { 
     position: fixed; bottom: 0; width: 100%; z-index: 1032; 
-    background: rgba(255, 255, 255, 0.1) !important;
+    background: rgba(15, 32, 39, 0.4) !important;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(255, 255, 255, 0.2) !important; 
+    border-top: 1px solid rgba(255, 255, 255, 0.05) !important; 
     padding: 10px 20px; 
-    box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
-    color: #fff !important;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
+    color: #cbd5e1 !important;
   }
-  .main-footer a { color: var(--warna-emas); font-weight: bold; }
-  .main-footer strong { color: rgba(255,255,255,0.9) !important; }
+  .main-footer a { color: var(--warna-emas); font-weight: bold; text-decoration: none; }
+  .main-footer strong { color: rgba(255,255,255,0.85) !important; }
 
   /* D. CONTENT WRAPPER */
   .content-wrapper { padding-bottom: 70px !important; background: transparent !important; }
@@ -159,21 +159,21 @@
     border-color: var(--warna-maroon-light) !important; 
   }
 
-  /* Card Sultan - Glassmorphism */
+  /* Card Sultan - Dark Glassmorphism */
   .card-sultan, .card { 
-      border: 1px solid rgba(255,255,255,0.2) !important; 
+      border: 1px solid rgba(255,255,255,0.08) !important; 
       border-radius: var(--radius-sultan) !important; 
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important; 
-      background: rgba(255, 255, 255, 0.1) !important; 
-      backdrop-filter: blur(12px) !important;
-      -webkit-backdrop-filter: blur(12px) !important;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4) !important; 
+      background: rgba(15, 32, 39, 0.5) !important; 
+      backdrop-filter: blur(14px) !important;
+      -webkit-backdrop-filter: blur(14px) !important;
       margin-bottom: 1.5rem; 
-      color: #fff !important;
+      color: #e2e8f0 !important;
   }
   .card-header, .card-footer {
-      background: rgba(0,0,0,0.2) !important;
-      border-bottom: 1px solid rgba(255,255,255,0.1) !important;
-      color: #fff !important;
+      background: rgba(0,0,0,0.25) !important;
+      border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+      color: #f8fafc !important;
   }
   
   .border-left-dark { border-left: 5px solid var(--warna-tegas) !important; }
@@ -205,27 +205,29 @@
   .user-capsule span { color: #fff; font-size: 0.9rem; font-weight: 500; }
 
   /* ===================================================================
-     5. TABEL & DATA GRID (PREMIUM STYLE - GOLD EDITION)
+     5. TABEL & DATA GRID (DARK PREMIUM STYLE)
      =================================================================== */
   
-  /* Header Tabel Gold Light */
+  /* Header Tabel Dark Glass */
   .table-premium thead th, table.dataTable thead th {
-    background-color: #fff4d4 !important; /* Ganti Hex ini jika kurang cocok */
-    color: var(--warna-maroon) !important; /* Teks Wajib Gelap/Maroon */
+    background-color: rgba(255, 255, 255, 0.05) !important; /* Redup */
+    color: var(--warna-emas-soft) !important; /* Teks Aksen */
     font-weight: 700 !important;
-    border-bottom: 1px solid var(--warna-maroon) !important; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important; 
     border-top: none !important;
     vertical-align: middle !important; white-space: nowrap; font-size: 0.9rem; padding: 10px;
   }
   
-  /* Efek Hover Header (Sedikit lebih gelap saat disorot) */
+  /* Efek Hover Header */
   .table-premium thead th:hover, table.dataTable thead th:hover {
-      background-color: #ffeeb0 !important; 
+      background-color: rgba(255, 255, 255, 0.1) !important; 
   }
   
   /* Sisanya Tetap Sama ... */
-  .table-premium tbody td, .table-sultan-compact tbody td {
-    vertical-align: middle !important; font-size: 14px; padding: 8px 10px; border-bottom: 1px solid #f0f0f0;
+  .table-premium tbody td, .table-sultan-compact tbody td, table.dataTable tbody td {
+    vertical-align: middle !important; font-size: 14px; padding: 8px 10px; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    color: #e2e8f0;
   }
   .table-sultan-compact tbody td { max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .table-premium tbody tr:hover td { background-color: #fff8f8 !important; }
@@ -265,26 +267,24 @@ thead th.col-sticky-center {
 
 
   /* ===================================================================
-   UPDATE HOVER TABLE (Agar terlihat jelas)
+   UPDATE HOVER TABLE (Agar terlihat jelas di tema gelap)
    =================================================================== */
 
-/* 1. Warna Hover Baris Biasa (Pink Muda Sultan) */
-.table-premium tbody tr:hover {
-    background-color: #ffe8e8 !important;
+/* 1. Warna Hover Baris Biasa (Terang sedikit) */
+.table-premium tbody tr:hover, table.dataTable tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.08) !important;
 }
 
 /* 2. PAKSA SEMUA SEL (td) MENGIKUTI WARNA HOVER BARIS */
-/* Penting: Gunakan selector spesifik agar menimpa background putih default */
-.table-premium tbody tr:hover td {
-    background-color: #ffe8e8 !important; 
-    color: #800000 !important; /* Opsional: Teks jadi Maroon saat disorot */
+.table-premium tbody tr:hover td, table.dataTable tbody tr:hover td {
+    background-color: rgba(255, 255, 255, 0.02) !important; 
+    color: #fff !important; 
     cursor: default;
 }
 
 /* 3. FIX KHUSUS STICKY COLUMN SAAT HOVER */
-/* Tanpa ini, kolom nama (kiri) akan tetap putih saat di-hover */
 .table-premium tbody tr:hover td.col-sticky-left {
-    background-color: #ffe8e8 !important;
+    background-color: rgba(32, 58, 67, 0.9) !important;
 }
 
   /* ===================================================================
