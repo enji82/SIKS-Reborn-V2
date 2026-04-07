@@ -4,25 +4,26 @@
      Ganti --warna-maroon di sini, seluruh web otomatis berubah.
      =================================================================== */
   :root {
-    /* --- INAPP THEME PALETTE --- */
-    --warna-maroon: #FF5722;       /* Primary Coral/Orange */
-    --warna-maroon-dark: #E53935;  
-    --warna-maroon-light: #FBE9E7; 
+    /* --- LAVENDER HAZE PALETTE --- */
+    --warna-maroon: #7C3AED;       /* Vivid Violet (Primary) */
+    --warna-maroon-dark: #6D28D9;  
+    --warna-maroon-light: #EDE9FE; /* Soft Violet Background */
     
     /* --- AKSEN PASTEL SULTAN --- */
-    --warna-emas: #E53935;         
-    --warna-emas-soft: #FFCCBC;    
+    --warna-emas: #6D28D9;         
+    --warna-emas-soft: #DDD6FE;    
     --warna-cyan: #E0F2FF;         
-    --warna-hijau: #C8F5A6;        
-    --warna-orange-pastel: #FFDAB9; 
-    --warna-header-tabel: #FFFFFF;
+    --warna-hijau: #D1FAE5;        
+    --warna-orange-pastel: #FEF3C7; 
+    --warna-header-tabel: #F2EDFC; 
     
     /* --- UTILITY --- */
-    --warna-tegas: #6C757D;
-    --warna-abu-bg: #F8F9FB;       /* Off-White Background */
-    --shadow-sultan: 0 2px 4px rgba(0,0,0,0.04);
-    --radius-sultan: 8px;         
-    --border-sultan: 1px solid #E9ECEF;
+    --warna-tegas: #5B21B6;        
+    --warna-abu-bg: #F8F5FF;       /* Pale Lavender Base */
+    --warna-kartu-bg: #F2EDFC;     /* Lilac Medium untuk Cards */
+    --shadow-sultan: 0 4px 12px rgba(124, 58, 237, 0.08); /* Bayangan ungu */
+    --radius-sultan: 16px;         /* Naikkan kelengkungan agar lebih playful */
+    --border-sultan: 1px solid #E9D5FF; /* Border keunguan tipis */
   }
 
   body {
@@ -41,7 +42,7 @@
   .small, small { color: #64748B !important; }
   
   .form-control, .form-control-sultan { 
-      background: #FFFFFF !important; 
+      background: var(--warna-kartu-bg) !important; 
       color: #0F172A !important; 
       border: 1px solid #E2E8F0 !important; 
       box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
@@ -52,15 +53,15 @@
       box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2) !important; 
   }
   
-  select.form-control { background-color: #fff !important; }
-  select option { background: #fff; color: #0F172A; }
+  select.form-control { background-color: var(--warna-kartu-bg) !important; }
+  select option { background: var(--warna-kartu-bg); color: #0F172A; }
   
   .breadcrumb-item a { color: var(--warna-emas-soft) !important; font-weight: 500; }
   .breadcrumb-item.active { color: #64748B !important; }
 
   /* KELAS UTILITAS INAPP */
   .glass-effect {
-      background: #FFFFFF !important; 
+      background: var(--warna-kartu-bg) !important; 
       border: var(--border-sultan) !important;
       box-shadow: var(--shadow-sultan) !important;
       border-radius: var(--radius-sultan) !important;
@@ -72,7 +73,7 @@
   
   /* A. NAVBAR (HEADER ATAS) */
   .main-header { 
-    background: #FFFFFF !important;
+    background: var(--warna-kartu-bg) !important;
     border-bottom: 1px solid #E2E8F0 !important;
     box-shadow: none !important;
   }
@@ -81,13 +82,13 @@
 
   /* B. SIDEBAR DASAR & LOGO */
   .main-sidebar, .sidebar-custom { 
-    background: #FFFFFF !important;
+    background: var(--warna-kartu-bg) !important;
     border-right: 1px solid #E2E8F0 !important;
     box-shadow: none !important;
   }
   
   .brand-link { 
-    background: #FFFFFF !important;
+    background: var(--warna-kartu-bg) !important;
     border-bottom: 1px solid #E2E8F0 !important; 
     color: #0F172A !important;
   }
@@ -95,7 +96,7 @@
 
   /* C. FOOTER */
   .main-footer { 
-    background: #FFFFFF !important;
+    background: var(--warna-kartu-bg) !important;
     border-top: 1px solid #E2E8F0 !important; 
     color: #64748B !important;
     box-shadow: none !important;
@@ -169,12 +170,12 @@
       border: var(--border-sultan) !important; 
       border-radius: var(--radius-sultan) !important; 
       box-shadow: var(--shadow-sultan) !important; 
-      background: #FFFFFF !important; 
+      background: var(--warna-kartu-bg) !important; 
       margin-bottom: 1.5rem; 
       color: #495057 !important;
   }
   .card-header, .card-footer {
-      background: #FFFFFF !important;
+      background: var(--warna-kartu-bg) !important;
       border-bottom: var(--border-sultan) !important;
       color: #212529 !important;
       font-weight: 700;
@@ -184,7 +185,7 @@
   .style-sultan-solid { border: 0; height: 1px; background-color: #E2E8F0; margin: 1rem 0; }
 
   /* Form Controls */
-  .form-control-sultan { border-radius: 8px !important; border: 1px solid #E2E8F0 !important; height: calc(2.25rem + 2px) !important; font-size: 14px; background: #FFF !important; color: #0F172A !important; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
+  .form-control-sultan { border-radius: 8px !important; border: 1px solid #E2E8F0 !important; height: calc(2.25rem + 2px) !important; font-size: 14px; background: var(--warna-kartu-bg) !important; color: #0F172A !important; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
   .form-control-sultan:focus { border-color: var(--warna-emas) !important; box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15) !important; }
   .form-label-sultan { font-weight: 600 !important; font-size: 13px !important; color: #475569 !important; letter-spacing: 0.2px; margin-bottom: 6px; }
   
@@ -216,7 +217,7 @@
   
   /* Header Tabel Minimalist (INAPP) */
   .table-premium thead th, table.dataTable thead th {
-    background-color: #FFFFFF !important;
+    background-color: var(--warna-kartu-bg) !important;
     color: var(--warna-tegas) !important; 
     font-weight: 700 !important;
     border-bottom: var(--border-sultan) !important; 
@@ -241,12 +242,12 @@
 
   /* Sticky Column (Sesuaikan warna BG agar menyatu dengan header baru) */
   .col-sticky-left { 
-    position: sticky !important; left: 0; z-index: 5; background-color: #fff; 
+    position: sticky !important; left: 0; z-index: 5; background-color: var(--warna-kartu-bg); 
     box-shadow: 2px 0 5px -2px rgba(0,0,0,0.1); border-right: 1px solid #dee2e6; 
   }
   /* Sticky Header Khusus Kolom 1 (Ikut Warna Header Baru) */
   thead th.col-sticky-left {
-      background-color: #FFFFFF !important; /* SAMAKAN DENGAN HEADER */
+      background-color: var(--warna-kartu-bg) !important; /* SAMAKAN DENGAN HEADER */
       z-index: 10;
   }
 
@@ -255,7 +256,7 @@
   position: sticky !important;
   left: 0;
   z-index: 5;
-  background-color: #fff;
+  background-color: var(--warna-kartu-bg);
   box-shadow: 2px 0 5px -2px rgba(0,0,0,0.1);
   border-right: 1px solid #dee2e6;
 
@@ -265,7 +266,7 @@
 
 /* Sticky Header Kolom 1 */
 thead th.col-sticky-center {
-  background-color: #FFFFFF !important; /* samakan dengan header */
+  background-color: var(--warna-kartu-bg) !important; /* samakan dengan header */
   z-index: 10;
 
   /* RATA TENGAH HEADER */
@@ -309,7 +310,7 @@ thead th.col-sticky-center {
   
   /* Aksi & Spinner */
   .td-aksi { white-space: nowrap !important; text-align: center !important; }
-  .td-spinner { padding: 3rem !important; height: 150px !important; text-align: center !important; background-color: #fff !important; }
+  .td-spinner { padding: 3rem !important; height: 150px !important; text-align: center !important; background-color: var(--warna-kartu-bg) !important; }
   .divider-vertical { height: 25px; border-left: 1px solid #ccc; margin: 0 10px; }
 
   /* ===================================================================
@@ -971,10 +972,10 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     border: 1px solid #E2E8F0 !important;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15) !important;
     overflow: hidden;
-    background: #FFFFFF !important;
+    background: var(--warna-kartu-bg) !important;
 }
 .modal-header {
-    background: #FFFFFF !important;
+    background: var(--warna-kartu-bg) !important;
     border-bottom: 1px solid #F1F5F9 !important;
     padding: 20px 24px !important;
     color: #0F172A !important;
@@ -988,7 +989,7 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
 }
 .modal-body {
     padding: 24px !important;
-    background: #FFFFFF !important;
+    background: var(--warna-kartu-bg) !important;
     color: #334155 !important;
 }
 .modal-footer {
@@ -1158,7 +1159,7 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     border: 1px solid #E2E8F0;
 }
 .form-floating-sultan .form-control:focus {
-    background: #FFFFFF !important;
+    background: var(--warna-kartu-bg) !important;
     border-color: var(--warna-emas);
     box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
 }
