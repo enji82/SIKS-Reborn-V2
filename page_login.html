@@ -21,10 +21,10 @@
 
     :root {
       --maroon-primary: #800000;
-      --maroon-gradient: linear-gradient(135deg, #800000 0%, #4a0404 100%);
+      --maroon-gradient: linear-gradient(135deg, rgba(128, 0, 0, 0.6) 0%, rgba(74, 4, 4, 0.6) 100%);
       --gold-luxury: #FFD700;
-      --glass-bg: rgba(255, 255, 255, 0.85);
-      --glass-border: rgba(255, 255, 255, 0.4);
+      --glass-bg: rgba(255, 255, 255, 0.05); /* Reduced opacity for better glass effect */
+      --glass-border: rgba(255, 255, 255, 0.2);
     }
 
     /* FIX Z-INDEX SWEETALERT (Hanya untuk Error) */
@@ -33,7 +33,7 @@
     /* WRAPPER */
     .login-screen-wrapper {
       position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
-      background: radial-gradient(circle at center, #5e0a0a 0%, #1a0000 100%);
+      background: transparent; /* Changed to transparent to show body animated background */
       font-family: 'Segoe UI', 'Inter', sans-serif;
       z-index: 9999; overflow: hidden; 
     }
@@ -62,6 +62,7 @@
       background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
       border: 1px solid var(--glass-border); border-radius: 24px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
       overflow: hidden; transition: all 0.5s ease;
+      color: #fff; /* Ensure text is readable on transparent bg */
     }
 
     .card-header-premium {
@@ -69,6 +70,7 @@
       border-bottom-left-radius: 50% 20px; border-bottom-right-radius: 50% 20px; margin-bottom: -20px;
       position: relative; z-index: 2; box-shadow: 0 10px 20px rgba(0,0,0,0.2);
       transition: all 0.5s ease;
+      backdrop-filter: blur(10px); /* Add blur to header */
     }
 
     .logo-container {
@@ -88,11 +90,12 @@
 
     .form-control-premium {
       width: 100%; padding: 14px 15px 14px 50px; border: 2px solid transparent;
-      border-radius: 12px; background: #f0f2f5; font-size: 15px; font-weight: 500;
-      transition: all 0.3s ease; outline: none; color: #333;
+      border-radius: 12px; background: rgba(255, 255, 255, 0.1); font-size: 15px; font-weight: 500;
+      transition: all 0.3s ease; outline: none; color: #fff;
     }
-    .form-control-premium:focus { background: white; border-color: var(--maroon-primary); box-shadow: 0 5px 15px rgba(128, 0, 0, 0.1); }
-    .form-control-premium:focus + i { color: var(--maroon-primary); }
+    .form-control-premium::placeholder { color: rgba(255, 255, 255, 0.6); }
+    .form-control-premium:focus { background: rgba(255, 255, 255, 0.2); border-color: var(--gold-luxury); box-shadow: 0 5px 15px rgba(255, 215, 0, 0.1); }
+    .form-control-premium:focus + i { color: var(--gold-luxury); }
 
     .btn-premium {
       width: 100%; padding: 15px; border-radius: 12px; border: none;
@@ -119,8 +122,8 @@
         object-fit: cover;
     }
     
-    .welcome-text { font-size: 24px; font-weight: 800; color: var(--maroon-primary); margin-bottom: 5px; }
-    .user-name { font-size: 16px; font-weight: 600; color: #555; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;}
+    .welcome-text { font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 5px; }
+    .user-name { font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.8); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;}
     
     .loading-bar {
         height: 4px; width: 50%; background: #eee; margin: 0 auto; border-radius: 2px; overflow: hidden;
@@ -131,8 +134,8 @@
     }
 
     .login-footer {
-      text-align: center; font-size: 11px; color: #888; margin-top: 25px;
-      border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px;
+      text-align: center; font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 25px;
+      border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;
     }
 
     @keyframes zoomIn { from { opacity: 0; transform: scale(0.9) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
