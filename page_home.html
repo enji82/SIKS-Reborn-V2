@@ -22,11 +22,12 @@
 }
 .home-hero-left { position: relative; z-index: 2; }
 .home-greeting {
-  font-size: 0.85rem; font-weight: 500;
-  color: rgba(255,255,255,0.65);
-  letter-spacing: 0.5px; margin-bottom: 0.3rem;
+  font-size: 1.05rem; font-weight: 600;
+  color: rgba(255,255,255,0.92);
+  letter-spacing: 0.3px; margin-bottom: 0.4rem;
+  display: flex; align-items: center; gap: 6px;
 }
-.home-greeting i { color: #EAC947; margin-right: 5px; }
+.home-greeting i { color: #EAC947; font-size: 1.1rem; }
 .home-username {
   font-size: 1.9rem; font-weight: 800;
   color: #fff; line-height: 1.15;
@@ -249,10 +250,10 @@
      ==================================================== -->
 <div class="px-3 pt-3">
   <div class="home-hero">
-    <div class="d-flex align-items-center justify-content-between flex-wrap" style="gap:1rem;">
+    <div style="display:flex; align-items:center; justify-content:space-between; gap:1.5rem; flex-wrap:nowrap;">
 
       <!-- Kiri: Greeting + Nama -->
-      <div class="home-hero-left">
+      <div class="home-hero-left" style="flex:1; min-width:0;">
         <div class="home-greeting">
           <i class="fas fa-sun" id="greeting-icon"></i>
           <span id="greeting-text">Selamat Datang,</span>
