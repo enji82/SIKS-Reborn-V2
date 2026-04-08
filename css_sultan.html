@@ -1295,16 +1295,16 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
 }
 
 /* ===================================================================
-   7. MODERN SIDEBAR GLASSMORPHISM (Premium Theme)
+   7. MODERN SIDEBAR GLASSMORPHISM — Maroon Heritage Theme
    =================================================================== */
 
-/* Container Utama Sidebar — Frosted Glass */
+/* Container Utama Sidebar — Warm Maroon Frosted Glass */
 .main-sidebar {
-    backdrop-filter: blur(12px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(12px) saturate(180%) !important;
-    background: rgba(255, 255, 255, 0.82) !important;
-    border-right: 1px solid rgba(255, 255, 255, 0.4) !important;
-    box-shadow: 2px 0 20px rgba(0,0,0,0.06) !important;
+    backdrop-filter: blur(16px) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+    background: linear-gradient(180deg, rgba(133,20,75,0.92) 0%, rgba(90,12,50,0.97) 100%) !important;
+    border-right: 1px solid rgba(255,255,255,0.08) !important;
+    box-shadow: 3px 0 25px rgba(90,12,50,0.25) !important;
     transition: all 0.3s ease;
 }
 
@@ -1313,8 +1313,8 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     display: flex !important;
     align-items: center !important;
     justify-content: flex-start !important;
-    background: transparent !important;
-    border-bottom: 1px solid rgba(0,0,0,0.07) !important;
+    background: rgba(0,0,0,0.15) !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1) !important;
     min-height: 57px !important;
     height: 57px !important;
     padding: 0 1.2rem !important;
@@ -1322,6 +1322,14 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     position: relative !important;
     z-index: 2 !important;
     overflow: hidden !important;
+}
+.brand-link .brand-text,
+.brand-link span {
+    color: #ffffff !important;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.3) !important;
+}
+.brand-link i {
+    color: #EAC947 !important;
 }
 
 /* Sidebar container — mulai dari bawah brand title */
@@ -1333,10 +1341,10 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
 
 /* ===== Nav Link Umum (RESET konflik margin lama) ===== */
 .nav-sidebar .nav-link {
-    border-radius: 11px !important;
+    border-radius: 10px !important;
     margin: 3px 10px !important;
-    padding: 0.65rem 1rem !important;
-    transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    padding: 0.6rem 0.9rem !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
     border: 1px solid transparent !important;
     display: flex !important;
     align-items: center !important;
@@ -1349,119 +1357,153 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
+    color: rgba(255,255,255,0.75) !important;
 }
 .nav-sidebar .nav-link > .nav-icon {
-    font-size: 1rem !important;
+    font-size: 0.95rem !important;
     width: 22px !important;
     min-width: 22px !important;
     margin-right: 10px !important;
     text-align: center !important;
+    color: rgba(255,255,255,0.5) !important;
 }
 
 /* Animasi Hover Global */
 .nav-sidebar .nav-link:hover {
     transform: translateX(4px) !important;
-    background: rgba(255, 255, 255, 0.6) !important;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.06) !important;
+    background: rgba(255,255,255,0.1) !important;
+    border-color: rgba(255,255,255,0.15) !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+}
+.nav-sidebar .nav-link:hover p,
+.nav-sidebar .nav-link:hover > .nav-icon {
+    color: #fff !important;
 }
 
 /* ============================================
-   LEVEL 1 — BAPAK (Deep Maroon Glass)
+   LEVEL 1 — BAPAK (Rich Maroon)
    ============================================ */
 .nav-sidebar > .nav-item > .nav-link {
-    background: rgba(133, 20, 75, 0.04) !important;
-    border: 1px solid rgba(133, 20, 75, 0.07) !important;
-    color: #3b0a24 !important;
+    background: rgba(255,255,255,0.05) !important;
+    border: 1px solid rgba(255,255,255,0.07) !important;
 }
 .nav-sidebar > .nav-item > .nav-link > .nav-icon {
-    color: var(--warna-maroon) !important;
+    color: rgba(234,201,71,0.8) !important;
 }
 .nav-sidebar > .nav-item > .nav-link:hover {
-    background: rgba(133, 20, 75, 0.08) !important;
-    border-color: rgba(133, 20, 75, 0.15) !important;
+    background: rgba(255,255,255,0.12) !important;
+    border-color: rgba(255,255,255,0.2) !important;
+}
+.nav-sidebar > .nav-item > .nav-link:hover > .nav-icon {
+    color: #EAC947 !important;
 }
 .nav-sidebar > .nav-item > .nav-link.active {
-    background: linear-gradient(135deg, var(--warna-maroon) 0%, #5d0d34 100%) !important;
-    border-color: transparent !important;
+    background: rgba(255,255,255,0.18) !important;
+    border-color: rgba(255,255,255,0.25) !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important;
+}
+.nav-sidebar > .nav-item > .nav-link.active p {
     color: #fff !important;
-    box-shadow: 0 6px 18px rgba(133, 20, 75, 0.35) !important;
+    font-weight: 700 !important;
 }
 .nav-sidebar > .nav-item > .nav-link.active > .nav-icon,
-.nav-sidebar > .nav-item > .nav-link.active > p,
 .nav-sidebar > .nav-item > .nav-link.active i {
-    color: #fff !important;
+    color: #EAC947 !important;
+}
+
+/* Left active indicator bar */
+.nav-sidebar > .nav-item > .nav-link.active::before {
+    content: '' !important;
+    position: absolute !important;
+    left: -10px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 4px !important;
+    height: 60% !important;
+    background: #EAC947 !important;
+    border-radius: 0 4px 4px 0 !important;
 }
 
 /* ============================================
-   LEVEL 2 — ANAK (Soft Indigo Glass)
+   LEVEL 2 — ANAK (Rose Maroon)
    ============================================ */
 .nav-sidebar .nav-treeview {
     padding-left: 0 !important;
     margin: 2px 0 !important;
 }
 .nav-sidebar .nav-treeview > .nav-item > .nav-link {
-    background: rgba(29, 53, 115, 0.04) !important;
-    border: 1px solid rgba(29, 53, 115, 0.08) !important;
-    color: #1a2d5e !important;
-    margin-left: 18px !important;
+    background: rgba(0,0,0,0.08) !important;
+    border: 1px solid rgba(255,255,255,0.05) !important;
+    margin-left: 16px !important;
     font-size: 0.875rem !important;
+}
+.nav-sidebar .nav-treeview > .nav-item > .nav-link p {
+    color: rgba(255,220,220,0.8) !important;
 }
 .nav-sidebar .nav-treeview > .nav-item > .nav-link > .nav-icon,
 .nav-sidebar .nav-treeview > .nav-item > .nav-link > i.nav-icon {
-    color: #4a6bbb !important;
-    font-size: 9px !important;
+    color: rgba(255,180,180,0.6) !important;
+    font-size: 8px !important;
 }
 .nav-sidebar .nav-treeview > .nav-item > .nav-link:hover {
-    background: rgba(29, 53, 115, 0.1) !important;
-    border-color: rgba(29, 53, 115, 0.25) !important;
+    background: rgba(255,255,255,0.1) !important;
+    border-color: rgba(255,255,255,0.12) !important;
 }
 .nav-sidebar .nav-treeview > .nav-item > .nav-link.active {
-    background: rgba(29, 53, 115, 0.12) !important;
-    border-color: rgba(29, 53, 115, 0.3) !important;
-    color: #1D3573 !important;
+    background: rgba(255,255,255,0.14) !important;
+    border-color: rgba(255,255,255,0.2) !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
+}
+.nav-sidebar .nav-treeview > .nav-item > .nav-link.active p {
+    color: #fff !important;
     font-weight: 700 !important;
-    box-shadow: 0 3px 10px rgba(29, 53, 115, 0.12) !important;
 }
 
 /* ============================================
-   LEVEL 3 — CUCU (Warm Amber Glass)
+   LEVEL 3 — CUCU (Warm Gold)
    ============================================ */
 .nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link {
-    background: rgba(234, 201, 71, 0.06) !important;
-    border: 1px solid rgba(234, 201, 71, 0.15) !important;
-    color: #5a4a10 !important;
-    margin-left: 32px !important;
-    font-size: 0.82rem !important;
+    background: rgba(0,0,0,0.12) !important;
+    border: 1px solid rgba(234,201,71,0.1) !important;
+    margin-left: 30px !important;
+    font-size: 0.8rem !important;
+}
+.nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link p {
+    color: rgba(234,201,71,0.75) !important;
 }
 .nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link > .nav-icon,
 .nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link > i.nav-icon {
-    color: var(--warna-emas) !important;
+    color: rgba(234,201,71,0.5) !important;
     font-size: 7px !important;
 }
 .nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link:hover {
-    background: rgba(234, 201, 71, 0.12) !important;
-    border-color: rgba(234, 201, 71, 0.3) !important;
+    background: rgba(234,201,71,0.1) !important;
+    border-color: rgba(234,201,71,0.2) !important;
 }
 .nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link.active {
-    background: rgba(234, 201, 71, 0.18) !important;
-    border-color: var(--warna-emas) !important;
-    color: #7a5c00 !important;
+    background: rgba(234,201,71,0.15) !important;
+    border-color: rgba(234,201,71,0.4) !important;
+    box-shadow: 0 2px 8px rgba(234,201,71,0.1) !important;
+}
+.nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link.active p {
+    color: #EAC947 !important;
     font-weight: 700 !important;
-    box-shadow: 0 3px 10px rgba(234, 201, 71, 0.2) !important;
 }
 
 /* Dropdown Arrow Rotation Animation */
 .nav-sidebar .nav-link i.right {
     transition: transform 0.25s ease !important;
+    color: rgba(255,255,255,0.35) !important;
 }
 .nav-sidebar .menu-open > .nav-link i.right {
     transform: rotate(-90deg) !important;
+    color: rgba(255,255,255,0.7) !important;
 }
 
-/* Custom Slim Scrollbar */
-.sidebar::-webkit-scrollbar { width: 4px; }
+/* Custom Maroon Slim Scrollbar */
+.sidebar::-webkit-scrollbar { width: 3px; }
 .sidebar::-webkit-scrollbar-track { background: transparent; }
-.sidebar::-webkit-scrollbar-thumb { background: rgba(133, 20, 75, 0.2); border-radius: 10px; }
-.sidebar::-webkit-scrollbar-thumb:hover { background: rgba(133, 20, 75, 0.4); }
+.sidebar::-webkit-scrollbar-thumb { background: rgba(234,201,71,0.3); border-radius: 10px; }
+.sidebar::-webkit-scrollbar-thumb:hover { background: rgba(234,201,71,0.6); }
 
 </style>
