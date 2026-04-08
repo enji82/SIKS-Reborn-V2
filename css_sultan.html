@@ -1317,45 +1317,33 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     box-shadow: 3px 0 20px rgba(0,0,0,0.35) !important;
 }
 
-/* Brand / Judul — rata dan tinggi sama dengan navbar */
-.brand-link {
-    display: flex !important;
-    align-items: center !important;
-    background: rgba(0,0,0,0.2) !important;
-    border-bottom: 1px solid rgba(255,255,255,0.1) !important;
-    height: 57px !important;
-    min-height: 57px !important;
-    padding: 0 1rem !important;
-    box-sizing: border-box !important;
-    overflow: hidden !important;
-    white-space: nowrap !important;
+/* Brand/Judul sidebar — tinggi dikontrol via inline style di index.html */
+.brand-link,
+#sidebar-brand {
+    text-decoration: none !important;
 }
-.brand-link .brand-text,
-.brand-link > span {
-    color: #fff !important;
-    font-weight: 700 !important;
-    font-size: 1rem !important;
-    letter-spacing: 0.05em !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-}
-.brand-link i { color: #EAC947 !important; }
+.brand-link .brand-text { color: #fff !important; }
+.brand-link i,
+#sidebar-brand i { color: #EAC947 !important; }
 
-/* Struktur utama sidebar: brand-link di atas, menu di bawah — tidak tumpang tindih */
+/* Struktur sidebar: brand-link (57px) di atas, menu di bawah — tidak overlap */
 .main-sidebar {
-    display: flex !important;
-    flex-direction: column !important;
+    overflow: hidden !important;
+}
+.brand-link {
+    position: relative !important;
+    z-index: 10 !important;
 }
 
-/* Sidebar scroll area — tingginya SISA setelah brand-link (57px) */
+/* Menu area: mulai tepat SETELAH brand-link (57px) dan bisa di-scroll */
 .sidebar {
-    flex: 1 !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
     height: calc(100% - 57px) !important;
-    padding-top: 0.5rem !important;
+    padding-top: 0.4rem !important;
     padding-bottom: 2rem !important;
+    margin-top: 0 !important;
+    position: relative !important;
 }
 
 /* ================================================

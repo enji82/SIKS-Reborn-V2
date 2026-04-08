@@ -55,12 +55,12 @@
       </ul>
     </nav>
 
-    <aside class="main-sidebar border-right-0" style="background:var(--warna-kartu-bg); box-shadow: 2px 0 10px rgba(0,0,0,0.02) !important;">
-      <a href="#" class="brand-link border-bottom-0 pb-3 pt-4 text-center">
-        <i class="fas fa-cube" style="color:var(--warna-maroon); font-size:1.5rem;"></i>
-        <span class="brand-text font-weight-bold ml-2" style="letter-spacing: 1px; color:var(--warna-tegas); font-size:1.2rem;">SIKS-REBORN</span>
+    <aside class="main-sidebar border-right-0" id="main-sidebar-app">
+      <a href="#" class="brand-link" id="sidebar-brand" style="display:flex; align-items:center; height:57px; padding:0 1rem; background:rgba(0,0,0,0.2); border-bottom:1px solid rgba(255,255,255,0.1);">
+        <i class="fas fa-cube" style="color:#EAC947; font-size:1.4rem; flex-shrink:0;"></i>
+        <span class="brand-text font-weight-bold ml-2" style="letter-spacing: 1px; color:#fff; font-size:1rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">SIKS-REBORN</span>
       </a>
-      <div id="sidebar-container" class="sidebar px-2 mt-2">
+      <div id="sidebar-container" class="sidebar px-2">
         <?!= include('sidebar'); ?>
       </div>
     </aside>
