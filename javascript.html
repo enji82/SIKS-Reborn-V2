@@ -269,49 +269,90 @@ function handleLoginV2(event) {
 
 function handleLogout() {
     Swal.fire({
-        title: '<h5 class="text-maroon font-weight-bold mb-0">Keluar Aplikasi?</h5>',
+        title: '<h5 class="font-weight-bold mb-0" style="color:#7B0000;">Keluar Aplikasi?</h5>',
         text: 'Sesi Anda akan diakhiri.',
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#800000',
+        confirmButtonColor: '#7B0000',
         cancelButtonColor: '#6c757d',
         confirmButtonText: 'Ya, Logout',
+        cancelButtonText: 'Batal',
         customClass: { popup: 'card-sultan' }
-    }).then((result) => {
-        if (result.isConfirmed) {
-            
-            // 1. Hapus memori user dari Local Storage
-            localStorage.removeItem("siksUser");
-            
-            // 2. Sembunyikan Dashboard dan bersihkan sisa konten
-            $('#konten-aplikasi').hide();
-            $('#app-content').empty();
-            $('body').removeClass('sidebar-open modal-open').css('padding-right', '0');
-            
-            // 3. MUNCULKAN KEMBALI GERBANG LOGIN (DOM Asli Buatan Anda)
-            $('#gerbang-login').fadeIn('fast');
-            $('.login-screen-wrapper').show();
-            $('#viewSuccess').hide();
-            $('#viewForm').show();
-            $('#logoBox').css('transform', 'scale(1)');
-            $('#headerText').show();
-            $('.card-header-premium').css('padding-bottom', '50px');
-            
-            // 4. PELINDUNG ANTI-CRASH: Cek apakah form ada sebelum di-reset
-            // Ini menyelesaikan masalah awal tombol tidak bereaksi tanpa perlu me-reload halaman
-            if ($('#formLogin').length > 0) {
-                $('#formLogin')[0].reset();
+    }).then(function(result) {
+        if (!result.isConfirmed) return;
+
+        /* =========================================================
+           PEMBERSIHAN TOTAL — Tidak ada sisa data user lama
+           ========================================================= */
+
+        // 1. Hapus SEMUA data sesi dari storage
+        localStorage.removeItem('siksUser');
+        sessionStorage.clear();
+
+        // 2. Reset variabel global Chart & Cache (antisipasi modul yg pakai global var)
+        try {
+            if (typeof DASHSK_CHART_INSTANCE !== 'undefined' && DASHSK_CHART_INSTANCE) {
+                DASHSK_CHART_INSTANCE.destroy(); DASHSK_CHART_INSTANCE = null;
             }
-            
-            if ($('#tombolLogin').length > 0) {
-                $('#tombolLogin').prop('disabled', false).html('<i class="fas fa-sign-in-alt mr-2"></i> MASUK APLIKASI');
-            }
-            
-            // 5. Kembalikan posisi scroll ke puncak layar
-            window.scrollTo(0, 0);
+            if (typeof DASHSK_LIST_BELUM_CACHE !== 'undefined') DASHSK_LIST_BELUM_CACHE = [];
+            if (typeof DASHSK_IS_FETCHING !== 'undefined')      DASHSK_IS_FETCHING = false;
+            if (typeof DASHSK_LAST_FETCH_TIME !== 'undefined')  DASHSK_LAST_FETCH_TIME = 0;
+            if (typeof DASHSK_USER_IS_ADMIN !== 'undefined')    DASHSK_USER_IS_ADMIN = false;
+        } catch(e) {}
+
+        // 3. Sembunyikan dashboard, bersihkan konten halaman
+        $('#konten-aplikasi').hide();
+        $('#app-content').empty();
+        $('body').removeClass('sidebar-open modal-open sidebar-open')
+                 .css('padding-right', '0');
+        $('.modal-backdrop').remove();
+
+        // 4. Reset UI navbar & dropdown ke keadaan awal (bukan user lama)
+        var defaultAvatar = 'https://ui-avatars.com/api/?name=User&background=8B0000&color=fff';
+        $('#nav-user-name').text('-');
+        $('#nav-user-photo').attr('src', defaultAvatar);
+        $('#dropdown-user-photo').attr('src', defaultAvatar);
+        $('#dropdown-user-name-big').text('-');
+        $('#dropdown-user-role').text('-');
+
+        // 5. Reset badge notifikasi
+        $('#notif-badge').text('0').hide();
+        var bell = document.getElementById('btn-notif-bell');
+        if (bell) { bell.style.color = '#64748b'; bell.title = ''; }
+
+        // 6. Reset form login ke kondisi awal
+        if ($('#formLogin').length) {
+            $('#formLogin')[0].reset();
         }
+        $('#tombolLogin').prop('disabled', false);
+        $('#btnLoginText').text('Masuk ke Dasbor');
+        $('#spinIcon').remove();
+        $('#password').prop('type', 'password');
+        var toggleIcon = document.getElementById('togglePass');
+        if (toggleIcon) {
+            toggleIcon.className = 'fas fa-eye toggle-pass';
+            toggleIcon.style.color = '#94A3B8';
+        }
+
+        // 7. Kembalikan login ke view form (bukan view success)
+        $('#viewSuccess').hide();
+        $('#viewForm').show();
+
+        // 8. Re-animate card login agar tampak segar
+        var card = document.getElementById('cardLogin');
+        if (card) {
+            card.style.animation = 'none';
+            card.offsetHeight; // reflow trigger
+            card.style.animation = '';
+        }
+
+        // 9. Tampilkan kembali halaman login
+        window.scrollTo(0, 0);
+        $('#gerbang-login').fadeIn('fast');
+        $('.login-screen-wrapper').show();
     });
 }
+
 
 /* =============================================================
    6. MANAJEMEN UI (Sidebar & Navigation)

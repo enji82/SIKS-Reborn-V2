@@ -1,291 +1,389 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
+<style>
+/* ================================================================
+   LOGIN PAGE — Maroon Heritage Theme
+   Selaras dengan sidebar & navbar SIKS-Reborn
+   ================================================================ */
+
+.swal2-container { z-index: 2147483647 !important; }
+
+.login-screen-wrapper {
+  position: fixed; inset: 0; display: flex; align-items: center;
+  justify-content: center; z-index: 9999; overflow: auto;
+  /* Background: subtle maroon gradient ala premium */
+  background: linear-gradient(135deg, #6B0000 0%, #3A0000 50%, #1a0000 100%);
+}
+
+/* Partikel dekoratif di background */
+.login-screen-wrapper::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(234,201,71,0.08) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(255,255,255,0.04) 0%, transparent 35%);
+  pointer-events: none;
+}
+
+/* Kartu login */
+.login-box {
+  width: 420px; max-width: 93vw; position: relative; z-index: 10;
+  animation: loginZoom 0.55s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+.card-login {
+  background: #fff;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* ---- Header Maroon ---- */
+.login-header {
+  background: linear-gradient(160deg, #8B0000 0%, #5A0000 100%);
+  padding: 2.2rem 2rem 1.8rem;
+  text-align: center;
+  position: relative;
+}
+.login-header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0; right: 0;
+  height: 20px;
+  background: #fff;
+  border-radius: 20px 20px 0 0;
+}
+
+/* Logo bulat */
+.login-logo-ring {
+  width: 76px; height: 76px; border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  border: 2px solid rgba(255,255,255,0.25);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+}
+.login-logo-ring i { font-size: 2rem; color: #EAC947; }
+
+.login-title {
+  font-size: 1.4rem; font-weight: 800; color: #fff;
+  letter-spacing: 1px; margin-bottom: 0.15rem;
+}
+.login-subtitle {
+  font-size: 0.73rem; color: rgba(255,255,255,0.6);
+  font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase;
+}
+
+/* ---- Form Body ---- */
+.login-body {
+  padding: 2rem 2rem 1.5rem;
+  min-height: 220px;
+}
+
+/* Field floating label */
+.field-group {
+  position: relative; margin-bottom: 1.1rem;
+}
+.field-group .field-icon {
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  color: #94A3B8; font-size: 0.95rem; pointer-events: none;
+  transition: color 0.2s;
+}
+.field-input {
+  width: 100%; padding: 1.35rem 2.8rem 0.55rem 2.6rem;
+  border: 1.5px solid #E2E8F0; border-radius: 12px;
+  font-size: 0.9rem; font-weight: 600; color: #0F172A;
+  background: #FAFAFA; outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+.field-input::placeholder { color: transparent; }
+.field-input:focus {
+  border-color: #8B0000;
+  box-shadow: 0 0 0 3px rgba(139,0,0,0.1);
+  background: #fff;
+}
+.field-input:focus ~ .field-icon { color: #8B0000; }
+
+.field-label {
+  position: absolute; left: 2.6rem; top: 1rem;
+  font-size: 0.88rem; color: #94A3B8; font-weight: 500;
+  pointer-events: none;
+  transition: all 0.18s ease-out;
+}
+.field-input:focus + .field-label,
+.field-input:not(:placeholder-shown) + .field-label {
+  top: 0.42rem; font-size: 0.68rem; color: #8B0000; font-weight: 700;
+}
+
+/* Toggle password */
+.toggle-pass {
+  position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+  color: #94A3B8; font-size: 0.9rem; cursor: pointer;
+  transition: color 0.2s;
+}
+.toggle-pass:hover { color: #8B0000; }
+
+/* Tombol login */
+.btn-login {
+  width: 100%; padding: 0.85rem;
+  background: linear-gradient(135deg, #8B0000 0%, #5A0000 100%);
+  color: #fff; border: none; border-radius: 12px;
+  font-size: 0.95rem; font-weight: 700;
+  cursor: pointer; margin-top: 0.3rem;
+  box-shadow: 0 6px 20px rgba(139,0,0,0.35);
+  transition: opacity 0.2s, transform 0.18s;
+  display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+}
+.btn-login:hover:not(:disabled) {
+  opacity: 0.9; transform: translateY(-1px);
+}
+.btn-login:disabled {
+  opacity: 0.65; cursor: not-allowed; transform: none;
+}
+
+/* Footer */
+.login-footer {
+  text-align: center; font-size: 0.72rem; color: #94A3B8;
+  padding: 1rem 2rem 1.5rem;
+  border-top: 1px solid #F1F5F9;
+}
+
+/* ---- Success State ---- */
+#viewSuccess {
+  display: none; text-align: center;
+  padding: 0.5rem 0 1rem;
+  animation: fadeInUp 0.5s ease both;
+}
+.success-avatar {
+  width: 88px; height: 88px; border-radius: 50%; object-fit: cover;
+  border: 3px solid rgba(139,0,0,0.2);
+  box-shadow: 0 6px 20px rgba(139,0,0,0.15);
+  margin-bottom: 1rem;
+}
+.welcome-text { font-size: 1.3rem; font-weight: 800; color: #0F172A; margin-bottom: 0.2rem; }
+.user-name { font-size: 0.9rem; color: #64748B; margin-bottom: 1.2rem; }
+.progress-bar-wrap {
+  height: 4px; background: #F1F5F9;
+  border-radius: 4px; overflow: hidden;
+  margin: 0 auto; width: 65%;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #8B0000, #EAC947);
+  width: 0%; border-radius: 4px;
+  animation: barFill 2s ease forwards;
+}
+
+/* ---- Animasi ---- */
+@keyframes loginZoom {
+  from { opacity: 0; transform: scale(0.94) translateY(12px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes barFill {
+  0%   { width: 0%; }
+  100% { width: 100%; }
+}
+@keyframes loginShake {
+  0%,100% { transform: translateX(0); }
+  20%      { transform: translateX(-8px); }
+  40%      { transform: translateX(8px); }
+  60%      { transform: translateX(-5px); }
+  80%      { transform: translateX(4px); }
+}
+.shake-effect { animation: loginShake 0.4s ease both; }
+
+#confetti-wrapper {
+  position: fixed; top:0; left:0; width:100%; height:100%;
+  pointer-events:none; z-index: 2147483647;
+}
+</style>
+
+<!-- ===== STRUKTUR HTML LOGIN ===== -->
 <div class="login-screen-wrapper">
-
-  <style>
-    /* ========================================================= */
-    /* PREMIUM SAAS THEME (CLEAN & MINIMALIST)                   */
-    /* ========================================================= */
-
-    :root {
-      --saas-primary: #4F46E5; /* Deep Indigo */
-      --saas-primary-hover: #4338CA;
-      --saas-bg: #F8FAFC; /* Off-white */
-      --saas-card: #FFFFFF;
-      --saas-border: #E2E8F0;
-      --saas-text-main: #0F172A;
-      --saas-text-muted: #64748B;
-    }
-
-    /* FIX Z-INDEX SWEETALERT (Hanya untuk Error) */
-    .swal2-container { z-index: 2147483647 !important; }
-
-    /* WRAPPER */
-    .login-screen-wrapper {
-      position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
-      background: var(--saas-bg);
-      font-family: 'Inter', -apple-system, sans-serif;
-      z-index: 9999; overflow: auto; 
-    }
-
-    /* LOGIN BOX */
-    .login-box {
-      width: 420px; max-width: 90%; position: relative; z-index: 10;
-      opacity: 0; animation: zoomIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    .card-saas {
-      background: var(--saas-card);
-      border: 1px solid var(--saas-border);
-      border-radius: 20px; 
-      box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05), 0 2px 10px rgba(0,0,0,0.02);
-      overflow: hidden; transition: all 0.5s ease;
-      color: var(--saas-text-main);
-    }
-
-    .card-header-premium {
-      background: var(--saas-card);
-      padding: 40px 30px 20px; text-align: center;
-      position: relative; z-index: 2;
-    }
-
-    .logo-container {
-      width: 70px; height: 70px; background: var(--saas-card); border-radius: 16px;
-      display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;
-      border: 1px solid var(--saas-border);
-      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-      color: var(--saas-primary);
-    }
-
-    .login-body { padding: 10px 35px 40px; position: relative; min-height: 250px; }
-
-    .input-wrapper { position: relative; margin-bottom: 20px; }
-    .input-wrapper i {
-      position: absolute; left: 18px; top: 50%; transform: translateY(-50%);
-      color: #94A3B8; font-size: 16px; transition: 0.3s;
-    }
-
-    .form-control-premium {
-      width: 100%; padding: 22px 15px 6px 45px; border: 1px solid var(--saas-border);
-      border-radius: 10px; background: #FFFFFF; font-size: 14px; font-weight: 600;
-      transition: all 0.2s ease; outline: none; color: var(--saas-text-main);
-      box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
-    }
-    .form-control-premium::placeholder { color: transparent; }
-    .form-control-premium:focus { border-color: var(--saas-primary); box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15); }
-    .form-control-premium:focus ~ i.fa-user-circle, .form-control-premium:focus ~ i.fa-lock { color: var(--saas-primary); }
-
-    .input-wrapper label {
-      position: absolute; left: 45px; top: 14px; color: #94A3B8; font-size: 14px;
-      pointer-events: none; transition: all 0.2s ease-out; margin: 0; font-weight: 500;
-    }
-    .form-control-premium:focus ~ label, .form-control-premium:not(:placeholder-shown) ~ label {
-      top: 6px; font-size: 10.5px; color: var(--saas-primary); font-weight: 600;
-    }
-
-    .btn-premium {
-      width: 100%; padding: 14px; border-radius: 10px; border: none;
-      background: var(--saas-text-main); color: white; font-weight: 600; font-size: 14px;
-      cursor: pointer; transition: all 0.2s ease;
-      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); margin-top: 10px;
-    }
-    .btn-premium:hover { background: #000000; box-shadow: 0 6px 12px rgba(0,0,0,0.15); transform: translateY(-1px); }
-    .btn-premium:disabled { background: #94A3B8; cursor: not-allowed; transform: none; box-shadow: none; }
-
-    /* SUCCESS STATE STYLES */
-    #viewSuccess {
-        display: none; text-align: center; padding-top: 10px; animation: fadeIn 0.6s ease;
-    }
-    
-    .success-avatar {
-        width: 90px; height: 90px; border-radius: 50%; 
-        border: 2px solid var(--saas-border);
-        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        margin-bottom: 20px; object-fit: cover;
-    }
-    
-    .welcome-text { font-size: 22px; font-weight: 700; color: var(--saas-text-main); margin-bottom: 5px; }
-    .user-name { font-size: 15px; font-weight: 500; color: var(--saas-text-muted); margin-bottom: 20px; }
-    
-    .loading-bar {
-        height: 4px; width: 60%; background: #E2E8F0; margin: 0 auto; border-radius: 4px; overflow: hidden;
-    }
-    .loading-progress {
-        height: 100%; width: 0%; background: var(--saas-primary);
-        animation: progressLoad 1.5s ease-in-out forwards;
-    }
-
-    .login-footer {
-      text-align: center; font-size: 12px; color: var(--saas-text-muted); margin-top: 30px;
-      border-top: 1px solid var(--saas-border); padding-top: 20px;
-    }
-
-    @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes progressLoad { 0% { width: 0%; } 100% { width: 100%; } }
-    @keyframes shake { 10%, 90% { transform: translate3d(-1px, 0, 0); } 20%, 80% { transform: translate3d(2px, 0, 0); } }
-    
-    .shake-effect { animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both; }
-    
-    #confetti-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2147483647; }
-  </style>
-
   <div class="login-box">
-    <div class="card-saas" id="mainCard">
-      
-      <div class="card-header-premium" id="cardHeader">
-        <div class="logo-container" id="logoBox">
-          <i class="fas fa-book-reader fa-2x"></i>
+    <div class="card-login" id="cardLogin">
+
+      <!-- Header Maroon -->
+      <div class="login-header">
+        <div class="login-logo-ring">
+          <i class="fas fa-cube"></i>
         </div>
-        <div id="headerText">
-            <h2 class="font-weight-bold mb-1" style="font-size: 22px; color: var(--saas-text-main);">SIKS-REBORN</h2>
-            <p class="small text-muted mt-0" style="font-weight: 500; font-size: 13px;">SISTEM INFORMASI KORWIL SECANG</p>
-        </div>
+        <div class="login-title">SIKS-REBORN</div>
+        <div class="login-subtitle">Sistem Informasi Korwil Disdikbud Secang</div>
       </div>
 
+      <!-- Body Form -->
       <div class="login-body">
-        
+
+        <!-- VIEW: Form Login -->
         <div id="viewForm">
-            <form id="formLogin" onsubmit="handleLoginExec(event)">
-              <div class="input-wrapper">
-                <input type="text" id="username" name="username" class="form-control-premium" placeholder="NPSN / Username" required autocomplete="off">
-                <i class="fas fa-user-circle"></i>
-                <label>NPSN / Username</label>
-              </div>
-              <div class="input-wrapper">
-                <input type="password" id="password" name="password" class="form-control-premium" placeholder="Kata Sandi" required>
-                <i class="fas fa-lock"></i>
-                <label>Kata Sandi</label>
-                <i class="fas fa-eye" id="togglePass" style="left: auto; right: 15px; font-size: 15px; cursor: pointer; z-index:5;" onclick="togglePassword()"></i>
-              </div>
-              <button type="submit" id="tombolLogin" class="btn-premium">
-                Masuk ke Dasbor &rarr;
-              </button>
-            </form>
-            <div class="login-footer">
-              <span style="font-weight: 500;">&copy; 2026 Korwil Disdikbud Kec. Secang</span>
+          <form id="formLogin" onsubmit="handleLoginExec(event)" autocomplete="off">
+
+            <!-- Field Username -->
+            <div class="field-group">
+              <input type="text" id="username" name="username"
+                     class="field-input" placeholder="NPSN / Username" required>
+              <label class="field-label" for="username">NPSN / Username</label>
+              <i class="fas fa-user field-icon"></i>
             </div>
+
+            <!-- Field Password -->
+            <div class="field-group">
+              <input type="password" id="password" name="password"
+                     class="field-input" placeholder="Kata Sandi" required>
+              <label class="field-label" for="password">Kata Sandi</label>
+              <i class="fas fa-lock field-icon"></i>
+              <i class="fas fa-eye toggle-pass" id="togglePass" onclick="togglePassword()"></i>
+            </div>
+
+            <!-- Tombol Masuk -->
+            <button type="submit" id="tombolLogin" class="btn-login">
+              <i class="fas fa-sign-in-alt"></i>
+              <span id="btnLoginText">Masuk ke Dasbor</span>
+            </button>
+          </form>
         </div>
 
+        <!-- VIEW: Success -->
         <div id="viewSuccess">
-            <img src="https://ui-avatars.com/api/?name=User&background=random" id="userAvatar" class="success-avatar">
-            <h3 class="welcome-text">Selamat Datang!</h3>
-            <p class="user-name" id="welcomeName">Administrator</p>
-            
-            <div class="loading-bar mt-3">
-                <div class="loading-progress"></div>
-            </div>
-            <p class="small text-muted mt-2">Menyiapkan Workspace...</p>
+          <img id="userAvatar"
+               src="https://ui-avatars.com/api/?name=User&background=8B0000&color=fff"
+               class="success-avatar" alt="Avatar">
+          <div class="welcome-text">Selamat Datang! 👋</div>
+          <div class="user-name" id="welcomeName">Administrator</div>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar-fill"></div>
+          </div>
+          <p style="font-size:0.75rem; color:#94A3B8; margin-top:0.6rem;">
+            Menyiapkan workspace...
+          </p>
         </div>
 
+      </div><!-- /login-body -->
+
+      <!-- Footer -->
+      <div class="login-footer">
+        &copy; 2026 Korwil Disdikbud Kecamatan Secang
       </div>
-    </div>
-  </div>
+
+    </div><!-- /card-login -->
+  </div><!-- /login-box -->
 </div>
 
 <div id="confetti-wrapper"></div>
 
 <script>
-  console.log("🚀 Login Page Loaded SaaS Minimalist Theme");
-
+  /* ---- Toggle Lihat Password ---- */
   function togglePassword() {
-    var x = document.getElementById("password");
-    var icon = document.getElementById("togglePass");
-    if (x.type === "password") {
-      x.type = "text"; icon.classList.remove("fa-eye"); icon.classList.add("fa-eye-slash"); icon.style.color = "var(--saas-primary)";
+    var inp  = document.getElementById('password');
+    var icon = document.getElementById('togglePass');
+    if (inp.type === 'password') {
+      inp.type = 'text';
+      icon.classList.replace('fa-eye','fa-eye-slash');
+      icon.style.color = '#8B0000';
     } else {
-      x.type = "password"; icon.classList.remove("fa-eye-slash"); icon.classList.add("fa-eye"); icon.style.color = "#94A3B8";
+      inp.type = 'password';
+      icon.classList.replace('fa-eye-slash','fa-eye');
+      icon.style.color = '#94A3B8';
     }
   }
 
+  /* ---- Konfeti login sukses ---- */
   function runFireworks() {
-    if(typeof confetti !== 'undefined'){
-       var duration = 3000; var animationEnd = Date.now() + duration;
-       var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 2147483647 };
-       var interval = setInterval(function() {
-         var timeLeft = animationEnd - Date.now();
-         if (timeLeft <= 0) { return clearInterval(interval); }
-         var particleCount = 50 * (timeLeft / duration);
-         confetti(Object.assign({}, defaults, { particleCount, origin: { x: Math.random(), y: Math.random() - 0.2 }, colors: ['#4F46E5', '#3B82F6', '#10B981'] }));
-       }, 250);
-    }
+    if (typeof confetti === 'undefined') return;
+    var end = Date.now() + 2500;
+    var colors = ['#8B0000','#EAC947','#fff','#ff6b6b'];
+    (function frame() {
+      confetti({ particleCount: 4, angle: 60,  spread: 55, origin: { x: 0 }, colors: colors, zIndex: 2147483647 });
+      confetti({ particleCount: 4, angle: 120, spread: 55, origin: { x: 1 }, colors: colors, zIndex: 2147483647 });
+      if (Date.now() < end) requestAnimationFrame(frame);
+    })();
   }
 
+  /* ---- Handler Login ---- */
   function handleLoginExec(e) {
-    e.preventDefault(); 
-    var u = $('#username').val();
-    var p = $('#password').val();
+    e.preventDefault();
+    var u   = $('#username').val().trim();
+    var p   = $('#password').val();
     var btn = $('#tombolLogin');
-    var box = $('.login-box');
+    if (!u || !p) return;
 
-    // UI Loading Button
-    btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin mr-2"></i> Mengautentikasi...');
-    
+    btn.prop('disabled', true);
+    $('#btnLoginText').text('Mengautentikasi...');
+    btn.prepend('<i class="fas fa-spinner fa-spin" id="spinIcon"></i> ');
+
     google.script.run
       .withSuccessHandler(function(res) {
         if (res && res.status === 'success') {
-          console.log("✅ Login Sukses");
-          
-          var fullName = "User";
+
+          /* Simpan user ke localStorage */
           if (res.userData) {
-             fullName = res.userData.nama_lengkap || res.userData.username;
-             if(!res.userData.nama_lengkap) res.userData.nama_lengkap = res.userData.username;
-             localStorage.setItem("siksUser", JSON.stringify(res.userData));
+            if (!res.userData.nama_lengkap) res.userData.nama_lengkap = res.userData.username;
+            localStorage.setItem('siksUser', JSON.stringify(res.userData));
           }
+
+          var fullName = (res.userData && res.userData.nama_lengkap) ? res.userData.nama_lengkap : 'User';
+          var avatarUrl = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(fullName) + '&background=8B0000&color=fff&bold=true';
+          if (res.userData && res.userData.photo) {
+            avatarUrl = res.userData.photo.startsWith('http')
+              ? res.userData.photo
+              : 'https://drive.google.com/thumbnail?id=' + res.userData.photo + '&sz=200';
+          }
+
+          $('#userAvatar').attr('src', avatarUrl);
+          $('#welcomeName').text(fullName);
 
           runFireworks();
 
-          $('#welcomeName').text(fullName);
-          var avatarUrl = "https://ui-avatars.com/api/?name=" + encodeURIComponent(fullName) + "&background=F1F5F9&color=0F172A&bold=true";
-          if(res.userData && res.userData.photo && res.userData.photo.startsWith("http")) avatarUrl = res.userData.photo;
-          else if(res.userData && res.userData.photo) avatarUrl = "https://drive.google.com/thumbnail?id=" + res.userData.photo + "&sz=200";
-          $('#userAvatar').attr('src', avatarUrl);
-
-          $('#logoBox').css('transform', 'scale(0.8)');
-          $('#headerText').slideUp(300); 
-          $('.card-header-premium').css('padding-bottom', '10px');
-
-          $('#viewForm').fadeOut(300, function() {
-              $('#viewSuccess').fadeIn(500);
+          /* Ganti ke view sukses */
+          $('#viewForm').fadeOut(280, function() {
+            $('#viewSuccess').fadeIn(400);
           });
 
-          setTimeout(function(){
-            if(typeof updateNavbarUI === 'function' && res.userData) {
-                updateNavbarUI(res.userData);
-            }
-            $('.login-screen-wrapper').fadeOut(600, function(){
-                $('#konten-aplikasi').fadeIn(600); 
-                if(typeof loadContent === 'function') {
-                    loadContent('home'); 
-                }
-                $(window).trigger('resize');
+          /* Setelah animasi sukses, masuk ke dashboard */
+          setTimeout(function() {
+            if (typeof updateUI === 'function' && res.userData) updateUI(res.userData);
+            if (typeof tampilkanMenuAdmin === 'function' && res.userData) tampilkanMenuAdmin(res.userData);
+
+            $('.login-screen-wrapper').fadeOut(500, function() {
+              $('#konten-aplikasi').fadeIn(400);
+              if (typeof loadContent === 'function') loadContent('home');
+              if (typeof loadNotifikasiDiproses === 'function') {
+                setTimeout(loadNotifikasiDiproses, 1500);
+              }
             });
-          }, 2000);
+          }, 2200);
 
         } else {
-          console.log("⛔ Login Gagal: " + res.message);
-          btn.prop('disabled', false).html('Masuk ke Dasbor &rarr;');
-          
-          box.addClass('shake-effect');
-          setTimeout(() => box.removeClass('shake-effect'), 500);
-          
-          if(typeof Swal !== 'undefined'){
-              const Toast = Swal.mixin({
-                toast: true, position: 'top', showConfirmButton: false, timer: 3000,
-                timerProgressBar: true, background: '#fff', color: '#333', iconColor: '#EF4444',
-                didOpen: (toast) => { toast.addEventListener('mouseenter', Swal.stopTimer); toast.addEventListener('mouseleave', Swal.resumeTimer); }
-              });
-              Toast.fire({ icon: 'error', title: 'Akses Ditolak', text: res.message || "Kredensial tidak sesuai." });
+          /* Login gagal */
+          btn.prop('disabled', false);
+          $('#btnLoginText').text('Masuk ke Dasbor');
+          $('#spinIcon').remove();
+          $('.login-box').addClass('shake-effect');
+          setTimeout(function() { $('.login-box').removeClass('shake-effect'); }, 500);
+
+          if (typeof Swal !== 'undefined') {
+            Swal.mixin({
+              toast: true, position: 'top', showConfirmButton: false,
+              timer: 3500, timerProgressBar: true
+            }).fire({ icon: 'error', title: res.message || 'Username atau Password salah.' });
           } else {
-              alert("LOGIN GAGAL: " + (res.message || "Username/Password Salah"));
+            alert('LOGIN GAGAL: ' + (res.message || 'Kredensial tidak sesuai.'));
           }
         }
       })
       .withFailureHandler(function(err) {
-        btn.prop('disabled', false).html('Masuk ke Dasbor &rarr;');
-        alert("Koneksi Server Terputus!");
+        btn.prop('disabled', false);
+        $('#btnLoginText').text('Masuk ke Dasbor');
+        $('#spinIcon').remove();
+        alert('Koneksi server terputus. Coba lagi.');
       })
-      .processLogin({username: u, password: p});
+      .processLogin({ username: u, password: p });
   }
 </script>
