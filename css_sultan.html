@@ -159,11 +159,17 @@
     background-color: var(--warna-maroon) !important; 
     border-color: var(--warna-maroon) !important; 
     color: #fff !important; 
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 0.625rem 1.25rem !important;
+    border-radius: 0.625rem !important;
+    font-weight: 500;
+    box-shadow: 0 0.5rem 1rem rgba(29, 53, 115, 0.15) !important; 
+    transition: all 0.3s ease;
   }
   .btn-maroon:hover { 
-    background-color: var(--warna-maroon-light) !important; 
-    border-color: var(--warna-maroon-light) !important; 
+    background-color: var(--warna-maroon-dark) !important; 
+    border-color: var(--warna-maroon-dark) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(29, 53, 115, 0.3) !important;
   }
 
   /* Card Sultan - Clean Minimalist (INAPP) */
@@ -503,18 +509,18 @@ thead th.col-sticky-center {
    (Gunakan class ini di seluruh halaman SIKS-Reborn)
    =================================================================== */
 
-/* --- 1. BADGE STATUS SULTAN (Pastel/Soft Background) --- */
+/* --- 1. BADGE STATUS SULTAN (CODEBYTE STYLE) --- */
 .badge-sultan {
-    padding: 6px 10px;
-    font-size: 11px;
-    font-weight: 700;
-    border-radius: 6px;       /* Sudut tumpul modern */
-    letter-spacing: 0.5px;    /* Jarak huruf sedikit renggang */
-    text-transform: uppercase;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.75em;
+    font-weight: 600;
+    border-radius: 50px;      /* Pil bulat penuh khas Codebyte */
+    letter-spacing: 0.5px;    
+    text-transform: capitalize;
     border: 1px solid transparent;
     display: inline-flex;
     align-items: center;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    box-shadow: none;
 }
 
 /* Standar Warna Status:
@@ -969,34 +975,34 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
    (Menaungi seluruh pop-up/modal yang berceceran di berbagai file)
    ========================================================================== */
 .modal-content {
-    border-radius: 16px !important;
-    border: 1px solid #E2E8F0 !important;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15) !important;
+    border-radius: 1rem !important; /* Codebyte Modal Radius */
+    border: var(--border-sultan) !important;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
     overflow: hidden;
     background: var(--warna-kartu-bg) !important;
 }
 .modal-header {
     background: var(--warna-kartu-bg) !important;
-    border-bottom: 1px solid #F1F5F9 !important;
-    padding: 20px 24px !important;
-    color: #0F172A !important;
+    border-bottom: var(--border-sultan) !important;
+    padding: 1.5rem !important;
+    color: var(--warna-tegas) !important;
 }
 .modal-title {
     font-weight: 700 !important;
-    font-size: 1.15rem !important;
+    font-size: 1.25rem !important;
     display: flex;
     align-items: center;
     letter-spacing: -0.01em;
 }
 .modal-body {
-    padding: 24px !important;
+    padding: 1.5rem !important;
     background: var(--warna-kartu-bg) !important;
-    color: #334155 !important;
+    color: #737B8B !important;
 }
 .modal-footer {
-    background: #F8FAFC !important;
-    border-top: 1px solid #E2E8F0 !important;
-    padding: 16px 24px !important;
+    background: var(--warna-kartu-bg) !important;
+    border-top: var(--border-sultan) !important;
+    padding: 1.25rem 1.5rem !important;
 }
 .modal-backdrop.show {
     opacity: 0.5 !important;
