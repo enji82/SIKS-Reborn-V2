@@ -157,48 +157,58 @@
     <aside class="main-sidebar border-right-0" id="main-sidebar-app">
       <a href="#" class="brand-link" id="sidebar-brand"
          style="display:flex; align-items:center; height:57px;
-                padding:0 0.9rem; gap:0.65rem;
+                padding:0 0.85rem; gap:0.7rem;
                 background:rgba(0,0,0,0.25);
                 border-bottom:1px solid rgba(255,255,255,0.1);
                 text-decoration:none; overflow:hidden;">
 
-        <!-- Logo SVG Modern: Buku + Perisai + Sirkuit + Toga -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"
-             style="width:34px; height:34px; flex-shrink:0;"
-             aria-label="SIKS-REBORN Logo">
-          <!-- Background bulat -->
-          <rect width="40" height="40" rx="9" fill="rgba(0,0,0,0.3)"/>
-          <!-- Perisai buku -->
-          <path d="M20 6 L32 11 L32 24 C32 30 20 35 20 35 C20 35 8 30 8 24 L8 11 Z"
-                fill="none" stroke="#EAC947" stroke-width="1.6" stroke-linejoin="round"/>
-          <!-- Halaman buku kiri -->
-          <path d="M20 13 L20 30" stroke="#EAC947" stroke-width="1.2"/>
-          <path d="M20 13 C16 12 12 13 12 13 L12 28 C12 28 16 27 20 28"
-                fill="none" stroke="#EAC947" stroke-width="1.3"/>
-          <!-- Halaman buku kanan -->
-          <path d="M20 13 C24 12 28 13 28 13 L28 28 C28 28 24 27 20 28"
-                fill="none" stroke="#EAC947" stroke-width="1.3"/>
-          <!-- Sirkuit kiri -->
-          <circle cx="13" cy="18" r="1" fill="#EAC947" opacity="0.7"/>
-          <circle cx="13" cy="22" r="1" fill="#EAC947" opacity="0.7"/>
-          <!-- Toga / topi sarjana -->
-          <polygon points="20,5 26,8 20,11 14,8" fill="#EAC947"/>
-          <line x1="26" y1="8" x2="26" y2="12" stroke="#EAC947" stroke-width="1.2"
-                stroke-linecap="round"/>
-          <circle cx="26" cy="12.5" r="1.2" fill="#EAC947"/>
+        <!-- ══ MONOGRAM LOGO S·R ══
+             Hampir semua website profesional menggunakan lettermark ini.
+             S = gold (SIKS), R = putih (REBORN), titik pemisah = gold.
+             Rounded square dark badge agar tampil bersih di semua ukuran.
+        -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"
+             style="width:38px; height:38px; flex-shrink:0;"
+             aria-label="SR Logo">
+
+          <!-- Latar: rounded square gelap dengan cincin gold tipis -->
+          <rect width="44" height="44" rx="11" fill="#0F0000"/>
+          <rect width="44" height="44" rx="11" fill="none"
+                stroke="#EAC947" stroke-width="1.8" opacity="0.6"/>
+
+          <!-- Aksen strip gold di bagian bawah -->
+          <rect x="6" y="39" width="32" height="2.5" rx="1.2" fill="#EAC947" opacity="0.5"/>
+
+          <!-- Huruf  S  — emas, italic bold, setengah kiri -->
+          <text x="5" y="31"
+                font-family="'Georgia', 'Times New Roman', serif"
+                font-size="26" font-weight="bold" font-style="italic"
+                fill="#EAC947" opacity="1">S</text>
+
+          <!-- Titik pemisah tengah — gold -->
+          <circle cx="22.5" cy="24" r="2" fill="#EAC947" opacity="0.85"/>
+
+          <!-- Huruf  R  — putih, italic bold, setengah kanan -->
+          <text x="24" y="31"
+                font-family="'Georgia', 'Times New Roman', serif"
+                font-size="26" font-weight="bold" font-style="italic"
+                fill="#FFFFFF" opacity="0.95">R</text>
+
         </svg>
 
         <!-- Teks: Judul + Subtitle -->
         <div style="min-width:0; flex:1; overflow:hidden;">
           <div style="font-size:0.95rem; font-weight:800; color:#fff;
-                      letter-spacing:1.5px; line-height:1.1;
-                      white-space:nowrap; text-overflow:ellipsis; overflow:hidden;">
+                      letter-spacing:1.8px; line-height:1.1;
+                      white-space:nowrap; text-overflow:ellipsis; overflow:hidden;
+                      font-family:'Poppins', sans-serif;">
             SIKS-REBORN
           </div>
-          <div style="font-size:0.6rem; color:rgba(234,201,71,0.8);
-                      font-weight:600; letter-spacing:0.8px;
+          <div style="font-size:0.58rem; color:rgba(234,201,71,0.85);
+                      font-weight:600; letter-spacing:0.5px;
                       white-space:nowrap; text-overflow:ellipsis; overflow:hidden;
-                      text-transform:uppercase; margin-top:1px;">
+                      text-transform:uppercase; margin-top:2px;
+                      font-family:'Poppins', sans-serif;">
             Korwil Disdikbud Secang
           </div>
         </div>
