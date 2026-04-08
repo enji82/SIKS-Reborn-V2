@@ -52,8 +52,8 @@
         </li>
       </ul>
 
-      <!-- Kanan: Notifikasi + User+Logout Capsule -->
-      <ul class="navbar-nav ml-auto align-items-center" style="gap:0.5rem; flex-shrink:0;">
+      <!-- Kanan: Bell Notifikasi + User Dropdown -->
+      <ul class="navbar-nav ml-auto align-items-center" style="gap:0.4rem; flex-shrink:0;">
 
         <!-- Bell Notifikasi -->
         <li class="nav-item position-relative">
@@ -70,34 +70,89 @@
           </a>
         </li>
 
-        <!-- Capsule: Nama + Logout dalam satu kotak -->
-        <li class="nav-item">
-          <div class="d-flex align-items-center"
-               style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:50px;
-                      padding:0.3rem 0.4rem 0.3rem 0.85rem; gap:0.5rem;">
-            <i class="fas fa-user-circle" style="color:#7B0000; font-size:1.1rem; flex-shrink:0;"></i>
+        <!-- ============ USER DROPDOWN ============ -->
+        <li class="nav-item dropdown" id="user-dropdown-wrapper">
+
+          <!-- Trigger button: [foto] Nama ▾ -->
+          <a href="#" class="nav-link dropdown-toggle" id="userDropdownTrigger"
+             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+             style="display:flex; align-items:center; gap:0.5rem;
+                    background:#F8FAFC; border:1px solid #E2E8F0; border-radius:50px;
+                    padding:0.25rem 0.75rem 0.25rem 0.25rem;
+                    text-decoration:none; color:#1e293b;
+                    transition:background 0.2s, box-shadow 0.2s;">
+            <!-- Avatar foto kecil -->
+            <img id="nav-user-photo" src="https://ui-avatars.com/api/?name=User&background=7B0000&color=fff"
+                 alt="Avatar"
+                 style="width:34px; height:34px; border-radius:50%; object-fit:cover;
+                        border:2px solid #7B0000; flex-shrink:0;">
+            <!-- Nama -->
             <span id="nav-user-name" class="font-weight-bold"
-                  style="font-size:0.82rem; color:#1e293b; max-width:140px;
+                  style="font-size:0.82rem; max-width:120px;
                          white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">-</span>
-            <!-- Divider -->
-            <span style="width:1px; height:20px; background:#E2E8F0; flex-shrink:0;"></span>
-            <!-- Tombol Logout -->
-            <button onclick="handleLogout()" title="Logout"
-                    style="background:transparent; border:none; cursor:pointer;
-                           color:#D0412E; font-size:0.8rem; font-weight:700;
-                           padding:0.25rem 0.5rem; border-radius:50px;
-                           display:flex; align-items:center; gap:0.3rem;
-                           transition:background 0.2s;"
-                    onmouseover="this.style.background='#FEEDED';"
-                    onmouseout="this.style.background='transparent';">
-              <i class="fas fa-sign-out-alt"></i>
-              <span class="d-none d-sm-inline">Logout</span>
-            </button>
-          </div>
-        </li>
+            <!-- Chevron -->
+            <i class="fas fa-chevron-down" style="font-size:0.65rem; color:#94a3b8; margin-left:2px;"></i>
+          </a>
+
+          <!-- ===== DROPDOWN CARD ===== -->
+          <div class="dropdown-menu dropdown-menu-right" id="userDropdownMenu"
+               style="min-width:260px; border:none; border-radius:18px;
+                      box-shadow:0 20px 60px rgba(0,0,0,0.18);
+                      overflow:hidden; padding:0; margin-top:8px;">
+
+            <!-- Header: Maroon background + foto + nama + role -->
+            <div style="background:linear-gradient(160deg,#8B0000 0%,#5A0000 100%);
+                        padding:2rem 1.5rem 1.5rem; text-align:center;">
+              <!-- Foto profil besar -->
+              <div style="display:flex; justify-content:center; margin-bottom:0.9rem;">
+                <img id="dropdown-user-photo" src="https://ui-avatars.com/api/?name=User&background=7B0000&color=fff"
+                     alt="Foto Profil"
+                     style="width:90px; height:90px; border-radius:50%; object-fit:cover;
+                            border:3px solid rgba(255,255,255,0.3);
+                            box-shadow:0 4px 20px rgba(0,0,0,0.3);">
+              </div>
+              <!-- Nama -->
+              <div id="dropdown-user-name-big" class="font-weight-bold"
+                   style="font-size:1.1rem; color:#fff; margin-bottom:0.2rem;">-</div>
+              <!-- Role -->
+              <div id="dropdown-user-role"
+                   style="font-size:0.8rem; color:rgba(255,255,255,0.65);">-</div>
+            </div>
+
+            <!-- Footer: Profil + Logout -->
+            <div style="background:#fff; padding:1rem 1.25rem;
+                        display:flex; gap:0.75rem; align-items:center;">
+              <!-- Profil -->
+              <button onclick="Sultan && Sultan.notif ? Sultan.notif.info('Halaman profil segera hadir.') : alert('Profil')"
+                      style="flex:1; background:#F1F5F9; border:1px solid #E2E8F0;
+                             color:#374151; font-weight:600; font-size:0.85rem;
+                             padding:0.6rem 1rem; border-radius:50px; cursor:pointer;
+                             display:flex; align-items:center; justify-content:center; gap:0.5rem;
+                             transition:background 0.2s;"
+                      onmouseover="this.style.background='#E2E8F0';"
+                      onmouseout="this.style.background='#F1F5F9';">
+                <i class="fas fa-user-cog"></i> Profil
+              </button>
+              <!-- Logout -->
+              <button onclick="handleLogout()"
+                      style="flex:1; background:linear-gradient(135deg,#8B0000,#5A0000);
+                             border:none; color:#fff; font-weight:700; font-size:0.85rem;
+                             padding:0.6rem 1rem; border-radius:50px; cursor:pointer;
+                             display:flex; align-items:center; justify-content:center; gap:0.5rem;
+                             box-shadow:0 4px 12px rgba(139,0,0,0.35);
+                             transition:opacity 0.2s;"
+                      onmouseover="this.style.opacity='0.85';"
+                      onmouseout="this.style.opacity='1';">
+                <i class="fas fa-sign-out-alt"></i> Logout
+              </button>
+            </div>
+
+          </div><!-- /dropdown-menu -->
+        </li><!-- /user-dropdown-wrapper -->
 
       </ul>
     </nav>
+
 
     <aside class="main-sidebar border-right-0" id="main-sidebar-app">
       <a href="#" class="brand-link" id="sidebar-brand" style="display:flex; align-items:center; height:57px; padding:0 1rem; background:rgba(0,0,0,0.2); border-bottom:1px solid rgba(255,255,255,0.1);">
