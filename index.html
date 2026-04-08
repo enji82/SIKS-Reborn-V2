@@ -162,48 +162,20 @@
                 border-bottom:1px solid rgba(255,255,255,0.1);
                 text-decoration:none; overflow:hidden;">
 
-        <!--
-          ══ MODERN SR LETTERMARK ══
-          Gaya: huruf tebal rounded, S (gold) + R (white), connected.
-          Referensi: modern geometric lettermark seperti brand profesional.
-          Teknik: thick stroke dengan round-cap agar terlihat seperti huruf filled bold.
-        -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 48"
-             style="width:46px; height:34px; flex-shrink:0; display:block;"
-             aria-label="SR Logo">
-
-          <!-- S — gold, tebal, rounded modern -->
-          <!-- Path ikuti kurva S yang smooth: mulai kanan-atas, sweep kiri, tengah, kanan-bawah, kiri-bawah -->
-          <path d="M 36,8 C 20,6 6,6 6,15 C 6,23 16,26 26,28 C 36,30 40,34 38,40 C 36,46 20,47 6,44"
-                fill="none"
-                stroke="#EAC947"
-                stroke-width="9"
-                stroke-linecap="round"
-                stroke-linejoin="round"/>
-
-          <!-- R — putih, tebal, tiga elemen: batang vertikal + bowl + kaki diagonal -->
-
-          <!-- 1. Batang vertikal R -->
-          <line x1="42" y1="8" x2="42" y2="44"
-                stroke="rgba(255,255,255,0.92)"
-                stroke-width="9"
-                stroke-linecap="round"/>
-
-          <!-- 2. Bowl R: lengkung dari atas vertikal, membusar ke kanan, kembali ke tengah vertikal -->
-          <path d="M 42,8 C 59,8 59,28 42,28"
-                fill="none"
-                stroke="rgba(255,255,255,0.92)"
-                stroke-width="9"
-                stroke-linecap="round"
-                stroke-linejoin="round"/>
-
-          <!-- 3. Kaki diagonal R: dari titik tengah ke kanan-bawah -->
-          <line x1="42" y1="28" x2="58" y2="44"
-                stroke="rgba(255,255,255,0.92)"
-                stroke-width="9"
-                stroke-linecap="round"/>
-
-        </svg>
+        <!-- Logo: Person + Book icon badge — clean & professional untuk sistem pendidikan instansi -->
+        <div style="width:38px; height:38px; flex-shrink:0;
+                    background:rgba(0,0,0,0.35);
+                    border-radius:10px;
+                    border:1px solid rgba(234,201,71,0.35);
+                    display:flex; flex-direction:column;
+                    align-items:center; justify-content:center; gap:2px;">
+          <!-- Orang (sarjana) — putih -->
+          <i class="fas fa-user-graduate"
+             style="color:#ffffff; font-size:0.92rem; line-height:1;"></i>
+          <!-- Buku — gold -->
+          <i class="fas fa-book-open"
+             style="color:#EAC947; font-size:0.65rem; line-height:1;"></i>
+        </div>
 
         <!-- Teks: SIKS-REBORN + Subtitle -->
         <div style="min-width:0; flex:1; overflow:hidden;">
