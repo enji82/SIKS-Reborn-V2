@@ -617,16 +617,22 @@ function tugas_renderTabel(data) {
         var attrDis = isLocked ? 'disabled style="cursor:not-allowed; opacity:0.6; filter: grayscale(100%);"' : '';
         
         // BAB III: UI TOMBOL DINAMIS (Admin = Icon Only, User = Icon + Text)
-        var txtEdit = TUGAS_IS_ADMIN ? "" : " Edit";
-        var txtHapus = TUGAS_IS_ADMIN ? "" : " Hapus";
-        var marginIcon = TUGAS_IS_ADMIN ? "" : "mr-1";
-
-        var btnAdmin = TUGAS_IS_ADMIN ? `<button class="btn btn-sm btn-primary font-weight-bold shadow-sm" onclick="tugas_bukaModalVerif('${id}')" title="Verifikasi SK"><i class="fas fa-clipboard-check"></i></button>` : '';
-        var btnDetail = `<button class="btn btn-sm btn-warning text-dark font-weight-bold shadow-sm" onclick="tugas_bukaModalEdit('${id}')" title="Edit SK" ${attrDis}><i class="fas fa-pencil-alt ${marginIcon}"></i>${txtEdit}</button>`;
-        var btnHapus = `<button class="btn btn-sm btn-danger font-weight-bold shadow-sm" onclick="tugas_bukaModalHapus('${id}')" title="Hapus SK" ${attrDis}><i class="fas fa-trash-alt ${marginIcon}"></i>${txtHapus}</button>`;
-        
-        // VAKSIN TATA LETAK: flex-nowrap memastikan tombol tidak pernah jatuh/stack ke bawah
-        var groupAksi = `<div class="d-flex flex-nowrap justify-content-center" style="gap:5px;">${btnAdmin}${btnDetail}${btnHapus}</div>`;
+        // BAB III: Tombol Aksi Dropdown (CodeByte Style)
+        var groupAksi = '';
+        if (isLocked && !TUGAS_IS_ADMIN) {
+            groupAksi = '<span class="badge badge-success px-2 py-1 shadow-sm"><i class="fas fa-lock mr-1"></i> Terkunci</span>';
+        } else {
+            groupAksi = '<div class="dropdown custom-dropdown">' +
+                          '<button type="button" class="btn sharp" data-toggle="dropdown">' +
+                            '<i class="fas fa-ellipsis-h"></i>' +
+                          '</button>' +
+                          '<div class="dropdown-menu dropdown-menu-right">' +
+                            (TUGAS_IS_ADMIN ? '<a class="dropdown-item" href="javascript:void(0)" onclick="tugas_bukaModalVerif(\'' + id + '\')"><i class="fas fa-clipboard-check text-primary"></i> Verifikasi SK</a>' : '') +
+                            '<a class="dropdown-item" href="javascript:void(0)" onclick="tugas_bukaModalEdit(\'' + id + '\')"><i class="fas fa-pencil-alt text-warning"></i> Edit SK</a>' +
+                            '<a class="dropdown-item text-danger" href="javascript:void(0)" onclick="tugas_bukaModalHapus(\'' + id + '\')"><i class="fas fa-trash text-danger"></i> Hapus Permanen</a>' +
+                          '</div>' +
+                        '</div>';
+        }
 
         var btnFile = '-';
         if(safeUrl.length > 5) {

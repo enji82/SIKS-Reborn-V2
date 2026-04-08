@@ -590,16 +590,22 @@ function lupa_renderTabel(hasil) {
         var isLocked = (String(row.status).toLowerCase().includes('ok') || String(row.status).toLowerCase().includes('setuju'));
         var attrDis = isLocked ? 'disabled style="cursor:not-allowed; opacity:0.6; filter: grayscale(100%);"' : '';
         
-        var txtVerif = LUPA_IS_ADMIN ? "" : " Verif";
-        var txtEdit  = LUPA_IS_ADMIN ? "" : " Edit";
-        var txtHapus = LUPA_IS_ADMIN ? "" : " Hapus";
-        var marginIcon = LUPA_IS_ADMIN ? "" : "mr-1";
-
-        var btnAdmin = LUPA_IS_ADMIN ? `<button class="btn btn-sm btn-primary font-weight-bold shadow-sm lupa-btn-verif" data-id="${id}" title="Verifikasi"><i class="fas fa-clipboard-check ${marginIcon}"></i>${txtVerif}</button>` : '';
-        var btnEdit  = `<button class="btn btn-sm btn-warning text-dark font-weight-bold shadow-sm lupa-btn-edit" data-id="${id}" title="Edit" ${attrDis}><i class="fas fa-pencil-alt ${marginIcon}"></i>${txtEdit}</button>`;
-        var btnHapus = `<button class="btn btn-sm btn-danger font-weight-bold shadow-sm lupa-btn-hapus" data-id="${id}" title="Hapus" ${attrDis}><i class="fas fa-trash-alt ${marginIcon}"></i>${txtHapus}</button>`;
-        
-        var aksiHTML = `<div class="d-flex flex-nowrap justify-content-center" style="gap:5px;">${btnAdmin}${btnEdit}${btnHapus}</div>`;
+        // BAB III: Tombol Aksi Dropdown (CodeByte Style)
+        var aksiHTML = '';
+        if (isLocked && !LUPA_IS_ADMIN) {
+            aksiHTML = '<span class="badge badge-success px-2 py-1 shadow-sm"><i class="fas fa-lock mr-1"></i> Terkunci</span>';
+        } else {
+            aksiHTML = '<div class="dropdown custom-dropdown">' +
+                         '<button type="button" class="btn sharp" data-toggle="dropdown">' +
+                           '<i class="fas fa-ellipsis-h"></i>' +
+                         '</button>' +
+                         '<div class="dropdown-menu dropdown-menu-right">' +
+                           (LUPA_IS_ADMIN ? '<a class="dropdown-item lupa-btn-verif" href="javascript:void(0)" data-id="' + id + '"><i class="fas fa-clipboard-check text-primary"></i> Verifikasi</a>' : '') +
+                           '<a class="dropdown-item lupa-btn-edit" href="javascript:void(0)" data-id="' + id + '"><i class="fas fa-pencil-alt text-warning"></i> Edit Data</a>' +
+                           '<a class="dropdown-item text-danger lupa-btn-hapus" href="javascript:void(0)" data-id="' + id + '"><i class="fas fa-trash text-danger"></i> Hapus</a>' +
+                         '</div>' +
+                       '</div>';
+        }
 
         var btnFile = (row.fileUrl && row.fileUrl.length > 5) ? `<button class="btn btn-sm btn-outline-danger font-weight-bold shadow-sm lupa-btn-preview" data-id="${id}"><i class="fas fa-file-pdf mr-1"></i> Dokumen</button>` : '-';
         

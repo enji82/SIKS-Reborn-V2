@@ -807,28 +807,38 @@ function lapbulkelola_renderTabel(data) {
         var badgeStatusData = lapbulkelola_buildBadgeStatus(row.statusData, row.keterangan);
         var isLocked = (stButton.includes('ok') || stButton.includes('setuju') || stButton.includes('terima')) && !LAPBULKELOLA_IS_ADMIN;
 
-        var safeNama = lapbulkelola_escapeJs(row.namaSekolah);
-        
-        // VAKSIN DYNAMIC UI: Membedakan Aksi Admin dan User
+        var safeNama = lapbulkelola_escapeJs(row.namaSekolah);        // VAKSIN DYNAMIC UI: Membedakan Aksi Admin dan User
         var txtEdit = LAPBULKELOLA_IS_ADMIN ? "" : " Edit";
         var txtHapus = LAPBULKELOLA_IS_ADMIN ? "" : " Hapus";
-        var marginIcon = LAPBULKELOLA_IS_ADMIN ? "" : "mr-1";
-
-        var btnEdit = isLocked 
-            ? `<button class="btn btn-sm btn-light border text-muted shadow-sm" disabled style="opacity:0.6; cursor:not-allowed;" title="Terkunci"><i class="fas fa-lock ${marginIcon}"></i>${txtEdit}</button>`
-            : `<button class="btn btn-sm btn-warning text-dark font-weight-bold shadow-sm btn-aksi-edit" data-source="${row.source}" data-id="${row.rowId}" title="Edit"><i class="fas fa-pencil-alt ${marginIcon}"></i>${txtEdit}</button>`;
-
-        var btnHapus = isLocked
-            ? `<button class="btn btn-sm btn-light border text-muted shadow-sm" disabled style="opacity:0.6; cursor:not-allowed;" title="Terkunci"><i class="fas fa-trash-alt ${marginIcon}"></i>${txtHapus}</button>`
-            : `<button class="btn btn-sm btn-danger font-weight-bold shadow-sm btn-aksi-hapus" data-source="${row.source}" data-id="${row.rowId}" data-nama="${safeNama}" title="Hapus"><i class="fas fa-trash-alt ${marginIcon}"></i>${txtHapus}</button>`;
-
-        var btnVerif = "";
+        
+        // BAB III: Tombol Aksi Dropdown (CodeByte Style)
+        var btnAksi = '';
         if (LAPBULKELOLA_IS_ADMIN) {
-            var safeFile = lapbulkelola_escapeJs(row.fileUrl || "");
-            btnVerif = `<button class="btn btn-sm btn-primary font-weight-bold shadow-sm btn-aksi-verif" data-source="${row.source}" data-id="${row.rowId}" data-nama="${safeNama}" data-bulan="${row.bulan}" data-tahun="${row.tahun}" data-file="${safeFile}" title="Verifikasi"><i class="fas fa-clipboard-check"></i></button>`;
+             btnAksi = '<div class="dropdown custom-dropdown">' +
+                         '<button type="button" class="btn sharp" data-toggle="dropdown">' +
+                           '<i class="fas fa-ellipsis-h"></i>' +
+                         '</button>' +
+                         '<div class="dropdown-menu dropdown-menu-right">' +
+                           '<a class="dropdown-item btn-aksi-verif" href="javascript:void(0)" data-id="' + row.rowId + '" data-source="' + row.source + '" data-nama="' + safeNama + '" data-bulan="' + row.bulan + '" data-tahun="' + row.tahun + '" data-file="' + (row.fileUrl || "") + '"><i class="fas fa-clipboard-check text-primary"></i> Verifikasi</a>' +
+                           '<a class="dropdown-item btn-aksi-edit" href="javascript:void(0)" data-id="' + row.rowId + '" data-source="' + row.source + '"><i class="fas fa-edit text-warning"></i> Ubah Data</a>' +
+                           '<a class="dropdown-item btn-aksi-hapus text-danger" href="javascript:void(0)" data-id="' + row.rowId + '" data-source="' + row.source + '" data-nama="' + safeNama + '"><i class="fas fa-trash text-danger"></i> Hapus Laporan</a>' +
+                         '</div>' +
+                       '</div>';
+        } else {
+            if (isLocked) {
+                btnAksi = '<span class="badge badge-success px-2 py-1 shadow-sm"><i class="fas fa-lock mr-1"></i> Terkunci</span>';
+            } else {
+                btnAksi = '<div class="dropdown custom-dropdown">' +
+                            '<button type="button" class="btn sharp" data-toggle="dropdown">' +
+                              '<i class="fas fa-ellipsis-h"></i>' +
+                            '</button>' +
+                            '<div class="dropdown-menu dropdown-menu-right">' +
+                              '<a class="dropdown-item btn-aksi-edit" href="javascript:void(0)" data-id="' + row.rowId + '" data-source="' + row.source + '"><i class="fas fa-edit text-warning"></i> Edit Laporan</a>' +
+                              '<a class="dropdown-item btn-aksi-hapus text-danger" href="javascript:void(0)" data-id="' + row.rowId + '" data-source="' + row.source + '" data-nama="' + safeNama + '"><i class="fas fa-trash text-danger"></i> Hapus</a>' +
+                            '</div>' +
+                          '</div>';
+            }
         }
-        // VAKSIN TATA LETAK flex-nowrap
-        var aksiHTML = `<div class="d-flex flex-nowrap justify-content-center" style="gap:5px;">${btnVerif} ${btnEdit} ${btnHapus}</div>`;
 
         var btnFile = '<span class="text-muted small">-</span>';
         if (row.fileUrl && row.fileUrl.length > 5) {
@@ -844,7 +854,7 @@ function lapbulkelola_renderTabel(data) {
         var uiUnit = `<div class="font-weight-bold text-dark text-nowrap">${lapbulkelola_escapeHtml(row.namaSekolah)}</div><div class="small text-muted text-nowrap">${lapbulkelola_escapeHtml(row.npsn || '-')}</div>`;
 
         dtArray.push([ 
-            aksiHTML, 
+            btnAksi, 
             uiUnit,
             `<div class="font-weight-bold text-dark">${lapbulkelola_escapeHtml(row.bulan)}</div>`,
             lapbulkelola_escapeHtml(row.tahun),
