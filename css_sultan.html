@@ -1342,10 +1342,20 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
 }
 .brand-link i { color: #EAC947 !important; }
 
-/* Sidebar scroll area */
+/* Struktur utama sidebar: brand-link di atas, menu di bawah — tidak tumpang tindih */
+.main-sidebar {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* Sidebar scroll area — tingginya SISA setelah brand-link (57px) */
 .sidebar {
-    padding-top: 0.4rem !important;
-    padding-bottom: 1rem !important;
+    flex: 1 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    height: calc(100% - 57px) !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 2rem !important;
 }
 
 /* ================================================
