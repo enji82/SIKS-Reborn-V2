@@ -23,11 +23,13 @@
 .home-hero-left { position: relative; z-index: 2; }
 .home-greeting {
   font-size: 1.05rem; font-weight: 700;
-  color: #EAC947;
+  color: #EAC947 !important;
   letter-spacing: 0.3px; margin-bottom: 0.4rem;
   display: flex; align-items: center; gap: 6px;
 }
-.home-greeting i { color: #EAC947; font-size: 1.1rem; }
+.home-greeting i,
+.home-greeting span { color: #EAC947 !important; font-weight: 700; }
+.home-greeting i { font-size: 1.1rem; }
 .home-username {
   font-size: 1.9rem; font-weight: 800;
   color: #fff; line-height: 1.15;
@@ -248,7 +250,7 @@
 <!-- ====================================================
      HERO HEADER
      ==================================================== -->
-<div class="px-3 pt-3">
+<div class="px-3 pt-2">
   <div class="home-hero">
     <div style="display:flex; align-items:center; justify-content:space-between; gap:1.5rem; flex-wrap:nowrap;">
 
