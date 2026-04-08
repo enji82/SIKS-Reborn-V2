@@ -369,6 +369,15 @@
   .table-premium tbody td .btn-success { background-color: #e5f6eb !important; color: #278148 !important; margin: 0 2px; }
   .table-premium tbody td .btn:hover { filter: brightness(0.95); opacity: 0.9; }
 
+  /* FIX CLIPPING DROPDOWN: Mencegah menu terpotong baris tabel */
+  .table-responsive { overflow: visible !important; }
+  .dataTables_wrapper { overflow: visible !important; }
+  .table-premium td, .table-premium th { overflow: visible !important; }
+  
+  /* Pastikan dropdown yang terbuka berada di lapisan paling atas */
+  .dropdown.custom-dropdown.show { position: relative; z-index: 9999 !important; }
+  .custom-dropdown .dropdown-menu { z-index: 9999 !important; }
+
   /* Sticky Column (Sesuaikan warna BG agar menyatu dengan header baru) */
   .col-sticky-left { 
     position: sticky !important; left: 0; z-index: 5; background-color: var(--warna-kartu-bg); 
