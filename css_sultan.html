@@ -248,8 +248,16 @@
      =================================================================== */
   .table-premium, table.dataTable {
     margin-bottom: 0 !important;
+    border: 0 !important; /* Hapus border luar */
   }
   
+  /* NUKE BOOTSTRAP BORDERS (Penting karena .table-bordered sering ngunci) */
+  .table-bordered, .table-bordered th, .table-bordered td {
+    border-left: 0 !important;
+    border-right: 0 !important;
+    border-top: 0 !important;
+  }
+
   /* Header Tabel */
   .table-premium thead th, table.dataTable thead th {
     background-color: transparent !important;
@@ -278,15 +286,28 @@
   .table-sultan-compact tbody td { max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   
   /* Efek Hover baris dinonaktifkan di Queue Codebyte */
-  .table-premium tbody tr:hover td, table.dataTable tbody tr:hover td { 
+  .table-hover tbody tr:hover td, .table-premium tbody tr:hover td, table.dataTable tbody tr:hover td { 
     background-color: transparent !important; 
   }
 
   /* Emulasi highlight bold hitam */
   .table-premium tbody td b, .table-premium tbody td strong {
     color: #10131E !important;
-    font-weight: 600 !important;
+    font-weight: 700 !important;
   }
+
+  /* CODEBYTE BADGE LIGHT */
+  .badge {
+    padding: 0.5rem 0.8rem !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    font-size: 12px !important;
+    border: 0 !important;
+  }
+  .badge.light.badge-success, .badge-success { background-color: #e5f6eb !important; color: #278148 !important; }
+  .badge.light.badge-danger, .badge-danger { background-color: #fceceb !important; color: #e94d45 !important; }
+  .badge.light.badge-warning, .badge-warning { background-color: #fef4e2 !important; color: #b6922d !important; }
+  .badge.light.badge-info, .badge-info { background-color: #e5f5fb !important; color: #008cc9 !important; }
 
   /* Sticky Column (Sesuaikan warna BG agar menyatu dengan header baru) */
   .col-sticky-left { 
