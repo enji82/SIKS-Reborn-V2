@@ -1295,215 +1295,250 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
 }
 
 /* ===================================================================
-   7. MODERN SIDEBAR GLASSMORPHISM — Maroon Heritage Theme
+   7. MODERN SIDEBAR — Deep Maroon Heritage Theme
+   Maroon sejati: #7B0000 (bukan pinkish).
+   HP-friendly: min-height 44px.
+   Teks 1 baris. Sisi kanan rata. Warna aktif beda per level.
    =================================================================== */
 
-/* Container Utama Sidebar — Warm Maroon Frosted Glass */
-.main-sidebar {
-    backdrop-filter: blur(16px) saturate(160%) !important;
-    -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
-    background: linear-gradient(180deg, rgba(133,20,75,0.92) 0%, rgba(90,12,50,0.97) 100%) !important;
-    border-right: 1px solid rgba(255,255,255,0.08) !important;
-    box-shadow: 3px 0 25px rgba(90,12,50,0.25) !important;
-    transition: all 0.3s ease;
+/* ---------- Warna Dasar Sidebar ---------- */
+:root {
+    --sb-bg-1:     #7B0000;           /* Maroon tua sejati */
+    --sb-bg-2:     #4A0000;           /* Maroon lebih gelap */
+    --sb-active-1: #FFF8E7;           /* Cream/Gold tint — Bapak AKTIF */
+    --sb-active-2: #B3E5FC;           /* Sky-blue tint   — Anak AKTIF */
+    --sb-active-3: #EAC947;           /* Gold solid      — Cucu AKTIF */
 }
 
-/* Brand Title — Tinggi sama dengan navbar (57px) */
+/* Container Sidebar */
+.main-sidebar {
+    background: linear-gradient(170deg, var(--sb-bg-1) 0%, var(--sb-bg-2) 100%) !important;
+    border-right: 1px solid rgba(255,255,255,0.06) !important;
+    box-shadow: 3px 0 20px rgba(0,0,0,0.35) !important;
+}
+
+/* Brand / Judul — rata dan tinggi sama dengan navbar */
 .brand-link {
     display: flex !important;
     align-items: center !important;
-    justify-content: flex-start !important;
-    background: rgba(0,0,0,0.15) !important;
+    background: rgba(0,0,0,0.2) !important;
     border-bottom: 1px solid rgba(255,255,255,0.1) !important;
-    min-height: 57px !important;
     height: 57px !important;
-    padding: 0 1.2rem !important;
+    min-height: 57px !important;
+    padding: 0 1rem !important;
     box-sizing: border-box !important;
-    position: relative !important;
-    z-index: 2 !important;
     overflow: hidden !important;
+    white-space: nowrap !important;
 }
 .brand-link .brand-text,
-.brand-link span {
-    color: #ffffff !important;
-    text-shadow: 0 1px 4px rgba(0,0,0,0.3) !important;
-}
-.brand-link i {
-    color: #EAC947 !important;
-}
-
-/* Sidebar container — mulai dari bawah brand title */
-.sidebar {
-    padding-top: 0.5rem !important;
-    position: relative !important;
-    z-index: 1 !important;
-}
-
-/* ===== Nav Link Umum (RESET konflik margin lama) ===== */
-.nav-sidebar .nav-link {
-    border-radius: 10px !important;
-    margin: 3px 10px !important;
-    padding: 0.6rem 0.9rem !important;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    border: 1px solid transparent !important;
-    display: flex !important;
-    align-items: center !important;
-    position: relative !important;
-}
-.nav-sidebar .nav-link p {
-    font-weight: 600 !important;
-    margin-bottom: 0 !important;
-    line-height: 1 !important;
+.brand-link > span {
+    color: #fff !important;
+    font-weight: 700 !important;
+    font-size: 1rem !important;
+    letter-spacing: 0.05em !important;
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
-    color: rgba(255,255,255,0.75) !important;
 }
-.nav-sidebar .nav-link > .nav-icon {
-    font-size: 0.95rem !important;
-    width: 22px !important;
-    min-width: 22px !important;
-    margin-right: 10px !important;
+.brand-link i { color: #EAC947 !important; }
+
+/* Sidebar scroll area */
+.sidebar {
+    padding-top: 0.4rem !important;
+    padding-bottom: 1rem !important;
+}
+
+/* ================================================
+   RESET DASAR: semua level nav-link
+   - min-height 44px (HP friendly)
+   - 1 baris teks, ellipsis
+   - Layout flex dengan kanan rata
+   ================================================ */
+.nav-sidebar .nav-link {
+    display: flex !important;
+    align-items: center !important;
+    min-height: 44px !important;
+    padding: 0.5rem 0.75rem !important;
+    margin: 2px 8px 2px 8px !important;
+    border-radius: 8px !important;
+    border: 1px solid transparent !important;
+    transition: all 0.2s ease !important;
+    position: relative !important;
+    overflow: hidden !important;         /* penting: cegah teks meluber */
+    text-decoration: none !important;
+}
+
+/* Teks menu: 1 baris, ellipsis, flex-grow agar arrow tetap di kanan */
+.nav-sidebar .nav-link p {
+    flex: 1 !important;
+    margin: 0 !important;
+    font-size: 0.82rem !important;
+    font-weight: 600 !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    color: rgba(255,255,255,0.78) !important;
+    min-width: 0 !important;             /* penting: agar flex + ellipsis bekerja */
+}
+
+/* Ikon kiri */
+.nav-sidebar .nav-link > .nav-icon,
+.nav-sidebar .nav-link > i.nav-icon {
+    flex-shrink: 0 !important;
+    width: 20px !important;
     text-align: center !important;
-    color: rgba(255,255,255,0.5) !important;
+    margin-right: 8px !important;
+    font-size: 0.9rem !important;
+    color: rgba(255,255,255,0.45) !important;
 }
 
-/* Animasi Hover Global */
-.nav-sidebar .nav-link:hover {
-    transform: translateX(4px) !important;
-    background: rgba(255,255,255,0.1) !important;
-    border-color: rgba(255,255,255,0.15) !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
-}
-.nav-sidebar .nav-link:hover p,
-.nav-sidebar .nav-link:hover > .nav-icon {
-    color: #fff !important;
-}
-
-/* ============================================
-   LEVEL 1 — BAPAK (Rich Maroon)
-   ============================================ */
-.nav-sidebar > .nav-item > .nav-link {
-    background: rgba(255,255,255,0.05) !important;
-    border: 1px solid rgba(255,255,255,0.07) !important;
-}
-.nav-sidebar > .nav-item > .nav-link > .nav-icon {
-    color: rgba(234,201,71,0.8) !important;
-}
-.nav-sidebar > .nav-item > .nav-link:hover {
-    background: rgba(255,255,255,0.12) !important;
-    border-color: rgba(255,255,255,0.2) !important;
-}
-.nav-sidebar > .nav-item > .nav-link:hover > .nav-icon {
-    color: #EAC947 !important;
-}
-.nav-sidebar > .nav-item > .nav-link.active {
-    background: rgba(255,255,255,0.18) !important;
-    border-color: rgba(255,255,255,0.25) !important;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important;
-}
-.nav-sidebar > .nav-item > .nav-link.active p {
-    color: #fff !important;
-    font-weight: 700 !important;
-}
-.nav-sidebar > .nav-item > .nav-link.active > .nav-icon,
-.nav-sidebar > .nav-item > .nav-link.active i {
-    color: #EAC947 !important;
-}
-
-/* Left active indicator bar */
-.nav-sidebar > .nav-item > .nav-link.active::before {
-    content: '' !important;
-    position: absolute !important;
-    left: -10px !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    width: 4px !important;
-    height: 60% !important;
-    background: #EAC947 !important;
-    border-radius: 0 4px 4px 0 !important;
-}
-
-/* ============================================
-   LEVEL 2 — ANAK (Rose Maroon)
-   ============================================ */
-.nav-sidebar .nav-treeview {
-    padding-left: 0 !important;
-    margin: 2px 0 !important;
-}
-.nav-sidebar .nav-treeview > .nav-item > .nav-link {
-    background: rgba(0,0,0,0.08) !important;
-    border: 1px solid rgba(255,255,255,0.05) !important;
-    margin-left: 16px !important;
-    font-size: 0.875rem !important;
-}
-.nav-sidebar .nav-treeview > .nav-item > .nav-link p {
-    color: rgba(255,220,220,0.8) !important;
-}
-.nav-sidebar .nav-treeview > .nav-item > .nav-link > .nav-icon,
-.nav-sidebar .nav-treeview > .nav-item > .nav-link > i.nav-icon {
-    color: rgba(255,180,180,0.6) !important;
-    font-size: 8px !important;
-}
-.nav-sidebar .nav-treeview > .nav-item > .nav-link:hover {
-    background: rgba(255,255,255,0.1) !important;
-    border-color: rgba(255,255,255,0.12) !important;
-}
-.nav-sidebar .nav-treeview > .nav-item > .nav-link.active {
-    background: rgba(255,255,255,0.14) !important;
-    border-color: rgba(255,255,255,0.2) !important;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
-}
-.nav-sidebar .nav-treeview > .nav-item > .nav-link.active p {
-    color: #fff !important;
-    font-weight: 700 !important;
-}
-
-/* ============================================
-   LEVEL 3 — CUCU (Warm Gold)
-   ============================================ */
-.nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link {
-    background: rgba(0,0,0,0.12) !important;
-    border: 1px solid rgba(234,201,71,0.1) !important;
-    margin-left: 30px !important;
-    font-size: 0.8rem !important;
-}
-.nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link p {
-    color: rgba(234,201,71,0.75) !important;
-}
-.nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link > .nav-icon,
-.nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link > i.nav-icon {
-    color: rgba(234,201,71,0.5) !important;
-    font-size: 7px !important;
-}
-.nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link:hover {
-    background: rgba(234,201,71,0.1) !important;
-    border-color: rgba(234,201,71,0.2) !important;
-}
-.nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link.active {
-    background: rgba(234,201,71,0.15) !important;
-    border-color: rgba(234,201,71,0.4) !important;
-    box-shadow: 0 2px 8px rgba(234,201,71,0.1) !important;
-}
-.nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link.active p {
-    color: #EAC947 !important;
-    font-weight: 700 !important;
-}
-
-/* Dropdown Arrow Rotation Animation */
+/* Arrow dropdown — SELALU di kanan, tidak melompat */
 .nav-sidebar .nav-link i.right {
-    transition: transform 0.25s ease !important;
+    flex-shrink: 0 !important;
+    margin-left: 4px !important;
+    font-size: 0.7rem !important;
     color: rgba(255,255,255,0.35) !important;
+    transition: transform 0.22s ease, color 0.2s ease !important;
 }
 .nav-sidebar .menu-open > .nav-link i.right {
     transform: rotate(-90deg) !important;
     color: rgba(255,255,255,0.7) !important;
 }
 
-/* Custom Maroon Slim Scrollbar */
+/* Hover global */
+.nav-sidebar .nav-link:hover {
+    background: rgba(255,255,255,0.09) !important;
+    border-color: rgba(255,255,255,0.12) !important;
+    transform: translateX(3px) !important;
+}
+.nav-sidebar .nav-link:hover p,
+.nav-sidebar .nav-link:hover > .nav-icon {
+    color: #fff !important;
+}
+
+/* ================================================
+   LEVEL 1 — BAPAK
+   Normal : teks putih agak transparan
+   AKTIF  : background cream/gold solid, teks maroon, ikon gold
+   ================================================ */
+.nav-sidebar > .nav-item > .nav-link {
+    background: rgba(255,255,255,0.04) !important;
+    margin: 3px 8px !important;
+}
+.nav-sidebar > .nav-item > .nav-link > .nav-icon {
+    color: rgba(234,201,71,0.7) !important;
+    font-size: 1rem !important;
+}
+.nav-sidebar > .nav-item > .nav-link:hover > .nav-icon {
+    color: #EAC947 !important;
+}
+.nav-sidebar > .nav-item > .nav-link.active {
+    background: rgba(255,248,220,0.95) !important;  /* cream solid */
+    border-color: rgba(255,248,220,0.3) !important;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.25) !important;
+}
+.nav-sidebar > .nav-item > .nav-link.active p {
+    color: #5A0000 !important;
+    font-weight: 700 !important;
+}
+.nav-sidebar > .nav-item > .nav-link.active > .nav-icon,
+.nav-sidebar > .nav-item > .nav-link.active i.right {
+    color: #8B0000 !important;
+}
+/* Gold bar indikator aktif (kiri) */
+.nav-sidebar > .nav-item > .nav-link.active::before {
+    content: '' !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 20% !important;
+    height: 60% !important;
+    width: 3px !important;
+    background: #EAC947 !important;
+    border-radius: 0 3px 3px 0 !important;
+}
+
+/* ================================================
+   LEVEL 2 — ANAK
+   Normal : teks pink-putih lebih redup, indentasi
+   AKTIF  : background sky-blue tint, teks biru tua
+   ================================================ */
+.nav-sidebar .nav-treeview {
+    padding: 0 !important;
+    margin: 1px 0 !important;
+}
+.nav-sidebar .nav-treeview > .nav-item > .nav-link {
+    margin-left: 20px !important;
+    margin-right: 8px !important;
+    background: rgba(0,0,0,0.1) !important;
+    border-radius: 7px !important;
+    font-size: 0.8rem !important;
+}
+.nav-sidebar .nav-treeview > .nav-item > .nav-link p {
+    color: rgba(255,210,210,0.78) !important;
+    font-size: 0.8rem !important;
+}
+.nav-sidebar .nav-treeview > .nav-item > .nav-link > .nav-icon,
+.nav-sidebar .nav-treeview > .nav-item > .nav-link > i.nav-icon {
+    color: rgba(255,180,180,0.5) !important;
+    font-size: 7px !important;
+    width: 16px !important;
+}
+.nav-sidebar .nav-treeview > .nav-item > .nav-link.active {
+    background: rgba(179,229,252,0.18) !important;  /* sky-blue glass */
+    border-color: rgba(179,229,252,0.35) !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
+}
+.nav-sidebar .nav-treeview > .nav-item > .nav-link.active p {
+    color: #B3E5FC !important;
+    font-weight: 700 !important;
+}
+.nav-sidebar .nav-treeview > .nav-item > .nav-link.active > .nav-icon,
+.nav-sidebar .nav-treeview > .nav-item > .nav-link.active > i.nav-icon {
+    color: #B3E5FC !important;
+}
+
+/* ================================================
+   LEVEL 3 — CUCU
+   Normal : teks gold redup, indentasi lebih dalam
+   AKTIF  : teks gold terang, border gold solid
+   ================================================ */
+.nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link {
+    margin-left: 34px !important;
+    margin-right: 8px !important;
+    background: rgba(0,0,0,0.12) !important;
+    border-color: rgba(234,201,71,0.08) !important;
+    border-radius: 6px !important;
+    font-size: 0.77rem !important;
+}
+.nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link p {
+    color: rgba(234,201,71,0.65) !important;
+    font-size: 0.77rem !important;
+}
+.nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link > .nav-icon,
+.nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link > i.nav-icon {
+    color: rgba(234,201,71,0.4) !important;
+    font-size: 6px !important;
+    width: 14px !important;
+}
+.nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link.active {
+    border-color: rgba(234,201,71,0.55) !important;
+    background: rgba(234,201,71,0.08) !important;
+    box-shadow: 0 2px 8px rgba(234,201,71,0.1) !important;
+}
+.nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link.active p {
+    color: #EAC947 !important;
+    font-weight: 700 !important;
+}
+.nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link.active > .nav-icon,
+.nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link.active > i.nav-icon {
+    color: #EAC947 !important;
+}
+
+/* Slim gold scrollbar */
 .sidebar::-webkit-scrollbar { width: 3px; }
-.sidebar::-webkit-scrollbar-track { background: transparent; }
-.sidebar::-webkit-scrollbar-thumb { background: rgba(234,201,71,0.3); border-radius: 10px; }
-.sidebar::-webkit-scrollbar-thumb:hover { background: rgba(234,201,71,0.6); }
+.sidebar::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
+.sidebar::-webkit-scrollbar-thumb { background: rgba(234,201,71,0.35); border-radius: 4px; }
+.sidebar::-webkit-scrollbar-thumb:hover { background: rgba(234,201,71,0.65); }
 
 </style>
