@@ -72,16 +72,49 @@
   /* ===================================================================
      2. ADMINLTE OVERRIDES (CLEAN SAAS THEME)
      =================================================================== */
-  
-  /* A. NAVBAR (HEADER ATAS) */
-  .main-header { 
-    background: var(--warna-kartu-bg) !important;
+
+  /* A. NAVBAR (HEADER ATAS) — Tinggi fix 57px, sejajar brand-link */
+  .main-header,
+  #main-navbar {
+    background: #ffffff !important;
     border-bottom: 1px solid #E2E8F0 !important;
-    box-shadow: none !important;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.04) !important;
+    height: 57px !important;
     min-height: 57px !important;
+    max-height: 57px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    display: flex !important;
+    align-items: center !important;
   }
-  .main-header .nav-link { color: #475569 !important; font-weight: 500; }
-  .main-header .nav-link:hover { color: var(--warna-emas) !important; }
+  .main-header .nav-link { color: #475569 !important; }
+  .main-header .nav-link:hover { color: #7B0000 !important; }
+
+  /* Animasi bell notifikasi */
+  @keyframes bellRing {
+    0%   { transform: rotate(0); }
+    10%  { transform: rotate(15deg); }
+    20%  { transform: rotate(-12deg); }
+    30%  { transform: rotate(10deg); }
+    40%  { transform: rotate(-8deg); }
+    50%  { transform: rotate(5deg); }
+    60%  { transform: rotate(-4deg); }
+    70%  { transform: rotate(2deg); }
+    100% { transform: rotate(0); }
+  }
+  .notif-ringing i {
+    animation: bellRing 0.8s ease-in-out !important;
+    display: inline-block;
+    transform-origin: top center;
+  }
+  /* Badge pulse */
+  #notif-badge {
+    animation: badgePulse 2s ease-in-out infinite;
+  }
+  @keyframes badgePulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(220,53,69,0.5); }
+    50%       { box-shadow: 0 0 0 4px rgba(220,53,69,0); }
+  }
 
   /* B. SIDEBAR DASAR & LOGO — Dikelola oleh section 7 (Glassmorphism) */
 
