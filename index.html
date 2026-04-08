@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SIKS - REBORN</title>
-  
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css">
-  
+
   <script>
     // Konfigurasi AdminLTE untuk SPA (Mencegah iframe menyedot RAM)
-    localStorage.setItem('AdminLTE:IFrame:Options', JSON.stringify({autoIframeMode:false}));
+    localStorage.setItem('AdminLTE:IFrame:Options', JSON.stringify({ autoIframeMode: false }));
   </script>
   <?!= include('css_sultan'); ?>
 </head>
@@ -23,8 +26,11 @@
 <body class="hold-transition sidebar-mini layout-fixed layout-footer-fixed layout-navbar-fixed">
 
   <!-- VAKSIN LOADING SCREEN AWAL -->
-  <div id="loading-awal" style="position:fixed; z-index:9999; top:0; left:0; width:100%; height:100%; background:#fff; display:flex; align-items:center; justify-content:center;">
-     <div class="text-center"><i class="fas fa-circle-notch fa-spin fa-3x text-maroon mb-3"></i><h5 class="text-maroon font-weight-bold">Memuat SIKS Reborn...</h5></div>
+  <div id="loading-awal"
+    style="position:fixed; z-index:9999; top:0; left:0; width:100%; height:100%; background:#fff; display:flex; align-items:center; justify-content:center;">
+    <div class="text-center"><i class="fas fa-circle-notch fa-spin fa-3x text-maroon mb-3"></i>
+      <h5 class="text-maroon font-weight-bold">Memuat SIKS Reborn...</h5>
+    </div>
   </div>
 
   <div id="gerbang-login" style="display:none;">
@@ -32,12 +38,11 @@
   </div>
 
   <div class="wrapper" id="konten-aplikasi" style="display:none;">
-    
+
     <!-- ====================================================
          NAVBAR ATAS — Tinggi fix 57px, sejajar brand-link
          ==================================================== -->
-    <nav class="main-header navbar navbar-expand" id="main-navbar"
-         style="height:57px; min-height:57px; max-height:57px;
+    <nav class="main-header navbar navbar-expand" id="main-navbar" style="height:57px; min-height:57px; max-height:57px;
                 background:#fff; border-bottom:1px solid #E2E8F0;
                 padding:0 1rem; box-sizing:border-box;
                 display:flex; align-items:center; justify-content:space-between;">
@@ -45,30 +50,27 @@
       <!-- Kiri: Hamburger + Breadcrumb -->
       <ul class="navbar-nav" style="flex-shrink:0; display:flex; align-items:center; height:57px; margin:0; padding:0;">
         <li class="nav-item" style="display:flex; align-items:center; height:100%;">
-          <a class="nav-link" data-widget="pushmenu" href="#" role="button"
-             style="color:#475569; padding:0 0.75rem; line-height:57px; height:57px;
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button" style="color:#475569; padding:0 0.75rem; line-height:57px; height:57px;
                     display:flex; align-items:center;">
             <i class="fas fa-bars" style="font-size:1rem;"></i>
           </a>
         </li>
         <li class="nav-item d-none d-md-flex" style="display:flex; align-items:center; height:100%;">
           <span id="page-breadcrumb" class="font-weight-bold"
-                style="color:#1e293b; font-size:0.88rem; cursor:default; line-height:1;"></span>
+            style="color:#1e293b; font-size:0.88rem; cursor:default; line-height:1;"></span>
         </li>
       </ul>
 
       <!-- Kanan: Bell Notifikasi + User Dropdown -->
-      <ul class="navbar-nav ml-auto" style="gap:0.25rem; flex-shrink:0; display:flex; align-items:center; height:57px; margin:0; padding:0;">
+      <ul class="navbar-nav ml-auto"
+        style="gap:0.25rem; flex-shrink:0; display:flex; align-items:center; height:57px; margin:0; padding:0;">
 
         <!-- Bell Notifikasi -->
         <li class="nav-item position-relative" style="display:flex; align-items:center; height:100%;">
-          <a class="nav-link" href="#" id="btn-notif-bell" title="Data Menunggu Proses"
-             style="color:#64748b; padding:0 0.65rem; height:57px;
-                    display:flex; align-items:center; position:relative;"
-             onclick="return false;">
+          <a class="nav-link" href="#" id="btn-notif-bell" title="Data Menunggu Proses" style="color:#64748b; padding:0 0.65rem; height:57px;
+                    display:flex; align-items:center; position:relative;" onclick="return false;">
             <i class="fas fa-bell" style="font-size:1.05rem;"></i>
-            <span id="notif-badge" class="badge badge-danger"
-                  style="position:absolute; top:10px; right:4px;
+            <span id="notif-badge" class="badge badge-danger" style="position:absolute; top:10px; right:4px;
                          font-size:0.6rem; min-width:16px; height:16px;
                          border-radius:8px; display:none;
                          line-height:16px; padding:0 4px;
@@ -77,33 +79,28 @@
         </li>
 
         <!-- ============ USER DROPDOWN ============ -->
-        <li class="nav-item dropdown" id="user-dropdown-wrapper"
-            style="display:flex; align-items:center; height:100%;">
+        <li class="nav-item dropdown" id="user-dropdown-wrapper" style="display:flex; align-items:center; height:100%;">
 
           <!-- Trigger button: [foto] Nama ▾ -->
-          <a href="#" class="nav-link dropdown-toggle" id="userDropdownTrigger"
-             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-             style="display:flex; align-items:center; gap:0.5rem;
+          <a href="#" class="nav-link dropdown-toggle" id="userDropdownTrigger" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" style="display:flex; align-items:center; gap:0.5rem;
                     background:#F8FAFC; border:1px solid #E2E8F0; border-radius:50px;
                     padding:0.25rem 0.75rem 0.25rem 0.25rem;
                     text-decoration:none; color:#1e293b;
                     transition:background 0.2s, box-shadow 0.2s;">
             <!-- Avatar foto kecil -->
             <img id="nav-user-photo" src="https://ui-avatars.com/api/?name=User&background=7B0000&color=fff"
-                 alt="Avatar"
-                 style="width:34px; height:34px; border-radius:50%; object-fit:cover;
+              alt="Avatar" style="width:34px; height:34px; border-radius:50%; object-fit:cover;
                         border:2px solid #7B0000; flex-shrink:0;">
             <!-- Nama -->
-            <span id="nav-user-name" class="font-weight-bold"
-                  style="font-size:0.82rem; max-width:120px;
+            <span id="nav-user-name" class="font-weight-bold" style="font-size:0.82rem; max-width:120px;
                          white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">-</span>
             <!-- Chevron -->
             <i class="fas fa-chevron-down" style="font-size:0.65rem; color:#94a3b8; margin-left:2px;"></i>
           </a>
 
           <!-- ===== DROPDOWN CARD ===== -->
-          <div class="dropdown-menu dropdown-menu-right" id="userDropdownMenu"
-               style="min-width:260px; border:none; border-radius:18px;
+          <div class="dropdown-menu dropdown-menu-right" id="userDropdownMenu" style="min-width:260px; border:none; border-radius:18px;
                       box-shadow:0 20px 60px rgba(0,0,0,0.18);
                       overflow:hidden; padding:0; margin-top:8px;">
 
@@ -113,43 +110,39 @@
               <!-- Foto profil besar -->
               <div style="display:flex; justify-content:center; margin-bottom:0.9rem;">
                 <img id="dropdown-user-photo" src="https://ui-avatars.com/api/?name=User&background=7B0000&color=fff"
-                     alt="Foto Profil"
-                     style="width:90px; height:90px; border-radius:50%; object-fit:cover;
+                  alt="Foto Profil" style="width:90px; height:90px; border-radius:50%; object-fit:cover;
                             border:3px solid rgba(255,255,255,0.3);
                             box-shadow:0 4px 20px rgba(0,0,0,0.3);">
               </div>
               <!-- Nama -->
               <div id="dropdown-user-name-big" class="font-weight-bold"
-                   style="font-size:1.1rem; color:#fff; margin-bottom:0.2rem;">-</div>
+                style="font-size:1.1rem; color:#fff; margin-bottom:0.2rem;">-</div>
               <!-- Role -->
-              <div id="dropdown-user-role"
-                   style="font-size:0.8rem; color:rgba(255,255,255,0.65);">-</div>
+              <div id="dropdown-user-role" style="font-size:0.8rem; color:rgba(255,255,255,0.65);">-</div>
             </div>
 
             <!-- Footer: Profil + Logout -->
             <div style="background:#fff; padding:1rem 1.25rem;
                         display:flex; gap:0.75rem; align-items:center;">
               <!-- Profil -->
-              <button onclick="Sultan && Sultan.notif ? Sultan.notif.info('Halaman profil segera hadir.') : alert('Profil')"
-                      style="flex:1; background:#F1F5F9; border:1px solid #E2E8F0;
+              <button
+                onclick="Sultan && Sultan.notif ? Sultan.notif.info('Halaman profil segera hadir.') : alert('Profil')"
+                style="flex:1; background:#F1F5F9; border:1px solid #E2E8F0;
                              color:#374151; font-weight:600; font-size:0.85rem;
                              padding:0.6rem 1rem; border-radius:50px; cursor:pointer;
                              display:flex; align-items:center; justify-content:center; gap:0.5rem;
-                             transition:background 0.2s;"
-                      onmouseover="this.style.background='#E2E8F0';"
-                      onmouseout="this.style.background='#F1F5F9';">
+                             transition:background 0.2s;" onmouseover="this.style.background='#E2E8F0';"
+                onmouseout="this.style.background='#F1F5F9';">
                 <i class="fas fa-user-cog"></i> Profil
               </button>
               <!-- Logout -->
-              <button onclick="handleLogout()"
-                      style="flex:1; background:linear-gradient(135deg,#8B0000,#5A0000);
+              <button onclick="handleLogout()" style="flex:1; background:linear-gradient(135deg,#8B0000,#5A0000);
                              border:none; color:#fff; font-weight:700; font-size:0.85rem;
                              padding:0.6rem 1rem; border-radius:50px; cursor:pointer;
                              display:flex; align-items:center; justify-content:center; gap:0.5rem;
                              box-shadow:0 4px 12px rgba(139,0,0,0.35);
-                             transition:opacity 0.2s;"
-                      onmouseover="this.style.opacity='0.85';"
-                      onmouseout="this.style.opacity='1';">
+                             transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85';"
+                onmouseout="this.style.opacity='1';">
                 <i class="fas fa-sign-out-alt"></i> Logout
               </button>
             </div>
@@ -162,8 +155,7 @@
 
 
     <aside class="main-sidebar border-right-0" id="main-sidebar-app">
-      <a href="#" class="brand-link" id="sidebar-brand"
-         style="display:flex; align-items:center; height:57px;
+      <a href="#" class="brand-link" id="sidebar-brand" style="display:flex; align-items:center; height:57px;
                 padding:0 0.85rem; gap:0.75rem;
                 background:rgba(0,0,0,0.25);
                 border-bottom:1px solid rgba(255,255,255,0.1);
@@ -175,8 +167,7 @@
                     border-radius:10px;
                     border:1px solid rgba(234,201,71,0.3);
                     display:flex; align-items:center; justify-content:center;">
-          <span class="material-symbols-outlined"
-                style="color:#EAC947;
+          <span class="material-symbols-outlined" style="color:#EAC947;
                        font-size:26px;
                        line-height:1;
                        font-variation-settings:'FILL' 1,'wght' 500,'GRAD' 0,'opsz' 24;">
@@ -212,7 +203,7 @@
     <footer class="main-footer text-sm">
       <strong>Copyright &copy; 2026 <span class="text-maroon">Korwil Disdikbud Kecamatan Secang</span>.</strong>
       <span class="d-none d-sm-inline-block ml-1">All rights reserved.</span>
-      <small class="text-muted ml-2" style="opacity: 0.6;">(v1.0)</small>
+      <small class="text-muted ml-2" style="opacity: 0.6;">(v2.0)</small>
     </footer>
 
   </div>
@@ -232,9 +223,11 @@
 
 
   <!-- VAKSIN: FLOATING ACTION BUTTON KERANGKA -->
-  <div class="fab-container" id="fabMainContainer" style="display:none;" onclick="$('.btn-tambah, .btn-primary, .btn-success').first().click()">
-      <button class="fab-button" id="fabMainBtn"><i class="fas fa-plus"></i></button>
+  <div class="fab-container" id="fabMainContainer" style="display:none;"
+    onclick="$('.btn-tambah, .btn-primary, .btn-success').first().click()">
+    <button class="fab-button" id="fabMainBtn"><i class="fas fa-plus"></i></button>
   </div>
 
 </body>
+
 </html>

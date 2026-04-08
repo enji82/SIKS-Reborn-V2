@@ -63,10 +63,21 @@
     border-top: 1px solid rgba(255,255,255,0.1);
 }
 
+/* Animations */
+@keyframes skReveal {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.sk-animate-reveal {
+    animation: skReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
 /* Card variants - Codebyte Palette */
 .kpi-main    { background: linear-gradient(135deg, #7B0000 0%, #4A0000 100%); color: #fff; box-shadow: 0 10px 25px rgba(123,0,0,0.25); }
 .kpi-gold    { background: linear-gradient(135deg, #EAC947 0%, #C0A020 100%); color: #1e293b; box-shadow: 0 10px 25px rgba(234,201,71,0.25); }
-.kpi-slate   { background: linear-gradient(135deg, #334155 0%, #1e293b 100%); color: #fff; box-shadow: 0 10px 25px rgba(51,65,85,0.25); }
+.kpi-slate   { background: linear-gradient(135deg, #334155 0%, #1e293b 100%); color: #ffffff !important; box-shadow: 0 10px 25px rgba(51,65,85,0.25); }
+.kpi-slate .kpi-number, .kpi-slate .kpi-number span, .kpi-slate .kpi-number small { color: #ffffff !important; }
 .kpi-white   { background: #ffffff; color: #1e293b; border: 1px solid #E2E8F0; box-shadow: var(--sk-shadow); }
 .kpi-white .kpi-sub { border-top: 1px solid #F1F5F9; }
 
@@ -203,7 +214,7 @@
     <!-- KPI ROW -->
     <div class="row mb-4">
       <div class="col-lg-3 col-6 mb-3">
-        <div class="sk-kpi-card kpi-main">
+        <div class="sk-kpi-card kpi-main sk-animate-reveal" style="animation-delay: 0.1s;">
           <i class="fas fa-file-export kpi-icon-bg"></i>
           <div class="kpi-number dashsk-count-up" id="dashsk_valTotal">0</div>
           <div class="kpi-label">Berkas Masuk</div>
@@ -211,7 +222,7 @@
         </div>
       </div>
       <div class="col-lg-3 col-6 mb-3">
-        <div class="sk-kpi-card kpi-gold">
+        <div class="sk-kpi-card kpi-gold sk-animate-reveal" style="animation-delay: 0.2s;">
           <i class="fas fa-check-double kpi-icon-bg"></i>
           <div class="kpi-number dashsk-count-up" id="dashsk_valDisetujui">0</div>
           <div class="kpi-label">Valid (Disetujui)</div>
@@ -219,7 +230,7 @@
         </div>
       </div>
       <div class="col-lg-3 col-6 mb-3">
-        <div class="sk-kpi-card kpi-slate">
+        <div class="sk-kpi-card kpi-slate sk-animate-reveal" style="animation-delay: 0.3s;">
           <i class="fas fa-bullseye kpi-icon-bg"></i>
           <div class="kpi-number"><span class="dashsk-count-up" id="dashsk_valProgress">0</span><small>%</small></div>
           <div class="kpi-label">Realisasi Target</div>
@@ -227,7 +238,7 @@
         </div>
       </div>
       <div class="col-lg-3 col-6 mb-3">
-        <div class="sk-kpi-card kpi-white" id="dashsk_btnModalBelum" style="cursor:pointer;">
+        <div class="sk-kpi-card kpi-white sk-animate-reveal" id="dashsk_btnModalBelum" style="cursor:pointer; animation-delay: 0.4s;">
           <i class="fas fa-clock kpi-icon-bg" style="color:#FEE2E2;"></i>
           <div class="kpi-number text-danger dashsk-count-up" id="dashsk_valBelum">0</div>
           <div class="kpi-label text-muted">Belum Lapor</div>
@@ -239,7 +250,7 @@
     <!-- PILLS ROW -->
     <div class="row mb-4">
       <div class="col-md-4 col-12 mb-3">
-        <div class="sk-info-pill">
+        <div class="sk-info-pill sk-animate-reveal" style="animation-delay: 0.5s;">
           <div class="pill-icon" style="background:#FFF9E6; color:#D97706;"><i class="fas fa-hourglass-half"></i></div>
           <div>
             <div class="pill-value dashsk-count-up" id="dashsk_valDiproses">0</div>
@@ -248,7 +259,7 @@
         </div>
       </div>
       <div class="col-md-4 col-12 mb-3">
-        <div class="sk-info-pill">
+        <div class="sk-info-pill sk-animate-reveal" style="animation-delay: 0.6s;">
           <div class="pill-icon" style="background:#E0F2FE; color:#0284C7;"><i class="fas fa-file-pen"></i></div>
           <div>
             <div class="pill-value dashsk-count-up" id="dashsk_valRevisi">0</div>
@@ -257,7 +268,7 @@
         </div>
       </div>
       <div class="col-md-4 col-12 mb-3">
-        <div class="sk-info-pill">
+        <div class="sk-info-pill sk-animate-reveal" style="animation-delay: 0.7s;">
           <div class="pill-icon" style="background:#FEE2E2; color:#DC2626;"><i class="fas fa-ban"></i></div>
           <div>
             <div class="pill-value dashsk-count-up" id="dashsk_valDitolak">0</div>
