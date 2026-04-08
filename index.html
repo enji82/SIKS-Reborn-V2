@@ -37,33 +37,38 @@
          NAVBAR ATAS — Tinggi fix 57px, sejajar brand-link
          ==================================================== -->
     <nav class="main-header navbar navbar-expand" id="main-navbar"
-         style="height:57px; min-height:57px; max-height:57px; background:#fff; border-bottom:1px solid #E2E8F0; padding:0 1rem; display:flex; align-items:center; box-sizing:border-box;">
+         style="height:57px; min-height:57px; max-height:57px;
+                background:#fff; border-bottom:1px solid #E2E8F0;
+                padding:0 1rem; box-sizing:border-box;
+                display:flex; align-items:center; justify-content:space-between;">
 
       <!-- Kiri: Hamburger + Breadcrumb -->
-      <ul class="navbar-nav" style="flex-shrink:0;">
-        <li class="nav-item">
+      <ul class="navbar-nav" style="flex-shrink:0; display:flex; align-items:center; height:57px; margin:0; padding:0;">
+        <li class="nav-item" style="display:flex; align-items:center; height:100%;">
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"
-             style="color:#475569; padding:0.5rem 0.75rem; line-height:1;">
-            <i class="fas fa-bars"></i>
+             style="color:#475569; padding:0 0.75rem; line-height:57px; height:57px;
+                    display:flex; align-items:center;">
+            <i class="fas fa-bars" style="font-size:1rem;"></i>
           </a>
         </li>
-        <li class="nav-item d-none d-md-flex align-items-center">
+        <li class="nav-item d-none d-md-flex" style="display:flex; align-items:center; height:100%;">
           <span id="page-breadcrumb" class="font-weight-bold"
-                style="color:#1e293b; font-size:0.9rem; cursor:default;"></span>
+                style="color:#1e293b; font-size:0.88rem; cursor:default; line-height:1;"></span>
         </li>
       </ul>
 
       <!-- Kanan: Bell Notifikasi + User Dropdown -->
-      <ul class="navbar-nav ml-auto align-items-center" style="gap:0.4rem; flex-shrink:0;">
+      <ul class="navbar-nav ml-auto" style="gap:0.25rem; flex-shrink:0; display:flex; align-items:center; height:57px; margin:0; padding:0;">
 
         <!-- Bell Notifikasi -->
-        <li class="nav-item position-relative">
+        <li class="nav-item position-relative" style="display:flex; align-items:center; height:100%;">
           <a class="nav-link" href="#" id="btn-notif-bell" title="Data Menunggu Proses"
-             style="color:#64748b; padding:0.5rem 0.6rem; position:relative; line-height:1;"
+             style="color:#64748b; padding:0 0.65rem; height:57px;
+                    display:flex; align-items:center; position:relative;"
              onclick="return false;">
-            <i class="fas fa-bell" style="font-size:1.1rem;"></i>
+            <i class="fas fa-bell" style="font-size:1.05rem;"></i>
             <span id="notif-badge" class="badge badge-danger"
-                  style="position:absolute; top:4px; right:2px;
+                  style="position:absolute; top:10px; right:4px;
                          font-size:0.6rem; min-width:16px; height:16px;
                          border-radius:8px; display:none;
                          line-height:16px; padding:0 4px;
@@ -72,7 +77,8 @@
         </li>
 
         <!-- ============ USER DROPDOWN ============ -->
-        <li class="nav-item dropdown" id="user-dropdown-wrapper">
+        <li class="nav-item dropdown" id="user-dropdown-wrapper"
+            style="display:flex; align-items:center; height:100%;">
 
           <!-- Trigger button: [foto] Nama ▾ -->
           <a href="#" class="nav-link dropdown-toggle" id="userDropdownTrigger"
