@@ -1362,4 +1362,110 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
   background: transparent !important;
 }
 
+/* ===================================================================
+   7. MODERN SIDEBAR GLASSMORPHISM (Premium Theme)
+   =================================================================== */
+
+/* Container Utama Sidebar */
+.main-sidebar {
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    background: rgba(255, 255, 255, 0.7) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.3) !important;
+    transition: all 0.3s ease;
+}
+
+/* Penyesuaian Brand Link */
+.brand-link {
+    background: transparent !important;
+    border-bottom: 1px solid rgba(0,0,0,0.05) !important;
+}
+
+/* Nav Link Umum */
+.nav-sidebar .nav-link {
+    border-radius: 12px !important;
+    margin: 4px 8px !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    border: 1px solid transparent !important;
+}
+
+.nav-sidebar .nav-link p {
+    font-weight: 600 !important;
+}
+
+/* Animasi Hover Global */
+.nav-sidebar .nav-link:hover {
+    transform: translateX(5px);
+    background: rgba(255, 255, 255, 0.4) !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
+}
+
+/* --- LEVEL 1 (BAPAK) --- */
+.nav-sidebar > .nav-item > .nav-link {
+    background: rgba(133, 20, 75, 0.03); /* Subtle Maroon Tint */
+    border: 1px solid rgba(133, 20, 75, 0.05) !important;
+    color: var(--warna-tegas) !important;
+}
+
+.nav-sidebar > .nav-item > .nav-link.active {
+    background: linear-gradient(135deg, var(--warna-maroon), #5d0d34) !important;
+    color: #fff !important;
+    box-shadow: 0 8px 20px rgba(133, 20, 75, 0.3) !important;
+}
+
+.nav-sidebar > .nav-item > .nav-link.active i {
+    color: #fff !important;
+}
+
+/* --- LEVEL 2 (ANAK) --- */
+.nav-sidebar .nav-treeview > .nav-item > .nav-link {
+    background: rgba(29, 53, 115, 0.03) !important; /* Subtle Navy Tint */
+    border: 1px solid rgba(29, 53, 115, 0.05) !important;
+    margin-left: 15px !important;
+    font-size: 0.95rem !important;
+}
+
+.nav-sidebar .nav-treeview > .nav-item > .nav-link.active {
+    background: rgba(29, 53, 115, 0.1) !important;
+    border-color: rgba(29, 53, 115, 0.2) !important;
+    color: #1D3573 !important;
+}
+
+.nav-sidebar .nav-treeview > .nav-item > .nav-link:hover {
+    border-color: rgba(29, 53, 115, 0.3) !important;
+}
+
+/* --- LEVEL 3 (CUCU) --- */
+.nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link {
+    background: rgba(234, 201, 71, 0.05) !important; /* Subtle Amber Tint */
+    border: 1px solid rgba(234, 201, 71, 0.1) !important;
+    margin-left: 30px !important;
+    font-size: 0.85rem !important;
+}
+
+.nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link i {
+    font-size: 10px !important;
+    color: var(--warna-emas) !important;
+}
+
+.nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link.active {
+    background: rgba(234, 201, 71, 0.15) !important;
+    border-color: var(--warna-emas) !important;
+    color: #856404 !important;
+}
+
+/* Dropdown Arrow Animation */
+.nav-sidebar .menu-open > .nav-link i.right {
+    transform: rotate(-90deg) !important;
+}
+
+/* Scrollbar Sidebar Sultan */
+.sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+.sidebar::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
 </style>
