@@ -172,20 +172,24 @@
     box-shadow: 0 0.5rem 1rem rgba(29, 53, 115, 0.3) !important;
   }
 
-  /* Card Sultan - Clean Minimalist (INAPP) */
+  /* Card Sultan - Codebyte Specification */
   .card-sultan, .card { 
-      border: var(--border-sultan) !important; 
+      border: 0 !important; 
       border-radius: var(--radius-sultan) !important; 
       box-shadow: var(--shadow-sultan) !important; 
       background: var(--warna-kartu-bg) !important; 
-      margin-bottom: 1.5rem; 
-      color: #495057 !important;
+      margin-bottom: 2rem; 
+      color: #737B8B !important;
   }
   .card-header, .card-footer {
-      background: var(--warna-kartu-bg) !important;
-      border-bottom: var(--border-sultan) !important;
-      color: #212529 !important;
-      font-weight: 700;
+      background: transparent !important;
+      border-bottom: 0 !important;
+      padding: 1.5rem 1.5rem 0.5rem !important;
+      color: var(--warna-tegas) !important;
+      font-weight: 600;
+  }
+  .card-body {
+      padding: 1.5rem !important;
   }
   
   .border-left-dark { border-left: 4px solid var(--warna-emas) !important; }
@@ -222,27 +226,27 @@
      5. TABEL & DATA GRID (DARK PREMIUM STYLE)
      =================================================================== */
   
-  /* Header Tabel Minimalist (INAPP) */
+  /* Header Tabel Minimalist (CODEBYTE) */
   .table-premium thead th, table.dataTable thead th {
-    background-color: var(--warna-kartu-bg) !important;
+    background-color: #F8F9FA !important;
     color: var(--warna-tegas) !important; 
-    font-weight: 700 !important;
-    border-bottom: var(--border-sultan) !important; 
+    font-weight: 600 !important;
+    border-bottom: 0 !important; 
     border-top: none !important;
-    vertical-align: middle !important; white-space: nowrap; font-size: 0.85rem; padding: 12px 16px;
+    vertical-align: middle !important; white-space: nowrap; font-size: 0.85rem; padding: 1rem 1.25rem !important;
     text-transform: uppercase; letter-spacing: 0.5px;
   }
   
   /* Efek Hover Header */
   .table-premium thead th:hover, table.dataTable thead th:hover {
-      background-color: #F1F5F9 !important; 
+      background-color: transparent !important; 
   }
   
   /* Badan Tabel */
   .table-premium tbody td, .table-sultan-compact tbody td, table.dataTable tbody td {
-    vertical-align: middle !important; font-size: 14px; padding: 12px 16px; 
+    vertical-align: middle !important; font-size: 0.875rem; padding: 1rem 1.25rem !important; 
     border-bottom: var(--border-sultan) !important;
-    color: #495057;
+    color: #737B8B !important;
   }
   .table-sultan-compact tbody td { max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .table-premium tbody tr:hover td { background-color: #fff8f8 !important; }
@@ -1186,6 +1190,49 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
 .form-floating-sultan .form-control:not(:placeholder-shown) ~ label {
     transform: scale(.85) translateY(-0.6rem) translateX(0.15rem);
     color: var(--warna-emas);
+}
+/* ===================================================================
+   6. CODEBYTE ALERTS & TABS (New Components)
+   =================================================================== */
+
+/* CODEBYTE ALERT */
+.alert, .alert-sultan {
+  border-radius: var(--radius-sultan) !important;
+  border: none !important;
+  padding: 1rem 1.25rem !important;
+  color: #10131E !important;
+  background-color: #F8F9FA !important;
+  border-left: 4px solid #E6E6E6 !important;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.02) !important;
+}
+.alert-success { background-color: rgba(9, 189, 60, 0.1) !important; border-left-color: var(--warna-hijau) !important; color: #078c2c !important; }
+.alert-info    { background-color: rgba(0, 175, 239, 0.1) !important; border-left-color: var(--warna-cyan) !important; color: #007bb5 !important; }
+.alert-warning { background-color: rgba(234, 201, 71, 0.1) !important; border-left-color: var(--warna-emas) !important; color: #9c8322 !important; }
+.alert-danger  { background-color: rgba(208, 65, 46, 0.1) !important; border-left-color: var(--warna-orange-pastel) !important; color: #9c3122 !important; }
+
+/* CODEBYTE TABS (Underline Indicator) */
+.nav-tabs {
+  border-bottom: 2px solid #E6E6E6 !important;
+  gap: 1rem;
+}
+.nav-tabs .nav-link {
+  border: none !important;
+  color: #737B8B !important;
+  font-weight: 500 !important;
+  padding: 0.75rem 1rem !important;
+  background: transparent !important;
+  border-bottom: 2px solid transparent !important;
+  margin-bottom: -2px !important;
+  transition: all 0.3s ease;
+}
+.nav-tabs .nav-link:hover {
+  color: var(--warna-maroon) !important;
+  border-color: transparent !important;
+}
+.nav-tabs .nav-link.active {
+  color: var(--warna-maroon) !important;
+  border-bottom: 2px solid var(--warna-maroon) !important;
+  background: transparent !important;
 }
 
 </style>
