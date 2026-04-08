@@ -527,6 +527,26 @@ function getDashboardSK(filterTahun, filterSemester) {
         return { sekolah: r[1], status: r[9], waktu: displayTime.replace(/['"]/g, "").trim().substring(0, 16) };
     });
 
+    // Trend Calculation
+    var trendMap = {};
+    filteredRows.forEach(function(r) {
+        var tKirim = parseStringDateToTime(r[0]);
+        if (tKirim > 0) {
+            var d = new Date(tKirim);
+            var key = d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2);
+            trendMap[key] = (trendMap[key] || 0) + 1;
+        }
+    });
+    var sortedKeys = Object.keys(trendMap).sort();
+    var trendLabels = [], trendValues = [];
+    var daftarBulan = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agt", "Sep", "Okt", "Nov", "Des"];
+    sortedKeys.forEach(function(k) {
+        var p = k.split("-");
+        trendLabels.push(daftarBulan[parseInt(p[1])-1] + " " + p[0].substring(2));
+        trendValues.push(trendMap[k]);
+    });
+    stats.trend = { labels: trendLabels, values: trendValues };
+
     return stats;
 
   } catch (e) { return { error: "Terjadi kesalahan statistik." }; }

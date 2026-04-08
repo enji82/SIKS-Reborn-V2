@@ -1,180 +1,176 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 
-<style>
-/* ========== SK DASHBOARD PREMIUM STYLES ========== */
-.sk-dash-filter-bar {
-    background: linear-gradient(135deg, rgba(133,20,75,0.06) 0%, rgba(90,12,50,0.03) 100%);
-    border: 1px solid rgba(133,20,75,0.12);
-    border-radius: 16px;
-    padding: 1rem 1.25rem;
-    margin-bottom: 1.5rem;
+<s<style>
+/* ========== SK DASHBOARD PREMIUM STYLES (CODEBYTE VERSION) ========== */
+:root {
+    --sk-radius: 16px;
+    --sk-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
-/* KPI Cards */
+.sk-dash-filter-bar {
+    background: #ffffff;
+    border: 1px solid #E2E8F0;
+    border-radius: var(--sk-radius);
+    padding: 0.85rem 1.25rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+/* KPI Cards Premium */
 .sk-kpi-card {
-    border-radius: 18px;
+    border-radius: var(--sk-radius);
     padding: 1.5rem;
     position: relative;
     overflow: hidden;
-    border: none;
+    border: 1px solid rgba(255,255,255,0.15);
     height: 100%;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: default;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .sk-kpi-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 40px rgba(0,0,0,0.12) !important;
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
 }
-.sk-kpi-card::after {
-    content: '';
+.sk-kpi-card .kpi-icon-bg {
     position: absolute;
-    top: -30px; right: -30px;
-    width: 100px; height: 100px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.1);
-}
-.sk-kpi-card .kpi-icon {
-    position: absolute;
-    top: 1rem; right: 1.25rem;
-    font-size: 2.5rem;
-    opacity: 0.15;
+    top: -15px; right: -15px;
+    font-size: 5rem;
+    opacity: 0.1;
+    transform: rotate(-15deg);
 }
 .sk-kpi-card .kpi-number {
-    font-size: 2.4rem;
+    font-size: 2.5rem;
     font-weight: 800;
     line-height: 1;
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.25rem;
+    letter-spacing: -1px;
 }
 .sk-kpi-card .kpi-label {
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     font-weight: 700;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 .sk-kpi-card .kpi-sub {
-    font-size: 0.75rem;
-    opacity: 0.65;
-    margin-top: 0.5rem;
-    line-height: 1.4;
+    font-size: 0.7rem;
+    opacity: 0.75;
+    margin-top: 0.6rem;
+    padding-top: 0.6rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
 }
 
-/* Card variants */
-.kpi-maroon { background: linear-gradient(135deg, #85144b 0%, #5d0d34 100%); color: #fff; box-shadow: 0 8px 24px rgba(133,20,75,0.3); }
-.kpi-success { background: linear-gradient(135deg, #1a7f4f 0%, #0d5c36 100%); color: #fff; box-shadow: 0 8px 24px rgba(26,127,79,0.3); }
-.kpi-indigo  { background: linear-gradient(135deg, #4338ca 0%, #2d27a0 100%); color: #fff; box-shadow: 0 8px 24px rgba(67,56,202,0.3); }
-.kpi-amber   { background: linear-gradient(135deg, #c07b0a 0%, #9a5f00 100%); color: #fff; box-shadow: 0 8px 24px rgba(192,123,10,0.3); }
+/* Card variants - Codebyte Palette */
+.kpi-main    { background: linear-gradient(135deg, #7B0000 0%, #4A0000 100%); color: #fff; box-shadow: 0 10px 25px rgba(123,0,0,0.25); }
+.kpi-gold    { background: linear-gradient(135deg, #EAC947 0%, #C0A020 100%); color: #1e293b; box-shadow: 0 10px 25px rgba(234,201,71,0.25); }
+.kpi-slate   { background: linear-gradient(135deg, #334155 0%, #1e293b 100%); color: #fff; box-shadow: 0 10px 25px rgba(51,65,85,0.25); }
+.kpi-white   { background: #ffffff; color: #1e293b; border: 1px solid #E2E8F0; box-shadow: var(--sk-shadow); }
+.kpi-white .kpi-sub { border-top: 1px solid #F1F5F9; }
 
 /* Status Infocards */
 .sk-info-pill {
-    background: var(--warna-kartu-bg);
-    border-radius: 14px;
-    padding: 1rem 1.25rem;
-    border: 1px solid #eee;
+    background: #ffffff;
+    border-radius: var(--sk-radius);
+    padding: 1.1rem 1.25rem;
+    border: 1px solid #F1F5F9;
     display: flex;
     align-items: center;
-    gap: 1rem;
-    transition: box-shadow 0.2s ease;
+    gap: 1.1rem;
+    transition: all 0.2s ease;
     height: 100%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
 }
-.sk-info-pill:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.07); }
+.sk-info-pill:hover { 
+    transform: scale(1.02);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06); 
+    border-color: #E2E8F0;
+}
 .sk-info-pill .pill-icon {
     width: 48px; height: 48px;
-    border-radius: 14px;
+    border-radius: 12px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 1.3rem;
+    font-size: 1.35rem;
     flex-shrink: 0;
 }
-.sk-info-pill .pill-value { font-size: 1.6rem; font-weight: 800; color: #1e293b; line-height: 1; }
-.sk-info-pill .pill-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #64748b; }
+.sk-info-pill .pill-value { font-size: 1.7rem; font-weight: 800; color: #1e293b; line-height: 1; }
+.sk-info-pill .pill-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #64748b; margin-top: 3px; }
 
-/* Chart & Panel Cards */
+/* Panels & Charts */
 .sk-panel {
-    background: var(--warna-kartu-bg);
-    border-radius: 18px;
-    border: 1px solid rgba(0,0,0,0.05);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+    background: #ffffff;
+    border-radius: var(--sk-radius);
+    border: 1px solid #E2E8F0;
+    box-shadow: var(--sk-shadow);
     overflow: hidden;
     height: 100%;
 }
 .sk-panel .panel-header {
-    padding: 1.1rem 1.4rem;
-    border-bottom: 1px solid rgba(0,0,0,0.06);
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid #F1F5F9;
+    background: #FAFBFC;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 .sk-panel .panel-title {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-weight: 700;
     color: #1e293b;
     margin: 0;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.6rem;
 }
-.sk-panel .panel-title i { color: var(--warna-maroon); }
 
-/* Chart Legend */
-.chart-legend-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.82rem;
-    color: #475569;
-    padding: 0.35rem 0;
-}
-.chart-legend-dot {
-    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
-}
-.chart-legend-val { margin-left: auto; font-weight: 700; color: #1e293b; }
-
-/* Timeline */
+/* Timeline & Lists */
 .sk-timeline-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.8rem;
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid rgba(0,0,0,0.04);
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #F1F5F9;
     transition: background 0.2s;
 }
-.sk-timeline-item:hover { background: rgba(133,20,75,0.03); }
+.sk-timeline-item:hover { background: #F8FAFC; }
 .sk-timeline-icon {
-    width: 34px; height: 34px;
+    width: 40px; height: 40px;
     border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 0.85rem;
-    flex-shrink: 0;
+    font-size: 0.9rem; flex-shrink: 0;
 }
-.sk-timeline-school { font-size: 0.85rem; font-weight: 700; color: #1e293b; line-height: 1.2; }
-.sk-timeline-meta { font-size: 0.75rem; color: #94a3b8; margin-top: 2px; }
+.sk-timeline-school { font-size: 0.88rem; font-weight: 700; color: #1e293b; margin-bottom: 2px; }
+.sk-timeline-meta { font-size: 0.75rem; color: #64748b; }
 
-/* Belum Kirim list */
 .sk-belum-item {
-    display: flex; align-items: center; gap: 0.6rem;
-    padding: 0.65rem 1rem;
-    border-bottom: 1px solid rgba(0,0,0,0.04);
-    font-size: 0.85rem; font-weight: 600; color: #374151;
-    transition: background 0.2s;
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 0.8rem 1.5rem;
+    border-bottom: 1px solid #F1F5F9;
+    font-size: 0.85rem; font-weight: 600; color: #334155;
+    transition: all 0.2s;
 }
-.sk-belum-item:hover { background: rgba(220,53,69,0.04); }
+.sk-belum-item:hover { background: #FEF2F2; color: #B91C1C; }
 .sk-belum-num {
-    width: 22px; height: 22px; border-radius: 6px;
-    background: rgba(220,53,69,0.1); color: #dc3545;
+    width: 24px; height: 24px; border-radius: 6px;
+    background: #FEE2E2; color: #EF4444;
     font-size: 0.7rem; font-weight: 800;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+
+/* Responsive adjust */
+@media (max-width: 768px) {
+    .sk-kpi-card .kpi-number { font-size: 2rem; }
+    .sk-panel .panel-header { padding: 1rem; }
 }
 </style>
 
 <div class="content-header pb-0">
   <div class="container-fluid">
-    <div class="row mb-2">
+    <div class="row align-items-center">
       <div class="col-sm-12">
-        <h5 class="m-0 font-weight-bold" style="color:#1e293b;">
-          <i class="fas fa-tachometer-alt mr-2" style="color:var(--warna-maroon);"></i>Dashboard Monitoring SK
-        </h5>
-        <hr class="style-sultan-solid">
+        <h4 class="mb-1 font-weight-bold" style="color:#1e293b;">Monitoring SK Pembagian Tugas</h4>
+        <p class="text-muted small mb-0">Halaman pemantauan real-time pengiriman dan validasi berkas SK.</p>
+        <hr class="style-sultan-solid mt-3 mb-4">
       </div>
     </div>
   </div>
@@ -184,170 +180,178 @@
   <div class="container-fluid">
 
     <!-- FILTER BAR -->
-    <div class="sk-dash-filter-bar">
-      <div class="d-flex align-items-center flex-wrap" style="gap:0.75rem;">
-        <i class="fas fa-sliders-h" style="color:var(--warna-maroon);"></i>
-        <span class="font-weight-bold text-dark small text-uppercase" style="letter-spacing:1px;">Periode</span>
-        <select id="dashsk_filterTahun" class="form-control form-control-sultan" style="width:auto; min-width:130px;"></select>
-        <select id="dashsk_filterSemester" class="form-control form-control-sultan" style="width:auto; min-width:150px;">
-          <option value="">— Semua Semester —</option>
-          <option value="Semester 1">Semester 1</option>
-          <option value="Semester 2">Semester 2</option>
-        </select>
-        <button id="dashsk_btnRefresh" class="btn btn-maroon font-weight-bold shadow-sm px-3 ml-auto">
-          <i class="fas fa-sync-alt mr-1"></i> Refresh
-        </button>
+    <div class="sk-dash-filter-bar d-flex align-items-center justify-content-between flex-wrap shadow-sm">
+      <div class="d-flex align-items-center flex-wrap" style="gap:1rem;">
+        <div class="d-flex align-items-center" style="gap:0.5rem;">
+          <span class="material-symbols-outlined text-maroon" style="font-size:20px;">calendar_today</span>
+          <select id="dashsk_filterTahun" class="form-control form-control-sm border-0 font-weight-bold" style="width:auto; min-width:110px; background:transparent; cursor:pointer;"></select>
+        </div>
+        <div class="d-flex align-items-center" style="gap:0.5rem; border-left:1px solid #E2E8F0; padding-left:1rem;">
+          <span class="material-symbols-outlined text-maroon" style="font-size:20px;">layers</span>
+          <select id="dashsk_filterSemester" class="form-control form-control-sm border-0 font-weight-bold" style="width:auto; min-width:140px; background:transparent; cursor:pointer;">
+            <option value="">— Semua Semester —</option>
+            <option value="Semester 1">Semester 1</option>
+            <option value="Semester 2">Semester 2</option>
+          </select>
+        </div>
       </div>
+      <button id="dashsk_btnRefresh" class="btn btn-sm btn-maroon px-3 py-1 font-weight-bold shadow-sm" style="border-radius:8px;">
+        <i class="fas fa-sync-alt mr-1"></i> Perbarui Data
+      </button>
     </div>
 
-    <!-- KPI UTAMA ROW -->
-    <div class="row mb-3">
-      <div class="col-lg-3 col-sm-6 mb-3">
-        <div class="sk-kpi-card kpi-maroon">
-          <div class="kpi-icon"><i class="fas fa-folder-open"></i></div>
+    <!-- KPI ROW -->
+    <div class="row mb-4">
+      <div class="col-lg-3 col-6 mb-3">
+        <div class="sk-kpi-card kpi-main">
+          <i class="fas fa-file-export kpi-icon-bg"></i>
           <div class="kpi-number dashsk-count-up" id="dashsk_valTotal">0</div>
-          <div class="kpi-label">Total Masuk</div>
+          <div class="kpi-label">Berkas Masuk</div>
           <div class="kpi-sub" id="dashsk_subTotal">—</div>
         </div>
       </div>
-      <div class="col-lg-3 col-sm-6 mb-3">
-        <div class="sk-kpi-card kpi-success">
-          <div class="kpi-icon"><i class="fas fa-check-circle"></i></div>
+      <div class="col-lg-3 col-6 mb-3">
+        <div class="sk-kpi-card kpi-gold">
+          <i class="fas fa-check-double kpi-icon-bg"></i>
           <div class="kpi-number dashsk-count-up" id="dashsk_valDisetujui">0</div>
-          <div class="kpi-label">Data Valid (OK)</div>
+          <div class="kpi-label">Valid (Disetujui)</div>
           <div class="kpi-sub" id="dashsk_subValid">—</div>
         </div>
       </div>
-      <div class="col-lg-3 col-sm-6 mb-3">
-        <div class="sk-kpi-card kpi-indigo">
-          <div class="kpi-icon"><i class="fas fa-chart-line"></i></div>
-          <div class="kpi-number"><span class="dashsk-count-up" id="dashsk_valProgress">0</span><sup style="font-size:1.1rem;">%</sup></div>
-          <div class="kpi-label">Realisasi</div>
-          <div class="kpi-sub">Berdasarkan Awal Semester</div>
+      <div class="col-lg-3 col-6 mb-3">
+        <div class="sk-kpi-card kpi-slate">
+          <i class="fas fa-bullseye kpi-icon-bg"></i>
+          <div class="kpi-number"><span class="dashsk-count-up" id="dashsk_valProgress">0</span><small>%</small></div>
+          <div class="kpi-label">Realisasi Target</div>
+          <div class="kpi-sub">Berdasarkan data awal sem.</div>
         </div>
       </div>
-      <div class="col-lg-3 col-sm-6 mb-3">
-        <div class="sk-kpi-card kpi-amber" id="dashsk_btnModalBelum" style="cursor:pointer;">
-          <div class="kpi-icon"><i class="fas fa-bullhorn"></i></div>
-          <div class="kpi-number dashsk-count-up" id="dashsk_valBelum">0</div>
-          <div class="kpi-label">Belum Kirim</div>
-          <div class="kpi-sub">Klik untuk lihat daftar &rarr;</div>
+      <div class="col-lg-3 col-6 mb-3">
+        <div class="sk-kpi-card kpi-white" id="dashsk_btnModalBelum" style="cursor:pointer;">
+          <i class="fas fa-clock kpi-icon-bg" style="color:#FEE2E2;"></i>
+          <div class="kpi-number text-danger dashsk-count-up" id="dashsk_valBelum">0</div>
+          <div class="kpi-label text-muted">Belum Lapor</div>
+          <div class="kpi-sub" style="color:#EF4444; font-weight:700;">Lihat Daftar &rarr;</div>
         </div>
       </div>
     </div>
 
-    <!-- STATUS PILLS ROW -->
+    <!-- PILLS ROW -->
     <div class="row mb-4">
-      <div class="col-md-4 mb-3">
+      <div class="col-md-4 col-12 mb-3">
         <div class="sk-info-pill">
-          <div class="pill-icon" style="background:rgba(245,158,11,0.12);">
-            <i class="fas fa-spinner text-warning"></i>
-          </div>
+          <div class="pill-icon" style="background:#FFF9E6; color:#D97706;"><i class="fas fa-hourglass-half"></i></div>
           <div>
             <div class="pill-value dashsk-count-up" id="dashsk_valDiproses">0</div>
-            <div class="pill-label">Diproses</div>
+            <div class="pill-label">Menunggu Proses</div>
           </div>
         </div>
       </div>
-      <div class="col-md-4 mb-3">
+      <div class="col-md-4 col-12 mb-3">
         <div class="sk-info-pill">
-          <div class="pill-icon" style="background:rgba(6,182,212,0.12);">
-            <i class="fas fa-edit" style="color:#0891b2;"></i>
-          </div>
+          <div class="pill-icon" style="background:#E0F2FE; color:#0284C7;"><i class="fas fa-file-pen"></i></div>
           <div>
             <div class="pill-value dashsk-count-up" id="dashsk_valRevisi">0</div>
             <div class="pill-label">Perlu Revisi</div>
           </div>
         </div>
       </div>
-      <div class="col-md-4 mb-3">
+      <div class="col-md-4 col-12 mb-3">
         <div class="sk-info-pill">
-          <div class="pill-icon" style="background:rgba(220,53,69,0.1);">
-            <i class="fas fa-times-circle text-danger"></i>
-          </div>
+          <div class="pill-icon" style="background:#FEE2E2; color:#DC2626;"><i class="fas fa-ban"></i></div>
           <div>
             <div class="pill-value dashsk-count-up" id="dashsk_valDitolak">0</div>
-            <div class="pill-label">Ditolak</div>
+            <div class="pill-label">Ditolak System</div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- PANELS ROW -->
+    <!-- ANALYTICS ROW -->
     <div class="row">
-
-      <!-- Proporsi Status -->
-      <div class="col-lg-4 d-flex mb-4">
-        <div class="sk-panel w-100">
+      <!-- Tren Pengiriman (New Card) -->
+      <div class="col-lg-8 mb-4">
+        <div class="sk-panel">
           <div class="panel-header">
-            <h6 class="panel-title"><i class="fas fa-chart-pie"></i> Proporsi Status</h6>
+            <h6 class="panel-title"><i class="fas fa-chart-line text-maroon"></i> Tren Pengiriman SK</h6>
+            <div class="small text-muted font-weight-bold">Bulan Berjalan</div>
+          </div>
+          <div class="p-4" style="height:320px;">
+            <canvas id="dashsk_chartTrend"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Donut Proporsi -->
+      <div class="col-lg-4 mb-4">
+        <div class="sk-panel">
+          <div class="panel-header">
+            <h6 class="panel-title"><i class="fas fa-chart-pie text-maroon"></i> Status Berkas</h6>
           </div>
           <div class="p-4">
-            <div style="height:200px; position:relative;">
+            <div style="height:180px; position:relative;">
               <canvas id="dashsk_chartStatus"></canvas>
             </div>
-            <div class="mt-3">
-              <div class="chart-legend-item">
-                <div class="chart-legend-dot" style="background:#1a7f4f;"></div>
-                <span>Disetujui</span>
-                <span class="chart-legend-val" id="dashsk_txtChartSetuju">0</span>
+            <div class="mt-4">
+              <div class="d-flex justify-content-between mb-2 small font-weight-bold">
+                <span class="text-success">&bull; Disetujui</span>
+                <span id="dashsk_txtChartSetuju">0</span>
               </div>
-              <div class="chart-legend-item">
-                <div class="chart-legend-dot" style="background:#f59e0b;"></div>
-                <span>Diproses</span>
-                <span class="chart-legend-val" id="dashsk_txtChartProses">0</span>
+              <div class="d-flex justify-content-between mb-2 small font-weight-bold">
+                <span class="text-warning">&bull; Diproses</span>
+                <span id="dashsk_txtChartProses">0</span>
               </div>
-              <div class="chart-legend-item">
-                <div class="chart-legend-dot" style="background:#0891b2;"></div>
-                <span>Revisi</span>
-                <span class="chart-legend-val" id="dashsk_txtChartRevisi">0</span>
+              <div class="d-flex justify-content-between mb-2 small font-weight-bold">
+                <span style="color:#0284C7;">&bull; Revisi</span>
+                <span id="dashsk_txtChartRevisi">0</span>
               </div>
-              <div class="chart-legend-item">
-                <div class="chart-legend-dot" style="background:#dc3545;"></div>
-                <span>Ditolak</span>
-                <span class="chart-legend-val" id="dashsk_txtChartTolak">0</span>
+              <div class="d-flex justify-content-between mb-2 small font-weight-bold">
+                <span class="text-danger">&bull; Ditolak</span>
+                <span id="dashsk_txtChartTolak">0</span>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
+    <!-- LISTS ROW -->
+    <div class="row">
       <!-- Belum Kirim -->
-      <div class="col-lg-4 d-flex mb-4">
-        <div class="sk-panel w-100">
+      <div class="col-lg-6 mb-4">
+        <div class="sk-panel">
           <div class="panel-header">
-            <h6 class="panel-title">
-              <i class="fas fa-exclamation-triangle" style="color:#dc3545;"></i>
-              Belum Kirim
-              <span class="badge badge-danger ml-1 px-2" id="dashsk_badgeBelumCount">0</span>
+            <h6 class="panel-title text-danger">
+              <i class="fas fa-exclamation-triangle"></i> Unit Belum Lapor
+              <span class="badge badge-danger ml-2" id="dashsk_badgeBelumCount" style="border-radius:6px;">0</span>
             </h6>
-            <button class="btn btn-sm btn-outline-danger font-weight-bold shadow-sm" id="dashsk_btnSalinDaftar" style="border-radius:8px; font-size:11px;">
-              <i class="fas fa-copy mr-1"></i>Salin
+            <button class="btn btn-xs btn-outline-danger px-2 font-weight-bold" id="dashsk_btnSalinDaftar">
+              <i class="fas fa-copy"></i> Salin
             </button>
           </div>
-          <div class="p-2 border-bottom">
-            <input type="text" id="dashsk_cariBelumLangsung" class="form-control form-control-sm form-control-sultan border-0 bg-light" placeholder="&#128269; Cari nama sekolah..." style="border-radius:8px;">
+          <div class="p-3 bg-light">
+            <input type="text" id="dashsk_cariBelumLangsung" class="form-control form-control-sm" placeholder="Cari nama sekolah..." style="border-radius:8px; border:1px solid #E2E8F0;">
           </div>
-          <div id="dashsk_containerBelum" style="max-height:340px; overflow-y:auto;">
+          <div id="dashsk_containerBelum" style="max-height:350px; overflow-y:auto;">
             <div id="dashsk_listBelumBody"></div>
           </div>
         </div>
       </div>
 
-      <!-- Aktivitas Terbaru -->
-      <div class="col-lg-4 d-flex mb-4">
-        <div class="sk-panel w-100">
+      <!-- Aktivitas -->
+      <div class="col-lg-6 mb-4">
+        <div class="sk-panel">
           <div class="panel-header">
-            <h6 class="panel-title"><i class="fas fa-history"></i> Aktivitas Terbaru</h6>
+            <h6 class="panel-title"><i class="fas fa-timeline text-maroon"></i> Aktivitas Sinkronisasi</h6>
           </div>
-          <div id="dashsk_timelineContainer" style="max-height:420px; overflow-y:auto;"></div>
+          <div id="dashsk_timelineContainer" style="max-height:434px; overflow-y:auto;"></div>
         </div>
       </div>
-
     </div>
 
   </div>
 </section>
+ection>
 
 <!-- MODAL BELUM LAPOR -->
 <div class="modal fade" id="dashsk_modalBelumLapor" tabindex="-1" role="dialog" data-backdrop="static">
@@ -377,7 +381,8 @@
 </div>
 
 <script>
-    var DASHSK_CHART_INSTANCE = null;
+    var DASHSK_CHART_STATUS = null;
+    var DASHSK_CHART_TREND = null;
     var DASHSK_LIST_BELUM_CACHE = [];
     var DASHSK_USER_IS_ADMIN = false;
     var DASHSK_IS_FETCHING = false;
@@ -544,20 +549,68 @@
         });
     }
 
+    var DASHSK_CHART_STATUS = null;
+    var DASHSK_CHART_TREND = null;
+
     function dashsk_renderChart(data) {
         if (typeof Chart === 'undefined') return;
-        var ctx = document.getElementById('dashsk_chartStatus').getContext('2d');
-        if (DASHSK_CHART_INSTANCE) DASHSK_CHART_INSTANCE.destroy();
+
+        // 1. DOUGHNUT CHART (Status Berkas)
+        var ctxStatus = document.getElementById('dashsk_chartStatus').getContext('2d');
+        if (DASHSK_CHART_STATUS) DASHSK_CHART_STATUS.destroy();
+        
         var totalData = data.disetujui + data.diproses + data.revisi + data.ditolak;
         var finalData   = totalData === 0 ? [1, 0, 0, 0] : [data.disetujui, data.diproses, data.revisi, data.ditolak];
-        var finalColors = totalData === 0 ? ['#e9ecef','#f59e0b','#0891b2','#dc3545'] : ['#1a7f4f','#f59e0b','#0891b2','#dc3545'];
-        DASHSK_CHART_INSTANCE = new Chart(ctx, {
+        var finalColors = totalData === 0 ? ['#F1F5F9','#EAC947','#0284C7','#DC2626'] : ['#09BD3C','#EAC947','#0284C7','#DC2626'];
+
+        DASHSK_CHART_STATUS = new Chart(ctxStatus, {
             type: 'doughnut',
-            data: { labels: ['Disetujui','Diproses','Revisi','Ditolak'], datasets: [{ data: finalData, backgroundColor: finalColors, borderWidth: 0, hoverOffset: 10 }] },
+            data: { 
+                labels: ['Disetujui','Diproses','Revisi','Ditolak'], 
+                datasets: [{ data: finalData, backgroundColor: finalColors, borderWidth: 0, hoverOffset: 12 }] 
+            },
             options: {
-                maintainAspectRatio: false, responsive: true, cutout: '78%',
-                plugins: { legend: { display: false }, tooltip: { enabled: (totalData > 0) } },
-                animation: { animateScale: true, animateRotate: true, duration: 1000, easing: 'easeInOutQuart' }
+                maintainAspectRatio: false, responsive: true, cutout: '82%',
+                plugins: { legend: { display: false }, tooltip: { enabled: (totalData > 0), backgroundColor: '#1e293b', padding: 10, cornerRadius: 8 } },
+                animation: { animateScale: true, animateRotate: true, duration: 1200, easing: 'easeOutQuart' }
+            }
+        });
+
+        // 2. LINE CHART (Trend Pengiriman)
+        var ctxTrend = document.getElementById('dashsk_chartTrend').getContext('2d');
+        if (DASHSK_CHART_TREND) DASHSK_CHART_TREND.destroy();
+
+        var trendData = data.trend || { labels: [], values: [] };
+        var gradient = ctxTrend.createLinearGradient(0, 0, 0, 300);
+        gradient.addColorStop(0, 'rgba(123, 0, 0, 0.2)');
+        gradient.addColorStop(1, 'rgba(123, 0, 0, 0)');
+
+        DASHSK_CHART_TREND = new Chart(ctxTrend, {
+            type: 'line',
+            data: {
+                labels: trendData.labels,
+                datasets: [{
+                    label: 'Jumlah Pengiriman',
+                    data: trendData.values,
+                    fill: true,
+                    backgroundColor: gradient,
+                    borderColor: '#7B0000',
+                    borderWidth: 3,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#fff',
+                    pointBorderColor: '#7B0000',
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: { legend: { display: false }, tooltip: { backgroundColor: '#1e293b', titleFont: { weight: 'bold' } } },
+                scales: {
+                    y: { beginAtZero: true, grid: { borderDash: [5, 5], drawBorder: false }, ticks: { padding: 10, color: '#94a3b8' } },
+                    x: { grid: { display: false, drawBorder: false }, ticks: { padding: 10, color: '#94a3b8' } }
+                }
             }
         });
     }
@@ -576,13 +629,15 @@
         var obj = document.getElementById(id); if(!obj) return;
         var end = parseInt(endValue); if (isNaN(end)) end = 0;
         if (end === 0) { obj.innerHTML = "0" + (suffixStr || ''); return; }
-        var duration = 800; var range = end; var current = 0;
-        var stepTime = Math.max(10, Math.abs(Math.floor(duration / range)));
-        var stepVal = Math.max(1, Math.ceil(range / (duration / stepTime)));
-        var timer = setInterval(function() {
-            current += stepVal;
-            if (current >= end) { current = end; clearInterval(timer); }
-            obj.innerHTML = current + (suffixStr || '');
-        }, stepTime);
+        var duration = 1000; var range = end; var current = 0;
+        var startTime = null;
+
+        function step(timestamp) {
+            if (!startTime) startTime = timestamp;
+            var progress = Math.min((timestamp - startTime) / duration, 1);
+            obj.innerHTML = Math.floor(progress * range) + (suffixStr || '');
+            if (progress < 1) { window.requestAnimationFrame(step); }
+        }
+        window.requestAnimationFrame(step);
     }
 </script>
