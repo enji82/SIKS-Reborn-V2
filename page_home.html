@@ -178,11 +178,11 @@
 /* ---- Layanan / Katalog Menu ---- */
 .layanan-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
   margin-bottom: 1.5rem;
 }
-@media (max-width: 768px) { .layanan-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 992px) { .layanan-grid { grid-template-columns: repeat(2,1fr); } }
 @media (max-width: 480px) { .layanan-grid { grid-template-columns: 1fr; } }
 
 .layanan-card {
@@ -361,100 +361,143 @@
     <div class="home-section-divider"></div>
   </div>
 
-  <div class="layanan-grid">
+  <div class="layanan-grid" style="grid-template-columns: repeat(4,1fr);">
 
+    <!-- 1. BERANDA -->
     <div class="layanan-card">
-      <div class="layanan-header" style="background:rgba(59,130,246,0.06); border-bottom:1px solid #EFF6FF;">
+      <div class="layanan-header" style="background:rgba(59,130,246,0.07); border-bottom:1px solid #EFF6FF;">
         <div class="layanan-header-icon" style="background:rgba(59,130,246,0.12);">
           <i class="fas fa-home" style="color:#3B82F6;"></i>
         </div>
-        <h6>1. Beranda</h6>
+        <h6>Beranda</h6>
       </div>
       <div class="layanan-body pt-2">
         <ul>
-          <li>Ringkasan fungsi REBORN</li>
-          <li>Akses cepat layanan utama</li>
-          <li>Pengumuman &amp; agenda</li>
+          <li>Ringkasan platform REBORN</li>
+          <li>Info &amp; pengumuman terbaru</li>
+          <li>Statistik akses layanan</li>
         </ul>
       </div>
     </div>
 
+    <!-- 2. SK PEMBAGIAN TUGAS -->
     <div class="layanan-card">
-      <div class="layanan-header" style="background:rgba(139,0,0,0.05); border-bottom:1px solid #FFF1F1;">
+      <div class="layanan-header" style="background:rgba(139,0,0,0.06); border-bottom:1px solid #FFF1F1;">
         <div class="layanan-header-icon" style="background:rgba(139,0,0,0.1);">
           <i class="fas fa-file-signature" style="color:#8B0000;"></i>
         </div>
-        <h6>2. SK Pembagian Tugas</h6>
+        <h6>SK Pembagian Tugas</h6>
       </div>
       <div class="layanan-body pt-2">
         <ul>
-          <li>Pengajuan &amp; verifikasi SK</li>
-          <li>Status pengiriman</li>
-          <li>Monitoring per sekolah</li>
+          <li>Dashboard SK</li>
+          <li>Data SK</li>
+          <li>Status Pengiriman</li>
         </ul>
       </div>
     </div>
 
+    <!-- 3. LAPORAN BULAN -->
     <div class="layanan-card">
-      <div class="layanan-header" style="background:rgba(16,185,129,0.05); border-bottom:1px solid #F0FDF4;">
-        <div class="layanan-header-icon" style="background:rgba(16,185,129,0.1);">
-          <i class="fas fa-chalkboard-teacher" style="color:#10B981;"></i>
-        </div>
-        <h6>3. Layanan PTK</h6>
-      </div>
-      <div class="layanan-body pt-2">
-        <ul>
-          <li>Pendataan Guru &amp; Tendik</li>
-          <li>Data kebutuhan guru</li>
-          <li>Rekap keadaan GTK</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="layanan-card">
-      <div class="layanan-header" style="background:rgba(245,158,11,0.05); border-bottom:1px solid #FFFBEB;">
-        <div class="layanan-header-icon" style="background:rgba(245,158,11,0.1);">
-          <i class="fas fa-child" style="color:#F59E0B;"></i>
-        </div>
-        <h6>4. Layanan Murid</h6>
-      </div>
-      <div class="layanan-body pt-2">
-        <ul>
-          <li>Data siswa PAUD &amp; SD</li>
-          <li>Rekap rombel &amp; kelas</li>
-          <li>Statistik peserta didik</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="layanan-card">
-      <div class="layanan-header" style="background:rgba(99,102,241,0.05); border-bottom:1px solid #EEF2FF;">
+      <div class="layanan-header" style="background:rgba(99,102,241,0.06); border-bottom:1px solid #EEF2FF;">
         <div class="layanan-header-icon" style="background:rgba(99,102,241,0.1);">
-          <i class="fas fa-chart-line" style="color:#6366F1;"></i>
+          <i class="fas fa-file-invoice" style="color:#6366F1;"></i>
         </div>
-        <h6>5. Laporan Bulanan</h6>
+        <h6>Laporan Bulan</h6>
       </div>
       <div class="layanan-body pt-2">
         <ul>
-          <li>Rekap laporan per bulan</li>
-          <li>Format &amp; status pengiriman</li>
-          <li>Dashboard monitoring</li>
+          <li>Dashboard Laporan Bulan</li>
+          <li>Kelola Data</li>
+          <li>Status Laporan</li>
+          <li>Format Laporan</li>
         </ul>
       </div>
     </div>
 
+    <!-- 4. SIABA -->
     <div class="layanan-card">
-      <div class="layanan-header" style="background:rgba(20,184,166,0.05); border-bottom:1px solid #F0FDFA;">
+      <div class="layanan-header" style="background:rgba(16,185,129,0.06); border-bottom:1px solid #F0FDF4;">
+        <div class="layanan-header-icon" style="background:rgba(16,185,129,0.1);">
+          <i class="fas fa-fingerprint" style="color:#10B981;"></i>
+        </div>
+        <h6>SIABA</h6>
+      </div>
+      <div class="layanan-body pt-2">
+        <ul>
+          <li>Dashboard SIABA</li>
+          <li>Presensi (Harian, Apel, Rekap)</li>
+          <li>Lupa / Salah Presensi</li>
+          <li>Cuti &amp; Perjalanan Dinas</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 5. TATA NASKAH DINAS -->
+    <div class="layanan-card">
+      <div class="layanan-header" style="background:rgba(245,158,11,0.06); border-bottom:1px solid #FFFBEB;">
+        <div class="layanan-header-icon" style="background:rgba(245,158,11,0.1);">
+          <i class="fas fa-file-alt" style="color:#F59E0B;"></i>
+        </div>
+        <h6>Tata Naskah Dinas</h6>
+      </div>
+      <div class="layanan-body pt-2">
+        <ul>
+          <li>Surat masuk &amp; keluar</li>
+          <li>Pengarsipan naskah dinas</li>
+          <li>Disposisi surat</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 6. DATA PTK -->
+    <div class="layanan-card">
+      <div class="layanan-header" style="background:rgba(239,68,68,0.06); border-bottom:1px solid #FEF2F2;">
+        <div class="layanan-header-icon" style="background:rgba(239,68,68,0.1);">
+          <i class="fas fa-users" style="color:#EF4444;"></i>
+        </div>
+        <h6>Data PTK</h6>
+      </div>
+      <div class="layanan-body pt-2">
+        <ul>
+          <li>Dashboard PTK</li>
+          <li>PTK PAUD (Daftar &amp; Keadaan)</li>
+          <li>PTK SD Negeri (Keadaan &amp; Kebutuhan)</li>
+          <li>PTK SD Swasta (Keadaan &amp; Kebutuhan)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 7. DATA MURID -->
+    <div class="layanan-card">
+      <div class="layanan-header" style="background:rgba(234,179,8,0.06); border-bottom:1px solid #FEFCE8;">
+        <div class="layanan-header-icon" style="background:rgba(234,179,8,0.1);">
+          <i class="fas fa-user-graduate" style="color:#CA8A04;"></i>
+        </div>
+        <h6>Data Murid</h6>
+      </div>
+      <div class="layanan-body pt-2">
+        <ul>
+          <li>Dashboard Murid</li>
+          <li>PAUD (Rombel &amp; Jenis Kelamin)</li>
+          <li>SD (Kelas, Rombel &amp; Agama)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 8. E-FILE PEGAWAI -->
+    <div class="layanan-card">
+      <div class="layanan-header" style="background:rgba(20,184,166,0.06); border-bottom:1px solid #F0FDFA;">
         <div class="layanan-header-icon" style="background:rgba(20,184,166,0.1);">
           <i class="fas fa-folder-open" style="color:#14B8A6;"></i>
         </div>
-        <h6>6. E-File Sekolah</h6>
+        <h6>E-File Pegawai</h6>
       </div>
       <div class="layanan-body pt-2">
         <ul>
-          <li>Arsip digital per sekolah</li>
-          <li>Kelola &amp; lihat dokumen</li>
-          <li>Pengelolaan berkas online</li>
+          <li>Dashboard E-File</li>
+          <li>Kelola &amp; Verifikasi</li>
+          <li>Berkas E-File</li>
         </ul>
       </div>
     </div>
