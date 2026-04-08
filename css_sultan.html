@@ -82,19 +82,7 @@
   .main-header .nav-link { color: #475569 !important; font-weight: 500; }
   .main-header .nav-link:hover { color: var(--warna-emas) !important; }
 
-  /* B. SIDEBAR DASAR & LOGO */
-  .main-sidebar, .sidebar-custom { 
-    background: var(--warna-kartu-bg) !important;
-    border-right: 1px solid #E2E8F0 !important;
-    box-shadow: none !important;
-  }
-  
-  .brand-link { 
-    background: var(--warna-kartu-bg) !important;
-    border-bottom: 1px solid #E2E8F0 !important; 
-    color: #0F172A !important;
-  }
-  .brand-link:hover { color: var(--warna-emas) !important; }
+  /* B. SIDEBAR DASAR & LOGO — Dikelola oleh section 7 (Glassmorphism) */
 
   /* C. FOOTER */
   .main-footer { 
@@ -110,65 +98,8 @@
   .content-wrapper { padding-bottom: 70px !important; background: transparent !important; }
 
   /* ===================================================================
-     3. SIDEBAR SAAS HIERARCHY (NEW CODEBYTE CORE)
+     3. SIDEBAR SAAS HIERARCHY — Dikelola oleh section 7 (Glassmorphism)
      =================================================================== */
-  .nav-sidebar > .nav-item > .nav-link { 
-    color: #737B8B !important; 
-    margin-bottom: 0.5rem; 
-    border-radius: 0 12px 12px 0 !important; 
-    font-weight: 500; 
-    padding: 0.8rem 1.5rem; 
-    margin: 0 1rem 0.5rem 0; 
-    transition: all 0.3s; 
-    display: flex;
-    align-items: center;
-  }
-  .nav-sidebar > .nav-item > .nav-link > i {
-    font-size: 1.15rem !important;
-    margin-right: 1rem !important;
-    width: 25px;
-    text-align: center;
-    color: #8C99AF !important;
-  }
-  
-  .nav-sidebar > .nav-item > .nav-link:hover {
-    color: var(--warna-maroon) !important;
-    background-color: rgba(29, 53, 115, 0.04) !important;
-  }
-  .nav-sidebar > .nav-item > .nav-link:hover > i {
-    color: var(--warna-maroon) !important;
-  }
-  
-  /* Active State Level 1 (CODEBYTE) */
-  .nav-sidebar > .nav-item > .nav-link.active {
-    background-color: var(--warna-maroon-light) !important;
-    box-shadow: none;
-    border-left: 4px solid var(--warna-maroon);
-  }
-  .nav-sidebar > .nav-item > .nav-link.active > i, .nav-sidebar > .nav-item > .nav-link.active > p {
-    color: var(--warna-maroon) !important; font-weight: 600 !important;
-  }
-
-  /* LEVEL 2 (ANAK) */
-  .nav-treeview { background-color: transparent !important; margin-left: 8px; }
-  .nav-treeview > .nav-item > .nav-link { color: #64748B !important; padding-left: 35px !important; border-radius: 6px; }
-  .nav-treeview .nav-icon { display: none !important; }
-  .nav-treeview > .nav-item > .nav-link::before {
-    content: ""; /* Clean border list */
-  }
-  /* Active State Level 2 */
-  .nav-treeview > .nav-item > .nav-link.active {
-    background-color: transparent !important;
-    color: var(--warna-emas) !important; border-left: none !important; font-weight: 600 !important;
-  }
-
-  /* LEVEL 3 (CUCU) */
-  .nav-treeview .nav-treeview > .nav-item > .nav-link { background-color: transparent !important; padding-left: 45px !important; color: #94A3B8 !important; }
-  /* Active State Level 3 */
-  .nav-treeview .nav-treeview > .nav-item > .nav-link.active {
-    background-color: transparent !important;
-    color: var(--warna-emas) !important; font-weight: 600 !important;
-  }
 
   /* ===================================================================
      4. KOMPONEN UI SULTAN (BUTTONS, CARDS, INPUTS)
@@ -1366,106 +1297,166 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
    7. MODERN SIDEBAR GLASSMORPHISM (Premium Theme)
    =================================================================== */
 
-/* Container Utama Sidebar */
+/* Container Utama Sidebar — Frosted Glass */
 .main-sidebar {
-    backdrop-filter: blur(12px) saturate(180%);
-    -webkit-backdrop-filter: blur(12px) saturate(180%);
-    background: rgba(255, 255, 255, 0.7) !important;
-    border-right: 1px solid rgba(255, 255, 255, 0.3) !important;
+    backdrop-filter: blur(12px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(180%) !important;
+    background: rgba(255, 255, 255, 0.82) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.4) !important;
+    box-shadow: 2px 0 20px rgba(0,0,0,0.06) !important;
     transition: all 0.3s ease;
 }
 
-/* Penyesuaian Brand Link */
+/* Brand Title — Tidak menimpa konten di bawahnya */
 .brand-link {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
     background: transparent !important;
-    border-bottom: 1px solid rgba(0,0,0,0.05) !important;
+    border-bottom: 1px solid rgba(0,0,0,0.07) !important;
+    padding: 1.1rem 1.2rem !important;
+    position: relative !important;
+    z-index: 2 !important;
 }
 
-/* Nav Link Umum */
+/* Sidebar container — mulai dari bawah brand title */
+.sidebar {
+    padding-top: 0.5rem !important;
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* ===== Nav Link Umum (RESET konflik margin lama) ===== */
 .nav-sidebar .nav-link {
-    border-radius: 12px !important;
-    margin: 4px 8px !important;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    border-radius: 11px !important;
+    margin: 3px 10px !important;
+    padding: 0.65rem 1rem !important;
+    transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1) !important;
     border: 1px solid transparent !important;
+    display: flex !important;
+    align-items: center !important;
+    position: relative !important;
 }
-
 .nav-sidebar .nav-link p {
     font-weight: 600 !important;
+    margin-bottom: 0 !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+.nav-sidebar .nav-link > .nav-icon {
+    font-size: 1rem !important;
+    width: 22px !important;
+    min-width: 22px !important;
+    margin-right: 10px !important;
+    text-align: center !important;
 }
 
 /* Animasi Hover Global */
 .nav-sidebar .nav-link:hover {
-    transform: translateX(5px);
-    background: rgba(255, 255, 255, 0.4) !important;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
+    transform: translateX(4px) !important;
+    background: rgba(255, 255, 255, 0.6) !important;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.06) !important;
 }
 
-/* --- LEVEL 1 (BAPAK) --- */
+/* ============================================
+   LEVEL 1 — BAPAK (Deep Maroon Glass)
+   ============================================ */
 .nav-sidebar > .nav-item > .nav-link {
-    background: rgba(133, 20, 75, 0.03); /* Subtle Maroon Tint */
-    border: 1px solid rgba(133, 20, 75, 0.05) !important;
-    color: var(--warna-tegas) !important;
+    background: rgba(133, 20, 75, 0.04) !important;
+    border: 1px solid rgba(133, 20, 75, 0.07) !important;
+    color: #3b0a24 !important;
 }
-
+.nav-sidebar > .nav-item > .nav-link > .nav-icon {
+    color: var(--warna-maroon) !important;
+}
+.nav-sidebar > .nav-item > .nav-link:hover {
+    background: rgba(133, 20, 75, 0.08) !important;
+    border-color: rgba(133, 20, 75, 0.15) !important;
+}
 .nav-sidebar > .nav-item > .nav-link.active {
-    background: linear-gradient(135deg, var(--warna-maroon), #5d0d34) !important;
+    background: linear-gradient(135deg, var(--warna-maroon) 0%, #5d0d34 100%) !important;
+    border-color: transparent !important;
     color: #fff !important;
-    box-shadow: 0 8px 20px rgba(133, 20, 75, 0.3) !important;
+    box-shadow: 0 6px 18px rgba(133, 20, 75, 0.35) !important;
 }
-
+.nav-sidebar > .nav-item > .nav-link.active > .nav-icon,
+.nav-sidebar > .nav-item > .nav-link.active > p,
 .nav-sidebar > .nav-item > .nav-link.active i {
     color: #fff !important;
 }
 
-/* --- LEVEL 2 (ANAK) --- */
+/* ============================================
+   LEVEL 2 — ANAK (Soft Indigo Glass)
+   ============================================ */
+.nav-sidebar .nav-treeview {
+    padding-left: 0 !important;
+    margin: 2px 0 !important;
+}
 .nav-sidebar .nav-treeview > .nav-item > .nav-link {
-    background: rgba(29, 53, 115, 0.03) !important; /* Subtle Navy Tint */
-    border: 1px solid rgba(29, 53, 115, 0.05) !important;
-    margin-left: 15px !important;
-    font-size: 0.95rem !important;
+    background: rgba(29, 53, 115, 0.04) !important;
+    border: 1px solid rgba(29, 53, 115, 0.08) !important;
+    color: #1a2d5e !important;
+    margin-left: 18px !important;
+    font-size: 0.875rem !important;
 }
-
-.nav-sidebar .nav-treeview > .nav-item > .nav-link.active {
-    background: rgba(29, 53, 115, 0.1) !important;
-    border-color: rgba(29, 53, 115, 0.2) !important;
-    color: #1D3573 !important;
+.nav-sidebar .nav-treeview > .nav-item > .nav-link > .nav-icon,
+.nav-sidebar .nav-treeview > .nav-item > .nav-link > i.nav-icon {
+    color: #4a6bbb !important;
+    font-size: 9px !important;
 }
-
 .nav-sidebar .nav-treeview > .nav-item > .nav-link:hover {
+    background: rgba(29, 53, 115, 0.1) !important;
+    border-color: rgba(29, 53, 115, 0.25) !important;
+}
+.nav-sidebar .nav-treeview > .nav-item > .nav-link.active {
+    background: rgba(29, 53, 115, 0.12) !important;
     border-color: rgba(29, 53, 115, 0.3) !important;
+    color: #1D3573 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 3px 10px rgba(29, 53, 115, 0.12) !important;
 }
 
-/* --- LEVEL 3 (CUCU) --- */
+/* ============================================
+   LEVEL 3 — CUCU (Warm Amber Glass)
+   ============================================ */
 .nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link {
-    background: rgba(234, 201, 71, 0.05) !important; /* Subtle Amber Tint */
-    border: 1px solid rgba(234, 201, 71, 0.1) !important;
-    margin-left: 30px !important;
-    font-size: 0.85rem !important;
+    background: rgba(234, 201, 71, 0.06) !important;
+    border: 1px solid rgba(234, 201, 71, 0.15) !important;
+    color: #5a4a10 !important;
+    margin-left: 32px !important;
+    font-size: 0.82rem !important;
 }
-
-.nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link i {
-    font-size: 10px !important;
+.nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link > .nav-icon,
+.nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link > i.nav-icon {
     color: var(--warna-emas) !important;
+    font-size: 7px !important;
 }
-
+.nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link:hover {
+    background: rgba(234, 201, 71, 0.12) !important;
+    border-color: rgba(234, 201, 71, 0.3) !important;
+}
 .nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link.active {
-    background: rgba(234, 201, 71, 0.15) !important;
+    background: rgba(234, 201, 71, 0.18) !important;
     border-color: var(--warna-emas) !important;
-    color: #856404 !important;
+    color: #7a5c00 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 3px 10px rgba(234, 201, 71, 0.2) !important;
 }
 
-/* Dropdown Arrow Animation */
+/* Dropdown Arrow Rotation Animation */
+.nav-sidebar .nav-link i.right {
+    transition: transform 0.25s ease !important;
+}
 .nav-sidebar .menu-open > .nav-link i.right {
     transform: rotate(-90deg) !important;
 }
 
-/* Scrollbar Sidebar Sultan */
-.sidebar::-webkit-scrollbar {
-    width: 5px;
-}
-.sidebar::-webkit-scrollbar-thumb {
-    background: rgba(0,0,0,0.1);
-    border-radius: 10px;
-}
+/* Custom Slim Scrollbar */
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-track { background: transparent; }
+.sidebar::-webkit-scrollbar-thumb { background: rgba(133, 20, 75, 0.2); border-radius: 10px; }
+.sidebar::-webkit-scrollbar-thumb:hover { background: rgba(133, 20, 75, 0.4); }
 
 </style>
