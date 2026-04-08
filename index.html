@@ -43,41 +43,24 @@
       </ul>
 
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item dropdown user-menu">
-          <a href="#" class="nav-link d-flex align-items-center" data-toggle="dropdown">
-            <div class="user-capsule">
-              <img id="nav-user-photo" src="https://ui-avatars.com/api/?name=User" alt="User">
-              <span id="nav-user-name">Loading...</span>
-              <i class="fas fa-angle-down ml-2" style="font-size: 0.7rem; opacity: 0.7;"></i>
-            </div>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="border-radius: 15px; overflow: hidden;">
-            <li class="user-header bg-maroon">
-              <img id="dropdown-user-photo" src="" class="img-circle elevation-2" alt="User Image">
-              <p>
-                <span id="dropdown-user-name-big" class="font-weight-bold text-truncate w-100 d-block">Nama Lengkap</span>
-                <small id="dropdown-user-role">Jabatan</small>
-              </p>
-            </li>
-            <li class="user-footer bg-light">
-              <a href="#" class="btn btn-default btn-flat btn-sm rounded-pill shadow-sm">
-                <i class="fas fa-user-cog mr-1"></i> Profil
-              </a>
-              <button type="button" class="btn btn-danger btn-flat btn-sm rounded-pill shadow-sm float-right" onclick="handleLogout()">
-                <i class="fas fa-sign-out-alt mr-1"></i> Logout
-              </button>
-            </li>
-          </ul>
+        <li class="nav-item d-flex align-items-center mr-3 pb-1">
+          <div class="user-capsule d-flex align-items-center mr-3" style="background:#F8F9FA; padding:0.4rem 1rem; border-radius:50px;">
+            <i class="fas fa-user-circle mr-2" style="font-size:1.2rem; color:var(--warna-maroon);"></i>
+            <span id="nav-user-name" class="font-weight-bold text-dark" style="font-size:0.9rem;">Menu Utama</span>
+          </div>
+          <button type="button" class="btn btn-sm" style="background:#FEEDED; color:#D0412E; border-radius:8px; font-weight:600; padding:0.4rem 0.8rem;" onclick="handleLogout()">
+            <i class="fas fa-sign-out-alt mr-1"></i> Logout
+          </button>
         </li>
       </ul>
     </nav>
 
-    <aside class="main-sidebar elevation-4">
-      <a href="#" class="brand-link">
-        <i class="fa-solid fa-paperclip ml-3 mr-2 text-warning"></i>
-        <span class="brand-text font-weight-bold text-white" style="letter-spacing: 1px;">SIKS-REBORN</span>
+    <aside class="main-sidebar border-right-0" style="background:var(--warna-kartu-bg); box-shadow: 2px 0 10px rgba(0,0,0,0.02) !important;">
+      <a href="#" class="brand-link border-bottom-0 pb-3 pt-4 text-center">
+        <i class="fas fa-cube" style="color:var(--warna-maroon); font-size:1.5rem;"></i>
+        <span class="brand-text font-weight-bold ml-2" style="letter-spacing: 1px; color:var(--warna-tegas); font-size:1.2rem;">SIKS-REBORN</span>
       </a>
-      <div id="sidebar-container" class="sidebar">
+      <div id="sidebar-container" class="sidebar px-2 mt-2">
         <?!= include('sidebar'); ?>
       </div>
     </aside>
