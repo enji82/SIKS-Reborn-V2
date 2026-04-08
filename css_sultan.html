@@ -26,8 +26,10 @@
     --border-sultan: 1px solid #E6E6E6; /* Thin Border */
   }
 
-  body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+  body, .table-premium, .table-sultan-compact {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
     background: var(--warna-abu-bg) !important;
     color: #334155 !important;
     min-height: 100vh;
@@ -296,18 +298,38 @@
     font-weight: 700 !important;
   }
 
-  /* CODEBYTE BADGE LIGHT */
+  /* CODEBYTE BADGE LIGHT (Menimpa .bg-* murni AdminLTE) */
   .badge {
     padding: 0.5rem 0.8rem !important;
-    border-radius: 8px !important;
+    border-radius: 6px !important;
     font-weight: 600 !important;
     font-size: 12px !important;
     border: 0 !important;
+    display: inline-block;
   }
-  .badge.light.badge-success, .badge-success { background-color: #e5f6eb !important; color: #278148 !important; }
-  .badge.light.badge-danger, .badge-danger { background-color: #fceceb !important; color: #e94d45 !important; }
-  .badge.light.badge-warning, .badge-warning { background-color: #fef4e2 !important; color: #b6922d !important; }
-  .badge.light.badge-info, .badge-info { background-color: #e5f5fb !important; color: #008cc9 !important; }
+  .badge.badge-success, .bg-success, .badge.bg-success { background-color: #e5f6eb !important; color: #278148 !important; }
+  .badge.badge-danger, .bg-danger, .badge.bg-danger { background-color: #fceceb !important; color: #e94d45 !important; }
+  .badge.badge-warning, .bg-warning, .badge.bg-warning { background-color: #fef4e2 !important; color: #b6922d !important; }
+  .badge.badge-info, .bg-info, .badge.bg-info { background-color: #e5f5fb !important; color: #008cc9 !important; }
+
+  /* CODEBYTE ACTION BUTTONS (Override kaku pada tombol Aksi) */
+  .table-premium tbody td .btn {
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    padding: 0.4rem 0.8rem !important;
+    box-shadow: none !important;
+    border: none !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px !important;
+    transition: all 0.2s ease;
+  }
+  .table-premium tbody td .btn-warning { background-color: #fef4e2 !important; color: #b6922d !important; margin: 0 2px; }
+  .table-premium tbody td .btn-danger { background-color: #fceceb !important; color: #e94d45 !important; margin: 0 2px; }
+  .table-premium tbody td .btn-info { background-color: #e5f5fb !important; color: #008cc9 !important; margin: 0 2px; }
+  .table-premium tbody td .btn-success { background-color: #e5f6eb !important; color: #278148 !important; margin: 0 2px; }
+  .table-premium tbody td .btn:hover { filter: brightness(0.95); opacity: 0.9; }
 
   /* Sticky Column (Sesuaikan warna BG agar menyatu dengan header baru) */
   .col-sticky-left { 
