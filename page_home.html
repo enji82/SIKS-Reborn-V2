@@ -191,6 +191,9 @@
   border-radius: 14px;
   overflow: hidden;
   transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  text-decoration: none !important;
+  display: block;
 }
 .layanan-card:hover {
   transform: translateY(-3px);
@@ -364,7 +367,7 @@
   <div class="layanan-grid" style="grid-template-columns: repeat(4,1fr);">
 
     <!-- 1. BERANDA -->
-    <div class="layanan-card">
+    <a href="#" class="layanan-card nav-link" data-page="home">
       <div class="layanan-header" style="background:rgba(59,130,246,0.07); border-bottom:1px solid #EFF6FF;">
         <div class="layanan-header-icon" style="background:rgba(59,130,246,0.12);">
           <i class="fas fa-home" style="color:#3B82F6;"></i>
@@ -378,10 +381,10 @@
           <li>Statistik akses layanan</li>
         </ul>
       </div>
-    </div>
+    </a>
 
     <!-- 2. SK PEMBAGIAN TUGAS -->
-    <div class="layanan-card">
+    <a href="#" class="layanan-card nav-link" data-page="sk_dashboard">
       <div class="layanan-header" style="background:rgba(139,0,0,0.06); border-bottom:1px solid #FFF1F1;">
         <div class="layanan-header-icon" style="background:rgba(139,0,0,0.1);">
           <i class="fas fa-file-signature" style="color:#8B0000;"></i>
@@ -395,10 +398,10 @@
           <li>Status Pengiriman</li>
         </ul>
       </div>
-    </div>
+    </a>
 
     <!-- 3. LAPORAN BULAN -->
-    <div class="layanan-card">
+    <a href="#" class="layanan-card nav-link" data-page="lapbul_dashboard">
       <div class="layanan-header" style="background:rgba(99,102,241,0.06); border-bottom:1px solid #EEF2FF;">
         <div class="layanan-header-icon" style="background:rgba(99,102,241,0.1);">
           <i class="fas fa-file-invoice" style="color:#6366F1;"></i>
@@ -413,10 +416,10 @@
           <li>Format Laporan</li>
         </ul>
       </div>
-    </div>
+    </a>
 
     <!-- 4. SIABA -->
-    <div class="layanan-card">
+    <a href="#" class="layanan-card nav-link" data-page="siaba_dashboard">
       <div class="layanan-header" style="background:rgba(16,185,129,0.06); border-bottom:1px solid #F0FDF4;">
         <div class="layanan-header-icon" style="background:rgba(16,185,129,0.1);">
           <i class="fas fa-fingerprint" style="color:#10B981;"></i>
@@ -431,10 +434,10 @@
           <li>Cuti &amp; Perjalanan Dinas</li>
         </ul>
       </div>
-    </div>
+    </a>
 
     <!-- 5. TATA NASKAH DINAS -->
-    <div class="layanan-card">
+    <a href="#" class="layanan-card nav-link" data-page="tata_naskah_dinas">
       <div class="layanan-header" style="background:rgba(245,158,11,0.06); border-bottom:1px solid #FFFBEB;">
         <div class="layanan-header-icon" style="background:rgba(245,158,11,0.1);">
           <i class="fas fa-file-alt" style="color:#F59E0B;"></i>
@@ -448,10 +451,10 @@
           <li>Disposisi surat</li>
         </ul>
       </div>
-    </div>
+    </a>
 
     <!-- 6. DATA PTK -->
-    <div class="layanan-card">
+    <a href="#" class="layanan-card nav-link" data-page="ptk_dashboard">
       <div class="layanan-header" style="background:rgba(239,68,68,0.06); border-bottom:1px solid #FEF2F2;">
         <div class="layanan-header-icon" style="background:rgba(239,68,68,0.1);">
           <i class="fas fa-users" style="color:#EF4444;"></i>
@@ -466,10 +469,10 @@
           <li>PTK SD Swasta (Keadaan &amp; Kebutuhan)</li>
         </ul>
       </div>
-    </div>
+    </a>
 
     <!-- 7. DATA MURID -->
-    <div class="layanan-card">
+    <a href="#" class="layanan-card nav-link" data-page="murid_dashboard">
       <div class="layanan-header" style="background:rgba(234,179,8,0.06); border-bottom:1px solid #FEFCE8;">
         <div class="layanan-header-icon" style="background:rgba(234,179,8,0.1);">
           <i class="fas fa-user-graduate" style="color:#CA8A04;"></i>
@@ -483,10 +486,10 @@
           <li>SD (Kelas, Rombel &amp; Agama)</li>
         </ul>
       </div>
-    </div>
+    </a>
 
     <!-- 8. E-FILE PEGAWAI -->
-    <div class="layanan-card">
+    <a href="#" class="layanan-card nav-link" data-page="efile_dashboard">
       <div class="layanan-header" style="background:rgba(20,184,166,0.06); border-bottom:1px solid #F0FDFA;">
         <div class="layanan-header-icon" style="background:rgba(20,184,166,0.1);">
           <i class="fas fa-folder-open" style="color:#14B8A6;"></i>
@@ -500,7 +503,7 @@
           <li>Berkas E-File</li>
         </ul>
       </div>
-    </div>
+    </a>
 
   </div>
 
