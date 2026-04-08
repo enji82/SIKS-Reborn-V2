@@ -244,33 +244,49 @@
   .user-capsule span { color: #0F172A; font-size: 0.9rem; font-weight: 600; }
 
   /* ===================================================================
-     5. TABEL & DATA GRID (DARK PREMIUM STYLE)
+     5. TABEL "RECENT PAYMENTS QUEUE" (CODEBYTE SAAS)
      =================================================================== */
-  
-  /* Header Tabel Minimalist (CODEBYTE) */
-  .table-premium thead th, table.dataTable thead th {
-    background-color: #F8F9FA !important;
-    color: var(--warna-tegas) !important; 
-    font-weight: 600 !important;
-    border-bottom: 0 !important; 
-    border-top: none !important;
-    vertical-align: middle !important; white-space: nowrap; font-size: 0.85rem; padding: 1rem 1.25rem !important;
-    text-transform: uppercase; letter-spacing: 0.5px;
+  .table-premium, table.dataTable {
+    margin-bottom: 0 !important;
   }
   
-  /* Efek Hover Header */
-  .table-premium thead th:hover, table.dataTable thead th:hover {
-      background-color: transparent !important; 
+  /* Header Tabel */
+  .table-premium thead th, table.dataTable thead th {
+    background-color: transparent !important;
+    color: #10131E !important; 
+    font-weight: 600 !important;
+    border-bottom: 1px solid #E6E6E6 !important; 
+    border-top: none !important;
+    vertical-align: middle !important; 
+    white-space: nowrap; 
+    font-size: 14px; 
+    padding: 1rem 1.25rem !important;
+    text-transform: capitalize; 
+    letter-spacing: normal;
   }
   
   /* Badan Tabel */
   .table-premium tbody td, .table-sultan-compact tbody td, table.dataTable tbody td {
-    vertical-align: middle !important; font-size: 0.875rem; padding: 1rem 1.25rem !important; 
-    border-bottom: var(--border-sultan) !important;
+    vertical-align: middle !important; 
+    font-size: 14px; 
+    padding: 1rem 1.25rem !important; 
+    border-bottom: 1px solid #E6E6E6 !important;
     color: #737B8B !important;
+    background-color: transparent !important;
   }
+  
   .table-sultan-compact tbody td { max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .table-premium tbody tr:hover td { background-color: #fff8f8 !important; }
+  
+  /* Efek Hover baris dinonaktifkan di Queue Codebyte */
+  .table-premium tbody tr:hover td, table.dataTable tbody tr:hover td { 
+    background-color: transparent !important; 
+  }
+
+  /* Emulasi highlight bold hitam */
+  .table-premium tbody td b, .table-premium tbody td strong {
+    color: #10131E !important;
+    font-weight: 600 !important;
+  }
 
   /* Sticky Column (Sesuaikan warna BG agar menyatu dengan header baru) */
   .col-sticky-left { 
