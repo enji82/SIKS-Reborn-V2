@@ -4,26 +4,26 @@
      Ganti --warna-maroon di sini, seluruh web otomatis berubah.
      =================================================================== */
   :root {
-    /* --- LAVENDER HAZE PALETTE --- */
-    --warna-maroon: #7C3AED;       /* Vivid Violet (Primary) */
-    --warna-maroon-dark: #6D28D9;  
-    --warna-maroon-light: #EDE9FE; /* Soft Violet Background */
+    /* --- CODEBYTE THEME PALETTE --- */
+    --warna-maroon: #1D3573;       /* Primary Navy Blue */
+    --warna-maroon-dark: #12224A;  
+    --warna-maroon-light: rgba(29, 53, 115, 0.1); 
     
     /* --- AKSEN PASTEL SULTAN --- */
-    --warna-emas: #6D28D9;         
-    --warna-emas-soft: #DDD6FE;    
-    --warna-cyan: #E0F2FF;         
-    --warna-hijau: #D1FAE5;        
-    --warna-orange-pastel: #FEF3C7; 
-    --warna-header-tabel: #F2EDFC; 
+    --warna-emas: #EAC947;         /* Codebyte Gold/Yellow */
+    --warna-emas-soft: rgba(234, 201, 71, 0.2);    
+    --warna-cyan: #00AFEF;         /* Info Blue */
+    --warna-hijau: #09BD3C;        /* Success Green */
+    --warna-orange-pastel: #D0412E; /* Danger Red */
+    --warna-header-tabel: #FFFFFF; 
     
     /* --- UTILITY --- */
-    --warna-tegas: #5B21B6;        
-    --warna-abu-bg: #F8F5FF;       /* Pale Lavender Base */
-    --warna-kartu-bg: #F2EDFC;     /* Lilac Medium untuk Cards */
-    --shadow-sultan: 0 4px 12px rgba(124, 58, 237, 0.08); /* Bayangan ungu */
-    --radius-sultan: 16px;         /* Naikkan kelengkungan agar lebih playful */
-    --border-sultan: 1px solid #E9D5FF; /* Border keunguan tipis */
+    --warna-tegas: #10131E;        /* Dark heading text */
+    --warna-abu-bg: #E6EBEE;       /* Base Background */
+    --warna-kartu-bg: #FFFFFF;     /* Pure White untuk Cards & Elements */
+    --shadow-sultan: 0 0.5rem 1rem rgba(0, 0, 0, 0.08); /* Codebyte Shadow */
+    --radius-sultan: 14px;         /* Codebyte border radius */
+    --border-sultan: 1px solid #E6E6E6; /* Thin Border */
   }
 
   body {
@@ -115,11 +115,12 @@
   .nav-sidebar > .nav-item > .nav-link { color: #495057 !important; margin-bottom: 4px; border-radius: 8px !important; font-weight: 500; padding: 12px 16px; margin: 0 8px 8px 8px; transition: all 0.2s; }
   .nav-sidebar > .nav-item > .nav-link > i, .nav-sidebar > .nav-item > .nav-link > p { color: #495057 !important; }
   
-  /* Active State Level 1 (INAPP) */
+  /* Active State Level 1 (CODEBYTE) */
   .nav-sidebar > .nav-item > .nav-link.active {
     background-color: var(--warna-maroon-light) !important;
     box-shadow: none;
-    border-left: none;
+    border-left: 4px solid var(--warna-maroon);
+    border-radius: 0 14px 14px 0 !important;
   }
   .nav-sidebar > .nav-item > .nav-link.active > i, .nav-sidebar > .nav-item > .nav-link.active > p {
     color: var(--warna-maroon) !important; font-weight: 600 !important;
@@ -185,9 +186,9 @@
   .style-sultan-solid { border: 0; height: 1px; background-color: #E2E8F0; margin: 1rem 0; }
 
   /* Form Controls */
-  .form-control-sultan { border-radius: 8px !important; border: 1px solid #E2E8F0 !important; height: calc(2.25rem + 2px) !important; font-size: 14px; background: var(--warna-kartu-bg) !important; color: #0F172A !important; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
-  .form-control-sultan:focus { border-color: var(--warna-emas) !important; box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15) !important; }
-  .form-label-sultan { font-weight: 600 !important; font-size: 13px !important; color: #475569 !important; letter-spacing: 0.2px; margin-bottom: 6px; }
+  .form-control-sultan { border-radius: var(--radius-sultan) !important; border: var(--border-sultan) !important; height: calc(2.25rem + 2px) !important; font-size: 14px; background: var(--warna-abu-bg) !important; color: var(--warna-tegas) !important; box-shadow: none; }
+  .form-control-sultan:focus { border-color: var(--warna-maroon) !important; box-shadow: 0 0 0 0.25rem var(--warna-maroon-light) !important; background: var(--warna-kartu-bg) !important; }
+  .form-label-sultan { font-weight: 600 !important; font-size: 13px !important; color: #737B8B !important; letter-spacing: 0.2px; margin-bottom: 6px; }
   
   /* VAKSIN ANTI-SPINNER (Hukum BAB II) */
   input[type="number"]::-webkit-inner-spin-button,
