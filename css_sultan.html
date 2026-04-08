@@ -78,6 +78,7 @@
     background: var(--warna-kartu-bg) !important;
     border-bottom: 1px solid #E2E8F0 !important;
     box-shadow: none !important;
+    min-height: 57px !important;
   }
   .main-header .nav-link { color: #475569 !important; font-weight: 500; }
   .main-header .nav-link:hover { color: var(--warna-emas) !important; }
@@ -1307,16 +1308,20 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     transition: all 0.3s ease;
 }
 
-/* Brand Title — Tidak menimpa konten di bawahnya */
+/* Brand Title — Tinggi sama dengan navbar (57px) */
 .brand-link {
     display: flex !important;
     align-items: center !important;
     justify-content: flex-start !important;
     background: transparent !important;
     border-bottom: 1px solid rgba(0,0,0,0.07) !important;
-    padding: 1.1rem 1.2rem !important;
+    min-height: 57px !important;
+    height: 57px !important;
+    padding: 0 1.2rem !important;
+    box-sizing: border-box !important;
     position: relative !important;
     z-index: 2 !important;
+    overflow: hidden !important;
 }
 
 /* Sidebar container — mulai dari bawah brand title */
