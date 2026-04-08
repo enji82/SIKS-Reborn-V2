@@ -157,58 +157,65 @@
     <aside class="main-sidebar border-right-0" id="main-sidebar-app">
       <a href="#" class="brand-link" id="sidebar-brand"
          style="display:flex; align-items:center; height:57px;
-                padding:0 0.85rem; gap:0.7rem;
+                padding:0 0.85rem; gap:0.75rem;
                 background:rgba(0,0,0,0.25);
                 border-bottom:1px solid rgba(255,255,255,0.1);
                 text-decoration:none; overflow:hidden;">
 
-        <!-- ══ MONOGRAM LOGO S·R ══
-             Hampir semua website profesional menggunakan lettermark ini.
-             S = gold (SIKS), R = putih (REBORN), titik pemisah = gold.
-             Rounded square dark badge agar tampil bersih di semua ukuran.
+        <!--
+          ══ MODERN SR LETTERMARK ══
+          Gaya: huruf tebal rounded, S (gold) + R (white), connected.
+          Referensi: modern geometric lettermark seperti brand profesional.
+          Teknik: thick stroke dengan round-cap agar terlihat seperti huruf filled bold.
         -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"
-             style="width:38px; height:38px; flex-shrink:0;"
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 48"
+             style="width:46px; height:34px; flex-shrink:0; display:block;"
              aria-label="SR Logo">
 
-          <!-- Latar: rounded square gelap dengan cincin gold tipis -->
-          <rect width="44" height="44" rx="11" fill="#0F0000"/>
-          <rect width="44" height="44" rx="11" fill="none"
-                stroke="#EAC947" stroke-width="1.8" opacity="0.6"/>
+          <!-- S — gold, tebal, rounded modern -->
+          <!-- Path ikuti kurva S yang smooth: mulai kanan-atas, sweep kiri, tengah, kanan-bawah, kiri-bawah -->
+          <path d="M 36,8 C 20,6 6,6 6,15 C 6,23 16,26 26,28 C 36,30 40,34 38,40 C 36,46 20,47 6,44"
+                fill="none"
+                stroke="#EAC947"
+                stroke-width="9"
+                stroke-linecap="round"
+                stroke-linejoin="round"/>
 
-          <!-- Aksen strip gold di bagian bawah -->
-          <rect x="6" y="39" width="32" height="2.5" rx="1.2" fill="#EAC947" opacity="0.5"/>
+          <!-- R — putih, tebal, tiga elemen: batang vertikal + bowl + kaki diagonal -->
 
-          <!-- Huruf  S  — emas, italic bold, setengah kiri -->
-          <text x="5" y="31"
-                font-family="'Georgia', 'Times New Roman', serif"
-                font-size="26" font-weight="bold" font-style="italic"
-                fill="#EAC947" opacity="1">S</text>
+          <!-- 1. Batang vertikal R -->
+          <line x1="42" y1="8" x2="42" y2="44"
+                stroke="rgba(255,255,255,0.92)"
+                stroke-width="9"
+                stroke-linecap="round"/>
 
-          <!-- Titik pemisah tengah — gold -->
-          <circle cx="22.5" cy="24" r="2" fill="#EAC947" opacity="0.85"/>
+          <!-- 2. Bowl R: lengkung dari atas vertikal, membusar ke kanan, kembali ke tengah vertikal -->
+          <path d="M 42,8 C 59,8 59,28 42,28"
+                fill="none"
+                stroke="rgba(255,255,255,0.92)"
+                stroke-width="9"
+                stroke-linecap="round"
+                stroke-linejoin="round"/>
 
-          <!-- Huruf  R  — putih, italic bold, setengah kanan -->
-          <text x="24" y="31"
-                font-family="'Georgia', 'Times New Roman', serif"
-                font-size="26" font-weight="bold" font-style="italic"
-                fill="#FFFFFF" opacity="0.95">R</text>
+          <!-- 3. Kaki diagonal R: dari titik tengah ke kanan-bawah -->
+          <line x1="42" y1="28" x2="58" y2="44"
+                stroke="rgba(255,255,255,0.92)"
+                stroke-width="9"
+                stroke-linecap="round"/>
 
         </svg>
 
-        <!-- Teks: Judul + Subtitle -->
+        <!-- Teks: SIKS-REBORN + Subtitle -->
         <div style="min-width:0; flex:1; overflow:hidden;">
-          <div style="font-size:0.95rem; font-weight:800; color:#fff;
-                      letter-spacing:1.8px; line-height:1.1;
-                      white-space:nowrap; text-overflow:ellipsis; overflow:hidden;
-                      font-family:'Poppins', sans-serif;">
+          <div style="font-size:0.93rem; font-weight:800; color:#fff;
+                      letter-spacing:1.6px; line-height:1.15;
+                      white-space:nowrap; text-overflow:ellipsis; overflow:hidden;">
             SIKS-REBORN
           </div>
-          <div style="font-size:0.58rem; color:rgba(234,201,71,0.85);
+          <div style="font-size:0.57rem; color:rgba(234,201,71,0.8);
                       font-weight:600; letter-spacing:0.5px;
                       white-space:nowrap; text-overflow:ellipsis; overflow:hidden;
-                      text-transform:uppercase; margin-top:2px;
-                      font-family:'Poppins', sans-serif;">
+                      text-transform:uppercase; margin-top:2px;">
             Korwil Disdikbud Secang
           </div>
         </div>
