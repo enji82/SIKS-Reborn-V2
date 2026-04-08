@@ -348,14 +348,17 @@
 
           /* Setelah animasi sukses, masuk ke dashboard */
           setTimeout(function() {
-            if (typeof updateUI === 'function' && res.userData) updateUI(res.userData);
-            if (typeof tampilkanMenuAdmin === 'function' && res.userData) tampilkanMenuAdmin(res.userData);
-
-            $('.login-screen-wrapper').fadeOut(500, function() {
-              $('#konten-aplikasi').fadeIn(400);
-              if (typeof loadContent === 'function') loadContent('home');
-              if (typeof loadNotifikasiDiproses === 'function') {
-                setTimeout(loadNotifikasiDiproses, 1500);
+            $('.login-screen-wrapper').fadeOut(450, function() {
+              /* Biarkan inisialisasiAplikasi() yang mengatur segalanya —
+                 updateUI, tampilkanMenuAdmin, loadContent('home') — 
+                 sehingga urutan selalu benar dan tidak ada race condition */
+              if (typeof inisialisasiAplikasi === 'function') {
+                inisialisasiAplikasi();
+              } else {
+                /* Fallback jika fungsi utama belum siap */
+                $('#konten-aplikasi').fadeIn(400);
+                if (typeof updateUI === 'function' && res.userData) updateUI(res.userData);
+                if (typeof loadContent === 'function') loadContent('home');
               }
             });
           }, 2200);

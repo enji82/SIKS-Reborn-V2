@@ -1,530 +1,601 @@
-<div class="content-header">
-  <div class="container-fluid">
-    <div class="row mb-3 align-items-center">
-      
-      <div class="col-md-7 mb-3 mb-md-0">
-        <h5 class="m-0 text-secondary" style="font-weight: 500;">
-          <i class="fas fa-sun text-warning mr-1"></i> <span id="greeting-text">Selamat Datang...</span>
-        </h5>
-        <h1 class="m-0 text-maroon" style="font-weight: 800; letter-spacing: -0.5px;">
-          <span id="user-fullname-home">Memuat Data...</span>
-        </h1>
-        <p class="text-muted mt-2 mb-0" style="font-size: 1.05rem;">
-          Selamat datang di <b class="text-maroon">REBORN</b> (Ruang Edukasi dan Layanan Berbasis Online Terintegrasi).
-        </p>
-      </div>
-      
-      <div class="col-md-5">
-        <div class="p-3 rounded-lg shadow-sm text-white position-relative overflow-hidden d-flex align-items-center justify-content-between" 
-             style="background: linear-gradient(135deg, #800000 0%, #300000 100%); border: 1px solid #FFD700; min-height: 100px;">
-          
-          <i class="fas fa-clock position-absolute text-white" style="opacity: 0.05; font-size: 6rem; top: 10px; left: 10px;"></i>
-
-          <div class="text-right pr-3 flex-grow-1" style="border-right: 1px solid rgba(255, 215, 0, 0.4);">
-            <div id="display-tgl-nasional" class="font-weight-bold" style="font-size: 1rem; line-height: 1.2;">
-              ...
-            </div>
-            <div id="display-tgl-jawa" class="font-italic mt-1" style="font-size: 0.85rem; color: #FFD700; line-height: 1.2;">
-              ...
-            </div>
-          </div>
-
-          <div class="text-left pl-3 flex-grow-1">
-            <div id="display-hari-pasaran" class="font-weight-bold text-uppercase" style="font-size: 1.1rem; color: #FFD700; letter-spacing: 0.5px; line-height: 1.2;">
-              ...
-            </div>
-            <div id="display-jam-home" class="font-weight-bold text-monospace mt-1" style="font-size: 1.8rem; line-height: 1; text-shadow: 0px 2px 4px rgba(0,0,0,0.3);">
-              00:00:00
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<div class="container-fluid mb-3">
-  <div class="d-flex align-items-center bg-white shadow-sm rounded overflow-hidden border-left-maroon" style="height: 45px;">
-    
-    <div class="bg-maroon text-white px-3 h-100 d-flex align-items-center font-weight-bold" style="min-width: 110px; z-index: 2;">
-      <i class="fas fa-bullhorn mr-2"></i> INFO
-    </div>
-    
-    <div class="marquee-container w-100 position-relative" style="background: #fff;">
-      <div id="dynamic-marquee-text" class="marquee-text text-dark">
-        
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<section class="content">
-  <div class="container-fluid">
-    
-    <div class="card-sultan p-4 mb-4 border-left-dark bg-white">
-        <div class="row align-items-center">
-            <div class="col-md-12">
-                <h3 class="font-weight-bold text-maroon mb-3">
-                    <i class="fas fa-laptop-house mr-2"></i>Tentang REBORN
-                </h3>
-                <p class="text-justify text-dark" style="font-size: 1.05rem; line-height: 1.8;">
-                    <b class="text-maroon">REBORN</b> merupakan platform digital yang dirancang sebagai ruang terpadu edukasi dan layanan pendidikan di tingkat kecamatan. 
-                    Hadir untuk memfasilitasi satuan pendidikan <b class="text-dark">PAUD, TK, dan SD</b> (negeri maupun swasta) dalam mengakses informasi, pembinaan, serta layanan pendidikan secara mudah, cepat, dan terintegrasi.
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <div class="col-12 mb-2">
-            <h5 class="font-weight-bold text-maroon"><i class="fas fa-bullseye mr-2"></i>Tujuan Utama</h5>
-            <hr class="style-sultan-solid mt-1 mb-3">
-        </div>
-        
-        <div class="col-md-3 col-sm-6 mb-3">
-            <div class="p-3 bg-white rounded shadow-sm h-100 border-top border-info text-center">
-                <i class="fas fa-network-wired fa-2x text-info mb-3"></i>
-                <h6 class="font-weight-bold">Terintegrasi</h6>
-                <p class="small text-muted mb-0">Layanan pendidikan berbasis online satu pintu.</p>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6 mb-3">
-            <div class="p-3 bg-white rounded shadow-sm h-100 border-top border-success text-center">
-                <i class="fas fa-hand-holding-heart fa-2x text-success mb-3"></i>
-                <h6 class="font-weight-bold">Akses Mudah</h6>
-                <p class="small text-muted mb-0">Mempermudah akses layanan bagi satuan pendidikan.</p>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6 mb-3">
-            <div class="p-3 bg-white rounded shadow-sm h-100 border-top border-warning text-center">
-                <i class="fas fa-users-cog fa-2x text-warning mb-3"></i>
-                <h6 class="font-weight-bold">Koordinasi</h6>
-                <p class="small text-muted mb-0">Mendukung pembinaan tingkat kecamatan.</p>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6 mb-3">
-            <div class="p-3 bg-white rounded shadow-sm h-100 border-top border-danger text-center">
-                <i class="fas fa-laptop-code fa-2x text-danger mb-3"></i>
-                <h6 class="font-weight-bold">Digitalisasi</h6>
-                <p class="small text-muted mb-0">Optimalisasi teknologi dalam tata kelola.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12 mb-2">
-            <h5 class="font-weight-bold text-maroon"><i class="fas fa-sitemap mr-2"></i>Katalog Layanan & Menu</h5>
-            <hr class="style-sultan-solid mt-1 mb-3">
-        </div>
-
-        <div class="col-md-4">
-            <div class="card-sultan mb-3">
-                <div class="card-header bg-soft-primary p-2 px-3">
-                    <h6 class="m-0 font-weight-bold text-dark"><i class="fas fa-home mr-2 text-primary"></i>1. Beranda</h6>
-                </div>
-                <div class="card-body p-3">
-                    <ul class="mb-0 pl-3 small text-muted">
-                        <li>Ringkasan fungsi REBORN</li>
-                        <li>Akses cepat layanan utama</li>
-                        <li>Pengumuman & agenda</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="card-sultan mb-3">
-                <div class="card-header bg-soft-success p-2 px-3">
-                    <h6 class="m-0 font-weight-bold text-dark"><i class="fas fa-id-card mr-2 text-success"></i>2. Profil</h6>
-                </div>
-                <div class="card-body p-3">
-                    <ul class="mb-0 pl-3 small text-muted">
-                        <li>Tentang REBORN & Korwil</li>
-                        <li>Ruang Lingkup (PAUD/TK/SD)</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="card-sultan mb-3">
-                <div class="card-header bg-soft-info p-2 px-3">
-                    <h6 class="m-0 font-weight-bold text-dark"><i class="fas fa-chalkboard-teacher mr-2 text-info"></i>3. Layanan GTK</h6>
-                </div>
-                <div class="card-body p-3">
-                    <ul class="mb-0 pl-3 small text-muted">
-                        <li>Pendataan Guru & Tendik</li>
-                        <li>Presensi & Cuti ASN</li>
-                        <li>Usulan Pangkat, KGB, Pensiun</li>
-                        <li>Layanan TPG, Tamsil, TPP</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card-sultan mb-3">
-                <div class="card-header bg-soft-warning p-2 px-3">
-                    <h6 class="m-0 font-weight-bold text-dark"><i class="fas fa-school mr-2 text-warning"></i>4. Satuan Pendidikan</h6>
-                </div>
-                <div class="card-body p-3">
-                    <ul class="mb-0 pl-3 small text-muted">
-                        <li>Administrasi Sekolah</li>
-                        <li>Koordinasi DAPODIK Kecamatan</li>
-                        <li>Pengawasan Kurikulum</li>
-                        <li>Ekstrakurikuler & Tata Naskah</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="card-sultan mb-3">
-                <div class="card-header bg-soft-danger p-2 px-3">
-                    <h6 class="m-0 font-weight-bold text-dark"><i class="fas fa-award mr-2 text-danger"></i>5. Penjaminan Mutu</h6>
-                </div>
-                <div class="card-body p-3">
-                    <ul class="mb-0 pl-3 small text-muted">
-                        <li>Monev Satuan Pendidikan</li>
-                        <li>Pembinaan & Pendampingan</li>
-                        <li>Rekap Pengawasan</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="card-sultan mb-3">
-                <div class="card-header bg-soft-purple p-2 px-3">
-                    <h6 class="m-0 font-weight-bold text-dark"><i class="fas fa-chart-pie mr-2 text-purple-sultan"></i>6. Data & Laporan</h6>
-                </div>
-                <div class="card-body p-3">
-                    <ul class="mb-0 pl-3 small text-muted">
-                        <li>Data Sekolah & GTK</li>
-                        <li>Rekap Laporan Sekolah</li>
-                        <li>Statistik Pendidikan</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card-sultan mb-3">
-                <div class="card-header bg-soft-orange p-2 px-3">
-                    <h6 class="m-0 font-weight-bold text-dark"><i class="fas fa-bullhorn mr-2 text-orange-sultan"></i>7. Info & Pengumuman</h6>
-                </div>
-                <div class="card-body p-3">
-                    <ul class="mb-0 pl-3 small text-muted">
-                        <li>Surat Edaran Kedinasan</li>
-                        <li>Info Administrasi</li>
-                        <li>Agenda Kegiatan Korwil</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="card-sultan mb-3">
-                <div class="card-header bg-soft-grey p-2 px-3">
-                    <h6 class="m-0 font-weight-bold text-dark"><i class="fas fa-download mr-2 text-secondary"></i>8. Unduhan</h6>
-                </div>
-                <div class="card-body p-3">
-                    <ul class="mb-0 pl-3 small text-muted">
-                        <li>Format & Formulir Layanan</li>
-                        <li>Pedoman Administrasi</li>
-                        <li>Dokumen Pendukung</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="card-sultan mb-3">
-                <div class="card-header bg-soft-primary p-2 px-3">
-                    <h6 class="m-0 font-weight-bold text-dark"><i class="fas fa-headset mr-2 text-primary"></i>9. Kontak & Bantuan</h6>
-                </div>
-                <div class="card-body p-3">
-                    <ul class="mb-0 pl-3 small text-muted">
-                        <li>Kontak Layanan Korwil</li>
-                        <li>Panduan Penggunaan REBORN</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-  </div>
-</section>
-
-<div class="stats-footer mt-4">
-  <div class="container-fluid">
-    <div class="row text-center">
-      
-      <div class="col-md-3 col-6 mb-3 mb-md-0 border-right-gold">
-        <div class="stat-item">
-          <i class="fas fa-chart-line fa-2x text-warning mb-2"></i>
-          <h4 id="stat-total" class="font-weight-bold text-white mb-0 counter-anim">0</h4>
-          <small class="text-white-50 text-uppercase">Total Akses</small>
-        </div>
-      </div>
-
-      <div class="col-md-3 col-6 mb-3 mb-md-0 border-right-gold">
-        <div class="stat-item">
-          <i class="fas fa-calendar-day fa-2x text-warning mb-2"></i>
-          <h4 id="stat-today" class="font-weight-bold text-white mb-0 counter-anim">0</h4>
-          <small class="text-white-50 text-uppercase">Hari Ini</small>
-        </div>
-      </div>
-
-      <div class="col-md-3 col-6 border-right-gold">
-        <div class="stat-item">
-          <i class="fas fa-users fa-2x text-warning mb-2"></i>
-          <h4 id="stat-users" class="font-weight-bold text-white mb-0 counter-anim">0</h4>
-          <small class="text-white-50 text-uppercase">User Terdaftar</small>
-        </div>
-      </div>
-
-      <div class="col-md-3 col-6">
-        <div class="stat-item">
-          <i class="fas fa-server fa-2x text-success mb-2"></i> 
-          <h4 id="stat-online" class="font-weight-bold text-white mb-0 counter-anim">0</h4>
-          <small class="text-white-50 text-uppercase">User Online</small>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-
-
 <style>
-  .stats-footer {
-    background: linear-gradient(to right, #4a0404, #800000, #4a0404); /* Deep Maroon */
-    border-top: 4px solid #FFD700; /* Garis Emas */
-    padding: 30px 0;
-    box-shadow: 0 -5px 20px rgba(0,0,0,0.2);
-    margin-bottom: -20px; /* Hapus margin bawah default template */
-    position: relative;
-    z-index: 10;
-  }
-  
-  /* Garis pemisah antar kolom di layar besar */
-  .border-right-gold {
-    border-right: 1px solid rgba(255, 215, 0, 0.2);
-  }
-  
-  /* Hilangkan border di layar HP agar rapi */
-  @media (max-width: 768px) {
-    .border-right-gold { border-right: none; margin-bottom: 20px; }
-  }
-  
-  .stat-item {
-    transition: transform 0.3s;
-  }
-  .stat-item:hover {
-    transform: translateY(-5px); /* Efek naik dikit pas dihover */
-  }
+/* =====================================================
+   HOME PAGE — Maroon Heritage Premium
+   ===================================================== */
 
-  .border-left-maroon { border-left: 5px solid #800000; }
-  .bg-maroon { background-color: #800000; }
-  
-  .marquee-container { overflow: hidden; white-space: nowrap; }
-  .marquee-text {
-    display: inline-block;
-    padding-left: 100%;
-    animation: marquee 25s linear infinite; /* Kecepatan */
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 45px; /* Agar teks vertikal di tengah */
-  }
-  
-  @keyframes marquee {
-    0%   { transform: translate(0, 0); }
-    100% { transform: translate(-100%, 0); }
-  }
+/* Hero Header */
+.home-hero {
+  background: linear-gradient(135deg, #8B0000 0%, #5A0000 55%, #3A0000 100%);
+  border-radius: 18px;
+  padding: 2rem 2rem 1.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(139,0,0,0.25);
+}
+.home-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 85% 50%, rgba(234,201,71,0.08) 0%, transparent 55%),
+              radial-gradient(circle at 10% 80%, rgba(255,255,255,0.04) 0%, transparent 40%);
+  pointer-events: none;
+}
+.home-hero-left { position: relative; z-index: 2; }
+.home-greeting {
+  font-size: 0.85rem; font-weight: 500;
+  color: rgba(255,255,255,0.65);
+  letter-spacing: 0.5px; margin-bottom: 0.3rem;
+}
+.home-greeting i { color: #EAC947; margin-right: 5px; }
+.home-username {
+  font-size: 1.9rem; font-weight: 800;
+  color: #fff; line-height: 1.15;
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.5px;
+}
+.home-tagline {
+  font-size: 0.82rem; color: rgba(255,255,255,0.55);
+  font-weight: 400; line-height: 1.5;
+}
+.home-tagline b { color: #EAC947; font-weight: 600; }
 
-  .marquee-text:hover { animation-play-state: paused; }
+/* Jam & Tanggal Card */
+.home-clock-card {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+  padding: 1rem 1.25rem;
+  min-width: 210px;
+  position: relative; z-index: 2;
+  backdrop-filter: blur(8px);
+}
+.home-clock-time {
+  font-size: 2.2rem; font-weight: 800;
+  color: #fff; font-variant-numeric: tabular-nums;
+  letter-spacing: 2px; line-height: 1;
+  margin-bottom: 0.4rem;
+}
+.home-clock-date {
+  font-size: 0.78rem; color: rgba(255,255,255,0.7);
+  font-weight: 500; line-height: 1.5;
+}
+.home-clock-pasaran {
+  font-size: 0.72rem; color: #EAC947;
+  font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+/* Info Marquee Bar */
+.info-bar {
+  display: flex; align-items: stretch;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #E2E8F0;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  height: 44px;
+}
+.info-bar-label {
+  background: linear-gradient(135deg, #8B0000, #5A0000);
+  color: #fff; font-weight: 700; font-size: 0.75rem;
+  padding: 0 1.1rem; display: flex; align-items: center; gap: 6px;
+  flex-shrink: 0; letter-spacing: 0.5px;
+  min-width: 90px;
+}
+.info-bar-ticker {
+  flex: 1; overflow: hidden; position: relative;
+  display: flex; align-items: center;
+}
+.info-bar-text {
+  white-space: nowrap; display: inline-block;
+  padding-left: 100%;
+  animation: tickerScroll 30s linear infinite;
+  font-size: 0.82rem; color: #374151; font-weight: 500;
+}
+.info-bar-text:hover { animation-play-state: paused; cursor: pointer; }
+@keyframes tickerScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+/* ---- Section Title ---- */
+.home-section-title {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-size: 1rem; font-weight: 700; color: #1e293b;
+  margin-bottom: 1rem;
+}
+.home-section-title .title-icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: linear-gradient(135deg, #8B0000, #5A0000);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.home-section-title .title-icon i { color: #EAC947; font-size: 0.85rem; }
+.home-section-divider {
+  flex: 1; height: 1px; background: #E2E8F0;
+}
+
+/* ---- About Card ---- */
+.about-card {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #E2E8F0;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+.about-card p {
+  font-size: 0.9rem; color: #475569;
+  line-height: 1.8; margin: 0;
+}
+.about-card b { color: #8B0000; font-weight: 700; }
+
+/* ---- Feature Cards (Tujuan/ Keunggulan) ---- */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+@media (max-width: 768px) {
+  .feature-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .feature-grid { grid-template-columns: 1fr; }
+}
+.feature-card {
+  background: #fff;
+  border: 1px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 1.25rem 1rem;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s;
+  cursor: default;
+}
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(139,0,0,0.1);
+  border-color: rgba(139,0,0,0.2);
+}
+.feature-icon {
+  width: 52px; height: 52px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 0.8rem;
+  font-size: 1.3rem;
+}
+.feature-card h6 {
+  font-size: 0.85rem; font-weight: 700; color: #1e293b;
+  margin-bottom: 0.3rem;
+}
+.feature-card p {
+  font-size: 0.75rem; color: #64748b; margin: 0; line-height: 1.5;
+}
+
+/* ---- Layanan / Katalog Menu ---- */
+.layanan-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+@media (max-width: 768px) { .layanan-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 480px) { .layanan-grid { grid-template-columns: 1fr; } }
+
+.layanan-card {
+  background: #fff;
+  border: 1px solid #E2E8F0;
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.layanan-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+.layanan-header {
+  padding: 0.9rem 1rem;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.layanan-header-icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-size: 0.9rem;
+}
+.layanan-header h6 {
+  font-size: 0.82rem; font-weight: 700;
+  color: #1e293b; margin: 0;
+}
+.layanan-body {
+  padding: 0 1rem 0.9rem;
+}
+.layanan-body ul {
+  margin: 0; padding-left: 1.2rem;
+  font-size: 0.75rem; color: #64748b; line-height: 1.8;
+}
+
+/* ---- Stats Footer ---- */
+.home-stats-bar {
+  background: linear-gradient(135deg, #8B0000 0%, #5A0000 50%, #3A0000 100%);
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 8px 32px rgba(139,0,0,0.2);
+}
+@media (max-width: 768px) { .home-stats-bar { grid-template-columns: repeat(2,1fr); } }
+.stat-pill {
+  text-align: center; padding: 0.75rem 0.5rem;
+  border-right: 1px solid rgba(255,255,255,0.1);
+}
+.stat-pill:last-child { border-right: none; }
+.stat-pill-num {
+  font-size: 1.8rem; font-weight: 800; color: #fff;
+  line-height: 1; margin-bottom: 0.2rem;
+  font-variant-numeric: tabular-nums;
+}
+.stat-pill-lbl {
+  font-size: 0.68rem; color: rgba(255,255,255,0.55);
+  text-transform: uppercase; font-weight: 600; letter-spacing: 0.8px;
+}
+.stat-pill-icon { color: #EAC947; font-size: 1rem; margin-bottom: 0.4rem; }
 </style>
 
+<!-- ====================================================
+     HERO HEADER
+     ==================================================== -->
+<div class="px-3 pt-3">
+  <div class="home-hero">
+    <div class="d-flex align-items-center justify-content-between flex-wrap" style="gap:1rem;">
+
+      <!-- Kiri: Greeting + Nama -->
+      <div class="home-hero-left">
+        <div class="home-greeting">
+          <i class="fas fa-sun" id="greeting-icon"></i>
+          <span id="greeting-text">Selamat Datang,</span>
+        </div>
+        <div class="home-username" id="user-fullname-home">Memuat...</div>
+        <div class="home-tagline">
+          Selamat datang di <b>REBORN</b> —
+          Ruang Edukasi &amp; Layanan Berbasis Online Terintegrasi<br>
+          Korwil Disdikbud Kecamatan Secang
+        </div>
+      </div>
+
+      <!-- Kanan: Jam Digital -->
+      <div class="home-clock-card">
+        <div class="home-clock-pasaran" id="display-hari-pasaran">---</div>
+        <div class="home-clock-time" id="display-jam-home">00:00:00</div>
+        <div class="home-clock-date" id="display-tgl-nasional">---</div>
+        <div class="home-clock-date" id="display-tgl-jawa" style="color:#EAC947; font-size:0.7rem;">---</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ====================================================
+       INFO BAR (MARQUEE)
+       ==================================================== -->
+  <div class="info-bar">
+    <div class="info-bar-label">
+      <i class="fas fa-bullhorn"></i> INFO
+    </div>
+    <div class="info-bar-ticker">
+      <div id="dynamic-marquee-text" class="info-bar-text">
+        Selamat datang di SIKS-REBORN &nbsp;|&nbsp; Sistem Informasi Korwil Disdikbud Kecamatan Secang &nbsp;|&nbsp;
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================
+       TENTANG REBORN
+       ==================================================== -->
+  <div class="home-section-title">
+    <div class="title-icon"><i class="fas fa-cube"></i></div>
+    <span>Tentang REBORN</span>
+    <div class="home-section-divider"></div>
+  </div>
+
+  <div class="about-card">
+    <p>
+      <b>REBORN</b> (Ruang Edukasi dan Layanan Berbasis Online teRiNtegrasi) adalah platform digital yang dirancang
+      sebagai pusat terpadu edukasi dan layanan pendidikan tingkat kecamatan. Hadir untuk memfasilitasi satuan
+      pendidikan <b>PAUD, TK, dan SD</b> (negeri maupun swasta) dalam mengakses informasi, pembinaan, serta
+      layanan administrasi secara mudah, cepat, dan terintegrasi di bawah koordinasi
+      <b>Korwil Disdikbud Kecamatan Secang</b>.
+    </p>
+  </div>
+
+  <!-- ====================================================
+       KEUNGGULAN / FITUR
+       ==================================================== -->
+  <div class="home-section-title">
+    <div class="title-icon"><i class="fas fa-star"></i></div>
+    <span>Keunggulan Platform</span>
+    <div class="home-section-divider"></div>
+  </div>
+
+  <div class="feature-grid mb-4">
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(59,130,246,0.1);">
+        <i class="fas fa-network-wired" style="color:#3B82F6;"></i>
+      </div>
+      <h6>Terintegrasi</h6>
+      <p>Layanan pendidikan satu pintu yang terkoneksi antar unit</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(16,185,129,0.1);">
+        <i class="fas fa-hand-holding-heart" style="color:#10B981;"></i>
+      </div>
+      <h6>Akses Mudah</h6>
+      <p>Dapat diakses kapan saja &amp; di mana saja melalui browser</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(245,158,11,0.1);">
+        <i class="fas fa-users-cog" style="color:#F59E0B;"></i>
+      </div>
+      <h6>Koordinasi Cepat</h6>
+      <p>Mendukung pembinaan &amp; koordinasi tingkat kecamatan</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(139,0,0,0.08);">
+        <i class="fas fa-laptop-code" style="color:#8B0000;"></i>
+      </div>
+      <h6>Digitalisasi</h6>
+      <p>Optimalisasi teknologi dalam tata kelola pendidikan</p>
+    </div>
+  </div>
+
+  <!-- ====================================================
+       KATALOG LAYANAN
+       ==================================================== -->
+  <div class="home-section-title">
+    <div class="title-icon"><i class="fas fa-sitemap"></i></div>
+    <span>Katalog Layanan &amp; Menu</span>
+    <div class="home-section-divider"></div>
+  </div>
+
+  <div class="layanan-grid">
+
+    <div class="layanan-card">
+      <div class="layanan-header" style="background:rgba(59,130,246,0.06); border-bottom:1px solid #EFF6FF;">
+        <div class="layanan-header-icon" style="background:rgba(59,130,246,0.12);">
+          <i class="fas fa-home" style="color:#3B82F6;"></i>
+        </div>
+        <h6>1. Beranda</h6>
+      </div>
+      <div class="layanan-body pt-2">
+        <ul>
+          <li>Ringkasan fungsi REBORN</li>
+          <li>Akses cepat layanan utama</li>
+          <li>Pengumuman &amp; agenda</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="layanan-card">
+      <div class="layanan-header" style="background:rgba(139,0,0,0.05); border-bottom:1px solid #FFF1F1;">
+        <div class="layanan-header-icon" style="background:rgba(139,0,0,0.1);">
+          <i class="fas fa-file-signature" style="color:#8B0000;"></i>
+        </div>
+        <h6>2. SK Pembagian Tugas</h6>
+      </div>
+      <div class="layanan-body pt-2">
+        <ul>
+          <li>Pengajuan &amp; verifikasi SK</li>
+          <li>Status pengiriman</li>
+          <li>Monitoring per sekolah</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="layanan-card">
+      <div class="layanan-header" style="background:rgba(16,185,129,0.05); border-bottom:1px solid #F0FDF4;">
+        <div class="layanan-header-icon" style="background:rgba(16,185,129,0.1);">
+          <i class="fas fa-chalkboard-teacher" style="color:#10B981;"></i>
+        </div>
+        <h6>3. Layanan PTK</h6>
+      </div>
+      <div class="layanan-body pt-2">
+        <ul>
+          <li>Pendataan Guru &amp; Tendik</li>
+          <li>Data kebutuhan guru</li>
+          <li>Rekap keadaan GTK</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="layanan-card">
+      <div class="layanan-header" style="background:rgba(245,158,11,0.05); border-bottom:1px solid #FFFBEB;">
+        <div class="layanan-header-icon" style="background:rgba(245,158,11,0.1);">
+          <i class="fas fa-child" style="color:#F59E0B;"></i>
+        </div>
+        <h6>4. Layanan Murid</h6>
+      </div>
+      <div class="layanan-body pt-2">
+        <ul>
+          <li>Data siswa PAUD &amp; SD</li>
+          <li>Rekap rombel &amp; kelas</li>
+          <li>Statistik peserta didik</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="layanan-card">
+      <div class="layanan-header" style="background:rgba(99,102,241,0.05); border-bottom:1px solid #EEF2FF;">
+        <div class="layanan-header-icon" style="background:rgba(99,102,241,0.1);">
+          <i class="fas fa-chart-line" style="color:#6366F1;"></i>
+        </div>
+        <h6>5. Laporan Bulanan</h6>
+      </div>
+      <div class="layanan-body pt-2">
+        <ul>
+          <li>Rekap laporan per bulan</li>
+          <li>Format &amp; status pengiriman</li>
+          <li>Dashboard monitoring</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="layanan-card">
+      <div class="layanan-header" style="background:rgba(20,184,166,0.05); border-bottom:1px solid #F0FDFA;">
+        <div class="layanan-header-icon" style="background:rgba(20,184,166,0.1);">
+          <i class="fas fa-folder-open" style="color:#14B8A6;"></i>
+        </div>
+        <h6>6. E-File Sekolah</h6>
+      </div>
+      <div class="layanan-body pt-2">
+        <ul>
+          <li>Arsip digital per sekolah</li>
+          <li>Kelola &amp; lihat dokumen</li>
+          <li>Pengelolaan berkas online</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ====================================================
+       STATISTIK / COUNTER
+       ==================================================== -->
+  <div class="home-stats-bar">
+    <div class="stat-pill">
+      <div class="stat-pill-icon"><i class="fas fa-chart-bar"></i></div>
+      <div class="stat-pill-num counter-anim" id="stat-total">0</div>
+      <div class="stat-pill-lbl">Total Akses</div>
+    </div>
+    <div class="stat-pill">
+      <div class="stat-pill-icon"><i class="fas fa-calendar-day"></i></div>
+      <div class="stat-pill-num counter-anim" id="stat-today">0</div>
+      <div class="stat-pill-lbl">Hari Ini</div>
+    </div>
+    <div class="stat-pill">
+      <div class="stat-pill-icon"><i class="fas fa-users"></i></div>
+      <div class="stat-pill-num counter-anim" id="stat-users">0</div>
+      <div class="stat-pill-lbl">User Terdaftar</div>
+    </div>
+    <div class="stat-pill">
+      <div class="stat-pill-icon"><i class="fas fa-circle" style="color:#4ade80; font-size:0.7rem;"></i></div>
+      <div class="stat-pill-num counter-anim" id="stat-online">0</div>
+      <div class="stat-pill-lbl">Sedang Online</div>
+    </div>
+  </div>
+
+</div><!-- /px-3 -->
+
 <script>
-  // ============================================
-  // 1. FUNGSI JAM & TANGGAL (JALAN OTOMATIS)
-  // ============================================
-  function startTime() {
-    var today = new Date();
-    var h = today.getHours();
-    var m = today.getMinutes();
-    var s = today.getSeconds();
-    
-    // Ucapan Selamat
-    var greet = "Sugeng Enjang"; 
-    if (h >= 0 && h < 11) greet = "Selamat Pagi";
-    else if (h >= 11 && h < 15) greet = "Selamat Siang";
-    else if (h >= 15 && h < 18) greet = "Selamat Sore";
-    else greet = "Selamat Malam";
-    
-    if(document.getElementById('greeting-text')) {
-      document.getElementById('greeting-text').innerHTML = greet + ",";
-    }
+/* ---- Jam & Tanggal ---- */
+function startTime() {
+  var t = new Date();
+  var h = t.getHours(), m = t.getMinutes(), s = t.getSeconds();
 
-    // Jam Digital
-    m = checkTime(m);
-    s = checkTime(s);
-    if(document.getElementById('display-jam-home')) {
-      document.getElementById('display-jam-home').innerHTML = h + ":" + m + ":" + s;
-    }
+  // Greeting
+  var greet, icon;
+  if      (h >= 0  && h < 11) { greet = 'Selamat Pagi,';   icon = 'fa-sun';  }
+  else if (h >= 11 && h < 15) { greet = 'Selamat Siang,';  icon = 'fa-cloud-sun'; }
+  else if (h >= 15 && h < 18) { greet = 'Selamat Sore,';   icon = 'fa-cloud'; }
+  else                         { greet = 'Selamat Malam,';  icon = 'fa-moon'; }
 
-    // Tanggal Nasional
-    var optionsTgl = { day: 'numeric', month: 'long', year: 'numeric' };
-    var tglNasional = today.toLocaleDateString('id-ID', optionsTgl); 
-    if(document.getElementById('display-tgl-nasional')) {
-      document.getElementById('display-tgl-nasional').innerHTML = tglNasional;
-    }
+  var elGreet = document.getElementById('greeting-text');
+  var elIcon  = document.getElementById('greeting-icon');
+  if (elGreet) elGreet.textContent = greet;
+  if (elIcon)  elIcon.className = 'fas ' + icon;
 
-    // Tanggal Jawa & Pasaran
-    var jawaInfo = getJavaneseDateInfo(today);
-    var optionsHari = { weekday: 'long' };
-    var hariNasional = today.toLocaleDateString('id-ID', optionsHari).toUpperCase(); 
+  // Jam
+  var pad = function(v) { return v < 10 ? '0' + v : '' + v; };
+  var elJam = document.getElementById('display-jam-home');
+  if (elJam) elJam.textContent = pad(h) + ':' + pad(m) + ':' + pad(s);
 
-    if(document.getElementById('display-hari-pasaran')) {
-      document.getElementById('display-hari-pasaran').innerHTML = hariNasional + " " + jawaInfo.pasaran;
-    }
-    
-    if(document.getElementById('display-tgl-jawa')) {
-      document.getElementById('display-tgl-jawa').innerHTML = `${jawaInfo.tgl} ${jawaInfo.bulan} ${jawaInfo.tahun}`;
-    }
-    
-    setTimeout(startTime, 1000);
+  // Tanggal
+  var opts = { weekday:'long', day:'numeric', month:'long', year:'numeric' };
+  var elTgl = document.getElementById('display-tgl-nasional');
+  if (elTgl) elTgl.textContent = t.toLocaleDateString('id-ID', opts);
+
+  // Tanggal Jawa
+  var jawa = getJavaneseDateInfo(t);
+  var hariNas = t.toLocaleDateString('id-ID', {weekday:'long'}).toUpperCase();
+  var elPas = document.getElementById('display-hari-pasaran');
+  if (elPas) elPas.textContent = hariNas + ' ' + jawa.pasaran;
+  var elJawa = document.getElementById('display-tgl-jawa');
+  if (elJawa) elJawa.textContent = jawa.tgl + ' ' + jawa.bulan + ' ' + jawa.tahun + ' J';
+
+  setTimeout(startTime, 1000);
+}
+
+function getJavaneseDateInfo(date) {
+  var base = new Date(1900, 0, 1);
+  var diff = Math.floor((date - base) / 86400000);
+  var pas  = ['Pahing','Pon','Wage','Kliwon','Legi'];
+  var idx  = ((diff % 5) + 5) % 5;
+  try {
+    var intl = new Intl.DateTimeFormat('id-u-ca-islamic-civil', {day:'numeric',month:'long',year:'numeric'});
+    var parts = intl.formatToParts(date);
+    var d='',mo='',y='';
+    parts.forEach(function(p){
+      if(p.type==='day') d=p.value;
+      if(p.type==='month') mo=p.value;
+      if(p.type==='year') y=p.value;
+    });
+    var map = {
+      "Muharram":"Sura","Safar":"Sapar","Rabi'ul-Awwal":"Mulud","Rabi'ul-Akhir":"Bakda Mulud",
+      "Jumadil-Awwal":"Jumadil Awal","Jumadil-Akhir":"Jumadil Akhir",
+      "Rajab":"Rejeb","Sya'ban":"Ruwah","Ramadhan":"Pasa","Syawal":"Sawal",
+      "Dzul-Qa'dah":"Sela","Dzul-Hijjah":"Besar"
+    };
+    return { tgl: d, bulan: map[mo]||mo, tahun: parseInt(y)+512, pasaran: pas[idx] };
+  } catch(e) {
+    return { tgl: date.getDate(), bulan:'', tahun:'', pasaran: pas[idx] };
   }
+}
 
-  function checkTime(i) {
-    if (i < 10) {i = "0" + i};
-    return i;
-  }
-
-  // Rumus Penanggalan Jawa
-  function getJavaneseDateInfo(date) {
-    var knownDate = new Date(1900, 0, 1); // Senin Pahing
-    var oneDay = 24 * 60 * 60 * 1000;
-    var dayDiff = Math.floor((date - knownDate) / oneDay);
-    var pasarans = ['Pahing', 'Pon', 'Wage', 'Kliwon', 'Legi'];
-    var pasaranIndex = dayDiff % 5;
-    if (pasaranIndex < 0) pasaranIndex += 5;
-    var namaPasaran = pasarans[pasaranIndex];
-
-    try {
-        var intl = new Intl.DateTimeFormat('id-ID-u-ca-islamic-civil', {
-            day: 'numeric', month: 'long', year: 'numeric'
-        });
-        var parts = intl.formatToParts(date);
-        var tglH = "", blnH = "", thnH = "";
-        parts.forEach(p => {
-            if(p.type === 'day') tglH = p.value;
-            if(p.type === 'month') blnH = p.value;
-            if(p.type === 'year') thnH = p.value;
-        });
-
-        var mapBulan = {
-            "Muharram": "Sura", "Sura": "Sura", "Safar": "Sapar", "Sapar": "Sapar",
-            "Rabi’ul-Awwal": "Mulud", "Rabiul Awal": "Mulud", "Rabi’ul-Akhir": "Bakda Mulud", "Rabiul Akhir": "Bakda Mulud",
-            "Jumadil-Awwal": "Jumadil Awal", "Jumadil Awal": "Jumadil Awal", "Jumadil-Akhir": "Jumadil Akhir", "Jumadil Akhir": "Jumadil Akhir",
-            "Rajab": "Rejeb", "Rejeb": "Rejeb", "Sya’ban": "Ruwah", "Syaban": "Ruwah",
-            "Ramadhan": "Pasa", "Pasa": "Pasa", "Syawal": "Sawal", "Sawal": "Sawal",
-            "Dzul-Qa’dah": "Sela", "Dzulkaidah": "Sela", "Dzul-Hijjah": "Besar", "Dzulhijjah": "Besar"
-        };
-        
-        var thnJawa = parseInt(thnH) + 512; 
-        var nmBulanJawa = mapBulan[blnH] || blnH;
-
-        return { tgl: tglH, bulan: nmBulanJawa, tahun: thnJawa, pasaran: namaPasaran };
-    } catch (e) {
-        return { tgl: date.getDate(), bulan: "", tahun: "", pasaran: namaPasaran };
+/* ---- Muat Data User dari LocalStorage ---- */
+function muatDataUserLocal() {
+  try {
+    var raw = localStorage.getItem('siksUser');
+    if (!raw) return;
+    var u = JSON.parse(raw);
+    var nama = u.nama_lengkap || u.fullName || u.nama || u.username || 'User';
+    var el = document.getElementById('user-fullname-home');
+    if (el) el.textContent = nama;
+    // Log kunjungan
+    if (typeof google !== 'undefined') {
+      google.script.run.logUserVisit(u);
     }
-  }
+  } catch(e) {}
+}
 
-  // ============================================
-  // 2. LOAD DATA USER DARI LOCALSTORAGE (SOLUSI BARU)
-  // ============================================
-  function muatDataUserLocal() {
-    try {
-        // Ambil dari penyimpanan browser (bukan server)
-        var dataLocal = localStorage.getItem("siksUser");
-        if (!dataLocal) return;
+/* ---- Statistik Counter ---- */
+function animateCounter(id, end, dur) {
+  var el = document.getElementById(id);
+  if (!el || !end) return;
+  var start = 0, step = end / (dur / 16);
+  var timer = setInterval(function() {
+    start += step;
+    if (start >= end) { start = end; clearInterval(timer); }
+    el.textContent = Math.floor(start).toLocaleString('id-ID');
+  }, 16);
+}
 
-        var u = JSON.parse(dataLocal);
-
-        // A. Update Teks Nama
-        var namaTampil = u.nama_lengkap || u.fullName || u.nama || u.username || "User";
-        $('#user-fullname-home').text(namaTampil); 
-        
-        // Update elemen lain jika ada di halaman home (opsional)
-        // $('.user-capsule span').text(namaTampil); // Sudah di handle sidebar
-
-        // B. Update Foto Profil
-        if (u.photo && u.photo.trim() !== "") {
-            var photoId = u.photo.trim();
-            var photoUrl = "https://drive.google.com/thumbnail?id=" + photoId + "&sz=s200";
-            // Hanya update foto di area konten home saja (jika ada)
-            // Sidebar sudah dihandle oleh javascript.html utama
-        } 
-
-        // C. LOGIKA ADMIN (Untuk Menu Home Widget)
-        var roleUser = (u.role || "").toString().toLowerCase();
-        
-        if (roleUser.includes('admin')) {
-            // Widget khusus admin di Home (jika ada)
-            $('.widget-admin-only').show();
-        } else {
-            $('.widget-admin-only').hide();
-        }
-
-        // D. REKAM JEJAK DIGITAL (CCTV) - Tetap lapor ke server
-        // Kita kirim data yang kita punya di browser ke server untuk dicatat
-        google.script.run.logUserVisit(u);
-
-    } catch (e) {
-        console.log("Gagal memuat data user lokal di Home: " + e.message);
+if (typeof google !== 'undefined' && google.script) {
+  google.script.run.withSuccessHandler(function(data) {
+    if (!data) return;
+    animateCounter('stat-total',  data.total,  1800);
+    animateCounter('stat-today',  data.today,  1800);
+    animateCounter('stat-users',  data.users,  1800);
+    animateCounter('stat-online', data.online, 1800);
+    if (data.info) {
+      var el = document.getElementById('dynamic-marquee-text');
+      if (el) el.innerHTML = data.info;
     }
-  }
+  }).withFailureHandler(function(){}).getVisitorStats();
+}
 
-  // ============================================
-  // 3. LOAD STATISTIK & RUNNING TEXT
-  // ============================================
-  google.script.run.withSuccessHandler(function(data){
-      if(data) {
-          // A. Update Angka Statistik (Animasi)
-          animateValue("stat-total", 0, data.total, 2000);
-          animateValue("stat-today", 0, data.today, 2000);
-          animateValue("stat-users", 0, data.users, 2000);
-          
-          // BARU: Update Angka Online
-          // Pastikan Anda sudah memberi id="stat-online" di HTML-nya
-          animateValue("stat-online", 0, data.online, 2000); 
-
-          // B. Update Running Text
-          if(data.info && data.info !== "") {
-             $('#dynamic-marquee-text').html(data.info);
-          }
-      }
-  }).getVisitorStats();
-
-  // Helper: Fungsi Animasi Angka
-  function animateValue(id, start, end, duration) {
-      if (start === end) return;
-      var range = end - start;
-      var current = start;
-      var increment = end > start ? 1 : -1;
-      var stepTime = Math.abs(Math.floor(duration / range));
-      if(stepTime < 1) stepTime = 1; 
-      
-      var obj = document.getElementById(id);
-      if(obj){
-        var timer = setInterval(function() {
-            current += increment;
-            obj.innerHTML = current.toLocaleString('id-ID');
-            if (current == end) { clearInterval(timer); }
-        }, stepTime);
-      }
-  }
-
-  // Jalankan Saat Halaman Selesai Dimuat
-  $(document).ready(function() {
-      startTime();
-      muatDataUserLocal();
-      if(typeof setSidebarActive === 'function') {
-          setSidebarActive("Beranda"); 
-      }
-  });
+/* ---- Init ---- */
+$(document).ready(function() {
+  startTime();
+  muatDataUserLocal();
+});
 </script>
