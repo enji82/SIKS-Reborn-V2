@@ -1,5 +1,55 @@
 <div class="content-header pb-0">
   <div class="container-fluid">
+    <style>
+        /* TURBO & GLASSMORPHISM REFINEMENTS */
+        .sk-turbo-badge {
+            position: fixed; bottom: 20px; right: 20px;
+            background: rgba(123, 0, 0, 0.9); color: #fff;
+            padding: 6px 14px; border-radius: 50px;
+            font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+            z-index: 9999; backdrop-filter: blur(8px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: none; align-items: center; gap: 6px;
+            animation: skReveal 0.4s ease forwards;
+        }
+        .card-sultan {
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.85) !important;
+            border: 1px solid rgba(255, 255, 255, 0.4) !important;
+            border-radius: 16px !important;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05) !important;
+            overflow: hidden;
+        }
+        .table-premium {
+            border-collapse: separate !important;
+            border-spacing: 0 !important;
+        }
+        .table-premium thead th {
+            background: rgba(123, 0, 0, 0.03) !important;
+            color: #7B0000 !important;
+            font-size: 0.75rem !important;
+            font-weight: 800 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.8px !important;
+            border-bottom: 2px solid #7B0000 !important;
+            vertical-align: middle !important;
+        }
+        .table-premium tbody td {
+            vertical-align: middle !important;
+            border-bottom: 1px solid #F1F5F9 !important;
+            background: transparent !important;
+        }
+        .style-sultan-solid {
+            border: 0; height: 3px;
+            background: linear-gradient(to right, #7B0000, #EAC947, transparent);
+            margin: 10px 0 20px 0;
+            border-radius: 3px;
+        }
+    </style>
+    <div id="tugas_turboBadge" class="sk-turbo-badge">
+        <i class="fas fa-bolt"></i> TURBO LOADING ACTIVE
+    </div>
+    
     <div class="row mb-2">
       <div class="col-sm-12">
         <h5 class="m-0 font-weight-bold">
@@ -82,9 +132,9 @@
             
             <div id="tugas_loadingState">
                 <div class="d-flex flex-column justify-content-center align-items-center" style="min-height: 50vh;">
-                    <div class="sultan-loading-container text-center">
-                        <i class="fas fa-spinner fa-spin fa-3x text-maroon mb-3"></i>
-                        <h6 class="text-muted font-weight-bold mt-3" id="tugas_loadingText">Mempersiapkan Akses Server...</h6>
+                    <div class="sk-loader-wrapper">
+                        <div class="sk-spinner-premium"></div>
+                        <div class="sk-loading-text" id="tugas_loadingText">Mempersiapkan Akses...</div>
                     </div>
                 </div>
             </div>
@@ -360,6 +410,7 @@ var TUGAS_USER_NPSN = "";
 var TUGAS_UNIT_TERKUNCI = "";
 
 var TUGAS_CURRENT_FILE_URL = "";
+var TUGAS_PREV_DATA_JSON = null; // Anti-flash Diff Check
 
 // =================================================================
 // 1. INITIALIZATION & SPA VACCINE (BAB I)
@@ -470,23 +521,49 @@ function tugas_validasiAksesUser() {
 // =================================================================
 // 3. FETCH DATA & FILTER (BAB VII - Turbo Seamless)
 // =================================================================
+function tugas_getLoaderHtml(msg) {
+    return '<div class="sk-loader-wrapper"><div class="sk-spinner-premium"></div><div class="sk-loading-text">' + (msg || 'Memuat...') + '</div></div>';
+}
+
 function tugas_tarikDataServer() {
     var btn = $('#tugas_btnCari');
-    btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin text-maroon"></i>');
+    var cacheKey = 'tugas_cache_full';
     
-    if (!$.fn.DataTable.isDataTable('#tugas_tabelUtama')) {
+    btn.prop('disabled', true).html('<i class="fas fa-bolt fa-spin text-maroon"></i>');
+    
+    // TURBO LOGIC: Load from cache first
+    var cachedData = sessionStorage.getItem(cacheKey);
+    if (cachedData) {
+        try {
+            TUGAS_CACHE_DATA = JSON.parse(cachedData);
+            tugas_renderTabel(TUGAS_CACHE_DATA); 
+            $('#tugas_loadingState').hide();
+            $('#tugas_tableState').show();
+            $('#tugas_turboBadge').css('display', 'flex').delay(2000).fadeOut();
+        } catch(e) { sessionStorage.removeItem(cacheKey); }
+    }
+
+    if (!$.fn.DataTable.isDataTable('#tugas_tabelUtama') && !cachedData) {
         $('#tugas_tableState').hide();
-        $('#tugas_loadingText').html('Menyinkronkan data dari server...');
+        $('#tugas_loadingText').html('Menyinkronkan data...');
         $('#tugas_loadingState').show();
     }
 
     google.script.run.withSuccessHandler(function(dataRes) {
         btn.prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon"></i>');
         
-        try {
-            TUGAS_CACHE_DATA = dataRes || [];
+        if (dataRes && !dataRes.error) {
+        // DIFF CHECK: Only render if data changed
+        var freshDataJSON = JSON.stringify(dataRes);
+        if (freshDataJSON === TUGAS_PREV_DATA_JSON) {
+            return;
+        }
             
-            // Inisialisasi DataTables (Turbo Seamless)
+            TUGAS_CACHE_DATA = dataRes;
+            sessionStorage.setItem(cacheKey, freshDataJSON);
+            TUGAS_PREV_DATA_JSON = freshDataJSON;
+            
+            // Re-init DataTable if needed
             if (!$.fn.DataTable.isDataTable('#tugas_tabelUtama')) {
                 TUGAS_TABEL_INSTANCE = $('#tugas_tabelUtama').DataTable({
                     "destroy": true, "ordering": false, "pageLength": 10, "autoWidth": false,
@@ -499,30 +576,24 @@ function tugas_tarikDataServer() {
                         { "targets": [1,4,6,8,9,10,11], "className": "text-left align-middle" },
                         { "targets": [2,3,5,7], "className": "text-center align-middle" }
                     ],
-                    "language": { "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", "emptyTable": "Tidak ditemukan data SK untuk filter tersebut." }
+                    "language": { "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", "emptyTable": "Tidak ditemukan data." }
                 });
             }
 
             tugas_populateFilterOptions(); 
             tugas_terapkanFilterLokal(); 
             
-            // THE MAGIC SWITCH (Tanpa Animasi, Cegah Micro-Blink)
             $('#tugas_loadingState').hide();
             $('#tugas_tableState').show();
-            if(TUGAS_TABEL_INSTANCE) { 
-                setTimeout(function(){ TUGAS_TABEL_INSTANCE.columns.adjust(); }, 50); 
-            }
-
-        } catch (e) {
-            $('#tugas_tableState').hide();
-            $('#tugas_loadingState').show();
-            $('#tugas_loadingText').html('<span class="text-danger"><i class="fas fa-exclamation-triangle mb-2"></i><br>Gagal merakit tabel: ' + tugas_escapeHtml(e.message) + '</span>');
+            if(TUGAS_TABEL_INSTANCE) { setTimeout(function(){ TUGAS_TABEL_INSTANCE.columns.adjust(); }, 50); }
         }
     }).withFailureHandler(function(e){
         btn.prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon"></i>');
-        $('#tugas_tableState').hide();
-        $('#tugas_loadingState').show();
-        $('#tugas_loadingText').html('<span class="text-danger"><i class="fas fa-wifi mb-2"></i><br>Koneksi Terputus.</span>');
+        if (!TUGAS_CACHE_DATA.length) {
+            $('#tugas_tableState').hide();
+            $('#tugas_loadingState').show();
+            $('#tugas_loadingText').html('<span class="text-danger">Koneksi Terputus.</span>');
+        }
     }).getDaftarSK(); 
 }
 
@@ -1013,12 +1084,16 @@ function tugas_parseDateTime(str) {
     if (!str || str === '-' || str === '') return 0; 
     try { 
         var cleanStr = String(str).replace(/'/g, "").trim();
-        var p = cleanStr.split(' '); var dateParts = p[0].split(/[-/]/); var timeParts = (p[1] || "00:00:00").split(':');
+        var p = cleanStr.split(' '); 
+        var dateParts = p[0].split(/[-/]/); 
+        var timeParts = (p[1] || "00:00:00").split(':');
         var y, m, d;
-        if(dateParts[0].length === 4) { y = parseInt(dateParts[0]); m = parseInt(dateParts[1])-1; d = parseInt(dateParts[2]); } 
-        else { y = parseInt(dateParts[2]); m = parseInt(dateParts[1])-1; d = parseInt(dateParts[0]); }
-        var hr = parseInt(timeParts[0] || 0); var mn = parseInt(timeParts[1] || 0); var sc = parseInt(timeParts[2] || 0);
-        return new Date(y, m, d, hr, mn, sc).getTime(); 
+        if(dateParts[0].length === 4) { 
+            y = parseInt(dateParts[0]); m = parseInt(dateParts[1])-1; d = parseInt(dateParts[2]); 
+        } else { 
+            y = parseInt(dateParts[2]); m = parseInt(dateParts[1])-1; d = parseInt(dateParts[0]); 
+        }
+        return new Date(y, m, d, parseInt(timeParts[0]||0), parseInt(timeParts[1]||0), parseInt(timeParts[2]||0)).getTime(); 
     } catch(e) { return 0; } 
 }
 </script>
