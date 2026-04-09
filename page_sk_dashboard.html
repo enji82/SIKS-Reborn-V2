@@ -1,88 +1,129 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 
 <style>
-/* ========== SK DASHBOARD PREMIUM STYLES (CODEBYTE VERSION) ========== */
-:root {
+  /* ========== SK DASHBOARD PREMIUM STYLES (CODEBYTE VERSION) ========== */
+  :root {
     --sk-radius: 16px;
-    --sk-shadow: 0 10px 30px rgba(0,0,0,0.08);
-}
+    --sk-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  }
 
-.sk-dash-filter-bar {
+  .sk-dash-filter-bar {
     background: #ffffff;
     border: 1px solid #E2E8F0;
     border-radius: var(--sk-radius);
     padding: 0.85rem 1.25rem;
     margin-bottom: 1.5rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-}
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  }
 
-/* KPI Cards Premium */
-.sk-kpi-card {
+  /* KPI Cards Premium */
+  .sk-kpi-card {
     border-radius: var(--sk-radius);
     padding: 1.5rem;
     position: relative;
     overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.15);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     height: 100%;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: default;
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
-.sk-kpi-card:hover {
+  }
+
+  .sk-kpi-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
-}
-.sk-kpi-card .kpi-icon-bg {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+  }
+
+  .sk-kpi-card .kpi-icon-bg {
     position: absolute;
-    top: -15px; right: -15px;
+    top: -15px;
+    right: -15px;
     font-size: 5rem;
     opacity: 0.1;
     transform: rotate(-15deg);
-}
-.sk-kpi-card .kpi-number {
+  }
+
+  .sk-kpi-card .kpi-number {
     font-size: 2.5rem;
     font-weight: 800;
     line-height: 1;
     margin-bottom: 0.25rem;
     letter-spacing: -1px;
-}
-.sk-kpi-card .kpi-label {
+  }
+
+  .sk-kpi-card .kpi-label {
     font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.5px;
     text-transform: uppercase;
     opacity: 0.9;
-}
-.sk-kpi-card .kpi-sub {
+  }
+
+  .sk-kpi-card .kpi-sub {
     font-size: 0.7rem;
     opacity: 0.75;
     margin-top: 0.6rem;
     padding-top: 0.6rem;
-    border-top: 1px solid rgba(255,255,255,0.1);
-}
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
 
-/* Animations */
-@keyframes skReveal {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+  /* Animations */
+  @keyframes skReveal {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
 
-.sk-animate-reveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .sk-animate-reveal {
     animation: skReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
+  }
 
-/* Card variants - Codebyte Palette */
-.kpi-main    { background: linear-gradient(135deg, #7B0000 0%, #4A0000 100%); color: #fff; box-shadow: 0 10px 25px rgba(123,0,0,0.25); }
-.kpi-gold    { background: linear-gradient(135deg, #EAC947 0%, #C0A020 100%); color: #1e293b; box-shadow: 0 10px 25px rgba(234,201,71,0.25); }
-.kpi-slate   { background: linear-gradient(135deg, #334155 0%, #1e293b 100%); color: #ffffff !important; box-shadow: 0 10px 25px rgba(51,65,85,0.25); }
-.kpi-slate .kpi-number, .kpi-slate .kpi-number span, .kpi-slate .kpi-number small { color: #ffffff !important; }
-.kpi-white   { background: #ffffff; color: #1e293b; border: 1px solid #E2E8F0; box-shadow: var(--sk-shadow); }
-.kpi-white .kpi-sub { border-top: 1px solid #F1F5F9; }
+  /* Card variants - Codebyte Palette */
+  .kpi-main {
+    background: linear-gradient(135deg, #7B0000 0%, #4A0000 100%);
+    color: #fff;
+    box-shadow: 0 10px 25px rgba(123, 0, 0, 0.25);
+  }
 
-/* Status Infocards */
-.sk-info-pill {
+  .kpi-gold {
+    background: linear-gradient(135deg, #EAC947 0%, #C0A020 100%);
+    color: #1e293b;
+    box-shadow: 0 10px 25px rgba(234, 201, 71, 0.25);
+  }
+
+  .kpi-slate {
+    background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
+    color: #ffffff !important;
+    box-shadow: 0 10px 25px rgba(51, 65, 85, 0.25);
+  }
+
+  .kpi-slate .kpi-number,
+  .kpi-slate .kpi-number span,
+  .kpi-slate .kpi-number small {
+    color: #ffffff !important;
+  }
+
+  .kpi-white {
+    background: #ffffff;
+    color: #1e293b;
+    border: 1px solid #E2E8F0;
+    box-shadow: var(--sk-shadow);
+  }
+
+  .kpi-white .kpi-sub {
+    border-top: 1px solid #F1F5F9;
+  }
+
+  /* Status Infocards */
+  .sk-info-pill {
     background: #ffffff;
     border-radius: var(--sk-radius);
     padding: 1.1rem 1.25rem;
@@ -92,41 +133,62 @@
     gap: 1.1rem;
     transition: all 0.2s ease;
     height: 100%;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-}
-.sk-info-pill:hover { 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  }
+
+  .sk-info-pill:hover {
     transform: scale(1.02);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.06); 
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
     border-color: #E2E8F0;
-}
-.sk-info-pill .pill-icon {
-    width: 48px; height: 48px;
+  }
+
+  .sk-info-pill .pill-icon {
+    width: 48px;
+    height: 48px;
     border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 1.35rem;
     flex-shrink: 0;
-}
-.sk-info-pill .pill-value { font-size: 1.7rem; font-weight: 800; color: #1e293b; line-height: 1; }
-.sk-info-pill .pill-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #64748b; margin-top: 3px; }
+  }
 
-/* Panels & Charts */
-.sk-panel {
+  .sk-info-pill .pill-value {
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: #1e293b;
+    line-height: 1;
+  }
+
+  .sk-info-pill .pill-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #64748b;
+    margin-top: 3px;
+  }
+
+  /* Panels & Charts */
+  .sk-panel {
     background: #ffffff;
     border-radius: var(--sk-radius);
     border: 1px solid #E2E8F0;
     box-shadow: var(--sk-shadow);
     overflow: hidden;
     height: 100%;
-}
-.sk-panel .panel-header {
+  }
+
+  .sk-panel .panel-header {
     padding: 1.2rem 1.5rem;
     border-bottom: 1px solid #F1F5F9;
     background: #FAFBFC;
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-.sk-panel .panel-title {
+  }
+
+  .sk-panel .panel-title {
     font-size: 0.95rem;
     font-weight: 700;
     color: #1e293b;
@@ -134,45 +196,86 @@
     display: flex;
     align-items: center;
     gap: 0.6rem;
-}
+  }
 
-/* Timeline & Lists */
-.sk-timeline-item {
-    display: flex; align-items: flex-start; gap: 1rem;
+  /* Timeline & Lists */
+  .sk-timeline-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
     padding: 1rem 1.5rem;
     border-bottom: 1px solid #F1F5F9;
     transition: background 0.2s;
-}
-.sk-timeline-item:hover { background: #F8FAFC; }
-.sk-timeline-icon {
-    width: 40px; height: 40px;
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.9rem; flex-shrink: 0;
-}
-.sk-timeline-school { font-size: 0.88rem; font-weight: 700; color: #1e293b; margin-bottom: 2px; }
-.sk-timeline-meta { font-size: 0.75rem; color: #64748b; }
+  }
 
-.sk-belum-item {
-    display: flex; align-items: center; gap: 0.75rem;
+  .sk-timeline-item:hover {
+    background: #F8FAFC;
+  }
+
+  .sk-timeline-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+
+  .sk-timeline-school {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 2px;
+  }
+
+  .sk-timeline-meta {
+    font-size: 0.75rem;
+    color: #64748b;
+  }
+
+  .sk-belum-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
     padding: 0.8rem 1.5rem;
     border-bottom: 1px solid #F1F5F9;
-    font-size: 0.85rem; font-weight: 600; color: #334155;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #334155;
     transition: all 0.2s;
-}
-.sk-belum-item:hover { background: #FEF2F2; color: #B91C1C; }
-.sk-belum-num {
-    width: 24px; height: 24px; border-radius: 6px;
-    background: #FEE2E2; color: #EF4444;
-    font-size: 0.7rem; font-weight: 800;
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-}
+  }
 
-/* Responsive adjust */
-@media (max-width: 768px) {
-    .sk-kpi-card .kpi-number { font-size: 2rem; }
-    .sk-panel .panel-header { padding: 1rem; }
-}
+  .sk-belum-item:hover {
+    background: #FEF2F2;
+    color: #B91C1C;
+  }
+
+  .sk-belum-num {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    background: #FEE2E2;
+    color: #EF4444;
+    font-size: 0.7rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* Responsive adjust */
+  @media (max-width: 768px) {
+    .sk-kpi-card .kpi-number {
+      font-size: 2rem;
+    }
+
+    .sk-panel .panel-header {
+      padding: 1rem;
+    }
+  }
 </style>
 
 <div class="content-header pb-0">
@@ -195,18 +298,21 @@
       <div class="d-flex align-items-center flex-wrap" style="gap:1rem;">
         <div class="d-flex align-items-center" style="gap:0.5rem;">
           <span class="material-symbols-outlined text-maroon" style="font-size:20px;">calendar_today</span>
-          <select id="dashsk_filterTahun" class="form-control form-control-sm border-0 font-weight-bold" style="width:auto; min-width:110px; background:transparent; cursor:pointer;"></select>
+          <select id="dashsk_filterTahun" class="form-control form-control-sm border-0 font-weight-bold"
+            style="width:auto; min-width:110px; background:transparent; cursor:pointer;"></select>
         </div>
         <div class="d-flex align-items-center" style="gap:0.5rem; border-left:1px solid #E2E8F0; padding-left:1rem;">
           <span class="material-symbols-outlined text-maroon" style="font-size:20px;">layers</span>
-          <select id="dashsk_filterSemester" class="form-control form-control-sm border-0 font-weight-bold" style="width:auto; min-width:140px; background:transparent; cursor:pointer;">
+          <select id="dashsk_filterSemester" class="form-control form-control-sm border-0 font-weight-bold"
+            style="width:auto; min-width:140px; background:transparent; cursor:pointer;">
             <option value="">— Semua Semester —</option>
             <option value="Semester 1">Semester 1</option>
             <option value="Semester 2">Semester 2</option>
           </select>
         </div>
       </div>
-      <button id="dashsk_btnRefresh" class="btn btn-sm btn-maroon px-3 py-1 font-weight-bold shadow-sm" style="border-radius:8px;">
+      <button id="dashsk_btnRefresh" class="btn btn-sm btn-maroon px-3 py-1 font-weight-bold shadow-sm"
+        style="border-radius:8px;">
         <i class="fas fa-sync-alt mr-1"></i> Perbarui Data
       </button>
     </div>
@@ -217,7 +323,7 @@
         <div class="sk-kpi-card kpi-main">
           <i class="fas fa-file-export kpi-icon-bg"></i>
           <div class="kpi-number dashsk-count-up" id="dashsk_valTotal">0</div>
-          <div class="kpi-label">Berkas Masuk</div>
+          <div class="kpi-label">Total Berkas Masuk</div>
           <div class="kpi-sub" id="dashsk_subTotal">—</div>
         </div>
       </div>
@@ -241,7 +347,7 @@
         <div class="sk-kpi-card kpi-white" id="dashsk_btnModalBelum" style="cursor:pointer;">
           <i class="fas fa-clock kpi-icon-bg" style="color:#FEE2E2;"></i>
           <div class="kpi-number text-danger dashsk-count-up" id="dashsk_valBelum">0</div>
-          <div class="kpi-label text-muted">Belum Lapor</div>
+          <div class="kpi-label text-muted">Sekolah Belum Lapor</div>
           <div class="kpi-sub" style="color:#EF4444; font-weight:700;">Lihat Daftar &rarr;</div>
         </div>
       </div>
@@ -254,7 +360,7 @@
           <div class="pill-icon" style="background:#FFF9E6; color:#D97706;"><i class="fas fa-hourglass-half"></i></div>
           <div>
             <div class="pill-value dashsk-count-up" id="dashsk_valDiproses">0</div>
-            <div class="pill-label">Menunggu Proses</div>
+            <div class="pill-label">Dalam Proses</div>
           </div>
         </div>
       </div>
@@ -341,7 +447,8 @@
             </button>
           </div>
           <div class="p-3 bg-light">
-            <input type="text" id="dashsk_cariBelumLangsung" class="form-control form-control-sm" placeholder="Cari nama sekolah..." style="border-radius:8px; border:1px solid #E2E8F0;">
+            <input type="text" id="dashsk_cariBelumLangsung" class="form-control form-control-sm"
+              placeholder="Cari nama sekolah..." style="border-radius:8px; border:1px solid #E2E8F0;">
           </div>
           <div id="dashsk_containerBelum" style="max-height:350px; overflow-y:auto;">
             <div id="dashsk_listBelumBody"></div>
@@ -365,330 +472,334 @@
 
 <!-- TURBO STATUS BADGE -->
 <div id="dashsk_turboBadge" class="sk-turbo-badge">
-    <i class="fas fa-bolt"></i> TURBO LOADING ACTIVE
+  <i class="fas fa-bolt"></i> TURBO LOADING ACTIVE
 </div>
 
 <!-- MODAL BELUM LAPOR -->
 <div class="modal fade" id="dashsk_modalBelumLapor" tabindex="-1" role="dialog" data-backdrop="static">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content border-0 shadow-lg modal-content-sultan">
-            <div class="modal-header bg-maroon text-white py-3">
-                <h5 class="modal-title font-weight-bold"><i class="fas fa-clipboard-list mr-2"></i>Daftar Sekolah Belum Lapor</h5>
-                <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
-            </div>
-            <div class="modal-body bg-light p-4">
-                <div class="alert alert-warning mb-3 py-2 px-3 small shadow-sm border-warning">
-                    <i class="fas fa-info-circle mr-1"></i> Menampilkan data Awal Semester periode: <b id="dashsk_lblPeriodeBelum" class="text-dark">-</b>
-                </div>
-                <input type="text" class="form-control form-control-sultan mb-3 font-weight-bold" id="dashsk_inputCariBelumModal" placeholder="Ketik nama sekolah untuk mencari cepat...">
-                <div class="bg-white border rounded shadow-sm" style="max-height: 350px; overflow-y: auto;">
-                    <div id="dashsk_listBelumBodyModal"></div>
-                </div>
-            </div>
-            <div class="modal-footer bg-white p-3 justify-content-between">
-                <button type="button" class="btn btn-default shadow-sm font-weight-bold px-4" data-dismiss="modal">Tutup</button>
-                <button type="button" class="btn btn-maroon font-weight-bold shadow-sm px-4" id="dashsk_btnSalinDaftarModal">
-                    <i class="fas fa-copy mr-1"></i> Salin Daftar
-                </button>
-            </div>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content border-0 shadow-lg modal-content-sultan">
+      <div class="modal-header bg-maroon text-white py-3">
+        <h5 class="modal-title font-weight-bold"><i class="fas fa-clipboard-list mr-2"></i>Daftar Sekolah Belum Lapor
+        </h5>
+        <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
+      </div>
+      <div class="modal-body bg-light p-4">
+        <div class="alert alert-warning mb-3 py-2 px-3 small shadow-sm border-warning">
+          <i class="fas fa-info-circle mr-1"></i> Menampilkan data Awal Semester periode: <b id="dashsk_lblPeriodeBelum"
+            class="text-dark">-</b>
         </div>
+        <input type="text" class="form-control form-control-sultan mb-3 font-weight-bold"
+          id="dashsk_inputCariBelumModal" placeholder="Ketik nama sekolah untuk mencari cepat...">
+        <div class="bg-white border rounded shadow-sm" style="max-height: 350px; overflow-y: auto;">
+          <div id="dashsk_listBelumBodyModal"></div>
+        </div>
+      </div>
+      <div class="modal-footer bg-white p-3 justify-content-between">
+        <button type="button" class="btn btn-default shadow-sm font-weight-bold px-4"
+          data-dismiss="modal">Tutup</button>
+        <button type="button" class="btn btn-maroon font-weight-bold shadow-sm px-4" id="dashsk_btnSalinDaftarModal">
+          <i class="fas fa-copy mr-1"></i> Salin Daftar
+        </button>
+      </div>
     </div>
+  </div>
 </div>
 
 <script>
-    var DASHSK_CHART_STATUS = null;
-    var DASHSK_CHART_TREND = null;
-    var DASHSK_LIST_BELUM_CACHE = [];
-    var DASHSK_USER_IS_ADMIN = false;
-    var DASHSK_IS_FETCHING = false;
-    var DASHSK_LAST_FETCH_TIME = 0;
+  var DASHSK_CHART_STATUS = null;
+  var DASHSK_CHART_TREND = null;
+  var DASHSK_LIST_BELUM_CACHE = [];
+  var DASHSK_USER_IS_ADMIN = false;
+  var DASHSK_IS_FETCHING = false;
+  var DASHSK_LAST_FETCH_TIME = 0;
 
-    $(document).ready(function() {
+  $(document).ready(function () {
+    try {
+      var user = typeof getSesiUser === 'function' ? getSesiUser() : {};
+      DASHSK_USER_IS_ADMIN = (user.role || "").toLowerCase().indexOf("admin") !== -1;
+    } catch (e) { DASHSK_USER_IS_ADMIN = false; }
+
+    dashsk_initFilterDefault();
+
+    $(document).off('change', '#dashsk_filterTahun, #dashsk_filterSemester').on('change', '#dashsk_filterTahun, #dashsk_filterSemester', function () {
+      dashsk_loadDataDashboard(true); // Force refresh on filter change
+    });
+    $(document).off('click', '#dashsk_btnRefresh').on('click', '#dashsk_btnRefresh', function () {
+      dashsk_loadDataDashboard(true);
+    });
+    $(document).off('keyup', '#dashsk_cariBelumLangsung').on('keyup', '#dashsk_cariBelumLangsung', dashsk_filterBelumLangsung);
+    $(document).off('keyup', '#dashsk_inputCariBelumModal').on('keyup', '#dashsk_inputCariBelumModal', dashsk_filterBelumModal);
+    $(document).off('click', '#dashsk_btnSalinDaftar, #dashsk_btnSalinDaftarModal').on('click', '#dashsk_btnSalinDaftar, #dashsk_btnSalinDaftarModal', dashsk_copyListBelum);
+    $(document).off('click', '#dashsk_btnModalBelum').on('click', '#dashsk_btnModalBelum', dashsk_showModalBelum);
+
+    // TURBO START: Delay minimal agar transisi smooth
+    setTimeout(function () { dashsk_loadDataDashboard(); }, 50);
+  });
+
+  function dashsk_initFilterDefault() {
+    var now = new Date();
+    var curMonth = now.getMonth();
+    var curYear = now.getFullYear();
+    var htmlTahun = '';
+    for (var y = 2021; y <= curYear + 1; y++) {
+      var ta = y + "/" + (y + 1);
+      htmlTahun += '<option value="' + ta + '">' + ta + '</option>';
+    }
+    $('#dashsk_filterTahun').html(htmlTahun);
+    var defSemester = (curMonth >= 6) ? "Semester 1" : "Semester 2";
+    var defTahun = (curMonth >= 6) ? curYear + "/" + (curYear + 1) : (curYear - 1) + "/" + curYear;
+    $('#dashsk_filterSemester').val(defSemester);
+    if ($('#dashsk_filterTahun option[value="' + defTahun + '"]').length > 0) {
+      $('#dashsk_filterTahun').val(defTahun);
+    }
+  }
+
+  function dashsk_getLoaderHtml(msg) {
+    return '<div class="sk-loader-wrapper"><div class="sk-spinner-premium"></div><div class="sk-loading-text">' + (msg || 'Memuat...') + '</div></div>';
+  }
+
+  function dashsk_loadDataDashboard(isManual) {
+    var currentTime = new Date().getTime();
+    if (!isManual && (currentTime - DASHSK_LAST_FETCH_TIME < 2000)) return;
+
+    if (DASHSK_IS_FETCHING) return;
+
+    var th = $('#dashsk_filterTahun').val();
+    var sm = $('#dashsk_filterSemester').val();
+    var cacheKey = 'dashsk_cache_' + th + '_' + sm;
+
+    // TURBO LOGIC: Check Cache First
+    if (!isManual) {
+      var cachedData = sessionStorage.getItem(cacheKey);
+      if (cachedData) {
         try {
-            var user = typeof getSesiUser === 'function' ? getSesiUser() : {};
-            DASHSK_USER_IS_ADMIN = (user.role || "").toLowerCase().indexOf("admin") !== -1;
-        } catch(e) { DASHSK_USER_IS_ADMIN = false; }
+          var data = JSON.parse(cachedData);
+          dashsk_renderDashboard(data, true); // Render silently from cache
+          $('#dashsk_turboBadge').css('display', 'flex').delay(2000).fadeOut();
+        } catch (e) { sessionStorage.removeItem(cacheKey); }
+      }
+    }
 
-        dashsk_initFilterDefault();
+    DASHSK_IS_FETCHING = true;
+    DASHSK_LAST_FETCH_TIME = currentTime;
 
-        $(document).off('change', '#dashsk_filterTahun, #dashsk_filterSemester').on('change', '#dashsk_filterTahun, #dashsk_filterSemester', function() {
-            dashsk_loadDataDashboard(true); // Force refresh on filter change
-        });
-        $(document).off('click', '#dashsk_btnRefresh').on('click', '#dashsk_btnRefresh', function() {
-            dashsk_loadDataDashboard(true);
-        });
-        $(document).off('keyup', '#dashsk_cariBelumLangsung').on('keyup', '#dashsk_cariBelumLangsung', dashsk_filterBelumLangsung);
-        $(document).off('keyup', '#dashsk_inputCariBelumModal').on('keyup', '#dashsk_inputCariBelumModal', dashsk_filterBelumModal);
-        $(document).off('click', '#dashsk_btnSalinDaftar, #dashsk_btnSalinDaftarModal').on('click', '#dashsk_btnSalinDaftar, #dashsk_btnSalinDaftarModal', dashsk_copyListBelum);
-        $(document).off('click', '#dashsk_btnModalBelum').on('click', '#dashsk_btnModalBelum', dashsk_showModalBelum);
+    // UI State Loading (Cleaned Up)
+    if (isManual || !sessionStorage.getItem(cacheKey)) {
+      $('.dashsk-count-up').html('<span class="opacity-20">...</span>');
+      $('#dashsk_timelineContainer').html(dashsk_getLoaderHtml('Sinkronisasi aktivitas...'));
+      $('#dashsk_listBelumBody').html(dashsk_getLoaderHtml('Cek kepatuhan...'));
+    }
 
-        // TURBO START: Delay minimal agar transisi smooth
-        setTimeout(function() { dashsk_loadDataDashboard(); }, 50);
+    $('#dashsk_btnRefresh').prop('disabled', true).html('<i class="fas fa-bolt fa-spin mr-1"></i> TURBO...');
+
+    google.script.run
+      .withSuccessHandler(function (data) {
+        DASHSK_IS_FETCHING = false;
+        $('#dashsk_btnRefresh').prop('disabled', false).html('<i class="fas fa-sync-alt mr-1"></i> Refresh');
+
+        if (data && !data.error) {
+          sessionStorage.setItem(cacheKey, JSON.stringify(data)); // Update Cache
+          dashsk_renderDashboard(data);
+        } else {
+          dashsk_renderDashboard(data);
+        }
+      })
+      .withFailureHandler(function (err) {
+        DASHSK_IS_FETCHING = false;
+        $('#dashsk_btnRefresh').prop('disabled', false).html('<i class="fas fa-exclamation-triangle mr-1"></i> Error');
+        if (typeof Sultan !== 'undefined') Sultan.alert('error', 'Koneksi Terputus', err.message);
+      })
+      .getDashboardSK(th, sm);
+  }
+
+  function dashsk_renderDashboard(data, isSilent) {
+    if (!data || data.error) {
+      if (!isSilent && typeof Sultan !== 'undefined') Sultan.notif.gagal(data ? data.error : "Data kosong");
+      return;
+    }
+
+    const ids = ["dashsk_valTotal", "dashsk_valDisetujui", "dashsk_valProgress", "dashsk_valBelum", "dashsk_valDiproses", "dashsk_valRevisi", "dashsk_valDitolak"];
+    const vals = [data.totalMasuk, data.disetujui, data.progress, data.belumLaporCount, data.diproses, data.revisi, data.ditolak];
+
+    ids.forEach((id, i) => {
+      if (isSilent) $('#' + id).text(vals[i]);
+      else dashsk_animateValue(id, vals[i], "");
     });
 
-    function dashsk_initFilterDefault() {
-        var now = new Date();
-        var curMonth = now.getMonth();
-        var curYear = now.getFullYear();
-        var htmlTahun = '';
-        for (var y = 2021; y <= curYear + 1; y++) {
-            var ta = y + "/" + (y + 1);
-            htmlTahun += '<option value="' + ta + '">' + ta + '</option>';
+    $('#dashsk_subTotal').html('Awal: ' + data.totalAwal + ' &bull; Perubahan: ' + data.totalPerubahan);
+    $('#dashsk_subValid').html('Awal: ' + data.validAwal + ' &bull; Perubahan: ' + data.validPerubahan);
+
+    $('#dashsk_txtChartSetuju').text(data.disetujui);
+    $('#dashsk_txtChartProses').text(data.diproses);
+    $('#dashsk_txtChartRevisi').text(data.revisi);
+    $('#dashsk_txtChartTolak').text(data.ditolak);
+
+    dashsk_renderChart(data);
+    dashsk_renderTimeline(data.recent);
+
+    DASHSK_LIST_BELUM_CACHE = data.belumLaporList || [];
+    $('#dashsk_badgeBelumCount').text(DASHSK_LIST_BELUM_CACHE.length);
+    dashsk_renderBelumList(DASHSK_LIST_BELUM_CACHE);
+  }
+
+  function dashsk_renderBelumList(list) {
+    var elBody = $('#dashsk_listBelumBody');
+    var elModal = $('#dashsk_listBelumBodyModal');
+    elBody.empty(); elModal.empty();
+
+    if (list.length === 0) {
+      var msg = '<div class="text-center p-5 text-success"><i class="fas fa-check-circle fa-3x mb-2 d-block"></i><span class="font-weight-bold small">Nihil! Semua Sudah Lapor.</span></div>';
+      elBody.html(msg); elModal.html(msg);
+      return;
+    }
+    var html = "";
+    list.forEach(function (nama, i) {
+      html += '<div class="sk-belum-item">' +
+        '<div class="sk-belum-num">' + (i + 1) + '</div>' +
+        '<span>' + nama + '</span></div>';
+    });
+    elBody.html(html); elModal.html(html);
+  }
+
+  function dashsk_filterBelumLangsung() {
+    var val = $('#dashsk_cariBelumLangsung').val().toLowerCase();
+    $('#dashsk_listBelumBody .sk-belum-item').each(function () {
+      $(this).toggle($(this).text().toLowerCase().indexOf(val) > -1);
+    });
+  }
+
+  function dashsk_filterBelumModal() {
+    var val = $('#dashsk_inputCariBelumModal').val().toLowerCase();
+    $('#dashsk_listBelumBodyModal .sk-belum-item').each(function () {
+      $(this).toggle($(this).text().toLowerCase().indexOf(val) > -1);
+    });
+  }
+
+  function dashsk_showModalBelum() {
+    var th = $('#dashsk_filterTahun').val() || "Semua Tahun";
+    var sm = $('#dashsk_filterSemester').val() || "Semua Semester";
+    $('#dashsk_lblPeriodeBelum').text(sm + " - TA " + th);
+    $('#dashsk_inputCariBelumModal').val("");
+    dashsk_filterBelumModal();
+    $('#dashsk_modalBelumLapor').modal('show');
+  }
+
+  function dashsk_renderTimeline(list) {
+    var el = $('#dashsk_timelineContainer'); el.empty();
+    if (!list || list.length === 0) {
+      el.html('<div class="text-center p-5 text-muted small"><i class="fas fa-inbox fa-3x mb-2 d-block opacity-30"></i>Belum ada aktivitas.</div>');
+      return;
+    }
+    var colorMap = { 'success': { bg: 'rgba(26,127,79,0.1)', fg: '#1a7f4f', icon: 'check-circle' }, 'info': { bg: 'rgba(8,145,178,0.1)', fg: '#0891b2', icon: 'sync-alt' }, 'danger': { bg: 'rgba(220,53,69,0.1)', fg: '#dc3545', icon: 'times-circle' }, 'warning': { bg: 'rgba(245,158,11,0.1)', fg: '#d97706', icon: 'clock' } };
+    list.forEach(function (item, idx) {
+      var colorKey = 'warning';
+      var s = String(item.status).toLowerCase();
+      if (s.indexOf('setuju') !== -1 || s.indexOf('ok') !== -1) colorKey = 'success';
+      else if (s.indexOf('revisi') !== -1) colorKey = 'info';
+      else if (s.indexOf('tolak') !== -1) colorKey = 'danger';
+      var c = colorMap[colorKey];
+      el.append(
+        '<div class="sk-timeline-item">' +
+        '<div class="sk-timeline-icon" style="background:' + c.bg + '">' +
+        '<i class="fas fa-' + c.icon + '" style="color:' + c.fg + ';"></i></div>' +
+        '<div style="flex:1; overflow:hidden;">' +
+        '<div class="sk-timeline-school text-truncate">' + item.sekolah + '</div>' +
+        '<div class="sk-timeline-meta"><span class="font-weight-bold" style="color:' + c.fg + ';">' + item.status + '</span> &bull; ' + item.waktu + '</div>' +
+        '</div></div>'
+      );
+    });
+  }
+
+  var DASHSK_CHART_STATUS = null;
+  var DASHSK_CHART_TREND = null;
+
+  function dashsk_renderChart(data) {
+    if (typeof Chart === 'undefined') return;
+
+    // 1. DOUGHNUT CHART (Status Berkas)
+    var ctxStatus = document.getElementById('dashsk_chartStatus').getContext('2d');
+    if (DASHSK_CHART_STATUS) DASHSK_CHART_STATUS.destroy();
+
+    var totalData = data.disetujui + data.diproses + data.revisi + data.ditolak;
+    var finalData = totalData === 0 ? [1, 0, 0, 0] : [data.disetujui, data.diproses, data.revisi, data.ditolak];
+    var finalColors = totalData === 0 ? ['#F1F5F9', '#EAC947', '#0284C7', '#DC2626'] : ['#09BD3C', '#EAC947', '#0284C7', '#DC2626'];
+
+    DASHSK_CHART_STATUS = new Chart(ctxStatus, {
+      type: 'doughnut',
+      data: {
+        labels: ['Disetujui', 'Diproses', 'Revisi', 'Ditolak'],
+        datasets: [{ data: finalData, backgroundColor: finalColors, borderWidth: 0, hoverOffset: 12 }]
+      },
+      options: {
+        maintainAspectRatio: false, responsive: true, cutout: '82%',
+        plugins: { legend: { display: false }, tooltip: { enabled: (totalData > 0), backgroundColor: '#1e293b', padding: 10, cornerRadius: 8 } },
+        animation: { animateScale: true, animateRotate: true, duration: 1200, easing: 'easeOutQuart' }
+      }
+    });
+
+    // 2. LINE CHART (Trend Pengiriman)
+    var ctxTrend = document.getElementById('dashsk_chartTrend').getContext('2d');
+    if (DASHSK_CHART_TREND) DASHSK_CHART_TREND.destroy();
+
+    var trendData = data.trend || { labels: [], values: [] };
+    var gradient = ctxTrend.createLinearGradient(0, 0, 0, 300);
+    gradient.addColorStop(0, 'rgba(123, 0, 0, 0.2)');
+    gradient.addColorStop(1, 'rgba(123, 0, 0, 0)');
+
+    DASHSK_CHART_TREND = new Chart(ctxTrend, {
+      type: 'line',
+      data: {
+        labels: trendData.labels,
+        datasets: [{
+          label: 'Jumlah Pengiriman',
+          data: trendData.values,
+          fill: true,
+          backgroundColor: gradient,
+          borderColor: '#7B0000',
+          borderWidth: 3,
+          tension: 0.4,
+          pointRadius: 4,
+          pointBackgroundColor: '#fff',
+          pointBorderColor: '#7B0000',
+          pointHoverRadius: 6
+        }]
+      },
+      options: {
+        maintainAspectRatio: false,
+        responsive: true,
+        plugins: { legend: { display: false }, tooltip: { backgroundColor: '#1e293b', titleFont: { weight: 'bold' } } },
+        scales: {
+          y: { beginAtZero: true, grid: { borderDash: [5, 5], drawBorder: false }, ticks: { padding: 10, color: '#94a3b8' } },
+          x: { grid: { display: false, drawBorder: false }, ticks: { padding: 10, color: '#94a3b8' } }
         }
-        $('#dashsk_filterTahun').html(htmlTahun);
-        var defSemester = (curMonth >= 6) ? "Semester 1" : "Semester 2";
-        var defTahun = (curMonth >= 6) ? curYear + "/" + (curYear + 1) : (curYear - 1) + "/" + curYear;
-        $('#dashsk_filterSemester').val(defSemester);
-        if ($('#dashsk_filterTahun option[value="' + defTahun + '"]').length > 0) {
-            $('#dashsk_filterTahun').val(defTahun);
-        }
+      }
+    });
+  }
+
+  function dashsk_copyListBelum() {
+    if (DASHSK_LIST_BELUM_CACHE.length === 0) { Sultan.notif.info("Tidak ada data untuk disalin."); return; }
+    var th = $('#dashsk_filterTahun').val() || "-";
+    var sm = $('#dashsk_filterSemester').val() || "-";
+    var txt = "*DAFTAR SEKOLAH BELUM KIRIM SK PEMBAGIAN TUGAS*\nPeriode: " + th + " (" + sm + ")\nKriteria: AWAL SEMESTER\n\n";
+    DASHSK_LIST_BELUM_CACHE.forEach(function (nama, i) { txt += (i + 1) + ". " + nama + "\n"; });
+    txt += "\n_Mohon segera mengunggah melalui SIKS-Reborn._";
+    navigator.clipboard.writeText(txt).then(function () { Sultan.notif.sukses('Daftar berhasil disalin!'); });
+  }
+
+  function dashsk_animateValue(id, endValue, suffixStr) {
+    var obj = document.getElementById(id); if (!obj) return;
+    var end = parseInt(endValue); if (isNaN(end)) end = 0;
+    if (end === 0) { obj.innerHTML = "0" + (suffixStr || ''); return; }
+    var duration = 1000; var range = end; var current = 0;
+    var startTime = null;
+
+    function step(timestamp) {
+      if (!startTime) startTime = timestamp;
+      var progress = Math.min((timestamp - startTime) / duration, 1);
+      obj.innerHTML = Math.floor(progress * range) + (suffixStr || '');
+      if (progress < 1) { window.requestAnimationFrame(step); }
     }
-
-    function dashsk_getLoaderHtml(msg) {
-        return '<div class="sk-loader-wrapper"><div class="sk-spinner-premium"></div><div class="sk-loading-text">' + (msg || 'Memuat...') + '</div></div>';
-    }
-
-    function dashsk_loadDataDashboard(isManual) {
-        var currentTime = new Date().getTime();
-        if (!isManual && (currentTime - DASHSK_LAST_FETCH_TIME < 2000)) return;
-        
-        if (DASHSK_IS_FETCHING) return;
-
-        var th = $('#dashsk_filterTahun').val();
-        var sm = $('#dashsk_filterSemester').val();
-        var cacheKey = 'dashsk_cache_' + th + '_' + sm;
-
-        // TURBO LOGIC: Check Cache First
-        if (!isManual) {
-            var cachedData = sessionStorage.getItem(cacheKey);
-            if (cachedData) {
-                try {
-                    var data = JSON.parse(cachedData);
-                    dashsk_renderDashboard(data, true); // Render silently from cache
-                    $('#dashsk_turboBadge').css('display', 'flex').delay(2000).fadeOut();
-                } catch(e) { sessionStorage.removeItem(cacheKey); }
-            }
-        }
-
-        DASHSK_IS_FETCHING = true;
-        DASHSK_LAST_FETCH_TIME = currentTime;
-
-        // UI State Loading (Cleaned Up)
-        if (isManual || !sessionStorage.getItem(cacheKey)) {
-            $('.dashsk-count-up').html('<span class="opacity-20">...</span>');
-            $('#dashsk_timelineContainer').html(dashsk_getLoaderHtml('Sinkronisasi aktivitas...'));
-            $('#dashsk_listBelumBody').html(dashsk_getLoaderHtml('Cek kepatuhan...'));
-        }
-        
-        $('#dashsk_btnRefresh').prop('disabled', true).html('<i class="fas fa-bolt fa-spin mr-1"></i> TURBO...');
-
-        google.script.run
-            .withSuccessHandler(function(data) {
-                DASHSK_IS_FETCHING = false;
-                $('#dashsk_btnRefresh').prop('disabled', false).html('<i class="fas fa-sync-alt mr-1"></i> Refresh');
-                
-                if (data && !data.error) {
-                    sessionStorage.setItem(cacheKey, JSON.stringify(data)); // Update Cache
-                    dashsk_renderDashboard(data);
-                } else {
-                    dashsk_renderDashboard(data);
-                }
-            })
-            .withFailureHandler(function(err) {
-                DASHSK_IS_FETCHING = false;
-                $('#dashsk_btnRefresh').prop('disabled', false).html('<i class="fas fa-exclamation-triangle mr-1"></i> Error');
-                if (typeof Sultan !== 'undefined') Sultan.alert('error', 'Koneksi Terputus', err.message);
-            })
-            .getDashboardSK(th, sm);
-    }
-
-    function dashsk_renderDashboard(data, isSilent) {
-        if (!data || data.error) { 
-            if (!isSilent && typeof Sultan !== 'undefined') Sultan.notif.gagal(data ? data.error : "Data kosong"); 
-            return; 
-        }
-
-        const ids = ["dashsk_valTotal", "dashsk_valDisetujui", "dashsk_valProgress", "dashsk_valBelum", "dashsk_valDiproses", "dashsk_valRevisi", "dashsk_valDitolak"];
-        const vals = [data.totalMasuk, data.disetujui, data.progress, data.belumLaporCount, data.diproses, data.revisi, data.ditolak];
-
-        ids.forEach((id, i) => {
-            if (isSilent) $('#' + id).text(vals[i]);
-            else dashsk_animateValue(id, vals[i], "");
-        });
-
-        $('#dashsk_subTotal').html('Awal: ' + data.totalAwal + ' &bull; Perubahan: ' + data.totalPerubahan);
-        $('#dashsk_subValid').html('Awal: ' + data.validAwal + ' &bull; Perubahan: ' + data.validPerubahan);
-
-        $('#dashsk_txtChartSetuju').text(data.disetujui);
-        $('#dashsk_txtChartProses').text(data.diproses);
-        $('#dashsk_txtChartRevisi').text(data.revisi);
-        $('#dashsk_txtChartTolak').text(data.ditolak);
-
-        dashsk_renderChart(data);
-        dashsk_renderTimeline(data.recent);
-
-        DASHSK_LIST_BELUM_CACHE = data.belumLaporList || [];
-        $('#dashsk_badgeBelumCount').text(DASHSK_LIST_BELUM_CACHE.length);
-        dashsk_renderBelumList(DASHSK_LIST_BELUM_CACHE);
-    }
-
-    function dashsk_renderBelumList(list) {
-        var elBody = $('#dashsk_listBelumBody');
-        var elModal = $('#dashsk_listBelumBodyModal');
-        elBody.empty(); elModal.empty();
-
-        if (list.length === 0) {
-            var msg = '<div class="text-center p-5 text-success"><i class="fas fa-check-circle fa-3x mb-2 d-block"></i><span class="font-weight-bold small">Nihil! Semua Sudah Lapor.</span></div>';
-            elBody.html(msg); elModal.html(msg);
-            return;
-        }
-        var html = "";
-        list.forEach(function(nama, i) {
-            html += '<div class="sk-belum-item">' +
-                    '<div class="sk-belum-num">' + (i+1) + '</div>' +
-                    '<span>' + nama + '</span></div>';
-        });
-        elBody.html(html); elModal.html(html);
-    }
-
-    function dashsk_filterBelumLangsung() {
-        var val = $('#dashsk_cariBelumLangsung').val().toLowerCase();
-        $('#dashsk_listBelumBody .sk-belum-item').each(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf(val) > -1);
-        });
-    }
-
-    function dashsk_filterBelumModal() {
-        var val = $('#dashsk_inputCariBelumModal').val().toLowerCase();
-        $('#dashsk_listBelumBodyModal .sk-belum-item').each(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf(val) > -1);
-        });
-    }
-
-    function dashsk_showModalBelum() {
-        var th = $('#dashsk_filterTahun').val() || "Semua Tahun";
-        var sm = $('#dashsk_filterSemester').val() || "Semua Semester";
-        $('#dashsk_lblPeriodeBelum').text(sm + " - TA " + th);
-        $('#dashsk_inputCariBelumModal').val("");
-        dashsk_filterBelumModal();
-        $('#dashsk_modalBelumLapor').modal('show');
-    }
-
-    function dashsk_renderTimeline(list) {
-        var el = $('#dashsk_timelineContainer'); el.empty();
-        if (!list || list.length === 0) {
-            el.html('<div class="text-center p-5 text-muted small"><i class="fas fa-inbox fa-3x mb-2 d-block opacity-30"></i>Belum ada aktivitas.</div>');
-            return;
-        }
-        var colorMap = { 'success': { bg:'rgba(26,127,79,0.1)', fg:'#1a7f4f', icon:'check-circle' }, 'info': { bg:'rgba(8,145,178,0.1)', fg:'#0891b2', icon:'sync-alt' }, 'danger': { bg:'rgba(220,53,69,0.1)', fg:'#dc3545', icon:'times-circle' }, 'warning': { bg:'rgba(245,158,11,0.1)', fg:'#d97706', icon:'clock' } };
-        list.forEach(function(item, idx) {
-            var colorKey = 'warning';
-            var s = String(item.status).toLowerCase();
-            if(s.indexOf('setuju') !== -1 || s.indexOf('ok') !== -1) colorKey = 'success';
-            else if(s.indexOf('revisi') !== -1) colorKey = 'info';
-            else if(s.indexOf('tolak') !== -1) colorKey = 'danger';
-            var c = colorMap[colorKey];
-            el.append(
-                '<div class="sk-timeline-item">' +
-                '<div class="sk-timeline-icon" style="background:' + c.bg + '">' +
-                '<i class="fas fa-' + c.icon + '" style="color:' + c.fg + ';"></i></div>' +
-                '<div style="flex:1; overflow:hidden;">' +
-                '<div class="sk-timeline-school text-truncate">' + item.sekolah + '</div>' +
-                '<div class="sk-timeline-meta"><span class="font-weight-bold" style="color:' + c.fg + ';">' + item.status + '</span> &bull; ' + item.waktu + '</div>' +
-                '</div></div>'
-            );
-        });
-    }
-
-    var DASHSK_CHART_STATUS = null;
-    var DASHSK_CHART_TREND = null;
-
-    function dashsk_renderChart(data) {
-        if (typeof Chart === 'undefined') return;
-
-        // 1. DOUGHNUT CHART (Status Berkas)
-        var ctxStatus = document.getElementById('dashsk_chartStatus').getContext('2d');
-        if (DASHSK_CHART_STATUS) DASHSK_CHART_STATUS.destroy();
-        
-        var totalData = data.disetujui + data.diproses + data.revisi + data.ditolak;
-        var finalData   = totalData === 0 ? [1, 0, 0, 0] : [data.disetujui, data.diproses, data.revisi, data.ditolak];
-        var finalColors = totalData === 0 ? ['#F1F5F9','#EAC947','#0284C7','#DC2626'] : ['#09BD3C','#EAC947','#0284C7','#DC2626'];
-
-        DASHSK_CHART_STATUS = new Chart(ctxStatus, {
-            type: 'doughnut',
-            data: { 
-                labels: ['Disetujui','Diproses','Revisi','Ditolak'], 
-                datasets: [{ data: finalData, backgroundColor: finalColors, borderWidth: 0, hoverOffset: 12 }] 
-            },
-            options: {
-                maintainAspectRatio: false, responsive: true, cutout: '82%',
-                plugins: { legend: { display: false }, tooltip: { enabled: (totalData > 0), backgroundColor: '#1e293b', padding: 10, cornerRadius: 8 } },
-                animation: { animateScale: true, animateRotate: true, duration: 1200, easing: 'easeOutQuart' }
-            }
-        });
-
-        // 2. LINE CHART (Trend Pengiriman)
-        var ctxTrend = document.getElementById('dashsk_chartTrend').getContext('2d');
-        if (DASHSK_CHART_TREND) DASHSK_CHART_TREND.destroy();
-
-        var trendData = data.trend || { labels: [], values: [] };
-        var gradient = ctxTrend.createLinearGradient(0, 0, 0, 300);
-        gradient.addColorStop(0, 'rgba(123, 0, 0, 0.2)');
-        gradient.addColorStop(1, 'rgba(123, 0, 0, 0)');
-
-        DASHSK_CHART_TREND = new Chart(ctxTrend, {
-            type: 'line',
-            data: {
-                labels: trendData.labels,
-                datasets: [{
-                    label: 'Jumlah Pengiriman',
-                    data: trendData.values,
-                    fill: true,
-                    backgroundColor: gradient,
-                    borderColor: '#7B0000',
-                    borderWidth: 3,
-                    tension: 0.4,
-                    pointRadius: 4,
-                    pointBackgroundColor: '#fff',
-                    pointBorderColor: '#7B0000',
-                    pointHoverRadius: 6
-                }]
-            },
-            options: {
-                maintainAspectRatio: false,
-                responsive: true,
-                plugins: { legend: { display: false }, tooltip: { backgroundColor: '#1e293b', titleFont: { weight: 'bold' } } },
-                scales: {
-                    y: { beginAtZero: true, grid: { borderDash: [5, 5], drawBorder: false }, ticks: { padding: 10, color: '#94a3b8' } },
-                    x: { grid: { display: false, drawBorder: false }, ticks: { padding: 10, color: '#94a3b8' } }
-                }
-            }
-        });
-    }
-
-    function dashsk_copyListBelum() {
-        if(DASHSK_LIST_BELUM_CACHE.length === 0) { Sultan.notif.info("Tidak ada data untuk disalin."); return; }
-        var th = $('#dashsk_filterTahun').val() || "-";
-        var sm = $('#dashsk_filterSemester').val() || "-";
-        var txt = "*DAFTAR SEKOLAH BELUM KIRIM SK PEMBAGIAN TUGAS*\nPeriode: " + th + " (" + sm + ")\nKriteria: AWAL SEMESTER\n\n";
-        DASHSK_LIST_BELUM_CACHE.forEach(function(nama, i) { txt += (i+1) + ". " + nama + "\n"; });
-        txt += "\n_Mohon segera mengunggah melalui SIKS-Reborn._";
-        navigator.clipboard.writeText(txt).then(function() { Sultan.notif.sukses('Daftar berhasil disalin!'); });
-    }
-
-    function dashsk_animateValue(id, endValue, suffixStr) {
-        var obj = document.getElementById(id); if(!obj) return;
-        var end = parseInt(endValue); if (isNaN(end)) end = 0;
-        if (end === 0) { obj.innerHTML = "0" + (suffixStr || ''); return; }
-        var duration = 1000; var range = end; var current = 0;
-        var startTime = null;
-
-        function step(timestamp) {
-            if (!startTime) startTime = timestamp;
-            var progress = Math.min((timestamp - startTime) / duration, 1);
-            obj.innerHTML = Math.floor(progress * range) + (suffixStr || '');
-            if (progress < 1) { window.requestAnimationFrame(step); }
-        }
-        window.requestAnimationFrame(step);
-    }
+    window.requestAnimationFrame(step);
+  }
 </script>
