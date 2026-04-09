@@ -667,14 +667,14 @@ function tugas_renderTabel(data) {
         if(tglSkDisplay.match(/^\d{4}-\d{2}-\d{2}$/)) { var p = tglSkDisplay.split('-'); tglSkDisplay = p[2] + '-' + p[1] + '-' + p[0]; }
 
         // Combined Info Columns (Ultra Compact)
-        var uiInfoSekolah = `<div class="font-weight-bold text-dark text-nowrap" style="margin:0;">${tugas_cleanText(row.namaSd)}</div>`;
-        var uiPeriode = `<div class="text-nowrap" style="margin:0; line-height:1;">${tugas_cleanText(row.tahun)}<br><small class="text-muted font-weight-bold" style="font-size:9px;">${tugas_cleanText(row.semester)}</small></div>`;
-        var uiSkKriteria = `<div class="font-weight-bold" style="font-size:12.5px; color:#1e293b; line-height:1; margin:0;">${safeNoSk}</div><div style="font-size:10px; color:#c026d3; font-weight:700; margin:0;">${tugas_cleanText(row.kriteria)} &bull; ${tglSkDisplay}</div>`;
+        var uiInfoSekolah = `<div class="font-weight-bold text-dark text-nowrap" style="margin:0; padding:0;">${tugas_cleanText(row.namaSd)}</div>`;
+        var uiPeriode = `<div class="text-nowrap" style="margin:0; padding:0; line-height:1;">${tugas_cleanText(row.tahun)}<br><small class="text-muted font-weight-bold" style="font-size:9px;">${tugas_cleanText(row.semester)}</small></div>`;
+        var uiSkKriteria = `<div class="font-weight-bold" style="font-size:12.5px; color:#1e293b; line-height:1; margin:0; padding:0;">${safeNoSk}</div><div style="font-size:10px; color:#7B0000; font-weight:700; margin:0; padding:0;">${tugas_cleanText(row.kriteria)} &bull; ${tglSkDisplay}</div>`;
         
         // Combined Activity Log (Show only most relevant)
         var latestDate = row.tglVerval || row.tglUpdate || row.tglUnggah || "-";
         var latestUser = row.verifikator || row.userUpdate || row.userInput || "-";
-        var uiLog = `<div style="line-height:1; font-size:10px; margin:0;"><span class="d-block font-weight-bold text-dark">${latestDate}</span><span class="d-block text-muted text-truncate" style="max-width:120px; font-size:9px;">${tugas_cleanText(latestUser)}</span></div>`;
+        var uiLog = `<div style="line-height:1; font-size:10px; margin:0; padding:0;"><span class="d-block font-weight-bold text-dark">${latestDate}</span><span class="d-block text-muted text-truncate" style="max-width:120px; font-size:9px;">${tugas_cleanText(latestUser)}</span></div>`;
 
         dtArray.push([ 
             actionButtons, 
