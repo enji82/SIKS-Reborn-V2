@@ -1603,4 +1603,24 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
 .sidebar::-webkit-scrollbar-thumb { background: rgba(234,201,71,0.35); border-radius: 4px; }
 .sidebar::-webkit-scrollbar-thumb:hover { background: rgba(234,201,71,0.65); }
 
+/* --- STANDARD SULTAN LOADER --- */
+.sk-loader-wrapper {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 2rem; position: relative; min-height: 100px;
+}
+.sk-spinner-premium {
+    width: 40px; height: 40px;
+    border: 3px solid rgba(123, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top-color: #7B0000;
+    animation: sk-spin 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    margin-bottom: 12px;
+}
+@keyframes sk-spin {
+    to { transform: rotate(360deg); }
+}
+.sk-loading-text {
+    font-size: 0.75rem; font-weight: 700; color: #64748b;
+    text-transform: uppercase; letter-spacing: 0.5px;
+}
 </style>

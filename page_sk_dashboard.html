@@ -363,6 +363,11 @@
   </div>
 </section>
 
+<!-- TURBO STATUS BADGE -->
+<div id="dashsk_turboBadge" class="sk-turbo-badge">
+    <i class="fas fa-bolt"></i> TURBO LOADING ACTIVE
+</div>
+
 <!-- MODAL BELUM LAPOR -->
 <div class="modal fade" id="dashsk_modalBelumLapor" tabindex="-1" role="dialog" data-backdrop="static">
     <div class="modal-dialog modal-lg" role="document">
@@ -406,13 +411,18 @@
 
         dashsk_initFilterDefault();
 
-        $(document).off('change', '#dashsk_filterTahun, #dashsk_filterSemester').on('change', '#dashsk_filterTahun, #dashsk_filterSemester', dashsk_loadDataDashboard);
-        $(document).off('click', '#dashsk_btnRefresh').on('click', '#dashsk_btnRefresh', dashsk_loadDataDashboard);
+        $(document).off('change', '#dashsk_filterTahun, #dashsk_filterSemester').on('change', '#dashsk_filterTahun, #dashsk_filterSemester', function() {
+            dashsk_loadDataDashboard(true); // Force refresh on filter change
+        });
+        $(document).off('click', '#dashsk_btnRefresh').on('click', '#dashsk_btnRefresh', function() {
+            dashsk_loadDataDashboard(true);
+        });
         $(document).off('keyup', '#dashsk_cariBelumLangsung').on('keyup', '#dashsk_cariBelumLangsung', dashsk_filterBelumLangsung);
         $(document).off('keyup', '#dashsk_inputCariBelumModal').on('keyup', '#dashsk_inputCariBelumModal', dashsk_filterBelumModal);
         $(document).off('click', '#dashsk_btnSalinDaftar, #dashsk_btnSalinDaftarModal').on('click', '#dashsk_btnSalinDaftar, #dashsk_btnSalinDaftarModal', dashsk_copyListBelum);
         $(document).off('click', '#dashsk_btnModalBelum').on('click', '#dashsk_btnModalBelum', dashsk_showModalBelum);
 
+        // TURBO START: Delay minimal agar transisi smooth
         setTimeout(function() { dashsk_loadDataDashboard(); }, 50);
     });
 
@@ -434,47 +444,78 @@
         }
     }
 
-    function dashsk_loadDataDashboard() {
+    function dashsk_getLoaderHtml(msg) {
+        return '<div class="sk-loader-wrapper"><div class="sk-spinner-premium"></div><div class="sk-loading-text">' + (msg || 'Memuat...') + '</div></div>';
+    }
+
+    function dashsk_loadDataDashboard(isManual) {
         var currentTime = new Date().getTime();
-        if (currentTime - DASHSK_LAST_FETCH_TIME < 1500) { return; }
-        DASHSK_LAST_FETCH_TIME = currentTime;
+        if (!isManual && (currentTime - DASHSK_LAST_FETCH_TIME < 2000)) return;
+        
         if (DASHSK_IS_FETCHING) return;
-        DASHSK_IS_FETCHING = true;
 
         var th = $('#dashsk_filterTahun').val();
         var sm = $('#dashsk_filterSemester').val();
+        var cacheKey = 'dashsk_cache_' + th + '_' + sm;
 
-        $('.dashsk-count-up').html('<i class="fas fa-circle-notch fa-spin text-muted small"></i>');
-        $('#dashsk_timelineContainer').html('<div class="text-center p-4 text-muted"><i class="fas fa-spinner fa-spin fa-2x mb-2"></i><br><small>Memuat aktivitas...</small></div>');
-        $('#dashsk_listBelumBody').html('<div class="text-center p-4 text-muted small"><i class="fas fa-spinner fa-spin"></i> Sinkronisasi server...</div>');
-        $('#dashsk_btnRefresh').prop('disabled', true).html('<i class="fas fa-circle-notch fa-spin mr-1"></i> Memuat...');
+        // TURBO LOGIC: Check Cache First
+        if (!isManual) {
+            var cachedData = sessionStorage.getItem(cacheKey);
+            if (cachedData) {
+                try {
+                    var data = JSON.parse(cachedData);
+                    dashsk_renderDashboard(data, true); // Render silently from cache
+                    $('#dashsk_turboBadge').css('display', 'flex').delay(2000).fadeOut();
+                } catch(e) { sessionStorage.removeItem(cacheKey); }
+            }
+        }
+
+        DASHSK_IS_FETCHING = true;
+        DASHSK_LAST_FETCH_TIME = currentTime;
+
+        // UI State Loading (Cleaned Up)
+        if (isManual || !sessionStorage.getItem(cacheKey)) {
+            $('.dashsk-count-up').html('<span class="opacity-20">...</span>');
+            $('#dashsk_timelineContainer').html(dashsk_getLoaderHtml('Sinkronisasi aktivitas...'));
+            $('#dashsk_listBelumBody').html(dashsk_getLoaderHtml('Cek kepatuhan...'));
+        }
+        
+        $('#dashsk_btnRefresh').prop('disabled', true).html('<i class="fas fa-bolt fa-spin mr-1"></i> TURBO...');
 
         google.script.run
             .withSuccessHandler(function(data) {
                 DASHSK_IS_FETCHING = false;
                 $('#dashsk_btnRefresh').prop('disabled', false).html('<i class="fas fa-sync-alt mr-1"></i> Refresh');
-                dashsk_renderDashboard(data);
+                
+                if (data && !data.error) {
+                    sessionStorage.setItem(cacheKey, JSON.stringify(data)); // Update Cache
+                    dashsk_renderDashboard(data);
+                } else {
+                    dashsk_renderDashboard(data);
+                }
             })
             .withFailureHandler(function(err) {
                 DASHSK_IS_FETCHING = false;
-                $('#dashsk_btnRefresh').prop('disabled', false).html('<i class="fas fa-sync-alt text-danger mr-1"></i> Error');
-                Sultan.alert('error', 'Koneksi Terputus', err.message);
+                $('#dashsk_btnRefresh').prop('disabled', false).html('<i class="fas fa-exclamation-triangle mr-1"></i> Error');
+                if (typeof Sultan !== 'undefined') Sultan.alert('error', 'Koneksi Terputus', err.message);
             })
             .getDashboardSK(th, sm);
     }
 
-    function dashsk_renderDashboard(data) {
-        if (data.error) { Sultan.notif.gagal(data.error); return; }
+    function dashsk_renderDashboard(data, isSilent) {
+        if (!data || data.error) { 
+            if (!isSilent && typeof Sultan !== 'undefined') Sultan.notif.gagal(data ? data.error : "Data kosong"); 
+            return; 
+        }
 
-        dashsk_animateValue("dashsk_valTotal", data.totalMasuk, "");
-        dashsk_animateValue("dashsk_valDisetujui", data.disetujui, "");
-        dashsk_animateValue("dashsk_valProgress", data.progress, "");
-        dashsk_animateValue("dashsk_valBelum", data.belumLaporCount, "");
-        dashsk_animateValue("dashsk_valDiproses", data.diproses, "");
-        dashsk_animateValue("dashsk_valRevisi", data.revisi, "");
-        dashsk_animateValue("dashsk_valDitolak", data.ditolak, "");
+        const ids = ["dashsk_valTotal", "dashsk_valDisetujui", "dashsk_valProgress", "dashsk_valBelum", "dashsk_valDiproses", "dashsk_valRevisi", "dashsk_valDitolak"];
+        const vals = [data.totalMasuk, data.disetujui, data.progress, data.belumLaporCount, data.diproses, data.revisi, data.ditolak];
 
-        // Sub-text on KPI cards
+        ids.forEach((id, i) => {
+            if (isSilent) $('#' + id).text(vals[i]);
+            else dashsk_animateValue(id, vals[i], "");
+        });
+
         $('#dashsk_subTotal').html('Awal: ' + data.totalAwal + ' &bull; Perubahan: ' + data.totalPerubahan);
         $('#dashsk_subValid').html('Awal: ' + data.validAwal + ' &bull; Perubahan: ' + data.validPerubahan);
 
