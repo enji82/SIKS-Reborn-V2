@@ -8,7 +8,7 @@
       <div class="col-sm-12">
         <h5 class="m-0 font-weight-bold d-inline-block position-relative pb-2" style="color: #1e293b;">
           <i class="fas fa-file-signature text-maroon mr-2"></i>Data SK Pembagian Tugas
-          <div style="position: absolute; bottom: 0; left: 0; width: 60%; height: 3px; background: var(--warna-maroon); border-radius: 2px;"></div>
+          <div style="position: absolute; bottom: 0; left: 0; width: 100px; height: 3px; background: #7B0000; border-radius: 2px;"></div>
         </h5>
       </div>
     </div>
@@ -673,7 +673,12 @@ function tugas_renderTabel(data) {
         }
         
         var tglSkDisplay = row.tglSkDisplay || row.tglSk || "-";
-        if(tglSkDisplay.match(/^\d{4}-\d{2}-\d{2}$/)) { var p = tglSkDisplay.split('-'); tglSkDisplay = p[2] + '-' + p[1] + '-' +        // Combined Info Columns (Professional Unified Standard)
+        if(tglSkDisplay.match(/^\d{4}-\d{2}-\d{2}$/)) { 
+            var p = tglSkDisplay.split('-'); 
+            tglSkDisplay = p[2] + '-' + p[1] + '-' + p[0]; 
+        }
+
+        // Combined Info Columns (Professional Unified Standard)
         var uiInfoSekolah = `<div class="font-weight-bold text-dark" style="font-size: 0.88rem;">${tugas_cleanText(row.namaSd)}</div>`;
         var uiPeriode = `<div class="text-center" style="line-height:1.2; font-size: 0.82rem;">
                             <span class="d-block text-dark font-weight-bold">${tugas_cleanText(row.tahun)}</span>

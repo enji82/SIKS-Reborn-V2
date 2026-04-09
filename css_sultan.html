@@ -1468,14 +1468,20 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
    SULTAN MINI-INFO (SAPCE EFFICIENCY)
    ============================================================= */
 .sk-mini-info {
-    border-left: 3px solid var(--warna-maroon) !important;
+    border-left: 4px solid #7B0000 !important; /* Real Maroon */
     background: #fff !important;
+    min-height: 34px !important;
+    height: 34px !important;
+    margin-bottom: 10px !important;
+    display: flex;
+    align-items: center;
     transition: all 0.2s ease;
 }
-.sk-mini-info:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08) !important;
+.sk-mini-info .card-body {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    height: 100%;
 }
-.sk-mini-info .icon-xs { font-size: 10px; }
 
 /* =============================================================
    SULTAN PROFESSIONAL TOOLBAR SYSTEM
