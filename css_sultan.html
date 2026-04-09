@@ -1655,7 +1655,7 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     border-spacing: 0 !important;
 }
 .table-premium thead th {
-    background: #F1F5F9 !important;
+    background-color: #F1F5F9 !important;
     color: #475569 !important;
     font-size: 0.72rem !important;
     font-weight: 800 !important;
@@ -1707,7 +1707,9 @@ table.table-premium td {
     display: none !important;
 }
 table.table-premium.dataTable tbody tr:hover td,
-table.table-premium.dataTable tbody tr.hover td,
+table.table-premium.dataTable tbody tr.hover td {
+    background-color: #F1F5F9 !important;
+}
 table.table-premium.dataTable tbody tr:hover td.col-sticky-left {
     background-color: #F1F5F9 !important;
 }
@@ -1717,13 +1719,14 @@ table.table-premium.dataTable tbody tr:hover td.col-sticky-left {
     line-height: 1.0 !important;
 }
 
-/* STICKY COLUMN SUPPORT (ENHANCED ALIGNMENT) */
+/* STICKY COLUMN SUPPORT (SOLID PILLAR) */
 .col-sticky-left {
-    position: sticky !important; left: 0; z-index: 50 !important;
+    position: sticky !important; left: 0; z-index: 100 !important;
     background-color: #ffffff !important;
+    opacity: 1 !important; /* Ensure solid display */
     min-width: 120px !important;
     max-width: 120px !important;
-    box-shadow: 6px 0 12px rgba(0,0,0,0.06);
+    box-shadow: 4px 0 10px rgba(0,0,0,0.08);
     border-right: 2px solid #E2E8F0 !important;
 }
 .table-premium thead th.col-sticky-left {
