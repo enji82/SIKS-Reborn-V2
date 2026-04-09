@@ -1665,6 +1665,16 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     vertical-align: middle !important;
     padding: 8px 12px !important;
 }
+/* Force Table to Scroll Horizontal, Never Stack on Mobile */
+.table-premium {
+    min-width: 800px !important;
+    margin-bottom: 0 !important;
+}
+.table-responsive.sultan-scroll {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-bottom: 10px; /* Space for scrollbar */
+}
 table.table-premium.dataTable tbody tr,
 table.table-premium.dataTable tbody td {
     background-color: #ffffff !important;
@@ -1755,6 +1765,10 @@ table.table-premium.dataTable tbody tr:hover td.col-sticky-left {
     padding: 5px 10px; border-radius: 6px;
     font-weight: 700; font-size: 10px; letter-spacing: 0.5px;
     text-transform: uppercase;
+}
+/* Utility: Hide Status on Extreme Small Devices to Save Space */
+@media (max-width: 575.98px) {
+    .sk-status-hide { display: none !important; }
 }
 .badge-sultan-light-success { background: #ECFDF5; color: #059669; border: 1px solid #A7F3D0; }
 .badge-sultan-light-warning { background: #FFFBEB; color: #D97706; border: 1px solid #FDE68A; }

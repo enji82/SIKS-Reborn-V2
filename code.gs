@@ -199,6 +199,41 @@ function processLogout() {
   return { status: 'success' };
 }
 
+/**
+ * SISTEM NOTIFIKASI SULTAN
+ * Menghitung total data dengan status "Diproses" di berbagai database
+ */
+function getTotalDiproses() {
+  try {
+    var counts = [];
+    var total = 0;
+
+    // 1. Hitung di Module SK
+    try {
+      var ssSk = SpreadsheetApp.openById(SPREADSHEET_IDS.SK_DATA);
+      var sheetSk = ssSk.getSheetByName("Unggah_SK");
+      if (sheetSk) {
+        var dataSk = sheetSk.getDataRange().getValues();
+        var countSk = 0;
+        for (var i = 1; i < dataSk.length; i++) {
+          if (String(dataSk[i][9]).trim().toLowerCase() === "diproses") countSk++;
+        }
+        if (countSk > 0) {
+          counts.push({ modul: "SK Pembagian Tugas", jumlah: countSk });
+          total += countSk;
+        }
+      }
+    } catch (e) { Logger.log("Error count SK: " + e.message); }
+
+    return {
+      total: total,
+      rincian: counts
+    };
+  } catch (err) {
+    return { total: 0, rincian: [] };
+  }
+}
+
 
 // ==========================================
 // 4. VISITOR COUNTER & SETTING
