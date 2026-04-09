@@ -659,7 +659,7 @@ function tugas_renderTabel(data) {
 
         var btnFile = '-';
         if(safeUrl.length > 5) {
-            btnFile = `<button class="btn btn-sm btn-outline-danger sk-btn-pdf-mobile font-weight-bold shadow-sm py-1 px-2" style="font-size:11px;" onclick="tugas_bukaPreview('${safeUrlJs}')"><i class="fas fa-file-pdf"></i></button>`;
+            btnFile = `<button class="btn btn-sm btn-outline-danger sk-btn-pdf-mobile shadow-sm" onclick="tugas_bukaPreview('${safeUrlJs}')"><i class="fas fa-file-pdf"></i></button>`;
         }
         
         var tglSkDisplay = row.tglSkDisplay || row.tglSk || "-";
