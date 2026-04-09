@@ -1649,13 +1649,23 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     box-shadow: 0 4px 15px rgba(0,0,0,0.02) !important;
 }
 
-/* HIGH-EFFICIENCY PREMIUM TABLE */
-.table-premium {
+/* =============================================================
+   SULTAN UNIFIED GRID SYSTEM (MODEL TUNGGAL)
+   Fixes conflicts between DataTables, AdminLTE, and Custom CSS.
+   ============================================================= */
+
+/* 1. Core Grid Structure */
+table.table-premium {
+    display: table !important;
+    width: 100% !important;
+    min-width: 900px !important; /* Force Horizontal Scroll over Stack */
     border-collapse: separate !important;
     border-spacing: 0 !important;
+    table-layout: auto !important;
 }
-.table-premium thead th {
-    background-color: #F1F5F9 !important;
+
+table.table-premium thead th {
+    background-color: #F1F5F9 !important; /* Unified Header Color */
     color: #475569 !important;
     font-size: 0.72rem !important;
     font-weight: 800 !important;
@@ -1665,36 +1675,13 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     vertical-align: middle !important;
     padding: 8px 12px !important;
 }
-/* Force Table to Scroll Horizontal, Never Stack on Mobile */
-.table-premium {
-    width: 100% !important;
-    margin-bottom: 0 !important;
-    table-layout: auto !important;
-}
-.table-responsive.sultan-scroll {
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-    padding-bottom: 5px;
-}
-/* Nuclear Shield: Force Table Integrity on ALL Devices */
-table.table-premium {
-    display: table !important;
-    width: 100% !important;
-    min-width: 900px !important; /* Force Horizontal Scroll */
-}
-table.table-premium thead,
-table.table-premium tbody,
-table.table-premium tfoot {
-    display: table-row-group !important;
-}
-table.table-premium tr {
-    display: table-row !important;
-}
-table.table-premium th,
+
+/* 2. Cell & Row Standards */
+table.table-premium tr { display: table-row !important; }
 table.table-premium td {
     display: table-cell !important;
     white-space: nowrap !important;
-    background-color: #ffffff !important;
+    background-color: #ffffff !important; /* Base solid color */
     vertical-align: middle !important;
     border-bottom: 1px solid #F1F5F9 !important;
     padding: 6px 12px !important;
@@ -1702,36 +1689,43 @@ table.table-premium td {
     line-height: 1.35 !important;
     color: #1e293b !important;
 }
-/* Completely Disable DataTables Responsive Plugin Visuals */
-.dtr-control, .dtr-details, tr.child {
-    display: none !important;
+
+/* 3. Interaction (Unified Colors) */
+table.table-premium tbody tr:hover td {
+    background-color: #F1F5F9 !important; /* Matches Header Exactly */
 }
-table.table-premium.dataTable tbody tr:hover td,
-table.table-premium.dataTable tbody tr.hover td {
+
+/* 4. SOLID FIXED PILLAR (AKSI) */
+.col-sticky-left {
+    position: sticky !important;
+    left: 0;
+    z-index: 100 !important; /* Bridge over all content */
+    background-color: #ffffff !important; /* Force true solid white */
+    border-right: 2px solid #E2E8F0 !important;
+    box-shadow: 4px 0 10px rgba(0,0,0,0.08) !important;
+}
+/* Ensure sticky header matches fixed pillar */
+table.table-premium thead th.col-sticky-left {
+    background-color: #F1F5F9 !important;
+    z-index: 110 !important;
+}
+/* Ensure sticky pillar highlights on hover too */
+table.table-premium tbody tr:hover td.col-sticky-left {
     background-color: #F1F5F9 !important;
 }
-table.table-premium.dataTable tbody tr:hover td.col-sticky-left {
-    background-color: #F1F5F9 !important;
+
+/* 5. Responsive Cleanups */
+.table-responsive.sultan-scroll {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-bottom: 5px;
 }
+.dtr-control, .dtr-details, tr.child { display: none !important; } /* Final Stake in Responsive Plugin */
+
 /* Tighten inner elements */
 .table-premium td div, .table-premium td p, .table-premium td small, .table-premium td span {
     margin: 0 !important;
     line-height: 1.0 !important;
-}
-
-/* STICKY COLUMN SUPPORT (SOLID PILLAR) */
-.col-sticky-left {
-    position: sticky !important; left: 0; z-index: 100 !important;
-    background-color: #ffffff !important;
-    opacity: 1 !important; /* Ensure solid display */
-    min-width: 120px !important;
-    max-width: 120px !important;
-    box-shadow: 4px 0 10px rgba(0,0,0,0.08);
-    border-right: 2px solid #E2E8F0 !important;
-}
-.table-premium thead th.col-sticky-left {
-    background: #F1F5F9 !important;
-    z-index: 60 !important;
 }
 
 /* UNIVERSAL ACTION BUTTONS */
