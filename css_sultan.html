@@ -1872,6 +1872,208 @@ table.table-premium tbody tr:hover td.col-sticky-left {
     display: flex; align-items: center; justify-content: center;
 }
 
+/* #############################################################
+   CODEBYTE WORLD-CLASS PROFESSIONAL DESIGN SYSTEM
+   ############################################################# */
+
+:root {
+    --cb-radius: 1.25rem;
+    --cb-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.05);
+    --cb-border: #EBEEF2;
+    --cb-bg-soft: #F8FAFC;
+    --cb-maroon: #7B0000;
+}
+
+/* 1. CARDS & CONTAINERS */
+.cb-card {
+    background: #ffffff;
+    border: none !important;
+    border-radius: var(--cb-radius) !important;
+    box-shadow: var(--cb-shadow) !important;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+.cb-card-header {
+    padding: 1.25rem 1.5rem;
+    background: transparent;
+    border-bottom: 1px solid var(--cb-border);
+}
+.cb-card-body {
+    padding: 1.5rem;
+}
+
+/* 2. TABLE - NO VERTICAL BORDERS (THE SWEEP LOOK) */
+.cb-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    border: none !important;
+}
+.cb-table thead th {
+    background: #F4F7FA !important;
+    color: #1E293B !important;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    padding: 1.25rem 1rem !important;
+    border: none !important;
+    border-bottom: 2px solid var(--cb-border) !important;
+    white-space: nowrap;
+}
+.cb-table tbody td {
+    padding: 1rem 1rem !important;
+    border: none !important;
+    border-bottom: 1px solid var(--cb-border) !important;
+    vertical-align: middle !important;
+    font-size: 0.875rem;
+    background: #fff !important;
+}
+.cb-table tbody tr:hover td {
+    background: var(--cb-bg-soft) !important;
+}
+
+/* 3. INPUT PILLS & FILTERS */
+.cb-filter-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding: 1.25rem 1.5rem;
+    background: #fff;
+    border-bottom: 1px solid var(--cb-border);
+}
+.cb-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.cb-input-group label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #64748B;
+    text-transform: uppercase;
+    margin: 0;
+}
+.cb-select-pill {
+    background: var(--cb-bg-soft) !important;
+    border: 1px solid var(--cb-border) !important;
+    border-radius: 0.75rem !important;
+    height: 42px !important;
+    padding: 0 1rem !important;
+    font-weight: 600;
+    color: #1E293B;
+    transition: all 0.2s;
+    min-width: 120px;
+}
+.cb-select-pill:focus {
+    background: #fff !important;
+    border-color: var(--cb-maroon) !important;
+    box-shadow: 0 0 0 4px rgba(123, 0, 0, 0.08) !important;
+}
+
+/* 4. MODERN DOT BADGES (STATUS) */
+.cb-badge-dot {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 0.35rem 0.8rem;
+    border-radius: 2rem;
+}
+.cb-badge-dot::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+.cb-status-ok { background: #ECFDF5; color: #059669; }
+.cb-status-ok::before { background: #10B981; }
+.cb-status-prosess { background: #F0F9FF; color: #0284C7; }
+.cb-status-prosess::before { background: #3B82F6; }
+.cb-status-revisi { background: #FFFBEB; color: #D97706; }
+.cb-status-revisi::before { background: #F59E0B; }
+.cb-status-tolak { background: #FEF2F2; color: #DC2626; }
+.cb-status-tolak::before { background: #EF4444; }
+
+/* 5. ACTION BUTTONS (CODEBYTE SHARP) */
+.cb-btn-action {
+    width: 34px; height: 34px;
+    border-radius: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--cb-border);
+    background: #fff;
+    color: #64748B;
+    transition: all 0.2s;
+    margin: 0 2px;
+}
+.cb-btn-action:hover {
+    background: var(--cb-bg-soft);
+    color: var(--cb-maroon);
+    border-color: var(--cb-maroon);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.cb-btn-toolbar {
+    height: 42px;
+    padding: 0 1.25rem;
+    border-radius: 0.75rem;
+    font-weight: 700;
+    font-size: 0.875rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+.cb-btn-primary { background: var(--cb-maroon); color: #fff; border: none; }
+.cb-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(123, 0, 0, 0.2); }
+.cb-btn-white { background: #fff; color: var(--cb-maroon); border: 1px solid var(--cb-border); }
+.cb-btn-white:hover { background: var(--cb-bg-soft); }
+
+/* Breadcrumb Styling */
+.cb-breadcrumb {
+    font-size: 0.85rem;
+    color: #64748B;
+    margin-bottom: 0.5rem;
+}
+.cb-breadcrumb a { color: var(--cb-maroon); font-weight: 600; text-decoration: none; }
+.cb-page-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #1E293B;
+    letter-spacing: -0.05rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Callout Minimalist */
+.cb-callout {
+    background: #fff;
+    border: 1px solid var(--cb-border);
+    border-left: 5px solid var(--cb-maroon);
+    padding: 1.25rem 1.5rem;
+    border-radius: 0.75rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--cb-shadow);
+}
+.cb-callout-title {
+    font-weight: 800;
+    color: var(--cb-maroon);
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+@media (max-width: 768px) {
+    .cb-card-body { padding: 1rem; }
+    .cb-filter-toolbar { flex-direction: column; align-items: stretch; gap: 1rem; }
+}
+
 
 
 </style>
