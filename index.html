@@ -1,6 +1,27 @@
 <!DOCTYPE html>
 <html lang="id">
 
+<script>
+async function loadModels() {
+  const res = await fetch('http://localhost:11434/api/tags');
+  const data = await res.json();
+
+  const select = document.getElementById('modelSelect');
+  select.innerHTML = '';
+
+  data.models.forEach(model => {
+    const option = document.createElement('option');
+    option.value = model.name;
+    option.textContent = model.name;
+    select.appendChild(option);
+  });
+}
+
+window.onload = loadModels;
+</script>
+
+<select id="modelSelect"></select>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
