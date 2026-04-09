@@ -25,24 +25,34 @@
             border-spacing: 0 !important;
         }
         .table-premium thead th {
-            background: rgba(123, 0, 0, 0.03) !important;
-            color: #7B0000 !important;
+            background: #7B0000 !important;
+            color: #ffffff !important;
             font-size: 0.75rem !important;
             font-weight: 800 !important;
             text-transform: uppercase !important;
             letter-spacing: 0.8px !important;
-            border-bottom: 2px solid #7B0000 !important;
+            border-bottom: 2px solid #EAC947 !important;
             vertical-align: middle !important;
+            padding: 12px 12px !important;
         }
         .table-premium tbody td {
             vertical-align: middle !important;
             border-bottom: 1px solid #F1F5F9 !important;
             background: transparent !important;
-            padding: 8px 12px !important; /* Tighter padding */
-            font-size: 0.85rem;
+            padding: 6px 10px !important; /* Maximum density */
+            font-size: 0.82rem;
         }
-        .table-sultan-compact tbody td {
-            padding: 6px 10px !important;
+        .table-premium tbody tr:hover td {
+            background-color: rgba(123, 0, 0, 0.05) !important;
+        }
+        .col-sticky-left {
+            position: sticky; left: 0; z-index: 5;
+            background-color: #ffffff !important;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+        }
+        .table-premium thead th.col-sticky-left {
+            background: #7B0000 !important;
+            z-index: 10;
         }
         /* Action Button Refinement */
         .sk-action-group {
@@ -60,9 +70,19 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 10px rgba(0,0,0,0.08);
         }
-        .sk-btn-edit:hover { background: #FFF9E6; color: #D97706; border-color: #FDE68A; }
-        .sk-btn-delete:hover { background: #FEF2F2; color: #DC2626; border-color: #FECACA; }
-        .sk-btn-verify:hover { background: #F0F9FF; color: #0284C7; border-color: #BAE6FD; }
+        /* Colored Icons */
+        .sk-btn-edit.active { background: #FFF9E6; color: #D97706; border-color: #FDE68A; }
+        .sk-btn-delete.active { background: #FEF2F2; color: #DC2626; border-color: #FECACA; }
+        .sk-btn-verify.active { background: #F0F9FF; color: #0284C7; border-color: #BAE6FD; }
+        
+        /* Gray/Locked Icons */
+        .sk-btn-icon.locked { background: #F8FAFC; color: #94a3b8; border-color: #E2E8F0; opacity: 0.7; }
+
+        /* Mobile Tap Targets */
+        @media (max-width: 767.98px) {
+            .sk-btn-icon { width: 34px; height: 34px; font-size: 0.95rem; }
+            .sk-action-group { gap: 8px; }
+        }
 
         /* Responsive Table */
         @media (max-width: 991.98px) {
@@ -733,17 +753,27 @@ function tugas_renderTabel(data) {
         var isLocked = (stButton.includes('setuju') || stButton.includes('acc') || stButton.includes('ok') || stButton.includes('valid'));
         var attrDis = isLocked ? 'disabled style="cursor:not-allowed; opacity:0.6; filter: grayscale(100%);"' : '';
         
-        // One-Click Action Icons (Premium Standard)
+        // One-Click Action Icons (Sultan Dynamic Standard)
         var actionButtons = '';
+        var isApproved = (stButton.includes('setuju') || stButton.includes('ok') || stButton.includes('valid'));
+        
         if (isLocked && !TUGAS_IS_ADMIN) {
-            actionButtons = '<span class="badge badge-success px-2 py-1 shadow-sm"><i class="fas fa-lock mr-1"></i></span>';
+            actionButtons = '<span class="badge badge-success px-2 py-1 shadow-sm"><i class="fas fa-lock"></i></span>';
         } else {
             actionButtons = '<div class="sk-action-group">';
             if (TUGAS_IS_ADMIN) {
-                actionButtons += `<button class="sk-btn-icon sk-btn-verify" onclick="tugas_bukaModalVerif('${id}')" title="Verifikasi SK"><i class="fas fa-clipboard-check"></i></button>`;
+                // Admin Verify always active
+                actionButtons += `<button class="sk-btn-icon sk-btn-verify active" onclick="tugas_bukaModalVerif('${id}')" title="Verifikasi SK"><i class="fas fa-clipboard-check"></i></button>`;
             }
-            actionButtons += `<button class="sk-btn-icon sk-btn-edit" onclick="tugas_bukaModalEdit('${id}')" title="Edit SK"><i class="fas fa-pencil-alt"></i></button>`;
-            actionButtons += `<button class="sk-btn-icon sk-btn-delete" onclick="tugas_bukaModalHapus('${id}')" title="Hapus Permanen"><i class="fas fa-trash"></i></button>`;
+            
+            var btnClass = (isApproved && !TUGAS_IS_ADMIN) ? "locked" : "active";
+            // For Admin, also show colored icons to facilitate identification, or maybe gray if approved too? 
+            // User request says "tombol Aksi berwarna jika statusnya bukan Disetujui dan jika DIsetujui menjadi abu-abu".
+            // Let's follow strictly: Disetujui = Abu-abu, Bukan = Berwarna.
+            var adaptiveClass = isApproved ? "locked" : "active";
+
+            actionButtons += `<button class="sk-btn-icon sk-btn-edit ${adaptiveClass}" onclick="tugas_bukaModalEdit('${id}')" title="Edit SK"><i class="fas fa-pencil-alt"></i></button>`;
+            actionButtons += `<button class="sk-btn-icon sk-btn-delete ${adaptiveClass}" onclick="tugas_bukaModalHapus('${id}')" title="Hapus Permanen"><i class="fas fa-trash"></i></button>`;
             actionButtons += '</div>';
         }
 
