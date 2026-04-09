@@ -510,6 +510,7 @@
   var DASHSK_CHART_STATUS = null;
   var DASHSK_CHART_TREND = null;
   var DASHSK_LIST_BELUM_CACHE = [];
+  var DASHSK_PREV_DATA_JSON = null; // Track current state to prevent double-load flash
   var DASHSK_USER_IS_ADMIN = false;
   var DASHSK_IS_FETCHING = false;
   var DASHSK_LAST_FETCH_TIME = 0;
@@ -619,14 +620,36 @@
       return;
     }
 
+    // DIFF CHECK: Prevent "flashing" if data is identical to what's already on screen
+    var currentDataJSON = JSON.stringify(data);
+    if (currentDataJSON === DASHSK_PREV_DATA_JSON) {
+        console.log("DASHSK: Data identical, skipping render.");
+        return; 
+    }
+
     const ids = ["dashsk_valTotal", "dashsk_valDisetujui", "dashsk_valProgress", "dashsk_valBelum", "dashsk_valDiproses", "dashsk_valRevisi", "dashsk_valDitolak"];
     const vals = [data.totalMasuk, data.disetujui, data.progress, data.belumLaporCount, data.diproses, data.revisi, data.ditolak];
 
     ids.forEach((id, i) => {
-      if (isSilent) $('#' + id).text(vals[i]);
-      else dashsk_animateValue(id, vals[i], "");
+      var newVal = vals[i];
+      var oldVal = 0;
+      
+      // Get current text to compare (strip non-numeric if needed)
+      try { oldVal = parseInt($('#' + id).text()) || 0; } catch(e) { oldVal = 0; }
+
+      if (isSilent) {
+          $('#' + id).text(newVal);
+      } else {
+          // Only animate if value actually changed
+          if (newVal !== oldVal) {
+              dashsk_animateValue(id, newVal, "");
+          } else {
+              $('#' + id).text(newVal); 
+          }
+      }
     });
 
+    // Sub-text update (Update directly, these are small so flash is minimal)
     $('#dashsk_subTotal').html('Awal: ' + data.totalAwal + ' &bull; Perubahan: ' + data.totalPerubahan);
     $('#dashsk_subValid').html('Awal: ' + data.validAwal + ' &bull; Perubahan: ' + data.validPerubahan);
 
@@ -641,6 +664,9 @@
     DASHSK_LIST_BELUM_CACHE = data.belumLaporList || [];
     $('#dashsk_badgeBelumCount').text(DASHSK_LIST_BELUM_CACHE.length);
     dashsk_renderBelumList(DASHSK_LIST_BELUM_CACHE);
+
+    // Save state
+    DASHSK_PREV_DATA_JSON = currentDataJSON;
   }
 
   function dashsk_renderBelumList(list) {
