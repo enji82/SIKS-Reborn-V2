@@ -6,10 +6,10 @@
     
     <div class="row mb-2">
       <div class="col-sm-12">
-        <h5 class="m-0 font-weight-bold">
+        <h5 class="m-0 font-weight-bold d-inline-block position-relative pb-2" style="color: #1e293b;">
           <i class="fas fa-file-signature text-maroon mr-2"></i>Data SK Pembagian Tugas
+          <div style="position: absolute; bottom: 0; left: 0; width: 60%; height: 3px; background: var(--warna-maroon); border-radius: 2px;"></div>
         </h5>
-        <hr class="style-sultan-solid">
       </div>
     </div>
   </div>
@@ -20,55 +20,66 @@
     <div class="row justify-content-center">
       <div class="col-12">
 
-        <div class="card-sultan mb-3">
-          <div class="card-body py-2 px-3 border-left-dark">
-            <div class="d-flex align-items-center justify-content-between cursor-pointer" data-toggle="collapse" data-target="#tugas_infoCollapse" aria-expanded="false">
-              <div class="d-flex align-items-center text-maroon font-weight-bold">
-                <i class="fas fa-info-circle mr-2"></i> Informasi
-              </div>
-              <i class="fas fa-chevron-down text-muted icon-sm"></i>
+        <div class="card-sultan sk-mini-info mb-2">
+          <div class="card-body py-1 px-3 d-flex align-items-center justify-content-between cursor-pointer" data-toggle="collapse" data-target="#tugas_infoCollapse">
+            <div class="d-flex align-items-center text-maroon font-weight-bold" style="font-size: 0.82rem;">
+              <i class="fas fa-info-circle mr-2"></i> Petunjuk Penggunaan
             </div>
-            <div id="tugas_infoCollapse" class="collapse">
-              <div class="mt-2 pt-2 border-top small text-muted">
-                <ul class="mb-0 pl-3 text-dark mt-2" style="font-size: 14px; line-height: 1.6;">
-                    <li>Halaman ini digunakan untuk mengelola data SK Pembagian Tugas.</li>
-                    <li>Klik tombol <b>+ Tambah</b> untuk mengunggah data SK baru.</li>
-                    <li>Unggah SK Pembagian Tugas di setiap awal semester atau setiap membuat SK baru.</li>
-                    <li>Satu sekolah hanya dapat memiliki 1 SK untuk kombinasi <b>Tahun Ajaran, Semester, dan Kriteria</b> yang sama.</li>
-                    <li>File yang diunggah adalah format <b class="text-danger">PDF</b> dengan ukuran maksimal <b>1 MB</b>.</li>
-                    <li>Klik tombol <span class="badge badge-outline-danger">💬 Baca Catatan</span> untuk melihat alasan admin jika SK direvisi/ditolak.</li>
-                </ul>
-              </div>
+            <div class="d-flex align-items-center">
+              <span class="badge badge-light text-muted mr-2" style="font-size: 10px;">KLIK UNTUK DETAIL</span>
+              <i class="fas fa-chevron-down text-muted icon-xs"></i>
+            </div>
+          </div>
+          <div id="tugas_infoCollapse" class="collapse">
+            <div class="px-3 pb-2 small text-muted border-top pt-2">
+              <ul class="mb-0 pl-3 text-dark font-weight-normal" style="font-size: 13px; line-height: 1.5;">
+                  <li>Halaman pengelolaan data SK Pembagian Tugas. Klik <b>+ Tambah</b> untuk data baru.</li>
+                  <li>Satu sekolah = 1 SK per kombinasi <b>Tahun Ajaran, Semester, dan Kriteria</b>.</li>
+                  <li>Format file: <b class="text-danger">PDF</b> (Maksimal <b>1 MB</b>).</li>
+                  <li>Cek alasan revisi melalui tombol <span class="badge badge-outline-danger">💬 Baca Catatan</span>.</li>
+              </ul>
             </div>
           </div>
         </div>
         
-        <div class="card-sultan sk-filter-card p-3 mb-3">
-            <div class="d-flex-gap align-items-center flex-wrap">
-                <div class="d-flex align-items-center flex-wrap" style="gap:10px;">
-                    <select id="tugas_filterUnit" class="form-control form-control-sultan input-auto-width min-w-250 font-weight-bold text-maroon bg-transparent border-0" style="box-shadow:none;" disabled>
-                        <option value="">- Memvalidasi Akses... -</option>
-                    </select>
-                    <select id="tugas_filterTahun" class="form-control form-control-sultan input-auto-width min-w-80 border-0 bg-transparent" style="box-shadow:none;"></select>
-                    <select id="tugas_filterSemester" class="form-control form-control-sultan input-auto-width border-0 bg-transparent" style="box-shadow:none;">
-                        <option value="">- Semua Semester -</option>
-                        <option value="Semester 1">Semester 1</option>
-                        <option value="Semester 2">Semester 2</option>
-                    </select>
-                    <select id="tugas_filterStatus" class="form-control form-control-sultan input-auto-width border-0 bg-transparent" style="box-shadow:none;">
-                        <option value="">- Semua Status -</option>
-                        <option value="Diproses">Diproses</option>
-                        <option value="Revisi">Revisi</option>
-                        <option value="OK">Disetujui</option>
-                        <option value="Ditolak">Ditolak</option>
-                    </select>
+        <div class="sk-toolbar-card mb-3">
+            <div class="sk-toolbar-row">
+                <div class="sk-filter-group">
+                    <div class="sk-filter-item">
+                        <label>Unit Kerja</label>
+                        <select id="tugas_filterUnit" class="sk-input-clean min-w-250 font-weight-bold" disabled>
+                            <option value="">- Validing Access... -</option>
+                        </select>
+                    </div>
+                    <div class="sk-filter-item">
+                        <label>Tahun</label>
+                        <select id="tugas_filterTahun" class="sk-input-clean"></select>
+                    </div>
+                    <div class="sk-filter-item">
+                        <label>Semester</label>
+                        <select id="tugas_filterSemester" class="sk-input-clean">
+                            <option value="">- Semua -</option>
+                            <option value="Semester 1">Semester 1</option>
+                            <option value="Semester 2">Semester 2</option>
+                        </select>
+                    </div>
+                    <div class="sk-filter-item">
+                        <label>Status</label>
+                        <select id="tugas_filterStatus" class="sk-input-clean">
+                            <option value="">- Semua -</option>
+                            <option value="Diproses">Diproses</option>
+                            <option value="Revisi">Revisi</option>
+                            <option value="OK">Disetujui</option>
+                            <option value="Ditolak">Ditolak</option>
+                        </select>
+                    </div>
                 </div>
 
-                <div class="ml-auto d-flex align-items-center" style="gap:8px;">
-                    <button type="button" id="tugas_btnCari" class="btn bg-white border shadow-sm text-maroon" title="Terapkan Filter / Refresh" disabled>
+                <div class="sk-action-group-toolbar">
+                    <button type="button" id="tugas_btnCari" class="sk-btn-toolbar sk-btn-refresh" title="Refresh">
                         <i class="fas fa-sync-alt"></i>
                     </button>
-                    <button type="button" id="tugas_btnTambah" class="btn btn-maroon text-white font-weight-bold shadow-sm px-3" disabled>
+                    <button type="button" id="tugas_btnTambah" class="sk-btn-toolbar sk-btn-add" disabled>
                         <i class="fas fa-plus mr-1"></i> Tambah
                     </button>
                 </div>
@@ -91,12 +102,12 @@
                 <table id="tugas_tabelUtama" class="table table-bordered table-hover table-premium table-sultan-compact mb-0 w-100 text-nowrap">
                   <thead class="bg-light">
                     <tr>
-                      <th class="col-sticky-left border-right text-center align-middle" style="width: 1%; white-space: nowrap; z-index: 5;">Aksi</th>
-                      <th class="text-left align-middle">Informasi Sekolah</th>
-                      <th class="text-center align-middle">Periode</th>
-                      <th class="text-left align-middle">Nomor SK & Kriteria</th>
-                      <th class="text-center align-middle">Dokumen</th>
-                      <th class="text-left align-middle">Status</th>
+                      <th class="col-sticky-left text-center align-middle" style="width: 1%; white-space: nowrap;">Aksi</th>
+                      <th class="text-left align-middle" style="width: 200px;">Informasi Sekolah</th>
+                      <th class="text-center align-middle" style="width: 120px;">Periode</th>
+                      <th class="text-left align-middle" style="width: 300px;">Nomor SK & Kriteria</th>
+                      <th class="text-center align-middle" style="width: 80px;">Dokumen</th>
+                      <th class="text-center align-middle" style="width: 120px;">Status</th>
                       <th class="text-left align-middle">Log Aktivitas</th>
                     </tr>
                   </thead>
@@ -662,17 +673,26 @@ function tugas_renderTabel(data) {
         }
         
         var tglSkDisplay = row.tglSkDisplay || row.tglSk || "-";
-        if(tglSkDisplay.match(/^\d{4}-\d{2}-\d{2}$/)) { var p = tglSkDisplay.split('-'); tglSkDisplay = p[2] + '-' + p[1] + '-' + p[0]; }
-
-        // Combined Info Columns (Standard Compact)
-        var uiInfoSekolah = `<div class="font-weight-bold text-dark text-nowrap" style="margin:0; padding:0;">${tugas_cleanText(row.namaSd)}</div>`;
-        var uiPeriode = `<div class="text-nowrap" style="margin:0; padding:0; line-height:1.2;">${tugas_cleanText(row.tahun)}<br><small class="text-muted font-weight-bold" style="font-size:11px;">${tugas_cleanText(row.semester)}</small></div>`;
-        var uiSkKriteria = `<div class="font-weight-bold" style="font-size:14px; color:#1e293b; line-height:1.2; margin:0; padding:0;">${safeNoSk}</div><div style="font-size:12px; color:#7B0000; font-weight:700; margin:0; padding:0;">${tugas_cleanText(row.kriteria)} &bull; ${tglSkDisplay}</div>`;
+        if(tglSkDisplay.match(/^\d{4}-\d{2}-\d{2}$/)) { var p = tglSkDisplay.split('-'); tglSkDisplay = p[2] + '-' + p[1] + '-' +        // Combined Info Columns (Professional Unified Standard)
+        var uiInfoSekolah = `<div class="font-weight-bold text-dark" style="font-size: 0.88rem;">${tugas_cleanText(row.namaSd)}</div>`;
+        var uiPeriode = `<div class="text-center" style="line-height:1.2; font-size: 0.82rem;">
+                            <span class="d-block text-dark font-weight-bold">${tugas_cleanText(row.tahun)}</span>
+                            <span class="d-block text-muted small">${tugas_cleanText(row.semester)}</span>
+                         </div>`;
+        var uiSkKriteria = `<div class="text-left" style="line-height:1.25;">
+                                <div class="font-weight-bold text-dark" style="font-size: 0.88rem;">${safeNoSk}</div>
+                                <div class="text-maroon font-weight-bold" style="font-size: 11px; letter-spacing: 0.3px;">
+                                    ${tugas_cleanText(row.kriteria)} &bull; ${tglSkDisplay}
+                                </div>
+                            </div>`;
         
-        // Combined Activity Log (Standard Compact)
+        // Combined Activity Log (Professional Unified Standard)
         var latestDate = row.tglVerval || row.tglUpdate || row.tglUnggah || "-";
         var latestUser = row.verifikator || row.userUpdate || row.userInput || "-";
-        var uiLog = `<div style="line-height:1.2; font-size:12px; margin:0; padding:0;"><span class="d-block font-weight-bold text-dark">${latestDate}</span><span class="d-block text-muted text-truncate" style="max-width:140px; font-size:11px;">${tugas_cleanText(latestUser)}</span></div>`;
+        var uiLog = `<div class="text-left" style="line-height:1.2; font-size: 0.8rem;">
+                        <span class="d-block font-weight-bold text-dark">${latestDate}</span>
+                        <span class="d-block text-muted text-truncate" style="max-width:180px;">${tugas_cleanText(latestUser)}</span>
+                     </div>`;
 
         dtArray.push([ 
             actionButtons, 
@@ -682,7 +702,7 @@ function tugas_renderTabel(data) {
             btnFile, 
             badgeStatus, 
             uiLog
-        ]);
+        ]);       ]);
     });
 
     TUGAS_TABEL_INSTANCE.clear().rows.add(dtArray).draw(false);
