@@ -1676,18 +1676,36 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     -webkit-overflow-scrolling: touch !important;
     padding-bottom: 5px;
 }
-table.table-premium.dataTable tbody tr,
-table.table-premium.dataTable tbody td {
+/* Nuclear Shield: Force Table Integrity on ALL Devices */
+table.table-premium {
+    display: table !important;
+    width: 100% !important;
+    min-width: 900px !important; /* Force Horizontal Scroll */
+}
+table.table-premium thead,
+table.table-premium tbody,
+table.table-premium tfoot {
+    display: table-row-group !important;
+}
+table.table-premium tr {
+    display: table-row !important;
+}
+table.table-premium th,
+table.table-premium td {
+    display: table-cell !important;
+    white-space: nowrap !important;
     background-color: #ffffff !important;
     vertical-align: middle !important;
     border-bottom: 1px solid #F1F5F9 !important;
-    padding: 6px 12px !important; /* Balanced Compact */
+    padding: 6px 12px !important;
     font-size: 0.88rem;
     line-height: 1.35 !important;
     color: #1e293b !important;
-    white-space: nowrap !important; /* Force Horizontal Pillar */
 }
-/* Force Hover Color to match Header perfectly */
+/* Completely Disable DataTables Responsive Plugin Visuals */
+.dtr-control, .dtr-details, tr.child {
+    display: none !important;
+}
 table.table-premium.dataTable tbody tr:hover td,
 table.table-premium.dataTable tbody tr.hover td,
 table.table-premium.dataTable tbody tr:hover td.col-sticky-left {
