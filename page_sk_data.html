@@ -41,12 +41,12 @@
             background-color: #ffffff !important;
             vertical-align: middle !important;
             border-bottom: 1px solid #F1F5F9 !important;
-            padding: 10px 12px !important;
+            padding: 4px 10px !important; /* Extreme Height Efficiency */
             font-size: 0.82rem;
             color: #1e293b !important;
         }
         table.table-premium.dataTable tbody tr:hover td {
-            background-color: #f8fafc !important;
+            background-color: #f1f5f9 !important; /* Synchronized with Header */
         }
         .col-sticky-left {
             position: sticky !important; left: 0; z-index: 10 !important;
@@ -85,8 +85,14 @@
 
         /* Mobile Tap Targets */
         @media (max-width: 767.98px) {
-            .sk-btn-icon { width: 34px; height: 34px; font-size: 0.95rem; }
+            .sk-btn-icon { width: 36px; height: 36px; font-size: 1rem; }
             .sk-action-group { gap: 8px; }
+            .sk-btn-pdf-mobile { 
+                width: 44px !important; height: 32px !important; 
+                background: #FEF2F2 !important; color: #DC2626 !important; 
+                border-color: #FECACA !important;
+                display: flex; align-items: center; justify-content: center;
+            }
         }
 
         /* Responsive Table */
@@ -784,7 +790,7 @@ function tugas_renderTabel(data) {
 
         var btnFile = '-';
         if(safeUrl.length > 5) {
-            btnFile = `<button class="btn btn-sm btn-outline-danger font-weight-bold shadow-sm py-1 px-2" style="font-size:11px;" onclick="tugas_bukaPreview('${safeUrlJs}')"><i class="fas fa-file-pdf"></i></button>`;
+            btnFile = `<button class="btn btn-sm btn-outline-danger sk-btn-pdf-mobile font-weight-bold shadow-sm py-1 px-2" style="font-size:11px;" onclick="tugas_bukaPreview('${safeUrlJs}')"><i class="fas fa-file-pdf"></i></button>`;
         }
         
         var tglSkDisplay = row.tglSkDisplay || row.tglSk || "-";
