@@ -104,7 +104,7 @@
 
                         <div id="tugas_tableState" style="display: none;">
                             <table id="tugas_tabelUtama"
-                                class="table table-bordered table-hover table-premium table-sultan-compact mb-0 w-100 text-nowrap">
+                                class="table table-bordered table-hover table-premium table-sultan-compact mb-0 w-100">
                                 <thead class="thead-grey-sultan">
                                     <tr>
                                         <th class="col-sticky-left border-right text-center"
@@ -625,15 +625,15 @@
                 // Re-init DataTable (SULTAN STANDARD)
                 if (!$.fn.DataTable.isDataTable('#tugas_tabelUtama')) {
                     TUGAS_TABEL_INSTANCE = $('#tugas_tabelUtama').DataTable({
-                        "destroy": true, "ordering": false, "pageLength": 10, "autoWidth": false,
+                        "destroy": true, "ordering": false, "pageLength": 10, "autoWidth": true,
                         "deferRender": true, "responsive": false,
                         "dom": "<'row mb-2'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
                             "<'row'<'col-sm-12'<'table-responsive sultan-scroll'tr>>>" +
                             "<'row mt-2'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
                         "columnDefs": [
-                            { "targets": 0, "className": "col-sticky-left bg-white align-middle border-right text-center", "width": "1%", "orderable": false },
+                            { "targets": 0, "className": "col-sticky-left bg-white align-middle border-right text-center", "width": "50px", "orderable": false },
                             { "targets": [1, 2, 3, 6, 7, 8], "className": "align-middle text-left" },
-                            { "targets": [4, 5], "className": "align-middle text-center", "width": "80px" }
+                            { "targets": [4, 5], "className": "align-middle text-center" }
                         ],
                         "language": { "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", "emptyTable": "Tidak ditemukan data SK." }
                     });
@@ -985,10 +985,10 @@
         var url = d.fileUrl || "";
         if (url) {
             $('#tugas_verifLoader').removeClass('d-none');
-            $('#tugas_verifFrame').addClass('d-none').attr('src', url.replace('view?usp=sharing', 'preview'));
+            $('#tugas_verifFrame').addClass('d-none').attr('src', tugas_convertDriveUrl(url));
             $('#tugas_verifNoFile').addClass('d-none');
 
-            $('#tugas_verifFrame').on('load', function () {
+            $('#tugas_verifFrame').off('load').on('load', function () {
                 $('#tugas_verifLoader').addClass('d-none');
                 $(this).removeClass('d-none');
             });
@@ -1089,12 +1089,28 @@
     function tugas_bukaPreview(url) {
         if (!url) { Sultan.alert('error', 'File Kurang', 'Dokumen belum diunggah.'); return; }
         $('#tugas_btnFullDownload').attr('href', url);
-        $('#tugas_framePreviewFull').addClass('d-none').attr('src', url.replace('view?usp=sharing', 'preview'));
+        $('#tugas_loadingPreviewPDF').removeClass('d-none');
+        $('#tugas_framePreviewFull').addClass('d-none').attr('src', tugas_convertDriveUrl(url));
         $('#tugas_modalPreview').modal('show');
-        $('#tugas_framePreviewFull').on('load', function () {
+        $('#tugas_framePreviewFull').off('load').on('load', function () {
             $('#tugas_loadingPreviewPDF').addClass('d-none');
             $(this).removeClass('d-none');
         });
+    }
+
+    function tugas_convertDriveUrl(url) {
+        if (!url) return "";
+        if (url.includes('drive.google.com')) {
+            if (url.includes('/file/d/')) {
+                var fileId = url.split('/file/d/')[1].split('/')[0];
+                return 'https://drive.google.com/file/d/' + fileId + '/preview';
+            }
+            if (url.includes('id=')) {
+                var fileId = url.split('id=')[1].split('&')[0];
+                return 'https://drive.google.com/file/d/' + fileId + '/preview';
+            }
+        }
+        return url;
     }
 
     function tugas_buildBadgeStatus(st, ket) {
