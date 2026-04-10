@@ -15,7 +15,7 @@
 
         <div class="cb-info-collapse-card" id="tugas_cardInfo">
             <div class="cb-info-header" onclick="$('#tugas_infoContent').slideToggle(200); $('#tugas_infoIcon').toggleClass('fa-chevron-down fa-chevron-up');">
-                <span><i class="fas fa-info-circle mr-2"></i> Petunjuk & Informasi Halaman</span>
+                <span><i class="fas fa-info-circle mr-2"></i> Informasi</span>
                 <i class="fas fa-chevron-down" id="tugas_infoIcon"></i>
             </div>
             <div id="tugas_infoContent" style="display: none; padding: 0 1.25rem 1.25rem 1.25rem;">
@@ -33,46 +33,50 @@
         </div>
         
         <div class="cb-card">
-            <div class="cb-filter-toolbar flex-column align-items-stretch">
+            <div class="cb-filter-toolbar flex-column p-2">
                 <!-- Row 1: Primary Filters -->
-                <div class="d-flex align-items-center flex-wrap w-100 mb-3" style="gap: 1.25rem;">
-                    <div class="cb-input-group flex-grow-1" style="min-width: 250px;">
-                        <select id="tugas_filterUnit" class="cb-select-pill w-100" disabled>
-                            <option value="">- Semua Sekolah -</option>
+                <div class="d-flex align-items-center flex-wrap w-100" style="gap: 1rem; padding: 0.25rem 0.75rem;">
+                    <div class="d-flex align-items-center flex-grow-1" style="gap:0.5rem; min-width: 250px;">
+                        <span class="material-symbols-outlined text-maroon" style="font-size:18px;">corporate_fare</span>
+                        <select id="tugas_filterUnit" class="form-control form-control-sm border-0 font-weight-bold" style="background:transparent; cursor:pointer;" disabled>
+                            <option value="">- Semua -</option>
                         </select>
                     </div>
-                    <div class="cb-input-group">
-                        <select id="tugas_filterTahun" class="cb-select-pill" style="min-width: 140px;"></select>
+                    <div class="d-flex align-items-center" style="gap:0.5rem; border-left:1px solid #E2E8F0; padding-left:1rem;">
+                        <span class="material-symbols-outlined text-maroon" style="font-size:18px;">calendar_today</span>
+                        <select id="tugas_filterTahun" class="form-control form-control-sm border-0 font-weight-bold" style="width:auto; min-width:80px; background:transparent; cursor:pointer;"></select>
                     </div>
-                    <div class="cb-input-group">
-                        <select id="tugas_filterSemester" class="cb-select-pill" style="min-width: 160px;">
-                            <option value="">- Semua Semester -</option>
+                    <div class="d-flex align-items-center" style="gap:0.5rem; border-left:1px solid #E2E8F0; padding-left:1rem;">
+                        <span class="material-symbols-outlined text-maroon" style="font-size:18px;">layers</span>
+                        <select id="tugas_filterSemester" class="form-control form-control-sm border-0 font-weight-bold" style="width:auto; min-width:100px; background:transparent; cursor:pointer;">
+                            <option value="">- Semua -</option>
                             <option value="Semester 1">Semester 1</option>
                             <option value="Semester 2">Semester 2</option>
                         </select>
                     </div>
                 </div>
 
-                <!-- Row 2: Secondary Filters & Actions -->
-                <div class="d-flex align-items-center flex-wrap w-100" style="gap: 1.25rem;">
-                    <div class="cb-input-group">
-                        <select id="tugas_filterStatus" class="cb-select-pill" style="min-width: 160px;">
-                            <option value="">- Semua Status -</option>
+                <!-- Row 2: Secondary & Action -->
+                <div class="d-flex align-items-center flex-wrap w-100 border-top" style="gap: 1rem; padding: 0.25rem 0.75rem; border-color: #F1F5F9 !important;">
+                    <div class="d-flex align-items-center" style="gap:0.5rem;">
+                        <span class="material-symbols-outlined text-maroon" style="font-size:18px;">rule</span>
+                        <select id="tugas_filterStatus" class="form-control form-control-sm border-0 font-weight-bold" style="width:auto; min-width:100px; background:transparent; cursor:pointer;">
+                            <option value="">- Semua -</option>
                             <option value="Diproses">Diproses</option>
                             <option value="Revisi">Revisi</option>
                             <option value="OK">Disetujui</option>
                             <option value="Ditolak">Ditolak</option>
                         </select>
                     </div>
-                    
-                    <div style="width: 1px; height: 28px; background: #E2E8F0; margin: 0 0.5rem;"></div>
 
-                    <button type="button" id="tugas_btnCari" class="cb-btn-toolbar cb-btn-white" title="Refresh">
+                    <div style="width: 1px; height: 16px; background: #E2E8F0; margin: 0 0.25rem;"></div>
+
+                    <button type="button" id="tugas_btnCari" class="btn btn-sm text-maroon font-weight-bold p-0" title="Refresh">
                         <i class="fas fa-sync-alt"></i>
                     </button>
 
-                    <button type="button" id="tugas_btnTambah" class="cb-btn-toolbar cb-btn-primary ml-auto" style="min-width: 150px;" disabled>
-                        <i class="fas fa-plus mr-2"></i> Tambah
+                    <button type="button" id="tugas_btnTambah" class="btn btn-sm btn-maroon ml-auto px-3 font-weight-bold" style="border-radius:8px; height: 28px; font-size: 11px;" disabled>
+                        <i class="fas fa-plus mr-1"></i> Tambah
                     </button>
                 </div>
             </div>
@@ -404,7 +408,7 @@ $(document).ready(function() {
 
 function tugas_initFilterTahun() {
     var now = new Date(); var curYear = now.getFullYear(); var curMonth = now.getMonth(); 
-    var htmlTahun = '<option value="">- Semua Tahun -</option>';
+    var htmlTahun = '<option value="">- Semua -</option>';
     var formTahun = '<option value="">- Pilih Tahun Ajaran -</option>';
 
     for (var y = 2021; y <= curYear + 1; y++) { 
@@ -425,7 +429,7 @@ function tugas_initFilterTahun() {
 function tugas_validasiAksesUser() {
     if (TUGAS_IS_ADMIN) {
         $('#tugas_loadingText').html('Mempersiapkan Database Admin...');
-        $('#tugas_filterUnit').empty().append('<option value="SEMUA">- Semua Unit Kerja -</option>').prop('disabled', false).removeClass('bg-light text-maroon font-weight-bold');
+        $('#tugas_filterUnit').empty().append('<option value="SEMUA">- Semua -</option>').prop('disabled', false).removeClass('bg-light text-maroon font-weight-bold');
         
         // AUTO-SET DEFAULT FILTER UNTUK ADMIN
         var now = new Date(); var curYear = now.getFullYear(); var curMonth = now.getMonth(); 
@@ -552,7 +556,7 @@ function tugas_populateFilterOptions() {
     var sortedUnits = Array.from(uniqueUnits).sort();
     
     if (TUGAS_IS_ADMIN) {
-        var uHtml = '<option value="SEMUA">- Semua Sekolah -</option>';
+        var uHtml = '<option value="SEMUA">- Semua -</option>';
         sortedUnits.forEach(u => uHtml += '<option value="' + tugas_escapeHtml(u) + '">' + tugas_escapeHtml(u) + '</option>');
         var curUnit = $('#tugas_filterUnit').val();
         $('#tugas_filterUnit').html(uHtml);
