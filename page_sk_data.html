@@ -671,21 +671,21 @@
         if (typeof DROPDOWN_STATIS !== 'undefined' && DROPDOWN_STATIS["NamaSD"]) {
             DROPDOWN_STATIS["NamaSD"].forEach(function (u) { uniqueUnits.add(u); });
         } else {
-            TUGAS_CACHE_DATA.forEach(row => { if (row.namaSd) uniqueUnits.add(String(row.namaSd).trim()); });
+            TUGAS_CACHE_DATA.forEach(function (row) { if (row.namaSd) uniqueUnits.add(String(row.namaSd).trim()); });
         }
 
         var sortedUnits = Array.from(uniqueUnits).sort();
 
         if (TUGAS_IS_ADMIN) {
             var uHtml = '<option value="SEMUA">- Semua Sekolah-</option>';
-            sortedUnits.forEach(u => uHtml += '<option value="' + tugas_escapeHtml(u) + '">' + tugas_escapeHtml(u) + '</option>');
+            sortedUnits.forEach(function (u) { uHtml += '<option value="' + tugas_escapeHtml(u) + '">' + tugas_escapeHtml(u) + '</option>'; });
             var curUnit = $('#tugas_filterUnit').val();
             $('#tugas_filterUnit').html(uHtml);
             if (curUnit && uniqueUnits.has(curUnit)) $('#tugas_filterUnit').val(curUnit);
         }
 
         var formHtml = '<option value="">- Pilih Sekolah -</option>';
-        sortedUnits.forEach(u => formHtml += '<option value="' + tugas_escapeHtml(u) + '">' + tugas_escapeHtml(u) + '</option>');
+        sortedUnits.forEach(function (u) { formHtml += '<option value="' + tugas_escapeHtml(u) + '">' + tugas_escapeHtml(u) + '</option>'; });
         $('#tugas_inputNamaSd').html(formHtml);
         if (!TUGAS_IS_ADMIN && TUGAS_UNIT_TERKUNCI) {
             $('#tugas_inputNamaSd').val(TUGAS_UNIT_TERKUNCI).prop('disabled', true);
@@ -754,18 +754,17 @@
             var badgeStatus = tugas_buildBadgeStatus(row.status, row.keterangan);
 
             // 1. Tombol Aksi (Individual 3 Buttons sesuai Gambar)
-            var actionButtons = `
-        <div class="d-flex align-items-center justify-content-center">
-            <button type="button" class="btn btn-icon-sultan btn-icon-ref-blue shadow-sm" onclick="${TUGAS_IS_ADMIN ? `tugas_bukaModalVerif('${id}')` : `tugas_bukaPreview('${safeUrlJs}')`}" title="${TUGAS_IS_ADMIN ? 'Verifikasi' : 'Pratinjau'}">
-                <i class="fas ${TUGAS_IS_ADMIN ? 'fa-check-double' : 'fa-eye'}"></i>
-            </button>
-            <button type="button" class="btn btn-icon-sultan btn-icon-ref-grey shadow-sm ${isLocked ? 'disabled opacity-50' : ''}" onclick="${isLocked ? 'void(0)' : `tugas_bukaModalEdit('${id}')`}" title="Edit Data">
-                <i class="fas fa-pencil-alt"></i>
-            </button>
-            <button type="button" class="btn btn-icon-sultan btn-icon-ref-dark shadow-sm ${isLocked ? 'disabled opacity-50' : ''}" onclick="${isLocked ? 'void(0)' : `tugas_bukaModalHapus('${id}')`}" title="Hapus Data">
-                <i class="fas fa-trash-alt"></i>
-            </button>
-        </div>`;
+            var actionButtons = '<div class="d-flex align-items-center justify-content-center">' +
+                '<button type="button" class="btn btn-icon-sultan btn-icon-ref-blue shadow-sm" onclick="' + (TUGAS_IS_ADMIN ? "tugas_bukaModalVerif('" + id + "')" : "tugas_bukaPreview('" + safeUrlJs + "')") + '" title="' + (TUGAS_IS_ADMIN ? 'Verifikasi' : 'Pratinjau') + '">' +
+                '<i class="fas ' + (TUGAS_IS_ADMIN ? 'fa-check-double' : 'fa-eye') + '"></i>' +
+                '</button>' +
+                '<button type="button" class="btn btn-icon-sultan btn-icon-ref-grey shadow-sm ' + (isLocked ? 'disabled opacity-50' : '') + '" onclick="' + (isLocked ? 'void(0)' : "tugas_bukaModalEdit('" + id + "')") + '" title="Edit Data">' +
+                '<i class="fas fa-pencil-alt"></i>' +
+                '</button>' +
+                '<button type="button" class="btn btn-icon-sultan btn-icon-ref-dark shadow-sm ' + (isLocked ? 'disabled opacity-50' : '') + '" onclick="' + (isLocked ? 'void(0)' : "tugas_bukaModalHapus('" + id + "')") + '" title="Hapus Data">' +
+                '<i class="fas fa-trash-alt"></i>' +
+                '</button>' +
+                '</div>';
 
             // 2. Format Tanggal SK
             var tglSkDisplay = row.tglSkDisplay || row.tglSk || "-";
@@ -774,21 +773,21 @@
             }
 
             // 3. Tombol Dokumen
-            var btnDokumen = safeUrl.length > 5 ? `<button type="button" class="btn-sk-pdf shadow-sm" onclick="tugas_bukaPreview('${safeUrlJs}')"><i class="fas fa-file-pdf mr-1"></i> SK</button>` : '-';
+            var btnDokumen = safeUrl.length > 5 ? '<button type="button" class="btn-sk-pdf shadow-sm" onclick="tugas_bukaPreview(\'' + safeUrlJs + '\')"><i class="fas fa-file-pdf mr-1"></i> SK</button>' : '-';
 
             // 4. Log Detils
-            var uiDikirim = `<div class="sk-log-box"><span class="sk-log-date">${row.tglUnggah || '-'}</span><span class="sk-log-user">${row.userInput || '-'}</span></div>`;
-            var uiDiubah = row.tglUpdate && row.tglUpdate !== '-' ? `<div class="sk-log-box"><span class="sk-log-date">${row.tglUpdate}</span><span class="sk-log-user">${row.userUpdate || '-'}</span></div>` : '-';
-            var uiVerif = row.tglVerval && row.tglVerval !== '-' ? `<div class="sk-log-box"><span class="sk-log-date">${row.tglVerval}</span><span class="sk-log-user">${row.verifikator || '-'}</span></div>` : '-';
+            var uiDikirim = '<div class="sk-log-box"><span class="sk-log-date">' + (row.tglUnggah || '-') + '</span><span class="sk-log-user">' + (row.userInput || '-') + '</span></div>';
+            var uiDiubah = row.tglUpdate && row.tglUpdate !== '-' ? '<div class="sk-log-box"><span class="sk-log-date">' + row.tglUpdate + '</span><span class="sk-log-user">' + (row.userUpdate || '-') + '</span></div>' : '-';
+            var uiVerif = row.tglVerval && row.tglVerval !== '-' ? '<div class="sk-log-box"><span class="sk-log-date">' + row.tglVerval + '</span><span class="sk-log-user">' + (row.verifikator || '-') + '</span></div>' : '-';
 
             // KOMBINASI KOLOM (9 KOLOM TOTAL)
-            var uiTahunSem = `<div class="sk-item-main">${tugas_cleanText(row.tahun)}</div><div class="sk-item-sub font-weight-bold text-muted">${tugas_cleanText(row.semester)}</div>`;
-            var uiSkDetail = `<div class="sk-item-main text-nowrap">${safeNoSk}</div>
-                          <div class="sk-item-sub"><i class="far fa-calendar-alt mr-1"></i> ${tglSkDisplay} &bull; <span class="text-maroon">${tugas_cleanText(row.kriteria)}</span></div>`;
+            var uiTahunSem = '<div class="sk-item-main">' + tugas_cleanText(row.tahun) + '</div><div class="sk-item-sub font-weight-bold text-muted">' + tugas_cleanText(row.semester) + '</div>';
+            var uiSkDetail = '<div class="sk-item-main text-nowrap">' + safeNoSk + '</div>' +
+                           '<div class="sk-item-sub"><i class="far fa-calendar-alt mr-1"></i> ' + tglSkDisplay + ' &bull; <span class="text-maroon">' + tugas_cleanText(row.kriteria) + '</span></div>';
 
             dtArray.push([
                 actionButtons,
-                `<div class="sk-item-main text-maroon">${tugas_cleanText(row.namaSd)}</div>`,
+                '<div class="sk-item-main text-maroon">' + tugas_cleanText(row.namaSd) + '</div>',
                 uiTahunSem,
                 uiSkDetail,
                 btnDokumen,
@@ -1105,8 +1104,17 @@
         // Transform URL for direct download
         var dlUrl = url;
         if (url.includes('drive.google.com')) {
-            const fileId = url.split('/file/d/')[1]?.split('/')[0] || url.split('id=')[1]?.split('&')[0];
-            if (fileId) dlUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+            var fileId = "";
+            var parts = url.split('/file/d/');
+            if (parts.length > 1) {
+                fileId = parts[1].split('/')[0];
+            } else {
+                var idParts = url.split('id=');
+                if (idParts.length > 1) {
+                    fileId = idParts[1].split('&')[0];
+                }
+            }
+            if (fileId) dlUrl = 'https://drive.google.com/uc?export=download&id=' + fileId;
         }
 
         $('#tugas_btnQuickDownload').attr('href', dlUrl);
@@ -1164,7 +1172,7 @@
 
         if (ket && ket.trim().length > 2 && (st.includes('revisi') || st.includes('tolak'))) {
             var safeKet = tugas_escapeHtml(ket);
-            badge += `<div class="mt-1"><button type="button" class="btn btn-xs btn-outline-danger font-weight-bold tugas-btn-catatan" style="font-size:10px;" data-pesan="${safeKet}"><i class="fas fa-comment-dots mr-1"></i> Baca Catatan</button></div>`;
+            badge += '<div class="mt-1"><button type="button" class="btn btn-xs btn-outline-danger font-weight-bold tugas-btn-catatan" style="font-size:10px;" data-pesan="' + safeKet + '"><i class="fas fa-comment-dots mr-1"></i> Baca Catatan</button></div>';
         }
         return badge;
     }
