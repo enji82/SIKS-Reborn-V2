@@ -4,13 +4,7 @@
         <i class="fas fa-bolt"></i> TURBO LOADING ACTIVE
     </div>
     
-    <nav aria-label="breadcrumb" class="cb-breadcrumb">
-      <ol class="breadcrumb bg-transparent p-0 mb-1">
-        <li class="breadcrumb-item"><a href="#">Beranda</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Data SK Pembagian Tugas</li>
-      </ol>
-    </nav>
-    <h1 class="cb-page-title">Data SK Pembagian Tugas</h1>
+    <h1 class="cb-page-title"><i class="fas fa-file-contract mr-2" style="color:var(--cb-maroon);"></i> Data SK Pembagian Tugas</h1>
   </div>
 </div>
 
@@ -19,41 +13,45 @@
     <div class="row justify-content-center">
       <div class="col-12">
 
-        <div class="cb-callout mt-0 mb-4">
-            <div class="cb-callout-title">
-                <i class="fas fa-info-circle"></i> Informasi Pengelolaan SK
+        <div class="cb-info-collapse-card" id="tugas_cardInfo">
+            <div class="cb-info-header" onclick="$('#tugas_infoContent').slideToggle(200); $('#tugas_infoIcon').toggleClass('fa-chevron-down fa-chevron-up');">
+                <span><i class="fas fa-info-circle mr-2"></i> Petunjuk & Informasi Halaman</span>
+                <i class="fas fa-chevron-down" id="tugas_infoIcon"></i>
             </div>
-            <div class="small text-muted" style="line-height: 1.6;">
-                Unggah SK Pembagian Tugas setiap awal semester. Pastikan format file adalah <b>PDF (Maks. 1MB)</b>. 
-                Satu sekolah hanya dapat memiliki 1 data per semester/tahun ajaran. 
-                Klik tombol aksi untuk mengelola dokumen.
+            <div id="tugas_infoContent" style="display: none; padding: 0 1.25rem 1.25rem 1.25rem;">
+                <div class="small text-muted" style="line-height: 1.8;">
+                    <ul class="pl-3 mb-0">
+                        <li>Halaman ini digunakan untuk mengelola data SK Pembagian Tugas.</li>
+                        <li>Klik tombol <b>+ Tambah</b> untuk mengunggah data SK baru.</li>
+                        <li>Unggah SK Pembagian Tugas di setiap awal semester atau setiap membuat SK baru.</li>
+                        <li>Satu sekolah hanya dapat memiliki 1 SK untuk kombinasi Tahun Ajaran, Semester, dan Kriteria yang sama.</li>
+                        <li>File yang diunggah adalah format <b>PDF</b> dengan ukuran maksimal <b>1 MB</b>.</li>
+                        <li>Klik tombol 💬 <b>Baca Catatan</b> untuk melihat alasan admin jika SK direvisi/ditolak.</li>
+                    </ul>
+                </div>
             </div>
         </div>
         
         <div class="cb-card">
             <div class="cb-filter-toolbar">
                 <div class="cb-input-group">
-                    <label>Sekolah / Unit Kerja</label>
                     <select id="tugas_filterUnit" class="cb-select-pill min-w-250" disabled>
                         <option value="">- Validing Access... -</option>
                     </select>
                 </div>
                 <div class="cb-input-group">
-                    <label>Tahun Ajaran</label>
                     <select id="tugas_filterTahun" class="cb-select-pill"></select>
                 </div>
                 <div class="cb-input-group">
-                    <label>Semester</label>
                     <select id="tugas_filterSemester" class="cb-select-pill">
-                        <option value="">- Semua -</option>
+                        <option value="">- Semua Semester -</option>
                         <option value="Semester 1">Semester 1</option>
                         <option value="Semester 2">Semester 2</option>
                     </select>
                 </div>
                 <div class="cb-input-group">
-                    <label>Status</label>
                     <select id="tugas_filterStatus" class="cb-select-pill">
-                        <option value="">- Semua -</option>
+                        <option value="">- Semua Status -</option>
                         <option value="Diproses">Diproses</option>
                         <option value="Revisi">Revisi</option>
                         <option value="OK">Disetujui</option>
