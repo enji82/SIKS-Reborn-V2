@@ -543,7 +543,7 @@
     function tugas_validasiAksesUser() {
         if (TUGAS_IS_ADMIN) {
             $('#tugas_loadingText').html('Mempersiapkan Database Admin...');
-            $('#tugas_filterUnit').empty().append('<option value="SEMUA">- Semua -</option>').prop('disabled', false).removeClass('bg-light text-maroon font-weight-bold');
+            $('#tugas_filterUnit').empty().append('<option value="SEMUA">- Semua Sekolah -</option>').prop('disabled', false).removeClass('bg-light text-maroon font-weight-bold');
 
             // AUTO-SET DEFAULT FILTER UNTUK ADMIN
             var now = new Date(); var curYear = now.getFullYear(); var curMonth = now.getMonth();
