@@ -48,14 +48,12 @@
                 <div class="card-sultan p-3 mb-3">
                     <div class="d-flex-gap align-items-center flex-wrap">
 
-                        <select id="tugas_filterUnit"
-                            class="form-control form-control-sultan input-auto-width min-w-250 font-weight-bold text-maroon bg-light"
-                            disabled>
+                        <!-- RE-STRICT ATTRIBUTE SEALING -->
+                        <select id="tugas_filterUnit" class="form-control form-control-sultan input-auto-width min-w-250 font-weight-bold text-maroon bg-light" disabled>
                             <option value="">- Memvalidasi Akses... -</option>
                         </select>
 
-                        <select id="tugas_filterTahun"
-                            class="form-control form-control-sultan input-auto-width min-w-80"></select>
+                        <select id="tugas_filterTahun" class="form-control form-control-sultan input-auto-width min-w-80"></select>
 
                         <select id="tugas_filterSemester" class="form-control form-control-sultan input-auto-width">
                             <option value="">- Semua Semester -</option>
@@ -1185,21 +1183,36 @@
     }
 
     function tugas_renderSkeleton() {
-        var html = '<div class="table-responsive"><table class="table table-bordered mb-0"><thead><tr>';
+        var $cont = $('#tugas_loadingState').empty();
+        var $wrapper = $('<div/>', { "class": "table-responsive" });
+        var $table = $('<table/>', { "class": "table table-bordered mb-0" });
+        var $thead = $('<thead/>');
+        var $trHead = $('<tr/>');
+        
         var cols = ["50px", "200px", "100px", "200px", "100px", "100px", "100px", "100px", "100px"];
-        for (var k = 0; k < cols.length; k++) {
-            html += '<th style="width:' + cols[k] + '; background:#f1f5f9;">&nbsp;</th>';
+        for(var k=0; k<cols.length; k++) {
+            $trHead.append($('<th/>', { 
+                "style": "width:" + cols[k] + "; background:#f1f5f9;",
+                "html": "&nbsp;"
+            }));
         }
-        html += '</tr></thead><tbody>';
-        for (var i = 0; i < 5; i++) {
-            html += '<tr>';
-            for (var j = 0; j < cols.length; j++) {
-                html += '<td><div class="sultan-skeleton" style="width:80%; height:15px;"></div><div class="sultan-skeleton mt-2" style="width:50%; height:10px;"></div></td>';
+        $thead.append($trHead);
+        $table.append($thead);
+        
+        var $tbody = $('<tbody/>');
+        for(var i=0; i<5; i++) {
+            var $tr = $('<tr/>');
+            for(var j=0; j<cols.length; j++) {
+                var $td = $('<td/>');
+                $td.append($('<div/>', { "class": "sultan-skeleton", "style": "width:80%; height:15px;" }));
+                $td.append($('<div/>', { "class": "sultan-skeleton mt-2", "style": "width:50%; height:10px;" }));
+                $tr.append($td);
             }
-            html += '</tr>';
+            $tbody.append($tr);
         }
-        html += '</tbody></table></div>';
-        $('#tugas_loadingState').html(html);
+        $table.append($tbody);
+        $wrapper.append($table);
+        $cont.append($wrapper);
     }
 
     function tugas_cleanText(t) { return tugas_escapeHtml(String(t || "").trim() || "-"); }
