@@ -1026,8 +1026,16 @@ function tugas_parseDateTime(s) {
     } catch(e) { return 0; }
 }
 
-function tugas_cleanText(t) { return Sultan.escapeHtml(String(t || "").trim() || "-"); }
-function tugas_escapeHtml(t) { return Sultan.escapeHtml(t); }
+function tugas_cleanText(t) { return tugas_escapeHtml(String(t || "").trim() || "-"); }
+function tugas_escapeHtml(text) {
+    if (!text) return "";
+    return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
 function tugas_escapeJs(t) { return String(t).replace(/'/g, "\\'"); }
 
 </script>
