@@ -787,7 +787,7 @@
 
             // KOMBINASI KOLOM (9 KOLOM TOTAL)
             var uiTahunSem = `<div class="sk-item-main">${tugas_cleanText(row.tahun)}</div><div class="sk-item-sub font-weight-bold text-muted">${tugas_cleanText(row.semester)}</div>`;
-            var uiSkDetail = `<div class="sk-item-main text-wrap" style="min-width:150px;">${safeNoSk}</div>
+            var uiSkDetail = `<div class="sk-item-main text-nowrap">${safeNoSk}</div>
                           <div class="sk-item-sub"><i class="far fa-calendar-alt mr-1"></i> ${tglSkDisplay} &bull; <span class="text-maroon">${tugas_cleanText(row.kriteria)}</span></div>`;
 
             dtArray.push([
