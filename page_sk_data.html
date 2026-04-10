@@ -1,10 +1,13 @@
 <div class="content-header pb-0">
   <div class="container-fluid">
-    <div id="tugas_turboBadge" class="sk-turbo-badge">
-        <i class="fas fa-bolt"></i> TURBO LOADING ACTIVE
+    <div class="row mb-2">
+      <div class="col-sm-12">
+        <h5 class="m-0 font-weight-bold">
+          <i class="fas fa-file-contract text-maroon mr-2"></i>Data SK Pembagian Tugas
+        </h5>
+        <hr class="style-sultan-solid">
+      </div>
     </div>
-    
-    <h1 class="cb-page-title"><i class="fas fa-file-contract mr-2" style="color:var(--cb-maroon);"></i> Data SK Pembagian Tugas</h1>
   </div>
 </div>
 
@@ -13,126 +16,95 @@
     <div class="row justify-content-center">
       <div class="col-12">
 
-        <div class="cb-info-collapse-card" id="tugas_cardInfo" style="margin-bottom: 1.5rem;">
-            <div class="cb-info-header" onclick="$('#tugas_infoContent').slideToggle(200); $('#tugas_infoIcon').toggleClass('fa-chevron-down fa-chevron-up');">
-                <span><i class="fas fa-info-circle mr-2"></i> Informasi</span>
-                <i class="fas fa-chevron-down" id="tugas_infoIcon"></i>
+        <!-- 1. KARTU INFORMASI (GAYA SULTAN) -->
+        <div class="card-sultan mb-3" id="tugas_cardInfo">
+          <div class="card-body py-2 px-3 border-left-dark">
+            <div class="d-flex align-items-center justify-content-between cursor-pointer" data-toggle="collapse" data-target="#tugas_infoCollapse">
+              <div class="d-flex align-items-center text-maroon font-weight-bold"><i class="fas fa-info-circle mr-2"></i> Informasi</div>
+              <i class="fas fa-chevron-down text-muted icon-sm" id="tugas_infoIcon"></i>
             </div>
-            <div id="tugas_infoContent" style="display: none; padding: 0 1.25rem 1.25rem 1.25rem;">
-                <div class="small text-muted" style="line-height: 1.8;">
-                    <ul class="pl-3 mb-0">
-                        <li>Halaman ini digunakan untuk mengelola data SK Pembagian Tugas.</li>
-                        <li>Klik tombol <b>+ Tambah</b> untuk mengunggah data SK baru.</li>
-                        <li>Unggah SK Pembagian Tugas di setiap awal semester atau setiap membuat SK baru.</li>
-                        <li>Satu sekolah hanya dapat memiliki 1 SK untuk kombinasi Tahun Ajaran, Semester, dan Kriteria yang sama.</li>
-                        <li>File yang diunggah adalah format <b>PDF</b> dengan ukuran maksimal <b>1 MB</b>.</li>
-                        <li>Klik tombol 💬 <b>Baca Catatan</b> untuk melihat alasan admin jika SK direvisi/ditolak.</li>
-                    </ul>
-                </div>
+            <div id="tugas_infoCollapse" class="collapse">
+              <div class="mt-2 pt-2 border-top small text-muted">
+                <ul class="mb-0 pl-3 text-dark mt-2" style="font-size:14px;">
+                    <li>Halaman ini digunakan untuk mengelola data SK Pembagian Tugas.</li>
+                    <li>Klik tombol <b>+ Tambah</b> untuk mengunggah data SK baru.</li>
+                    <li>Unggah SK Pembagian Tugas di setiap awal semester atau setiap membuat SK baru.</li>
+                    <li>Satu sekolah hanya dapat memiliki 1 SK untuk kombinasi Tahun Ajaran, Semester, dan Kriteria yang sama.</li>
+                    <li>File yang diunggah adalah format <b>PDF</b> dengan ukuran maksimal <b>1 MB</b>.</li>
+                    <li>Klik tombol <span class="badge badge-outline-danger">💬 Baca Catatan</span> untuk melihat alasan admin jika SK direvisi/ditolak.</li>
+                </ul>
+              </div>
             </div>
+          </div>
         </div>
-        
-        <!-- 1. GRUP FILTER GLOBAL (STANDALONE CARD) -->
-        <div class="cb-card shadow-sm border-0 mb-4" style="border-radius:12px; border: 1px solid #E2E8F0 !important; background: #fff; padding: 0.85rem 1.25rem;">
-            <div class="d-flex align-items-center flex-wrap" style="gap: 1.5rem;">
-                <!-- Unit -->
-                <div class="d-flex align-items-center" style="gap:0.75rem;">
-                    <span class="material-symbols-outlined text-muted" style="font-size:18px;">corporate_fare</span>
-                    <select id="tugas_filterUnit" class="form-control form-control-sm border-0 font-weight-bold p-0" style="width:auto; min-width:140px; max-width:260px; background:transparent; cursor:pointer;" disabled>
-                        <option value="">- Semua Sekolah -</option>
-                    </select>
-                </div>
-                <div class="vr d-none d-md-block" style="height: 16px; opacity: 0.1;"></div>
-                <!-- Tahun -->
-                <div class="d-flex align-items-center" style="gap:0.75rem;">
-                    <span class="material-symbols-outlined text-muted" style="font-size:18px;">calendar_today</span>
-                    <select id="tugas_filterTahun" class="form-control form-control-sm border-0 font-weight-bold p-0" style="width:auto; min-width:85px; background:transparent; cursor:pointer;"></select>
-                </div>
-                <div class="vr d-none d-md-block" style="height: 16px; opacity: 0.1;"></div>
-                <!-- Semester -->
-                <div class="d-flex align-items-center" style="gap:0.75rem;">
-                    <span class="material-symbols-outlined text-muted" style="font-size:18px;">layers</span>
-                    <select id="tugas_filterSemester" class="form-control form-control-sm border-0 font-weight-bold p-0" style="width:auto; min-width:100px; background:transparent; cursor:pointer;">
-                        <option value="">- Semua -</option>
-                        <option value="Semester 1">Semester 1</option>
-                        <option value="Semester 2">Semester 2</option>
-                    </select>
-                </div>
-                <div class="vr d-none d-md-block" style="height: 16px; opacity: 0.1;"></div>
-                <!-- Status -->
-                <div class="d-flex align-items-center" style="gap:0.75rem;">
-                    <span class="material-symbols-outlined text-muted" style="font-size:18px;">rule</span>
-                    <select id="tugas_filterStatus" class="form-control form-control-sm border-0 font-weight-bold p-0" style="width:auto; min-width:110px; background:transparent; cursor:pointer;">
-                        <option value="">- Status -</option>
-                        <option value="Diproses">Diproses</option>
-                        <option value="Revisi">Revisi</option>
-                        <option value="OK">Disetujui</option>
-                        <option value="Ditolak">Ditolak</option>
-                    </select>
-                </div>
+
+        <!-- 2. KARTU FILTER (GAYA SULTAN) -->
+        <div class="card-sultan p-3 mb-3">
+            <div class="d-flex-gap align-items-center flex-wrap">
                 
-                <button type="button" id="tugas_btnCari" class="btn btn-ghost-maroon p-1 d-flex align-items-center btn-sm ml-md-auto" title="Refresh Data">
-                    <i class="fas fa-sync-alt" style="font-size: 13px;"></i>
+                <select id="tugas_filterUnit" class="form-control form-control-sultan input-auto-width min-w-250 font-weight-bold text-maroon bg-light" disabled>
+                    <option value="">- Memvalidasi Akses... -</option>
+                </select>
+
+                <select id="tugas_filterTahun" class="form-control form-control-sultan input-auto-width min-w-80"></select>
+                
+                <select id="tugas_filterSemester" class="form-control form-control-sultan input-auto-width">
+                    <option value="">- Semua Semester -</option>
+                    <option value="Semester 1">Semester 1</option>
+                    <option value="Semester 2">Semester 2</option>
+                </select>
+
+                <select id="tugas_filterStatus" class="form-control form-control-sultan input-auto-width">
+                    <option value="">- Semua Status -</option>
+                    <option value="Diproses">Diproses</option>
+                    <option value="Revisi">Revisi</option>
+                    <option value="OK">Disetujui</option>
+                    <option value="Ditolak">Ditolak</option>
+                </select>
+
+                <div class="divider-vertical d-none d-md-block"></div>
+
+                <button type="button" id="tugas_btnCari" class="btn bg-white border shadow-sm text-secondary" title="Segarkan Data dari Server">
+                    <i class="fas fa-sync-alt text-maroon"></i>
+                </button>
+
+                <div class="ml-auto d-none d-md-block"></div>
+
+                <button type="button" id="tugas_btnTambah" class="btn btn-maroon text-white font-weight-bold shadow-sm px-4" disabled>
+                    <i class="fas fa-plus mr-1"></i> Tambah
                 </button>
             </div>
         </div>
 
-        <!-- 2. MAIN DATA CARD (INVOICE STYLE) -->
-        <div class="cb-card shadow-sm border-0 mb-5" style="border-radius:12px; overflow:hidden; border: 1px solid #E2E8F0 !important; background: #fff;">
-            <!-- Card Header: Title & Main Action -->
-            <div class="px-4 py-3 border-bottom bg-white d-flex align-items-center justify-content-between">
-                <h3 class="card-title mb-0 font-weight-bold" style="color:#1e293b; font-size: 1.05rem;">Data SK Pembagian Tugas</h3>
-                <button type="button" id="tugas_btnTambah" class="btn btn-sm btn-maroon px-3 font-weight-bold d-flex align-items-center" style="border-radius:8px; height: 32px; font-size: 11px; letter-spacing: 0.5px; box-shadow: 0 4px 6px -1px rgba(128, 0, 0, 0.12);" disabled>
-                    <i class="fas fa-plus mr-2"></i> TAMBAH DATA
-                </button>
-            </div>
+        <!-- 3. KARTU TABEL (GAYA SULTAN) -->
+        <div class="card-sultan">
+            <div class="card-body p-3">
+              
+              <div id="tugas_loadingState">
+                  <div class="d-flex flex-column justify-content-center align-items-center" style="min-height: 40vh;">
+                      <div class="sultan-loading-container text-center">
+                          <i class="fas fa-spinner fa-spin fa-3x text-maroon mb-3"></i>
+                          <h6 class="text-muted font-weight-bold mt-3" id="tugas_loadingText">Mempersiapkan Akses Server...</h6>
+                      </div>
+                  </div>
+              </div>
 
-            <!-- Card Sub-Toolbar: Table Controls (integrated like Tabler) -->
-            <div class="px-4 py-2 bg-light bg-opacity-10 border-bottom d-flex align-items-center justify-content-between">
-                <div class="d-flex align-items-center text-muted" style="font-size: 11px; gap: 0.4rem;">
-                    <span>Show</span>
-                    <select id="tugas_custom_length" class="form-control form-control-sm border-0 font-weight-bold p-0 text-dark" style="width:auto; background:transparent; cursor:pointer;">
-                        <option value="10">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                    </select>
-                    <span>entries</span>
-                </div>
+              <div id="tugas_tableState" style="display: none;">
+                  <table id="tugas_tabelUtama" class="table table-bordered table-hover table-premium table-sultan-compact mb-0 w-100 text-nowrap">
+                    <thead class="bg-light">
+                        <tr>
+                            <th class="col-sticky-left border-right text-center" style="width: 1%; white-space: nowrap;">Aksi</th>
+                            <th class="text-left align-middle">Nama Sekolah</th>
+                            <th class="text-center align-middle">Th. Ajaran</th>
+                            <th class="text-center align-middle">Sem.</th>
+                            <th class="text-center align-middle">Status</th>
+                            <th class="text-left align-middle">Nomor SK</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+              </div>
 
-                <div class="d-flex align-items-center px-2 py-1 bg-white" style="border-radius: 6px; border: 1px solid #E2E8F0; min-width: 220px;">
-                    <i class="fas fa-search text-muted mr-2" style="font-size: 11px;"></i>
-                    <input type="text" id="tugas_custom_search" class="form-control form-control-sm border-0 p-0 font-weight-bold" placeholder="Cari di tabel ini..." style="background:transparent; font-size: 11px; height: 18px;">
-                </div>
-            </div>
-
-            <!-- Card Body with Table -->
-            <div class="cb-card-body p-0">
-                <div id="tugas_loadingState">
-                    <div class="d-flex flex-column justify-content-center align-items-center" style="min-height: 300px;">
-                        <div class="sk-loader-wrapper">
-                            <div class="sk-spinner-premium"></div>
-                            <div class="sk-loading-text" id="tugas_loadingText">Mempersiapkan Akses...</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="tugas_tableState" style="display: none;">
-                    <div class="cb-table-responsive">
-                        <table id="tugas_tabelUtama" class="cb-table mb-0 w-100 text-nowrap">
-                          <thead>
-                            <tr>
-                              <th class="col-sticky-left text-center">Aksi</th>
-                              <th class="text-left">Nama Sekolah</th>
-                              <th class="text-center">Th. Ajaran</th>
-                              <th class="text-center">Sem.</th>
-                              <th class="text-left">Nomor SK</th>
-                            </tr>
-                          </thead>
-                          <tbody></tbody>
-                        </table>
-                    </div>
-                </div>
             </div>
         </div>
       </div>
@@ -415,6 +387,16 @@ $(document).ready(function() {
     $(document).off('submit', '#tugas_formHapus').on('submit', '#tugas_formHapus', tugas_handleSimpanHapus);
     $(document).off('change', '#tugas_verifStatus').on('change', '#tugas_verifStatus', function(){ tugas_cekStatusVerif($(this).val()); });
 
+    $(document).off('click', '.tugas-btn-catatan').on('click', '.tugas-btn-catatan', function() {
+        var msg = $(this).data('pesan');
+        Swal.fire({
+            title: '<i class="fas fa-comment-dots text-maroon mb-2"></i><br>Catatan Admin',
+            html: '<div class="text-left bg-light p-3 rounded border text-dark" style="font-size:14px; line-height:1.5;">' + msg + '</div>',
+            confirmButtonText: 'Tutup',
+            confirmButtonColor: '#85144b'
+        });
+    });
+
     $(document).off('click', '#tugas_btnLihatDokumenLama').on('click', '#tugas_btnLihatDokumenLama', function(e){
         e.preventDefault();
         tugas_bukaPreview(TUGAS_CURRENT_FILE_URL);
@@ -525,37 +507,30 @@ function tugas_tarikDataServer() {
         btn.prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon"></i>');
         
         if (dataRes && !dataRes.error) {
-        // DIFF CHECK: Only render if data changed
-        var freshDataJSON = JSON.stringify(dataRes);
-        if (freshDataJSON === TUGAS_PREV_DATA_JSON) {
-            return;
-        }
+            var freshDataJSON = JSON.stringify(dataRes);
+            if (freshDataJSON === TUGAS_PREV_DATA_JSON) {
+                return;
+            }
             
             TUGAS_CACHE_DATA = dataRes;
             sessionStorage.setItem(cacheKey, freshDataJSON);
             TUGAS_PREV_DATA_JSON = freshDataJSON;
             
-            // Re-init DataTable if needed (TABLER.IO CLEAN STYLE)
+            // Re-init DataTable (SULTAN STANDARD)
             if (!$.fn.DataTable.isDataTable('#tugas_tabelUtama')) {
                 TUGAS_TABEL_INSTANCE = $('#tugas_tabelUtama').DataTable({
                     "destroy": true, "ordering": false, "pageLength": 10, "autoWidth": false,
                     "deferRender": true, "responsive": false, 
-                    "dom": "tr<'p-3 border-top d-flex justify-content-between align-items-center'ip>",
+                    "dom": "<'row mb-2'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
+                           "<'row'<'col-sm-12'<'table-responsive sultan-scroll'tr>>>" +
+                           "<'row mt-2'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
                     "columnDefs": [ 
-                            { "targets": 0, "className": "col-sticky-left align-middle text-center", "width": "120px", "orderable": false }, 
-                            { "targets": 1, "className": "align-middle font-weight-bold", "width": "280px" },
+                            { "targets": 0, "className": "col-sticky-left bg-white align-middle border-right text-center", "width": "1%", "orderable": false }, 
+                            { "targets": 1, "className": "align-middle font-weight-bold" },
                             { "targets": [2,3], "className": "align-middle text-center", "width": "90px" },
-                            { "targets": 4, "className": "align-middle", "width": "220px" }
+                            { "targets": 4, "className": "align-middle" }
                     ],
                     "language": { "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", "emptyTable": "Tidak ditemukan data SK." }
-                });
-
-                // Link Contextual Custom Controls
-                $('#tugas_custom_search').on('keyup change clear', function() {
-                    TUGAS_TABEL_INSTANCE.search($(this).val()).draw();
-                });
-                $('#tugas_custom_length').on('change', function() {
-                    TUGAS_TABEL_INSTANCE.page.len($(this).val()).draw();
                 });
             }
 
@@ -652,6 +627,15 @@ function tugas_renderTabel(data) {
         return timeB - timeA; 
     });
 
+function tugas_renderTabel(data) {
+    var dtArray = []; TUGAS_DATA_MASTER = {}; 
+
+    data.sort(function(a, b) {
+        var timeA = Math.max(tugas_parseDateTime(a.tglUnggah), tugas_parseDateTime(a.tglUpdate), tugas_parseDateTime(a.tglVerval));
+        var timeB = Math.max(tugas_parseDateTime(b.tglUnggah), tugas_parseDateTime(b.tglUpdate), tugas_parseDateTime(b.tglVerval));
+        return timeB - timeA; 
+    });
+
     data.forEach(function(row) {
         var id = String(row.rowBaris);
         TUGAS_DATA_MASTER[id] = row; 
@@ -659,38 +643,40 @@ function tugas_renderTabel(data) {
         var safeNoSk = tugas_cleanText(row.noSk || "-"); 
         var safeUrl = String(row.fileUrl||"").replace(/'/g, "%27").replace(/"/g, "%22");
         var safeUrlJs = tugas_escapeJs(safeUrl);
+        var safeNama = tugas_escapeJs(row.namaSd);
         var stButton = String(row.status || "").toLowerCase();
         
+        var isLocked = (stButton.includes('setuju') || stButton.includes('ok') || stButton.includes('valid')) && !TUGAS_IS_ADMIN;
         var badgeStatus = tugas_buildBadgeStatus(row.status, row.keterangan);
 
-        var isLocked = (stButton.includes('setuju') || stButton.includes('acc') || stButton.includes('ok') || stButton.includes('valid'));
-        var attrDis = isLocked ? 'disabled style="cursor:not-allowed; opacity:0.6; filter: grayscale(100%);"' : '';
-          // Action Buttons (Codebyte Minimalist Design)
-        var actionButtons = '';
-        var isApproved = (stButton.includes('setuju') || stButton.includes('ok') || stButton.includes('valid'));
-        
-        if (isLocked && !TUGAS_IS_ADMIN) {
-            actionButtons = '<div class="text-center"><i class="fas fa-lock text-muted" title="Data Terkunci"></i></div>';
+        // ACTION DROPDOWN (SULTAN STYLE)
+        var actionDropdown = '';
+        if (isLocked) {
+            actionDropdown = '<span class="badge badge-outline-success font-weight-bold p-1 px-2" style="font-size:10px;"><i class="fas fa-lock mr-1"></i> TERKUNCI</span>';
         } else {
-            actionButtons = '<div class="d-flex justify-content-center">';
-            
-            // Button 1: Verify/Preview (Blue)
-            var blueIcon = TUGAS_IS_ADMIN ? 'fas fa-check-double' : 'fas fa-eye';
-            var blueClick = TUGAS_IS_ADMIN ? `tugas_bukaModalVerif('${id}')` : `tugas_bukaPreview('${safeUrlJs}')`;
-            actionButtons += `<button class="cb-btn-action cb-btn-action-verify" onclick="${blueClick}" title="Proses/Lihat"><i class="${blueIcon}"></i></button>`;
-            
-            // Button 2: Edit (Silver)
-            actionButtons += `<button class="cb-btn-action cb-btn-action-edit" onclick="tugas_bukaModalEdit('${id}')" title="Ubah Data"><i class="fas fa-pencil-alt"></i></button>`;
-            
-            // Button 3: Delete (Grey)
-            actionButtons += `<button class="cb-btn-action cb-btn-action-delete" onclick="tugas_bukaModalHapus('${id}')" title="Hapus Data"><i class="fas fa-trash-alt"></i></button>`;
-            
-            actionButtons += '</div>';
+            actionDropdown = `
+            <div class="dropdown sultan-dropdown-compact">
+                <button class="btn sharp text-maroon p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-ellipsis-v"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right shadow-lg border-0">
+                    <a class="dropdown-item font-weight-bold" href="javascript:void(0)" onclick="${TUGAS_IS_ADMIN ? `tugas_bukaModalVerif('${id}')` : `tugas_bukaPreview('${safeUrlJs}')`}">
+                        <i class="fas ${TUGAS_IS_ADMIN ? 'fa-clipboard-check text-primary' : 'fa-eye text-info'} mr-2"></i> ${TUGAS_IS_ADMIN ? 'Verifikasi' : 'Lihat Dokumen'}
+                    </a>
+                    <a class="dropdown-item font-weight-bold" href="javascript:void(0)" onclick="tugas_bukaModalEdit('${id}')">
+                        <i class="fas fa-pencil-alt text-warning mr-2"></i> Ubah Data
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item font-weight-bold text-danger" href="javascript:void(0)" onclick="tugas_bukaModalHapus('${id}')">
+                        <i class="fas fa-trash-alt mr-2"></i> Hapus Permanen
+                    </a>
+                </div>
+            </div>`;
         }
 
         var btnFile = '-';
         if(safeUrl.length > 5) {
-            btnFile = `<button class="btn btn-sm btn-outline-danger sk-btn-pdf-mobile shadow-sm" onclick="tugas_bukaPreview('${safeUrlJs}')"><i class="fas fa-file-pdf"></i></button>`;
+            btnFile = `<button class="btn btn-xs btn-outline-danger font-weight-bold shadow-sm" onclick="tugas_bukaPreview('${safeUrlJs}')"><i class="fas fa-file-pdf mr-1"></i> PDF</button>`;
         }
         
         var tglSkDisplay = row.tglSkDisplay || row.tglSk || "-";
@@ -699,32 +685,22 @@ function tugas_renderTabel(data) {
             tglSkDisplay = p[2] + '-' + p[1] + '-' + p[0]; 
         }
 
-        // Content Formatting (Codebyte Typography)
-        var uiInfoSekolah = `<div class="font-weight-bold text-dark" style="font-size: 0.95rem;">${tugas_cleanText(row.namaSd)}</div>`;
-        var uiPeriode = `<div class="text-center" style="line-height:1.2;">
-                            <span class="d-block text-dark font-weight-bold" style="font-size: 0.9rem;">${tugas_cleanText(row.tahun)}</span>
-                            <span class="d-block text-muted small" style="font-weight: 600;">${tugas_cleanText(row.semester)}</span>
-                         </div>`;
-        var uiSkKriteria = `<div class="text-left" style="line-height:1.4;">
-                                <div class="font-weight-bold" style="font-size: 0.9rem; color: #1e293b;">${safeNoSk}</div>
-                                <div class="text-muted" style="font-size: 11px; font-weight: 700;">
-                                    <span class="text-maroon">${tugas_cleanText(row.kriteria)}</span> &bull; ${tglSkDisplay}
-                                </div>
-                            </div>`;
+        // PREMIUM TYPOGRAPHY
+        var uiSchool = `<div class="text-maroon font-weight-bold" style="font-size:14px; line-height:1.2;">${tugas_cleanText(row.namaSd)}</div>
+                        <div class="text-muted small font-weight-bold" style="font-size:11px;">${tugas_cleanText(row.npsn || '-')}</div>`;
         
-        var latestDate = row.tglVerval || row.tglUpdate || row.tglUnggah || "-";
-        var latestUser = row.verifikator || row.userUpdate || row.userInput || "-";
-        var uiLog = `<div class="text-left" style="line-height:1.2;">
-                        <span class="d-block font-weight-bold text-dark" style="font-size: 0.85rem;">${latestDate}</span>
-                        <span class="d-block text-muted text-truncate" style="max-width:180px; font-size: 11px; font-weight: 600;">${tugas_cleanText(latestUser)}</span>
-                     </div>`;
+        var uiSk = `<div class="text-dark font-weight-bold" style="font-size:13px; line-height:1.2;">${safeNoSk}</div>
+                    <div class="text-muted small" style="font-size:11px; font-weight:600;">
+                        <span class="text-maroon">${tugas_cleanText(row.kriteria)}</span> &bull; ${tglSkDisplay}
+                    </div>`;
 
         dtArray.push([ 
-            actionButtons, 
-            tugas_cleanText(row.namaSd),
-            tugas_cleanText(row.tahun),
-            tugas_cleanText(row.semester),
-            safeNoSk
+            actionDropdown, 
+            uiSchool,
+            `<span class="font-weight-bold text-dark">${tugas_cleanText(row.tahun)}</span>`,
+            `<span class="font-weight-bold text-muted">${tugas_cleanText(row.semester)}</span>`,
+            badgeStatus,
+            uiSk
         ]);
     });
 
@@ -1037,13 +1013,21 @@ function tugas_bukaPreview(url) {
 
 function tugas_buildBadgeStatus(st, ket) {
     st = String(st || "").toLowerCase(); ket = ket || "";
+    var badge = "";
     if (st.includes('setuju') || st.includes('acc') || st.includes('ok') || st.includes('valid')) 
-        return '<span class="badge badge-sultan badge-sultan-light-success"><i class="fas fa-check-circle mr-1"></i> DISREUJUI</span>';
-    if (st.includes('revisi')) 
-        return '<span class="badge badge-sultan badge-sultan-light-warning" title="Klik Baca Catatan" style="cursor:help;"><i class="fas fa-redo-alt mr-1"></i> REVISI</span>';
-    if (st.includes('tolak')) 
-        return '<span class="badge badge-sultan badge-sultan-light-danger" title="Klik Baca Catatan" style="cursor:help;"><i class="fas fa-times-circle mr-1"></i> DITOLAK</span>';
-    return '<span class="badge badge-sultan badge-sultan-light-info"><i class="fas fa-hourglass-half mr-1"></i> DIPROSES</span>';
+        badge = '<span class="badge badge-sultan badge-sultan-light-success"><i class="fas fa-check-circle mr-1"></i> DISETUJUI</span>';
+    else if (st.includes('revisi')) 
+        badge = '<span class="badge badge-sultan badge-sultan-light-warning"><i class="fas fa-redo-alt mr-1"></i> REVISI</span>';
+    else if (st.includes('tolak')) 
+        badge = '<span class="badge badge-sultan badge-sultan-light-danger"><i class="fas fa-times-circle mr-1"></i> DITOLAK</span>';
+    else 
+        badge = '<span class="badge badge-sultan badge-sultan-light-info"><i class="fas fa-hourglass-half mr-1"></i> DIPROSES</span>';
+
+    if (ket && ket.trim().length > 2 && (st.includes('revisi') || st.includes('tolak'))) {
+        var safeKet = tugas_escapeJs(ket);
+        badge += `<div class="mt-1"><button type="button" class="btn btn-xs btn-outline-danger font-weight-bold tugas-btn-catatan" style="font-size:10px;" data-pesan="${safeKet}"><i class="fas fa-comment-dots mr-1"></i> Baca Catatan</button></div>`;
+    }
+    return badge;
 }
 
 function tugas_parseDateTime(s) {
