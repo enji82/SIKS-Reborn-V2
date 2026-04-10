@@ -2208,6 +2208,56 @@ body .sk-item-sub {
 .btn-icon-ref-dark { background-color: #475569 !important; color: #fff !important; box-shadow: 0 2px 4px rgba(71, 85, 105, 0.2); }
 .btn-icon-sultan:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
 
+/* ANIMATIONS: SULTAN CINEMATIC SYSTEM */
+@keyframes shimmer { 0% { background-position: -468px 0; } 100% { background-position: 468px 0; } }
+@keyframes sultanEntrance { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+body .sultan-skeleton { 
+    background: #f6f7f8; 
+    background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%); 
+    background-repeat: no-repeat; background-size: 800px 104px; display: inline-block; position: relative; 
+    animation: shimmer 1.2s linear infinite forwards; border-radius: 4px; 
+}
+body .sultan-entrance { animation: sultanEntrance 0.4s ease-out forwards; }
+
+/* MODAL: SULTAN PREMIUM STANDARDS */
+body .modal-content-sultan { 
+    border-radius: 16px !important; 
+    border: none !important; 
+    overflow: hidden !important; 
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2) !important;
+}
+body .modal-header-sultan { 
+    padding: 1rem 1.5rem !important; 
+    border-bottom: 1px solid rgba(0,0,0,0.05) !important;
+}
+body .modal-header-sultan .modal-title { font-weight: 700 !important; letter-spacing: 0.5px; }
+
+body .modal-footer-sultan { 
+    padding: 1rem 1.5rem !important; 
+    background-color: #ffffff !important; 
+    border-top: 1px solid rgba(0,0,0,0.05) !important;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* MODAL: FULLSCREEN IMMERSIVE PREVIEW */
+body .modal-fullscreen-sultan .modal-dialog { 
+    width: 100% !important; 
+    max-width: 100% !important; 
+    height: 100% !important; 
+    margin: 0 !important; 
+    padding: 0 !important; 
+}
+body .modal-fullscreen-sultan .modal-content { 
+    height: 100% !important; 
+    border-radius: 0 !important; 
+}
+
+/* BUTTON: SULTAN STANDARDIZATION */
+body .btn-sultan-bold { font-weight: 700 !important; padding: 10px 24px !important; letter-spacing: 0.5px; transition: all 0.2s; }
+body .btn-sultan-bold:hover { transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+
 @media (max-width: 768px) {
     .cb-card-body { padding: 0.75rem; }
     .cb-filter-toolbar { flex-direction: column; align-items: stretch; gap: 0.75rem; padding: 1rem; }
