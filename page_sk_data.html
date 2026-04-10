@@ -1,20 +1,3 @@
-<style>
-  .thead-grey-sultan { background-color: #f8fafc !important; color: #334155; }
-  .thead-grey-sultan th { font-weight: 700; text-transform: none; font-size: 13px; border-bottom: 2px solid #e2e8f0 !important; }
-  .table-premium.table-sultan-compact thead th { vertical-align: middle; padding: 12px 10px; }
-  .table-premium tbody td { vertical-align: middle; padding: 10px 10px; font-size: 13px; }
-  .sk-log-box { line-height: 1.3; font-size: 11px; }
-  .sk-log-date { display: block; font-weight: 700; color: #1e293b; }
-  .sk-log-user { display: block; color: #64748b; font-weight: 500; }
-  .btn-sk-pdf { border: 1px solid #f87171; color: #b91c1c; background: #fff1f2; font-weight: 700; font-size: 11px; padding: 4px 10px; border-radius: 6px; transition: all 0.2s; }
-  .btn-sk-pdf:hover { background: #fee2e2; transform: scale(1.05); }
-  
-  /* Action Buttons Specific Color to Match Image */
-  .btn-icon-ref-blue { background-color: #3b82f6 !important; color: #fff !important; }
-  .btn-icon-ref-grey { background-color: #94a3b8 !important; color: #fff !important; }
-  .btn-icon-ref-dark { background-color: #475569 !important; color: #fff !important; }
-  .btn-icon-sultan { width: 30px; height: 30px; border-radius: 6px; margin: 0 2px; }
-</style>
 <div class="content-header pb-0">
   <div class="container-fluid">
     <div class="row mb-2">
@@ -22,7 +5,7 @@
         <h5 class="m-0 font-weight-bold">
           <i class="fas fa-file-contract text-maroon mr-2"></i>Data SK Pembagian Tugas
         </h5>
-        <hr class="style-sultan-solid">
+        <div class="sultan-title-line"></div>
       </div>
     </div>
   </div>
@@ -33,10 +16,10 @@
     <div class="row justify-content-center">
       <div class="col-12">
 
-        <!-- 1. KARTU INFORMASI (GAYA SULTAN) -->
-        <div class="card-sultan mb-3" id="tugas_cardInfo">
-          <div class="card-body py-2 px-3 border-left-dark">
-            <div class="d-flex align-items-center justify-content-between cursor-pointer" data-toggle="collapse" data-target="#tugas_infoCollapse">
+        <!-- 1. KARTU INFORMASI (GAYA SULTAN COMPACT) -->
+        <div class="card-sultan card-sultan-info-compact mb-3" id="tugas_cardInfo">
+          <div class="card-body border-left-dark">
+            <div class="d-flex-info-header cursor-pointer" data-toggle="collapse" data-target="#tugas_infoCollapse">
               <div class="d-flex align-items-center text-maroon font-weight-bold"><i class="fas fa-info-circle mr-2"></i> Informasi</div>
               <i class="fas fa-chevron-down text-muted icon-sm" id="tugas_infoIcon"></i>
             </div>
@@ -112,11 +95,8 @@
                         <tr>
                             <th class="col-sticky-left border-right text-center" style="width: 1%; white-space: nowrap;">Aksi</th>
                             <th class="text-left align-middle">Nama Sekolah</th>
-                            <th class="text-center align-middle">Th. Ajaran</th>
-                            <th class="text-center align-middle">Sem.</th>
-                            <th class="text-left align-middle">Nomor SK</th>
-                            <th class="text-center align-middle">Tgl SK</th>
-                            <th class="text-center align-middle">Kriteria</th>
+                            <th class="text-left align-middle">Th. Ajaran / Sem.</th>
+                            <th class="text-left align-middle">Nomor & Tanggal SK</th>
                             <th class="text-center align-middle">Dokumen</th>
                             <th class="text-center align-middle">Status</th>
                             <th class="text-left align-middle">Dikirim</th>
@@ -549,9 +529,8 @@ function tugas_tarikDataServer() {
                            "<'row mt-2'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
                     "columnDefs": [ 
                             { "targets": 0, "className": "col-sticky-left bg-white align-middle border-right text-center", "width": "1%", "orderable": false }, 
-                            { "targets": 1, "className": "align-middle font-weight-bold" },
-                            { "targets": [2,3,5,6,7,8], "className": "align-middle text-center", "width": "80px" },
-                            { "targets": [4,9,10,11], "className": "align-middle" }
+                            { "targets": [1,2,3,6,7,8], "className": "align-middle text-left" },
+                            { "targets": [4,5], "className": "align-middle text-center", "width": "80px" }
                     ],
                     "language": { "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", "emptyTable": "Tidak ditemukan data SK." }
                 });
@@ -690,14 +669,16 @@ function tugas_renderTabel(data) {
         var uiDiubah = row.tglUpdate && row.tglUpdate !== '-' ? `<div class="sk-log-box"><span class="sk-log-date">${row.tglUpdate}</span><span class="sk-log-user">${row.userUpdate || '-'}</span></div>` : '-';
         var uiVerif = row.tglVerval && row.tglVerval !== '-' ? `<div class="sk-log-box"><span class="sk-log-date">${row.tglVerval}</span><span class="sk-log-user">${row.verifikator || '-'}</span></div>` : '-';
 
+        // KOMBINASI KOLOM (9 KOLOM TOTAL)
+        var uiTahunSem = `<div class="sk-item-main">${tugas_cleanText(row.tahun)}</div><div class="sk-item-sub font-weight-bold text-muted">${tugas_cleanText(row.semester)}</div>`;
+        var uiSkDetail = `<div class="sk-item-main text-wrap" style="min-width:150px;">${safeNoSk}</div>
+                          <div class="sk-item-sub"><i class="far fa-calendar-alt mr-1"></i> ${tglSkDisplay} &bull; <span class="text-maroon">${tugas_cleanText(row.kriteria)}</span></div>`;
+
         dtArray.push([ 
             actionButtons, 
-            `<div class="text-maroon font-weight-bold" style="font-size:13px;">${tugas_cleanText(row.namaSd)}</div>`,
-            `<span class="font-weight-bold text-dark text-nowrap">${tugas_cleanText(row.tahun)}</span>`,
-            `<span class="font-weight-bold text-muted">${tugas_cleanText(row.semester)}</span>`,
-            `<span class="font-weight-bold text-dark d-block text-wrap" style="min-width:120px;">${safeNoSk}</span>`,
-            `<span class="text-dark">${tglSkDisplay}</span>`,
-            `<span class="text-muted small font-weight-bold">${tugas_cleanText(row.kriteria)}</span>`,
+            `<div class="sk-item-main text-maroon">${tugas_cleanText(row.namaSd)}</div>`,
+            uiTahunSem,
+            uiSkDetail,
             btnDokumen,
             badgeStatus,
             uiDikirim,
