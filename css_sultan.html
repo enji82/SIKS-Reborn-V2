@@ -734,11 +734,11 @@ table.table-sultan-compact tbody tr:hover td {
     box-shadow: inset 0 0 0 9999px rgba(0, 0, 0, 0.06) !important;
 }
 
-/* 2. Menajamkan garis batas (border) pada kolom yang di-freeze */
+/* [DEACTIVATED V3.1] Legacy sticky borders
 table.table-sultan-compact th.col-sticky-left, 
 table.table-sultan-compact td.col-sticky-left {
     border-right: 1px solid #dee2e6 !important;
-}
+} */
 
 /* 3. Mencegah Garis Dobel pada DataTables dengan fitur ScrollX & Complex Header */
 .dataTables_scrollHeadInner {
@@ -1640,24 +1640,22 @@ table.table-premium tbody tr:hover td {
     background-color: #F1F5F9 !important; /* Matches Header Exactly */
 }
 
-/* 4. SOLID FIXED PILLAR (AKSI) - Refined Dimensions */
+/* [DEACTIVATED V3.1] Unified Grid conflicts
 .col-sticky-left {
     position: sticky !important;
     left: 0;
-    z-index: 20 !important; /* Elevated just enough */
+    z-index: 20 !important; 
     background-color: #ffffff !important; 
     border-right: 2px solid #E2E8F0 !important;
-    box-shadow: 6px 0 15px rgba(0,0,0,0.05) !important; /* Dimension Shadow */
+    box-shadow: 6px 0 15px rgba(0,0,0,0.05) !important;
 }
-/* Ensure sticky header matches fixed pillar */
 table.table-premium thead th.col-sticky-left {
     background-color: #F1F5F9 !important;
     z-index: 30 !important;
 }
-/* Ensure sticky pillar highlights on hover too */
 table.table-premium tbody tr:hover td.col-sticky-left {
     background-color: #F1F5F9 !important;
-}
+} */
 
 /* 5. Responsive Cleanups */
 .table-responsive.sultan-scroll {
@@ -2071,7 +2069,7 @@ table.table-premium tbody tr:hover td.col-sticky-left {
     font-size: 0.88rem;
 }
 
-/* Sticky Action Column (Freeze) */
+/* [DEACTIVATED V3.1] Legacy Freeze Logic
 .col-sticky-left {
     position: sticky !important;
     left: 0;
@@ -2081,7 +2079,7 @@ table.table-premium tbody tr:hover td.col-sticky-left {
 }
 th.col-sticky-left {
     z-index: 11 !important;
-}
+} */
 
 /* ===================================================================
    9. GLOBAL UI UTILITIES (REF: DATA SK MODERNIZATION)
@@ -2136,20 +2134,23 @@ body .thead-grey-sultan th {
     white-space: nowrap !important;
 }
 
-/* Sticky Column & Corner Logic - Reinforced */
-body td.col-sticky-left { 
+/* Sticky Column & Corner Logic - Reinforced V3.1 (Centralized Authority) */
+body .table-premium td.col-sticky-left { 
     position: sticky !important; 
     left: 0 !important; 
     z-index: 110 !important; 
-    background-color: #ffffff !important; /* KHUSUS ISI TABEL */
+    background-color: #ffffff !important; 
     box-shadow: 2px 0 5px rgba(0,0,0,0.05) !important; 
+    border-right: 1px solid #dee2e6 !important;
 }
-body th.col-sticky-left { 
+body .table-premium thead th.col-sticky-left,
+body .thead-grey-sultan th.col-sticky-left { 
     position: sticky !important; 
     top: 0 !important;
     left: 0 !important;
-    z-index: 9999 !important; /* Absolute top-left priority */
-    background-color: #dee2e6 !important; /* KHUSUS HEADER */
+    z-index: 9999 !important; 
+    background-color: #dee2e6 !important; 
+    border-right: 1px solid #adb5bd !important;
 }
 
 /* Multi-line Item Support */
