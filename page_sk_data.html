@@ -3,7 +3,7 @@
         <div class="row mb-2">
             <div class="col-sm-12">
                 <h5 class="m-0 font-weight-bold">
-                    <i class="fas fa-file-contract text-maroon mr-2"></i>Data SK Pembagian Tugas
+                    <i class="fas fa-file-contract text-maroon mr-2"></i>Data SK Pembagian Tugas <small class="badge badge-light border text-muted px-2" style="font-size:10px; opacity:0.7;">Build V2.1</small>
                 </h5>
                 <div class="sultan-title-line"></div>
             </div>
@@ -671,6 +671,30 @@
                         { "targets": [1, 2, 3, 6, 7, 8], "className": "align-middle text-left" },
                         { "targets": [4, 5], "className": "align-middle text-center" }
                     ],
+                    "drawCallback": function() {
+                        // FORCE OVERRIDE STYLES AFTER DRAW
+                        $('#tugas_tabelUtama thead th').css({
+                            'background': '#f1f5f9',
+                            'color': '#334155',
+                            'position': 'sticky',
+                            'top': '0',
+                            'z-index': '15',
+                            'padding': '12px 14px'
+                        });
+                        $('.col-sticky-left').css({
+                            'position': 'sticky',
+                            'left': '0',
+                            'z-index': '10',
+                            'background-color': '#fff'
+                        });
+                        $('th.col-sticky-left').css({
+                            'z-index': '100', // POJOK HARUS PALING ATAS
+                            'background-color': '#f1f5f9',
+                            'top': '0',
+                            'left': '0'
+                        });
+                        $('.sk-item-sub').css('padding-top', '8px');
+                    },
                     "language": { "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", "emptyTable": "Tidak ditemukan data SK." }
                 });
 
