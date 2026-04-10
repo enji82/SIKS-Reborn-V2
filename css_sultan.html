@@ -2137,18 +2137,19 @@ body .thead-grey-sultan th {
 }
 
 /* Sticky Column & Corner Logic - Reinforced */
-body .col-sticky-left { 
+body td.col-sticky-left { 
     position: sticky !important; 
     left: 0 !important; 
     z-index: 110 !important; 
-    background-color: #ffffff !important; 
+    background-color: #ffffff !important; /* KHUSUS ISI TABEL */
     box-shadow: 2px 0 5px rgba(0,0,0,0.05) !important; 
 }
 body th.col-sticky-left { 
-    z-index: 9999 !important; /* Absolute top-left priority */
-    background-color: #dee2e6 !important; 
+    position: sticky !important; 
     top: 0 !important;
-    left: 0 !important; /* HARUS ADA di TH juga */
+    left: 0 !important;
+    z-index: 9999 !important; /* Absolute top-left priority */
+    background-color: #dee2e6 !important; /* KHUSUS HEADER */
 }
 
 /* Multi-line Item Support */
