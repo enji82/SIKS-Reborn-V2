@@ -33,38 +33,46 @@
         </div>
         
         <div class="cb-card">
-            <div class="cb-filter-toolbar">
-                <div class="cb-input-group">
-                    <select id="tugas_filterUnit" class="cb-select-pill min-w-250" disabled>
-                        <option value="">- Validing Access... -</option>
-                    </select>
+            <div class="cb-filter-toolbar flex-column align-items-stretch">
+                <!-- Row 1: Primary Filters -->
+                <div class="d-flex align-items-center gap-3 w-100 mb-3">
+                    <div class="cb-input-group flex-grow-1">
+                        <select id="tugas_filterUnit" class="cb-select-pill w-100" disabled>
+                            <option value="">- Semua Sekolah -</option>
+                        </select>
+                    </div>
+                    <div class="cb-input-group" style="width: 200px;">
+                        <select id="tugas_filterTahun" class="cb-select-pill w-100"></select>
+                    </div>
+                    <div class="cb-input-group" style="width: 200px;">
+                        <select id="tugas_filterSemester" class="cb-select-pill w-100">
+                            <option value="">- Semua Semester -</option>
+                            <option value="Semester 1">Semester 1</option>
+                            <option value="Semester 2">Semester 2</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="cb-input-group">
-                    <select id="tugas_filterTahun" class="cb-select-pill"></select>
-                </div>
-                <div class="cb-input-group">
-                    <select id="tugas_filterSemester" class="cb-select-pill">
-                        <option value="">- Semua Semester -</option>
-                        <option value="Semester 1">Semester 1</option>
-                        <option value="Semester 2">Semester 2</option>
-                    </select>
-                </div>
-                <div class="cb-input-group">
-                    <select id="tugas_filterStatus" class="cb-select-pill">
-                        <option value="">- Semua Status -</option>
-                        <option value="Diproses">Diproses</option>
-                        <option value="Revisi">Revisi</option>
-                        <option value="OK">Disetujui</option>
-                        <option value="Ditolak">Ditolak</option>
-                    </select>
-                </div>
-                
-                <div class="ml-auto d-flex align-items-center" style="gap:10px;">
+
+                <!-- Row 2: Secondary Filters & Actions -->
+                <div class="d-flex align-items-center w-100">
+                    <div class="cb-input-group" style="width: 205px;">
+                        <select id="tugas_filterStatus" class="cb-select-pill w-100">
+                            <option value="">- Semua Status -</option>
+                            <option value="Diproses">Diproses</option>
+                            <option value="Revisi">Revisi</option>
+                            <option value="OK">Disetujui</option>
+                            <option value="Ditolak">Ditolak</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mx-3" style="width: 1px; height: 30px; background: #E2E8F0;"></div>
+
                     <button type="button" id="tugas_btnCari" class="cb-btn-toolbar cb-btn-white" title="Refresh">
                         <i class="fas fa-sync-alt"></i>
                     </button>
-                    <button type="button" id="tugas_btnTambah" class="cb-btn-toolbar cb-btn-primary" disabled>
-                        <i class="fas fa-plus mr-1"></i> Tambah SK
+
+                    <button type="button" id="tugas_btnTambah" class="cb-btn-toolbar cb-btn-primary ml-auto" style="min-width: 140px;" disabled>
+                        <i class="fas fa-plus mr-2"></i> Tambah
                     </button>
                 </div>
             </div>
@@ -85,12 +93,10 @@
                           <thead>
                             <tr>
                               <th class="col-sticky-left text-center">Aksi</th>
-                              <th class="text-left">Informasi Sekolah</th>
-                              <th class="text-center">Periode</th>
-                              <th class="text-left">Nomor SK & Kriteria</th>
-                              <th class="text-center">Dokumen</th>
-                              <th class="text-center">Status</th>
-                              <th class="text-left">Log Aktivitas</th>
+                              <th class="text-left">Nama Sekolah</th>
+                              <th class="text-center">Th. Ajaran</th>
+                              <th class="text-center">Sem.</th>
+                              <th class="text-left">Nomor SK</th>
                             </tr>
                           </thead>
                           <tbody></tbody>
@@ -508,12 +514,10 @@ function tugas_tarikDataServer() {
                            "<'row'<'col-sm-12'tr>>" +
                            "<'row mt-3'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
                     "columnDefs": [ 
-                            { "targets": 0, "className": "col-sticky-left align-middle text-center", "width": "110px", "orderable": false }, 
-                            { "targets": 1, "className": "align-middle", "width": "220px" },
-                            { "targets": [2,4], "className": "align-middle text-center", "width": "100px" },
-                            { "targets": 3, "className": "align-middle", "width": "250px" },
-                            { "targets": 5, "className": "align-middle", "width": "140px" },
-                            { "targets": 6, "className": "align-middle" }
+                            { "targets": 0, "className": "col-sticky-left align-middle text-center", "width": "120px", "orderable": false }, 
+                            { "targets": 1, "className": "align-middle font-weight-bold", "width": "300px" },
+                            { "targets": [2,3], "className": "align-middle text-center", "width": "100px" },
+                            { "targets": 4, "className": "align-middle", "width": "250px" }
                     ],
                     "language": { "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", "emptyTable": "Tidak ditemukan data SK." }
                 });
@@ -630,16 +634,21 @@ function tugas_renderTabel(data) {
         var isApproved = (stButton.includes('setuju') || stButton.includes('ok') || stButton.includes('valid'));
         
         if (isLocked && !TUGAS_IS_ADMIN) {
-            actionButtons = '<div class="text-center"><i class="fas fa-lock text-muted" style="font-size: 1.25rem;" title="Data Terkunci"></i></div>';
+            actionButtons = '<div class="text-center"><i class="fas fa-lock text-muted" title="Data Terkunci"></i></div>';
         } else {
             actionButtons = '<div class="d-flex justify-content-center">';
-            if (TUGAS_IS_ADMIN) {
-                actionButtons += `<button class="cb-btn-action" onclick="tugas_bukaModalVerif('${id}')" title="Verifikasi SK"><i class="fas fa-check-double text-primary"></i></button>`;
-            }
             
-            var adaptiveOpacity = isApproved ? "opacity: 0.4;" : "";
-            actionButtons += `<button class="cb-btn-action" style="${adaptiveOpacity}" onclick="tugas_bukaModalEdit('${id}')" title="Edit SK"><i class="fas fa-edit"></i></button>`;
-            actionButtons += `<button class="cb-btn-action" style="${adaptiveOpacity}" onclick="tugas_bukaModalHapus('${id}')" title="Hapus SK"><i class="fas fa-trash-alt text-danger"></i></button>`;
+            // Button 1: Verify/Preview (Blue)
+            var blueIcon = TUGAS_IS_ADMIN ? 'fas fa-check-double' : 'fas fa-eye';
+            var blueClick = TUGAS_IS_ADMIN ? `tugas_bukaModalVerif('${id}')` : `tugas_bukaPreview('${safeUrlJs}')`;
+            actionButtons += `<button class="cb-btn-action cb-btn-action-verify" onclick="${blueClick}" title="Proses/Lihat"><i class="${blueIcon}"></i></button>`;
+            
+            // Button 2: Edit (Silver)
+            actionButtons += `<button class="cb-btn-action cb-btn-action-edit" onclick="tugas_bukaModalEdit('${id}')" title="Ubah Data"><i class="fas fa-pencil-alt"></i></button>`;
+            
+            // Button 3: Delete (Grey)
+            actionButtons += `<button class="cb-btn-action cb-btn-action-delete" onclick="tugas_bukaModalHapus('${id}')" title="Hapus Data"><i class="fas fa-trash-alt"></i></button>`;
+            
             actionButtons += '</div>';
         }
 
@@ -676,12 +685,10 @@ function tugas_renderTabel(data) {
 
         dtArray.push([ 
             actionButtons, 
-            uiInfoSekolah,
-            uiPeriode,
-            uiSkKriteria,
-            btnFile, 
-            badgeStatus, 
-            uiLog
+            tugas_cleanText(row.namaSd),
+            tugas_cleanText(row.tahun),
+            tugas_cleanText(row.semester),
+            safeNoSk
         ]);
     });
 

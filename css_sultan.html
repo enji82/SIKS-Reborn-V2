@@ -1877,10 +1877,10 @@ table.table-premium tbody tr:hover td.col-sticky-left {
    ############################################################# */
 
 :root {
-    --cb-radius: 1.25rem;
-    --cb-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.05);
-    --cb-border: #EBEEF2;
-    --cb-bg-soft: #F8FAFC;
+    --cb-radius: 12px;
+    --cb-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    --cb-border: #E2E8F0;
+    --cb-bg-soft: #FDF2F2; /* Soft pinkish tint from mockup */
     --cb-maroon: #7B0000;
 }
 
@@ -1909,24 +1909,24 @@ table.table-premium tbody tr:hover td.col-sticky-left {
     border: none !important;
 }
 .cb-table thead th {
-    background: #F4F7FA !important;
-    color: #1E293B !important;
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05rem;
-    padding: 1.25rem 1rem !important;
-    border: none !important;
-    border-bottom: 2px solid var(--cb-border) !important;
+    background: #FFF9E6 !important; /* Pale yellowish gold */
+    color: #7B0000 !important; /* Maroon text */
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-transform: none;
+    letter-spacing: 0.02rem;
+    padding: 0.85rem 0.75rem !important;
+    border: 1px solid #FDE047 !important;
+    border-bottom: 2px solid #EAB308 !important;
     white-space: nowrap;
 }
 .cb-table tbody td {
-    padding: 1rem 1rem !important;
-    border: none !important;
-    border-bottom: 1px solid var(--cb-border) !important;
+    padding: 0.75rem 0.75rem !important;
+    border: 1px solid #F1F5F9 !important;
     vertical-align: middle !important;
     font-size: 0.875rem;
     background: #fff !important;
+    color: #334155;
 }
 .cb-table tbody tr:hover td {
     background: var(--cb-bg-soft) !important;
@@ -1998,23 +1998,25 @@ table.table-premium tbody tr:hover td.col-sticky-left {
 
 /* 5. ACTION BUTTONS (CODEBYTE SHARP) */
 .cb-btn-action {
-    width: 32px; height: 32px;
-    border-radius: 0.4rem;
+    width: 30px; height: 30px;
+    border-radius: 4px; /* Square with slight roundness */
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid var(--cb-border);
-    background: #fff;
-    color: #64748B;
+    border: none;
+    color: #fff;
     transition: all 0.2s;
     margin: 0 2px;
+    font-size: 0.8rem;
 }
+.cb-btn-action-verify { background: #007BFF; } /* Blue */
+.cb-btn-action-edit { background: #D1D5DB; color: #4B5563; } /* Silver/Light Grey */
+.cb-btn-action-delete { background: #9CA3AF; } /* Grey */
+
 .cb-btn-action:hover {
-    background: var(--cb-bg-soft);
-    color: var(--cb-maroon);
-    border-color: var(--cb-maroon);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    filter: brightness(0.9);
+    transform: translateY(-1px);
+    color: #fff;
 }
 
 .cb-btn-toolbar {
@@ -2039,11 +2041,15 @@ table.table-premium tbody tr:hover td.col-sticky-left {
     display: none; /* User requested removal */
 }
 .cb-page-title {
-    font-size: 1.15rem;
+    font-size: 1.35rem;
     font-weight: 850;
     color: #1E293B;
     letter-spacing: -0.02rem;
-    margin-bottom: 1.25rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--cb-maroon); /* Underline from mockup */
+    display: block;
+    width: 100%;
 }
 
 /* Updated Legacy Info Card (Premium Codebyte Skin) */
