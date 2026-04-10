@@ -668,7 +668,7 @@
         var sortedUnits = Array.from(uniqueUnits).sort();
 
         if (TUGAS_IS_ADMIN) {
-            var uHtml = '<option value="SEMUA">- Semua -</option>';
+            var uHtml = '<option value="SEMUA">- Semua Sekolah-</option>';
             sortedUnits.forEach(u => uHtml += '<option value="' + tugas_escapeHtml(u) + '">' + tugas_escapeHtml(u) + '</option>');
             var curUnit = $('#tugas_filterUnit').val();
             $('#tugas_filterUnit').html(uHtml);
