@@ -622,22 +622,24 @@
                 sessionStorage.setItem(cacheKey, freshDataJSON);
                 TUGAS_PREV_DATA_JSON = freshDataJSON;
 
-                // Re-init DataTable (SULTAN STANDARD)
-                if (!$.fn.DataTable.isDataTable('#tugas_tabelUtama')) {
-                    TUGAS_TABEL_INSTANCE = $('#tugas_tabelUtama').DataTable({
-                        "destroy": true, "ordering": false, "pageLength": 10, "autoWidth": true,
-                        "deferRender": true, "responsive": false,
-                        "dom": "<'row mb-2'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
-                            "<'row'<'col-sm-12'<'table-responsive sultan-scroll'tr>>>" +
-                            "<'row mt-2'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                        "columnDefs": [
-                            { "targets": 0, "className": "col-sticky-left bg-white align-middle border-right text-center", "width": "50px", "orderable": false },
-                            { "targets": [1, 2, 3, 6, 7, 8], "className": "align-middle text-left" },
-                            { "targets": [4, 5], "className": "align-middle text-center" }
-                        ],
-                        "language": { "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", "emptyTable": "Tidak ditemukan data SK." }
-                    });
+                // FORCE RE-INIT DataTable (Destroy then Re-create for Auto-width to trigger)
+                if ($.fn.DataTable.isDataTable('#tugas_tabelUtama')) {
+                    $('#tugas_tabelUtama').DataTable().destroy();
                 }
+
+                TUGAS_TABEL_INSTANCE = $('#tugas_tabelUtama').DataTable({
+                    "destroy": true, "ordering": false, "pageLength": 10, "autoWidth": true,
+                    "deferRender": true, "responsive": false,
+                    "dom": "<'row mb-2'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
+                        "<'row'<'col-sm-12'<'table-responsive sultan-scroll'tr>>>" +
+                        "<'row mt-2'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    "columnDefs": [
+                        { "targets": 0, "className": "col-sticky-left bg-white align-middle border-right text-center", "width": "50px", "orderable": false },
+                        { "targets": [1, 2, 3, 6, 7, 8], "className": "align-middle text-left" },
+                        { "targets": [4, 5], "className": "align-middle text-center" }
+                    ],
+                    "language": { "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", "emptyTable": "Tidak ditemukan data SK." }
+                });
 
                 tugas_populateFilterOptions();
                 tugas_terapkanFilterLokal();
@@ -1100,17 +1102,25 @@
 
     function tugas_convertDriveUrl(url) {
         if (!url) return "";
-        if (url.includes('drive.google.com')) {
-            if (url.includes('/file/d/')) {
-                var fileId = url.split('/file/d/')[1].split('/')[0];
-                return 'https://drive.google.com/file/d/' + fileId + '/preview';
+        try {
+            var driveUrl = String(url).trim();
+            if (driveUrl.includes('drive.google.com')) {
+                var fileId = "";
+                if (driveUrl.includes('/file/d/')) {
+                    fileId = driveUrl.split('/file/d/')[1].split('/')[0].split('?')[0].split('&')[0];
+                } else if (driveUrl.includes('id=')) {
+                    fileId = driveUrl.split('id=')[1].split('&')[0].split('#')[0];
+                }
+                
+                if (fileId) {
+                    return 'https://drive.google.com/file/d/' + fileId + '/preview';
+                }
             }
-            if (url.includes('id=')) {
-                var fileId = url.split('id=')[1].split('&')[0];
-                return 'https://drive.google.com/file/d/' + fileId + '/preview';
-            }
+            return driveUrl;
+        } catch (e) {
+            console.error("URL Conversion Error:", e);
+            return url;
         }
-        return url;
     }
 
     function tugas_buildBadgeStatus(st, ket) {
