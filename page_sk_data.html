@@ -35,17 +35,17 @@
         <div class="cb-card">
             <div class="cb-filter-toolbar flex-column align-items-stretch">
                 <!-- Row 1: Primary Filters -->
-                <div class="d-flex align-items-center gap-3 w-100 mb-3">
-                    <div class="cb-input-group flex-grow-1">
+                <div class="d-flex align-items-center flex-wrap w-100 mb-3" style="gap: 1.25rem;">
+                    <div class="cb-input-group flex-grow-1" style="min-width: 250px;">
                         <select id="tugas_filterUnit" class="cb-select-pill w-100" disabled>
                             <option value="">- Semua Sekolah -</option>
                         </select>
                     </div>
-                    <div class="cb-input-group" style="width: 200px;">
-                        <select id="tugas_filterTahun" class="cb-select-pill w-100"></select>
+                    <div class="cb-input-group">
+                        <select id="tugas_filterTahun" class="cb-select-pill" style="min-width: 140px;"></select>
                     </div>
-                    <div class="cb-input-group" style="width: 200px;">
-                        <select id="tugas_filterSemester" class="cb-select-pill w-100">
+                    <div class="cb-input-group">
+                        <select id="tugas_filterSemester" class="cb-select-pill" style="min-width: 160px;">
                             <option value="">- Semua Semester -</option>
                             <option value="Semester 1">Semester 1</option>
                             <option value="Semester 2">Semester 2</option>
@@ -54,9 +54,9 @@
                 </div>
 
                 <!-- Row 2: Secondary Filters & Actions -->
-                <div class="d-flex align-items-center w-100">
-                    <div class="cb-input-group" style="width: 205px;">
-                        <select id="tugas_filterStatus" class="cb-select-pill w-100">
+                <div class="d-flex align-items-center flex-wrap w-100" style="gap: 1.25rem;">
+                    <div class="cb-input-group">
+                        <select id="tugas_filterStatus" class="cb-select-pill" style="min-width: 160px;">
                             <option value="">- Semua Status -</option>
                             <option value="Diproses">Diproses</option>
                             <option value="Revisi">Revisi</option>
@@ -65,13 +65,13 @@
                         </select>
                     </div>
                     
-                    <div class="mx-3" style="width: 1px; height: 30px; background: #E2E8F0;"></div>
+                    <div style="width: 1px; height: 28px; background: #E2E8F0; margin: 0 0.5rem;"></div>
 
                     <button type="button" id="tugas_btnCari" class="cb-btn-toolbar cb-btn-white" title="Refresh">
                         <i class="fas fa-sync-alt"></i>
                     </button>
 
-                    <button type="button" id="tugas_btnTambah" class="cb-btn-toolbar cb-btn-primary ml-auto" style="min-width: 140px;" disabled>
+                    <button type="button" id="tugas_btnTambah" class="cb-btn-toolbar cb-btn-primary ml-auto" style="min-width: 150px;" disabled>
                         <i class="fas fa-plus mr-2"></i> Tambah
                     </button>
                 </div>
