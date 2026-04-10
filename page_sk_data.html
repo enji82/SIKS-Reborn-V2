@@ -32,57 +32,92 @@
             </div>
         </div>
         
-        <!-- GRUP FILTER (DIPISAH TEGAS DENGAN MARGIN BAWAH) -        <!-- GRUP FILTER TERPISAH (PRO-POLISHED) -->
-        <!-- GRUP FILTER SINGLE ROW (MAX EFFICIENCY) -->
-        <div class="sk-dash-filter-bar shadow-sm mb-4" style="background:#fff; border-radius: 12px; border: 1px solid #E2E8F0; padding: 0.75rem 1rem;">
-            <div class="d-flex align-items-center flex-wrap w-100" style="gap: 1.25rem;">
-                <!-- Organizational Filters -->
-                <div class="d-flex align-items-center" style="gap:0.75rem;">
-                    <span class="material-symbols-outlined text-maroon" style="font-size:20px; opacity: 0.8;">corporate_fare</span>
-                    <select id="tugas_filterUnit" class="form-control form-control-sm border-0 font-weight-bold p-0" style="width:auto; min-width:180px; max-width:300px; background:transparent; cursor:pointer;" disabled>
-                        <option value="">- Semua Sekolah -</option>
-                    </select>
-                </div>
-                <div class="d-flex align-items-center" style="gap:0.75rem;">
-                    <span class="material-symbols-outlined text-maroon" style="font-size:20px; opacity: 0.8;">calendar_today</span>
-                    <select id="tugas_filterTahun" class="form-control form-control-sm border-0 font-weight-bold p-0" style="width:auto; min-width:100px; background:transparent; cursor:pointer;"></select>
-                </div>
-                <div class="d-flex align-items-center" style="gap:0.75rem;">
-                    <span class="material-symbols-outlined text-maroon" style="font-size:20px; opacity: 0.8;">layers</span>
-                    <select id="tugas_filterSemester" class="form-control form-control-sm border-0 font-weight-bold p-0" style="width:auto; min-width:110px; background:transparent; cursor:pointer;">
-                        <option value="">- Semua -</option>
-                        <option value="Semester 1">Semester 1</option>
-                        <option value="Semester 2">Semester 2</option>
-                    </select>
-                </div>
-                <!-- Status Filter -->
-                <div class="d-flex align-items-center" style="gap:0.75rem;">
-                    <span class="material-symbols-outlined text-maroon" style="font-size:20px; opacity: 0.8;">rule</span>
-                    <select id="tugas_filterStatus" class="form-control form-control-sm border-0 font-weight-bold p-0" style="width:auto; min-width:120px; background:transparent; cursor:pointer;">
-                        <option value="">- Semua Status -</option>
-                        <option value="Diproses">Diproses</option>
-                        <option value="Revisi">Revisi</option>
-                        <option value="OK">Disetujui</option>
-                        <option value="Ditolak">Ditolak</option>
-                    </select>
-                </div>
+        <!-- GRUP FILTER (DIPISAH TEGAS DENGAN MARGIN BAWAH) -        <!-- GRUP FILTER TERPISAH (PRO-POLISHED) -        <!-- MAIN DATA CARD (TABLER STYLE) -->
+        <div class="cb-card shadow-sm border-0 mb-5" style="border-radius:12px; overflow:hidden; border: 1px solid #E2E8F0 !important; background: #fff;">
+            <!-- Integrated Toolbar Header -->
+            <div class="p-3 border-bottom bg-white">
+                <div class="d-flex flex-wrap align-items-center" style="gap: 1.25rem;">
+                    
+                    <!-- 1. Organizational Filters Group -->
+                    <div class="d-flex align-items-center flex-wrap" style="gap: 1rem;">
+                        <!-- Unit -->
+                        <div class="d-flex align-items-center" style="gap:0.5rem;">
+                            <span class="material-symbols-outlined text-muted" style="font-size:18px;">corporate_fare</span>
+                            <select id="tugas_filterUnit" class="form-control form-control-sm border-0 font-weight-bold p-0" style="width:auto; min-width:140px; max-width:260px; background:transparent; cursor:pointer;" disabled>
+                                <option value="">- Semua Sekolah -</option>
+                            </select>
+                        </div>
+                        <div class="vr mx-1 d-none d-md-block" style="height: 14px; opacity: 0.2;"></div>
+                        <!-- Tahun -->
+                        <div class="d-flex align-items-center" style="gap:0.5rem;">
+                            <span class="material-symbols-outlined text-muted" style="font-size:18px;">calendar_today</span>
+                            <select id="tugas_filterTahun" class="form-control form-control-sm border-0 font-weight-bold p-0" style="width:auto; min-width:85px; background:transparent; cursor:pointer;"></select>
+                        </div>
+                        <div class="vr mx-1 d-none d-md-block" style="height: 14px; opacity: 0.2;"></div>
+                        <!-- Semester -->
+                        <div class="d-flex align-items-center" style="gap:0.5rem;">
+                            <span class="material-symbols-outlined text-muted" style="font-size:18px;">layers</span>
+                            <select id="tugas_filterSemester" class="form-control form-control-sm border-0 font-weight-bold p-0" style="width:auto; min-width:100px; background:transparent; cursor:pointer;">
+                                <option value="">- Semua -</option>
+                                <option value="Semester 1">Semester 1</option>
+                                <option value="Semester 2">Semester 2</option>
+                            </select>
+                        </div>
+                        <div class="vr mx-1 d-none d-md-block" style="height: 14px; opacity: 0.2;"></div>
+                        <!-- Status -->
+                        <div class="d-flex align-items-center" style="gap:0.5rem;">
+                            <span class="material-symbols-outlined text-muted" style="font-size:18px;">rule</span>
+                            <select id="tugas_filterStatus" class="form-control form-control-sm border-0 font-weight-bold p-0" style="width:auto; min-width:110px; background:transparent; cursor:pointer;">
+                                <option value="">- Status -</option>
+                                <option value="Diproses">Diproses</option>
+                                <option value="Revisi">Revisi</option>
+                                <option value="OK">Disetujui</option>
+                                <option value="Ditolak">Ditolak</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Refresh -->
+                        <button type="button" id="tugas_btnCari" class="btn btn-ghost-maroon p-1 d-flex align-items-center btn-sm" title="Refresh Data">
+                            <i class="fas fa-sync-alt" style="font-size: 13px;"></i>
+                        </button>
+                    </div>
 
-                <div style="width: 1px; height: 20px; background: #E2E8F0;" class="d-none d-lg-block"></div>
+                    <!-- 2. Action Groups (Push to Right) -->
+                    <div class="ml-auto d-flex align-items-center flex-wrap" style="gap: 1.25rem;">
+                        <!-- Custom DataTables Contextual Controls -->
+                        <div id="tugas_dt_controls" class="d-flex align-items-center flex-wrap" style="gap: 1.25rem;">
+                            <!-- Page Length -->
+                            <div class="d-flex align-items-center text-muted" style="font-size: 11px; gap: 0.5rem;">
+                                <span class="d-none d-sm-inline">Show</span>
+                                <select id="tugas_custom_length" class="form-control form-control-sm border-0 font-weight-bold p-0 text-dark" style="width:auto; background:transparent; cursor:pointer;">
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </div>
 
-                <!-- Action Buttons -->
-                <button type="button" id="tugas_btnCari" class="btn btn-sm text-maroon font-weight-bold p-0 d-flex align-items-center" title="Refresh Data">
-                    <i class="fas fa-sync-alt mr-2"></i> <span style="font-size: 11px;">REFRESH</span>
-                </button>
+                            <div class="vr d-none d-md-block" style="height: 20px; opacity: 0.1;"></div>
 
-                <button type="button" id="tugas_btnTambah" class="btn btn-sm btn-maroon ml-auto px-4 font-weight-bold d-flex align-items-center justify-content-center" style="border-radius:10px; height: 32px; font-size: 11px; letter-spacing: 0.5px; box-shadow: 0 4px 6px -1px rgba(128, 0, 0, 0.15);" disabled>
-                    <i class="fas fa-plus mr-2"></i> TAMBAH DATA
-                </button>
+                            <!-- Search -->
+                            <div class="d-flex align-items-center px-2 py-1" style="background: #F8FAFC; border-radius: 8px; border: 1px solid #E2E8F0; min-width: 180px;">
+                                <i class="fas fa-search text-muted mr-2" style="font-size: 11px;"></i>
+                                <input type="text" id="tugas_custom_search" class="form-control form-control-sm border-0 p-0 font-weight-bold" placeholder="Cari data..." style="background:transparent; font-size: 11px; height: 18px;">
+                            </div>
+                        </div>
+                        
+                        <div class="vr d-none d-lg-block" style="height: 20px; opacity: 0.1;"></div>
+
+                        <button type="button" id="tugas_btnTambah" class="btn btn-sm btn-maroon px-3 font-weight-bold d-flex align-items-center" style="border-radius:10px; height: 32px; font-size: 11px; letter-spacing: 0.5px; box-shadow: 0 4px 6px -1px rgba(128, 0, 0, 0.15);" disabled>
+                            <i class="fas fa-plus mr-2"></i> TAMBAH DATA
+                        </button>
+                    </div>
+                </div>
             </div>
-        </div>iv>
 
-        <!-- AREA TABEL DALAM CARD TERPISAH -->
-        <div class="cb-card">
+            <!-- Card Body with Table -->
             <div class="cb-card-body p-0">
+                <div id="tugas_loadingState">0">
                 <div id="tugas_loadingState">
                     <div class="d-flex flex-column justify-content-center align-items-center" style="min-height: 300px;">
                         <div class="sk-loader-wrapper">
@@ -510,21 +545,27 @@ function tugas_tarikDataServer() {
             sessionStorage.setItem(cacheKey, freshDataJSON);
             TUGAS_PREV_DATA_JSON = freshDataJSON;
             
-            // Re-init DataTable if needed (CODEBYTE PREMIUM STYLE)
+            // Re-init DataTable if needed (TABLER.IO CLEAN STYLE)
             if (!$.fn.DataTable.isDataTable('#tugas_tabelUtama')) {
                 TUGAS_TABEL_INSTANCE = $('#tugas_tabelUtama').DataTable({
                     "destroy": true, "ordering": false, "pageLength": 10, "autoWidth": false,
                     "deferRender": true, "responsive": false, 
-                    "dom": "<'row mb-3'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
-                           "<'row'<'col-sm-12'tr>>" +
-                           "<'row mt-3'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    "dom": "tr<'p-3 border-top d-flex justify-content-between align-items-center'ip>",
                     "columnDefs": [ 
                             { "targets": 0, "className": "col-sticky-left align-middle text-center", "width": "120px", "orderable": false }, 
-                            { "targets": 1, "className": "align-middle font-weight-bold", "width": "300px" },
-                            { "targets": [2,3], "className": "align-middle text-center", "width": "100px" },
-                            { "targets": 4, "className": "align-middle", "width": "250px" }
+                            { "targets": 1, "className": "align-middle font-weight-bold", "width": "280px" },
+                            { "targets": [2,3], "className": "align-middle text-center", "width": "90px" },
+                            { "targets": 4, "className": "align-middle", "width": "220px" }
                     ],
                     "language": { "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", "emptyTable": "Tidak ditemukan data SK." }
+                });
+
+                // Link Contextual Custom Controls
+                $('#tugas_custom_search').on('keyup change clear', function() {
+                    TUGAS_TABEL_INSTANCE.search($(this).val()).draw();
+                });
+                $('#tugas_custom_length').on('change', function() {
+                    TUGAS_TABEL_INSTANCE.page.len($(this).val()).draw();
                 });
             }
 
