@@ -1179,14 +1179,23 @@
         } catch (e) { return 0; }
     }
 
+    function tugas_getLoaderHtml(msg) {
+        tugas_renderSkeleton();
+        return '<div class="text-center p-4">' + (msg || 'Memuat...') + '</div>';
+    }
+
     function tugas_renderSkeleton() {
         var html = '<div class="table-responsive"><table class="table table-bordered mb-0"><thead><tr>';
-        const cols = ["50px", "200px", "100px", "200px", "100px", "100px", "100px", "100px", "100px"];
-        cols.forEach(w => html += `<th style="width:${w}; background:#f1f5f9;">&nbsp;</th>`);
+        var cols = ["50px", "200px", "100px", "200px", "100px", "100px", "100px", "100px", "100px"];
+        for (var k = 0; k < cols.length; k++) {
+            html += '<th style="width:' + cols[k] + '; background:#f1f5f9;">&nbsp;</th>';
+        }
         html += '</tr></thead><tbody>';
         for (var i = 0; i < 5; i++) {
             html += '<tr>';
-            cols.forEach(w => html += `<td><div class="sultan-skeleton" style="width:80%; height:15px;"></div><div class="sultan-skeleton mt-2" style="width:50%; height:10px;"></div></td>`);
+            for (var j = 0; j < cols.length; j++) {
+                html += '<td><div class="sultan-skeleton" style="width:80%; height:15px;"></div><div class="sultan-skeleton mt-2" style="width:50%; height:10px;"></div></td>';
+            }
             html += '</tr>';
         }
         html += '</tbody></table></div>';
