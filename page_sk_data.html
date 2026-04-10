@@ -32,24 +32,24 @@
             </div>
         </div>
         
-        <!-- GRUP FILTER (DIPISAH TEGAS DENGAN MARGIN BAWAH) -->
-        <div class="sk-dash-filter-bar shadow-sm mb-5" style="background:#fff; border-radius: 12px; border: 1px solid #E2E8F0; padding: 0.2rem 0;">
-            <div class="d-flex flex-column">
-                <!-- Row 1: Primary Filters -->
-                <div class="d-flex align-items-center flex-wrap w-100" style="gap: 1rem; padding: 0.1rem 0.75rem;">
-                    <div class="d-flex align-items-center flex-grow-1" style="gap:0.5rem; min-width: 250px;">
-                        <span class="material-symbols-outlined text-maroon" style="font-size:18px;">corporate_fare</span>
-                        <select id="tugas_filterUnit" class="form-control form-control-sm border-0 font-weight-bold" style="background:transparent; cursor:pointer;" disabled>
-                            <option value="">- Semua -</option>
+        <!-- GRUP FILTER (DIPISAH TEGAS DENGAN MARGIN BAWAH) -        <!-- GRUP FILTER TERPISAH (PRO-POLISHED) -->
+        <div class="sk-dash-filter-bar shadow-sm mb-4" style="background:#fff; border-radius: 12px; border: 1px solid #E2E8F0; padding: 0.75rem 1rem;">
+            <div class="d-flex flex-column" style="gap: 0.75rem;">
+                <!-- Row 1: Primary Organizational Filters -->
+                <div class="d-flex align-items-center flex-wrap w-100" style="gap: 1.5rem;">
+                    <div class="d-flex align-items-center flex-grow-1" style="gap:0.75rem; min-width: 280px;">
+                        <span class="material-symbols-outlined text-maroon" style="font-size:20px; opacity: 0.8;">corporate_fare</span>
+                        <select id="tugas_filterUnit" class="form-control form-control-sm border-0 font-weight-bold p-0" style="background:transparent; cursor:pointer;" disabled>
+                            <option value="">- Semua Sekolah -</option>
                         </select>
                     </div>
-                    <div class="d-flex align-items-center" style="gap:0.5rem; border-left:1px solid #E2E8F0; padding-left:1rem;">
-                        <span class="material-symbols-outlined text-maroon" style="font-size:18px;">calendar_today</span>
-                        <select id="tugas_filterTahun" class="form-control form-control-sm border-0 font-weight-bold" style="width:auto; min-width:80px; background:transparent; cursor:pointer;"></select>
+                    <div class="d-flex align-items-center" style="gap:0.75rem;">
+                        <span class="material-symbols-outlined text-maroon" style="font-size:20px; opacity: 0.8;">calendar_today</span>
+                        <select id="tugas_filterTahun" class="form-control form-control-sm border-0 font-weight-bold p-0" style="width:auto; min-width:100px; background:transparent; cursor:pointer;"></select>
                     </div>
-                    <div class="d-flex align-items-center" style="gap:0.5rem; border-left:1px solid #E2E8F0; padding-left:1rem;">
-                        <span class="material-symbols-outlined text-maroon" style="font-size:18px;">layers</span>
-                        <select id="tugas_filterSemester" class="form-control form-control-sm border-0 font-weight-bold" style="width:auto; min-width:100px; background:transparent; cursor:pointer;">
+                    <div class="d-flex align-items-center" style="gap:0.75rem;">
+                        <span class="material-symbols-outlined text-maroon" style="font-size:20px; opacity: 0.8;">layers</span>
+                        <select id="tugas_filterSemester" class="form-control form-control-sm border-0 font-weight-bold p-0" style="width:auto; min-width:110px; background:transparent; cursor:pointer;">
                             <option value="">- Semua -</option>
                             <option value="Semester 1">Semester 1</option>
                             <option value="Semester 2">Semester 2</option>
@@ -57,12 +57,12 @@
                     </div>
                 </div>
 
-                <!-- Row 2: Secondary & Action -->
-                <div class="d-flex align-items-center flex-wrap w-100 border-top mt-1" style="gap: 1rem; padding: 0.1rem 0.75rem; border-color: #F1F5F9 !important;">
-                    <div class="d-flex align-items-center" style="gap:0.5rem;">
-                        <span class="material-symbols-outlined text-maroon" style="font-size:18px;">rule</span>
-                        <select id="tugas_filterStatus" class="form-control form-control-sm border-0 font-weight-bold" style="width:auto; min-width:100px; background:transparent; cursor:pointer;">
-                            <option value="">- Semua -</option>
+                <!-- Row 2: Status & Global Actions -->
+                <div class="d-flex align-items-center flex-wrap w-100 border-top pt-2" style="gap: 1.5rem; border-color: #F8FAFC !important;">
+                    <div class="d-flex align-items-center" style="gap:0.75rem;">
+                        <span class="material-symbols-outlined text-maroon" style="font-size:20px; opacity: 0.8;">rule</span>
+                        <select id="tugas_filterStatus" class="form-control form-control-sm border-0 font-weight-bold p-0" style="width:auto; min-width:120px; background:transparent; cursor:pointer;">
+                            <option value="">- Semua Status -</option>
                             <option value="Diproses">Diproses</option>
                             <option value="Revisi">Revisi</option>
                             <option value="OK">Disetujui</option>
@@ -70,18 +70,18 @@
                         </select>
                     </div>
 
-                    <div style="width: 1px; height: 16px; background: #E2E8F0; margin: 0 0.25rem;"></div>
+                    <div style="width: 1px; height: 20px; background: #E2E8F0; margin: 0 0.5rem;" class="d-none d-md-block"></div>
 
-                    <button type="button" id="tugas_btnCari" class="btn btn-sm text-maroon font-weight-bold p-0" title="Refresh">
-                        <i class="fas fa-sync-alt"></i>
+                    <button type="button" id="tugas_btnCari" class="btn btn-sm text-maroon font-weight-bold p-0 d-flex align-items-center" title="Refresh Data">
+                        <i class="fas fa-sync-alt mr-2"></i> <span style="font-size: 11px;">REFRESH</span>
                     </button>
 
-                    <button type="button" id="tugas_btnTambah" class="btn btn-sm btn-maroon ml-auto px-3 font-weight-bold" style="border-radius:8px; height: 28px; font-size: 11px;" disabled>
-                        <i class="fas fa-plus mr-1"></i> Tambah
+                    <button type="button" id="tugas_btnTambah" class="btn btn-sm btn-maroon ml-auto px-4 font-weight-bold d-flex align-items-center justify-content-center" style="border-radius:10px; height: 32px; font-size: 11px; letter-spacing: 0.5px; box-shadow: 0 4px 6px -1px rgba(128, 0, 0, 0.15);" disabled>
+                        <i class="fas fa-plus mr-2"></i> TAMBAH DATA
                     </button>
                 </div>
             </div>
-        </div>
+        </div>iv>
 
         <!-- AREA TABEL DALAM CARD TERPISAH -->
         <div class="cb-card">
