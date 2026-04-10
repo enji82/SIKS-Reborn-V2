@@ -627,15 +627,6 @@ function tugas_renderTabel(data) {
         return timeB - timeA; 
     });
 
-function tugas_renderTabel(data) {
-    var dtArray = []; TUGAS_DATA_MASTER = {}; 
-
-    data.sort(function(a, b) {
-        var timeA = Math.max(tugas_parseDateTime(a.tglUnggah), tugas_parseDateTime(a.tglUpdate), tugas_parseDateTime(a.tglVerval));
-        var timeB = Math.max(tugas_parseDateTime(b.tglUnggah), tugas_parseDateTime(b.tglUpdate), tugas_parseDateTime(b.tglVerval));
-        return timeB - timeA; 
-    });
-
     data.forEach(function(row) {
         var id = String(row.rowBaris);
         TUGAS_DATA_MASTER[id] = row; 
@@ -1024,7 +1015,7 @@ function tugas_buildBadgeStatus(st, ket) {
         badge = '<span class="badge badge-sultan badge-sultan-light-info"><i class="fas fa-hourglass-half mr-1"></i> DIPROSES</span>';
 
     if (ket && ket.trim().length > 2 && (st.includes('revisi') || st.includes('tolak'))) {
-        var safeKet = tugas_escapeJs(ket);
+        var safeKet = tugas_escapeHtml(ket);
         badge += `<div class="mt-1"><button type="button" class="btn btn-xs btn-outline-danger font-weight-bold tugas-btn-catatan" style="font-size:10px;" data-pesan="${safeKet}"><i class="fas fa-comment-dots mr-1"></i> Baca Catatan</button></div>`;
     }
     return badge;
@@ -1048,6 +1039,9 @@ function tugas_escapeHtml(text) {
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
 }
-function tugas_escapeJs(t) { return String(t).replace(/'/g, "\\'"); }
+function tugas_escapeJs(t) { 
+    if(!t) return "";
+    return String(t).replace(/'/g, "\\'").replace(/"/g, "\\\""); 
+}
 
 </script>
