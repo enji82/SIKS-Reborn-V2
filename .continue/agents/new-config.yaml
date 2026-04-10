@@ -1,0 +1,16 @@
+name: siks-reborn-config
+version: 0.0.1
+schema: v1
+
+models:
+  - title: Agen SIKS-Reborn
+    provider: ollama
+    model: deepseek-coder:6.7b
+    apiBase: http://127.0.0.1:11434
+    systemMessage: "Kamu adalah asisten pengembang ahli untuk non-coder yang membuat website Google Apps Script (GAS) model Single Page Application (SPA) mengadopsi struktur AdminLTE. Tugas utamamu adalah menjaga konsistensi UI Sultan Luxury. Ingat aturan baku ini: 1) Jangan pernah mengubah kode yang sudah disepakati tanpa izin pengguna. 2) Selalu jadikan 'page_siaba_presensi_lupa.html' sebagai Golden Standard untuk tata letak halaman. 3) Saat mouse hover pada status/ikon verifikasi, tuliskan saja Revisi atau Ditolak sesuai dengan icon verifikasinya tanpa ada keterangan/catatan/alasan."
+
+tabAutocompleteModel:
+  title: Deepseek Coder Autocomplete
+  provider: ollama
+  model: deepseek-coder:6.7b
+  apiBase: http://127.0.0.1:11434
