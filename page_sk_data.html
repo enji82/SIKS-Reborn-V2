@@ -1,3 +1,20 @@
+<style>
+  .thead-grey-sultan { background-color: #f8fafc !important; color: #334155; }
+  .thead-grey-sultan th { font-weight: 700; text-transform: none; font-size: 13px; border-bottom: 2px solid #e2e8f0 !important; }
+  .table-premium.table-sultan-compact thead th { vertical-align: middle; padding: 12px 10px; }
+  .table-premium tbody td { vertical-align: middle; padding: 10px 10px; font-size: 13px; }
+  .sk-log-box { line-height: 1.3; font-size: 11px; }
+  .sk-log-date { display: block; font-weight: 700; color: #1e293b; }
+  .sk-log-user { display: block; color: #64748b; font-weight: 500; }
+  .btn-sk-pdf { border: 1px solid #f87171; color: #b91c1c; background: #fff1f2; font-weight: 700; font-size: 11px; padding: 4px 10px; border-radius: 6px; transition: all 0.2s; }
+  .btn-sk-pdf:hover { background: #fee2e2; transform: scale(1.05); }
+  
+  /* Action Buttons Specific Color to Match Image */
+  .btn-icon-ref-blue { background-color: #3b82f6 !important; color: #fff !important; }
+  .btn-icon-ref-grey { background-color: #94a3b8 !important; color: #fff !important; }
+  .btn-icon-ref-dark { background-color: #475569 !important; color: #fff !important; }
+  .btn-icon-sultan { width: 30px; height: 30px; border-radius: 6px; margin: 0 2px; }
+</style>
 <div class="content-header pb-0">
   <div class="container-fluid">
     <div class="row mb-2">
@@ -91,14 +108,20 @@
 
               <div id="tugas_tableState" style="display: none;">
                   <table id="tugas_tabelUtama" class="table table-bordered table-hover table-premium table-sultan-compact mb-0 w-100 text-nowrap">
-                    <thead class="bg-light">
+                    <thead class="thead-grey-sultan">
                         <tr>
                             <th class="col-sticky-left border-right text-center" style="width: 1%; white-space: nowrap;">Aksi</th>
                             <th class="text-left align-middle">Nama Sekolah</th>
                             <th class="text-center align-middle">Th. Ajaran</th>
                             <th class="text-center align-middle">Sem.</th>
-                            <th class="text-center align-middle">Status</th>
                             <th class="text-left align-middle">Nomor SK</th>
+                            <th class="text-center align-middle">Tgl SK</th>
+                            <th class="text-center align-middle">Kriteria</th>
+                            <th class="text-center align-middle">Dokumen</th>
+                            <th class="text-center align-middle">Status</th>
+                            <th class="text-left align-middle">Dikirim</th>
+                            <th class="text-left align-middle">Diubah</th>
+                            <th class="text-left align-middle">Verifikasi</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -527,8 +550,8 @@ function tugas_tarikDataServer() {
                     "columnDefs": [ 
                             { "targets": 0, "className": "col-sticky-left bg-white align-middle border-right text-center", "width": "1%", "orderable": false }, 
                             { "targets": 1, "className": "align-middle font-weight-bold" },
-                            { "targets": [2,3], "className": "align-middle text-center", "width": "90px" },
-                            { "targets": 4, "className": "align-middle" }
+                            { "targets": [2,3,5,6,7,8], "className": "align-middle text-center", "width": "80px" },
+                            { "targets": [4,9,10,11], "className": "align-middle" }
                     ],
                     "language": { "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", "emptyTable": "Tidak ditemukan data SK." }
                 });
@@ -620,7 +643,7 @@ function tugas_terapkanFilterLokal() {
 function tugas_renderTabel(data) {
     var dtArray = []; TUGAS_DATA_MASTER = {}; 
 
-    // Pengurutan Tambahan di Frontend
+    // Pengurutan Tambahan di Frontend (Berdasarkan aktivitas terbaru)
     data.sort(function(a, b) {
         var timeA = Math.max(tugas_parseDateTime(a.tglUnggah), tugas_parseDateTime(a.tglUpdate), tugas_parseDateTime(a.tglVerval));
         var timeB = Math.max(tugas_parseDateTime(b.tglUnggah), tugas_parseDateTime(b.tglUpdate), tugas_parseDateTime(b.tglVerval));
@@ -634,64 +657,52 @@ function tugas_renderTabel(data) {
         var safeNoSk = tugas_cleanText(row.noSk || "-"); 
         var safeUrl = String(row.fileUrl||"").replace(/'/g, "%27").replace(/"/g, "%22");
         var safeUrlJs = tugas_escapeJs(safeUrl);
-        var safeNama = tugas_escapeJs(row.namaSd);
         var stButton = String(row.status || "").toLowerCase();
         
         var isLocked = (stButton.includes('setuju') || stButton.includes('ok') || stButton.includes('valid')) && !TUGAS_IS_ADMIN;
         var badgeStatus = tugas_buildBadgeStatus(row.status, row.keterangan);
 
-        // ACTION DROPDOWN (SULTAN STYLE)
-        var actionDropdown = '';
-        if (isLocked) {
-            actionDropdown = '<span class="badge badge-outline-success font-weight-bold p-1 px-2" style="font-size:10px;"><i class="fas fa-lock mr-1"></i> TERKUNCI</span>';
-        } else {
-            actionDropdown = `
-            <div class="dropdown sultan-dropdown-compact">
-                <button class="btn sharp text-maroon p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-ellipsis-v"></i>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right shadow-lg border-0">
-                    <a class="dropdown-item font-weight-bold" href="javascript:void(0)" onclick="${TUGAS_IS_ADMIN ? `tugas_bukaModalVerif('${id}')` : `tugas_bukaPreview('${safeUrlJs}')`}">
-                        <i class="fas ${TUGAS_IS_ADMIN ? 'fa-clipboard-check text-primary' : 'fa-eye text-info'} mr-2"></i> ${TUGAS_IS_ADMIN ? 'Verifikasi' : 'Lihat Dokumen'}
-                    </a>
-                    <a class="dropdown-item font-weight-bold" href="javascript:void(0)" onclick="tugas_bukaModalEdit('${id}')">
-                        <i class="fas fa-pencil-alt text-warning mr-2"></i> Ubah Data
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item font-weight-bold text-danger" href="javascript:void(0)" onclick="tugas_bukaModalHapus('${id}')">
-                        <i class="fas fa-trash-alt mr-2"></i> Hapus Permanen
-                    </a>
-                </div>
-            </div>`;
-        }
+        // 1. Tombol Aksi (Individual 3 Buttons sesuai Gambar)
+        var actionButtons = `
+        <div class="d-flex align-items-center justify-content-center">
+            <button type="button" class="btn btn-icon-sultan btn-icon-ref-blue shadow-sm" onclick="${TUGAS_IS_ADMIN ? `tugas_bukaModalVerif('${id}')` : `tugas_bukaPreview('${safeUrlJs}')`}" title="${TUGAS_IS_ADMIN ? 'Verifikasi' : 'Pratinjau'}">
+                <i class="fas ${TUGAS_IS_ADMIN ? 'fa-check-double' : 'fa-eye'}"></i>
+            </button>
+            <button type="button" class="btn btn-icon-sultan btn-icon-ref-grey shadow-sm ${isLocked ? 'disabled opacity-50' : ''}" onclick="${isLocked ? 'void(0)' : `tugas_bukaModalEdit('${id}')`}" title="Edit Data">
+                <i class="fas fa-pencil-alt"></i>
+            </button>
+            <button type="button" class="btn btn-icon-sultan btn-icon-ref-dark shadow-sm ${isLocked ? 'disabled opacity-50' : ''}" onclick="${isLocked ? 'void(0)' : `tugas_bukaModalHapus('${id}')`}" title="Hapus Data">
+                <i class="fas fa-trash-alt"></i>
+            </button>
+        </div>`;
 
-        var btnFile = '-';
-        if(safeUrl.length > 5) {
-            btnFile = `<button class="btn btn-xs btn-outline-danger font-weight-bold shadow-sm" onclick="tugas_bukaPreview('${safeUrlJs}')"><i class="fas fa-file-pdf mr-1"></i> PDF</button>`;
-        }
-        
+        // 2. Format Tanggal SK
         var tglSkDisplay = row.tglSkDisplay || row.tglSk || "-";
         if(tglSkDisplay.match(/^\d{4}-\d{2}-\d{2}$/)) { 
-            var p = tglSkDisplay.split('-'); 
-            tglSkDisplay = p[2] + '-' + p[1] + '-' + p[0]; 
+            var p = tglSkDisplay.split('-'); tglSkDisplay = p[2] + '-' + p[1] + '-' + p[0]; 
         }
 
-        // PREMIUM TYPOGRAPHY
-        var uiSchool = `<div class="text-maroon font-weight-bold" style="font-size:14px; line-height:1.2;">${tugas_cleanText(row.namaSd)}</div>
-                        <div class="text-muted small font-weight-bold" style="font-size:11px;">${tugas_cleanText(row.npsn || '-')}</div>`;
+        // 3. Tombol Dokumen
+        var btnDokumen = safeUrl.length > 5 ? `<button type="button" class="btn-sk-pdf shadow-sm" onclick="tugas_bukaPreview('${safeUrlJs}')"><i class="fas fa-file-pdf mr-1"></i> SK</button>` : '-';
         
-        var uiSk = `<div class="text-dark font-weight-bold" style="font-size:13px; line-height:1.2;">${safeNoSk}</div>
-                    <div class="text-muted small" style="font-size:11px; font-weight:600;">
-                        <span class="text-maroon">${tugas_cleanText(row.kriteria)}</span> &bull; ${tglSkDisplay}
-                    </div>`;
+        // 4. Log Detils
+        var uiDikirim = `<div class="sk-log-box"><span class="sk-log-date">${row.tglUnggah || '-'}</span><span class="sk-log-user">${row.userInput || '-'}</span></div>`;
+        var uiDiubah = row.tglUpdate && row.tglUpdate !== '-' ? `<div class="sk-log-box"><span class="sk-log-date">${row.tglUpdate}</span><span class="sk-log-user">${row.userUpdate || '-'}</span></div>` : '-';
+        var uiVerif = row.tglVerval && row.tglVerval !== '-' ? `<div class="sk-log-box"><span class="sk-log-date">${row.tglVerval}</span><span class="sk-log-user">${row.verifikator || '-'}</span></div>` : '-';
 
         dtArray.push([ 
-            actionDropdown, 
-            uiSchool,
-            `<span class="font-weight-bold text-dark">${tugas_cleanText(row.tahun)}</span>`,
+            actionButtons, 
+            `<div class="text-maroon font-weight-bold" style="font-size:13px;">${tugas_cleanText(row.namaSd)}</div>`,
+            `<span class="font-weight-bold text-dark text-nowrap">${tugas_cleanText(row.tahun)}</span>`,
             `<span class="font-weight-bold text-muted">${tugas_cleanText(row.semester)}</span>`,
+            `<span class="font-weight-bold text-dark d-block text-wrap" style="min-width:120px;">${safeNoSk}</span>`,
+            `<span class="text-dark">${tglSkDisplay}</span>`,
+            `<span class="text-muted small font-weight-bold">${tugas_cleanText(row.kriteria)}</span>`,
+            btnDokumen,
             badgeStatus,
-            uiSk
+            uiDikirim,
+            uiDiubah,
+            uiVerif
         ]);
     });
 
