@@ -48,6 +48,8 @@ var Sultan = {
             showConfirmButton: true,
             confirmButtonText: 'OK',
             buttonsStyling: true,
+            showClass: { popup: 'swal2-show sultan-alert-popup' },
+            hideClass: { popup: 'swal2-hide sultan-alert-popup' },
             customClass: {
                 popup: `sultan-alert-popup ${typeClass}`,
                 confirmButton: 'sultan-swal-confirm'
@@ -65,6 +67,8 @@ var Sultan = {
             confirmButtonText: opsi.btnYa || 'Ya, Lanjutkan',
             cancelButtonText: opsi.btnBatal || 'Batal',
             buttonsStyling: true,
+            showClass: { popup: 'swal2-show sultan-alert-popup' },
+            hideClass: { popup: 'swal2-hide sultan-alert-popup' },
             customClass: {
                 popup: 'sultan-alert-popup sultan-error-popup', // Konfirmasi default maroon
                 confirmButton: 'swal2-confirm',
