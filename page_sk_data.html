@@ -748,8 +748,8 @@
             var safeUrl = String(row.fileUrl || "").replace(/'/g, "%27").replace(/"/g, "%22");
             var safeUrlJs = tugas_escapeJs(safeUrl);
             var stButton = String(row.status || "").toLowerCase();
-
-            var isLocked = (stButton.includes('setuju') || stButton.includes('ok') || stButton.includes('valid')) && !TUGAS_IS_ADMIN;
+            var isApproved = (stButton.includes('setuju') || stButton.includes('ok') || stButton.includes('valid'));
+            
             var badgeStatus = tugas_buildBadgeStatus(row.status, row.keterangan);
 
             // 1. Tombol Aksi (Individual 3 Buttons sesuai Gambar)
@@ -757,10 +757,10 @@
                 '<button type="button" class="btn btn-icon-sultan btn-icon-ref-blue shadow-sm" onclick="' + (TUGAS_IS_ADMIN ? "tugas_bukaModalVerif('" + id + "')" : "tugas_bukaPreview('" + safeUrlJs + "')") + '" title="' + (TUGAS_IS_ADMIN ? 'Verifikasi' : 'Pratinjau') + '">' +
                 '<i class="fas ' + (TUGAS_IS_ADMIN ? 'fa-check-double' : 'fa-eye') + '"></i>' +
                 '</button>' +
-                '<button type="button" class="btn btn-icon-sultan btn-icon-ref-grey shadow-sm ' + (isLocked ? 'disabled opacity-50' : '') + '" onclick="' + (isLocked ? 'void(0)' : "tugas_bukaModalEdit('" + id + "')") + '" title="Edit Data">' +
+                '<button type="button" class="btn btn-icon-sultan btn-icon-ref-grey shadow-sm ' + (isApproved ? 'btn-sultan-locked disabled' : '') + '" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalEdit('" + id + "')") + '" title="Edit Data">' +
                 '<i class="fas fa-pencil-alt"></i>' +
                 '</button>' +
-                '<button type="button" class="btn btn-icon-sultan btn-icon-ref-dark shadow-sm ' + (isLocked ? 'disabled opacity-50' : '') + '" onclick="' + (isLocked ? 'void(0)' : "tugas_bukaModalHapus('" + id + "')") + '" title="Hapus Data">' +
+                '<button type="button" class="btn btn-icon-sultan btn-icon-ref-dark shadow-sm ' + (isApproved ? 'btn-sultan-locked disabled' : '') + '" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalHapus('" + id + "')") + '" title="Hapus Data">' +
                 '<i class="fas fa-trash-alt"></i>' +
                 '</button>' +
                 '</div>';

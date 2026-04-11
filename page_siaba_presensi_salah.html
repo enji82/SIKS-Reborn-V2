@@ -540,25 +540,13 @@ function salah_renderTabel(hasil) {
         
         var badgeStatus = salah_buildBadgeStatus(row.status, row.ket);
         
-        var isLocked = (String(row.status).toLowerCase().includes('ok') || String(row.status).toLowerCase().includes('setuju'));
-        var attrDis = isLocked ? 'disabled style="cursor:not-allowed; opacity:0.6; filter: grayscale(100%);"' : '';
+        var isApproved = (String(row.status).toLowerCase().includes('ok') || String(row.status).toLowerCase().includes('setuju'));
         
-        // BAB III: Tombol Aksi Dropdown (CodeByte Style)
-        var aksiHTML = '';
-        if (isLocked && !SALAH_IS_ADMIN) {
-            aksiHTML = '<span class="badge badge-success px-2 py-1 shadow-sm"><i class="fas fa-lock mr-1"></i> Terkunci</span>';
-        } else {
-            aksiHTML = '<div class="dropdown custom-dropdown">' +
-                         '<button type="button" class="btn sharp" data-toggle="dropdown">' +
-                           '<i class="fas fa-ellipsis-h"></i>' +
-                         '</button>' +
-                         '<div class="dropdown-menu dropdown-menu-right">' +
-                           (SALAH_IS_ADMIN ? '<a class="dropdown-item salah-btn-verif" href="javascript:void(0)" data-id="' + id + '"><i class="fas fa-clipboard-check text-primary"></i> Verifikasi</a>' : '') +
-                           '<a class="dropdown-item salah-btn-edit" href="javascript:void(0)" data-id="' + id + '"><i class="fas fa-pencil-alt text-warning"></i> Edit Data</a>' +
-                           '<a class="dropdown-item text-danger salah-btn-hapus" href="javascript:void(0)" data-id="' + id + '"><i class="fas fa-trash text-danger"></i> Hapus</a>' +
-                         '</div>' +
-                       '</div>';
-        }
+        // BAB III: Tombol Aksi (Side-by-Side Modern Style)
+        var btnVerif = SALAH_IS_ADMIN ? `<button type="button" class="btn btn-sm btn-primary font-weight-bold shadow-sm salah-btn-verif" data-id="${id}" title="Verifikasi"><i class="fas fa-clipboard-check"></i></button>` : '';
+        var btnEdit  = `<button type="button" class="btn btn-sm btn-warning text-dark font-weight-bold shadow-sm salah-btn-edit ${isApproved ? 'btn-sultan-locked disabled' : ''}" data-id="${id}" title="Edit Data" ${isApproved ? 'disabled' : ''}><i class="fas fa-pencil-alt"></i></button>`;
+        var btnHapus = `<button type="button" class="btn btn-sm btn-danger font-weight-bold shadow-sm salah-btn-hapus ${isApproved ? 'btn-sultan-locked disabled' : ''}" data-id="${id}" title="Hapus Data" ${isApproved ? 'disabled' : ''}><i class="fas fa-trash-alt"></i></button>`;
+        var aksiHTML = `<div class="d-flex flex-nowrap justify-content-center" style="gap:5px;">${btnVerif}${btnEdit}${btnHapus}</div>`;
 
         var txtUnitHtml = SALAH_IS_ADMIN ? `<div class="small text-danger font-weight-bold mt-1">${salah_escapeHtml(row.unit)}</div>` : '';
         var uiNama   = `<div class="font-weight-bold text-dark">${salah_escapeHtml(row.nama)}</div><div class="small text-muted">${salah_escapeHtml(row.nip)}</div>${txtUnitHtml}`;

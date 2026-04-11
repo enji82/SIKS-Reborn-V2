@@ -324,7 +324,7 @@ function efilekelola_renderTabel(dataRows) {
         var id = r.rowId; var st = String(r.status || "").toLowerCase(); var isDisetujui = st.includes('setuju') || st.includes('ok');
         var btnV = ""; if (EFILEKELOLA_IS_ADMIN) btnV = `<button type="button" class="btn btn-sm ${st.includes('proses') ? 'btn-primary' : 'btn-outline-primary'} font-weight-bold shadow-sm efilekelola-btn-verif" data-id="${id}"><i class="fas fa-clipboard-check mr-1"></i>${st.includes('proses') ? ' Verif' : ' Edit Verif'}</button>`;
         var btnP = ""; if (st.includes('revisi') || st.includes('tolak')) btnP = `<button type="button" class="btn btn-sm btn-warning text-dark font-weight-bold shadow-sm efilekelola-btn-perbaiki" data-id="${id}" title="Perbaiki Berkas"><i class="fas fa-upload mr-1"></i> Perbaiki</button>`;
-        var btnH = `<button type="button" class="btn btn-sm btn-danger font-weight-bold shadow-sm efilekelola-btn-hapus" data-id="${id}" ${isDisetujui ? 'disabled style="opacity:0.5;"' : ''} title="Hapus Berkas"><i class="fas fa-trash-alt"></i></button>`;
+        var btnH = `<button type="button" class="btn btn-sm btn-danger font-weight-bold shadow-sm efilekelola-btn-hapus ${isDisetujui ? 'btn-sultan-locked disabled' : ''}" data-id="${id}" ${isDisetujui ? 'disabled' : ''} title="Hapus Berkas"><i class="fas fa-trash-alt"></i></button>`;
         var aksi = `<div class="d-flex flex-nowrap justify-content-center" style="gap:5px;">${btnV}${btnP}${btnH}</div>`;
 
         var ptk = EFILEKELOLA_MASTER_PTK.find(p => String(p.id_ptk).trim() === String(r.id_ptk).trim());

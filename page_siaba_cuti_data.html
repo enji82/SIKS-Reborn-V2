@@ -658,7 +658,6 @@ function cuti_renderTabel(data) {
         var isApproved = (stButton.includes("setuju") || stButton.includes("ok") || stButton.includes("acc"));
         
         var badgeStatus = cuti_renderBadgeSultan(row.status, row.ket);
-        var attrDis = isApproved ? 'disabled style="cursor:not-allowed; opacity:0.6; filter: grayscale(100%);"' : '';
 
         var btnFile = '-';
         if (row.fileUrl && row.fileUrl.length > 5) {
@@ -672,8 +671,8 @@ function cuti_renderTabel(data) {
         var marginIcon = CUTI_IS_ADMIN ? "" : "mr-1";
 
         var btnVerif = CUTI_IS_ADMIN ? `<button type="button" class="btn btn-sm btn-primary font-weight-bold shadow-sm cuti-btn-verif" data-id="${safeId}" title="Verifikasi"><i class="fas fa-clipboard-check ${marginIcon}"></i>${txtVerif}</button>` : '';
-        var btnDetail = `<button type="button" class="btn btn-sm btn-warning text-dark font-weight-bold shadow-sm cuti-btn-edit" data-id="${safeId}" title="Edit" ${attrDis}><i class="fas fa-pencil-alt ${marginIcon}"></i>${txtEdit}</button>`;
-        var btnHapus = `<button type="button" class="btn btn-sm btn-danger font-weight-bold shadow-sm cuti-btn-hapus" data-id="${safeId}" data-nama="${cuti_escapeHtml(row.nama)}" title="Hapus" ${attrDis}><i class="fas fa-trash-alt ${marginIcon}"></i>${txtHapus}</button>`;
+        var btnDetail = `<button type="button" class="btn btn-sm btn-warning text-dark font-weight-bold shadow-sm cuti-btn-edit ${isApproved ? 'btn-sultan-locked disabled' : ''}" data-id="${safeId}" title="Edit" ${isApproved ? 'disabled' : ''}><i class="fas fa-pencil-alt ${marginIcon}"></i>${txtEdit}</button>`;
+        var btnHapus = `<button type="button" class="btn btn-sm btn-danger font-weight-bold shadow-sm cuti-btn-hapus ${isApproved ? 'btn-sultan-locked disabled' : ''}" data-id="${safeId}" data-nama="${cuti_escapeHtml(row.nama)}" title="Hapus" ${isApproved ? 'disabled' : ''}><i class="fas fa-trash-alt ${marginIcon}"></i>${txtHapus}</button>`;
         var groupAksi = `<div class="d-flex flex-nowrap justify-content-center" style="gap:5px;">${btnVerif}${btnDetail}${btnHapus}</div>`;
 
         var txtUnitHtml = CUTI_IS_ADMIN ? `<div class="small text-danger font-weight-bold mt-1">${cuti_escapeHtml(row.unit) || '-'}</div>` : '';

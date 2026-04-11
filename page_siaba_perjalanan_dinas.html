@@ -584,8 +584,7 @@ function perdin_renderTabel(data) {
         var safeNoSpt = perdin_escapeHtml(row.noSpt); 
         var stButton = String(row.status || "").toLowerCase();
         
-        var isLocked = (stButton.includes('setuju') || stButton.includes('acc') || stButton.includes('ok'));
-        var attrDis = isLocked ? 'disabled style="cursor:not-allowed; opacity:0.6; filter: grayscale(100%);"' : '';
+        var isApproved = (stButton.includes('setuju') || stButton.includes('acc') || stButton.includes('ok'));
         
         var txtVerif = PERDIN_IS_ADMIN ? "" : " Verif";
         var txtEdit  = PERDIN_IS_ADMIN ? "" : " Edit";
@@ -593,8 +592,8 @@ function perdin_renderTabel(data) {
         var marginIcon = PERDIN_IS_ADMIN ? "" : "mr-1";
 
         var btnAdmin = PERDIN_IS_ADMIN ? `<button type="button" class="btn btn-sm btn-primary font-weight-bold shadow-sm perdin-btn-verif" data-id="${id}" title="Verifikasi"><i class="fas fa-clipboard-check ${marginIcon}"></i>${txtVerif}</button>` : '';
-        var btnDetail = `<button type="button" class="btn btn-sm btn-warning text-dark font-weight-bold shadow-sm perdin-btn-edit" data-id="${id}" title="Detail/Edit SPT"><i class="fas fa-pencil-alt ${marginIcon}"></i>${txtEdit}</button>`;
-        var btnHapus = `<button type="button" class="btn btn-sm btn-danger font-weight-bold shadow-sm perdin-btn-hapus" data-id="${id}" ${attrDis} title="Hapus SPT"><i class="fas fa-trash-alt ${marginIcon}"></i>${txtHapus}</button>`;
+        var btnDetail = `<button type="button" class="btn btn-sm btn-warning text-dark font-weight-bold shadow-sm perdin-btn-edit ${isApproved ? 'btn-sultan-locked disabled' : ''}" data-id="${id}" ${isApproved ? 'disabled' : ''} title="Detail/Edit SPT"><i class="fas fa-pencil-alt ${marginIcon}"></i>${txtEdit}</button>`;
+        var btnHapus = `<button type="button" class="btn btn-sm btn-danger font-weight-bold shadow-sm perdin-btn-hapus ${isApproved ? 'btn-sultan-locked disabled' : ''}" data-id="${id}" ${isApproved ? 'disabled' : ''} title="Hapus SPT"><i class="fas fa-trash-alt ${marginIcon}"></i>${txtHapus}</button>`;
         
         var groupAksi = `<div class="d-flex flex-nowrap justify-content-center" style="gap:5px;">${btnAdmin}${btnDetail}${btnHapus}</div>`;
 
