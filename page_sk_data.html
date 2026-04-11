@@ -754,13 +754,13 @@
 
             // 1. Tombol Aksi (Individual 3 Buttons sesuai Gambar)
             var actionButtons = '<div class="d-flex align-items-center justify-content-center">' +
-                '<button type="button" class="btn btn-icon-sultan btn-icon-ref-blue shadow-sm" onclick="' + (TUGAS_IS_ADMIN ? "tugas_bukaModalVerif('" + id + "')" : "tugas_bukaPreview('" + safeUrlJs + "')") + '" title="' + (TUGAS_IS_ADMIN ? 'Verifikasi' : 'Pratinjau') + '">' +
+                '<button type="button" class="btn btn-icon-sultan btn-icon-sultan-primary shadow-sm" onclick="' + (TUGAS_IS_ADMIN ? "tugas_bukaModalVerif('" + id + "')" : "tugas_bukaPreview('" + safeUrlJs + "')") + '" title="' + (TUGAS_IS_ADMIN ? 'Verifikasi' : 'Pratinjau') + '">' +
                 '<i class="fas ' + (TUGAS_IS_ADMIN ? 'fa-check-double' : 'fa-eye') + '"></i>' +
                 '</button>' +
-                '<button type="button" class="btn btn-icon-sultan btn-icon-ref-grey shadow-sm ' + (isApproved ? 'btn-sultan-locked disabled' : '') + '" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalEdit('" + id + "')") + '" title="Edit Data">' +
+                '<button type="button" class="btn btn-icon-sultan btn-icon-sultan-warning shadow-sm ' + (isApproved ? 'btn-sultan-locked disabled' : '') + '" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalEdit('" + id + "')") + '" title="Edit Data">' +
                 '<i class="fas fa-pencil-alt"></i>' +
                 '</button>' +
-                '<button type="button" class="btn btn-icon-sultan btn-icon-ref-dark shadow-sm ' + (isApproved ? 'btn-sultan-locked disabled' : '') + '" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalHapus('" + id + "')") + '" title="Hapus Data">' +
+                '<button type="button" class="btn btn-icon-sultan btn-icon-sultan-danger shadow-sm ' + (isApproved ? 'btn-sultan-locked disabled' : '') + '" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalHapus('" + id + "')") + '" title="Hapus Data">' +
                 '<i class="fas fa-trash-alt"></i>' +
                 '</button>' +
                 '</div>';

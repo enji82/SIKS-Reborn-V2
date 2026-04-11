@@ -587,12 +587,10 @@ function lupa_renderTabel(hasil) {
         
         var badgeStatus = lupa_buildBadgeStatus(row.status, row.ket);
         
-        var isApproved = (String(row.status).toLowerCase().includes('ok') || String(row.status).toLowerCase().includes('setuju'));
-        
         // BAB III: Tombol Aksi (Side-by-Side Modern Style)
-        var btnVerif = LUPA_IS_ADMIN ? `<button type="button" class="btn btn-sm btn-primary font-weight-bold shadow-sm lupa-btn-verif" data-id="${id}" title="Verifikasi"><i class="fas fa-clipboard-check"></i></button>` : '';
-        var btnEdit  = `<button type="button" class="btn btn-sm btn-warning text-dark font-weight-bold shadow-sm lupa-btn-edit ${isApproved ? 'btn-sultan-locked disabled' : ''}" data-id="${id}" title="Edit Data" ${isApproved ? 'disabled' : ''}><i class="fas fa-pencil-alt"></i></button>`;
-        var btnHapus = `<button type="button" class="btn btn-sm btn-danger font-weight-bold shadow-sm lupa-btn-hapus ${isApproved ? 'btn-sultan-locked disabled' : ''}" data-id="${id}" title="Hapus Data" ${isApproved ? 'disabled' : ''}><i class="fas fa-trash-alt"></i></button>`;
+        var btnVerif = LUPA_IS_ADMIN ? `<button type="button" class="btn btn-icon-sultan btn-icon-sultan-primary shadow-sm lupa-btn-verif" data-id="${id}" title="Verifikasi"><i class="fas fa-clipboard-check"></i></button>` : '';
+        var btnEdit  = `<button type="button" class="btn btn-icon-sultan btn-icon-sultan-warning shadow-sm lupa-btn-edit ${isApproved ? 'btn-sultan-locked disabled' : ''}" data-id="${id}" title="Edit Data" ${isApproved ? 'disabled' : ''}><i class="fas fa-pencil-alt"></i></button>`;
+        var btnHapus = `<button type="button" class="btn btn-icon-sultan btn-icon-sultan-danger shadow-sm lupa-btn-hapus ${isApproved ? 'btn-sultan-locked disabled' : ''}" data-id="${id}" title="Hapus Data" ${isApproved ? 'disabled' : ''}><i class="fas fa-trash-alt"></i></button>`;
         var aksiHTML = `<div class="d-flex flex-nowrap justify-content-center" style="gap:5px;">${btnVerif}${btnEdit}${btnHapus}</div>`;
 
         var btnFile = (row.fileUrl && row.fileUrl.length > 5) ? `<button class="btn btn-sm btn-outline-danger font-weight-bold shadow-sm lupa-btn-preview" data-id="${id}"><i class="fas fa-file-pdf mr-1"></i> Dokumen</button>` : '-';

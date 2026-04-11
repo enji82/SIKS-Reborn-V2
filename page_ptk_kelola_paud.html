@@ -637,16 +637,10 @@ function ptkpaud_renderTabel(data) {
         var jab = (row.jabatan || '-'); if(row.tmt_jabatan) jab += '<br><small class="text-muted">TMT: ' + ptkpaud_formatTanggalIndo(row.tmt_jabatan) + '</small>';
         var inpass = (row.inpassing || '-'); if(row.tmt_inpassing) inpass += '<br><small class="text-muted">TMT: ' + ptkpaud_formatTanggalIndo(row.tmt_inpassing) + '</small>';
 
-        // BAB III: Tombol Aksi Dropdown (CodeByte Style)
-        var btnAksi = '<div class="dropdown custom-dropdown">' +
-                        '<button type="button" class="btn sharp" data-toggle="dropdown">' +
-                          '<i class="fas fa-ellipsis-h"></i>' +
-                        '</button>' +
-                        '<div class="dropdown-menu dropdown-menu-right">' +
-                          '<a class="dropdown-item" href="javascript:void(0)" onclick="ptkpaud_bukaModalEdit(\'' + row.id + '\')"><i class="fas fa-pencil-alt text-warning"></i> Edit ' + (PTKPAUD_IS_ADMIN ? '/ Mutasi' : 'Data') + '</a>' +
-                          (PTKPAUD_IS_ADMIN ? '<a class="dropdown-item text-danger" href="javascript:void(0)" onclick="ptkpaud_bukaModalHapus(\'' + row.id + '\', \'' + ptkpaud_escapeJs(row.nama_lengkap) + '\')"><i class="fas fa-archive"></i> Arsipkan</a>' : '') +
-                        '</div>' +
-                      '</div>';
+        // BAB III: Tombol Aksi (Side-by-Side Modern Style)
+        var btnEdit = `<button type="button" class="btn btn-icon-sultan btn-icon-sultan-warning shadow-sm" onclick="ptkpaud_bukaModalEdit('${row.id}')" title="Edit ${PTKPAUD_IS_ADMIN ? '/ Mutasi' : 'Data'}"><i class="fas fa-pencil-alt"></i></button>`;
+        var btnHapus = PTKPAUD_IS_ADMIN ? `<button type="button" class="btn btn-icon-sultan btn-icon-sultan-danger shadow-sm" onclick="ptkpaud_bukaModalHapus('${row.id}', '${ptkpaud_escapeJs(row.nama_lengkap)}')" title="Arsipkan Data"><i class="fas fa-archive"></i></button>` : '';
+        var btnAksi = `<div class="d-flex flex-nowrap justify-content-center" style="gap:5px;">${btnEdit}${btnHapus}</div>`;
 
         var uiNama = '<div class="font-weight-bold text-dark text-nowrap">' + ptkpaud_escapeHtml(row.nama_lengkap) + '</div><div class="small text-muted text-nowrap">' + (ptkpaud_escapeHtml(row.niy) || '-') + '</div>';
         if(PTKPAUD_IS_ADMIN) uiNama += '<div class="small text-danger font-weight-bold mt-1">' + (ptkpaud_escapeHtml(row.unit) || '-') + '</div>';

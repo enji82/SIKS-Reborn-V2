@@ -543,9 +543,9 @@ function salah_renderTabel(hasil) {
         var isApproved = (String(row.status).toLowerCase().includes('ok') || String(row.status).toLowerCase().includes('setuju'));
         
         // BAB III: Tombol Aksi (Side-by-Side Modern Style)
-        var btnVerif = SALAH_IS_ADMIN ? `<button type="button" class="btn btn-sm btn-primary font-weight-bold shadow-sm salah-btn-verif" data-id="${id}" title="Verifikasi"><i class="fas fa-clipboard-check"></i></button>` : '';
-        var btnEdit  = `<button type="button" class="btn btn-sm btn-warning text-dark font-weight-bold shadow-sm salah-btn-edit ${isApproved ? 'btn-sultan-locked disabled' : ''}" data-id="${id}" title="Edit Data" ${isApproved ? 'disabled' : ''}><i class="fas fa-pencil-alt"></i></button>`;
-        var btnHapus = `<button type="button" class="btn btn-sm btn-danger font-weight-bold shadow-sm salah-btn-hapus ${isApproved ? 'btn-sultan-locked disabled' : ''}" data-id="${id}" title="Hapus Data" ${isApproved ? 'disabled' : ''}><i class="fas fa-trash-alt"></i></button>`;
+        var btnVerif = SALAH_IS_ADMIN ? `<button type="button" class="btn btn-icon-sultan btn-icon-sultan-primary shadow-sm salah-btn-verif" data-id="${id}" title="Verifikasi"><i class="fas fa-clipboard-check"></i></button>` : '';
+        var btnEdit  = `<button type="button" class="btn btn-icon-sultan btn-icon-sultan-warning shadow-sm salah-btn-edit ${isApproved ? 'btn-sultan-locked disabled' : ''}" data-id="${id}" title="Edit Data" ${isApproved ? 'disabled' : ''}><i class="fas fa-pencil-alt"></i></button>`;
+        var btnHapus = `<button type="button" class="btn btn-icon-sultan btn-icon-sultan-danger shadow-sm salah-btn-hapus ${isApproved ? 'btn-sultan-locked disabled' : ''}" data-id="${id}" title="Hapus Data" ${isApproved ? 'disabled' : ''}><i class="fas fa-trash-alt"></i></button>`;
         var aksiHTML = `<div class="d-flex flex-nowrap justify-content-center" style="gap:5px;">${btnVerif}${btnEdit}${btnHapus}</div>`;
 
         var txtUnitHtml = SALAH_IS_ADMIN ? `<div class="small text-danger font-weight-bold mt-1">${salah_escapeHtml(row.unit)}</div>` : '';

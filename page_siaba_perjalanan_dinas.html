@@ -586,14 +586,10 @@ function perdin_renderTabel(data) {
         
         var isApproved = (stButton.includes('setuju') || stButton.includes('acc') || stButton.includes('ok'));
         
-        var txtVerif = PERDIN_IS_ADMIN ? "" : " Verif";
-        var txtEdit  = PERDIN_IS_ADMIN ? "" : " Edit";
-        var txtHapus = PERDIN_IS_ADMIN ? "" : " Hapus";
-        var marginIcon = PERDIN_IS_ADMIN ? "" : "mr-1";
-
-        var btnAdmin = PERDIN_IS_ADMIN ? `<button type="button" class="btn btn-sm btn-primary font-weight-bold shadow-sm perdin-btn-verif" data-id="${id}" title="Verifikasi"><i class="fas fa-clipboard-check ${marginIcon}"></i>${txtVerif}</button>` : '';
-        var btnDetail = `<button type="button" class="btn btn-sm btn-warning text-dark font-weight-bold shadow-sm perdin-btn-edit ${isApproved ? 'btn-sultan-locked disabled' : ''}" data-id="${id}" ${isApproved ? 'disabled' : ''} title="Detail/Edit SPT"><i class="fas fa-pencil-alt ${marginIcon}"></i>${txtEdit}</button>`;
-        var btnHapus = `<button type="button" class="btn btn-sm btn-danger font-weight-bold shadow-sm perdin-btn-hapus ${isApproved ? 'btn-sultan-locked disabled' : ''}" data-id="${id}" ${isApproved ? 'disabled' : ''} title="Hapus SPT"><i class="fas fa-trash-alt ${marginIcon}"></i>${txtHapus}</button>`;
+        // BAB III: Tombol Aksi (Side-by-Side Modern Style)
+        var btnAdmin = PERDIN_IS_ADMIN ? `<button type="button" class="btn btn-icon-sultan btn-icon-sultan-primary shadow-sm perdin-btn-verif" data-id="${id}" title="Verifikasi"><i class="fas fa-clipboard-check"></i></button>` : '';
+        var btnDetail = `<button type="button" class="btn btn-icon-sultan btn-icon-sultan-warning shadow-sm perdin-btn-edit ${isApproved ? 'btn-sultan-locked disabled' : ''}" data-id="${id}" ${isApproved ? 'disabled' : ''} title="Edit Data"><i class="fas fa-pencil-alt"></i></button>`;
+        var btnHapus = `<button type="button" class="btn btn-icon-sultan btn-icon-sultan-danger shadow-sm perdin-btn-hapus ${isApproved ? 'btn-sultan-locked disabled' : ''}" data-id="${id}" ${isApproved ? 'disabled' : ''} title="Hapus Data"><i class="fas fa-trash-alt"></i></button>`;
         
         var groupAksi = `<div class="d-flex flex-nowrap justify-content-center" style="gap:5px;">${btnAdmin}${btnDetail}${btnHapus}</div>`;
 

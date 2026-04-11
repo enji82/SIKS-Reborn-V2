@@ -810,9 +810,9 @@ function lapbulkelola_renderTabel(data) {
         var safeNama = lapbulkelola_escapeJs(row.namaSekolah);        // VAKSIN DYNAMIC UI: Membedakan Aksi Admin dan User
         
         // BAB III: Tombol Aksi (Side-by-Side Modern Style)
-        var btnVerif = LAPBULKELOLA_IS_ADMIN ? `<button type="button" class="btn btn-sm btn-primary font-weight-bold shadow-sm btn-aksi-verif" data-id="${row.rowId}" data-source="${row.source}" data-nama="${safeNama}" data-bulan="${row.bulan}" data-tahun="${row.tahun}" data-file="${(row.fileUrl || "")}" title="Verifikasi"><i class="fas fa-clipboard-check"></i></button>` : '';
-        var btnEdit  = `<button type="button" class="btn btn-sm btn-warning text-dark font-weight-bold shadow-sm btn-aksi-edit ${isApproved ? 'btn-sultan-locked disabled' : ''}" data-id="${row.rowId}" data-source="${row.source}" title="Ubah Data" ${isApproved ? 'disabled' : ''}><i class="fas fa-pencil-alt"></i></button>`;
-        var btnHapus = `<button type="button" class="btn btn-sm btn-danger font-weight-bold shadow-sm btn-aksi-hapus ${isApproved ? 'btn-sultan-locked disabled' : ''}" data-id="${row.rowId}" data-source="${row.source}" data-nama="${safeNama}" title="Hapus Laporan" ${isApproved ? 'disabled' : ''}><i class="fas fa-trash-alt"></i></button>`;
+        var btnVerif = LAPBULKELOLA_IS_ADMIN ? `<button type="button" class="btn btn-icon-sultan btn-icon-sultan-primary shadow-sm btn-aksi-verif" data-id="${row.rowId}" data-source="${row.source}" data-nama="${safeNama}" data-bulan="${row.bulan}" data-tahun="${row.tahun}" data-file="${(row.fileUrl || "")}" title="Verifikasi"><i class="fas fa-clipboard-check"></i></button>` : '';
+        var btnEdit  = `<button type="button" class="btn btn-icon-sultan btn-icon-sultan-warning shadow-sm btn-aksi-edit ${isApproved ? 'btn-sultan-locked disabled' : ''}" data-id="${row.rowId}" data-source="${row.source}" title="Ubah Data" ${isApproved ? 'disabled' : ''}><i class="fas fa-pencil-alt"></i></button>`;
+        var btnHapus = `<button type="button" class="btn btn-icon-sultan btn-icon-sultan-danger shadow-sm btn-aksi-hapus ${isApproved ? 'btn-sultan-locked disabled' : ''}" data-id="${row.rowId}" data-source="${row.source}" data-nama="${safeNama}" title="Hapus Laporan" ${isApproved ? 'disabled' : ''}><i class="fas fa-trash-alt"></i></button>`;
         var btnAksi = `<div class="d-flex flex-nowrap justify-content-center" style="gap:5px;">${btnVerif}${btnEdit}${btnHapus}</div>`;
 
         var btnFile = '<span class="text-muted small">-</span>';

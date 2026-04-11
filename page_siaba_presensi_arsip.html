@@ -514,22 +514,16 @@ function arsipsiaba_renderTabel(dataRows) {
         var fileIdMatch = String(row.fileUrl || "").match(/[-\w]{25,}/);
         var fileId = fileIdMatch ? fileIdMatch[0] : "";
         
-        // BAB III: Tombol Aksi Dropdown (CodeByte Style)
-        var btnAksiHTML = '';
+        // BAB III: Tombol Aksi (Premium Icon Style)
+        var btnLihat = `<button type="button" class="btn btn-icon-sultan btn-icon-sultan-success shadow-sm" onclick="arsipsiaba_bukaPreview('${fileId}')" title="Lihat Dokumen"><i class="fas fa-eye"></i></button>`;
+        
         if (ARSIPSIABA_IS_ADMIN) {
             var rowDataStr = btoa(JSON.stringify(row));
-            btnAksiHTML = '<div class="dropdown custom-dropdown">' +
-                            '<button type="button" class="btn sharp" data-toggle="dropdown">' +
-                              '<i class="fas fa-ellipsis-h"></i>' +
-                            '</button>' +
-                            '<div class="dropdown-menu dropdown-menu-right">' +
-                              '<a class="dropdown-item" href="javascript:void(0)" onclick="arsipsiaba_bukaPreview(\'' + fileId + '\')"><i class="fas fa-eye text-success"></i> Lihat Dokumen</a>' +
-                              '<a class="dropdown-item" href="javascript:void(0)" onclick="arsipsiaba_bukaModalEdit(\'' + rowDataStr + '\')"><i class="fas fa-pencil-alt text-warning"></i> Edit Arsip</a>' +
-                              '<a class="dropdown-item text-danger" href="javascript:void(0)" onclick="arsipsiaba_bukaModalHapus(\'' + rowDataStr + '\')"><i class="fas fa-trash text-danger"></i> Hapus Permanen</a>' +
-                            '</div>' +
-                          '</div>';
+            var btnEdit = `<button type="button" class="btn btn-icon-sultan btn-icon-sultan-warning shadow-sm" onclick="arsipsiaba_bukaModalEdit('${rowDataStr}')" title="Edit Arsip"><i class="fas fa-pencil-alt"></i></button>`;
+            var btnHapus = `<button type="button" class="btn btn-icon-sultan btn-icon-sultan-danger shadow-sm" onclick="arsipsiaba_bukaModalHapus('${rowDataStr}')" title="Hapus Permanen"><i class="fas fa-trash"></i></button>`;
+            btnAksiHTML = `<div class="d-flex flex-nowrap justify-content-center" style="gap:5px;">${btnLihat}${btnEdit}${btnHapus}</div>`;
         } else {
-            btnAksiHTML = '<button type="button" class="btn btn-sm btn-success font-weight-bold shadow-sm px-3" onclick="arsipsiaba_bukaPreview(\'' + fileId + '\')" title="Lihat Dokumen"><i class="fas fa-eye mr-1"></i> Lihat</button>';
+            btnAksiHTML = `<div class="d-flex justify-content-center">${btnLihat}</div>`;
         }
         arrRow.push(btnAksiHTML);
 
