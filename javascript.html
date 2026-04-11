@@ -3,7 +3,7 @@
    1. GLOBAL HELPER: NOTIFIKASI SULTAN (THEME FIX)
    ============================================================= */
 /* =============================================================
-   1. GLOBAL ENGINE: SULTAN NOTIFICATION (UNIFIED V6.3)
+   1. GLOBAL ENGINE: SULTAN NOTIFICATION (UNIFIED V6.4)
    ============================================================= */
 var Sultan = {
     config: { maroon: '#8B0000', navy: '#1D3573', emerald: '#059669', gold: '#d97706' },
@@ -22,16 +22,16 @@ var Sultan = {
                 html: `<div class="d-flex align-items-center" style="color:${colors[type]}"><i class="fas ${icons[type]} mr-2"></i> ${msg}</div>` 
             });
         },
-        sukses: (msg) => Sultan.notif.toast('success', msg),
-        gagal: (msg) => Sultan.notif.toast('error', msg),
-        info: (msg) => Sultan.notif.toast('info', msg),
+        sukses: (msg) => Sultan.alert('success', 'Berhasil', msg),
+        gagal: (msg) => Sultan.alert('error', 'Gagal', msg),
+        info: (msg) => Sultan.alert('info', 'Informasi', msg),
         loading: (msg) => {
             Swal.fire({
                 iconHtml: '<div class="sultan-orbit"></div>',
                 title: 'Memproses...',
                 text: msg || 'Harap tunggu bentar...',
                 showConfirmButton: false, allowOutsideClick: false,
-                customClass: { popup: 'sultan-alert-popup', icon: 'border-0 bg-transparent' }
+                customClass: { popup: 'sultan-alert-popup', icon: 'sultan-orbit-icon' }
             });
         },
         tutup: () => Swal.close()
@@ -39,26 +39,18 @@ var Sultan = {
 
     // Global Alert (Success, Error, Warning)
     alert: (type, title, text) => {
-        const map = {
-            success: { icon: 'fa-check', class: 'icon-success-glow', btn: 'sultan-btn-success' },
-            error: { icon: 'fa-times', class: 'icon-error-glow', btn: 'sultan-btn-error' },
-            warning: { icon: 'fa-exclamation', class: 'icon-warning-glow', btn: 'sultan-btn-warning' }
-        };
-        const c = map[type] || map.warning;
-
+        const typeClass = type === 'success' ? 'sultan-success-popup' : (type === 'warning' ? 'sultan-warning-popup' : 'sultan-error-popup');
+        
         return Swal.fire({
-            iconHtml: `<div class="sultan-alert-icon-wrapper ${c.class}"><i class="fas ${c.icon}"></i></div>`,
+            icon: type,
             title: title,
             text: text,
             showConfirmButton: true,
             confirmButtonText: 'OK',
-            buttonsStyling: false,
+            buttonsStyling: true,
             customClass: {
-                popup: 'sultan-alert-popup',
-                title: 'sultan-alert-title',
-                htmlContainer: 'sultan-alert-text',
-                confirmButton: `sultan-swal-confirm ${c.btn}`,
-                icon: 'border-0 bg-transparent mb-0'
+                popup: `sultan-alert-popup ${typeClass}`,
+                confirmButton: 'sultan-swal-confirm'
             }
         });
     },
@@ -66,20 +58,17 @@ var Sultan = {
     // Dialog Konfirmasi
     konfirmasi: function(opsi, callbackYa) {
         return Swal.fire({
-            iconHtml: `<div class="sultan-alert-icon-wrapper icon-warning-glow"><i class="fas fa-question text-warning"></i></div>`,
+            icon: 'warning',
             title: opsi.judul || 'Konfirmasi',
             text: opsi.teks || 'Apakah Anda yakin?',
             showCancelButton: true,
             confirmButtonText: opsi.btnYa || 'Ya, Lanjutkan',
             cancelButtonText: opsi.btnBatal || 'Batal',
-            buttonsStyling: false,
+            buttonsStyling: true,
             customClass: {
-                popup: 'sultan-alert-popup',
-                title: 'sultan-alert-title',
-                htmlContainer: 'sultan-alert-text',
-                confirmButton: 'sultan-swal-confirm sultan-btn-error mx-2',
-                cancelButton: 'sultan-swal-confirm btn-light text-dark mx-2',
-                icon: 'border-0 bg-transparent mb-0'
+                popup: 'sultan-alert-popup sultan-error-popup', // Konfirmasi default maroon
+                confirmButton: 'swal2-confirm',
+                cancelButton: 'swal2-cancel'
             }
         }).then((res) => {
             if (res.isConfirmed && callbackYa) callbackYa();

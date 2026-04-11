@@ -953,8 +953,8 @@
 
         google.script.run.withSuccessHandler(function (res) {
             if (res.success) {
-                Sultan.alert('success', 'Berhasil', rowId ? 'Data berhasil diperbarui.' : 'Data berhasil disimpan.');
                 $('#tugas_modalForm').modal('hide');
+                Sultan.alert('success', 'Berhasil', rowId ? 'Data berhasil diperbarui.' : 'Data berhasil disimpan.');
                 tugas_tarikDataServer();
             } else {
                 Sultan.alert('error', 'Gagal', res.error || res.message || 'Terjadi kesalahan sistem.');
@@ -1038,8 +1038,8 @@
 
         google.script.run.withSuccessHandler(function (res) {
             if (res.success) {
-                Sultan.alert('success', 'Verifikasi Berhasil', 'Status SK telah diperbarui.');
                 $('#tugas_modalVerif').modal('hide');
+                Sultan.alert('success', 'Verifikasi Berhasil', 'Status SK telah diperbarui.');
                 tugas_tarikDataServer();
             } else {
                 Sultan.alert('error', 'Gagal Verifikasi', res.message || 'Terjadi kesalahan.');
