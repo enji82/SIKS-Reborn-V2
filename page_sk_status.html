@@ -301,7 +301,7 @@ function statussk_renderTabel(rows) {
             "autoWidth": false, 
             "deferRender": true, 
             "dom": "<'row mb-2'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
-                   "<'row'<'col-sm-12'<'table-responsive sultan-scroll rounded-lg border shadow-xs'tr>>>" +
+                   "<'row'<'col-sm-12'<'table-responsive sultan-scroll'tr>>>" +
                    "<'row mt-3'<'col-sm-12 col-md-5 small text-muted'i><'col-sm-12 col-md-7'p>>",
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", 
@@ -336,7 +336,7 @@ function statussk_renderTabel(rows) {
 // =================================================================
 function statussk_renderSkeleton() {
     var $cont = $('#statussk_loadingState').empty();
-    var $wrapper = $('<div/>', { "class": "table-responsive sultan-scroll rounded-lg border shadow-xs overflow-hidden" });
+    var $wrapper = $('<div/>', { "class": "table-responsive sultan-scroll" });
     var $table = $('<table/>', { "class": "table table-bordered mb-0 table-header-compact" });
     
     // Tiered Header Skeleton (Matching Exact Colors)
