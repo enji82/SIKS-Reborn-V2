@@ -372,21 +372,21 @@
     </div>
 </div>
 
-<div class="modal fade modal-fullscreen-sultan" id="tugas_modalPreview" tabindex="-1" role="dialog" data-backdrop="static">
-    <div class="modal-dialog" role="document">
+<div class="modal fade" id="tugas_modalPreview" tabindex="-1" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
         <div class="modal-content border-0 shadow-lg modal-content-sultan">
-            <div class="modal-header modal-header-sultan bg-maroon text-white py-2">
-                <h6 class="modal-title font-weight-bold"><i class="fas fa-file-pdf mr-2"></i>Pratinjau Dokumen SK</h6>
+            <div class="modal-header modal-header-sultan bg-maroon text-white py-3">
+                <h5 class="modal-title font-weight-bold"><i class="fas fa-file-pdf mr-2"></i> Pratinjau Dokumen SK</h5>
                 <div class="ml-auto d-flex align-items-center">
                     <a href="#" id="tugas_btnQuickDownload" 
-                        class="btn btn-xs btn-light text-maroon font-weight-bold shadow-sm mr-2 rounded-pill px-3">
-                        <i class="fas fa-download mr-1"></i> Unduh
+                        class="btn btn-maroon btn-sultan-bold text-white shadow-sm mr-2 border-white">
+                        <i class="fas fa-download mr-1"></i> UNDUH
                     </a>
                     <a href="#" id="tugas_btnFullDownload" target="_blank"
-                        class="btn btn-xs btn-outline-light text-white font-weight-bold shadow-sm mr-2 rounded-pill px-3 border-0">
-                        <i class="fas fa-external-link-alt mr-1"></i> Tab Baru
+                        class="btn btn-outline-light btn-sultan-bold shadow-sm mr-3">
+                        <i class="fas fa-external-link-alt mr-1"></i> TAB BARU
                     </a>
-                    <button type="button" class="close text-white ml-2" data-dismiss="modal"><span>&times;</span></button>
+                    <button type="button" class="close text-white opacity-10" data-dismiss="modal"><i class="fas fa-times"></i></button>
                 </div>
             </div>
             <div class="modal-body modal-body-full bg-dark position-relative p-0" style="height: calc(100vh - 55px);">
@@ -781,9 +781,9 @@
             var uiVerif = row.tglVerval && row.tglVerval !== '-' ? '<div class="sk-log-box"><span class="sk-log-date">' + row.tglVerval + '</span><span class="sk-log-user">' + (row.verifikator || '-') + '</span></div>' : '-';
 
             // KOMBINASI KOLOM (9 KOLOM TOTAL)
-            var uiTahunSem = '<div class="sk-item-main">' + tugas_cleanText(row.tahun) + '</div><div class="sk-item-sub font-weight-bold text-muted">' + tugas_cleanText(row.semester) + '</div>';
+            var uiTahunSem = '<div class="sk-item-main">' + tugas_cleanText(row.tahun) + '</div><div class="sk-item-sub-lg text-maroon">' + tugas_cleanText(row.semester) + '</div>';
             var uiSkDetail = '<div class="sk-item-main text-nowrap">' + safeNoSk + '</div>' +
-                           '<div class="sk-item-sub"><i class="far fa-calendar-alt mr-1"></i> ' + tglSkDisplay + ' &bull; <span class="text-maroon">' + tugas_cleanText(row.kriteria) + '</span></div>';
+                           '<div class="sk-item-sub-lg"><i class="far fa-calendar-alt mr-1"></i> ' + tglSkDisplay + ' &bull; <b class="text-maroon">' + tugas_cleanText(row.kriteria) + '</b></div>';
 
             dtArray.push([
                 actionButtons,
