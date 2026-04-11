@@ -861,8 +861,10 @@ textarea.form-control-sultan { height: auto !important; min-height: 100px !impor
    VAKSIN DATATABLES V8 (HOVER, FREEZE BORDER, & COMPLEX HEADER FIX)
    ========================================================================== */
 
-/* 1. Efek Hover untuk tabel dengan kolom Sticky/Freeze */
-table.table-sultan-compact tbody tr:hover td {
+/* 1. Efek Hover untuk tabel dengan kolom Sticky/Freeze (Generalized for Sultan tables) */
+table.table-sultan-compact tbody tr:hover td,
+table.table-premium tbody tr:hover td,
+table.table-hover tbody tr:hover td.col-sticky-left {
     box-shadow: inset 0 0 0 9999px rgba(0, 0, 0, 0.06) !important;
 }
 
