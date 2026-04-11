@@ -323,20 +323,36 @@
 }
 
 .sultan-swal-confirm {
+    display: inline-block !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
     border-radius: 14px !important;
-    padding: 10px 35px !important;
+    padding: 12px 40px !important;
     font-weight: 700 !important;
     text-transform: uppercase !important;
     letter-spacing: 1px !important;
     font-size: 13px !important;
     border: none !important;
-    transition: all 0.3s ease !important;
+    color: #ffffff !important;
+    min-width: 120px !important;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    text-align: center !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+    z-index: 10 !important;
 }
 
 .sultan-swal-confirm:hover {
-    transform: translateY(-2px) !important;
-    box-shadow: 0 5px 15px rgba(139, 0, 0, 0.3) !important;
+    transform: translateY(-2px) scale(1.05) !important;
+    filter: brightness(1.1) !important;
 }
+
+.sultan-swal-confirm:active {
+    transform: scale(0.95) !important;
+}
+
+.sultan-btn-success { background: #059669 !important; box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3) !important; }
+.sultan-btn-error { background: #8B0000 !important; box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3) !important; }
+.sultan-btn-warning { background: #d97706 !important; box-shadow: 0 4px 15px rgba(217, 119, 6, 0.3) !important; }
 
 /* Orbit Loader */
 .sultan-orbit {

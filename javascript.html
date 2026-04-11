@@ -21,9 +21,9 @@ var NotifSultan = {
 
   alert: (tipe, judul, pesan) => {
     const config = {
-        success: { icon: 'fa-check', class: 'icon-success-glow', btn: '#059669' },
-        error: { icon: 'fa-times', class: 'icon-error-glow', btn: '#8B0000' },
-        warning: { icon: 'fa-exclamation', class: 'icon-warning-glow', btn: '#d97706' }
+        success: { icon: 'fa-check', class: 'icon-success-glow', btnClass: 'sultan-btn-success' },
+        error: { icon: 'fa-times', class: 'icon-error-glow', btnClass: 'sultan-btn-error' },
+        warning: { icon: 'fa-exclamation', class: 'icon-warning-glow', btnClass: 'sultan-btn-warning' }
     };
     const c = config[tipe] || config.warning;
 
@@ -37,10 +37,9 @@ var NotifSultan = {
         `,
         showConfirmButton: true,
         confirmButtonText: 'OK',
-        confirmButtonColor: c.btn,
         customClass: {
             popup: 'sultan-alert-popup',
-            confirmButton: 'sultan-swal-confirm'
+            confirmButton: `sultan-swal-confirm ${c.btnClass}`
         },
         buttonsStyling: false,
         showClass: { popup: 'animate__animated animate__fadeInUp' },
