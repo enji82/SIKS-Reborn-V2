@@ -73,7 +73,10 @@ function getHalaman(namaFile) {
     const realName = namaFile.startsWith(prefix) ? namaFile : prefix + namaFile;
     return HtmlService.createTemplateFromFile(realName).evaluate().getContent();
   } catch (err) {
-    return '<div class="alert alert-danger p-3">Halaman <b>' + namaFile + '</b> belum dibuat atau nama file salah.</div>';
+    return '<div class="alert alert-danger p-3">' +
+           '<h6 class="font-weight-bold"><i class="fas fa-exclamation-triangle mr-2"></i> Gagal Memuat Halaman</h6>' +
+           '<p class="mb-1">Halaman <b>' + namaFile + '</b> belum dibuat atau terdapat kesalahan kode.</p>' +
+           '<hr><small class="text-muted">Error Detail: ' + err.toString() + '</small></div>';
   }
 }
 

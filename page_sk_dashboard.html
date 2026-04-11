@@ -1,19 +1,14 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 
-<div class="content-header p-0">
-    <div class="row align-items-center bg-white py-3 px-4 shadow-sm border-bottom">
-        <div class="col-md-6">
-            <h1 class="h4 font-weight-bold text-navy mb-1 letter-spacing-tight">
-                <i class="fas fa-chart-bar text-maroon mr-2"></i> Monitoring SK Pembagian Tugas
-            </h1>
-            <p class="text-muted small font-weight-medium mb-0 letter-spacing-05">
-                Pemantauan Real-time Pengiriman & Validasi Berkas SK
-            </p>
-        </div>
-        <div class="col-md-6 text-right d-none d-md-block">
-            <div class="d-inline-flex align-items-center bg-light px-3 py-1 rounded-pill border shadow-sm">
-                <i class="fas fa-clock text-maroon mr-2"></i>
-                <span class="small font-weight-bold text-dark" id="dashsk_realtimeClock">-</span>
+<div class="content-header pb-0">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <h5 class="m-0 font-weight-bold">
+                    <i class="fas fa-chart-bar text-maroon mr-2"></i>Monitoring SK Pembagian Tugas
+                </h5>
+                <div class="sultan-title-line"></div>
+                <p class="text-muted small mt-2 mb-0">Pemantauan Real-time Pengiriman & Validasi Berkas SK</p>
             </div>
         </div>
     </div>
@@ -22,8 +17,8 @@
 <section class="content py-3">
     <div class="container-fluid">
 
-        <!-- FILTER BAR (SULTAN GLASS) -->
-        <div class="card-sultan shadow-sm p-3 mb-4 border-0" style="background: rgba(255,255,255,0.7); backdrop-filter: blur(10px);">
+        <!-- FILTER BAR (SULTAN STANDARDIZED) -->
+        <div class="sk-dash-filter-bar sk-animate-reveal">
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <div class="d-flex align-items-center flex-wrap gap-4">
@@ -49,88 +44,68 @@
             </div>
         </div>
 
-        <!-- KPI ROW (ELITE CARDS) -->
+        <!-- KPI ROW (SULTAN KPI CARDS) -->
         <div class="row mb-4">
             <div class="col-lg-3 col-6 mb-3">
-                <div class="card-sultan dashboard-card border-top-maroon h-100 p-4 shadow-sm sk-animate-reveal" style="animation-delay: 0.1s;">
-                    <div class="d-flex justify-content-between mb-3">
-                        <div class="card-icon-wrapper bg-maroon-light">
-                            <i class="fas fa-file-export text-maroon"></i>
-                        </div>
-                        <span class="badge badge-sultan bg-maroon-light text-maroon px-3 py-1">TOTAL</span>
-                    </div>
-                    <h3 class="font-weight-bold mb-1 dashsk-count-up text-navy" id="dashsk_valTotal">0</h3>
-                    <p class="text-muted small mb-0 font-weight-bold">Berkas Masuk</p>
-                    <div class="mt-3 pt-2 border-top x-small text-muted" id="dashsk_subTotal">—</div>
+                <div class="sk-kpi-card kpi-main sk-animate-reveal" style="animation-delay: 0.1s;">
+                    <div class="kpi-icon-bg"><i class="fas fa-file-export"></i></div>
+                    <div class="kpi-label">TOTAL BERKAS</div>
+                    <div class="kpi-number dashsk-count-up" id="dashsk_valTotal">0</div>
+                    <div class="kpi-sub" id="dashsk_subTotal">—</div>
                 </div>
             </div>
             <div class="col-lg-3 col-6 mb-3">
-                <div class="card-sultan dashboard-card border-top-emerald h-100 p-4 shadow-sm sk-animate-reveal" style="animation-delay: 0.2s;">
-                    <div class="d-flex justify-content-between mb-3">
-                        <div class="card-icon-wrapper bg-emerald-light">
-                            <i class="fas fa-check-double text-emerald"></i>
-                        </div>
-                        <span class="badge badge-sultan bg-emerald-light text-emerald px-3 py-1">VALID</span>
-                    </div>
-                    <h3 class="font-weight-bold mb-1 dashsk-count-up text-navy" id="dashsk_valDisetujui">0</h3>
-                    <p class="text-muted small mb-0 font-weight-bold">Disetujui Admin</p>
-                    <div class="mt-3 pt-2 border-top x-small text-muted" id="dashsk_subValid">—</div>
+                <div class="sk-kpi-card kpi-teal sk-animate-reveal" style="animation-delay: 0.2s;">
+                    <div class="kpi-icon-bg"><i class="fas fa-check-double"></i></div>
+                    <div class="kpi-label">BERKAS VALID</div>
+                    <div class="kpi-number dashsk-count-up" id="dashsk_valDisetujui">0</div>
+                    <div class="kpi-sub" id="dashsk_subValid">—</div>
                 </div>
             </div>
             <div class="col-lg-3 col-6 mb-3">
-                <div class="card-sultan dashboard-card border-top-indigo h-100 p-4 shadow-sm sk-animate-reveal" style="animation-delay: 0.3s;">
-                    <div class="d-flex justify-content-between mb-3">
-                        <div class="card-icon-wrapper bg-indigo-light">
-                            <i class="fas fa-bullseye text-indigo"></i>
-                        </div>
-                        <span class="badge badge-sultan bg-indigo-light text-indigo px-3 py-1">REALISASI</span>
-                    </div>
-                    <h3 class="font-weight-bold mb-1 dashsk-count-up text-navy"><span id="dashsk_valProgress">0</span>%</h3>
-                    <p class="text-muted small mb-0 font-weight-bold">Target Kepatuhan</p>
-                    <div class="mt-3 pt-2 border-top x-small text-muted">Berdasarkan data awal sem.</div>
+                <div class="sk-kpi-card kpi-blue sk-animate-reveal" style="animation-delay: 0.3s;">
+                    <div class="kpi-icon-bg"><i class="fas fa-bullseye"></i></div>
+                    <div class="kpi-label">REALISASI</div>
+                    <div class="kpi-number"><span id="dashsk_valProgress" class="dashsk-count-up">0</span>%</div>
+                    <div class="kpi-sub">Target Kepatuhan Awal</div>
                 </div>
             </div>
             <div class="col-lg-3 col-6 mb-3">
-                <div class="card-sultan dashboard-card border-top-danger h-100 p-4 shadow-sm sk-animate-reveal cursor-pointer" id="dashsk_btnModalBelum" style="animation-delay: 0.4s;">
-                    <div class="d-flex justify-content-between mb-3">
-                        <div class="card-icon-wrapper bg-danger-light">
-                            <i class="fas fa-clock text-danger"></i>
-                        </div>
-                        <span class="badge badge-sultan bg-danger-light text-danger px-3 py-1">WARN</span>
-                    </div>
-                    <h3 class="font-weight-bold mb-1 dashsk-count-up text-danger" id="dashsk_valBelum">0</h3>
-                    <p class="text-muted small mb-0 font-weight-bold">Unit Belum Lapor</p>
-                    <div class="mt-3 pt-2 border-top x-small text-danger font-weight-bold">Lihat Daftar &rarr;</div>
+                <div class="sk-kpi-card kpi-gold sk-animate-reveal cursor-pointer" id="dashsk_btnModalBelum" style="animation-delay: 0.4s;">
+                    <div class="kpi-icon-bg"><i class="fas fa-clock"></i></div>
+                    <div class="kpi-label">BELUM LAPOR</div>
+                    <div class="kpi-number dashsk-count-up" id="dashsk_valBelum">0</div>
+                    <div class="kpi-sub font-weight-bold">LIHAT DAFTAR &rarr;</div>
                 </div>
             </div>
         </div>
 
-        <!-- PILLS ROW (QUICK STATS) -->
+        <!-- INFO PILLS ROW -->
         <div class="row mb-4">
             <div class="col-md-4 col-12 mb-3">
-                <div class="sultan-info-box info-warning sk-animate-reveal py-3" style="animation-delay: 0.5s;">
-                    <i class="fas fa-hourglass-half fa-lg"></i>
+                <div class="sk-info-pill sk-animate-reveal" style="animation-delay: 0.5s;">
+                    <div class="pill-icon bg-warning-light text-warning"><i class="fas fa-hourglass-half"></i></div>
                     <div>
-                        <div class="h5 font-weight-bold mb-0 dashsk-count-up" id="dashsk_valDiproses">0</div>
-                        <div class="small font-weight-bold opacity-75">Data Sedang Diproses</div>
+                        <div class="pill-value dashsk-count-up" id="dashsk_valDiproses">0</div>
+                        <div class="pill-title text-muted font-weight-bold">Sedang Diproses</div>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 col-12 mb-3">
-                <div class="sultan-info-box info-primary sk-animate-reveal py-3" style="animation-delay: 0.6s;">
-                    <i class="fas fa-file-signature fa-lg"></i>
+                <div class="sk-info-pill sk-animate-reveal" style="animation-delay: 0.6s;">
+                    <div class="pill-icon bg-maroon-light text-maroon"><i class="fas fa-file-signature"></i></div>
                     <div>
-                        <div class="h5 font-weight-bold mb-0 dashsk-count-up" id="dashsk_valRevisi">0</div>
-                        <div class="small font-weight-bold opacity-75">Perlu Revisi Sekolah</div>
+                        <div class="pill-value dashsk-count-up" id="dashsk_valRevisi">0</div>
+                        <div class="pill-title text-muted font-weight-bold">Perlu Revisi</div>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 col-12 mb-3">
-                <div class="sultan-info-box info-danger sk-animate-reveal py-3" style="animation-delay: 0.7s;">
-                    <i class="fas fa-ban fa-lg"></i>
+                <div class="sk-info-pill sk-animate-reveal" style="animation-delay: 0.7s;">
+                    <div class="pill-icon bg-danger-light text-danger"><i class="fas fa-ban"></i></div>
                     <div>
-                        <div class="h5 font-weight-bold mb-0 dashsk-count-up" id="dashsk_valDitolak">0</div>
-                        <div class="small font-weight-bold opacity-75">Ditolak / Tidak Valid</div>
+                        <div class="pill-value dashsk-count-up" id="dashsk_valDitolak">0</div>
+                        <div class="pill-title text-muted font-weight-bold">Ditolak / Tidak Valid</div>
                     </div>
                 </div>
             </div>
@@ -147,9 +122,9 @@
                             </h6>
                             <p class="x-small text-muted mb-0">Total pengunggahan berkas bulan berjalan</p>
                         </div>
-                        <div class="badge badge-sultan bg-light border text-dark font-weight-bold">LIVE</div>
+                        <div class="badge badge-sultan bg-maroon-light text-maroon font-weight-bold px-3 py-1">LIVE</div>
                     </div>
-                    <div class="p-4" style="height:350px;">
+                    <div class="p-3" style="height:350px;">
                         <canvas id="dashsk_chartTrend"></canvas>
                     </div>
                 </div>
@@ -244,7 +219,7 @@
     <i class="fas fa-bolt flash-animate"></i> TURBO ANALYTICS ACTIVE
 </div>
 
-<!-- MODAL BELUM LAPOR -->
+<!-- MODAL BELUM LAPOR (PREMIUM SULTAN) -->
 <div class="modal fade" id="dashsk_modalBelumLapor" tabindex="-1" role="dialog" data-backdrop="static">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content border-0 shadow-xl rounded-20 overflow-hidden">
@@ -253,8 +228,8 @@
                 <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
             </div>
             <div class="modal-body bg-light p-4">
-                <div class="sultan-info-box info-warning mb-4">
-                    <i class="fas fa-info-circle text-warning"></i>
+                <div class="sk-info-pill mb-4 border-warning" style="background: #fffbef;">
+                    <div class="pill-icon bg-warning-light text-warning"><i class="fas fa-info-circle"></i></div>
                     <div>
                         <p class="small text-muted mb-0">Menampilkan data Awal Semester periode:</p>
                         <h6 class="font-weight-bold text-dark mb-0" id="dashsk_lblPeriodeBelum">-</h6>
@@ -273,10 +248,14 @@
                 </div>
             </div>
             <div class="modal-footer bg-white p-3 justify-content-between border-top">
-                <button type="button" class="btn btn-sultan-outline btn-sultan-standard px-4" data-dismiss="modal">Tutup</button>
-                <button type="button" class="btn btn-sultan-maroon btn-sultan-standard px-4 shadow-sm" id="dashsk_btnSalinDaftarModal">
+                <button type="button" class="btn btn-sultan-outline-maroon btn-sultan-standard px-4" id="dashsk_btnSalinModal">
                     <i class="fas fa-copy mr-2"></i> SALIN DAFTAR
                 </button>
+                <button type="button" class="btn btn-sultan-maroon btn-sultan-standard px-4" data-dismiss="modal">TUTUP</button>
+            </div>
+        </div>
+    </div>
+</div>
             </div>
         </div>
     </div>
@@ -658,4 +637,3 @@
     window.requestAnimationFrame(step);
   }
 </script>
-ipt>
