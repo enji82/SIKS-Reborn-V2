@@ -2,99 +2,90 @@
 /* =============================================================
    1. GLOBAL HELPER: NOTIFIKASI SULTAN (THEME FIX)
    ============================================================= */
-var NotifSultan = {
-  config: { warnaMaroon: '#8B0000', warnaNavy: '#1D3573', warnaEmerald: '#059669', warnaGold: '#d97706' },
-  
-  toast: (tipe, pesan) => {
-    const icons = { success: 'fa-check-circle', error: 'fa-times-circle', warning: 'fa-exclamation-triangle', info: 'fa-info-circle' };
-    const colors = { success: '#059669', error: '#b91c1c', warning: '#d97706', info: '#1D3573' };
-    
-    Swal.mixin({ 
-      toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, timerProgressBar: true,
-      background: 'rgba(255, 255, 255, 0.9)',
-      customClass: { popup: 'sultan-alert-popup shadow-sm py-2 px-3', title: 'sultan-alert-text font-weight-bold ml-2' }
-    })
-    .fire({ 
-      html: `<div class="d-flex align-items-center" style="color:${colors[tipe]}"><i class="fas ${icons[tipe]} mr-2"></i> ${pesan}</div>` 
-    });
-  },
-
-  alert: (tipe, judul, pesan) => {
-    const config = {
-        success: { icon: 'fa-check', class: 'icon-success-glow', btnClass: 'sultan-btn-success' },
-        error: { icon: 'fa-times', class: 'icon-error-glow', btnClass: 'sultan-btn-error' },
-        warning: { icon: 'fa-exclamation', class: 'icon-warning-glow', btnClass: 'sultan-btn-warning' }
-    };
-    const c = config[tipe] || config.warning;
-
-    return Swal.fire({
-        html: `
-            <div class="sultan-alert-icon-wrapper ${c.class}">
-                <i class="fas ${c.icon}"></i>
-            </div>
-            <div class="sultan-alert-title">${judul}</div>
-            <div class="sultan-alert-text">${pesan}</div>
-        `,
-        showConfirmButton: true,
-        confirmButtonText: 'OK',
-        customClass: {
-            popup: 'sultan-alert-popup',
-            confirmButton: `sultan-swal-confirm ${c.btnClass}`
-        },
-        buttonsStyling: true,
-    });
-  },
-
-  loading: (pesan) => {
-    Swal.fire({
-        html: `
-            <div class="sultan-orbit"></div>
-            <div class="sultan-alert-title" style="font-size:18px !important;">Memproses...</div>
-            <div class="sultan-alert-text">${pesan || 'Harap tunggu sebentar'}</div>
-        `,
-        showConfirmButton: false,
-        allowOutsideClick: false,
-        customClass: { popup: 'sultan-alert-popup' }
-    });
-  }
-};
-
 /* =============================================================
-   1.B GABUNGAN CORE SULTAN
+   1. GLOBAL ENGINE: SULTAN NOTIFICATION (UNIFIED V6.3)
    ============================================================= */
 var Sultan = {
+    config: { maroon: '#8B0000', navy: '#1D3573', emerald: '#059669', gold: '#d97706' },
+    
+    // Core Notifikasi
     notif: {
-        sukses: (pesan) => NotifSultan.toast('success', pesan),
-        gagal: (pesan) => NotifSultan.toast('error', pesan),
-        info: (pesan) => NotifSultan.toast('info', pesan),
-        loading: (judul) => NotifSultan.loading(judul),
+        toast: (type, msg) => {
+            const colors = { success: '#059669', error: '#b91c1c', warning: '#d97706', info: '#1D3573' };
+            const icons = { success: 'fa-check-circle', error: 'fa-times-circle', warning: 'fa-exclamation-triangle', info: 'fa-info-circle' };
+            
+            Swal.mixin({ 
+                toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, timerProgressBar: true,
+                background: 'rgba(255, 255, 255, 0.95)',
+                customClass: { popup: 'sultan-alert-popup shadow-sm py-2 px-3', title: 'sultan-alert-text font-weight-bold ml-2' }
+            }).fire({ 
+                html: `<div class="d-flex align-items-center" style="color:${colors[type]}"><i class="fas ${icons[type]} mr-2"></i> ${msg}</div>` 
+            });
+        },
+        sukses: (msg) => Sultan.notif.toast('success', msg),
+        gagal: (msg) => Sultan.notif.toast('error', msg),
+        info: (msg) => Sultan.notif.toast('info', msg),
+        loading: (msg) => {
+            Swal.fire({
+                iconHtml: '<div class="sultan-orbit"></div>',
+                title: 'Memproses...',
+                text: msg || 'Harap tunggu bentar...',
+                showConfirmButton: false, allowOutsideClick: false,
+                customClass: { popup: 'sultan-alert-popup', icon: 'border-0 bg-transparent' }
+            });
+        },
         tutup: () => Swal.close()
     },
-    alert: NotifSultan.alert,
+
+    // Global Alert (Success, Error, Warning)
+    alert: (type, title, text) => {
+        const map = {
+            success: { icon: 'fa-check', class: 'icon-success-glow', btn: 'sultan-btn-success' },
+            error: { icon: 'fa-times', class: 'icon-error-glow', btn: 'sultan-btn-error' },
+            warning: { icon: 'fa-exclamation', class: 'icon-warning-glow', btn: 'sultan-btn-warning' }
+        };
+        const c = map[type] || map.warning;
+
+        return Swal.fire({
+            iconHtml: `<div class="sultan-alert-icon-wrapper ${c.class}"><i class="fas ${c.icon}"></i></div>`,
+            title: title,
+            text: text,
+            showConfirmButton: true,
+            confirmButtonText: 'OK',
+            buttonsStyling: false,
+            customClass: {
+                popup: 'sultan-alert-popup',
+                title: 'sultan-alert-title',
+                htmlContainer: 'sultan-alert-text',
+                confirmButton: `sultan-swal-confirm ${c.btn}`,
+                icon: 'border-0 bg-transparent mb-0'
+            }
+        });
+    },
+
+    // Dialog Konfirmasi
     konfirmasi: function(opsi, callbackYa) {
-        Swal.fire({
-            html: `
-                <div class="sultan-alert-icon-wrapper icon-warning-glow">
-                    <i class="fas fa-question text-warning"></i>
-                </div>
-                <div class="sultan-alert-title">${opsi.judul || 'Konfirmasi'}</div>
-                <div class="sultan-alert-text">${opsi.teks || 'Apakah Anda yakin?'}</div>
-            `,
+        return Swal.fire({
+            iconHtml: `<div class="sultan-alert-icon-wrapper icon-warning-glow"><i class="fas fa-question text-warning"></i></div>`,
+            title: opsi.judul || 'Konfirmasi',
+            text: opsi.teks || 'Apakah Anda yakin?',
             showCancelButton: true,
             confirmButtonText: opsi.btnYa || 'Ya, Lanjutkan',
             cancelButtonText: opsi.btnBatal || 'Batal',
-            confirmButtonColor: '#8B0000',
-            cancelButtonColor: '#e2e8f0',
+            buttonsStyling: false,
             customClass: {
                 popup: 'sultan-alert-popup',
-                confirmButton: 'sultan-swal-confirm mx-2',
-                cancelButton: 'sultan-swal-confirm btn-light text-dark mx-2'
-            },
-            buttonsStyling: false
-        }).then((result) => {
-            if (result.isConfirmed && callbackYa) callbackYa();
+                title: 'sultan-alert-title',
+                htmlContainer: 'sultan-alert-text',
+                confirmButton: 'sultan-swal-confirm sultan-btn-error mx-2',
+                cancelButton: 'sultan-swal-confirm btn-light text-dark mx-2',
+                icon: 'border-0 bg-transparent mb-0'
+            }
+        }).then((res) => {
+            if (res.isConfirmed && callbackYa) callbackYa();
         });
     },
+
     format: {
         strip: function(val) { return (!val || val == "0" || val == "") ? "-" : val; },
         rupiah: function(angka) { return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", minimumFractionDigits: 0 }).format(angka); },
@@ -106,8 +97,8 @@ var Sultan = {
     }
 };
 
-function toast(pesan, tipe) { NotifSultan.toast(tipe, pesan); }
-function tampilkanNotif(pesan, tipe) { NotifSultan.toast(tipe, pesan); }
+function toast(pesan, tipe) { Sultan.notif.toast(tipe || 'info', pesan); }
+function tampilkanNotif(pesan, tipe) { Sultan.notif.toast(tipe || 'info', pesan); }
 
 /* =============================================================
    2. SISTEM MANAJEMEN SESI & ROLE
