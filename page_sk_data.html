@@ -910,6 +910,7 @@
         $('#tugas_areaTerkunci').prop('disabled', false).css('opacity', '1');
         $('#tugas_btnSimpanForm').show().prop('disabled', false).html('<i class="fas fa-save mr-2"></i> UPDATE DATA SK');
         $('#tugas_alertInfo').removeClass('alert-info alert-danger').addClass('alert-success border-success').html('<i class="fas fa-check-circle mr-1"></i> Data siap diubah.');
+        $('#tugas_modalForm').modal('show');
     }
 
     function tugas_handleSimpan(e) {
