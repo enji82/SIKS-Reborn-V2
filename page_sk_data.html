@@ -937,17 +937,19 @@
 
     function tugas_kirimDataServer(rowId, base64, fileName) {
         var payload = {
-            rowId: rowId,
+            editRowId: rowId,
             namaSd: $('#tugas_inputNamaSd').val(),
             tahunAjaran: $('#tugas_inputTahun').val(),
             semester: $('#tugas_inputSemester').val(),
-            kriteria: $('#tugas_inputKriteria').val(),
-            noSk: $('#tugas_inputNoSk').val(),
-            tglSk: $('#tugas_inputTglSk').val(),
-            user: TUGAS_USER_AKTIF,
-            fileBase64: base64,
-            fileName: fileName
+            kriteriaSk: $('#tugas_inputKriteria').val(),
+            nomorSk: $('#tugas_inputNoSk').val(),
+            tanggalSk: $('#tugas_inputTglSk').val(),
+            userInput: TUGAS_USER_AKTIF,
+            userUpdate: TUGAS_USER_AKTIF,
+            fileData: base64 ? { data: base64.split(',')[1], mimeType: 'application/pdf' } : null
         };
+
+        var serverFunction = rowId ? "simpanPerubahanSK" : "processManualForm";
 
         google.script.run.withSuccessHandler(function (res) {
             if (res.success) {
@@ -955,10 +957,10 @@
                 $('#tugas_modalForm').modal('hide');
                 tugas_tarikDataServer();
             } else {
-                Sultan.alert('error', 'Gagal', res.error || 'Terjadi kesalahan sistem.');
-                $('#tugas_btnSimpanForm').prop('disabled', false).html(rowId ? '<i class="fas fa-save mr-1"></i> UPDATE DATA' : '<i class="fas fa-save mr-1"></i> SIMPAN DOKUMEN');
+                Sultan.alert('error', 'Gagal', res.error || res.message || 'Terjadi kesalahan sistem.');
+                $('#tugas_btnSimpanForm').prop('disabled', false).html(rowId ? '<i class="fas fa-save mr-2"></i> UPDATE DATA SK' : '<i class="fas fa-save mr-2"></i> SIMPAN DATA SK');
             }
-        }).simpanSK(payload);
+        })[serverFunction](payload);
     }
 
     // =================================================================
@@ -1028,9 +1030,9 @@
         btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin mr-1"></i> EKSEKUSI...');
 
         var payload = {
-            rowId: $('#tugas_verifRowId').val(),
-            status: status,
-            catatan: catatan,
+            verifRowId: $('#tugas_verifRowId').val(),
+            verifStatus: status,
+            verifKeterangan: catatan,
             verifikator: TUGAS_USER_AKTIF
         };
 
@@ -1040,10 +1042,10 @@
                 $('#tugas_modalVerif').modal('hide');
                 tugas_tarikDataServer();
             } else {
-                Sultan.alert('error', 'Gagal Verifikasi', res.error || 'Terjadi kesalahan.');
+                Sultan.alert('error', 'Gagal Verifikasi', res.message || 'Terjadi kesalahan.');
                 btn.prop('disabled', false).html('<i class="fas fa-check-double mr-2"></i> Eksekusi');
             }
-        }).verifikasiSK(payload);
+        }).verifikasiDataSK(payload);
     }
 
     // =================================================================
