@@ -49,11 +49,14 @@
                     <div class="d-flex-gap align-items-center flex-wrap">
 
                         <!-- RE-STRICT ATTRIBUTE SEALING -->
-                        <select id="tugas_filterUnit" class="form-control form-control-sultan input-auto-width min-w-250 font-weight-bold text-maroon bg-light" disabled>
+                        <select id="tugas_filterUnit"
+                            class="form-control form-control-sultan input-auto-width min-w-250 font-weight-bold text-maroon bg-light"
+                            disabled>
                             <option value="">- Memvalidasi Akses... -</option>
                         </select>
 
-                        <select id="tugas_filterTahun" class="form-control form-control-sultan input-auto-width min-w-80"></select>
+                        <select id="tugas_filterTahun"
+                            class="form-control form-control-sultan input-auto-width min-w-80"></select>
 
                         <select id="tugas_filterSemester" class="form-control form-control-sultan input-auto-width">
                             <option value="">- Semua Semester -</option>
@@ -135,8 +138,8 @@
             <div class="modal-header sultan-header-navy">
                 <h5 class="modal-title font-weight-bold" id="tugas_judulModalForm"><i
                         class="fas fa-file-signature mr-2"></i> Form Data SK Pembagian Tugas</h5>
-                <button type="button" class="close text-white" data-dismiss="modal"
-                    id="tugas_closeModalForm" style="opacity: 0.8;"><span>&times;</span></button>
+                <button type="button" class="close text-white" data-dismiss="modal" id="tugas_closeModalForm"
+                    style="opacity: 0.8;"><span>&times;</span></button>
             </div>
 
             <form id="tugas_formUtama">
@@ -145,7 +148,8 @@
 
                     <div id="tugas_alertInfo" class="sultan-info-box info-navy">
                         <i class="fas fa-info-circle"></i>
-                        <span>Tentukan <b>Sekolah, Tahun, Semester,</b> dan <b>Kriteria</b> untuk memulai pengisian data SK.</span>
+                        <span>Tentukan <b>Sekolah, Tahun, Semester,</b> dan <b>Kriteria</b> untuk memulai pengisian data
+                            SK.</span>
                     </div>
 
                     <div class="form-group mb-3">
@@ -182,7 +186,9 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group mb-4">
-                                <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Kriteria SK
+                                <label
+                                    class="form-label-sultan small font-weight-bold text-muted text-uppercase">Kriteria
+                                    SK
                                     <span class="text-danger">*</span></label>
                                 <select id="tugas_inputKriteria"
                                     class="form-control form-control-sultan border-maroon font-weight-bold text-dark"
@@ -208,7 +214,7 @@
                                         SK <span class="text-danger">*</span></label>
                                     <input type="text" id="tugas_inputNoSk"
                                         class="form-control form-control-sultan font-weight-bold" required
-                                        placeholder="000/000/SD/2026">
+                                        placeholder="800/XXX/04.20.XX.SD/2026">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -248,8 +254,10 @@
                 </div>
 
                 <div class="modal-footer sultan-footer-standard bg-white border-top p-3 d-flex justify-content-between">
-                    <button type="button" class="btn btn-sultan-outline btn-sultan-sm px-4" data-dismiss="modal">Tutup</button>
-                    <button type="submit" id="tugas_btnSimpanForm" class="btn btn-sultan-maroon btn-sultan-bold btn-sultan-sm px-4">
+                    <button type="button" class="btn btn-sultan-outline btn-sultan-sm px-4"
+                        data-dismiss="modal">Tutup</button>
+                    <button type="submit" id="tugas_btnSimpanForm"
+                        class="btn btn-sultan-maroon btn-sultan-bold btn-sultan-sm px-4">
                         <i class="fas fa-save mr-2"></i> SIMPAN DATA SK
                     </button>
                 </div>
@@ -262,9 +270,11 @@
     <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-sultan-verif" role="document">
         <div class="modal-content border-0 shadow-lg d-flex flex-column modal-content-sultan" style="height: 90vh;">
             <div class="modal-header sultan-header-emerald flex-shrink-0">
-                <h5 class="modal-title font-weight-bold h6 mb-0 text-white"><i class="fas fa-clipboard-check mr-2"></i>Verifikasi
+                <h5 class="modal-title font-weight-bold h6 mb-0 text-white"><i
+                        class="fas fa-clipboard-check mr-2"></i>Verifikasi
                     SK Pembagian Tugas</h5>
-                <button type="button" class="close text-white" data-dismiss="modal" style="opacity: 0.8;"><span>&times;</span></button>
+                <button type="button" class="close text-white" data-dismiss="modal"
+                    style="opacity: 0.8;"><span>&times;</span></button>
             </div>
             <form id="tugas_formVerif" class="d-flex flex-column flex-grow-1 overflow-hidden m-0 p-0">
                 <div class="modal-body p-0 bg-light flex-grow-1 overflow-hidden">
@@ -375,7 +385,7 @@
             <div class="modal-header modal-header-sultan bg-maroon text-white py-3">
                 <h5 class="modal-title font-weight-bold"><i class="fas fa-file-pdf mr-2"></i> Pratinjau Dokumen SK</h5>
                 <div class="ml-auto d-flex align-items-center">
-                    <a href="#" id="tugas_btnQuickDownload" 
+                    <a href="#" id="tugas_btnQuickDownload"
                         class="btn btn-maroon btn-sultan-twin text-white shadow-sm mr-2">
                         <i class="fas fa-download"></i> UNDUH
                     </a>
@@ -383,7 +393,8 @@
                         class="btn btn-dark btn-sultan-twin text-white shadow-sm mr-4">
                         <i class="fas fa-external-link-alt"></i> TAB BARU
                     </a>
-                    <button type="button" class="close text-white" data-dismiss="modal" style="opacity: 1; font-size: 1.8rem; height: 40px; width: 40px; display: flex; align-items: center; justify-content: center; margin-top: -2px;">
+                    <button type="button" class="close text-white" data-dismiss="modal"
+                        style="opacity: 1; font-size: 1.8rem; height: 40px; width: 40px; display: flex; align-items: center; justify-content: center; margin-top: -2px;">
                         <i class="fas fa-times" style="font-size: 1.2rem;"></i>
                     </button>
                 </div>
@@ -405,9 +416,11 @@
     <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 400px;">
         <div class="modal-content border-0 shadow-lg modal-content-sultan">
             <div class="modal-header sultan-header-maroon py-2">
-                <h5 class="modal-title font-weight-bold text-white"><i class="fas fa-trash-alt mr-2"></i>Hapus SK Pembagian Tugas
+                <h5 class="modal-title font-weight-bold text-white"><i class="fas fa-trash-alt mr-2"></i>Hapus SK
+                    Pembagian Tugas
                 </h5>
-                <button type="button" class="close text-white" data-dismiss="modal" style="opacity: 0.8;"><span>&times;</span></button>
+                <button type="button" class="close text-white" data-dismiss="modal"
+                    style="opacity: 0.8;"><span>&times;</span></button>
             </div>
             <form id="tugas_formHapus">
                 <div class="modal-body bg-white p-4">
@@ -638,7 +651,7 @@
                         { "targets": [4, 5], "className": "align-middle text-center" }
                     ],
                     "language": { "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", "emptyTable": "Tidak ditemukan data SK." },
-                    "drawCallback": function(settings) {
+                    "drawCallback": function (settings) {
                         // Trigger Elegant Entrance Animation
                         $('#tugas_tabelUtama tbody tr').addClass('sultan-entrance');
                     }
@@ -746,7 +759,7 @@
             var safeUrlJs = tugas_escapeJs(safeUrl);
             var stButton = String(row.status || "").toLowerCase();
             var isApproved = (stButton.includes('setuju') || stButton.includes('ok') || stButton.includes('valid'));
-            
+
             var badgeStatus = tugas_buildBadgeStatus(row.status, row.keterangan);
 
             // 1. Tombol Aksi (Individual 3 Buttons sesuai Gambar)
@@ -779,7 +792,7 @@
             // KOMBINASI KOLOM (9 KOLOM TOTAL)
             var uiTahunSem = '<div class="sk-item-main">' + tugas_cleanText(row.tahun) + '</div><div class="sk-item-sub-lg text-maroon">' + tugas_cleanText(row.semester) + '</div>';
             var uiSkDetail = '<div class="sk-item-main text-nowrap">' + safeNoSk + '</div>' +
-                           '<div class="sk-item-sub-lg"><i class="far fa-calendar-alt mr-1"></i> ' + tglSkDisplay + ' &bull; <b class="text-maroon">' + tugas_cleanText(row.kriteria) + '</b></div>';
+                '<div class="sk-item-sub-lg"><i class="far fa-calendar-alt mr-1"></i> ' + tglSkDisplay + ' &bull; <b class="text-maroon">' + tugas_cleanText(row.kriteria) + '</b></div>';
 
             dtArray.push([
                 actionButtons,
@@ -818,14 +831,14 @@
         $('#tugas_modalForm .modal-header').removeClass('sultan-header-indigo').addClass('sultan-header-navy');
         $('#tugas_judulModalForm').html('<i class="fas fa-plus-circle mr-2"></i> Tambah SK Pembagian Tugas');
         $('#tugas_btnSimpanForm').html('<i class="fas fa-save mr-2"></i> SIMPAN DATA SK').removeClass('btn-sultan-indigo').addClass('btn-sultan-maroon');
-        
+
         var now = new Date(); var curYear = now.getFullYear(); var curMonth = now.getMonth();
         var currentTa = (curMonth >= 6) ? curYear + '/' + (curYear + 1) : (curYear - 1) + '/' + curYear;
         var currentSmt = (curMonth >= 6) ? "Semester 1" : "Semester 2";
         $('#tugas_inputTahun').val(currentTa);
         $('#tugas_inputSemester').val(currentSmt);
         if (!TUGAS_IS_ADMIN && TUGAS_UNIT_TERKUNCI) { $('#tugas_inputNamaSd').val(TUGAS_UNIT_TERKUNCI); }
-        
+
         $('#tugas_modalForm').modal('show');
     }
 
@@ -870,7 +883,7 @@
 
     function tugas_bukaModalEdit(rowId) {
         tugas_resetForm();
-        var rowData = TUGAS_CACHE_DATA.find(function (r) { return r.rowId == rowId; });
+        var rowData = TUGAS_DATA_MASTER[rowId];
         if (!rowData) return;
 
         $('#tugas_modalForm .modal-header').removeClass('sultan-header-navy').addClass('sultan-header-indigo');
@@ -980,8 +993,8 @@
         if (url) {
             $('#tugas_verifLoader').removeClass('d-none');
             // Clear src first to force re-load
-            $('#tugas_verifFrame').addClass('d-none').attr('src', ''); 
-            setTimeout(function() {
+            $('#tugas_verifFrame').addClass('d-none').attr('src', '');
+            setTimeout(function () {
                 $('#tugas_verifFrame').attr('src', tugas_convertDriveUrl(url));
             }, 100);
             $('#tugas_verifNoFile').addClass('d-none');
@@ -1086,7 +1099,7 @@
     // =================================================================
     function tugas_bukaPreview(url) {
         if (!url) { Sultan.alert('error', 'File Kurang', 'Dokumen belum diunggah.'); return; }
-        
+
         // Transform URL for direct download
         var dlUrl = url;
         if (url.includes('drive.google.com')) {
@@ -1106,12 +1119,12 @@
         $('#tugas_btnQuickDownload').attr('href', dlUrl);
         $('#tugas_btnFullDownload').attr('href', url);
         $('#tugas_loadingPreviewPDF').removeClass('d-none');
-        
+
         // Clear src first to force re-load
         $('#tugas_framePreviewFull').addClass('d-none').attr('src', '');
         $('#tugas_modalPreview').modal('show');
-        
-        setTimeout(function() {
+
+        setTimeout(function () {
             $('#tugas_framePreviewFull').attr('src', tugas_convertDriveUrl(url));
         }, 100);
 
@@ -1132,7 +1145,7 @@
                 } else if (driveUrl.includes('id=')) {
                     fileId = driveUrl.split('id=')[1].split('&')[0].split('#')[0];
                 }
-                
+
                 if (fileId) {
                     return 'https://drive.google.com/file/d/' + fileId + '/preview';
                 }
@@ -1182,21 +1195,21 @@
         var $table = $('<table/>', { "class": "table table-bordered mb-0" });
         var $thead = $('<thead/>');
         var $trHead = $('<tr/>');
-        
+
         var cols = ["50px", "200px", "100px", "200px", "100px", "100px", "100px", "100px", "100px"];
-        for(var k=0; k<cols.length; k++) {
-            $trHead.append($('<th/>', { 
+        for (var k = 0; k < cols.length; k++) {
+            $trHead.append($('<th/>', {
                 "style": "width:" + cols[k] + "; background:#f1f5f9;",
                 "html": "&nbsp;"
             }));
         }
         $thead.append($trHead);
         $table.append($thead);
-        
+
         var $tbody = $('<tbody/>');
-        for(var i=0; i<5; i++) {
+        for (var i = 0; i < 5; i++) {
             var $tr = $('<tr/>');
-            for(var j=0; j<cols.length; j++) {
+            for (var j = 0; j < cols.length; j++) {
                 var $td = $('<td/>');
                 $td.append($('<div/>', { "class": "sultan-skeleton", "style": "width:80%; height:15px;" }));
                 $td.append($('<div/>', { "class": "sultan-skeleton mt-2", "style": "width:50%; height:10px;" }));
