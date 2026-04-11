@@ -1,15 +1,25 @@
 <style>
-  /* --- POLISH SULTAN: HEADER COMPACT --- */
+  /* --- POLISH SULTAN: HEADER ULTRA COMPACT --- */
   .table-header-compact thead th {
-    padding: 8px 10px !important;
-    font-size: 0.8rem !important;
-    line-height: 1.2 !important;
+    padding: 6px 8px !important;
+    font-size: 0.75rem !important;
+    line-height: 1.1 !important;
     vertical-align: middle !important;
+    background-color: #dee2e6 !important; /* Sultan Grey */
+    color: #1a202c !important;
+    border: 1px solid #ced4da !important;
   }
-  .table-header-compact.table-premium thead th.th-main {
-    background: #f8fafc !important;
-    color: #1e293b !important;
-    border-bottom: 2px solid #e2e8f0 !important;
+  
+  /* Hilangkan background putih pada kolom sticky di header */
+  .table-header-compact thead th.col-sticky-left {
+    background-color: #dee2e6 !important;
+    z-index: 101 !important;
+  }
+
+  /* Baris isi tetap putih tapi kolom sticky-nya juga solid */
+  .table-header-compact tbody td.col-sticky-left {
+    background-color: #ffffff !important;
+    border-right: 2px solid #dee2e6 !important;
   }
 </style>
 
@@ -82,21 +92,21 @@
                   <table id="statussk_tabelUtama" class="table table-bordered table-hover table-premium table-header-compact mb-0 w-100 text-nowrap">
                       <thead class="thead-grey-sultan">
                           <tr>
-                              <th rowspan="2" class="th-main col-sticky-left border-right align-middle text-left bg-white py-2" style="z-index: 5;">Nama Sekolah</th>
-                              <th colspan="2" class="th-main text-center py-2">2021/2022</th>
-                              <th colspan="2" class="th-main text-center py-2">2022/2023</th>
-                              <th colspan="2" class="th-main text-center py-2">2023/2024</th>
-                              <th colspan="2" class="th-main text-center py-2">2024/2025</th>
-                              <th colspan="2" class="th-main text-center py-2">2025/2026</th>
-                              <th colspan="2" class="th-main text-center py-2 border-right-0">2026/2027</th>
+                              <th rowspan="2" class="th-main col-sticky-left align-middle text-left" style="z-index: 5;">Nama Sekolah</th>
+                              <th colspan="2" class="th-main text-center">2021/2022</th>
+                              <th colspan="2" class="th-main text-center">2022/2023</th>
+                              <th colspan="2" class="th-main text-center">2023/2024</th>
+                              <th colspan="2" class="th-main text-center">2024/2025</th>
+                              <th colspan="2" class="th-main text-center">2025/2026</th>
+                              <th colspan="2" class="th-main text-center border-right-0">2026/2027</th>
                           </tr>
                           <tr>
-                              <th class="th-sub text-center py-1">Sem 1</th><th class="th-sub text-center border-right py-1">Sem 2</th>
-                              <th class="th-sub text-center py-1">Sem 1</th><th class="th-sub text-center border-right py-1">Sem 2</th>
-                              <th class="th-sub text-center py-1">Sem 1</th><th class="th-sub text-center border-right py-1">Sem 2</th>
-                              <th class="th-sub text-center py-1">Sem 1</th><th class="th-sub text-center border-right py-1">Sem 2</th>
-                              <th class="th-sub text-center py-1">Sem 1</th><th class="th-sub text-center border-right py-1">Sem 2</th>
-                              <th class="th-sub text-center py-1">Sem 1</th><th class="th-sub text-center border-right-0 py-1">Sem 2</th>
+                              <th class="th-sub text-center">Sem 1</th><th class="th-sub text-center border-right">Sem 2</th>
+                              <th class="th-sub text-center">Sem 1</th><th class="th-sub text-center border-right">Sem 2</th>
+                              <th class="th-sub text-center">Sem 1</th><th class="th-sub text-center border-right">Sem 2</th>
+                              <th class="th-sub text-center">Sem 1</th><th class="th-sub text-center border-right">Sem 2</th>
+                              <th class="th-sub text-center">Sem 1</th><th class="th-sub text-center border-right">Sem 2</th>
+                              <th class="th-sub text-center">Sem 1</th><th class="th-sub text-center border-right-0">Sem 2</th>
                           </tr>
                       </thead>
                       <tbody></tbody>
@@ -303,13 +313,7 @@ function statussk_renderTabel(rows) {
                 { "targets": "_all", "className": "text-center align-middle" }
             ],
             "createdRow": function(row, data, dataIndex) {
-                 $(row).children('td').eq(0).css({
-                    'position': 'sticky',
-                    'left': '0',
-                    'z-index': '2',
-                    'background-color': '#ffffff',
-                    'border-right': '2px solid #e2e8f0'
-                });
+                 $(row).children('td').eq(0).addClass('col-sticky-left');
             }
         }); 
 
@@ -335,16 +339,16 @@ function statussk_renderSkeleton() {
     var $wrapper = $('<div/>', { "class": "table-responsive sultan-scroll rounded-lg border shadow-xs overflow-hidden" });
     var $table = $('<table/>', { "class": "table table-bordered mb-0 table-header-compact" });
     
-    // Tiered Header Skeleton
-    var $thead = $('<thead/>', { "class": "thead-grey-sultan" });
+    // Tiered Header Skeleton (Matching Exact Colors)
+    var $thead = $('<thead/>');
     var $tr1 = $('<tr/>');
-    $tr1.append($('<th/>', { "rowspan": 2, "style": "width:250px; background:#f1f5f9;", "html": "&nbsp;" }));
+    $tr1.append($('<th/>', { "rowspan": 2, "style": "width:250px; background:#dee2e6 !important;", "html": "&nbsp;" }));
     for(var k=0; k<6; k++) {
-        $tr1.append($('<th/>', { "colspan": 2, "style": "background:#f1f5f9; text-align:center;", "html": "&nbsp;" }));
+        $tr1.append($('<th/>', { "colspan": 2, "style": "background:#dee2e6 !important; text-align:center;", "html": "&nbsp;" }));
     }
     var $tr2 = $('<tr/>');
     for(var m=0; m<12; m++) {
-        $tr2.append($('<th/>', { "style": "background:#f8fafc; text-align:center;", "html": "&nbsp;" }));
+        $tr2.append($('<th/>', { "style": "background:#dee2e6 !important; text-align:center;", "html": "&nbsp;" }));
     }
     $thead.append($tr1).append($tr2);
     $table.append($thead);
@@ -352,11 +356,11 @@ function statussk_renderSkeleton() {
     var $tbody = $('<tbody/>');
     for (var i = 0; i < 7; i++) {
         var $tr = $('<tr/>');
-        var $tdName = $('<td/>', { "class": "bg-white" });
+        var $tdName = $('<td/>', { "class": "bg-white", "style": "padding: 8px !important;" });
         $tdName.append($('<div/>', { "class": "sultan-skeleton", "style": "width:85%; height:14px;" }));
         $tr.append($tdName);
         for (var j = 0; j < 12; j++) {
-            var $tdIcon = $('<td/>', { "class": "text-center" });
+            var $tdIcon = $('<td/>', { "class": "text-center", "style": "padding: 8px !important;" });
             $tdIcon.append($('<div/>', { "class": "sultan-skeleton mx-auto", "style": "width:24px; height:24px; border-radius:50%;" }));
             $tr.append($tdIcon);
         }
