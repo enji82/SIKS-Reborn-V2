@@ -132,20 +132,20 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content border-0 shadow-lg modal-content-sultan">
 
-            <div class="modal-header modal-header-sultan bg-maroon text-white" id="tugas_headerModalForm">
+            <div class="modal-header sultan-header-navy">
                 <h5 class="modal-title font-weight-bold" id="tugas_judulModalForm"><i
                         class="fas fa-file-signature mr-2"></i> Form Data SK Pembagian Tugas</h5>
                 <button type="button" class="close text-white" data-dismiss="modal"
-                    id="tugas_closeModalForm"><span>&times;</span></button>
+                    id="tugas_closeModalForm" style="opacity: 0.8;"><span>&times;</span></button>
             </div>
 
             <form id="tugas_formUtama">
                 <div class="modal-body bg-light p-4">
                     <input type="hidden" id="tugas_editRowId">
 
-                    <div id="tugas_alertInfo" class="alert alert-info border-info shadow-sm mb-3">
-                        <i class="fas fa-info-circle mr-1"></i> Tentukan <b>Sekolah, Tahun, Semester,</b> dan
-                        <b>Kriteria</b> untuk memulai pengisian data SK.
+                    <div id="tugas_alertInfo" class="sultan-info-box info-navy">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Tentukan <b>Sekolah, Tahun, Semester,</b> dan <b>Kriteria</b> untuk memulai pengisian data SK.</span>
                     </div>
 
                     <div class="form-group mb-3">
@@ -249,12 +249,11 @@
                     </fieldset>
                 </div>
 
-                <div class="modal-footer modal-footer-sultan justify-content-between p-3">
-                    <button type="button" class="btn btn-default shadow-sm btn-sultan-bold px-4"
-                        data-dismiss="modal">Batal</button>
-                    <button type="submit" id="tugas_btnSimpanForm"
-                        class="btn btn-maroon text-white shadow-sm btn-sultan-bold px-4" style="display:none;"><i
-                            class="fas fa-save mr-1"></i> SIMPAN DOKUMEN</button>
+                <div class="modal-footer sultan-footer-standard bg-white border-top p-3 d-flex justify-content-between">
+                    <button type="button" class="btn btn-sultan-outline px-4" data-dismiss="modal">Tutup</button>
+                    <button type="submit" id="tugas_btnSimpanForm" class="btn btn-maroon btn-sultan-bold px-4">
+                        <i class="fas fa-save mr-2"></i> SIMPAN DATA SK
+                    </button>
                 </div>
             </form>
         </div>
@@ -264,10 +263,10 @@
 <div class="modal fade" id="tugas_modalVerif" tabindex="-1" role="dialog" data-backdrop="static">
     <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-sultan-verif" role="document">
         <div class="modal-content border-0 shadow-lg d-flex flex-column modal-content-sultan" style="height: 90vh;">
-            <div class="modal-header modal-header-sultan bg-primary text-white py-2 flex-shrink-0">
-                <h5 class="modal-title font-weight-bold h6 mb-0"><i class="fas fa-clipboard-check mr-2"></i>Verifikasi
+            <div class="modal-header sultan-header-emerald flex-shrink-0">
+                <h5 class="modal-title font-weight-bold h6 mb-0 text-white"><i class="fas fa-clipboard-check mr-2"></i>Verifikasi
                     SK Pembagian Tugas</h5>
-                <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
+                <button type="button" class="close text-white" data-dismiss="modal" style="opacity: 0.8;"><span>&times;</span></button>
             </div>
             <form id="tugas_formVerif" class="d-flex flex-column flex-grow-1 overflow-hidden m-0 p-0">
                 <div class="modal-body p-0 bg-light flex-grow-1 overflow-hidden">
@@ -358,11 +357,11 @@
                             </div>
                             <div
                                 class="modal-footer modal-footer-sultan bg-white border-top shadow-lg d-flex justify-content-between flex-shrink-0 z-index-10">
-                                <button type="button" class="btn btn-default px-4 btn-sultan-bold shadow-sm"
+                                <button type="button" class="btn btn-sultan-outline px-4"
                                     data-dismiss="modal">Tutup</button>
                                 <button type="submit" id="tugas_btnSimpanVerif"
-                                    class="btn btn-primary px-4 btn-sultan-bold shadow-sm"><i
-                                        class="fas fa-check-double mr-2"></i> Eksekusi</button>
+                                    class="btn btn-emerald btn-sultan-bold px-4 text-white" style="background-color: #059669 !important;">
+                                    <i class="fas fa-check-double mr-2"></i> Eksekusi</button>
                             </div>
                         </div>
                     </div>
@@ -407,23 +406,21 @@
 <div class="modal fade" id="tugas_modalHapus" tabindex="-1" role="dialog" data-backdrop="static">
     <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 400px;">
         <div class="modal-content border-0 shadow-lg modal-content-sultan">
-            <div class="modal-header modal-header-sultan bg-danger text-white py-2">
-                <h5 class="modal-title font-weight-bold"><i class="fas fa-trash-alt mr-2"></i>Konfirmasi Hapus Permanen
+            <div class="modal-header sultan-header-maroon py-2">
+                <h5 class="modal-title font-weight-bold text-white"><i class="fas fa-trash-alt mr-2"></i>Konfirmasi Hapus Permanen
                 </h5>
-                <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
+                <button type="button" class="close text-white" data-dismiss="modal" style="opacity: 0.8;"><span>&times;</span></button>
             </div>
             <form id="tugas_formHapus">
                 <div class="modal-body bg-white p-4">
                     <input type="hidden" id="tugas_hapusRowId">
-                    <div class="alert alert-warning text-dark border-warning shadow-sm mb-3">
-                        <div class="d-flex align-items-start">
-                            <i class="fas fa-exclamation-triangle mt-1 mr-3 fa-lg"></i>
-                            <div>
-                                <strong>Peringatan!</strong><br>
-                                Anda akan menghapus data SK dan File PDF secara permanen:<br>
-                                <span id="tugas_hapusViewNomor" class="font-weight-bold text-uppercase"
-                                    style="font-size: 1.1em; color: #000;">-</span>
-                            </div>
+                    <div class="sultan-info-box info-maroon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div>
+                            <strong>Peringatan!</strong><br>
+                            Anda akan menghapus data SK dan File PDF secara permanen:<br>
+                            <span id="tugas_hapusViewNomor" class="font-weight-bold text-uppercase"
+                                style="font-size: 1.1em; color: #8B0000;">-</span>
                         </div>
                     </div>
                     <div class="form-group mb-0">
@@ -438,12 +435,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer modal-footer-sultan bg-light justify-content-between p-3">
-                    <button type="button" class="btn btn-default border shadow-sm px-4 btn-sultan-bold"
+                <div class="modal-footer bg-light justify-content-between p-3 border-top">
+                    <button type="button" class="btn btn-sultan-outline px-4"
                         data-dismiss="modal">Batal</button>
                     <button type="submit" id="tugas_btnEksekusiHapus"
-                        class="btn btn-danger shadow-sm btn-sultan-bold px-4"><i class="fas fa-trash mr-1"></i> Hapus
-                        Permanen</button>
+                        class="btn btn-danger btn-sultan-bold px-4" style="background-color: #8B0000 !important;">
+                        <i class="fas fa-trash mr-2"></i> HAPUS PERMANEN</button>
                 </div>
             </form>
         </div>

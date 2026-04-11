@@ -2272,31 +2272,79 @@ body .modal-header-sultan .modal-title i { color: var(--warna-emas) !important; 
     box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
     border-color: rgba(255,255,255,0.5) !important;
 }
+/* ===================================================================
+   10. SULTAN GLOBAL UI KIT (STANDARDIZATION V5.0)
+   =================================================================== */
 
-body .modal-footer-sultan { 
-    padding: 1rem 1.5rem !important; 
-    background-color: #ffffff !important; 
-    border-top: 1px solid rgba(0,0,0,0.05) !important;
-    display: flex;
-    justify-content: space-between;
+/* A. SEMANTIC MODAL HEADERS */
+.sultan-header-navy { background: #1D3573 !important; color: #fff !important; border-bottom: 3px solid rgba(0,0,0,0.15) !important; }
+.sultan-header-emerald { background: #059669 !important; color: #fff !important; border-bottom: 3px solid rgba(0,0,0,0.15) !important; }
+.sultan-header-maroon { background: #8B0000 !important; color: #fff !important; border-bottom: 3px solid rgba(0,0,0,0.15) !important; }
+.sultan-header-gold { background: #EAC947 !important; color: #1D3573 !important; border-bottom: 3px solid rgba(0,0,0,0.15) !important; }
+
+/* B. ELITE INFO BOXES (Glassmorphism + Accents) */
+.sultan-info-box {
+    background: rgba(248, 250, 252, 0.8) !important;
+    backdrop-filter: blur(8px);
+    border: 1px solid #E2E8F0 !important;
+    border-left: 5px solid #1D3573 !important;
+    border-radius: 12px !important;
+    padding: 16px 20px !important;
+    margin-bottom: 20px !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 15px !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+}
+.sultan-info-box i { font-size: 1.25rem; margin-top: 2px; }
+.sultan-info-box.info-navy { border-left-color: #1D3573 !important; color: #1e293b !important; }
+.sultan-info-box.info-navy i { color: #1D3573 !important; }
+.sultan-info-box.info-maroon { border-left-color: #8B0000 !important; }
+.sultan-info-box.info-maroon i { color: #8B0000 !important; }
+.sultan-info-box.info-emerald { border-left-color: #059669 !important; }
+.sultan-info-box.info-emerald i { color: #059669 !important; }
+.sultan-info-box.info-gold { border-left-color: #EAC947 !important; }
+.sultan-info-box.info-gold i { color: #EAC947 !important; }
+
+/* C. EXTENDED BUTTON SYSTEM */
+.btn-sultan-outline {
+    background: transparent !important;
+    border: 2px solid #E2E8F0 !important;
+    color: #475569 !important;
+    font-weight: 700 !important;
+    padding: 10px 24px !important;
+    border-radius: 12px !important;
+    transition: all 0.2s ease !important;
+}
+.btn-sultan-outline:hover {
+    background: #F1F5F9 !important;
+    border-color: #CBD5E1 !important;
+    color: #1e293b !important;
+    transform: translateY(-1px);
 }
 
-/* MODAL: FULLSCREEN IMMERSIVE PREVIEW */
-body .modal-fullscreen-sultan .modal-dialog { 
-    width: 100% !important; 
-    max-width: 100% !important; 
-    height: 100% !important; 
-    margin: 0 !important; 
-    padding: 0 !important; 
+/* D. GLOW INPUTS */
+.form-control-sultan:focus {
+    background: #fff !important;
+    border-color: #1D3573 !important;
+    box-shadow: 0 0 0 4px rgba(29, 53, 115, 0.1) !important;
+    outline: none !important;
 }
-body .modal-fullscreen-sultan .modal-content { 
-    height: 100% !important; 
-    border-radius: 0 !important; 
+.form-label-sultan {
+    margin-bottom: 8px !important;
+    display: inline-block;
+    transition: all 0.2s ease;
 }
 
-/* BUTTON: SULTAN STANDARDIZATION */
-body .btn-sultan-bold { font-weight: 700 !important; padding: 10px 24px !important; letter-spacing: 0.5px; transition: all 0.2s; }
-body .btn-sultan-bold:hover { transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+/* E. SULTAN NOTIFICATION TOAST */
+.sultan-toast-container { z-index: 10000 !important; }
+.sultan-toast {
+    border-radius: 14px !important;
+    padding: 12px 20px !important;
+    font-weight: 600 !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important;
+    border: none !important;
+}
 
 @media (max-width: 768px) {
     .cb-card-body { padding: 0.75rem; }
