@@ -179,24 +179,22 @@
                         </div>
                     </div>
 
-                    <div class="form-group mb-4">
-                        <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Kriteria SK
-                            <span class="text-danger">*</span></label>
-                        <div class="input-group">
-                            <select id="tugas_inputKriteria"
-                                class="form-control form-control-sultan border-maroon font-weight-bold text-dark"
-                                required>
-                                <option value="">- Pilih Kriteria -</option>
-                                <option value="Awal Semester">Awal Semester</option>
-                                <option value="Perubahan ke 1">Perubahan ke 1</option>
-                                <option value="Perubahan ke 2">Perubahan ke 2</option>
-                                <option value="Perubahan ke 3">Perubahan ke 3</option>
-                                <option value="Perubahan ke 4">Perubahan ke 4</option>
-                                <option value="Perubahan ke 5">Perubahan ke 5</option>
-                            </select>
-                            <div class="input-group-append">
-                                <button class="btn btn-maroon text-white font-weight-bold px-3" type="button"
-                                    id="tugas_btnCekSlot"><i class="fas fa-search mr-1"></i> CEK DATA</button>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group mb-4">
+                                <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Kriteria SK
+                                    <span class="text-danger">*</span></label>
+                                <select id="tugas_inputKriteria"
+                                    class="form-control form-control-sultan border-maroon font-weight-bold text-dark"
+                                    required>
+                                    <option value="">- Pilih Kriteria -</option>
+                                    <option value="Awal Semester">Awal Semester</option>
+                                    <option value="Perubahan ke 1">Perubahan ke 1</option>
+                                    <option value="Perubahan ke 2">Perubahan ke 2</option>
+                                    <option value="Perubahan ke 3">Perubahan ke 3</option>
+                                    <option value="Perubahan ke 4">Perubahan ke 4</option>
+                                    <option value="Perubahan ke 5">Perubahan ke 5</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -251,7 +249,7 @@
 
                 <div class="modal-footer sultan-footer-standard bg-white border-top p-3 d-flex justify-content-between">
                     <button type="button" class="btn btn-sultan-outline btn-sultan-sm px-4" data-dismiss="modal">Tutup</button>
-                    <button type="submit" id="tugas_btnSimpanForm" class="btn btn-maroon btn-sultan-bold btn-sultan-sm px-4">
+                    <button type="submit" id="tugas_btnSimpanForm" class="btn btn-sultan-maroon btn-sultan-bold btn-sultan-sm px-4">
                         <i class="fas fa-save mr-2"></i> SIMPAN DATA SK
                     </button>
                 </div>
@@ -360,7 +358,7 @@
                                 <button type="button" class="btn btn-sultan-outline btn-sultan-sm px-4"
                                     data-dismiss="modal">Tutup</button>
                                 <button type="submit" id="tugas_btnSimpanVerif"
-                                    class="btn btn-emerald btn-sultan-bold btn-sultan-sm px-4 text-white" style="background-color: #059669 !important;">
+                                    class="btn btn-sultan-emerald btn-sultan-bold btn-sultan-sm px-4 text-white">
                                     <i class="fas fa-check-double mr-2"></i> Eksekusi</button>
                             </div>
                         </div>
@@ -439,7 +437,7 @@
                     <button type="button" class="btn btn-sultan-outline btn-sultan-sm px-4"
                         data-dismiss="modal">Batal</button>
                     <button type="submit" id="tugas_btnEksekusiHapus"
-                        class="btn btn-danger btn-sultan-bold btn-sultan-sm px-4" style="background-color: #8B0000 !important;">
+                        class="btn btn-sultan-maroon btn-sultan-bold btn-sultan-sm px-4">
                         <i class="fas fa-trash mr-2"></i> HAPUS PERMANEN</button>
                 </div>
             </form>
@@ -489,7 +487,6 @@
 
         $(document).off('click', '#tugas_btnTambah').on('click', '#tugas_btnTambah', tugas_bukaModalTambah);
         $(document).off('change', '#tugas_inputNamaSd, #tugas_inputTahun, #tugas_inputSemester, #tugas_inputKriteria').on('change', '#tugas_inputNamaSd, #tugas_inputTahun, #tugas_inputSemester, #tugas_inputKriteria', tugas_cekKetersediaanSlot);
-        $(document).off('click', '#tugas_btnCekSlot').on('click', '#tugas_btnCekSlot', tugas_cekKetersediaanSlot);
         $(document).off('submit', '#tugas_formUtama').on('submit', '#tugas_formUtama', tugas_handleSimpan);
         $(document).off('submit', '#tugas_formVerif').on('submit', '#tugas_formVerif', tugas_handleSimpanVerifikasi);
         $(document).off('submit', '#tugas_formHapus').on('submit', '#tugas_formHapus', tugas_handleSimpanHapus);
@@ -812,7 +809,7 @@
         $('.custom-file-label').removeClass("selected text-success font-weight-bold").html('Pilih file PDF...');
         $('#tugas_areaTerkunci').prop('disabled', true).css('opacity', '0.5');
         $('#tugas_inputNamaSd, #tugas_inputTahun, #tugas_inputSemester, #tugas_inputKriteria').prop('disabled', false).removeClass('bg-light');
-        $('#tugas_btnCekSlot').prop('disabled', false);
+        $('#tugas_btnSimpanForm').removeClass('btn-sultan-indigo').addClass('btn-sultan-maroon').show().prop('disabled', true);
         $('#tugas_alertInfo').removeClass('alert-danger alert-success').addClass('alert-info border-info').html('<i class="fas fa-info-circle mr-1"></i> Tentukan <b>Sekolah, Tahun, Semester,</b> dan <b>Kriteria</b> untuk memulai pengisian data SK.');
     }
 
@@ -820,7 +817,7 @@
         tugas_resetForm();
         $('#tugas_modalForm .modal-header').removeClass('sultan-header-indigo').addClass('sultan-header-navy');
         $('#tugas_judulModalForm').html('<i class="fas fa-plus-circle mr-2"></i> Tambah SK Pembagian Tugas');
-        $('#tugas_btnSimpanForm').html('<i class="fas fa-save mr-2"></i> SIMPAN DATA SK').show();
+        $('#tugas_btnSimpanForm').html('<i class="fas fa-save mr-2"></i> SIMPAN DATA SK').removeClass('btn-sultan-indigo').addClass('btn-sultan-maroon');
         
         var now = new Date(); var curYear = now.getFullYear(); var curMonth = now.getMonth();
         var currentTa = (curMonth >= 6) ? curYear + '/' + (curYear + 1) : (curYear - 1) + '/' + curYear;
@@ -845,14 +842,11 @@
             return;
         }
 
-        var btn = $('#tugas_btnCekSlot'); var txt = btn.html();
-        btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i>');
-        $('#tugas_alertInfo').removeClass('alert-danger alert-success').addClass('alert-info border-info').html('<i class="fas fa-spinner fa-spin mr-1"></i> Mengecek ketersediaan slot di server...');
+        $('#tugas_alertInfo').removeClass('alert-danger alert-success').addClass('alert-info border-info').html('<i class="fas fa-spinner fa-spin mr-1"></i> Mengecek data di server.');
 
         var payload = { namaSd: vSd, tahunAjaran: vTh, semester: vSm, kriteria: vKr };
 
         google.script.run.withSuccessHandler(function (res) {
-            btn.prop('disabled', false).html(txt);
             var currentId = $('#tugas_editRowId').val();
 
             if (res.found) {
@@ -863,13 +857,12 @@
                 } else {
                     $('#tugas_areaTerkunci').prop('disabled', true).css('opacity', '0.5');
                     $('#tugas_btnSimpanForm').hide().prop('disabled', true);
-                    $('#tugas_alertInfo').removeClass('alert-info alert-success').addClass('alert-danger border-danger').html('<i class="fas fa-times-circle mr-1"></i> <b>SLOT PENUH:</b> Sekolah ini sudah memiliki SK untuk ' + vKr + ' pada ' + vSm + ' TA ' + vTh + '.');
-                    Sultan.alert('warning', 'Data Ganda', 'Satu sekolah hanya boleh memiliki 1 SK untuk kombinasi Tahun, Semester, dan Kriteria yang sama.');
+                    $('#tugas_alertInfo').removeClass('alert-info alert-success').addClass('alert-danger border-danger').html('<i class="fas fa-check-circle mr-1"></i> <b>Data ditemukan:</b> Sekolah ini sudah memiliki SK untuk ' + vKr + ' pada ' + vSm + ' TA ' + vTh + '.');
                 }
             } else {
                 $('#tugas_areaTerkunci').prop('disabled', false).css('opacity', '1');
                 $('#tugas_btnSimpanForm').show().prop('disabled', false).html('<i class="fas fa-save mr-1"></i> SIMPAN DOKUMEN');
-                $('#tugas_alertInfo').removeClass('alert-info alert-danger').addClass('alert-success border-success').html('<i class="fas fa-check-circle mr-1"></i> <b>SLOT TERSEDIA:</b> Silakan lanjutkan pengisian Nomor SK dan unggah dokumen.');
+                $('#tugas_alertInfo').removeClass('alert-info alert-danger').addClass('alert-success border-success').html('<i class="fas fa-info-circle mr-1"></i> <b>Data belum diinput:</b> Silakan lanjutkan pengisian Nomor SK dan unggah dokumen.');
                 if (!currentId) $('#tugas_inputNoSk').focus();
             }
         }).cekDuplikatSK(payload);
@@ -884,7 +877,7 @@
         $('#tugas_judulModalForm').html('<i class="fas fa-edit mr-2"></i> Edit Data SK Pembagian Tugas');
         $('#tugas_editRowId').val(rowId);
 
-        $('#tugas_btnSimpanForm').removeClass('btn-maroon text-white').addClass('btn-indigo btn-sultan-bold btn-sultan-sm text-white').css({'background-color': '#4F46E5', 'border': 'none'});
+        $('#tugas_btnSimpanForm').removeClass('btn-sultan-maroon').addClass('btn-sultan-indigo');
 
         $('#tugas_inputNamaSd').val(rowData.namaSd);
         $('#tugas_inputTahun').val(rowData.tahun);
@@ -901,7 +894,6 @@
         }
 
         $('#tugas_inputNamaSd, #tugas_inputTahun, #tugas_inputSemester, #tugas_inputKriteria').prop('disabled', true).addClass('bg-light');
-        $('#tugas_btnCekSlot').prop('disabled', true);
         $('#tugas_areaTerkunci').prop('disabled', false).css('opacity', '1');
         $('#tugas_btnSimpanForm').show().prop('disabled', false).html('<i class="fas fa-save mr-2"></i> UPDATE DATA SK');
         $('#tugas_alertInfo').removeClass('alert-info alert-danger').addClass('alert-success border-success').html('<i class="fas fa-check-circle mr-1"></i> Data siap diubah.');
