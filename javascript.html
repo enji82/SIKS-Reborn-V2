@@ -3,29 +3,61 @@
    1. GLOBAL HELPER: NOTIFIKASI SULTAN (THEME FIX)
    ============================================================= */
 var NotifSultan = {
-  config: { warnaMaroon: '#800000', warnaHitam: '#343a40', warnaSukses: '#28a745', warnaGagal: '#dc3545', warnaWarning: '#ffc107', warnaBatal: '#6c757d' },
+  config: { warnaMaroon: '#8B0000', warnaNavy: '#1D3573', warnaEmerald: '#059669', warnaGold: '#d97706' },
+  
   toast: (tipe, pesan) => {
-    Swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, timerProgressBar: true, background: '#fff', color: '#343a40' })
-    .fire({ icon: tipe, title: `<span style="font-weight:600">${pesan}</span>` });
-  },
-  alert: (tipe, judul, pesan) => {
-    let btnColor = (tipe === 'success') ? NotifSultan.config.warnaMaroon : NotifSultan.config.warnaGagal;
-    return Swal.fire({ 
-        icon: tipe, 
-        title: `<h5 class="font-weight-bold" style="margin-top:10px; color:${NotifSultan.config.warnaMaroon}">${judul}</h5>`, 
-        html: `<div class="text-muted">${pesan}</div>`, 
-        width: '350px', 
-        confirmButtonColor: btnColor, 
-        padding: '1.2rem', 
-        customClass: { popup: 'card-sultan' } 
+    const icons = { success: 'fa-check-circle', error: 'fa-times-circle', warning: 'fa-exclamation-triangle', info: 'fa-info-circle' };
+    const colors = { success: '#059669', error: '#b91c1c', warning: '#d97706', info: '#1D3573' };
+    
+    Swal.mixin({ 
+      toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, timerProgressBar: true,
+      background: 'rgba(255, 255, 255, 0.9)',
+      customClass: { popup: 'sultan-alert-popup shadow-sm py-2 px-3', title: 'sultan-alert-text font-weight-bold ml-2' }
+    })
+    .fire({ 
+      html: `<div class="d-flex align-items-center" style="color:${colors[tipe]}"><i class="fas ${icons[tipe]} mr-2"></i> ${pesan}</div>` 
     });
   },
+
+  alert: (tipe, judul, pesan) => {
+    const config = {
+        success: { icon: 'fa-check', class: 'icon-success-glow', btn: '#059669' },
+        error: { icon: 'fa-times', class: 'icon-error-glow', btn: '#8B0000' },
+        warning: { icon: 'fa-exclamation', class: 'icon-warning-glow', btn: '#d97706' }
+    };
+    const c = config[tipe] || config.warning;
+
+    return Swal.fire({
+        html: `
+            <div class="sultan-alert-icon-wrapper ${c.class}">
+                <i class="fas ${c.icon}"></i>
+            </div>
+            <div class="sultan-alert-title">${judul}</div>
+            <div class="sultan-alert-text">${pesan}</div>
+        `,
+        showConfirmButton: true,
+        confirmButtonText: 'OK',
+        confirmButtonColor: c.btn,
+        customClass: {
+            popup: 'sultan-alert-popup',
+            confirmButton: 'sultan-swal-confirm'
+        },
+        buttonsStyling: false,
+        showClass: { popup: 'animate__animated animate__fadeInUp' },
+        hideClass: { popup: 'animate__animated animate__fadeOutDown' }
+    });
+  },
+
   loading: (pesan) => {
-    Swal.fire({ 
-        width: '300px', title: '', 
-        html: `<div class="text-center p-3"><div class="spinner-border text-maroon" style="width: 3rem; height: 3rem;"></div><p class="mt-3 mb-0 font-weight-bold text-secondary">${pesan || 'Memproses...'}</p></div>`, 
-        showConfirmButton: false, allowOutsideClick: false,
-        customClass: { popup: 'card-sultan' }
+    Swal.fire({
+        html: `
+            <div class="sultan-orbit"></div>
+            <div class="sultan-alert-title" style="font-size:18px !important;">Memproses...</div>
+            <div class="sultan-alert-text">${pesan || 'Harap tunggu sebentar'}</div>
+        `,
+        showConfirmButton: false,
+        allowOutsideClick: false,
+        customClass: { popup: 'sultan-alert-popup' }
     });
   }
 };
@@ -44,15 +76,24 @@ var Sultan = {
     alert: NotifSultan.alert,
     konfirmasi: function(opsi, callbackYa) {
         Swal.fire({
-            title: `<h5 class="font-weight-bold text-maroon">${opsi.judul || 'Konfirmasi'}</h5>`,
-            text: opsi.teks || "Apakah Anda yakin?",
-            icon: 'warning', 
-            showCancelButton: true, 
-            confirmButtonColor: '#800000', 
-            cancelButtonColor: '#6c757d',  
-            confirmButtonText: opsi.btnYa || 'Ya, Lanjutkan', 
+            html: `
+                <div class="sultan-alert-icon-wrapper icon-warning-glow">
+                    <i class="fas fa-question text-warning"></i>
+                </div>
+                <div class="sultan-alert-title">${opsi.judul || 'Konfirmasi'}</div>
+                <div class="sultan-alert-text">${opsi.teks || 'Apakah Anda yakin?'}</div>
+            `,
+            showCancelButton: true,
+            confirmButtonText: opsi.btnYa || 'Ya, Lanjutkan',
             cancelButtonText: opsi.btnBatal || 'Batal',
-            customClass: { popup: 'card-sultan' }
+            confirmButtonColor: '#8B0000',
+            cancelButtonColor: '#e2e8f0',
+            customClass: {
+                popup: 'sultan-alert-popup',
+                confirmButton: 'sultan-swal-confirm mx-2',
+                cancelButton: 'sultan-swal-confirm btn-light text-dark mx-2'
+            },
+            buttonsStyling: false
         }).then((result) => {
             if (result.isConfirmed && callbackYa) callbackYa();
         });
