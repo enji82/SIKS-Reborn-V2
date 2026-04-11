@@ -2277,10 +2277,19 @@ body .modal-header-sultan .modal-title i { color: var(--warna-emas) !important; 
    =================================================================== */
 
 /* A. SEMANTIC MODAL HEADERS */
-.sultan-header-navy { background: #1D3573 !important; color: #fff !important; border-bottom: 3px solid rgba(0,0,0,0.15) !important; }
-.sultan-header-emerald { background: #059669 !important; color: #fff !important; border-bottom: 3px solid rgba(0,0,0,0.15) !important; }
-.sultan-header-maroon { background: #8B0000 !important; color: #fff !important; border-bottom: 3px solid rgba(0,0,0,0.15) !important; }
-.sultan-header-gold { background: #EAC947 !important; color: #1D3573 !important; border-bottom: 3px solid rgba(0,0,0,0.15) !important; }
+.sultan-header-navy { background: #1D3573 !important; color: #fff !important; padding: 0.75rem 1.5rem !important; border-bottom: 3px solid rgba(0,0,0,0.15) !important; }
+.sultan-header-indigo { background: #4F46E5 !important; color: #fff !important; padding: 0.75rem 1.5rem !important; border-bottom: 3px solid rgba(0,0,0,0.15) !important; }
+.sultan-header-emerald { background: #059669 !important; color: #fff !important; padding: 0.75rem 1.5rem !important; border-bottom: 3px solid rgba(0,0,0,0.15) !important; }
+.sultan-header-maroon { background: #8B0000 !important; color: #fff !important; padding: 0.75rem 1.5rem !important; border-bottom: 3px solid rgba(0,0,0,0.15) !important; }
+.sultan-header-gold { background: #EAC947 !important; color: #1D3573 !important; padding: 0.75rem 1.5rem !important; border-bottom: 3px solid rgba(0,0,0,0.15) !important; }
+
+/* Ensure white text inside color headers */
+.sultan-header-navy h1, .sultan-header-navy h2, .sultan-header-navy h3, .sultan-header-navy h4, .sultan-header-navy h5, .sultan-header-navy h6, .sultan-header-navy .modal-title,
+.sultan-header-indigo h1, .sultan-header-indigo h2, .sultan-header-indigo h3, .sultan-header-indigo h4, .sultan-header-indigo h5, .sultan-header-indigo h6, .sultan-header-indigo .modal-title,
+.sultan-header-emerald h1, .sultan-header-emerald h2, .sultan-header-emerald h3, .sultan-header-emerald h4, .sultan-header-emerald h5, .sultan-header-emerald h6, .sultan-header-emerald .modal-title,
+.sultan-header-maroon h1, .sultan-header-maroon h2, .sultan-header-maroon h3, .sultan-header-maroon h4, .sultan-header-maroon h5, .sultan-header-maroon h6, .sultan-header-maroon .modal-title {
+    color: #ffffff !important;
+}
 
 /* B. ELITE INFO BOXES (Glassmorphism + Accents) */
 .sultan-info-box {
@@ -2323,11 +2332,30 @@ body .modal-header-sultan .modal-title i { color: var(--warna-emas) !important; 
     transform: translateY(-1px);
 }
 
+/* Modal-sized small buttons */
+.btn-sultan-sm {
+    padding: 6px 18px !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    border-radius: 10px !important;
+    letter-spacing: 0.3px !important;
+}
+
+/* Standardized Badge System */
+.badge-sultan {
+    padding: 5px 12px !important;
+    font-weight: 700 !important;
+    border-radius: 8px !important;
+    font-size: 11px !important;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
 /* D. GLOW INPUTS */
 .form-control-sultan:focus {
     background: #fff !important;
-    border-color: #1D3573 !important;
-    box-shadow: 0 0 0 4px rgba(29, 53, 115, 0.1) !important;
+    border-color: #4F46E5 !important;
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1) !important;
     outline: none !important;
 }
 .form-label-sultan {

@@ -196,7 +196,7 @@
                             </select>
                             <div class="input-group-append">
                                 <button class="btn btn-maroon text-white font-weight-bold px-3" type="button"
-                                    id="tugas_btnCekSlot"><i class="fas fa-search mr-1"></i> CEK SLOT</button>
+                                    id="tugas_btnCekSlot"><i class="fas fa-search mr-1"></i> CEK DATA</button>
                             </div>
                         </div>
                     </div>
@@ -250,8 +250,8 @@
                 </div>
 
                 <div class="modal-footer sultan-footer-standard bg-white border-top p-3 d-flex justify-content-between">
-                    <button type="button" class="btn btn-sultan-outline px-4" data-dismiss="modal">Tutup</button>
-                    <button type="submit" id="tugas_btnSimpanForm" class="btn btn-maroon btn-sultan-bold px-4">
+                    <button type="button" class="btn btn-sultan-outline btn-sultan-sm px-4" data-dismiss="modal">Tutup</button>
+                    <button type="submit" id="tugas_btnSimpanForm" class="btn btn-maroon btn-sultan-bold btn-sultan-sm px-4">
                         <i class="fas fa-save mr-2"></i> SIMPAN DATA SK
                     </button>
                 </div>
@@ -356,11 +356,11 @@
                                 </div>
                             </div>
                             <div
-                                class="modal-footer modal-footer-sultan bg-white border-top shadow-lg d-flex justify-content-between flex-shrink-0 z-index-10">
-                                <button type="button" class="btn btn-sultan-outline px-4"
+                                class="modal-footer bg-white border-top shadow-sm d-flex justify-content-between flex-shrink-0 z-index-10 p-3">
+                                <button type="button" class="btn btn-sultan-outline btn-sultan-sm px-4"
                                     data-dismiss="modal">Tutup</button>
                                 <button type="submit" id="tugas_btnSimpanVerif"
-                                    class="btn btn-emerald btn-sultan-bold px-4 text-white" style="background-color: #059669 !important;">
+                                    class="btn btn-emerald btn-sultan-bold btn-sultan-sm px-4 text-white" style="background-color: #059669 !important;">
                                     <i class="fas fa-check-double mr-2"></i> Eksekusi</button>
                             </div>
                         </div>
@@ -407,7 +407,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 400px;">
         <div class="modal-content border-0 shadow-lg modal-content-sultan">
             <div class="modal-header sultan-header-maroon py-2">
-                <h5 class="modal-title font-weight-bold text-white"><i class="fas fa-trash-alt mr-2"></i>Konfirmasi Hapus Permanen
+                <h5 class="modal-title font-weight-bold text-white"><i class="fas fa-trash-alt mr-2"></i>Hapus SK Pembagian Tugas
                 </h5>
                 <button type="button" class="close text-white" data-dismiss="modal" style="opacity: 0.8;"><span>&times;</span></button>
             </div>
@@ -436,10 +436,10 @@
                     </div>
                 </div>
                 <div class="modal-footer bg-light justify-content-between p-3 border-top">
-                    <button type="button" class="btn btn-sultan-outline px-4"
+                    <button type="button" class="btn btn-sultan-outline btn-sultan-sm px-4"
                         data-dismiss="modal">Batal</button>
                     <button type="submit" id="tugas_btnEksekusiHapus"
-                        class="btn btn-danger btn-sultan-bold px-4" style="background-color: #8B0000 !important;">
+                        class="btn btn-danger btn-sultan-bold btn-sultan-sm px-4" style="background-color: #8B0000 !important;">
                         <i class="fas fa-trash mr-2"></i> HAPUS PERMANEN</button>
                 </div>
             </form>
@@ -803,37 +803,32 @@
     // =================================================================
     // 5. LOGIKA MODAL FORM & VALIDASI (BAB V)
     // =================================================================
-    function tugas_bukaModalTambah() {
+    function tugas_resetForm() {
         $('#tugas_formUtama')[0].reset();
         $('#tugas_editRowId').val('');
         TUGAS_CURRENT_FILE_URL = "";
-
-        var now = new Date(); var curYear = now.getFullYear(); var curMonth = now.getMonth();
-        var currentTa = (curMonth >= 6) ? curYear + '/' + (curYear + 1) : (curYear - 1) + '/' + curYear;
-        var currentSmt = (curMonth >= 6) ? "Semester 1" : "Semester 2";
-
-        // BAB V: Warna Header Maroon untuk Tambah
-        $('#tugas_headerModalForm').removeClass('bg-warning').addClass('bg-maroon');
-        $('#tugas_judulModalForm').css('color', '#fff').html('<i class="fas fa-file-signature mr-2"></i> Form Tambah SK');
-        $('#tugas_closeModalForm').removeClass('text-dark').addClass('text-white');
-        $('#tugas_btnSimpanForm').removeClass('btn-warning text-dark').addClass('btn-maroon text-white');
-
-        $('#tugas_inputTahun').val(currentTa);
-        $('#tugas_inputSemester').val(currentSmt);
-
-        if (!TUGAS_IS_ADMIN && TUGAS_UNIT_TERKUNCI) { $('#tugas_inputNamaSd').val(TUGAS_UNIT_TERKUNCI); }
-
+        $('#tugas_linkFileLama').addClass('d-none');
+        $('#tugas_labelFile').html('<i class="fas fa-file-pdf text-danger mr-1"></i> Unggah Dokumen Asli <span class="text-danger">*</span>');
+        $('.custom-file-label').removeClass("selected text-success font-weight-bold").html('Pilih file PDF...');
         $('#tugas_areaTerkunci').prop('disabled', true).css('opacity', '0.5');
         $('#tugas_inputNamaSd, #tugas_inputTahun, #tugas_inputSemester, #tugas_inputKriteria').prop('disabled', false).removeClass('bg-light');
         $('#tugas_btnCekSlot').prop('disabled', false);
-        $('#tugas_btnSimpanForm').hide().prop('disabled', true);
-
         $('#tugas_alertInfo').removeClass('alert-danger alert-success').addClass('alert-info border-info').html('<i class="fas fa-info-circle mr-1"></i> Tentukan <b>Sekolah, Tahun, Semester,</b> dan <b>Kriteria</b> untuk memulai pengisian data SK.');
+    }
 
-        $('#tugas_labelFile').html('<i class="fas fa-file-pdf text-danger mr-1"></i> Unggah Dokumen Asli <span class="text-danger">*</span>');
-        $('.custom-file-label').removeClass("selected text-success font-weight-bold").html('Pilih file PDF...');
-        $('#tugas_linkFileLama').addClass('d-none');
-
+    function tugas_bukaModalTambah() {
+        tugas_resetForm();
+        $('#tugas_modalForm .modal-header').removeClass('sultan-header-indigo').addClass('sultan-header-navy');
+        $('#tugas_judulModalForm').html('<i class="fas fa-plus-circle mr-2"></i> Tambah SK Pembagian Tugas');
+        $('#tugas_btnSimpanForm').html('<i class="fas fa-save mr-2"></i> SIMPAN DATA SK').show();
+        
+        var now = new Date(); var curYear = now.getFullYear(); var curMonth = now.getMonth();
+        var currentTa = (curMonth >= 6) ? curYear + '/' + (curYear + 1) : (curYear - 1) + '/' + curYear;
+        var currentSmt = (curMonth >= 6) ? "Semester 1" : "Semester 2";
+        $('#tugas_inputTahun').val(currentTa);
+        $('#tugas_inputSemester').val(currentSmt);
+        if (!TUGAS_IS_ADMIN && TUGAS_UNIT_TERKUNCI) { $('#tugas_inputNamaSd').val(TUGAS_UNIT_TERKUNCI); }
+        
         $('#tugas_modalForm').modal('show');
     }
 
@@ -881,27 +876,25 @@
     }
 
     function tugas_bukaModalEdit(rowId) {
-        var d = TUGAS_DATA_MASTER[rowId];
-        if (!d) return;
+        tugas_resetForm();
+        var rowData = TUGAS_CACHE_DATA.find(function (r) { return r.rowId == rowId; });
+        if (!rowData) return;
 
-        tugas_bukaModalTambah();
+        $('#tugas_modalForm .modal-header').removeClass('sultan-header-navy').addClass('sultan-header-indigo');
+        $('#tugas_judulModalForm').html('<i class="fas fa-edit mr-2"></i> Edit Data SK Pembagian Tugas');
         $('#tugas_editRowId').val(rowId);
 
-        // BAB V: Warna Header Warning untuk Edit
-        $('#tugas_headerModalForm').removeClass('bg-maroon').addClass('bg-warning');
-        $('#tugas_judulModalForm').css('color', '#343a40').html('<i class="fas fa-pencil-alt mr-2"></i> Edit SK Pembagian Tugas');
-        $('#tugas_closeModalForm').removeClass('text-white').addClass('text-dark');
-        $('#tugas_btnSimpanForm').removeClass('btn-maroon text-white').addClass('btn-warning text-dark');
+        $('#tugas_btnSimpanForm').removeClass('btn-maroon text-white').addClass('btn-indigo btn-sultan-bold btn-sultan-sm text-white').css({'background-color': '#4F46E5', 'border': 'none'});
 
-        $('#tugas_inputNamaSd').val(d.namaSd);
-        $('#tugas_inputTahun').val(d.tahun);
-        $('#tugas_inputSemester').val(d.semester);
-        $('#tugas_inputKriteria').val(d.kriteria);
+        $('#tugas_inputNamaSd').val(rowData.namaSd);
+        $('#tugas_inputTahun').val(rowData.tahun);
+        $('#tugas_inputSemester').val(rowData.semester);
+        $('#tugas_inputKriteria').val(rowData.kriteria);
 
-        $('#tugas_inputNoSk').val(d.noSk);
-        $('#tugas_inputTglSk').val(d.tglSk ? d.tglSk.substring(0, 10) : "");
+        $('#tugas_inputNoSk').val(rowData.noSk);
+        $('#tugas_inputTglSk').val(rowData.tglSk ? rowData.tglSk.substring(0, 10) : "");
 
-        TUGAS_CURRENT_FILE_URL = d.fileUrl || "";
+        TUGAS_CURRENT_FILE_URL = rowData.fileUrl || "";
         if (TUGAS_CURRENT_FILE_URL) {
             $('#tugas_linkFileLama').removeClass('d-none');
             $('#tugas_labelFile').html('<i class="fas fa-file-pdf text-danger mr-1"></i> Ganti Dokumen (Opsional)');
@@ -910,7 +903,7 @@
         $('#tugas_inputNamaSd, #tugas_inputTahun, #tugas_inputSemester, #tugas_inputKriteria').prop('disabled', true).addClass('bg-light');
         $('#tugas_btnCekSlot').prop('disabled', true);
         $('#tugas_areaTerkunci').prop('disabled', false).css('opacity', '1');
-        $('#tugas_btnSimpanForm').show().prop('disabled', false).html('<i class="fas fa-save mr-1"></i> UPDATE DATA');
+        $('#tugas_btnSimpanForm').show().prop('disabled', false).html('<i class="fas fa-save mr-2"></i> UPDATE DATA SK');
         $('#tugas_alertInfo').removeClass('alert-info alert-danger').addClass('alert-success border-success').html('<i class="fas fa-check-circle mr-1"></i> Data siap diubah.');
     }
 
