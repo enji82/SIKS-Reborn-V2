@@ -861,11 +861,31 @@ textarea.form-control-sultan { height: auto !important; min-height: 100px !impor
    VAKSIN DATATABLES V8 (HOVER, FREEZE BORDER, & COMPLEX HEADER FIX)
    ========================================================================== */
 
-/* 1. Efek Hover untuk tabel dengan kolom Sticky/Freeze (Generalized for Sultan tables) */
-table.table-sultan-compact tbody tr:hover td,
+/* 1. Efek Hover untuk tabel dengan kolom Sticky/Freeze (Nuclear Sultan V3 - Pseudo Element) */
+table.table-hover tbody tr:hover td.col-sticky-left,
+table.table-premium tbody tr:hover td.col-sticky-left,
+table.table-sultan-compact tbody tr:hover td.col-sticky-left {
+    position: relative !important;
+}
+
+table.table-hover tbody tr:hover td.col-sticky-left::after,
+table.table-premium tbody tr:hover td.col-sticky-left::after,
+table.table-sultan-compact tbody tr:hover td.col-sticky-left::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.05);
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* Fallback untuk tr:hover standar agar semua td kena (termasuk yang bukan sticky) */
 table.table-premium tbody tr:hover td,
-table.table-hover tbody tr:hover td.col-sticky-left {
-    box-shadow: inset 0 0 0 9999px rgba(0, 0, 0, 0.06) !important;
+table.table-sultan-compact tbody tr:hover td {
+    background-color: rgba(0, 0, 0, 0.04);
 }
 
 /* [DEACTIVATED V3.1] Legacy sticky borders
