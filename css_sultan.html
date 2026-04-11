@@ -322,10 +322,10 @@
     line-height: 1.6 !important;
 }
 
-.sultan-swal-confirm {
+.sultan-swal-confirm, .swal2-confirm.swal2-styled {
     display: inline-block !important;
     cursor: pointer !important;
-    pointer-events: auto !important;
+    pointer-events: all !important;
     border-radius: 14px !important;
     padding: 12px 40px !important;
     font-weight: 700 !important;
@@ -334,25 +334,25 @@
     font-size: 13px !important;
     border: none !important;
     color: #ffffff !important;
-    min-width: 120px !important;
+    min-width: 140px !important;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
     text-align: center !important;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
-    z-index: 10 !important;
+    opacity: 1 !important;
 }
 
-.sultan-swal-confirm:hover {
+.swal2-confirm.swal2-styled:focus {
+    box-shadow: none !important;
+}
+
+.sultan-swal-confirm:hover, .swal2-confirm.swal2-styled:hover {
     transform: translateY(-2px) scale(1.05) !important;
     filter: brightness(1.1) !important;
 }
 
-.sultan-swal-confirm:active {
-    transform: scale(0.95) !important;
-}
-
-.sultan-btn-success { background: #059669 !important; box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3) !important; }
-.sultan-btn-error { background: #8B0000 !important; box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3) !important; }
-.sultan-btn-warning { background: #d97706 !important; box-shadow: 0 4px 15px rgba(217, 119, 6, 0.3) !important; }
+.sultan-btn-success, .swal2-confirm.swal2-styled.sultan-btn-success { background: #059669 !important; box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3) !important; }
+.sultan-btn-error, .swal2-confirm.swal2-styled.sultan-btn-error { background: #8B0000 !important; box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3) !important; }
+.sultan-btn-warning, .swal2-confirm.swal2-styled.sultan-btn-warning { background: #d97706 !important; box-shadow: 0 4px 15px rgba(217, 119, 6, 0.3) !important; }
 
 /* Orbit Loader */
 .sultan-orbit {
