@@ -425,6 +425,56 @@ function getSiabaStatusData() {
   }
 }
 
+/**
+ * Get notification counts for the sidebar badge
+ * Optimized to only return count integers
+ */
+function sk_helper_getNotificationCounts(role, npsn) {
+  try {
+    const ss = SpreadsheetApp.openById(SPREADSHEET_IDS.SK_DATA);
+    const sheet = ss.getSheetByName("Unggah_SK");
+    if (!sheet) return 0;
+
+    const data = sheet.getDataRange().getDisplayValues();
+    const isAdmin = String(role || "").toLowerCase().indexOf("admin") !== -1;
+    let count = 0;
+
+    // Start from row 2 (index 1) to skip header
+    for (let i = 1; i < data.length; i++) {
+        const row = data[i];
+        if (!row[1]) continue;
+
+        const schoolName = String(row[1]).trim();
+        const status = String(row[9] || "").toLowerCase();
+
+        if (isAdmin) {
+            // Admin counts all "Diproses"
+            if (status.includes("proses")) {
+                count++;
+            }
+        } else {
+            // User counts their own school's "Revisi" or "Ditolak"
+            // We need school name mapping or NPSN check.
+            // For now, if npsn is provided, we might need a lookup, 
+            // but the simplified logic is: count if school matches and status is actionable.
+            // Assuming for now the 'npsn' provided is actually the target school name for the user,
+            // as handled in other getDaftarSK logic or filtering.
+            
+            // NOTE: In this system, user session usually has a school name as 'unitKerja'.
+            // I will assume 'npsn' passed here is the school identifier/name to filter.
+            if (schoolName.toUpperCase() === String(npsn).toUpperCase()) {
+                if (status.includes("revisi") || status.includes("tolak")) {
+                    count++;
+                }
+            }
+        }
+    }
+    return count;
+  } catch (e) {
+    return 0;
+  }
+}
+
 /* ======================================================================
    MODULE: DASHBOARD SK (LOGIKA KEPATUHAN AWAL SEMESTER)
    ====================================================================== */

@@ -961,6 +961,7 @@
                 $('#tugas_modalForm').modal('hide');
                 Sultan.alert('success', 'Berhasil', rowId ? 'Data berhasil diperbarui.' : 'Data berhasil disimpan.');
                 tugas_tarikDataServer();
+                if (typeof sk_updateSidebarBadge === 'function') sk_updateSidebarBadge();
             } else {
                 Sultan.alert('error', 'Gagal', res.error || res.message || 'Terjadi kesalahan sistem.');
                 $('#tugas_btnSimpanForm').prop('disabled', false).html(rowId ? '<i class="fas fa-save mr-2"></i> UPDATE DATA SK' : '<i class="fas fa-save mr-2"></i> SIMPAN DATA SK');
@@ -1046,6 +1047,7 @@
                 $('#tugas_modalVerif').modal('hide');
                 Sultan.alert('success', 'Verifikasi Berhasil', 'Status SK telah diperbarui.');
                 tugas_tarikDataServer();
+                if (typeof sk_updateSidebarBadge === 'function') sk_updateSidebarBadge();
             } else {
                 Sultan.alert('error', 'Gagal Verifikasi', res.message || 'Terjadi kesalahan.');
                 btn.prop('disabled', false).html('<i class="fas fa-check-double mr-2"></i> Eksekusi');
@@ -1087,6 +1089,7 @@
                 Sultan.alert('success', 'Dihapus', 'Data telah dihapus dari database dan server.');
                 $('#tugas_modalHapus').modal('hide');
                 tugas_tarikDataServer();
+                if (typeof sk_updateSidebarBadge === 'function') sk_updateSidebarBadge();
             } else {
                 Sultan.alert('error', 'Gagal Hapus', res.error || 'Terjadi kesalahan.');
                 btn.prop('disabled', false).html('<i class="fas fa-trash mr-1"></i> Hapus Permanen');
