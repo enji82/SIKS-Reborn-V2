@@ -1,0 +1,7 @@
+models:
+  - name: Gemini Flash
+    provider: google
+    model: gemini-1.5-flash
+    apiKey: AIzaSyDzn7ohSfkMmM6krUvoE5YkxnNewNjCuiE
+
+defaultModel: Gemini Flash
