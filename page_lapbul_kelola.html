@@ -405,7 +405,7 @@
 <div class="modal fade" id="lapbulkelola_modalHapus" tabindex="-1" role="dialog" data-backdrop="static">
     <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 400px;">
         <div class="modal-content border-0 shadow-lg modal-content-sultan">
-            <div class="modal-header bg-danger text-white py-2">
+            <div class="modal-header sultan-header-navy py-2">
                 <h6 class="modal-title font-weight-bold"><i class="fas fa-trash-alt mr-2"></i>Konfirmasi Hapus</h6>
                 <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
             </div>
@@ -694,11 +694,11 @@ function lapbulkelola_prosesCariData(isForceSync) {
     }
 
     var btn = $('#lapbulkelola_btnCari');
-    btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin text-maroon"></i>');
+    btn.prop('disabled', true).html('<i class="fas fa-bolt fa-spin text-maroon"></i>');
 
     if (!$.fn.DataTable.isDataTable('#lapbulkelola_tabelUtama') || isForceSync) {
         $('#lapbulkelola_tableState').hide();
-        $('#lapbulkelola_loadingText').html(`Mengambil Data Laporan Tahun ${valTahun}...`);
+        lapbulkelola_renderSkeleton();
         $('#lapbulkelola_loadingState').show();
     }
 
@@ -822,7 +822,7 @@ function lapbulkelola_renderTabel(data) {
         var safeNama = lapbulkelola_escapeJs(row.namaSekolah);        // VAKSIN DYNAMIC UI: Membedakan Aksi Admin dan User
         
         // BAB III: Tombol Aksi (Side-by-Side Modern Style)
-        var btnVerif = LAPBULKELOLA_IS_ADMIN ? `<button type="button" class="btn btn-icon-sultan btn-icon-sultan-primary shadow-sm btn-aksi-verif" data-id="${row.rowId}" data-source="${row.source}" data-nama="${safeNama}" data-bulan="${row.bulan}" data-tahun="${row.tahun}" data-file="${(row.fileUrl || "")}" title="Verifikasi Admin"><i class="fas fa-clipboard-check"></i></button>` : '';
+        var btnVerif = LAPBULKELOLA_IS_ADMIN ? `<button type="button" class="btn btn-icon-sultan btn-icon-sultan-primary shadow-sm btn-aksi-verif" data-id="${row.rowId}" data-source="${row.source}" data-nama="${safeNama}" data-bulan="${row.bulan}" data-tahun="${row.tahun}" data-file="${(row.fileUrl || "")}" title="Verifikasi Admin"><i class="fas fa-check-double"></i></button>` : '';
         var btnEdit  = `<button type="button" class="btn btn-icon-sultan btn-icon-sultan-warning shadow-sm btn-aksi-edit ${isApproved ? 'btn-sultan-locked disabled' : ''}" data-id="${row.rowId}" data-source="${row.source}" title="Ubah Laporan" ${isApproved ? 'disabled' : ''}><i class="fas fa-pencil-alt"></i></button>`;
         var btnHapus = `<button type="button" class="btn btn-icon-sultan btn-icon-sultan-danger shadow-sm btn-aksi-hapus ${isApproved ? 'btn-sultan-locked disabled' : ''}" data-id="${row.rowId}" data-source="${row.source}" data-nama="${safeNama}" title="Hapus Permanen" ${isApproved ? 'disabled' : ''}><i class="fas fa-trash-alt"></i></button>`;
         var btnAksi = `<div class="d-flex flex-nowrap justify-content-center" style="gap:5px;">${btnVerif}${btnEdit}${btnHapus}</div>`;
@@ -966,7 +966,7 @@ function lapbulkelola_suntikTemplateKeForm(jenis) {
 function lapbulkelola_bukaModalTambah() {
     LAPBULKELOLA_IS_EDIT_MODE = false; LAPBULKELOLA_EDIT_ROW_ID = null;
     
-    $('#lapbulkelola_headerModalForm').removeClass('bg-warning').addClass('bg-maroon');
+    $('#lapbulkelola_headerModalForm').removeClass('bg-warning bg-maroon').addClass('sultan-header-navy');
     $('#lapbulkelola_judulModalForm').css('color', '#fff').html('<i class="fas fa-plus-circle mr-2"></i>Form Laporan Bulan');
 
     window.sekolahData = null;
@@ -1538,8 +1538,8 @@ function lapbulkelola_editLapbul(source, rowId) {
         $('#lapbulkelola_formContentArea').empty(); 
         LAPBULKELOLA_IS_EDIT_MODE = true; LAPBULKELOLA_EDIT_ROW_ID = rowId; lapbulkelola_URL_FILE_LAMA = data.Dokumen || data.fileUrl || "";
 
-        $('#lapbulkelola_headerModalForm').removeClass('bg-maroon').addClass('bg-warning');
-        $('#lapbulkelola_judulModalForm').css('color', '#343a40').html('<i class="fas fa-pencil-alt mr-2"></i> Edit Laporan Bulan');
+        $('#lapbulkelola_headerModalForm').removeClass('bg-maroon bg-warning').addClass('sultan-header-navy');
+        $('#lapbulkelola_judulModalForm').css('color', '#fff').html('<i class="fas fa-pencil-alt mr-2"></i> Edit Laporan Bulan');
 
         $('#lapbulkelola_btnKembaliPilih').hide();
         $('#lapbulkelola_modalTambahData').modal('show');
@@ -1796,5 +1796,38 @@ function lapbulkelola_submitVerifikasi(e) {
     }).withFailureHandler(function(err) {
         btn.prop('disabled', false).html(txt); Sultan.notif.gagal("Koneksi gagal: " + err.message);
     }).processVerifikasiLapbul(LAPBULKELOLA_V_TARGET_SOURCE, LAPBULKELOLA_V_TARGET_ID, status, ket, LAPBULKELOLA_USER_AKTIF);
+}
+
+function lapbulkelola_renderSkeleton() {
+    var $cont = $('#lapbulkelola_loadingState').empty();
+    var $wrapper = $('<div/>', { "class": "table-responsive sultan-scroll" });
+    var $table = $('<table/>', { "class": "table table-bordered mb-0" });
+    var $thead = $('<thead/>');
+    var $trHead = $('<tr/>');
+
+    var cols = ["100px", "250px", "120px", "120px", "150px", "130px", "130px", "130px"];
+    for (var k = 0; k < cols.length; k++) {
+        $trHead.append($('<th/>', {
+            "style": "width:" + cols[k] + "; background:#f1f5f9; height: 40px;",
+            "html": "&nbsp;"
+        }));
+    }
+    $thead.append($trHead);
+    $table.append($thead);
+
+    var $tbody = $('<tbody/>');
+    for (var i = 0; i < 5; i++) {
+        var $tr = $('<tr/>');
+        for (var j = 0; j < cols.length; j++) {
+            var $td = $('<td/>', { "class": "p-3" });
+            $td.append($('<div/>', { "class": "sultan-skeleton", "style": "width:80%; height:15px; border-radius: 4px;" }));
+            $td.append($('<div/>', { "class": "sultan-skeleton mt-2", "style": "width:50%; height:10px; border-radius: 4px;" }));
+            $tr.append($td);
+        }
+        $tbody.append($tr);
+    }
+    $table.append($tbody);
+    $wrapper.append($table);
+    $cont.append($wrapper);
 }
 </script>
