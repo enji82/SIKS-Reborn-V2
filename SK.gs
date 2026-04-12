@@ -6,10 +6,45 @@
 /* ======================================================================
    HELPER FUNCTIONS
    ====================================================================== */
-function handleError(context, error) {
+/* ======================================================================
+   HELPER FUNCTIONS (INTERNAL USE)
+   ====================================================================== */
+function sk_handleError(context, error) {
   Logger.log("ERROR [" + context + "]: " + error);
-  rekamCCTV("ERROR " + context, error.toString()); 
+  sk_helper_rekamCCTV("ERROR " + context, error.toString()); 
   return { success: false, message: error.message || error.toString() };
+}
+
+function sk_helper_parseDate(val) {
+  if (!val || val === "" || val === "-") return 0;
+  try {
+    var s = String(val).replace(/['"]/g, "").trim();
+    if (s === "") return 0;
+    
+    // Support formats: dd-mm-yyyy HH:mm:ss OR yyyy-mm-dd HH:mm:ss
+    var parts = s.split(" ");
+    var dateStr = parts[0];
+    var timeStr = parts[1] || "00:00:00";
+    
+    var sep = dateStr.includes("-") ? "-" : "/";
+    var dP = dateStr.split(sep);
+    if (dP.length !== 3) return 0;
+    
+    var tP = timeStr.split(":");
+    var y, m, d;
+    
+    if (dP[0].length === 4) { // yyyy-mm-dd
+      y = parseInt(dP[0], 10); m = parseInt(dP[1], 10) - 1; d = parseInt(dP[2], 10);
+    } else { // dd-mm-yyyy
+      y = parseInt(dP[2], 10); m = parseInt(dP[1], 10) - 1; d = parseInt(dP[0], 10);
+    }
+    
+    var hr = parseInt(tP[0] || 0, 10);
+    var mn = parseInt(tP[1] || 0, 10);
+    var sc = parseInt(tP[2] || 0, 10);
+    
+    return new Date(y, m, d, hr, mn, sc).getTime();
+  } catch (e) { return 0; }
 }
 
 function getOrCreateFolder(parentFolder, folderName) {
@@ -52,7 +87,7 @@ function processManualForm(formData) {
     ]);
 
     return { success: true, message: "Data SK berhasil disimpan." };
-  } catch (e) { return handleError('processManualForm', e); }
+  } catch (e) { return sk_handleError('processManualForm', e); }
 }
 
 /* ======================================================================
@@ -60,7 +95,7 @@ function processManualForm(formData) {
    ====================================================================== */
 function simpanPerubahanSK(form) {
   try {
-    rekamCCTV("START EDIT", "No SK: " + form.nomorSk);
+    sk_helper_rekamCCTV("START EDIT", "No SK: " + form.nomorSk);
 
     var ss = SpreadsheetApp.openById(SPREADSHEET_IDS.SK_DATA);
     var sheet = ss.getSheetByName("Unggah_SK");
@@ -106,19 +141,18 @@ function simpanPerubahanSK(form) {
        file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
        
        sheet.getRange(rowIdx, KOLOM.FILE_URL).setValue(file.getUrl());
-       rekamCCTV("UPLOAD", "File baru tersimpan: " + file.getUrl());
+       sk_helper_rekamCCTV("UPLOAD", "File baru tersimpan: " + file.getUrl());
     }
 
     sheet.getRange(rowIdx, KOLOM.STATUS).setValue("Diproses");
     sheet.getRange(rowIdx, KOLOM.TGL_UPD).setValue("'" + Utilities.formatDate(new Date(), Session.getScriptTimeZone(), "dd-MM-yyyy HH:mm:ss"));
     sheet.getRange(rowIdx, KOLOM.USER_UPD).setValue(form.userUpdate);
 
-    rekamCCTV("SUKSES", "Data baris " + rowIdx + " berhasil diupdate.");
+    sk_helper_rekamCCTV("SUKSES", "Data baris " + rowIdx + " berhasil diupdate.");
     return { success: true, message: "Data berhasil diperbarui." };
 
   } catch (e) {
-    rekamCCTV("ERROR", e.toString());
-    return { success: false, message: "Error Server: " + e.toString() };
+    return sk_handleError('simpanPerubahanSK', e);
   }
 }
 
@@ -131,29 +165,13 @@ function getDaftarSK() {
     var sheet = ss.getSheetByName("Unggah_SK");
     var data = sheet.getDataRange().getDisplayValues();
     var result = [];
-    
-    function parseTimeInternal(val) {
-      if (!val) return 0;
-      var s = String(val).replace(/'/g, "").trim();
-      if (s === "") return 0;
-      var parts = s.split(" ");
-      var sep = parts[0].includes("-") ? "-" : "/";
-      var dP = parts[0].split(sep);
-      if (dP.length !== 3) return 0;
-      var tP = (parts[1]||"00:00:00").split(":");
-      var y = dP[2].length === 4 ? dP[2] : dP[0];
-      var m = dP[1];
-      var d = dP[0].length <= 2 ? dP[0] : dP[2];
-      return new Date(parseInt(y), parseInt(m)-1, parseInt(d), parseInt(tP[0]||0), parseInt(tP[1]||0), parseInt(tP[2]||0)).getTime();
-    }
-
     for (var i = 1; i < data.length; i++) {
       var row = data[i];
       if (!row[1]) continue; 
 
-      var tUnggah = parseTimeInternal(row[0]);
-      var tUpdate = parseTimeInternal(row[10]);
-      var tVerval = parseTimeInternal(row[12]);
+      var tUnggah = sk_helper_parseDate(row[0]);
+      var tUpdate = sk_helper_parseDate(row[10]);
+      var tVerval = sk_helper_parseDate(row[12]);
       
       var lastActivity = Math.max(tUnggah, tUpdate, tVerval);
 
@@ -176,7 +194,7 @@ function getDaftarSK() {
 }
 
 /* ======================================================================
-   HELPER: CEK DUPLIKAT, HAPUS, & VERIFIKASI 
+   CORE: CEK DUPLIKAT, HAPUS, & VERIFIKASI 
    ====================================================================== */
 function cekDuplikatSK(payload) {
   try {
@@ -253,7 +271,7 @@ function hapusDataSK(form) {
              file.moveTo(folderSmt); 
           }
         } catch (errFile) {
-          rekamCCTV("ERROR HAPUS FILE", errFile.toString());
+          sk_helper_rekamCCTV("ERROR HAPUS FILE", errFile.toString());
         }
     }
 
@@ -265,12 +283,11 @@ function hapusDataSK(form) {
     sheetTrash.appendRow(trashValues);
     sheetSource.deleteRow(rowIdx);
 
-    rekamCCTV("HAPUS DATA", "Menghapus Baris " + rowIdx + " oleh " + form.userDelete);
+    sk_helper_rekamCCTV("HAPUS DATA", "Menghapus Baris " + rowIdx + " oleh " + form.userDelete);
     return { success: true, message: "Data berhasil dihapus." };
 
   } catch (e) {
-    rekamCCTV("ERROR HAPUS", e.toString());
-    return { success: false, message: "Gagal menghapus: " + e.toString() };
+    return sk_handleError('hapusDataSK', e);
   }
 }
 
@@ -298,7 +315,7 @@ function verifikasiDataSK(form) {
 /* ======================================================================
    HELPER: REKAM JEJAK CCTV
    ====================================================================== */
-function rekamCCTV(aktivitas, data) {
+function sk_helper_rekamCCTV(aktivitas, data) {
   try {
     var ss = SpreadsheetApp.openById(SPREADSHEET_IDS.SK_DATA); 
     var sheet = ss.getSheetByName("Log_CCTV");
@@ -491,33 +508,16 @@ function getDashboardSK(filterTahun, filterSemester) {
         if(stats.progress < 0) stats.progress = 0;
     }
 
-    // 4. Sortir Aktivitas Terbaru
-    function parseStringDateToTime(str) {
-        if(!str || str==="" || str==="-") return 0;
-        try {
-            var cleanStr = String(str).replace(/['"]/g, "").trim();
-            if(cleanStr === "") return 0;
-            var p = cleanStr.split(' '); var dateParts = p[0].split(/[-/]/); 
-            if(dateParts.length !== 3) return 0;
-            var timeParts = (p[1] || "00:00:00").split(':');
-            var y, m, d;
-            if(dateParts[0].length === 4) { y = parseInt(dateParts[0],10); m = parseInt(dateParts[1],10)-1; d = parseInt(dateParts[2],10); } 
-            else { y = parseInt(dateParts[2],10); m = parseInt(dateParts[1],10)-1; d = parseInt(dateParts[0],10); }
-            var hr = parseInt(timeParts[0]||0,10); var mn = parseInt(timeParts[1]||0,10); var sc = parseInt(timeParts[2]||0,10);
-            return new Date(y, m, d, hr, mn, sc).getTime(); 
-        } catch(e) { return 0; }
-    }
-
     var sorted = filteredRows.sort(function(a, b) {
-      var timeA = Math.max(parseStringDateToTime(a[0]), parseStringDateToTime(a[10]), parseStringDateToTime(a[12]));
-      var timeB = Math.max(parseStringDateToTime(b[0]), parseStringDateToTime(b[10]), parseStringDateToTime(b[12]));
+      var timeA = Math.max(sk_helper_parseDate(a[0]), sk_helper_parseDate(a[10]), sk_helper_parseDate(a[12]));
+      var timeB = Math.max(sk_helper_parseDate(b[0]), sk_helper_parseDate(b[10]), sk_helper_parseDate(b[12]));
       return timeB - timeA; 
     }).slice(0, 7); 
 
     stats.recent = sorted.map(function(r) {
-        var tKirim = parseStringDateToTime(r[0]);
-        var tEdit = parseStringDateToTime(r[10]);
-        var tVerif = parseStringDateToTime(r[12]);
+        var tKirim = sk_helper_parseDate(r[0]);
+        var tEdit = sk_helper_parseDate(r[10]);
+        var tVerif = sk_helper_parseDate(r[12]);
         var maxTime = Math.max(tKirim, tEdit, tVerif);
         
         var displayTime = String(r[0]);
@@ -530,7 +530,7 @@ function getDashboardSK(filterTahun, filterSemester) {
     // Trend Calculation
     var trendMap = {};
     filteredRows.forEach(function(r) {
-        var tKirim = parseStringDateToTime(r[0]);
+        var tKirim = sk_helper_parseDate(r[0]);
         if (tKirim > 0) {
             var d = new Date(tKirim);
             var key = d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2);

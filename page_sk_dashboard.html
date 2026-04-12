@@ -255,16 +255,10 @@
   var DASHSK_CHART_TREND = null;
   var DASHSK_LIST_BELUM_CACHE = [];
   var DASHSK_PREV_DATA_JSON = null; 
-  var DASHSK_USER_IS_ADMIN = false;
   var DASHSK_IS_FETCHING = false;
   var DASHSK_LAST_FETCH_TIME = 0;
 
   $(document).ready(function () {
-    try {
-      var user = typeof getSesiUser === 'function' ? getSesiUser() : {};
-      DASHSK_USER_IS_ADMIN = (user.role || "").toLowerCase().indexOf("admin") !== -1;
-    } catch (e) { DASHSK_USER_IS_ADMIN = false; }
-
     // Start Realtime Clock
     setInterval(function() {
         var now = new Date();

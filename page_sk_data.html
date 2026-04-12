@@ -507,13 +507,12 @@
 
         $(document).off('click', '.tugas-btn-catatan').on('click', '.tugas-btn-catatan', function () {
             var msg = $(this).data('pesan');
-            Swal.fire({
-                title: '<i class="fas fa-comment-dots text-maroon mb-2"></i><br>Catatan Admin',
-                html: '<div class="text-left bg-light p-3 rounded border text-dark" style="font-size:14px; line-height:1.5;">' + msg + '</div>',
-                confirmButtonText: 'Tutup',
-                confirmButtonColor: '#85144b'
-            });
+            statussk_lihatCatatanSultan(msg);
         });
+
+        function statussk_lihatCatatanSultan(pesan) {
+            Sultan.alert('info', 'Catatan Admin', pesan);
+        }
 
         $(document).off('click', '#tugas_btnLihatDokumenLama').on('click', '#tugas_btnLihatDokumenLama', function (e) {
             e.preventDefault();
@@ -1185,10 +1184,6 @@
         } catch (e) { return 0; }
     }
 
-    function tugas_getLoaderHtml(msg) {
-        tugas_renderSkeleton();
-        return '<div class="text-center p-4">' + (msg || 'Memuat...') + '</div>';
-    }
 
     function tugas_renderSkeleton() {
         var $cont = $('#tugas_loadingState').empty();
