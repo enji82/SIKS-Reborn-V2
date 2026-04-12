@@ -185,37 +185,74 @@ function loadNotifikasiDiproses() {
     google.script.run
         .withSuccessHandler(function(data) {
             if (!data) return;
+            var user = getSesiUser();
+            var role = (user && user.role) ? user.role.toLowerCase() : "";
+            var isAdmin = role.includes('admin') || role.includes('verifikator');
+            
+            // 1. Navbar Count & Badge
+            // (Logika: Admin melihat semua 'Diproses', User melihat 'Revisi/Ditolak' sendiri)
+            // Namun karena getTotalDiproses di code.gs saat ini global, kita kustomisasi di sini
+            
             var total = parseInt(data.total) || 0;
             var badge = document.getElementById('notif-badge');
             var bell  = document.getElementById('btn-notif-bell');
-            if (!badge) return;
+            var cont  = document.getElementById('notif-list-container');
+            
+            if (!badge || !cont) return;
 
+            // Render List Notifikasi di Dropdown
+            var html = '';
             if (total > 0) {
+                // Tampilkan Badge
                 badge.textContent = total > 99 ? '99+' : total;
                 badge.style.display = 'block';
                 if (bell) bell.style.color = '#dc3545';
-                // Animasi bergetar pada bel
-                if (bell && !bell.classList.contains('notif-ringing')) {
-                    bell.classList.add('notif-ringing');
-                    setTimeout(function() { bell.classList.remove('notif-ringing'); }, 2000);
+
+                // Buat item notifikasi berdasarkan role
+                if (isAdmin) {
+                    data.rincian.forEach(function(r) {
+                        html += `
+                            <a href="#" class="dropdown-item p-3 border-bottom sk-notif-item" onclick="sk_notifNavigate('sk_data', 'Diproses')">
+                                <div class="d-flex align-items-center">
+                                    <div class="bg-light-danger p-2 rounded-circle mr-3">
+                                        <i class="fas fa-file-signature text-danger"></i>
+                                    </div>
+                                    <div>
+                                        <p class="mb-0 font-weight-bold text-dark" style="font-size:14px;">Antrean Verifikasi</p>
+                                        <small class="text-muted">Ada ${r.jumlah} data ${r.modul} menunggu diproses.</small>
+                                    </div>
+                                </div>
+                            </a>`;
+                    });
+                } else {
+                    // USER: Logic user di handle oleh sk_updateSidebarBadge yang panggil sk_helper_getNotificationCounts
+                    // Jadi kita sinkronkan data di sini jika perlu, atau panggil fungsi terpisah
+                    // Untuk saat ini, kita gunakan data dari sk_updateSidebarBadge untuk mengisi dropdown jika User
                 }
             } else {
                 badge.style.display = 'none';
                 if (bell) bell.style.color = '#64748b';
+                html = '<div class="text-center p-4 text-muted small">Tidak ada notifikasi baru</div>';
             }
-
-            // Simpan rincian untuk tooltip
-            if (bell && data.rincian && data.rincian.length > 0) {
-                var tipText = data.rincian.map(function(r) {
-                    return r.modul + ': ' + r.jumlah + ' data';
-                }).join('\n');
-                bell.title = 'Menunggu Diproses:\n' + tipText;
-            } else if (bell) {
-                bell.title = 'Tidak ada data yang menunggu diproses';
-            }
+            cont.innerHTML = html;
         })
         .withFailureHandler(function() { /* silent fail */ })
         .getTotalDiproses();
+}
+
+// Logic Navigasi & Auto-Filter
+var SK_GLOBAL_FILTER_PRESET = null;
+function sk_notifNavigate(page, filterVal) {
+    SK_GLOBAL_FILTER_PRESET = filterVal;
+    loadContent(page);
+    // Kosongkan badge di Navbar (Inbox Mark as Read)
+    $('#notif-badge').hide();
+}
+
+// Tambahkan trigger saat lonceng diklik (Mark as Read)
+$(document).on('click', '#btn-notif-bell', function() {
+    $('#notif-badge').fadeOut('fast');
+});
 }
 
 /**
@@ -236,11 +273,34 @@ function sk_updateSidebarBadge() {
         count = parseInt(count) || 0;
         if (count > 0) {
             badge.text(count > 99 ? '99+' : count).css('display', 'block');
-            // Atur Warna: Merah untuk Admin (Antrean), Kuning untuk User (Perlu Aksi)
+            
+            // Sync dengan Navbar Bell untuk User (Jika belum mark as read)
+            var navBadge = $('#notif-badge');
+            var navCont = $('#notif-list-container');
+            
             if (isAdmin) {
                 badge.removeClass('badge-warning').addClass('badge-danger');
             } else {
                 badge.removeClass('badge-danger').addClass('badge-warning');
+                
+                // Update Navbar Badge jika User (dan belum disembunyikan sesi ini)
+                if (navBadge.length && navBadge.css('display') === 'none' && !sessionStorage.getItem('notif_read_sk')) {
+                    navBadge.text(count > 99 ? '99+' : count).show();
+                    if (navCont.length) {
+                        navCont.html(`
+                            <a href="#" class="dropdown-item p-3 border-bottom sk-notif-item" onclick="sk_notifNavigate('sk_data', 'Revisi'); sessionStorage.setItem('notif_read_sk', '1');">
+                                <div class="d-flex align-items-center">
+                                    <div class="bg-light-warning p-2 rounded-circle mr-3">
+                                        <i class="fas fa-exclamation-triangle text-warning"></i>
+                                    </div>
+                                    <div>
+                                        <p class="mb-0 font-weight-bold text-dark" style="font-size:14px;">Perlu Revisi</p>
+                                        <small class="text-muted">Ada ${count} berkas SK Anda yang perlu diperbaiki.</small>
+                                    </div>
+                                </div>
+                            </a>`);
+                    }
+                }
             }
         } else {
             badge.hide();

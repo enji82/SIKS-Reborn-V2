@@ -633,6 +633,12 @@
                 sessionStorage.setItem(cacheKey, freshDataJSON);
                 TUGAS_PREV_DATA_JSON = freshDataJSON;
 
+                // Sultan Auto-Filter logic for Notifications
+                if (typeof SK_GLOBAL_FILTER_PRESET !== 'undefined' && SK_GLOBAL_FILTER_PRESET) {
+                    $('#tugas_filterStatus').val(SK_GLOBAL_FILTER_PRESET);
+                    SK_GLOBAL_FILTER_PRESET = null; // Clear after use
+                }
+
                 // FORCE RE-INIT DataTable (Destroy then Re-create for Auto-width to trigger)
                 if ($.fn.DataTable.isDataTable('#tugas_tabelUtama')) {
                     $('#tugas_tabelUtama').DataTable().destroy();

@@ -68,9 +68,9 @@
         style="gap:0.25rem; flex-shrink:0; display:flex; align-items:center; height:57px; margin:0; padding:0;">
 
         <!-- Bell Notifikasi -->
-        <li class="nav-item position-relative" style="display:flex; align-items:center; height:100%;">
-          <a class="nav-link" href="#" id="btn-notif-bell" title="Data Menunggu Proses" style="color:#64748b; padding:0 0.65rem; height:57px;
-                    display:flex; align-items:center; position:relative;" onclick="return false;">
+        <li class="nav-item dropdown" style="display:flex; align-items:center; height:100%;">
+          <a class="nav-link dropdown-toggle no-caret" href="#" id="btn-notif-bell" data-toggle="dropdown" title="Pusat Notifikasi" style="color:#64748b; padding:0 0.65rem; height:57px;
+                    display:flex; align-items:center; position:relative;">
             <i class="fas fa-bell" style="font-size:1.05rem;"></i>
             <span id="notif-badge" class="badge badge-danger" style="position:absolute; top:10px; right:4px;
                          font-size:0.6rem; min-width:16px; height:16px;
@@ -78,6 +78,20 @@
                          line-height:16px; padding:0 4px;
                          box-shadow:0 1px 4px rgba(220,53,69,0.4);">0</span>
           </a>
+          <!-- Dropdown Notifikasi -->
+          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right shadow-lg border-0" id="notif-dropdown-menu" 
+            style="border-radius: 15px; overflow: hidden; margin-top: 8px; min-width: 300px;">
+            <span class="dropdown-item dropdown-header font-weight-bold text-maroon p-3 border-bottom">
+              <i class="fas fa-bell mr-2"></i>NOTIFIKASI AKTIF
+            </span>
+            <div id="notif-list-container" style="max-height: 350px; overflow-y: auto;">
+                <div class="text-center p-4 text-muted small">Memuat notifikasi...</div>
+            </div>
+            <div class="dropdown-divider m-0"></div>
+            <a href="#" class="dropdown-item dropdown-footer text-center p-2 text-muted small" onclick="return false;">
+                Sultan Intelligence System (v2.0)
+            </a>
+          </div>
         </li>
 
         <!-- ============ USER DROPDOWN ============ -->
