@@ -1,85 +1,90 @@
 <div class="content-header pb-0">
-  <div class="container-fluid">
-    <div class="row mb-2">
-      <div class="col-sm-12">
-        <h5 class="m-0 font-weight-bold">
-          <i class="fas fa-calendar-alt text-maroon mr-2"></i>Kelola Data Laporan Bulan
-        </h5>
-        <hr class="style-sultan-solid">
-      </div>
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <h5 class="m-0 font-weight-bold">
+                    <i class="fas fa-calendar-alt text-maroon mr-2"></i>Kelola Data Laporan Bulan
+                </h5>
+                <div class="sultan-title-line"></div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <section class="content">
-  <div class="container-fluid">
-    <div class="row justify-content-center">
-      <div class="col-12">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12">
 
-        <div class="card-sultan mb-3">
-          <div class="card-body py-2 px-3 border-left-dark">
-            <div class="d-flex align-items-center justify-content-between cursor-pointer" data-toggle="collapse" data-target="#lapbulkelola_infoCollapse">
-              <div class="d-flex align-items-center text-maroon font-weight-bold"><i class="fas fa-info-circle mr-2"></i> Informasi</div>
-              <i class="fas fa-chevron-down text-muted icon-sm"></i>
-            </div>
-            <div id="lapbulkelola_infoCollapse" class="collapse">
-              <div class="mt-2 pt-2 border-top small text-muted">
-                <ul class="mb-0 pl-3 text-dark mt-2" style="font-size:14px;">
-                    <li>Laporan bulan diunggah melalui tombol <b>+ Tambah</b> setiap bulan sebelum tanggal 10.</li>
-                    <li>Laporan yang sudah ditandatangani Kepala Sekolah dan Korwil discan dalam format PDF dengan ukuran maksimal 500 kb.</li>
-                    <li>Pencarian data dilakukan per <b>Tahun</b>. Ubah filter Bulan/Status untuk memilah data secara instan.</li>
-                    <li>Klik tombol <span class="badge badge-outline-danger">💬 Baca Catatan</span> untuk melihat alasan admin jika laporan direvisi/ditolak.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+                <!-- 1. KARTU INFORMASI (GAYA SULTAN COMPACT) -->
+                <div class="card-sultan card-sultan-info-compact mb-3">
+                    <div class="card-body border-left-dark">
+                        <div class="d-flex-info-header cursor-pointer" data-toggle="collapse"
+                            data-target="#lapbulkelola_infoCollapse">
+                            <div class="d-flex align-items-center text-maroon font-weight-bold">
+                                <i class="fas fa-info-circle mr-2"></i> Informasi
+                            </div>
+                            <i class="fas fa-chevron-down text-muted icon-sm"></i>
+                        </div>
+                        <div id="lapbulkelola_infoCollapse" class="collapse">
+                            <div class="mt-2 pt-2 border-top small text-muted">
+                                <ul class="mb-0 pl-3 text-dark mt-2" style="font-size:14px;">
+                                    <li>Laporan bulan diunggah melalui tombol <b>+ Tambah</b> setiap bulan sebelum tanggal 10.</li>
+                                    <li>Laporan yang sudah ditandatangani Kepala Sekolah dan Korwil discan dalam format PDF dengan ukuran maksimal 500 kb.</li>
+                                    <li>Pencarian data dilakukan per <b>Tahun</b>. Ubah filter Bulan/Status untuk memilah data secara instan.</li>
+                                    <li>Klik tombol <span class="badge badge-outline-danger">💬 Baca Catatan</span> untuk melihat alasan admin jika laporan direvisi/ditolak.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="card-sultan p-3 mb-3">
-            <div class="d-flex-gap align-items-center flex-wrap">
-                
-                <select id="lapbulkelola_filterJenjang" class="form-control form-control-sultan input-auto-width d-none">
-                    <option value="">- Semua Jenjang -</option>
-                    <option value="SD">SD</option>
-                    <option value="TK">TK</option>
-                    <option value="KB">KB</option>
-                </select>
+                <!-- 2. KARTU FILTER (GAYA SULTAN) -->
+                <div class="card-sultan p-3 mb-3">
+                    <div class="d-flex-gap align-items-center flex-wrap">
+                        
+                        <select id="lapbulkelola_filterJenjang" class="form-control form-control-sultan input-auto-width d-none">
+                            <option value="">- Semua Jenjang -</option>
+                            <option value="SD">SD</option>
+                            <option value="TK">TK</option>
+                            <option value="KB">KB</option>
+                        </select>
 
-                <select id="lapbulkelola_filterUnit" class="form-control form-control-sultan input-auto-width min-w-250 font-weight-bold text-maroon bg-light" disabled>
-                    <option value="">- Memvalidasi Akses... -</option>
-                </select>
+                        <select id="lapbulkelola_filterUnit" class="form-control form-control-sultan input-auto-width min-w-250 font-weight-bold text-maroon bg-light" disabled>
+                            <option value="">- Memvalidasi Akses... -</option>
+                        </select>
 
-                <select id="lapbulkelola_filterTahun" class="form-control form-control-sultan input-auto-width min-w-80"></select>
-                
-                <select id="lapbulkelola_filterBulan" class="form-control form-control-sultan input-auto-width">
-                    <option value="">- Semua Bulan -</option>
-                    <option value="Januari">Januari</option><option value="Februari">Februari</option><option value="Maret">Maret</option>
-                    <option value="April">April</option><option value="Mei">Mei</option><option value="Juni">Juni</option>
-                    <option value="Juli">Juli</option><option value="Agustus">Agustus</option><option value="September">September</option>
-                    <option value="Oktober">Oktober</option><option value="November">November</option><option value="Desember">Desember</option>
-                </select>
+                        <select id="lapbulkelola_filterTahun" class="form-control form-control-sultan input-auto-width min-w-80"></select>
+                        
+                        <select id="lapbulkelola_filterBulan" class="form-control form-control-sultan input-auto-width">
+                            <option value="">- Semua Bulan -</option>
+                            <option value="Januari">Januari</option><option value="Februari">Februari</option><option value="Maret">Maret</option>
+                            <option value="April">April</option><option value="Mei">Mei</option><option value="Juni">Juni</option>
+                            <option value="Juli">Juli</option><option value="Agustus">Agustus</option><option value="September">September</option>
+                            <option value="Oktober">Oktober</option><option value="November">November</option><option value="Desember">Desember</option>
+                        </select>
 
-                <select id="lapbulkelola_filterStatus" class="form-control form-control-sultan input-auto-width">
-                    <option value="">- Semua Status -</option>
-                    <option value="Diproses">Diproses</option>
-                    <option value="Disetujui">Disetujui</option>
-                    <option value="Revisi">Revisi</option>
-                    <option value="Ditolak">Ditolak</option>
-                </select>
+                        <select id="lapbulkelola_filterStatus" class="form-control form-control-sultan input-auto-width">
+                            <option value="">- Semua Status -</option>
+                            <option value="Diproses">Diproses</option>
+                            <option value="Disetujui">Disetujui</option>
+                            <option value="Revisi">Revisi</option>
+                            <option value="Ditolak">Ditolak</option>
+                        </select>
 
-                <div class="divider-vertical d-none d-md-block"></div>
+                        <div class="divider-vertical d-none d-md-block"></div>
 
-                <button type="button" id="lapbulkelola_btnCari" class="btn bg-white border shadow-sm text-secondary" title="Segarkan Data dari Server" disabled>
-                    <i class="fas fa-sync-alt text-maroon"></i>
-                </button>
+                        <button type="button" id="lapbulkelola_btnCari" class="btn bg-white border shadow-sm text-secondary" title="Segarkan Data dari Server" disabled>
+                            <i class="fas fa-sync-alt text-maroon"></i>
+                        </button>
 
-                <div class="ml-auto d-none d-md-block"></div>
+                        <div class="ml-auto d-none d-md-block"></div>
 
-                <button type="button" id="lapbulkelola_btnTambah" class="btn btn-maroon text-white font-weight-bold shadow-sm" disabled>
-                    <i class="fas fa-plus mr-1"></i> Tambah
-                </button>
-            </div>
-        </div>
+                        <button type="button" id="lapbulkelola_btnTambah" class="btn btn-maroon text-white font-weight-bold shadow-sm px-4" disabled>
+                            <i class="fas fa-plus mr-1"></i> Tambah
+                        </button>
+                    </div>
+                </div>
 
         <div class="card-sultan">
             <div class="card-body p-3">
@@ -95,22 +100,23 @@
 
               <div id="lapbulkelola_tableState" style="display: none;">
                   <table id="lapbulkelola_tabelUtama" class="table table-bordered table-hover table-premium table-sultan-compact mb-0 w-100 text-nowrap">
-                    <thead class="bg-light">
-                        <tr>
-                            <th class="col-sticky-left border-right text-center" style="width: 1%; white-space: nowrap; z-index: 5;">Aksi</th>
-                            <th class="text-left align-middle">Unit Kerja</th>
-                            <th class="text-center align-middle">Bulan</th>
-                            <th class="text-center align-middle">Tahun</th>
-                            <th class="text-center align-middle">Status Sek.</th>
-                            <th class="text-center align-middle">Jenjang</th>
-                            <th class="text-center align-middle">Rombel</th>
-                            <th class="text-center align-middle">Dokumen</th>
-                            <th class="text-left align-middle">Status Laporan</th>
-                            <th class="text-left align-middle">Dikirim</th>
-                            <th class="text-left align-middle">Diubah</th>
-                            <th class="text-left align-middle">Verifikasi</th>
-                        </tr>
-                    </thead>
+                        <thead class="thead-grey-sultan">
+                            <tr>
+                                <th class="col-sticky-left border-right text-center"
+                                    style="width: 1%; white-space: nowrap; z-index: 5;">Aksi</th>
+                                <th class="text-left align-middle">Unit Kerja</th>
+                                <th class="text-center align-middle">Bulan</th>
+                                <th class="text-center align-middle">Tahun</th>
+                                <th class="text-center align-middle">Status Sekolah</th>
+                                <th class="text-center align-middle">Jenjang</th>
+                                <th class="text-center align-middle">Rombel</th>
+                                <th class="text-center align-middle">Dokumen</th>
+                                <th class="text-left align-middle">Status Laporan</th>
+                                <th class="text-left align-middle">Dikirim</th>
+                                <th class="text-left align-middle">Diubah</th>
+                                <th class="text-left align-middle">Verifikasi</th>
+                            </tr>
+                        </thead>
                     <tbody></tbody>
                   </table>
               </div>
@@ -146,9 +152,11 @@
 <div class="modal fade" id="lapbulkelola_modalTambahData" tabindex="-1" role="dialog" data-backdrop="static">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content modal-content-sultan border-0 shadow-lg" style="min-height: 85vh;">
-            <div class="modal-header bg-maroon text-white py-3" id="lapbulkelola_headerModalForm">
-                <h5 class="modal-title font-weight-bold" id="lapbulkelola_judulModalForm"><i class="fas fa-plus-circle mr-2"></i>Form Laporan Bulan</h5>
-                <button type="button" class="close text-white" data-dismiss="modal" id="lapbulkelola_btnTutupModalForm"><span>&times;</span></button>
+            <div class="modal-header sultan-header-navy" id="lapbulkelola_headerModalForm">
+                <h5 class="modal-title font-weight-bold" id="lapbulkelola_judulModalForm"><i
+                        class="fas fa-plus-circle mr-2"></i>Form Laporan Bulan</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" id="lapbulkelola_btnTutupModalForm"
+                    style="opacity: 0.8;"><span>&times;</span></button>
             </div>
             <div class="modal-body bg-light p-0 position-relative">
                 
@@ -156,23 +164,27 @@
                     <div class="row w-100 justify-content-center">
                         <div class="col-12 text-center mb-5">
                             <h3 class="font-weight-bold text-dark">Pilih Jenjang Sekolah</h3>
-                            <p class="text-muted">Silakan pilih formulir sesuai jenjang sekolah Anda.</p>
+                            <p class="text-muted">Silakan pilih formulir laporan sesuai dengan jenjang sekolah Anda.</p>
                         </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="card card-jenjang shadow-sm cursor-pointer hover-scale btn-pilih-jenjang" data-jenjang="PAUD">
+                        <div class="col-md-5 mb-4">
+                            <div class="card card-sultan shadow-sm cursor-pointer hover-scale-sm btn-pilih-jenjang border-0" data-jenjang="PAUD">
                                 <div class="card-body text-center py-5">
-                                    <div class="icon-circle mb-4 bg-info text-white mx-auto"><i class="fas fa-cubes"></i></div>
-                                    <h4 class="font-weight-bold text-maroon">PAUD</h4>
-                                    <p class="mb-0 text-muted">TK, KB, SPS, TPA</p>
+                                    <div class="icon-circle mb-4 bg-light-info text-info mx-auto shadow-sm" style="width: 80px; height: 80px; font-size: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%;">
+                                        <i class="fas fa-cubes"></i>
+                                    </div>
+                                    <h4 class="font-weight-bold text-maroon mb-2">PAUD / TK</h4>
+                                    <p class="mb-0 text-muted small px-3">Formulir untuk jenjang TK, KB (Kelompok Belajar), SPS, dan TPA.</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="card card-jenjang shadow-sm cursor-pointer hover-scale btn-pilih-jenjang" data-jenjang="SD">
+                        <div class="col-md-5 mb-4">
+                            <div class="card card-sultan shadow-sm cursor-pointer hover-scale-sm btn-pilih-jenjang border-0" data-jenjang="SD">
                                 <div class="card-body text-center py-5">
-                                    <div class="icon-circle mb-4 bg-success text-white mx-auto"><i class="fas fa-school"></i></div>
-                                    <h4 class="font-weight-bold text-maroon">SD</h4>
-                                    <p class="mb-0 text-muted">Sekolah Dasar</p>
+                                    <div class="icon-circle mb-4 bg-light-success text-success mx-auto shadow-sm" style="width: 80px; height: 80px; font-size: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%;">
+                                        <i class="fas fa-school"></i>
+                                    </div>
+                                    <h4 class="font-weight-bold text-maroon mb-2">SEKOLAH DASAR</h4>
+                                    <p class="mb-0 text-muted small px-3">Formulir khusus untuk jenjang Sekolah Dasar (SD) Negeri / Swasta.</p>
                                 </div>
                             </div>
                         </div>
@@ -196,7 +208,7 @@
 <script type="text/template" id="lapbulkelola_tplFormSD">
     <form id="lapbulkelola_formSD" class="h-100 d-flex flex-column">
         <div class="bg-white px-3 pt-2 border-bottom shadow-sm sticky-top z-index-10">
-            <ul class="nav nav-tabs nav-fill font-weight-bold text-uppercase" style="font-size: 14px;" id="lapbulkelola_tabSD">
+            <ul class="nav nav-tabs nav-fill font-weight-bold text-uppercase" style="font-size: 13px;" id="lapbulkelola_tabSD">
                 <li class="nav-item"><a class="nav-link active btn-tab-sd py-2" id="lapbulkelola_link-lapbulkelola_ts1" data-target="lapbulkelola_ts1" href="#">1. Sekolah</a></li>
                 <li class="nav-item"><a class="nav-link disabled-tab btn-tab-sd py-2" id="lapbulkelola_link-lapbulkelola_ts2" data-target="lapbulkelola_ts2" href="#">2. Data Murid</a></li>
                 <li class="nav-item"><a class="nav-link disabled-tab btn-tab-sd py-2" id="lapbulkelola_link-lapbulkelola_ts3" data-target="lapbulkelola_ts3" href="#">3. Data PTK</a></li>
@@ -206,7 +218,7 @@
         <div class="tab-content p-3 bg-light flex-grow-1" style="overflow-y: auto;">
             
             <div class="tab-pane fade show active" id="lapbulkelola_ts1">
-                <div class="card card-sultan shadow-sm p-3">
+                <div class="card-sultan shadow-sm p-3">
                     <div class="row border-bottom pb-3 mb-3 shadow-sm bg-white sticky-top pt-2" style="z-index:10; margin-top:-10px;">
                         <div class="col-md-8 mb-2">
                             <label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Cari Sekolah (Ketik NPSN/Nama)</label>
@@ -232,13 +244,13 @@
                     </div>
                     <div id="lapbulkelola_dynamicFieldsSD">
                         <div class="row">
-                            <div class="col-lg-4 col-md-12 mb-3"><div class="group-box h-100"><span class="group-title text-maroon"><i class="fas fa-building mr-2"></i>Legalitas</span><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-0">Nama Yayasan</label><input type="text" name="yayasan" id="lapbulkelola_in_yayasan" class="form-control form-control-sultan form-control-sm"></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-0">No. SK Pendirian</label><input type="text" name="no_sk_pendirian" id="lapbulkelola_in_no_sk_pendirian" class="form-control form-control-sultan form-control-sm"></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-0">Tgl Pendirian</label><input type="date" name="tgl_pendirian" id="lapbulkelola_in_tgl_pendirian" class="form-control form-control-sultan form-control-sm"></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-0">No. SK Ijin Ops</label><input type="text" name="no_sk_ijin" id="lapbulkelola_in_no_sk_ijin" class="form-control form-control-sultan form-control-sm"></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-0">Tgl Ijin Ops</label><input type="date" name="tgl_ijin" id="lapbulkelola_in_tgl_ijin" class="form-control form-control-sultan form-control-sm"></div></div></div>
-                            <div class="col-lg-4 col-md-12 mb-3"><div class="group-box h-100"><span class="group-title text-maroon"><i class="fas fa-star mr-2"></i>Akreditasi</span><div class="row"><div class="col-6 mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-0">Akreditasi</label><select name="akreditasi" id="lapbulkelola_in_akreditasi" class="form-control form-control-sultan form-control-sm"><option value="-">-</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="Belum">Belum</option></select></div><div class="col-6 mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-0">Skor Nilai</label><input type="number" name="skor" id="lapbulkelola_in_skor" class="form-control form-control-sultan form-control-sm"></div></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-0">No. Sertifikat</label><input type="text" name="no_sertifikat" id="lapbulkelola_in_no_sertifikat" class="form-control form-control-sultan form-control-sm"></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-0">Tanggal Sertifikat</label><input type="date" name="tgl_sertifikat" id="lapbulkelola_in_tgl_sertifikat" class="form-control form-control-sultan form-control-sm"></div></div></div>
-                            <div class="col-lg-4 col-md-12 mb-3"><div class="group-box h-100"><span class="group-title text-maroon"><i class="fas fa-address-book mr-2"></i>Kontak</span><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-0">Alamat Sekolah</label><textarea name="alamat" id="lapbulkelola_in_alamat" class="form-control form-control-sultan form-control-sm" rows="3" style="resize:none;"></textarea></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-0">Nomor Telepon</label><input type="text" name="telepon" id="lapbulkelola_in_telepon" class="form-control form-control-sultan form-control-sm"></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-0">Email Sekolah</label><input type="text" name="email" id="lapbulkelola_in_email" class="form-control form-control-sultan form-control-sm"></div></div></div>
+                            <div class="col-lg-4 col-md-12 mb-3"><div class="group-box h-100"><span class="group-title text-maroon font-weight-bold"><i class="fas fa-building mr-2"></i>Legalitas</span><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-0">Nama Yayasan</label><input type="text" name="yayasan" id="lapbulkelola_in_yayasan" class="form-control form-control-sultan form-control-sm"></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-0">No. SK Pendirian</label><input type="text" name="no_sk_pendirian" id="lapbulkelola_in_no_sk_pendirian" class="form-control form-control-sultan form-control-sm"></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-0">Tgl Pendirian</label><input type="date" name="tgl_pendirian" id="lapbulkelola_in_tgl_pendirian" class="form-control form-control-sultan form-control-sm"></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-0">No. SK Ijin Ops</label><input type="text" name="no_sk_ijin" id="lapbulkelola_in_no_sk_ijin" class="form-control form-control-sultan form-control-sm"></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-0">Tgl Ijin Ops</label><input type="date" name="tgl_ijin" id="lapbulkelola_in_tgl_ijin" class="form-control form-control-sultan form-control-sm"></div></div></div>
+                            <div class="col-lg-4 col-md-12 mb-3"><div class="group-box h-100"><span class="group-title text-maroon font-weight-bold"><i class="fas fa-star mr-2"></i>Akreditasi</span><div class="row"><div class="col-6 mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-0">Akreditasi</label><select name="akreditasi" id="lapbulkelola_in_akreditasi" class="form-control form-control-sultan form-control-sm"><option value="-">-</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="Belum">Belum</option></select></div><div class="col-6 mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-0">Skor Nilai</label><input type="number" name="skor" id="lapbulkelola_in_skor" class="form-control form-control-sultan form-control-sm"></div></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-0">No. Sertifikat</label><input type="text" name="no_sertifikat" id="lapbulkelola_in_no_sertifikat" class="form-control form-control-sultan form-control-sm"></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-0">Tanggal Sertifikat</label><input type="date" name="tgl_sertifikat" id="lapbulkelola_in_tgl_sertifikat" class="form-control form-control-sultan form-control-sm"></div></div></div>
+                            <div class="col-lg-4 col-md-12 mb-3"><div class="group-box h-100"><span class="group-title text-maroon font-weight-bold"><i class="fas fa-address-book mr-2"></i>Kontak</span><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-0">Alamat Sekolah</label><textarea name="alamat" id="lapbulkelola_in_alamat" class="form-control form-control-sultan form-control-sm" rows="3" style="resize:none;"></textarea></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-0">Nomor Telepon</label><input type="text" name="telepon" id="lapbulkelola_in_telepon" class="form-control form-control-sultan form-control-sm"></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-0">Email Sekolah</label><input type="text" name="email" id="lapbulkelola_in_email" class="form-control form-control-sultan form-control-sm"></div></div></div>
                         </div>
                     </div>
                     <div class="text-right mt-3 border-top pt-3">
-                        <button type="button" class="btn btn-primary px-4 font-weight-bold shadow-sm btn-val-sek-sd">DATA MURID <i class="fas fa-arrow-right ml-1"></i></button>
+                        <button type="button" class="btn btn-maroon px-4 font-weight-bold shadow-sm btn-val-sek-sd">DATA MURID <i class="fas fa-arrow-right ml-1"></i></button>
                     </div>
                 </div>
             </div>
@@ -249,15 +261,15 @@
                 <div class="card card-sultan shadow-sm p-4 text-center">
                     <div id="lapbulkelola_boxFilePreviewSD" class="card border-left-info shadow-sm mb-4 d-none text-left"><div class="card-body py-3"><div class="d-flex justify-content-between align-items-center"><div class="d-flex align-items-center"><div class="icon-circle bg-light-info text-info mr-3" style="width:50px;height:50px;font-size:20px;"><i class="fas fa-file-pdf"></i></div><div><h6 class="font-weight-bold text-dark mb-0">Dokumen Tersimpan</h6></div></div><button type="button" class="btn btn-sm btn-outline-info font-weight-bold shadow-sm px-3 btn-aksi-preview"><i class="fas fa-eye mr-1"></i> Lihat Dokumen</button></div></div></div>
                     <h5 class="font-weight-bold mt-2 text-maroon"><i class="fas fa-cloud-upload-alt mr-2"></i>Unggah Laporan SD</h5>
-                    <p class="text-muted mb-1">Format PDF, Maksimal 500 KB.</p>
-                    <p class="text-info font-italic mb-3 font-weight-bold d-none" id="lapbulkelola_msgEditFileSD"><i class="fas fa-info-circle mr-1"></i> Biarkan kosong jika tidak ingin mengganti file.</p>
-                    <div class="custom-file w-75 mx-auto text-left mb-4">
+                    <p class="text-muted mb-1 small text-uppercase font-weight-bold">Format: PDF | Maks: 500 KB</p>
+                    <p class="text-info font-italic mb-3 font-weight-bold d-none" id="lapbulkelola_msgEditFileSD" style="font-size:12px;"><i class="fas fa-info-circle mr-1"></i> Biarkan kosong jika tidak ingin mengganti file.</p>
+                    <div class="custom-file w-75 mx-auto text-left mb-4 shadow-sm">
                         <input type="file" class="custom-file-input border-maroon input-file-lapbul" id="lapbulkelola_fileSD" accept="application/pdf">
                         <label class="custom-file-label text-truncate" for="lapbulkelola_fileSD">Pilih File Laporan...</label>
                     </div>
                     <div class="d-flex justify-content-between w-100 mt-4 border-top pt-4">
                         <button type="button" class="btn btn-default font-weight-bold px-4 shadow-sm btn-back-tab" data-target="lapbulkelola_ts3"><i class="fas fa-arrow-left mr-1"></i> Data PTK</button>
-                        <button type="submit" id="lapbulkelola_btnFinalSD" class="btn btn-maroon text-white px-5 font-weight-bold shadow-sm"><i class="fas fa-paper-plane mr-2"></i>KIRIM DATA</button>
+                        <button type="submit" id="lapbulkelola_btnFinalSD" class="btn btn-maroon text-white px-5 font-weight-bold shadow-sm elevation-1"><i class="fas fa-paper-plane mr-2"></i>KIRIM DATA</button>
                     </div>
                 </div>
             </div>
@@ -269,14 +281,14 @@
 <script type="text/template" id="lapbulkelola_tplFormPAUD">
     <form id="lapbulkelola_formPAUD" class="h-100 d-flex flex-column" novalidate>
         <div class="bg-white px-3 pt-2 border-bottom shadow-sm sticky-top z-index-10">
-            <ul class="nav nav-tabs nav-fill font-weight-bold text-uppercase" style="font-size: 14px;" id="lapbulkelola_tabPAUD">
+            <ul class="nav nav-tabs nav-fill font-weight-bold text-uppercase" style="font-size: 13px;" id="lapbulkelola_tabPAUD">
                 <li class="nav-item"><a class="nav-link active btn-tab-paud py-2" id="lapbulkelola_link-lapbulkelola_tp1" data-target="lapbulkelola_tp1" href="#">1. Sekolah</a></li>
                 <li class="nav-item"><a class="nav-link disabled-tab btn-tab-paud py-2" id="lapbulkelola_link-lapbulkelola_tp2" data-target="lapbulkelola_tp2" href="#">2. Data Murid</a></li>
                 <li class="nav-item"><a class="nav-link disabled-tab btn-tab-paud py-2" id="lapbulkelola_link-lapbulkelola_tp3" data-target="lapbulkelola_tp3" href="#">3. Data PTK</a></li>
                 <li class="nav-item"><a class="nav-link disabled-tab btn-tab-paud py-2" id="lapbulkelola_link-lapbulkelola_tp4" data-target="lapbulkelola_tp4" href="#">4. Unggah</a></li>
             </ul>
         </div>
-        <div class="tab-content p-4 bg-light flex-grow-1" style="overflow-y: auto;">
+        <div class="tab-content l-4 bg-light flex-grow-1" style="overflow-y: auto;">
             
             <div class="tab-pane fade show active" id="lapbulkelola_tp1">
                 <div class="card card-sultan shadow-sm p-3">
@@ -305,7 +317,7 @@
                     </div>
                     <div id="lapbulkelola_dynamicFieldsPAUD"></div>
                     <div class="text-right mt-3 border-top pt-3">
-                        <button type="button" class="btn btn-primary px-4 font-weight-bold shadow-sm btn-val-sek-paud">DATA MURID <i class="fas fa-arrow-right ml-1"></i></button>
+                        <button type="button" class="btn btn-maroon px-4 font-weight-bold shadow-sm btn-val-sek-paud">DATA MURID <i class="fas fa-arrow-right ml-1"></i></button>
                     </div>
                 </div>
             </div>
@@ -320,7 +332,7 @@
                     <div class="alert alert-secondary border mt-3 d-flex justify-content-between align-items-center"><div class="small font-weight-bold text-dark">Total Usia: <span id="lapbulkelola_totUsia" class="text-maroon font-weight-bold" style="font-size:16px;">0</span> (L:<span id="lapbulkelola_totUsiaL">0</span> P:<span id="lapbulkelola_totUsiaP">0</span>)<span id="lapbulkelola_txtTotRombel" style="display:none;"> | Total Kelompok: <span id="lapbulkelola_totRom" class="text-maroon font-weight-bold" style="font-size:16px;">0</span></span></div><span class="badge badge-warning p-2 px-3" id="lapbulkelola_statusValPAUD">Belum Sesuai</span></div>
                     <div class="d-flex justify-content-between mt-4 pt-3 border-top">
                         <button type="button" class="btn btn-default font-weight-bold px-4 shadow-sm btn-back-tab-paud" data-target="lapbulkelola_tp1"><i class="fas fa-arrow-left mr-1"></i> Data Sekolah</button>
-                        <button type="button" class="btn btn-primary px-4 font-weight-bold shadow-sm btn-val-murid-paud">DATA PTK <i class="fas fa-arrow-right ml-1"></i></button>
+                        <button type="button" class="btn btn-maroon px-4 font-weight-bold shadow-sm btn-val-murid-paud">DATA PTK <i class="fas fa-arrow-right ml-1"></i></button>
                     </div>
                 </div>
             </div>
@@ -332,7 +344,7 @@
                     <div class="group-box"><span class="group-title text-maroon font-weight-bold">C. Tenaga Kependidikan</span><div class="row"><div class="col-6 col-md-3 mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Penjaga</label><input type="number" name="td_penjaga" class="form-control form-control-sultan form-control-sm text-center val-ptk-paud" min="0"></div><div class="col-6 col-md-3 mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Tenaga Adm</label><input type="number" name="td_adm" class="form-control form-control-sultan form-control-sm text-center val-ptk-paud" min="0"></div><div class="col-6 col-md-3 mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Pustakawan</label><input type="number" name="td_perpus" class="form-control form-control-sultan form-control-sm text-center val-ptk-paud" min="0"></div><div class="col-6 col-md-3 mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Lainnya</label><input type="number" name="td_lain" class="form-control form-control-sultan form-control-sm text-center val-ptk-paud" min="0"></div></div></div>
                     <div class="d-flex justify-content-between mt-4 pt-3 border-top">
                         <button type="button" class="btn btn-default font-weight-bold px-4 shadow-sm btn-back-tab-paud" data-target="lapbulkelola_tp2"><i class="fas fa-arrow-left mr-1"></i> Data Murid</button>
-                        <button type="button" class="btn btn-primary px-4 font-weight-bold shadow-sm btn-val-ptk-paud">UNGGAH FILE <i class="fas fa-arrow-right ml-1"></i></button>
+                        <button type="button" class="btn btn-maroon px-4 font-weight-bold shadow-sm btn-val-ptk-paud">UNGGAH FILE <i class="fas fa-arrow-right ml-1"></i></button>
                     </div>
                 </div>
             </div>
@@ -417,9 +429,9 @@
 <div class="modal fade" id="lapbulkelola_modalVerifikasi" tabindex="-1" role="dialog" data-backdrop="static">
     <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
         <div class="modal-content border-0 shadow-lg modal-content-sultan d-flex flex-column" style="height: 90vh;">
-            <div class="modal-header bg-primary text-white py-2 flex-shrink-0">
+            <div class="modal-header sultan-header-navy flex-shrink-0">
                 <h5 class="modal-title font-weight-bold h6 mb-0"><i class="fas fa-clipboard-check mr-2"></i>Verifikasi Laporan Bulan</h5>
-                <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
+                <button type="button" class="close text-white" data-dismiss="modal" style="opacity: 0.8;"><span>&times;</span></button>
             </div>
             <form id="lapbulkelola_formVerifLapbul" class="h-100 p-0 m-0 d-flex flex-column">
                 <div class="modal-body p-0 bg-light flex-grow-1 overflow-hidden">
@@ -810,15 +822,15 @@ function lapbulkelola_renderTabel(data) {
         var safeNama = lapbulkelola_escapeJs(row.namaSekolah);        // VAKSIN DYNAMIC UI: Membedakan Aksi Admin dan User
         
         // BAB III: Tombol Aksi (Side-by-Side Modern Style)
-        var btnVerif = LAPBULKELOLA_IS_ADMIN ? `<button type="button" class="btn btn-icon-sultan btn-icon-sultan-primary shadow-sm btn-aksi-verif" data-id="${row.rowId}" data-source="${row.source}" data-nama="${safeNama}" data-bulan="${row.bulan}" data-tahun="${row.tahun}" data-file="${(row.fileUrl || "")}" title="Verifikasi"><i class="fas fa-clipboard-check"></i></button>` : '';
-        var btnEdit  = `<button type="button" class="btn btn-icon-sultan btn-icon-sultan-warning shadow-sm btn-aksi-edit ${isApproved ? 'btn-sultan-locked disabled' : ''}" data-id="${row.rowId}" data-source="${row.source}" title="Ubah Data" ${isApproved ? 'disabled' : ''}><i class="fas fa-pencil-alt"></i></button>`;
-        var btnHapus = `<button type="button" class="btn btn-icon-sultan btn-icon-sultan-danger shadow-sm btn-aksi-hapus ${isApproved ? 'btn-sultan-locked disabled' : ''}" data-id="${row.rowId}" data-source="${row.source}" data-nama="${safeNama}" title="Hapus Laporan" ${isApproved ? 'disabled' : ''}><i class="fas fa-trash-alt"></i></button>`;
+        var btnVerif = LAPBULKELOLA_IS_ADMIN ? `<button type="button" class="btn btn-icon-sultan btn-icon-sultan-primary shadow-sm btn-aksi-verif" data-id="${row.rowId}" data-source="${row.source}" data-nama="${safeNama}" data-bulan="${row.bulan}" data-tahun="${row.tahun}" data-file="${(row.fileUrl || "")}" title="Verifikasi Admin"><i class="fas fa-clipboard-check"></i></button>` : '';
+        var btnEdit  = `<button type="button" class="btn btn-icon-sultan btn-icon-sultan-warning shadow-sm btn-aksi-edit ${isApproved ? 'btn-sultan-locked disabled' : ''}" data-id="${row.rowId}" data-source="${row.source}" title="Ubah Laporan" ${isApproved ? 'disabled' : ''}><i class="fas fa-pencil-alt"></i></button>`;
+        var btnHapus = `<button type="button" class="btn btn-icon-sultan btn-icon-sultan-danger shadow-sm btn-aksi-hapus ${isApproved ? 'btn-sultan-locked disabled' : ''}" data-id="${row.rowId}" data-source="${row.source}" data-nama="${safeNama}" title="Hapus Permanen" ${isApproved ? 'disabled' : ''}><i class="fas fa-trash-alt"></i></button>`;
         var btnAksi = `<div class="d-flex flex-nowrap justify-content-center" style="gap:5px;">${btnVerif}${btnEdit}${btnHapus}</div>`;
 
         var btnFile = '<span class="text-muted small">-</span>';
         if (row.fileUrl && row.fileUrl.length > 5) {
             var safeFile2 = lapbulkelola_escapeJs(row.fileUrl);
-            btnFile = `<button class="btn btn-sm btn-outline-danger font-weight-bold shadow-sm btn-preview-dokumen" data-url="${safeFile2}" title="Lihat Laporan"><i class="fas fa-file-pdf mr-1"></i> Laporan</button>`;
+            btnFile = `<button class="btn btn-xs btn-outline-danger font-weight-bold shadow-sm btn-preview-dokumen px-2 py-1" data-url="${safeFile2}" title="Lihat Laporan PDF"><i class="fas fa-file-pdf mr-1"></i> LIHAT</button>`;
         }
 
         var metaKirim = `<div style="line-height:1.2;font-size:11px;"><span class="d-block font-weight-bold text-dark text-nowrap">${row.tglKirim || '-'}</span><span class="d-block text-muted text-nowrap">${lapbulkelola_escapeHtml(row.userKirim)}</span></div>`;
@@ -898,25 +910,22 @@ function lapbulkelola_buildBadgeStatus(status, ket) {
     var icon = 'clock'; 
     var label = "DIPROSES";
     
-    if (s.includes('ok') || s.includes('setuju') || s.includes('terima')) { 
+    if (s.includes('ok') || s.includes('setuju') || s.includes('terima') || s.includes('valid')) { 
         style = 'badge-sultan-light-success'; icon = 'check-circle'; label = "DISETUJUI"; 
     } 
-    else if (s.includes('revisi')) { 
+    else if (s.includes('revisi') || s.includes('perbaiki')) { 
         style = 'badge-sultan-light-info'; icon = 'sync-alt'; label = "REVISI"; 
     } 
-    else if (s.includes('tolak')) { 
+    else if (s.includes('tolak') || s.includes('salah')) { 
         style = 'badge-sultan-light-danger'; icon = 'times-circle'; label = "DITOLAK"; 
     } 
-    else if (s.includes('hapus')) { 
-        style = 'badge-secondary'; icon = 'trash'; label = "DIHAPUS"; 
-    }
     
     var badgeHtml = `<span class="badge badge-sultan ${style}"><i class="fas fa-${icon} mr-1"></i>${label}</span>`;
 
     if (ket && ket.trim().length > 2 && (s.includes('revisi') || s.includes('tolak'))) {
         var safeKet = lapbulkelola_escapeJs(ket);
-        var btnCatatan = `<div class="mt-2"><button type="button" class="btn btn-xs btn-outline-danger font-weight-bold shadow-sm btn-baca-catatan" style="font-size:10px; border-radius:4px;" data-pesan="${safeKet}"><i class="fas fa-comment-dots mr-1"></i> Baca Catatan</button></div>`;
-        return badgeHtml + btnCatatan;
+        var btnCatatan = `<div class="mt-2 text-center"><button type="button" class="btn btn-xs btn-outline-danger font-weight-bold shadow-sm btn-baca-catatan px-2" style="font-size:10px; border-radius:4px;" data-pesan="${safeKet}"><i class="fas fa-comment-dots mr-1"></i> Baca Catatan</button></div>`;
+        return `<div class="d-flex flex-column align-items-center">${badgeHtml}${btnCatatan}</div>`;
     }
 
     return badgeHtml; 
@@ -1107,7 +1116,30 @@ function lapbulkelola_colInput(k, suf, name) {
 function lapbulkelola_renderAgamaInput(k, label, prefix, isDefault) {
     var show = isDefault ? '' : 'style="display:none;"';
     var sel = isDefault ? 'selected' : '';
-    return `<div class="col-md-4 col-sm-6 mb-3"><div class="border rounded p-2 bg-light h-100"><div class="d-flex justify-content-between mb-2 pb-1 border-bottom"><span class="small font-weight-bold text-dark">${label}</span><select class="form-control form-control-sm w-50 py-0 sel-toggle-agama" data-prefix="${prefix}" data-kelas="${k}" style="height:22px; font-size:11px;"><option value="0">Tidak Ada</option><option value="1" ${sel}>Ada</option></select></div><div id="lapbulkelola_box_${prefix}${k}" ${show}><div class="d-flex align-items-center"><div class="input-group input-group-sm mr-2"><div class="input-group-prepend"><span class="input-group-text input-group-text-sm">L</span></div><input type="number" name="k${k}_${prefix}_l" data-kelas="${k}" class="form-control form-control-sultan hitung-siswa agama-l-${k}" min="0"></div><div class="input-group input-group-sm"><div class="input-group-prepend"><span class="input-group-text input-group-text-sm">P</span></div><input type="number" name="k${k}_${prefix}_p" data-kelas="${k}" class="form-control form-control-sultan hitung-siswa agama-p-${k}" min="0"></div></div></div></div></div>`;
+    return `
+    <div class="col-md-4 col-sm-6 mb-3">
+        <div class="card shadow-sm-inset border rounded p-2 h-100" style="background: #ffffff;">
+            <div class="d-flex justify-content-between mb-2 pb-1 border-bottom align-items-center">
+                <span class="small font-weight-bold text-dark text-uppercase" style="letter-spacing:0.5px; font-size:10px;">${label}</span>
+                <select class="form-control form-control-sm w-50 py-0 sel-toggle-agama font-weight-bold" data-prefix="${prefix}" data-kelas="${k}" style="height:24px; font-size:10px; border-radius:4px;">
+                    <option value="0">Tidak Ada</option>
+                    <option value="1" ${sel}>Ada</option>
+                </select>
+            </div>
+            <div id="lapbulkelola_box_${prefix}${k}" ${show}>
+                <div class="d-flex align-items-center">
+                    <div class="input-group input-group-sm mr-2 shadow-sm">
+                        <div class="input-group-prepend"><span class="input-group-text bg-light text-muted font-weight-bold" style="font-size:9px;">L</span></div>
+                        <input type="number" name="k${k}_${prefix}_l" data-kelas="${k}" class="form-control form-control-sultan hitung-siswa agama-l-${k} text-center font-weight-bold" min="0" placeholder="0">
+                    </div>
+                    <div class="input-group input-group-sm shadow-sm">
+                        <div class="input-group-prepend"><span class="input-group-text bg-light text-muted font-weight-bold" style="font-size:9px;">P</span></div>
+                        <input type="number" name="k${k}_${prefix}_p" data-kelas="${k}" class="form-control form-control-sultan hitung-siswa agama-p-${k} text-center font-weight-bold" min="0" placeholder="0">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>`;
 }
 
 function lapbulkelola_toggleAgama(el, prefix, k) {
