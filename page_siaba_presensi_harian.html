@@ -16,132 +16,129 @@
     <div class="row justify-content-center">
       <div class="col-12">
 
-        <!-- 1. PREMIUM INFORMATION PILL -->
-        <div class="card-sultan mb-3 shadow-none border">
-          <div class="card-body py-2 px-3">
-            <div class="d-flex align-items-center justify-content-between cursor-pointer" data-toggle="collapse" data-target="#harian_infoCollapse">
-              <div class="d-flex align-items-center text-maroon font-weight-bold" style="font-size: 0.9rem;">
-                <i class="fas fa-info-circle mr-2"></i> Petunjuk & Kode Status Presensi
-              </div>
-              <div class="badge badge-sultan-light-info px-3">Ketuk untuk Detail <i class="fas fa-chevron-down ml-2 icon-sm"></i></div>
+        <!-- 1. INFORMASI & KODE STATUS -->
+        <div class="card card-outline card-maroon collapsed-card shadow-sm mb-3">
+          <div class="card-header">
+            <h3 class="card-title font-weight-bold text-maroon"><i class="fas fa-info-circle mr-2"></i>Petunjuk & Kode Status Presensi</h3>
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i></button>
             </div>
-            <div id="harian_infoCollapse" class="collapse">
-              <div class="group-box mt-3 mb-2 shadow-none border-light">
-                  <div class="p-3">
-                    <ul class="mb-0 pl-3 text-justify small text-secondary" style="line-height: 1.8;">
-                      <li>Halaman ini menampilkan rekaman presensi harian ASN pada aplikasi Siaba berdasarkan periode yang dipilih.</li>
-                      <li>Data disinkronkan berkala dari database induk kearsipan sekolah.</li>
-                      <li><strong>Legenda Rekap:</strong> <b class="text-danger">TP</b>: Tidak Presensi, <b class="text-primary">HK</b>: Hari Kerja, <b class="text-primary">H</b>: Hadir, <b class="text-success">HA</b>: Hari Apel, <b class="text-success">APL</b>: Apel, <b class="text-success">TAp</b>: Tidak Apel, <b class="text-warning">HU/U/TU</b>: Hari Upacara/Upacara/Tidak Upacara.</li>
-                      <li><strong>Legenda Cuti/Dinas:</strong> <b class="text-info">CT/CAP/CS/CM</b>: Cuti (Tahunan/Penting/Sakit/Melahirkan), <b class="text-purple-sultan">DD/DL</b>: Dinas Dalam/Luar.</li>
-                      <li><strong>Legenda Pelanggaran:</strong> <b class="text-orange">TA/PLA/LA</b>: Terlambat / Pulang Awal / Lupa Absen.</li>
-                    </ul>
-                  </div>
+          </div>
+          <div class="card-body">
+            <ul class="mb-0 pl-3 text-justify small" style="line-height: 1.6;">
+              <li class="mb-1">Halaman ini menampilkan rekaman presensi harian seluruh ASN pada aplikasi Siaba berdasarkan periode bulan dan tahun yang dipilih.</li>
+              <li class="mb-1">Data disinkronkan secara berkala dari database induk kearsipan sekolah.</li>
+              <li class="mb-1"><strong>Legenda Rekap:</strong> <b class="text-danger">TP</b>: Tidak Presensi, <b class="text-primary">HK</b>: Hari Kerja, <b class="text-primary">H</b>: Hadir, <b class="text-success">HA</b>: Hari Apel, <b class="text-success">APL</b>: Apel, <b class="text-success">TAp</b>: Tidak Apel, <b class="text-dark">HU/U/TU</b>: Hari Upacara/Upacara/Tidak Upacara.</li>
+              <li class="mb-1"><strong>Legenda Cuti/Dinas:</strong> <b class="text-info">CT/CAP/CS/CM</b>: Cuti (Tahunan/Penting/Sakit/Melahirkan), <b class="text-purple-sultan">DD/DL</b>: Dinas Dalam/Luar.</li>
+              <li class="mb-1"><strong>Legenda Pelanggaran:</strong> <b class="text-orange">TA/PLA/LA</b>: Terlambat / Pulang Awal / Lupa Absen.</li>
+              <li><strong>Jam Kerja:</strong> Informasi jam kerja yang berlaku ditampilkan pada kolom Tanggal 1 s.d 31 (D=Datang, P=Pulang).</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 2. FILTER DATA -->
+        <div class="card shadow-sm border-0 mb-3">
+          <div class="card-body p-3">
+            <div class="row align-items-end">
+              <div class="col-md-2 col-6 mb-2 mb-md-0">
+                <label class="small font-weight-bold text-muted mb-1"><i class="fas fa-calendar mr-1"></i> Tahun</label>
+                <select id="harian_filterTahun" class="form-control form-control-sm select2-sultan" disabled></select>
+              </div>
+              <div class="col-md-2 col-6 mb-2 mb-md-0">
+                <label class="small font-weight-bold text-muted mb-1"><i class="fas fa-calendar-alt mr-1"></i> Bulan</label>
+                <select id="harian_filterBulan" class="form-control form-control-sm select2-sultan" disabled></select>
+              </div>
+              <div class="col-md-5 col-12 mb-2 mb-md-0">
+                <label class="small font-weight-bold text-muted mb-1"><i class="fas fa-university mr-1"></i> Unit Kerja</label>
+                <select id="harian_filterUnit" class="form-control form-control-sm select2-sultan" disabled>
+                   <option value="">- Memvalidasi Akses... -</option>
+                </select>
+              </div>
+              <div class="col-md-3 col-12 text-md-right">
+                <button type="button" id="harian_btnRefresh" class="btn btn-maroon btn-sm px-3 shadow-none font-weight-bold" disabled>
+                  <i class="fas fa-sync-alt mr-1"></i> Sinkron Data
+                </button>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- 2. MODERNIZED FILTER BAR -->
-        <div class="card-sultan p-3 mb-3 shadow-sm border-0">
-            <div class="d-flex-gap align-items-center flex-wrap">
-                <div class="input-group input-auto-width shadow-xs mr-1" style="border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0;">
-                    <div class="input-group-prepend"><span class="input-group-text bg-white border-0"><i class="fas fa-calendar-alt text-muted"></i></span></div>
-                    <select id="harian_filterTahun" class="form-control border-0 font-weight-bold" style="min-width: 100px;" disabled></select>
-                </div>
-                
-                <div class="input-group input-auto-width shadow-xs mr-2" style="border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0;">
-                    <select id="harian_filterBulan" class="form-control border-0 font-weight-bold" style="min-width: 130px;" disabled></select>
-                </div>
-
-                <div class="divider-vertical d-none d-md-block opacity-50"></div>
-
-                <div class="input-group flex-grow-1 shadow-xs" style="border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0; max-width: 400px;">
-                    <div class="input-group-prepend"><span class="input-group-text bg-white border-0"><i class="fas fa-university text-muted"></i></span></div>
-                    <select id="harian_filterUnit" class="form-control border-0 font-weight-bold text-maroon" disabled>
-                        <option value="">- Memvalidasi Akses... -</option>
-                    </select>
-                </div>
-
-                <button type="button" id="harian_btnRefresh" class="btn btn-light shadow-sm ml-auto font-weight-bold rounded-pill px-4 border" title="Segarkan Data dari Server" disabled>
-                    <i class="fas fa-sync-alt text-maroon mr-1"></i> SEGARKAN
-                </button>
+        <!-- 3. TABEL UTAMA -->
+        <div class="card shadow-sm border-0">
+          <div class="card-body p-0">
+            
+            <!-- Loading State -->
+            <div id="harian_loadingState" class="p-5 text-center">
+               <div class="spinner-border text-maroon mb-3" role="status"></div>
+               <p class="text-muted mb-0">Memuat Rekap Presensi...</p>
             </div>
-        </div>
 
-        <!-- 3. MAIN DATA TABLE (TURBO & ANTI-BLINK) -->
-        <div class="card-sultan border-0 shadow-sm overflow-hidden">
-            <div class="card-body p-0">
-              
-              <!-- Skeleton Container -->
-              <div id="harian_skeletonState" class="p-4"></div>
-
-              <!-- Real Table Container -->
-              <div id="harian_tableState" style="display: none;" class="animate__animated animate__fadeIn">
-                  <table id="harian_tabelUtama" class="table table-hover table-premium table-sultan-compact mb-0 w-100 text-nowrap border-0">
-                     <thead class="bg-light">
-                        <tr id="harian_rowHeaderUtama">
-                           <th class="col-sticky-left border-right text-left px-3 align-middle font-weight-bold bg-light" style="z-index: 15;">Nama ASN</th>
-                           
-                           <th class="text-center align-middle bg-soft-danger px-2 border-bottom-0">TP</th>
-                           <th class="text-center align-middle bg-soft-primary px-2 border-bottom-0">HK</th>
-                           <th class="text-center align-middle bg-soft-primary px-2 border-bottom-0">H</th>
-                           <th class="text-center align-middle bg-soft-success px-2 border-bottom-0">HA</th>
-                           <th class="text-center align-middle bg-soft-success px-2 border-bottom-0">APL</th>
-                           <th class="text-center align-middle bg-soft-success px-2 border-bottom-0">TAp</th>
-                           <th class="text-center align-middle bg-soft-warning px-2 border-bottom-0">HU</th>
-                           <th class="text-center align-middle bg-soft-warning px-2 border-bottom-0">U</th>
-                           <th class="text-center align-middle bg-soft-warning px-2 border-bottom-0">TU</th>
-                           <th class="text-center align-middle bg-soft-info px-2 border-bottom-0">CT</th>
-                           <th class="text-center align-middle bg-soft-info px-2 border-bottom-0">CAP</th>
-                           <th class="text-center align-middle bg-soft-info px-2 border-bottom-0">CS</th>
-                           <th class="text-center align-middle bg-soft-info px-2 border-bottom-0">CM</th>
-                           <th class="text-center align-middle bg-soft-purple px-2 border-bottom-0">DD</th>
-                           <th class="text-center align-middle bg-soft-purple px-2 border-bottom-0">DL</th>
-                           <th class="text-center align-middle bg-soft-orange px-2 border-bottom-0">TA</th>
-                           <th class="text-center align-middle bg-soft-orange px-2 border-bottom-0">W.TA</th>
-                           <th class="text-center align-middle bg-soft-orange px-2 border-bottom-0">PLA</th>
-                           <th class="text-center align-middle bg-soft-orange px-2 border-bottom-0">W.PLA</th>
-                           <th class="text-center align-middle bg-soft-danger px-2 border-bottom-0">LA</th>
-                           
-                           <!-- Tanggal 1-31 (D=Datang, P=Pulang) -->
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="1">1D</th><th class="text-center align-middle harian-col-tgl" data-tgl="1">1P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="2">2D</th><th class="text-center align-middle harian-col-tgl" data-tgl="2">2P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="3">3D</th><th class="text-center align-middle harian-col-tgl" data-tgl="3">3P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="4">4D</th><th class="text-center align-middle harian-col-tgl" data-tgl="4">4P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="5">5D</th><th class="text-center align-middle harian-col-tgl" data-tgl="5">5P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="6">6D</th><th class="text-center align-middle harian-col-tgl" data-tgl="6">6P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="7">7D</th><th class="text-center align-middle harian-col-tgl" data-tgl="7">7P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="8">8D</th><th class="text-center align-middle harian-col-tgl" data-tgl="8">8P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="9">9D</th><th class="text-center align-middle harian-col-tgl" data-tgl="9">9P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="10">10D</th><th class="text-center align-middle harian-col-tgl" data-tgl="10">10P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="11">11D</th><th class="text-center align-middle harian-col-tgl" data-tgl="11">11P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="12">12D</th><th class="text-center align-middle harian-col-tgl" data-tgl="12">12P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="13">13D</th><th class="text-center align-middle harian-col-tgl" data-tgl="13">13P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="14">14D</th><th class="text-center align-middle harian-col-tgl" data-tgl="14">14P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="15">15D</th><th class="text-center align-middle harian-col-tgl" data-tgl="15">15P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="16">16D</th><th class="text-center align-middle harian-col-tgl" data-tgl="16">16P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="17">17D</th><th class="text-center align-middle harian-col-tgl" data-tgl="17">17P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="18">18D</th><th class="text-center align-middle harian-col-tgl" data-tgl="18">18P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="19">19D</th><th class="text-center align-middle harian-col-tgl" data-tgl="19">19P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="20">20D</th><th class="text-center align-middle harian-col-tgl" data-tgl="20">20P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="21">21D</th><th class="text-center align-middle harian-col-tgl" data-tgl="21">21P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="22">22D</th><th class="text-center align-middle harian-col-tgl" data-tgl="22">22P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="23">23D</th><th class="text-center align-middle harian-col-tgl" data-tgl="23">23P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="24">24D</th><th class="text-center align-middle harian-col-tgl" data-tgl="24">24P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="25">25D</th><th class="text-center align-middle harian-col-tgl" data-tgl="25">25P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="26">26D</th><th class="text-center align-middle harian-col-tgl" data-tgl="26">26P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="27">27D</th><th class="text-center align-middle harian-col-tgl" data-tgl="27">27P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="28">28D</th><th class="text-center align-middle harian-col-tgl" data-tgl="28">28P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="29">29D</th><th class="text-center align-middle harian-col-tgl" data-tgl="29">29P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="30">30D</th><th class="text-center align-middle harian-col-tgl" data-tgl="30">30P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="31">31D</th><th class="text-center align-middle harian-col-tgl" data-tgl="31">31P</th>
-                        </tr>
-                     </thead>
-                     <tbody class="border-top-0"></tbody>
-                  </table>
-              </div>
-
+            <!-- Table State -->
+            <div id="harian_tableState" style="display: none;">
+              <table id="harian_tabelUtama" class="table table-bordered table-hover table-striped mb-0 w-100 text-nowrap">
+                 <thead class="bg-light">
+                    <tr>
+                       <th class="col-sticky-left border-right text-left px-3 align-middle font-weight-bold bg-light" style="z-index: 5;">Nama ASN</th>
+                       <th class="text-center align-middle bg-pale-danger">TP</th>
+                       <th class="text-center align-middle bg-pale-primary">HK</th>
+                       <th class="text-center align-middle bg-pale-primary">H</th>
+                       <th class="text-center align-middle bg-pale-success">HA</th>
+                       <th class="text-center align-middle bg-pale-success">APL</th>
+                       <th class="text-center align-middle bg-pale-success">TAp</th>
+                       <th class="text-center align-middle bg-pale-warning text-dark">HU</th>
+                       <th class="text-center align-middle bg-pale-warning text-dark">U</th>
+                       <th class="text-center align-middle bg-pale-warning text-dark">TU</th>
+                       <th class="text-center align-middle bg-pale-info">CT</th>
+                       <th class="text-center align-middle bg-pale-info">CAP</th>
+                       <th class="text-center align-middle bg-pale-info">CS</th>
+                       <th class="text-center align-middle bg-pale-info">CM</th>
+                       <th class="text-center align-middle bg-pale-purple">DD</th>
+                       <th class="text-center align-middle bg-pale-purple">DL</th>
+                       <th class="text-center align-middle bg-pale-orange">TA</th>
+                       <th class="text-center align-middle bg-pale-orange">W.TA</th>
+                       <th class="text-center align-middle bg-pale-orange">PLA</th>
+                       <th class="text-center align-middle bg-pale-orange">W.PLA</th>
+                       <th class="text-center align-middle bg-pale-danger">LA</th>
+                       
+                       <!-- Tanggal 1-31 -->
+                       <th class="text-center align-middle">1D</th><th class="text-center align-middle">1P</th>
+                       <th class="text-center align-middle">2D</th><th class="text-center align-middle">2P</th>
+                       <th class="text-center align-middle">3D</th><th class="text-center align-middle">3P</th>
+                       <th class="text-center align-middle">4D</th><th class="text-center align-middle">4P</th>
+                       <th class="text-center align-middle">5D</th><th class="text-center align-middle">5P</th>
+                       <th class="text-center align-middle">6D</th><th class="text-center align-middle">6P</th>
+                       <th class="text-center align-middle">7D</th><th class="text-center align-middle">7P</th>
+                       <th class="text-center align-middle">8D</th><th class="text-center align-middle">8P</th>
+                       <th class="text-center align-middle">9D</th><th class="text-center align-middle">9P</th>
+                       <th class="text-center align-middle">10D</th><th class="text-center align-middle">10P</th>
+                       <th class="text-center align-middle">11D</th><th class="text-center align-middle">11P</th>
+                       <th class="text-center align-middle">12D</th><th class="text-center align-middle">12P</th>
+                       <th class="text-center align-middle">13D</th><th class="text-center align-middle">13P</th>
+                       <th class="text-center align-middle">14D</th><th class="text-center align-middle">14P</th>
+                       <th class="text-center align-middle">15D</th><th class="text-center align-middle">15P</th>
+                       <th class="text-center align-middle">16D</th><th class="text-center align-middle">16P</th>
+                       <th class="text-center align-middle">17D</th><th class="text-center align-middle">17P</th>
+                       <th class="text-center align-middle">18D</th><th class="text-center align-middle">18P</th>
+                       <th class="text-center align-middle">19D</th><th class="text-center align-middle">19P</th>
+                       <th class="text-center align-middle">20D</th><th class="text-center align-middle">20P</th>
+                       <th class="text-center align-middle">21D</th><th class="text-center align-middle">21P</th>
+                       <th class="text-center align-middle">22D</th><th class="text-center align-middle">22P</th>
+                       <th class="text-center align-middle">23D</th><th class="text-center align-middle">23P</th>
+                       <th class="text-center align-middle">24D</th><th class="text-center align-middle">24P</th>
+                       <th class="text-center align-middle">25D</th><th class="text-center align-middle">25P</th>
+                       <th class="text-center align-middle">26D</th><th class="text-center align-middle">26P</th>
+                       <th class="text-center align-middle">27D</th><th class="text-center align-middle">27P</th>
+                       <th class="text-center align-middle">28D</th><th class="text-center align-middle">28P</th>
+                       <th class="text-center align-middle">29D</th><th class="text-center align-middle">29P</th>
+                       <th class="text-center align-middle">30D</th><th class="text-center align-middle">30P</th>
+                       <th class="text-center align-middle">31D</th><th class="text-center align-middle">31P</th>
+                    </tr>
+                 </thead>
+                 <tbody></tbody>
+              </table>
             </div>
+
+          </div>
         </div>
 
       </div>
@@ -164,7 +161,7 @@ var HARIAN_UNIT_TERKUNCI = "";
 var HARIAN_USER_NPSN = "";
 
 // =================================================================
-// 1. INITIALIZATION & ANTI-BLINK STATE
+// 1. INITIALIZATION: GATEKEEPER & SPA CHECK
 // =================================================================
 $(document).ready(function() {
     if ($('#harian_filterTahun').data('spa-init')) return;
@@ -181,9 +178,6 @@ $(document).ready(function() {
     $(document).off('change', '#harian_filterTahun, #harian_filterBulan').on('change', '#harian_filterTahun, #harian_filterBulan', harian_prosesCariData);
     $(document).off('change', '#harian_filterUnit').on('change', '#harian_filterUnit', harian_terapkanFilterLokal);
     $(document).off('click', '#harian_btnRefresh').on('click', '#harian_btnRefresh', harian_tarikDataServer);
-    
-    // Render Skeletons first
-    harian_renderSkeleton();
     
     // Inisiasi Waktu & Data
     harian_initFilters(); 
@@ -256,19 +250,14 @@ function harian_tarikDataServer() {
     var bl = $('#harian_filterBulan').val();
     if(!th || !bl) return;
 
-    $('#harian_btnRefresh').prop('disabled', true).html('<i class="fas fa-sync-alt fa-spin mr-1"></i> SINKRON');
-    
-    // Anti-Blink: Show Skeleton if no table instance
-    if (!HARIAN_TABEL_INSTANCE) {
-        $('#harian_tableState').hide();
-        $('#harian_skeletonState').show();
-        harian_renderSkeleton();
-    }
+    $('#harian_btnRefresh').prop('disabled', true).html('<i class="fas fa-sync-alt fa-spin mr-1"></i> Sinkron...');
+    $('#harian_tableState').hide();
+    $('#harian_loadingState').show();
 
     google.script.run
         .withSuccessHandler(function(res) {
             HARIAN_IS_FETCHING = false;
-            $('#harian_btnRefresh').prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon mr-1"></i> SEGARKAN');
+            $('#harian_btnRefresh').prop('disabled', false).html('<i class="fas fa-sync-alt mr-1"></i> Sinkron Data');
             
             var data = JSON.parse(res);
             if (data.error) { Sultan.alert('error', 'Gagal', data.error); return; }
@@ -279,14 +268,11 @@ function harian_tarikDataServer() {
 
             if(HARIAN_IS_ADMIN) harian_populateDropdownUnit();
             
-            // Apply Weekend styling to Header manually before drawing table
-            harian_styleWeekendsHead(th, bl);
-            
             harian_terapkanFilterLokal();
         })
         .withFailureHandler(function(err) {
             HARIAN_IS_FETCHING = false;
-            $('#harian_btnRefresh').prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon mr-1"></i> SEGARKAN');
+            $('#harian_btnRefresh').prop('disabled', false).html('<i class="fas fa-sync-alt mr-1"></i> Sinkron Data');
             Sultan.alert('error', 'Koneksi Error', err.message);
         })
         .getSiabaPresensiHarian(th, bl, "SEMUA");
@@ -304,28 +290,8 @@ function harian_populateDropdownUnit() {
 }
 
 // =================================================================
-// 4. ELITE RENDERING (DATATABLES + SKELETON)
+// 4. ELITE RENDERING (VAKSIN DATA-TABLES V8)
 // =================================================================
-function harian_renderSkeleton() {
-    var html = `
-        <div class="sultan-skeleton mb-3" style="height: 40px; border-radius: 8px;"></div>
-        <div class="table-responsive sultan-scroll border rounded" style="overflow: hidden;">
-            <table class="table mb-0">
-                <thead><tr class="bg-light">
-                    <th class="py-3 px-3 col-sticky-left" style="width: 200px;"><div class="sultan-skeleton" style="height: 20px; width: 80%;"></div></th>
-                    ${Array(10).fill('<th><div class="sultan-skeleton" style="height: 20px; width: 40px;"></div></th>').join('')}
-                </tr></thead>
-                <tbody>
-                    ${Array(5).fill(`<tr>
-                        <td class="col-sticky-left"><div class="sultan-skeleton" style="height: 14px; width: 90%;"></div><div class="sultan-skeleton mt-2" style="height: 10px; width: 60%;"></div></td>
-                        ${Array(10).fill('<td><div class="sultan-skeleton" style="height: 14px; width: 30px;"></div></td>').join('')}
-                    </tr>`).join('')}
-                </tbody>
-            </table>
-        </div>`;
-    $('#harian_skeletonState').html(html);
-}
-
 function harian_terapkanFilterLokal() {
     var tAdminUnit = HARIAN_IS_ADMIN ? ($('#harian_filterUnit').val() || "SEMUA").toUpperCase() : "";
     var tUnitUser  = String(HARIAN_UNIT_TERKUNCI).trim().toUpperCase();
@@ -343,48 +309,51 @@ function harian_renderTabel(rows) {
         var arrRow = [];
         var visIdx = 0;
         
+        // Loop skipping index 1 (NIP Raw)
         for (var rawIdx = 0; rawIdx < row.length - 1; rawIdx++) {
             if (rawIdx === 1) continue; 
             var val = row[rawIdx];
+            var strVal = String(val).trim().toUpperCase();
             var display = val;
             
             if (visIdx === 0) {
                 var safeNama = harian_escapeHtml(row[0]);
                 var safeNip = harian_escapeHtml(row[1]);
-                display = `<div class="d-flex align-items-center">
-                    <div class="bg-soft-primary rounded-circle mr-3 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; flex-shrink: 0;">
-                        <span class="text-maroon font-weight-bold" style="font-size: 0.75rem;">${safeNama.charAt(0)}</span>
-                    </div>
-                    <div class="text-truncate">
-                        <div class="font-weight-bold text-navy" style="font-size: 0.85rem;">${safeNama}</div>
-                        <div class="xx-small text-muted font-weight-bold">${safeNip}</div>
-                    </div>
-                </div>`;
+                var txtUnitHtml = (HARIAN_IS_ADMIN) ? `<div class="xx-small text-maroon font-weight-bold mt-1 text-wrap" style="max-width:200px; white-space:normal;">${harian_escapeHtml(row[row.length-1])}</div>` : "";
+                
+                // VAKSIN LEBAR: Menggunakan text-nowrap agar membentang
+                display = `<div class="font-weight-bold text-dark text-nowrap text-left">${safeNama}</div><div class="small text-muted text-left text-nowrap">${safeNip}</div>${txtUnitHtml}`;
             } 
             else if (visIdx >= 1 && visIdx <= 20) {
-                if (val == 0 || val == "0" || val === "") display = `<span class="opacity-25">-</span>`;
-                else {
-                    var cls = "text-dark";
-                    if (visIdx === 1) cls = "text-danger";
-                    else if (visIdx <= 3) cls = "text-primary";
-                    else if (visIdx <= 6) cls = "text-success";
-                    else if (visIdx <= 9) cls = "text-warning";
-                    else if (visIdx <= 13) cls = "text-info";
-                    else if (visIdx <= 15) cls = "text-purple-sultan";
-                    else if (visIdx <= 19) cls = "text-orange-sultan";
-                    else if (visIdx === 20) cls = "text-danger-bold";
-                    display = `<b class="${cls}">${harian_escapeHtml(val)}</b>`;
+                // Kolom Rekap (TP s.d LA)
+                if (val == 0 || val == "0" || strVal === "") {
+                    display = `<span class="text-muted opacity-50">-</span>`;
+                } else {
+                    var safeVal = harian_escapeHtml(val);
+                    if (visIdx === 1) display = `<span class="text-danger font-weight-bold">${safeVal}</span>`;
+                    else if (visIdx >= 2 && visIdx <= 3) display = `<span class="text-primary font-weight-bold">${safeVal}</span>`;
+                    else if (visIdx >= 4 && visIdx <= 6) display = `<span class="text-success font-weight-bold">${safeVal}</span>`;
+                    else if (visIdx >= 7 && visIdx <= 9) display = `<span class="text-dark font-weight-bold">${safeVal}</span>`;
+                    else if (visIdx >= 10 && visIdx <= 13) display = `<span class="text-info font-weight-bold">${safeVal}</span>`;
+                    else if (visIdx >= 14 && visIdx <= 15) display = `<span class="text-purple-sultan font-weight-bold">${safeVal}</span>`;
+                    else if (visIdx >= 16 && visIdx <= 19) display = `<span class="text-orange font-weight-bold">${safeVal}</span>`;
+                    else if (visIdx === 20) display = `<span class="text-danger font-weight-bold">${safeVal}</span>`;
                 }
             }
-            else { 
-                var str = String(val).toUpperCase();
-                if (str === "" || str === "-" || str === "0") display = `<span class="opacity-10">.</span>`;
+            else if (visIdx >= 21) { 
+                // Kolom Tanggal (1D s.d 31P)
+                if (strVal === "") {
+                    display = ""; 
+                }
+                else if (strVal === "-" || val == 0 || val == "0") {
+                    display = `<span class="text-muted opacity-50">-</span>`;
+                }
                 else {
-                    var sCls = "text-dark";
-                    if (['CT','CS','CAP','CM','CB','CLTN'].includes(str)) sCls = "text-green-sultan";
-                    else if (['DD','DL'].includes(str)) sCls = "text-blue-sultan";
-                    else if (['TA','PLA','LA'].includes(str)) sCls = "text-danger-bold";
-                    display = `<span class="${sCls} font-weight-bold small">${harian_escapeHtml(str)}</span>`;
+                    var safeStr = harian_escapeHtml(strVal);
+                    if (['CT','CS','SAP','CM','CB','CLTN'].includes(strVal)) display = `<span class="text-green-sultan font-weight-bold">${safeStr}</span>`;
+                    else if (['DD','DL'].includes(strVal)) display = `<span class="text-blue-sultan font-weight-bold">${safeStr}</span>`;
+                    else if (['TA','PLA','LA'].includes(strVal)) display = `<span class="text-danger font-weight-bold">${safeStr}</span>`;
+                    else display = `<span class="text-dark font-weight-bold">${safeStr}</span>`;
                 }
             }
             arrRow.push(display);
@@ -393,81 +362,90 @@ function harian_renderTabel(rows) {
         dtArray.push(arrRow);
     });
 
+    // JIKA DATATABLES BELUM PERNAH DIBUAT
     if (!$.fn.DataTable.isDataTable('#harian_tabelUtama')) {
         HARIAN_TABEL_INSTANCE = $('#harian_tabelUtama').DataTable({
-            "data": dtArray, "ordering": false, "autoWidth": false, "pageLength": 10,
-            "dom": "<'row px-3 pt-3'<'col-md-6'l><'col-md-6'f>>" +
-                   "<'row'<'col-12'tr>>" + 
-                   "<'row p-3'<'col-md-5 small text-muted'i><'col-md-7'p>>",
+            "data": dtArray, 
+            "destroy": true, "ordering": false, "pageLength": 10, "autoWidth": false,
+            "deferRender": true, // BAB VII: Performa Mutlak untuk tabel 80+ kolom
+            "dom": "<'row mb-2'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
+                   "<'row'<'col-sm-12'<'table-responsive sultan-scroll'tr>>>" +
+                   "<'row mt-3'<'col-sm-12 col-md-5 small text-muted'i><'col-sm-12 col-md-7'p>>",
             "columnDefs": [
-                { "targets": 0, "className": "col-sticky-left bg-white border-right shadow-sm-right" },
-                { "targets": "_all", "className": "align-middle text-center px-2 py-2" }
+                // VAKSIN LEBAR: target 0 pakai width: auto
+                { "targets": 0, "width": "auto", "className": "col-sticky-left bg-white align-middle font-weight-bold border-right text-dark text-left" },
+                
+                // VAKSIN BAB VII (Anti "_all"): Membuat array [1, 2, ..., 82] secara matematis
+                { "targets": Array.from({length: 82}, function(_, i) { return i + 1; }), "className": "text-center align-middle" }
             ],
-            "language": { "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", "search": "" , "searchPlaceholder": "Cari Nama..."},
+            "language": { 
+                "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", 
+                "search": "", "searchPlaceholder": "Cari Nama...",
+                "emptyTable": '<div class="py-4 text-center text-muted"><i class="fas fa-clipboard-list fa-3x text-gray-300 mb-3" style="opacity: 0.6;"></i><br><h6 class="font-weight-bold text-dark mb-1">Belum Ada Presensi</h6><p class="small mb-0">Tidak ada data presensi harian untuk filter terpilih.</p></div>' 
+            },
+            
+            // VAKSIN PERFORMA TURBO: Menggunakan Native DOM (Tanpa jQuery attr/addClass) untuk menghindari Paint Lag pada 800+ sel
             "createdRow": function(row, data, dataIndex) {
                  var tds = row.childNodes;
-                 var headRow = $('#harian_rowHeaderUtama th');
-                 
-                 for (var i = 0; i < tds.length; i++) {
-                     var cell = tds[i];
-                     if (i === 0) {
-                         // Native Fix for Sticky Column browser discrepancy
+                 for (var visIdx = 0; visIdx < tds.length; visIdx++) {
+                     var cell = tds[visIdx];
+                     var valHtml = data[visIdx]; 
+                     var textVal = cell.textContent.trim(); 
+
+                     if (visIdx > 0) cell.className = 'align-middle text-center px-2 py-2';
+                     else {
+                         cell.className = 'col-sticky-left border-right text-left px-3';
                          cell.style.position = 'sticky';
                          cell.style.left = '0';
-                         cell.style.zIndex = '10';
+                         cell.style.zIndex = '2';
                          cell.style.backgroundColor = '#ffffff';
-                         continue; 
                      }
 
-                     // Colors with !important to ensure override
-                     if (i === 1) cell.style.setProperty('background-color', '#f8d7da', 'important'); 
-                     else if (i <= 3) cell.style.setProperty('background-color', '#e3f2fd', 'important'); 
-                     else if (i <= 6) cell.style.setProperty('background-color', '#e8f5e9', 'important'); 
-                     else if (i <= 9) cell.style.setProperty('background-color', '#fffde7', 'important'); 
-                     else if (i <= 13) cell.style.setProperty('background-color', '#e0f7fa', 'important'); 
-                     else if (i <= 15) cell.style.setProperty('background-color', '#f3e5f5', 'important'); 
-                     else if (i <= 19) cell.style.setProperty('background-color', '#fff3e0', 'important'); 
-                     else if (i === 20) cell.style.setProperty('background-color', '#f8d7da', 'important'); 
-                     
-                     // Weekend styling for daily columns
-                     if (i >= 21) {
-                        if (headRow.eq(i).hasClass('bg-weekend')) {
-                            cell.style.setProperty('background-color', '#fff5f5', 'important');
-                        }
+                     if (visIdx === 1) cell.style.setProperty('background-color', '#f8d7da', 'important'); 
+                     else if (visIdx >= 2 && visIdx <= 3) cell.style.setProperty('background-color', '#cce5ff', 'important'); 
+                     else if (visIdx >= 4 && visIdx <= 6) cell.style.setProperty('background-color', '#d4edda', 'important'); 
+                     else if (visIdx >= 7 && visIdx <= 9) cell.style.setProperty('background-color', '#fff3cd', 'important'); 
+                     else if (visIdx >= 10 && visIdx <= 13) cell.style.setProperty('background-color', '#d1ecf1', 'important'); 
+                     else if (visIdx >= 14 && visIdx <= 15) cell.style.setProperty('background-color', '#e2d9f3', 'important'); 
+                     else if (visIdx >= 16 && visIdx <= 19) cell.style.setProperty('background-color', '#ffe8d6', 'important'); 
+                     else if (visIdx === 20) cell.style.setProperty('background-color', '#f8d7da', 'important'); 
+
+                     if (visIdx >= 21) {
+                         if (valHtml === "") {
+                             cell.style.setProperty('background-color', '#f8d7da', 'important'); 
+                         } 
+                         else if (textVal === "-" || textVal === "0") {
+                             cell.style.setProperty('background-color', '#e9ecef', 'important'); 
+                         }
                      }
                  }
             }
         });
-        $('#harian_skeletonState').hide();
+
+        // BAB VII: Tampil secara instan (tanpa fadeIn)
+        $('#harian_loadingState').hide();
         $('#harian_tableState').show();
-        setTimeout(function(){ HARIAN_TABEL_INSTANCE.columns.adjust(); }, 150);
-    } else {
+        
+        // VAKSIN MICRO BLINK (Beri waktu browser menyelesaikan lukisan sebelum mengatur ulang kolom)
+        setTimeout(function(){ HARIAN_TABEL_INSTANCE.columns.adjust(); }, 100);
+        
+    } 
+    // JIKA TABEL SUDAH ADA (Refresh / Filter)
+    else {
         HARIAN_TABEL_INSTANCE.clear().rows.add(dtArray).draw(false);
-        $('#harian_skeletonState').hide();
-        $('#harian_tableState').show();
+        
+        if ($('#harian_tableState').is(':hidden')) {
+            $('#harian_loadingState').hide();
+            $('#harian_tableState').show();
+        }
+        
         setTimeout(function(){ HARIAN_TABEL_INSTANCE.columns.adjust(); }, 50);
     }
 }
 
-function harian_styleWeekendsHead(year, monthStr) {
-    var mNames = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
-    var mIdx = mNames.indexOf(monthStr);
-    if(mIdx === -1) return;
-    
-    var headRow = $('#harian_rowHeaderUtama th');
-    headRow.removeClass('bg-weekend text-danger');
-    
-    for(var d = 1; d <= 31; d++) {
-        var dateObj = new Date(year, mIdx, d);
-        if(dateObj.getMonth() !== mIdx) continue;
-        
-        var dDay = dateObj.getDay();
-        if(dDay === 0 || dDay === 6) { // 0=Sun, 6=Sat
-            $(`.harian-col-tgl[data-tgl="${d}"]`).addClass('bg-weekend text-danger');
-        }
-    }
-}
-
+// =================================================================
+// 5. HELPER UTILITIES: PEMBERSIH XSS (Hukum Ke-5)
+// =================================================================
 function harian_escapeHtml(text) { 
     if(!text) return ""; 
     return String(text).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"); 
@@ -475,20 +453,14 @@ function harian_escapeHtml(text) {
 </script>
 
 <style>
-/* Reset Padding & Spacing for DataTables */
-.table-responsive { padding-bottom: 5px; }
-#harian_tabelUtama thead th { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #edf2f7 !important; padding: 12px 8px !important; }
-.bg-weekend { background-color: #fff5f5 !important; color: #dc3545 !important; }
-.shadow-sm-right { box-shadow: 4px 0 8px rgba(0,0,0,0.05) !important; }
-.text-navy { color: #1D3573 !important; }
+/* CSS Tambahan untuk Legend */
+.text-purple-sultan { color: #6f42c1 !important; }
+.bg-pale-danger { background-color: #f8d7da !important; }
+.bg-pale-primary { background-color: #cce5ff !important; }
+.bg-pale-success { background-color: #d4edda !important; }
+.bg-pale-warning { background-color: #fff3cd !important; }
+.bg-pale-info { background-color: #d1ecf1 !important; }
+.bg-pale-purple { background-color: #e2d9f3 !important; }
+.bg-pale-orange { background-color: #ffe8d6 !important; }
 .xx-small { font-size: 10px; }
-.col-sticky-left { position: sticky !important; left: 0 !important; z-index: 10 !important; background-color: #fff !important; border-right: 1px solid #dee2e6 !important; }
-th.col-sticky-left { z-index: 15 !important; background-color: #f8f9fa !important; }
-
-/* Pulse Animation */
-.sultan-skeleton { background: linear-gradient(90deg, #f7fafc 25%, #edf2f7 50%, #f7fafc 75%); background-size: 200% 100%; animation: sultan-p-loading 1.5s infinite; }
-@keyframes sultan-p-loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-
-/* Fix horizontal scroll but keep sticky header reachable */
-.dataTables_scrollBody { overscroll-behavior-x: contain; }
 </style>
