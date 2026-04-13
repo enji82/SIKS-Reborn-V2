@@ -54,18 +54,19 @@
         </div>
 
         <!-- 3. TABEL UTAMA (ULTRA-COMPACT SULTAN MODE) -->
-        <div class="card-sultan border-0 shadow-sm overflow-hidden">
+        <div class="card-sultan border-0 shadow-sm">
             <div class="card-body p-0">
               
               <!-- Skeletal State (Anti-Blink) -->
-              <div id="harian_skeletonState" class="p-4"></div>
+              <div id="harian_skeletonState" class="p-3"></div>
 
               <!-- Table Real State -->
               <div id="harian_tableState" style="display: none;" class="animate__animated animate__fadeIn">
-                  <table id="harian_tabelUtama" class="table table-hover table-bordered table-premium table-sultan-compact mb-0 w-100 text-nowrap border-0" style="border-collapse: separate !important; border-spacing: 0 !important;">
-                     <thead class="bg-light">
-                        <tr id="harian_rowHeaderUtama">
-                           <th class="col-sticky-left border-right text-left px-3 align-middle font-weight-bold bg-light" style="position: sticky !important; left: 0 !important; z-index: 100 !important; border-right: 2px solid #e2e8f0 !important;">Nama ASN</th>
+                  <div class="table-responsive sultan-scroll border-top">
+                      <table id="harian_tabelUtama" class="table table-hover table-bordered table-premium table-sultan-compact mb-0 w-100 text-nowrap border-0" style="border-collapse: separate !important; border-spacing: 0 !important;">
+                         <thead class="bg-light">
+                            <tr id="harian_rowHeaderUtama">
+                               <th class="col-sticky-left border-right text-left px-3 align-middle font-weight-bold bg-light" style="position: sticky !important; left: 0 !important; z-index: 100 !important; border-right: 2px solid #e2e8f0 !important;">Nama ASN</th>
                            
                            <th class="text-center align-middle bg-soft-danger-v2 px-2 border-bottom-0">TP</th>
                            <th class="text-center align-middle bg-soft-primary-v2 px-2 border-bottom-0">HK</th>
@@ -122,8 +123,9 @@
                            <th class="text-center align-middle harian-col-tgl" data-tgl="31">31D</th><th class="text-center align-middle harian-col-tgl" data-tgl="31">31P</th>
                         </tr>
                      </thead>
-                     <tbody class="border-top-0"></tbody>
+                     </tbody>
                   </table>
+                </div>
               </div>
             </div>
         </div>
@@ -298,8 +300,8 @@ function harian_renderSkeleton() {
                 </tr></thead>
                 <tbody>
                     ${Array(rows).fill(`<tr>
-                        <td class="col-sticky-left"><div class="sultan-skeleton" style="height: 12px; width: 85%;"></div><div class="sultan-skeleton mt-1" style="height: 8px; width: 50%;"></div></td>
-                        ${Array(cols).fill('<td><div class="sultan-skeleton" style="height: 12px; width: 30px;"></div></td>').join('')}
+                        <td class="col-sticky-left border-right"><div class="sultan-skeleton" style="height: 10px; width: 85%;"></div><div style="height:4px;"></div><div class="sultan-skeleton" style="height: 6px; width: 50%;"></div></td>
+                        ${Array(cols).fill('<td><div class="sultan-skeleton" style="height: 10px; width: 30px;"></div></td>').join('')}
                     </tr>`).join('')}
                 </tbody>
             </table>
@@ -332,10 +334,10 @@ function harian_renderTabel(rows) {
             if (visIdx === 0) {
                 var safeNama = harian_escapeHtml(row[0]);
                 var safeNip = harian_escapeHtml(row[1]);
-                display = `<div class="py-2 px-1">
-                    <div class="font-weight-bold text-navy" style="font-size: 0.85rem; line-height: 1.2;">${safeNama}</div>
-                    <div style="height: 8px;"></div>
-                    <div class="text-muted font-weight-bold" style="font-size: 10px; letter-spacing: 0.5px; opacity: 0.8;">${safeNip}</div>
+                display = `<div class="py-1 px-1">
+                    <div class="font-weight-bold text-navy" style="font-size: 0.82rem; line-height: 1.1;">${safeNama}</div>
+                    <div style="height: 4px;"></div>
+                    <div class="text-muted font-weight-bold" style="font-size: 9px; letter-spacing: 0.3px; opacity: 0.7;">${safeNip}</div>
                 </div>`;
             } 
             else if (visIdx >= 1 && visIdx <= 20) {
@@ -456,8 +458,8 @@ function harian_escapeHtml(text) {
 
 <style>
 /* SULTAN ULTRA-COMPACT TABLE OVERRIDES */
-#harian_tabelUtama thead th { font-size: 10px; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #edf2f7 !important; padding: 10px 4px !important; letter-spacing: 0.2px; }
-#harian_tabelUtama tbody td { padding: 4px 10px !important; border-bottom: 1px solid #f1f5f9; }
+#harian_tabelUtama thead th { font-size: 10px; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #edf2f7 !important; padding: 6px 4px !important; letter-spacing: 0.2px; }
+#harian_tabelUtama tbody td { padding: 2px 8px !important; border-bottom: 1px solid #f1f5f9; }
 #harian_tabelUtama tbody tr:hover td { background-color: rgba(0,0,0,0.02) !important; }
 
 .bg-weekend { background-color: #fff5f5 !important; color: #dc3545 !important; }
