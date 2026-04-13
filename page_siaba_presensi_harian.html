@@ -62,11 +62,10 @@
 
               <!-- Table Real State -->
               <div id="harian_tableState" style="display: none;" class="animate__animated animate__fadeIn">
-                  <div class="table-responsive sultan-scroll border-top" style="max-height: 70vh;">
-                      <table id="harian_tabelUtama" class="table table-hover table-bordered table-premium table-sultan-compact mb-0 w-100 text-nowrap border-0" style="border-collapse: separate !important; border-spacing: 0 !important;">
-                         <thead>
-                            <tr id="harian_rowHeaderUtama">
-                               <th class="col-sticky-left border-right text-left px-3 align-middle font-weight-bold" style="position: sticky !important; left: 0 !important; top: 0 !important; z-index: 200 !important; border-right: 2px solid #e2e8f0 !important; background: #f8f9fa !important; color: #444;">Nama ASN</th>
+                  <table id="harian_tabelUtama" class="table table-hover table-bordered table-premium table-sultan-compact mb-0 w-100 text-nowrap border-0" style="border-collapse: separate !important; border-spacing: 0 !important;">
+                     <thead class="bg-light">
+                        <tr id="harian_rowHeaderUtama">
+                           <th class="col-sticky-left border-right text-left px-3 align-middle font-weight-bold" style="background-color: #dee2e6 !important;">Nama ASN</th>
                            
                            <th class="text-center align-middle bg-soft-danger-v2 px-2 border-bottom-0">TP</th>
                            <th class="text-center align-middle bg-soft-primary-v2 px-2 border-bottom-0">HK</th>
@@ -125,7 +124,6 @@
                      </thead>
                      </tbody>
                   </table>
-                </div>
               </div>
             </div>
         </div>
@@ -375,32 +373,18 @@ function harian_renderTabel(rows) {
     if (!$.fn.DataTable.isDataTable('#harian_tabelUtama')) {
         HARIAN_TABEL_INSTANCE = $('#harian_tabelUtama').DataTable({
             "data": dtArray, "ordering": false, "autoWidth": false, "pageLength": 10,
-            "dom": "<'row px-3 pt-2'<'col-md-6'l><'col-md-6'f>>" +
-                   "<'row'<'col-12'tr>>" + 
-                   "<'row p-3'<'col-md-5 small text-muted'i><'col-md-7'p>>",
+            "dom": "<'row mb-2'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
+                   "<'row'<'col-sm-12'<'table-responsive sultan-scroll'tr>>>" +
+                   "<'row mt-2'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
             "columnDefs": [
-                { "targets": 0, "className": "col-sticky-left border-right font-weight-bold" },
+                { "targets": 0, "className": "col-sticky-left bg-white border-right font-weight-bold align-middle" },
                 { "targets": Array.from({length: 82}, function(_, i) { return i + 1; }), "className": "align-middle text-center px-2 py-1" }
             ],
             "language": { "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", "search": "" , "searchPlaceholder": "Cari Nama..."},
             "createdRow": function(row, data, dataIndex) {
-                 var tds = row.childNodes;
                  var headRow = $('#harian_rowHeaderUtama th');
-
-                  for (var i = 0; i < row.cells.length; i++) {
+                 for (var i = 1; i < row.cells.length; i++) {
                      var cell = row.cells[i];
-
-                     // AUTHORITY: Apply Sticky to Cell 0 (Nama ASN)
-                     if (i === 0) {
-                        cell.style.position = 'sticky';
-                        cell.style.left = '0';
-                        cell.style.zIndex = '90'; // Just below header (150-200)
-                        cell.style.backgroundColor = '#ffffff';
-                        cell.classList.add('border-right');
-                        cell.style.borderRightWidth = '2px';
-                        cell.style.borderRightColor = '#e2e8f0';
-                        continue;
-                     }
 
                      // VAKSIN TINT: Minimalistic tinting for high density
                      if (i === 1) cell.style.setProperty('background-color', '#fff5f5', 'important'); 
@@ -469,57 +453,28 @@ function harian_escapeHtml(text) {
 .harian-bold { font-weight: 700; }
 .text-rekap-sultan { font-size: 12px; }
 
-/* Sticky Stability */
-.col-sticky-left { 
-    position: sticky !important; 
-    left: 0 !important;
-    z-index: 100 !important; 
-    background-color: #ffffff !important;
-    border-right: 2px solid #e2e8f0 !important;
-    box-shadow: 4px 0 8px rgba(0,0,0,0.03); 
-}
-th.col-sticky-left { 
-    z-index: 200 !important; 
-    background-color: #f8f9fa !important; 
-    top: 0 !important;
-}
-#harian_tabelUtama tbody tr:hover .col-sticky-left { 
-    background-color: #f8f9fa !important; 
-}
-
-/* Vertical Sticky Header Row */
-#harian_tabelUtama thead {
+/* Official Sultan Header Color Override */
+#harian_tabelUtama thead th {
+    background-color: #dee2e6 !important;
+    color: #1a202c !important;
+    border-bottom: 2px solid #adb5bd !important;
     position: sticky !important;
     top: 0 !important;
-    z-index: 150 !important;
+    z-index: 10 !important;
 }
 
-#harian_tabelUtama thead tr th {
-    position: sticky !important;
-    top: 0 !important;
-    background-color: #f8f9fa !important;
-    border-bottom: 2px solid #dee2e6 !important;
-    z-index: 150;
-    color: #444;
+#harian_tabelUtama thead th.col-sticky-left {
+    z-index: 11 !important;
 }
 
-/* Horizontal Sticky Column (Authority CSS) */
-#harian_tabelUtama th:first-child,
-#harian_tabelUtama td:first-child {
+/* Sync with Global Sultan Sticky Styles */
+/* Note: col-sticky-left is defined in css_sultan.html, we only add authority here */
+.col-sticky-left {
     position: sticky !important;
     left: 0 !important;
+    z-index: 5 !important;
     background-color: #ffffff !important;
-    z-index: 90 !important;
-    border-right: 2px solid #e2e8f0 !important;
-}
-
-#harian_tabelUtama th:first-child {
-    background-color: #f8f9fa !important;
-    z-index: 200 !important; /* Top Left Corner must be highest */
-    top: 0 !important;
-}
-
-#harian_tabelUtama tbody tr:hover td:first-child {
-    background-color: #f8f9fa !important; /* Hover effect consistency */
+    border-right: 1px solid #dee2e6 !important;
+    box-shadow: 4px 0 8px rgba(0,0,0,0.05);
 }
 </style>
