@@ -207,33 +207,82 @@ function processLogout() {
  * Menghitung total data dengan status "Diproses" di berbagai database
  */
 function getTotalDiproses() {
-  try {
-    var counts = [];
-    var total = 0;
+  // BAB VII: Wrapper untuk Unified Notification Engine (Sultan v2)
+  return sultan_getUnifiedNotificationCounts("admin", ""); 
+}
 
-    // 1. Hitung di Module SK
+/**
+ * CORE ENGINE: Unified Notification Counts
+ * Menghitung data "Diproses" (untuk Admin) atau "Revisi/Ditolak" (untuk User)
+ * di seluruh modul yang didukung (SK & Laporan Bulan).
+ */
+function sultan_getUnifiedNotificationCounts(role, npsn) {
+  try {
+    const isAdmin = String(role || "").toLowerCase().indexOf("admin") !== -1;
+    let counts = { sk: 0, lapbul: 0, total: 0, rincian: [] };
+    const targetId = String(npsn || "").toUpperCase().trim();
+
+    // 1. Modul SK Pembagian Tugas
     try {
-      var ssSk = SpreadsheetApp.openById(SPREADSHEET_IDS.SK_DATA);
-      var sheetSk = ssSk.getSheetByName("Unggah_SK");
+      const ssSk = SpreadsheetApp.openById(SPREADSHEET_IDS.SK_DATA);
+      const sheetSk = ssSk.getSheetByName("Unggah_SK");
       if (sheetSk) {
-        var dataSk = sheetSk.getDataRange().getValues();
-        var countSk = 0;
-        for (var i = 1; i < dataSk.length; i++) {
-          if (String(dataSk[i][9]).trim().toLowerCase() === "diproses") countSk++;
-        }
-        if (countSk > 0) {
-          counts.push({ modul: "SK Pembagian Tugas", jumlah: countSk });
-          total += countSk;
+        const data = sheetSk.getDataRange().getDisplayValues();
+        for (let i = 1; i < data.length; i++) {
+          const row = data[i];
+          const status = String(row[9] || "").toLowerCase();
+          const schoolName = String(row[1] || "").toUpperCase();
+          const rowNpsn = String(row[10] || "").toUpperCase(); // NPSN yang baru kita inject kemarin
+
+          if (isAdmin) {
+            if (status.includes("proses")) counts.sk++;
+          } else {
+            // User: Cek berdasarkan NPSN atau Nama Sekolah
+            if ((schoolName === targetId || rowNpsn === targetId) && (status.includes("revisi") || status.includes("tolak"))) {
+               counts.sk++;
+            }
+          }
         }
       }
-    } catch (e) { Logger.log("Error count SK: " + e.message); }
+    } catch (e) { console.log("Error count SK: " + e.message); }
 
-    return {
-      total: total,
-      rincian: counts
-    };
+    // 2. Modul Laporan Bulan (PAUD & SD)
+    const lapbulSources = [
+      { id: SPREADSHEET_IDS.PAUD_DATA, sheet: "Input PAUD", colStatus: 48, colNama: 1, colNpsn: 2, label: "PAUD" },
+      { id: SPREADSHEET_IDS.SD_DATA,   sheet: "Input SD",    colStatus: 218, colNama: 1, colNpsn: 2, label: "SD" }
+    ];
+
+    lapbulSources.forEach(source => {
+      try {
+        const ss = SpreadsheetApp.openById(source.id);
+        const sheet = ss.getSheetByName(source.sheet);
+        if (sheet) {
+          const data = sheet.getDataRange().getDisplayValues();
+          for (let i = 1; i < data.length; i++) {
+            const row = data[i];
+            const status = String(row[source.colStatus] || "Diproses").toLowerCase();
+            const schoolName = String(row[source.colNama] || "").toUpperCase();
+            const rowNpsn = String(row[source.colNpsn] || "").toUpperCase();
+
+            if (isAdmin) {
+              if (status.includes("proses")) counts.lapbul++;
+            } else {
+              if ((schoolName === targetId || rowNpsn === targetId) && (status.includes("revisi") || status.includes("tolak"))) {
+                counts.lapbul++;
+              }
+            }
+          }
+        }
+      } catch (e) { console.log("Error count Lapbul " + source.label + ": " + e.message); }
+    });
+
+    counts.total = counts.sk + counts.lapbul;
+    if (counts.sk > 0) counts.rincian.push({ modul: "SK Pembagian Tugas", jumlah: counts.sk, page: "sk_data" });
+    if (counts.lapbul > 0) counts.rincian.push({ modul: "Laporan Bulan", jumlah: counts.lapbul, page: "lapbul_kelola" });
+
+    return counts;
   } catch (err) {
-    return { total: 0, rincian: [] };
+    return { sk: 0, lapbul: 0, total: 0, rincian: [] };
   }
 }
 
