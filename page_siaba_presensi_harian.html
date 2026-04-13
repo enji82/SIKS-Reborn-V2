@@ -80,7 +80,7 @@
                   <table id="harian_tabelUtama" class="table table-hover table-premium table-sultan-compact mb-0 w-100 text-nowrap border-0">
                      <thead class="bg-light">
                         <tr id="harian_rowHeaderUtama">
-                           <th class="col-sticky-left border-right text-left px-3 align-middle font-weight-bold bg-light" style="z-index: 10;">Nama ASN</th>
+                           <th class="col-sticky-left border-right text-left px-3 align-middle font-weight-bold bg-light" style="z-index: 15;">Nama ASN</th>
                            
                            <th class="text-center align-middle bg-soft-danger px-2 border-bottom-0">TP</th>
                            <th class="text-center align-middle bg-soft-primary px-2 border-bottom-0">HK</th>
@@ -279,8 +279,8 @@ function harian_tarikDataServer() {
 
             if(HARIAN_IS_ADMIN) harian_populateDropdownUnit();
             
-            // Highlight Weekends
-            harian_styleWeekends(th, bl);
+            // Apply Weekend styling to Header manually before drawing table
+            harian_styleWeekendsHead(th, bl);
             
             harian_terapkanFilterLokal();
         })
@@ -343,7 +343,6 @@ function harian_renderTabel(rows) {
         var arrRow = [];
         var visIdx = 0;
         
-        // Loop skipping index 1 (Raw NIP) - Logic consistent with legacy
         for (var rawIdx = 0; rawIdx < row.length - 1; rawIdx++) {
             if (rawIdx === 1) continue; 
             var val = row[rawIdx];
@@ -378,7 +377,6 @@ function harian_renderTabel(rows) {
                 }
             }
             else { 
-                // Daily columns
                 var str = String(val).toUpperCase();
                 if (str === "" || str === "-" || str === "0") display = `<span class="opacity-10">.</span>`;
                 else {
@@ -408,24 +406,33 @@ function harian_renderTabel(rows) {
             "language": { "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", "search": "" , "searchPlaceholder": "Cari Nama..."},
             "createdRow": function(row, data, dataIndex) {
                  var tds = row.childNodes;
-                 for (var i = 1; i < tds.length; i++) {
+                 var headRow = $('#harian_rowHeaderUtama th');
+                 
+                 for (var i = 0; i < tds.length; i++) {
                      var cell = tds[i];
-                     if (i === 1) cell.classList.add('bg-soft-danger');
-                     else if (i <= 3) cell.classList.add('bg-soft-primary');
-                     else if (i <= 6) cell.classList.add('bg-soft-success');
-                     else if (i <= 9) cell.classList.add('bg-soft-warning');
-                     else if (i <= 13) cell.classList.add('bg-soft-info');
-                     else if (i <= 15) cell.classList.add('bg-soft-purple');
-                     else if (i <= 19) cell.classList.add('bg-soft-orange');
-                     else if (i === 20) cell.classList.add('bg-soft-danger');
+                     if (i === 0) {
+                         // Native Fix for Sticky Column browser discrepancy
+                         cell.style.position = 'sticky';
+                         cell.style.left = '0';
+                         cell.style.zIndex = '10';
+                         cell.style.backgroundColor = '#ffffff';
+                         continue; 
+                     }
+
+                     // Colors with !important to ensure override
+                     if (i === 1) cell.style.setProperty('background-color', '#f8d7da', 'important'); 
+                     else if (i <= 3) cell.style.setProperty('background-color', '#e3f2fd', 'important'); 
+                     else if (i <= 6) cell.style.setProperty('background-color', '#e8f5e9', 'important'); 
+                     else if (i <= 9) cell.style.setProperty('background-color', '#fffde7', 'important'); 
+                     else if (i <= 13) cell.style.setProperty('background-color', '#e0f7fa', 'important'); 
+                     else if (i <= 15) cell.style.setProperty('background-color', '#f3e5f5', 'important'); 
+                     else if (i <= 19) cell.style.setProperty('background-color', '#fff3e0', 'important'); 
+                     else if (i === 20) cell.style.setProperty('background-color', '#f8d7da', 'important'); 
                      
                      // Weekend styling for daily columns
                      if (i >= 21) {
-                        var colIdx = i - 21;
-                        var dayNum = Math.floor(colIdx / 2) + 1;
-                        var headerCell = HARIAN_TABEL_INSTANCE.column(i).header();
-                        if (headerCell.classList.contains('bg-weekend')) {
-                            cell.style.backgroundColor = 'rgba(0,0,0,0.02)';
+                        if (headRow.eq(i).hasClass('bg-weekend')) {
+                            cell.style.setProperty('background-color', '#fff5f5', 'important');
                         }
                      }
                  }
@@ -433,26 +440,29 @@ function harian_renderTabel(rows) {
         });
         $('#harian_skeletonState').hide();
         $('#harian_tableState').show();
+        setTimeout(function(){ HARIAN_TABEL_INSTANCE.columns.adjust(); }, 150);
     } else {
         HARIAN_TABEL_INSTANCE.clear().rows.add(dtArray).draw(false);
         $('#harian_skeletonState').hide();
         $('#harian_tableState').show();
+        setTimeout(function(){ HARIAN_TABEL_INSTANCE.columns.adjust(); }, 50);
     }
 }
 
-function harian_styleWeekends(year, monthStr) {
+function harian_styleWeekendsHead(year, monthStr) {
     var mNames = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
     var mIdx = mNames.indexOf(monthStr);
     if(mIdx === -1) return;
     
-    $('.harian-col-tgl').removeClass('bg-weekend text-danger');
+    var headRow = $('#harian_rowHeaderUtama th');
+    headRow.removeClass('bg-weekend text-danger');
     
     for(var d = 1; d <= 31; d++) {
         var dateObj = new Date(year, mIdx, d);
         if(dateObj.getMonth() !== mIdx) continue;
         
-        var day = dateObj.getDay();
-        if(day === 0 || day === 6) { // 0=Sun, 6=Sat
+        var dDay = dateObj.getDay();
+        if(dDay === 0 || dDay === 6) { // 0=Sun, 6=Sat
             $(`.harian-col-tgl[data-tgl="${d}"]`).addClass('bg-weekend text-danger');
         }
     }
@@ -465,12 +475,20 @@ function harian_escapeHtml(text) {
 </script>
 
 <style>
-#harian_tabelUtama thead th { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #edf2f7; }
-.bg-weekend { background-color: #fff5f5 !important; }
-.shadow-sm-right { box-shadow: 2px 0 5px rgba(0,0,0,0.03) !important; }
+/* Reset Padding & Spacing for DataTables */
+.table-responsive { padding-bottom: 5px; }
+#harian_tabelUtama thead th { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #edf2f7 !important; padding: 12px 8px !important; }
+.bg-weekend { background-color: #fff5f5 !important; color: #dc3545 !important; }
+.shadow-sm-right { box-shadow: 4px 0 8px rgba(0,0,0,0.05) !important; }
 .text-navy { color: #1D3573 !important; }
-.xx-small { font-size: 0.65rem; }
-.bg-soft-orange { background-color: #fffaf0 !important; }
+.xx-small { font-size: 10px; }
+.col-sticky-left { position: sticky !important; left: 0 !important; z-index: 10 !important; background-color: #fff !important; border-right: 1px solid #dee2e6 !important; }
+th.col-sticky-left { z-index: 15 !important; background-color: #f8f9fa !important; }
+
+/* Pulse Animation */
 .sultan-skeleton { background: linear-gradient(90deg, #f7fafc 25%, #edf2f7 50%, #f7fafc 75%); background-size: 200% 100%; animation: sultan-p-loading 1.5s infinite; }
 @keyframes sultan-p-loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+/* Fix horizontal scroll but keep sticky header reachable */
+.dataTables_scrollBody { overscroll-behavior-x: contain; }
 </style>
