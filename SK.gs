@@ -164,6 +164,16 @@ function getDaftarSK() {
     var ss = SpreadsheetApp.openById(SPREADSHEET_IDS.SK_DATA);
     var sheet = ss.getSheetByName("Unggah_SK");
     var data = sheet.getDataRange().getDisplayValues();
+    
+    // FETCH MASTER NPSN (Optimized Lookup)
+    var npsnMap = {};
+    try {
+      var dbSs = SpreadsheetApp.openById("1wiDKez4rL5UYnpP2-OZjYowvmt1nRx-fIMy9trJlhBA");
+      var dbSheet = dbSs.getSheetByName("Data_Sekolah");
+      var dbData = dbSheet.getRange(2, 1, dbSheet.getLastRow() - 1, 3).getDisplayValues();
+      dbData.forEach(function(r) { npsnMap[String(r[2]).trim().toUpperCase()] = r[0]; });
+    } catch (eMaster) { Logger.log("Gagal ambil Master NPSN: " + eMaster); }
+
     var result = [];
     for (var i = 1; i < data.length; i++) {
       var row = data[i];
@@ -174,11 +184,15 @@ function getDaftarSK() {
       var tVerval = sk_helper_parseDate(row[12]);
       
       var lastActivity = Math.max(tUnggah, tUpdate, tVerval);
+      var namaSekolah = String(row[1]).trim();
+      var keyMaster = namaSekolah.toUpperCase();
 
       result.push({
         rowBaris: i + 1,
         tglUnggah: row[0],
-        namaSd: row[1], tahun: row[2], semester: row[3], noSk: row[4],
+        namaSd: namaSekolah, 
+        npsn: npsnMap[keyMaster] || "-",
+        tahun: row[2], semester: row[3], noSk: row[4],
         tglSk: row[5], tglSkDisplay: row[5], 
         kriteria: row[6], fileUrl: row[7], userInput: row[8], status: row[9],
         tglUpdate: row[10], userUpdate: row[11],
