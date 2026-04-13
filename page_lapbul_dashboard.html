@@ -314,19 +314,31 @@ function dashlapbul_renderStatsCards() {
     var statTitles = { sd: 'JENJANG SD', tk: 'JENJANG TK', kb: 'JENJANG KB', sps: 'JENJANG SPS' };
     var statIcons = { sd: 'fa-school', tk: 'fa-child', kb: 'fa-shapes', sps: 'fa-home' };
     var statColors = { sd: 'info', tk: 'warning', kb: 'success', sps: 'primary' };
+    
+    // Warna Background Soft (Light Palette)
+    var bgColors = { 
+        sd: 'rgba(23, 162, 184, 0.08)',    // Info Soft
+        tk: 'rgba(255, 193, 7, 0.08)',     // Warning Soft
+        kb: 'rgba(40, 167, 69, 0.08)',    // Success Soft
+        sps: 'rgba(0, 175, 239, 0.08)'    // Primary/Blue Soft
+    };
 
     $('.dashlapbul-stat-col').each(function() {
         var j = $(this).data('jenjang');
         var d = DASHLAPBUL_DASH_DATA[j];
         var html = `
-            <div class="card-sultan border-left-${statColors[j]} h-100 shadow-sm premium-hover cursor-pointer" onclick="dashlapbul_bukaModalList('${j}')">
+            <div class="card-sultan border-left-${statColors[j]} h-100 shadow-sm premium-hover cursor-pointer" 
+                 onclick="dashlapbul_bukaModalList('${j}')" 
+                 style="background-color: ${bgColors[j]} !important;">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-1">
-                        <small class="font-weight-bold text-${statColors[j]}">${statTitles[j]}</small>
-                        <i class="fas ${statIcons[j]} text-gray-300 fa-lg"></i>
+                        <small class="font-weight-bold text-${statColors[j]}" style="letter-spacing: 0.5px;">${statTitles[j]}</small>
+                        <i class="fas ${statIcons[j]} text-${statColors[j]} opacity-50 fa-lg"></i>
                     </div>
-                    <h3 class="font-weight-bold text-navy mb-1" id="dashlapbul_count_${j}">${d.persen}%</h3>
-                    <div class="progress mb-2" style="height: 6px; background: #f1f5f9;">
+                    <div class="d-flex align-items-baseline">
+                        <h3 class="font-weight-bold text-navy mb-1" id="dashlapbul_count_${j}">${d.persen}%</h3>
+                    </div>
+                    <div class="progress mb-2" style="height: 6px; background: rgba(0,0,0,0.05); border-radius: 10px;">
                         <div class="progress-bar bg-${statColors[j]} progress-bar-striped progress-bar-animated" style="width: ${d.persen}%"></div>
                     </div>
                     <div class="d-flex justify-content-between small text-muted">
@@ -476,6 +488,13 @@ function dashlapbul_bukaModalList(j) {
 function dashlapbul_animateCounter(id, start, end, suffix) {
     var obj = document.getElementById(id);
     if(!obj) return;
+    
+    // VAKSIN: Jika start == end, langsung set dan keluar
+    if (start == end) {
+        obj.innerText = end + (suffix || "");
+        return;
+    }
+
     var current = start;
     var range = end - start;
     var increment = end > start ? 1 : -1;
@@ -484,8 +503,15 @@ function dashlapbul_animateCounter(id, start, end, suffix) {
     
     var timer = setInterval(function() {
         current += increment;
-        obj.innerText = current + (suffix || "");
-        if (current == end) clearInterval(timer);
+        
+        // VAKSIN: Cek apakah sudah terlampaui (mencegah loop tak hingga)
+        if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
+            current = end;
+            obj.innerText = current + (suffix || "");
+            clearInterval(timer);
+        } else {
+            obj.innerText = current + (suffix || "");
+        }
     }, stepTime);
 }
 
