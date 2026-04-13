@@ -266,32 +266,29 @@ function dashlapbul_processResponse(res) {
 // 3. UI RENDERING (SKELETON & REAL COMPONENTS)
 // ======================================================================
 function dashlapbul_renderSkeleton() {
-    // Render Statistics Skeletons
+    // Render Statistics Skeletons (BOLDER VERSION)
     var statTitles = { sd: 'JENJANG SD', tk: 'JENJANG TK', kb: 'JENJANG KB', sps: 'JENJANG SPS' };
-    var statIcons = { sd: 'fa-school', tk: 'fa-child', kb: 'fa-shapes', sps: 'fa-home' };
-    var statColors = { sd: 'info', tk: 'warning', kb: 'success', sps: 'primary' };
+    var kpiClasses = { sd: 'kpi-blue', tk: 'kpi-gold', kb: 'kpi-teal', sps: 'kpi-main' };
 
     $('.dashlapbul-stat-col').each(function() {
         var j = $(this).data('jenjang');
+        var k = kpiClasses[j];
         var html = `
-            <div class="card-sultan border-left-${statColors[j]} h-100 shadow-sm transition-all overflow-hidden">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <small class="font-weight-bold text-${statColors[j]}">${statTitles[j]}</small>
-                        <i class="fas ${statIcons[j]} text-gray-200"></i>
-                    </div>
-                    <div class="sultan-skeleton mb-2" style="height: 32px; width: 60px;"></div>
-                    <div class="progress mb-2" style="height: 6px; background: #f1f5f9;"><div class="sultan-skeleton-pulse w-100 h-100"></div></div>
+            <div class="sk-kpi-card ${k} sultan-skeleton-pulse">
+                <div class="kpi-label">${statTitles[j]}</div>
+                <div class="sultan-skeleton mb-2" style="height: 48px; width: 80px; background: rgba(255,255,255,0.2);"></div>
+                <div class="progress mb-2" style="height: 6px; background: rgba(255,255,255,0.1);"><div class="sultan-skeleton-pulse w-100 h-100" style="background: rgba(255,255,255,0.3);"></div></div>
+                <div class="kpi-sub" style="border-top-color: rgba(255,255,255,0.1);">
                     <div class="d-flex justify-content-between">
-                        <div class="sultan-skeleton" style="height:12px; width:45px;"></div>
-                        <div class="sultan-skeleton" style="height:12px; width:45px;"></div>
+                        <div class="sultan-skeleton" style="height:12px; width:45px; background: rgba(255,255,255,0.1);"></div>
+                        <div class="sultan-skeleton" style="height:12px; width:45px; background: rgba(255,255,255,0.1);"></div>
                     </div>
                 </div>
             </div>`;
         $(this).html(html);
     });
 
-    // Render List Skeletons
+    // Render List Skeletons (Tetap Standar)
     $('.dashlapbul-list-col').each(function() {
         var j = $(this).data('jenjang').toUpperCase();
         var html = `
@@ -313,38 +310,26 @@ function dashlapbul_renderSkeleton() {
 function dashlapbul_renderStatsCards() {
     var statTitles = { sd: 'JENJANG SD', tk: 'JENJANG TK', kb: 'JENJANG KB', sps: 'JENJANG SPS' };
     var statIcons = { sd: 'fa-school', tk: 'fa-child', kb: 'fa-shapes', sps: 'fa-home' };
-    var statColors = { sd: 'info', tk: 'warning', kb: 'success', sps: 'primary' };
-    
-    // Warna Background Soft (Light Palette)
-    var bgColors = { 
-        sd: 'rgba(23, 162, 184, 0.08)',    // Info Soft
-        tk: 'rgba(255, 193, 7, 0.08)',     // Warning Soft
-        kb: 'rgba(40, 167, 69, 0.08)',    // Success Soft
-        sps: 'rgba(0, 175, 239, 0.08)'    // Primary/Blue Soft
-    };
+    var kpiClasses = { sd: 'kpi-blue', tk: 'kpi-gold', kb: 'kpi-teal', sps: 'kpi-main' };
 
     $('.dashlapbul-stat-col').each(function() {
         var j = $(this).data('jenjang');
         var d = DASHLAPBUL_DASH_DATA[j];
+        var k = kpiClasses[j];
+        
         var html = `
-            <div class="card-sultan border-left-${statColors[j]} h-100 shadow-sm premium-hover cursor-pointer" 
-                 onclick="dashlapbul_bukaModalList('${j}')" 
-                 style="background-color: ${bgColors[j]} !important;">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-1">
-                        <small class="font-weight-bold text-${statColors[j]}" style="letter-spacing: 0.5px;">${statTitles[j]}</small>
-                        <i class="fas ${statIcons[j]} text-${statColors[j]} opacity-50 fa-lg"></i>
-                    </div>
-                    <div class="d-flex align-items-baseline">
-                        <h3 class="font-weight-bold text-navy mb-1" id="dashlapbul_count_${j}">${d.persen}%</h3>
-                    </div>
-                    <div class="progress mb-2" style="height: 6px; background: rgba(0,0,0,0.05); border-radius: 10px;">
-                        <div class="progress-bar bg-${statColors[j]} progress-bar-striped progress-bar-animated" style="width: ${d.persen}%"></div>
-                    </div>
-                    <div class="d-flex justify-content-between small text-muted">
-                        <span>Lapor: <b class="text-dark">${d.sudah}</b></span>
-                        <span>Total: <b>${d.total}</b></span>
-                    </div>
+            <div class="sk-kpi-card ${k} transition-all cursor-pointer shadow-lg" onclick="dashlapbul_bukaModalList('${j}')">
+                <div class="kpi-icon-bg"><i class="fas ${statIcons[j]}"></i></div>
+                <div class="kpi-label" style="font-size: 0.65rem;">${statTitles[j]}</div>
+                <div class="kpi-number" id="dashlapbul_count_${j}">${d.persen}%</div>
+                
+                <div class="progress mb-1" style="height: 6px; background: rgba(0,0,0,0.1); border-radius: 10px;">
+                    <div class="progress-bar bg-white opacity-75 progress-bar-striped progress-bar-animated" style="width: ${d.persen}%"></div>
+                </div>
+                
+                <div class="kpi-sub d-flex justify-content-between" style="border-top-color: rgba(255,255,255,0.15);">
+                    <span>Lapor: <b>${d.sudah}</b></span>
+                    <span>Total: <b>${d.total}</b></span>
                 </div>
             </div>`;
         $(this).html(html);
