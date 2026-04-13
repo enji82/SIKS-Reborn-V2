@@ -442,7 +442,7 @@
 <div class="modal fade" id="lapbulkelola_modalVerifikasi" tabindex="-1" role="dialog" data-backdrop="static">
     <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
         <div class="modal-content border-0 shadow-lg modal-content-sultan d-flex flex-column" style="height: 90vh;">
-            <div class="modal-header sultan-header-navy flex-shrink-0">
+            <div class="modal-header sultan-header-emerald flex-shrink-0">
                 <h5 class="modal-title font-weight-bold h6 mb-0 text-white"><i class="fas fa-clipboard-check mr-2"></i>Verifikasi Laporan Bulan</h5>
                 <button type="button" class="close text-white" data-dismiss="modal" style="opacity: 0.8;"><span>&times;</span></button>
             </div>
@@ -1582,8 +1582,8 @@ function lapbulkelola_editLapbul(source, rowId) {
         Sultan.notif.tutup();
         $('#lapbulkelola_formContentArea').empty(); 
         LAPBULKELOLA_IS_EDIT_MODE = true; LAPBULKELOLA_EDIT_ROW_ID = rowId; lapbulkelola_URL_FILE_LAMA = data.Dokumen || data.fileUrl || "";
-
-        $('#lapbulkelola_headerModalForm').removeClass('bg-maroon bg-warning').addClass('sultan-header-navy');
+        
+        $('#lapbulkelola_headerModalForm').removeClass('sultan-header-navy bg-maroon bg-warning').addClass('sultan-header-indigo');
         $('#lapbulkelola_judulModalForm').css('color', '#fff').html('<i class="fas fa-pencil-alt mr-2"></i> Edit Laporan Bulan');
 
         $('#lapbulkelola_btnKembaliPilih').hide();
