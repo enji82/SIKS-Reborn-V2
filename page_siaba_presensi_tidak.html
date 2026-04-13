@@ -5,7 +5,7 @@
         <h5 class="m-0 font-weight-bold">
           <i class="fas fa-user-times text-maroon mr-2"></i>Rekap Tidak Presensi
         </h5>
-        <hr class="style-sultan-solid">
+        <div class="sultan-title-line"></div>
       </div>
     </div>
   </div>
@@ -16,9 +16,9 @@
     <div class="row justify-content-center">
       <div class="col-12">
 
-        <div class="card-sultan mb-3">
-          <div class="card-body py-2 px-3 border-left-dark">
-            <div class="d-flex align-items-center justify-content-between cursor-pointer" data-toggle="collapse" data-target="#tp_infoCollapse">
+        <div class="card-sultan card-sultan-info-compact mb-3">
+          <div class="card-body border-left-dark">
+            <div class="d-flex-info-header cursor-pointer" data-toggle="collapse" data-target="#tp_infoCollapse">
               <div class="d-flex align-items-center text-maroon font-weight-bold">
                 <i class="fas fa-info-circle mr-2"></i> Informasi
               </div>
@@ -26,10 +26,8 @@
             </div>
             <div id="tp_infoCollapse" class="collapse">
               <div class="mt-2 pt-2 border-top small text-muted">
-                <ul class="mb-2 pl-3 text-justify">
                   <li>Halaman ini menampilkan rekaman ASN yang tidak melakukan presensi (Alpha/Lupa).</li>
                   <li>Data yang ditampilkan diperbarui secara berkala (tidak realtime).</li>
-                </ul>
               </div>
             </div>
           </div>
@@ -37,8 +35,12 @@
 
         <div class="card-sultan p-3 mb-3">
             <div class="d-flex-gap align-items-center flex-wrap">
-                <select id="tp_filterTahun" class="form-control form-control-sultan input-auto-width min-w-80" disabled></select>
-                <select id="tp_filterBulan" class="form-control form-control-sultan input-auto-width" disabled></select>
+                <select id="tp_filterTahun" class="form-control form-control-sultan input-auto-width min-w-100" disabled>
+                    <option value="">- Tahun -</option>
+                </select>
+                <select id="tp_filterBulan" class="form-control form-control-sultan input-auto-width min-w-120" disabled>
+                    <option value="">- Bulan -</option>
+                </select>
                 
                 <select id="tp_filterUnit" class="form-control form-control-sultan input-auto-width min-w-250 font-weight-bold text-maroon bg-light" disabled>
                     <option value="">- Memvalidasi Akses... -</option>
@@ -52,7 +54,7 @@
 
                 <div class="ml-auto d-none d-md-block"></div>
                 
-                <button type="button" id="tp_btnCopyWA" class="btn btn-success font-weight-bold shadow-sm" title="Salin Daftar ASN ke WhatsApp">
+                <button type="button" id="tp_btnCopyWA" class="btn btn-success font-weight-bold shadow-sm px-3" title="Salin Daftar ASN ke WhatsApp">
                     <i class="fab fa-whatsapp mr-1"></i> Copy to WA
                 </button>
             </div>
@@ -61,24 +63,19 @@
         <div class="card-sultan">
             <div class="card-body p-3">
               
-              <div id="tp_loadingState">
-                  <div class="d-flex flex-column justify-content-center align-items-center" style="min-height: 50vh;">
-                      <div class="sultan-loading-container text-center">
-                          <i class="fas fa-spinner fa-spin fa-3x text-maroon mb-3"></i>
-                          <h6 class="text-muted font-weight-bold mt-3" id="tp_loadingText">Mempersiapkan Akses Server...</h6>
-                      </div>
-                  </div>
+              <div id="tp_skeletonState">
+                  <!-- SKELETON WILL BE RENDERED HERE -->
               </div>
 
               <div id="tp_tableState" style="display: none;">
-                  <table id="tp_tabelUtama" class="table table-bordered table-hover table-premium table-sultan-compact mb-0 w-100 text-nowrap">
-                    <thead class="bg-light">
+                  <table id="tp_tabelUtama" class="table table-bordered table-hover table-premium table-sultan-compact mb-0 w-100 text-nowrap" style="border-collapse: separate !important; border-spacing: 0 !important;">
+                    <thead>
                         <tr>
-                            <th class="col-sticky-left border-right text-left px-3 align-middle bg-white" style="z-index: 5;">Nama ASN</th>
-                            <th class="text-center align-middle text-dark px-2">Jumlah Tidak Presensi</th>
-                            <th class="text-center align-middle text-dark px-2">Tidak Datang</th>
-                            <th class="text-center align-middle text-dark px-2">Tidak Pulang</th>
-                            <th class="text-center align-middle text-dark px-2" style="min-width: 150px;">Tanggal Tidak Presensi</th>
+                            <th class="col-sticky-left border-right text-left px-3 align-middle">Nama ASN</th>
+                            <th class="text-center align-middle text-dark px-2">Total Alpha</th>
+                            <th class="text-center align-middle text-dark px-2">Tdk Datang</th>
+                            <th class="text-center align-middle text-dark px-2">Tdk Pulang</th>
+                            <th class="text-center align-middle text-dark px-2" style="min-width: 150px;">Detail Tanggal</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -115,7 +112,8 @@ var TP_USER_NPSN = "";
 $(document).ready(function() {
     TP_TABEL_INSTANCE = null;
     $('#tp_tableState').hide();
-    $('#tp_loadingState').show();
+    tp_renderSkeleton();
+    $('#tp_skeletonState').show();
 
     // Cek Sesi Login
     try {
@@ -138,7 +136,6 @@ $(document).ready(function() {
 // 2. CHAINED INITIALIZATION: FILTERS -> GATEKEEPER -> FETCH
 // =================================================================
 function tp_initFilters() {
-    $('#tp_loadingText').html('Memuat Konfigurasi Waktu...');
 
     google.script.run.withSuccessHandler(function(res) {
         var data = JSON.parse(res);
@@ -165,7 +162,6 @@ function tp_initFilters() {
 }
 
 function tp_validasiAksesUser() {
-    $('#tp_loadingText').html('Mempersiapkan Akses...');
 
     if (TP_IS_ADMIN) {
         $('#tp_filterUnit').empty().append('<option value="SEMUA">- Semua Unit Kerja -</option>').prop('disabled', false).removeClass('bg-light text-maroon font-weight-bold');
@@ -173,7 +169,7 @@ function tp_validasiAksesUser() {
     } else {
         if (!TP_USER_NPSN) {
             $('#tp_filterUnit').empty().append('<option value="">AKSES DITOLAK (NPSN KOSONG)</option>');
-            $('#tp_loadingText').html('<span class="text-danger"><i class="fas fa-ban mb-2"></i><br>Akses ditolak: Sesi login tidak valid.</span>');
+            $('#tp_skeletonState').html('<div class="text-center py-5 text-danger"><i class="fas fa-ban fa-3x mb-3"></i><br><h6>Akses ditolak: Sesi login tidak valid.</h6></div>');
             return;
         }
 
@@ -182,7 +178,7 @@ function tp_validasiAksesUser() {
                 var dataUnit = JSON.parse(resUnit);
                 if (dataUnit.error) {
                     $('#tp_filterUnit').empty().append('<option value="">AKSES DITOLAK</option>');
-                    $('#tp_loadingText').html('<span class="text-danger"><i class="fas fa-exclamation-triangle mb-2"></i><br>' + tp_escapeHtml(dataUnit.error) + '</span>');
+                    $('#tp_skeletonState').html('<div class="text-center py-5 text-danger"><i class="fas fa-exclamation-triangle fa-3x mb-3"></i><br><h6>' + tp_escapeHtml(dataUnit.error) + '</h6></div>');
                     return;
                 }
 
@@ -193,7 +189,7 @@ function tp_validasiAksesUser() {
             })
             .withFailureHandler(function(err) {
                 $('#tp_filterUnit').empty().append('<option value="">ERROR SERVER</option>');
-                $('#tp_loadingText').html('<span class="text-danger"><i class="fas fa-wifi mb-2"></i><br>Koneksi Database Induk Terputus: ' + tp_escapeHtml(err.message) + '</span>');
+                $('#tp_skeletonState').html('<div class="text-center py-5 text-danger"><i class="fas fa-wifi fa-3x mb-3"></i><br><h6>Koneksi Terputus: ' + tp_escapeHtml(err.message) + '</h6></div>');
             })
             .getUnitKerjaByNPSN(TP_USER_NPSN); 
     }
@@ -224,8 +220,8 @@ function tp_tarikDataServer() {
     
     if (!$.fn.DataTable.isDataTable('#tp_tabelUtama')) {
         $('#tp_tableState').hide();
-        $('#tp_loadingText').html('Mengambil data alpha & lupa absen...');
-        $('#tp_loadingState').show();
+        tp_renderSkeleton();
+        $('#tp_skeletonState').show();
     }
 
     google.script.run
@@ -237,15 +233,15 @@ function tp_tarikDataServer() {
                 data = typeof res === 'string' ? JSON.parse(res) : res;
             } catch(e) {
                 $('#tp_tableState').hide();
-                $('#tp_loadingState').show();
-                $('#tp_loadingText').html('<span class="text-danger"><i class="fas fa-times-circle mb-2"></i><br>Gagal memproses struktur JSON Server.</span>');
+                $('#tp_skeletonState').html('<div class="text-center py-5 text-danger"><i class="fas fa-exclamation-triangle fa-3x mb-3"></i><br><h6>Gagal memproses struktur JSON Server.</h6></div>');
+                $('#tp_skeletonState').show();
                 return;
             }
             
             if (data && data.error) {
                 $('#tp_tableState').hide();
-                $('#tp_loadingState').show();
-                $('#tp_loadingText').html('<span class="text-danger"><i class="fas fa-exclamation-triangle mb-2"></i><br>' + tp_escapeHtml(data.error) + '</span>');
+                $('#tp_skeletonState').html('<div class="text-center py-5 text-danger"><i class="fas fa-exclamation-triangle fa-3x mb-3"></i><br><h6>' + tp_escapeHtml(data.error) + '</h6></div>');
+                $('#tp_skeletonState').show();
                 return;
             }
             
@@ -260,15 +256,15 @@ function tp_tarikDataServer() {
                 
             } catch(e) { 
                 $('#tp_tableState').hide();
-                $('#tp_loadingState').show();
-                $('#tp_loadingText').html('<span class="text-danger"><i class="fas fa-exclamation-triangle mb-2"></i><br>Gagal merakit tabel: ' + tp_escapeHtml(e.message) + '</span>'); 
+                $('#tp_skeletonState').html('<div class="text-center py-5 text-danger"><i class="fas fa-exclamation-triangle fa-3x mb-3"></i><br><h6>Gagal merakit tabel: ' + tp_escapeHtml(e.message) + '</h6></div>');
+                $('#tp_skeletonState').show();
             }
         })
         .withFailureHandler(function(err) {
-            btn.prop('disabled', false).html('<i class="fas fa-search text-maroon"></i>');
+            btn.prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon"></i>');
             $('#tp_tableState').hide();
-            $('#tp_loadingState').show();
-            $('#tp_loadingText').html('<span class="text-danger"><i class="fas fa-wifi mb-2"></i><br>Koneksi Terputus: ' + tp_escapeHtml(err.message) + '</span>');
+            $('#tp_skeletonState').html('<div class="text-center py-5 text-danger"><i class="fas fa-wifi fa-3x mb-3"></i><br><h6>Koneksi Terputus: ' + tp_escapeHtml(err.message) + '</h6></div>');
+            $('#tp_skeletonState').show();
         })
         .getSiabaTidakData(th, bl, "SEMUA"); 
 }
@@ -314,6 +310,28 @@ function tp_terapkanFilterLokal() {
     tp_renderTabel(hasil);
 }
 
+function tp_renderSkeleton() {
+    var cols = 4; // Data columns after Name
+    var rows = 8;
+    var html = `
+        <div class="sultan-skeleton mb-3" style="height: 32px; width: 220px; border-radius: 8px;"></div>
+        <div class="table-responsive sultan-scroll border rounded overflow-hidden">
+            <table class="table mb-0">
+                <thead><tr class="bg-light">
+                    <th class="py-2 px-3 col-sticky-left" style="width: 200px;"><div class="sultan-skeleton" style="height: 14px; width: 80%;"></div></th>
+                    ${Array(cols).fill('<th><div class="sultan-skeleton" style="height: 14px; width: 100px;"></div></th>').join('')}
+                </tr></thead>
+                <tbody>
+                    ${Array(rows).fill(`<tr>
+                        <td class="col-sticky-left border-right"><div class="sultan-skeleton" style="height: 10px; width: 85%;"></div><div style="height:2px;"></div><div class="sultan-skeleton" style="height: 6px; width: 50%;"></div></td>
+                        ${Array(cols).fill('<td><div class="sultan-skeleton" style="height: 10px; width: 80px;"></div></td>').join('')}
+                    </tr>`).join('')}
+                </tbody>
+            </table>
+        </div>`;
+    $('#tp_skeletonState').html(html);
+}
+
 function tp_renderTabel(dataRows) {
     var dtArray = []; 
     
@@ -322,15 +340,18 @@ function tp_renderTabel(dataRows) {
         
         var safeNama = tp_escapeHtml(row[0]);
         var safeNip  = tp_escapeHtml(row[1]);
-        var safeUnit = tp_escapeHtml(row[row.length - 1] || '-');
         
-        var txtUnitHtml = TP_IS_ADMIN ? '<div class="small text-danger font-weight-bold mt-1">' + safeUnit + '</div>' : '';
-        arrRow.push('<div class="font-weight-bold text-dark text-nowrap text-left">' + safeNama + '</div><div class="small text-muted text-left text-nowrap">' + safeNip + '</div>' + txtUnitHtml);
+        // PERSONNEL COLUMN (NAVY NAME + MUTED NIP, NO UNIT)
+        arrRow.push(`<div class="py-0 px-1">
+            <div class="font-weight-bold text-navy" style="font-size: 0.85rem; line-height: 1.0;">${safeNama}</div>
+            <div style="height: 2px;"></div>
+            <div class="text-muted font-weight-bold" style="font-size: 10px; letter-spacing: 0.2px; opacity: 0.7;">${safeNip}</div>
+        </div>`);
         
-        arrRow.push(row[2] == 0 || row[2] === "" ? "-" : '<span class="badge badge-danger px-2 py-1">' + tp_escapeHtml(row[2]) + '</span>');
-        arrRow.push(row[3] == 0 || row[3] === "" ? "-" : '<span class="font-weight-bold text-danger">' + tp_escapeHtml(row[3]) + '</span>');
-        arrRow.push(row[4] == 0 || row[4] === "" ? "-" : '<span class="font-weight-bold text-danger">' + tp_escapeHtml(row[4]) + '</span>');
-        arrRow.push(row[5] === "" || row[5] === "-" ? "-" : '<span class="text-dark" style="white-space:normal;">' + tp_escapeHtml(row[5]) + '</span>');
+        arrRow.push(row[2] == 0 || row[2] === "" ? "-" : `<span class="badge badge-danger px-2" style="font-weight: 800; border-radius: 4px;">${tp_escapeHtml(row[2])}</span>`);
+        arrRow.push(row[3] == 0 || row[3] === "" ? "-" : `<span class="font-weight-bold text-danger">${tp_escapeHtml(row[3])}</span>`);
+        arrRow.push(row[4] == 0 || row[4] === "" ? "-" : `<span class="font-weight-bold text-danger">${tp_escapeHtml(row[4])}</span>`);
+        arrRow.push(row[5] === "" || row[5] === "-" ? "-" : `<span class="text-dark font-weight-bold" style="white-space:normal; font-size: 0.72rem; opacity: 0.9;">${tp_escapeHtml(row[5])}</span>`);
 
         dtArray.push(arrRow);
     });
@@ -349,29 +370,22 @@ function tp_renderTabel(dataRows) {
                 "emptyTable": '<div class="py-5 text-center text-muted"><div class="mb-3"><i class="fas fa-clipboard-list fa-3x text-gray-300" style="opacity: 0.6;"></i></div><h6 class="font-weight-bold text-dark mb-1">Tidak Ada Data</h6><p class="small mb-0">Tidak ditemukan rekap data alpha/lupa untuk filter ini.</p></div>' 
             },
             "columnDefs": [
-                { "targets": 0, "width": "auto", "className": "col-sticky-left border-right text-left px-3 align-middle bg-white" },
-                { "targets": [1,2,3,4], "className": "text-center align-middle px-2 py-2" }
-            ],
-            "createdRow": function(row, data, dataIndex) {
-                 var cell = row.childNodes[0];
-                 cell.style.position = 'sticky';
-                 cell.style.left = '0';
-                 cell.style.zIndex = '2';
-                 cell.style.backgroundColor = '#ffffff';
-            }
+                { "targets": 0, "className": "col-sticky-left bg-white align-middle font-weight-bold border-right text-dark text-left px-3 py-1" },
+                { "targets": [1,2,3,4], "className": "text-center align-middle px-2 py-1" }
+            ]
         });
 
-        $('#tp_loadingState').hide();
+        $('#tp_skeletonState').hide();
         $('#tp_tableState').show();
-        TP_TABEL_INSTANCE.columns.adjust();
+        setTimeout(function(){ TP_TABEL_INSTANCE.columns.adjust(); }, 100);
     } 
     else {
         TP_TABEL_INSTANCE.clear().rows.add(dtArray).draw(false);
         
         if ($('#tp_tableState').is(':hidden')) {
-            $('#tp_loadingState').hide();
+            $('#tp_skeletonState').hide();
             $('#tp_tableState').show();
-            TP_TABEL_INSTANCE.columns.adjust();
+            setTimeout(function(){ TP_TABEL_INSTANCE.columns.adjust(); }, 100);
         }
     }
 }
@@ -438,3 +452,53 @@ function tp_escapeHtml(text) {
     return String(text).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"); 
 }
 </script>
+
+<style>
+/* SULTAN ULTRA-COMPACT TABLE OVERRIDES */
+#tp_tabelUtama thead th { 
+    font-size: 0.72rem !important; 
+    font-weight: 800; 
+    text-transform: uppercase; 
+    border-bottom: 2px solid #adb5bd !important; 
+    padding: 2px 4px !important; 
+    letter-spacing: 0.2px; 
+    line-height: 1.1 !important;
+    background-color: #dee2e6 !important;
+    color: #1a202c !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 10 !important;
+}
+
+#tp_tabelUtama thead th.col-sticky-left {
+    z-index: 11 !important;
+}
+
+#tp_tabelUtama tbody td { 
+    padding: 0px 8px !important; 
+    border-bottom: 1px solid #f1f5f9; 
+    line-height: 1.0 !important; 
+    position: relative !important; 
+}
+
+#tp_tabelUtama tbody tr:hover td::after { 
+    content: ""; 
+    position: absolute; 
+    top: 0; left: 0; right: 0; bottom: 0; 
+    background-color: rgba(0, 0, 0, 0.05); 
+    pointer-events: none; 
+    z-index: 2; 
+}
+
+/* Sync with Global Sultan Sticky Styles */
+.col-sticky-left {
+    position: sticky !important;
+    left: 0 !important;
+    z-index: 5 !important;
+    background-color: #ffffff !important;
+    border-right: 1px solid #dee2e6 !important;
+    box-shadow: 4px 0 8px rgba(0,0,0,0.05);
+}
+
+.text-navy { color: #1e293b !important; }
+</style>
