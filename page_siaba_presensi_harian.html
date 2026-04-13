@@ -64,9 +64,9 @@
               <div id="harian_tableState" style="display: none;" class="animate__animated animate__fadeIn">
                   <div class="table-responsive sultan-scroll border-top" style="max-height: 70vh;">
                       <table id="harian_tabelUtama" class="table table-hover table-bordered table-premium table-sultan-compact mb-0 w-100 text-nowrap border-0" style="border-collapse: separate !important; border-spacing: 0 !important;">
-                         <thead style="position: sticky; top: 0; z-index: 150; background: #f8f9fa;">
+                         <thead>
                             <tr id="harian_rowHeaderUtama">
-                               <th class="col-sticky-left border-right text-left px-3 align-middle font-weight-bold" style="position: sticky !important; left: 0 !important; top: 0 !important; z-index: 200 !important; border-right: 2px solid #e2e8f0 !important; background: #f8f9fa !important;">Nama ASN</th>
+                               <th class="col-sticky-left border-right text-left px-3 align-middle font-weight-bold" style="position: sticky !important; left: 0 !important; top: 0 !important; z-index: 200 !important; border-right: 2px solid #e2e8f0 !important; background: #f8f9fa !important; color: #444;">Nama ASN</th>
                            
                            <th class="text-center align-middle bg-soft-danger-v2 px-2 border-bottom-0">TP</th>
                            <th class="text-center align-middle bg-soft-primary-v2 px-2 border-bottom-0">HK</th>
@@ -394,7 +394,7 @@ function harian_renderTabel(rows) {
                      if (i === 0) {
                         cell.style.position = 'sticky';
                         cell.style.left = '0';
-                        cell.style.zIndex = '100';
+                        cell.style.zIndex = '90'; // Just below header (150-200)
                         cell.style.backgroundColor = '#ffffff';
                         cell.classList.add('border-right');
                         cell.style.borderRightWidth = '2px';
@@ -500,8 +500,26 @@ th.col-sticky-left {
     background-color: #f8f9fa !important;
     border-bottom: 2px solid #dee2e6 !important;
     z-index: 150;
+    color: #444;
 }
-#harian_tabelUtama thead tr th:first-child {
-    z-index: 200 !important; /* Higher for the corner */
+
+/* Horizontal Sticky Column (Authority CSS) */
+#harian_tabelUtama th:first-child,
+#harian_tabelUtama td:first-child {
+    position: sticky !important;
+    left: 0 !important;
+    background-color: #ffffff !important;
+    z-index: 90 !important;
+    border-right: 2px solid #e2e8f0 !important;
+}
+
+#harian_tabelUtama th:first-child {
+    background-color: #f8f9fa !important;
+    z-index: 200 !important; /* Top Left Corner must be highest */
+    top: 0 !important;
+}
+
+#harian_tabelUtama tbody tr:hover td:first-child {
+    background-color: #f8f9fa !important; /* Hover effect consistency */
 }
 </style>
