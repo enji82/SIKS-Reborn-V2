@@ -62,10 +62,10 @@
 
               <!-- Table Real State -->
               <div id="harian_tableState" style="display: none;" class="animate__animated animate__fadeIn">
-                  <table id="harian_tabelUtama" class="table table-hover table-bordered table-premium table-sultan-compact mb-0 w-100 text-nowrap border-0">
+                  <table id="harian_tabelUtama" class="table table-hover table-bordered table-premium table-sultan-compact mb-0 w-100 text-nowrap border-0" style="border-collapse: separate !important; border-spacing: 0 !important;">
                      <thead class="bg-light">
                         <tr id="harian_rowHeaderUtama">
-                           <th class="col-sticky-left border-right text-left px-3 align-middle font-weight-bold bg-light" style="z-index: 10;">Nama ASN</th>
+                           <th class="col-sticky-left border-right text-left px-3 align-middle font-weight-bold bg-light" style="position: sticky !important; left: 0 !important; z-index: 100 !important; border-right: 2px solid #e2e8f0 !important;">Nama ASN</th>
                            
                            <th class="text-center align-middle bg-soft-danger-v2 px-2 border-bottom-0">TP</th>
                            <th class="text-center align-middle bg-soft-primary-v2 px-2 border-bottom-0">HK</th>
@@ -332,11 +332,10 @@ function harian_renderTabel(rows) {
             if (visIdx === 0) {
                 var safeNama = harian_escapeHtml(row[0]);
                 var safeNip = harian_escapeHtml(row[1]);
-                display = `<div class="d-flex align-items-center py-1">
-                    <div class="text-truncate">
-                        <div class="font-weight-bold text-navy" style="font-size: 0.82rem; line-height: 1.4;">${safeNama}</div>
-                        <div class="text-muted font-weight-bold mt-2" style="font-size: 10px; letter-spacing: 0.3px;">${safeNip}</div>
-                    </div>
+                display = `<div class="py-2 px-1">
+                    <div class="font-weight-bold text-navy" style="font-size: 0.85rem; line-height: 1.2;">${safeNama}</div>
+                    <div style="height: 8px;"></div>
+                    <div class="text-muted font-weight-bold" style="font-size: 10px; letter-spacing: 0.5px; opacity: 0.8;">${safeNip}</div>
                 </div>`;
             } 
             else if (visIdx >= 1 && visIdx <= 20) {
@@ -386,8 +385,21 @@ function harian_renderTabel(rows) {
                  var tds = row.childNodes;
                  var headRow = $('#harian_rowHeaderUtama th');
 
-                 for (var i = 1; i < tds.length; i++) {
+                 for (var i = 0; i < tds.length; i++) {
                      var cell = tds[i];
+
+                     // AUTHORITY: Apply Sticky to Cell 0 (Nama ASN)
+                     if (i === 0) {
+                        cell.style.position = 'sticky';
+                        cell.style.left = '0';
+                        cell.style.zIndex = '5';
+                        cell.style.backgroundColor = '#ffffff';
+                        cell.classList.add('border-right');
+                        cell.style.borderRightWidth = '2px';
+                        cell.style.borderRightColor = '#e2e8f0';
+                        continue;
+                     }
+
                      // VAKSIN TINT: Minimalistic tinting for high density
                      if (i === 1) cell.style.setProperty('background-color', '#fff5f5', 'important'); 
                      else if (i <= 3) cell.style.setProperty('background-color', '#f0f7ff', 'important'); 
