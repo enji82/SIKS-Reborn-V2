@@ -287,10 +287,22 @@ function ta_populateDropdownUnit() {
     if(currentVal && unique.has(currentVal)) { select.val(currentVal); }
 }
 
-// =================================================================
-// 4. INJEKSI ZERO BLINK & DYNAMIC HEADER (BAB VII)
-// =================================================================
-    ta_terapkanFilterLokal();
+function ta_terapkanFilterLokal() {
+    var tAdminUnit = TA_IS_ADMIN ? String($('#ta_filterUnit').val() || "").toUpperCase() : "";
+    var tUnitUser  = String(TA_UNIT_TERKUNCI || "").trim().toUpperCase();
+    
+    var hasil = TA_CACHE_DATA.filter(function(row) {
+        var lastIdx = row.length - 1; 
+        var rUnit = String(row[lastIdx] || "").trim().toUpperCase(); 
+        
+        if (TA_IS_ADMIN) {
+            return (tAdminUnit === "SEMUA" || tAdminUnit === "" || rUnit === tAdminUnit);
+        } else {
+            return (rUnit === tUnitUser);
+        }
+    });
+    
+    ta_renderTabel(hasil);
 }
 
 function ta_renderSkeleton() {
