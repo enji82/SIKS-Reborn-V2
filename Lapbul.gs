@@ -490,6 +490,31 @@ function getLapbulMetric_PAUD(tahun, bulan) {
   return processSheetDashboard(IDS.PAUD_DATA, "Status PAUD", tahun, bulan, ["TK", "KB", "SPS", "TPA"]);
 }
 
+/**
+ * MODE TURBO: Unified Metric Fetching
+ * Consolidates all jenjang metrics into a single round-trip.
+ */
+function getLapbulMetric_Unified(tahun, bulan) {
+  try {
+    var rawSd = JSON.parse(getLapbulMetric_SD(tahun, bulan));
+    var rawPaud = JSON.parse(getLapbulMetric_PAUD(tahun, bulan));
+    
+    // Merge results
+    var unified = {
+      sd: rawSd.sd,
+      tk: rawPaud.tk,
+      kb: rawPaud.kb,
+      sps: rawPaud.sps,
+      tpa: rawPaud.tpa,
+      recent: (rawSd.recent || []).concat(rawPaud.recent || []).slice(0, 10)
+    };
+    
+    return JSON.stringify(unified);
+  } catch (e) {
+    return JSON.stringify({ error: e.toString() });
+  }
+}
+
 function processSheetDashboard(idSS, sheetName, tahun, bulan, targetJenjangArray) {
   var result = { recent: [] };
 
