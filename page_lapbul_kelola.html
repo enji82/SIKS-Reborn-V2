@@ -851,7 +851,7 @@ function lapbulkelola_renderTabel(data) {
         var metaVerif = `<div style="line-height:1.2;font-size:11px;"><span class="d-block font-weight-bold text-dark text-nowrap">${row.tglVerif || '-'}</span><span class="d-block text-muted text-nowrap">${lapbulkelola_escapeHtml(row.verifikator)}</span></div>`;
 
         // VAKSIN LEBAR KOLOM: Menggunakan text-nowrap agar membentang 100%
-        var uiUnit = `<div class="font-weight-bold text-dark text-nowrap">${lapbulkelola_escapeHtml(row.namaSekolah)}</div><div class="small text-muted text-nowrap mt-2 d-block" style="font-size: 11px;">${lapbulkelola_escapeHtml(row.npsn || '-')}</div>`;
+        var uiUnit = `<div class="sk-item-main text-maroon">${lapbulkelola_escapeHtml(row.namaSekolah)}</div><div class="sk-item-sub">${lapbulkelola_escapeHtml(row.npsn || '-')}</div>`;
 
         dtArray.push([ 
             btnAksi, 
