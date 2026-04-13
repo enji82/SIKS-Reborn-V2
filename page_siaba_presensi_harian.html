@@ -443,8 +443,15 @@ function harian_escapeHtml(text) {
 <style>
 /* SULTAN ULTRA-COMPACT TABLE OVERRIDES */
 #harian_tabelUtama thead th { font-size: 10px; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #edf2f7 !important; padding: 2px 4px !important; letter-spacing: 0.2px; line-height: 1.0 !important; }
-#harian_tabelUtama tbody td { padding: 0px 8px !important; border-bottom: 1px solid #f1f5f9; line-height: 1.0 !important; }
-#harian_tabelUtama tbody tr:hover td { background-color: rgba(0,0,0,0.02) !important; }
+#harian_tabelUtama tbody td { padding: 0px 8px !important; border-bottom: 1px solid #f1f5f9; line-height: 1.0 !important; position: relative !important; }
+#harian_tabelUtama tbody tr:hover td::after { 
+    content: ""; 
+    position: absolute; 
+    top: 0; left: 0; right: 0; bottom: 0; 
+    background-color: rgba(0, 0, 0, 0.05); 
+    pointer-events: none; 
+    z-index: 2; 
+}
 
 .bg-weekend { background-color: #fff5f5 !important; color: #dc3545 !important; }
 .shadow-sm-right { box-shadow: 2px 0 5px rgba(0,0,0,0.02) !important; }
