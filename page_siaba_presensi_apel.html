@@ -5,7 +5,7 @@
         <h5 class="m-0 font-weight-bold">
           <i class="fas fa-flag text-maroon mr-2"></i>Rekap Apel & Upacara
         </h5>
-        <hr class="style-sultan-solid">
+        <div class="sultan-title-line"></div>
       </div>
     </div>
   </div>
@@ -16,9 +16,10 @@
     <div class="row justify-content-center">
       <div class="col-12">
 
-        <div class="card-sultan mb-3">
-          <div class="card-body py-2 px-3 border-left-dark">
-            <div class="d-flex align-items-center justify-content-between cursor-pointer" data-toggle="collapse" data-target="#apel_infoCollapse">
+        <!-- 1. KARTU INFORMASI (GAYA SULTAN COMPACT) -->
+        <div class="card-sultan card-sultan-info-compact mb-3">
+          <div class="card-body border-left-dark">
+            <div class="d-flex-info-header cursor-pointer" data-toggle="collapse" data-target="#apel_infoCollapse">
               <div class="d-flex align-items-center text-maroon font-weight-bold">
                 <i class="fas fa-info-circle mr-2"></i> Informasi
               </div>
@@ -26,7 +27,7 @@
             </div>
             <div id="apel_infoCollapse" class="collapse">
               <div class="mt-2 pt-2 border-top small text-muted">
-                <ul class="mb-2 pl-3 text-justify">
+                <ul class="mb-0 pl-3 text-dark mt-2" style="font-size: 14px; line-height: 1.6;">
                   <li>Halaman ini menampilkan rekaman presensi apel dan upacara ASN pada aplikasi Siaba.</li>
                   <li>Data yang ditampilkan diperbarui pada jangka waktu tertentu (tidak realtime).</li>
                   <li><strong>Kode:</strong> HA: Hari Apel, APL: Apel, TAp: Tidak Apel, HU: Hari Upacara, U: Upacara, TU: Tidak Upacara.</li>
@@ -74,17 +75,17 @@
               </div>
 
               <div id="apel_tableState" style="display: none;">
-                  <table id="apel_tabelUtama" class="table table-bordered table-hover table-premium table-sultan-compact mb-0 w-100 text-nowrap">
-                    <thead class="bg-white">
+                  <table id="apel_tabelUtama" class="table table-bordered table-hover table-premium table-sultan-compact mb-0 w-100 text-nowrap" style="border-collapse: separate !important; border-spacing: 0 !important;">
+                    <thead>
                         <tr id="apel_rowHeaderUtama">
-                            <th class="col-sticky-left border-right text-left px-3 align-middle bg-white" style="z-index: 5;">Nama ASN</th>
+                            <th class="col-sticky-left border-right text-left px-3 align-middle" style="background-color: #dee2e6 !important;">Nama ASN</th>
                             
-                            <th class="text-center align-middle text-success px-2" style="background-color: #d4edda !important;">HA</th>
-                            <th class="text-center align-middle text-success px-2" style="background-color: #d4edda !important;">APL</th>
-                            <th class="text-center align-middle text-success px-2" style="background-color: #d4edda !important;">TAp</th>
-                            <th class="text-center align-middle text-dark px-2" style="background-color: #fff3cd !important;">HU</th>
-                            <th class="text-center align-middle text-dark px-2" style="background-color: #fff3cd !important;">U</th>
-                            <th class="text-center align-middle text-dark px-2" style="background-color: #fff3cd !important;">TU</th>
+                            <th class="text-center align-middle text-success px-2" style="background-color: #d4edda !important; font-size: 0.72rem;">HA</th>
+                            <th class="text-center align-middle text-success px-2" style="background-color: #d4edda !important; font-size: 0.72rem;">APL</th>
+                            <th class="text-center align-middle text-success px-2" style="background-color: #d4edda !important; font-size: 0.72rem;">TAp</th>
+                            <th class="text-center align-middle text-dark px-2" style="background-color: #fff3cd !important; font-size: 0.72rem;">HU</th>
+                            <th class="text-center align-middle text-dark px-2" style="background-color: #fff3cd !important; font-size: 0.72rem;">U</th>
+                            <th class="text-center align-middle text-dark px-2" style="background-color: #fff3cd !important; font-size: 0.72rem;">TU</th>
                             
                             <th class="text-center align-middle text-dark px-2 apel_colTanggal" style="background-color: #f4f6f9 !important;">1</th>
                             <th class="text-center align-middle text-dark px-2 apel_colTanggal" style="background-color: #f4f6f9 !important;">2</th>
@@ -378,14 +379,15 @@ function apel_renderTabel(dataRows) {
             var display = val;
             
             if (visIdx === 0) {
-                // Kolom 1 (Index 0): GABUNGAN NAMA, NIP, & UNIT 
+                // Kolom 1 (Index 0): GABUNGAN NAMA & NIP (Unit Removed as requested)
                 var safeNama = apel_escapeHtml(row[0]);
                 var safeNip = apel_escapeHtml(row[1]);
-                var safeUnit = apel_escapeHtml(row[row.length - 1] || '-');
-                var txtUnitHtml = APEL_IS_ADMIN ? `<div class="small text-danger font-weight-bold mt-1">${safeUnit}</div>` : '';
                 
-                // VAKSIN LEBAR: Membungkus dengan text-nowrap agar membentang
-                display = `<div class="font-weight-bold text-dark text-nowrap text-left">${safeNama}</div><div class="small text-muted text-left text-nowrap">${safeNip}</div>${txtUnitHtml}`;
+                display = `<div class="py-0 px-1">
+                    <div class="font-weight-bold text-navy" style="font-size: 0.85rem; line-height: 1.0;">${safeNama}</div>
+                    <div style="height: 2px;"></div>
+                    <div class="text-muted font-weight-bold" style="font-size: 10px; letter-spacing: 0.2px; opacity: 0.7;">${safeNip}</div>
+                </div>`;
             } 
             else if (visIdx >= 1 && visIdx <= 6) {
                 // Kolom Rekap (HA s.d TU)
@@ -430,37 +432,29 @@ function apel_renderTabel(dataRows) {
             "deferRender": true, // Sangat vital untuk tabel lebar
             "dom": "<'row mb-2'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
                    "<'row'<'col-sm-12'<'table-responsive sultan-scroll'tr>>>" +
-                   "<'row mt-3'<'col-sm-12 col-md-5 small text-muted'i><'col-sm-12 col-md-7'p>>",
+                   "<'row mt-2'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
             "language": { 
                 "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", 
                 "search": "", "searchPlaceholder": "Cari Nama...",
                 "emptyTable": '<div class="py-4 text-center text-muted"><i class="fas fa-clipboard-list fa-3x text-gray-300 mb-3" style="opacity: 0.6;"></i><br><h6 class="font-weight-bold text-dark mb-1">Belum Ada Presensi</h6><p class="small mb-0">Tidak ada data apel & upacara untuk filter terpilih.</p></div>' 
             },
             "columnDefs": [
-                // VAKSIN LEBAR: target 0 pakai width: auto
-                { "targets": 0, "width": "auto", "className": "col-sticky-left bg-white align-middle font-weight-bold border-right text-dark text-left" },
-                // VAKSIN ANTI _all (BAB VII): Membuat array dinamis untuk kolom 1 sampai 37
-                { "targets": Array.from({length: 37}, function(_, i) { return i + 1; }), "className": "text-center align-middle" }
+                { "targets": 0, "className": "col-sticky-left bg-white align-middle font-weight-bold border-right text-dark text-left px-3 py-1" },
+                { "targets": Array.from({length: 37}, function(_, i) { return i + 1; }), "className": "text-center align-middle px-2 py-1" }
             ],
             // VAKSIN PERFORMA TURBO: Menggunakan Native DOM murni tanpa attr jQuery
             "createdRow": function(row, data, dataIndex) {
-                 var tds = row.children; // Native DOM array
-                 for (var visIdx = 0; visIdx < tds.length; visIdx++) {
-                     var cell = tds[visIdx];
-                     var valHtml = data[visIdx]; 
+                 var headRow = $('#apel_rowHeaderUtama th');
+                 for (var i = 1; i < row.cells.length; i++) {
+                     var cell = row.cells[i];
                      var textVal = cell.textContent.trim(); 
 
-                     if (visIdx === 0) {
-                         cell.style.position = 'sticky';
-                         cell.style.left = '0';
-                         cell.style.zIndex = '2';
-                         cell.style.backgroundColor = '#ffffff';
-                     } else if (visIdx >= 1 && visIdx <= 3) {
+                     if (i >= 1 && i <= 3) {
                          cell.style.setProperty('background-color', '#d4edda', 'important'); 
-                     } else if (visIdx >= 4 && visIdx <= 6) {
+                     } else if (i >= 4 && i <= 6) {
                          cell.style.setProperty('background-color', '#fff3cd', 'important'); 
-                     } else if (visIdx >= 7) {
-                         if (textVal === "-" || textVal === "0" || valHtml === "") {
+                     } else if (i >= 7) {
+                         if (textVal === "-" || textVal === "0" || data[i] === "") {
                              cell.style.setProperty('background-color', '#e9ecef', 'important'); 
                          } else {
                              cell.style.setProperty('background-color', '#ffffff', 'important'); 
@@ -491,6 +485,56 @@ function apel_renderTabel(dataRows) {
     }
 }
 
+/* SULTAN ULTRA-COMPACT TABLE OVERRIDES */
+#apel_tabelUtama thead th { 
+    font-size: 0.72rem !important; 
+    font-weight: 800; 
+    text-transform: uppercase; 
+    border-bottom: 2px solid #adb5bd !important; 
+    padding: 2px 4px !important; 
+    letter-spacing: 0.2px; 
+    line-height: 1.1 !important;
+    background-color: #dee2e6 !important;
+    color: #1a202c !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 10 !important;
+}
+
+#apel_tabelUtama thead th.col-sticky-left {
+    z-index: 11 !important;
+}
+
+#apel_tabelUtama tbody td { 
+    padding: 0px 8px !important; 
+    border-bottom: 1px solid #f1f5f9; 
+    line-height: 1.0 !important; 
+    position: relative !important; 
+}
+
+#apel_tabelUtama tbody tr:hover td::after { 
+    content: ""; 
+    position: absolute; 
+    top: 0; left: 0; right: 0; bottom: 0; 
+    background-color: rgba(0, 0, 0, 0.05); 
+    pointer-events: none; 
+    z-index: 2; 
+}
+
+/* Sync with Global Sultan Sticky Styles */
+.col-sticky-left {
+    position: sticky !important;
+    left: 0 !important;
+    z-index: 5 !important;
+    background-color: #ffffff !important;
+    border-right: 1px solid #dee2e6 !important;
+    box-shadow: 4px 0 8px rgba(0,0,0,0.05);
+}
+
+.bg-weekend { background-color: #fff5f5 !important; color: #dc3545 !important; }
+.text-navy { color: #1e293b !important; }
+</style>
+
 // =================================================================
 // 5. HELPER UTILITIES: PEMBERSIH XSS (Hukum Ke-5)
 // =================================================================
@@ -498,4 +542,3 @@ function apel_escapeHtml(text) {
     if(!text) return ""; 
     return String(text).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"); 
 }
-</script>
