@@ -298,8 +298,8 @@ function harian_renderSkeleton() {
                 </tr></thead>
                 <tbody>
                     ${Array(rows).fill(`<tr>
-                        <td class="col-sticky-left border-right"><div class="sultan-skeleton" style="height: 10px; width: 85%;"></div><div style="height:4px;"></div><div class="sultan-skeleton" style="height: 6px; width: 50%;"></div></td>
-                        ${Array(cols).fill('<td><div class="sultan-skeleton" style="height: 10px; width: 30px;"></div></td>').join('')}
+                        <td class="col-sticky-left border-right"><div class="sultan-skeleton" style="height: 8px; width: 85%;"></div><div style="height:2px;"></div><div class="sultan-skeleton" style="height: 5px; width: 50%;"></div></td>
+                        ${Array(cols).fill('<td><div class="sultan-skeleton" style="height: 8px; width: 30px;"></div></td>').join('')}
                     </tr>`).join('')}
                 </tbody>
             </table>
@@ -333,9 +333,9 @@ function harian_renderTabel(rows) {
                 var safeNama = harian_escapeHtml(row[0]);
                 var safeNip = harian_escapeHtml(row[1]);
                 display = `<div class="py-1 px-1">
-                    <div class="font-weight-bold text-navy" style="font-size: 0.82rem; line-height: 1.1;">${safeNama}</div>
-                    <div style="height: 4px;"></div>
-                    <div class="text-muted font-weight-bold" style="font-size: 9px; letter-spacing: 0.3px; opacity: 0.7;">${safeNip}</div>
+                    <div class="font-weight-bold text-navy" style="font-size: 11px; line-height: 1.1;">${safeNama}</div>
+                    <div style="height: 2px;"></div>
+                    <div class="text-muted font-weight-bold" style="font-size: 8px; letter-spacing: 0.2px; opacity: 0.7;">${safeNip}</div>
                 </div>`;
             } 
             else if (visIdx >= 1 && visIdx <= 20) {
@@ -442,8 +442,8 @@ function harian_escapeHtml(text) {
 
 <style>
 /* SULTAN ULTRA-COMPACT TABLE OVERRIDES */
-#harian_tabelUtama thead th { font-size: 10px; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #edf2f7 !important; padding: 6px 4px !important; letter-spacing: 0.2px; }
-#harian_tabelUtama tbody td { padding: 2px 8px !important; border-bottom: 1px solid #f1f5f9; }
+#harian_tabelUtama thead th { font-size: 10px; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #edf2f7 !important; padding: 3px 4px !important; letter-spacing: 0.2px; }
+#harian_tabelUtama tbody td { padding: 1px 8px !important; border-bottom: 1px solid #f1f5f9; }
 #harian_tabelUtama tbody tr:hover td { background-color: rgba(0,0,0,0.02) !important; }
 
 .bg-weekend { background-color: #fff5f5 !important; color: #dc3545 !important; }
@@ -461,6 +461,8 @@ function harian_escapeHtml(text) {
     position: sticky !important;
     top: 0 !important;
     z-index: 10 !important;
+    padding: 3px 4px !important;
+    font-size: 9px !important;
 }
 
 #harian_tabelUtama thead th.col-sticky-left {
