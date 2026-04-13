@@ -334,8 +334,8 @@ function harian_renderTabel(rows) {
                 var safeNip = harian_escapeHtml(row[1]);
                 display = `<div class="d-flex align-items-center py-1">
                     <div class="text-truncate">
-                        <div class="font-weight-bold text-navy" style="font-size: 0.82rem; line-height: 1.2;">${safeNama}</div>
-                        <div class="xx-small text-muted font-weight-bold mt-1">${safeNip}</div>
+                        <div class="font-weight-bold text-navy" style="font-size: 0.82rem; line-height: 1.4;">${safeNama}</div>
+                        <div class="text-muted font-weight-bold mt-2" style="font-size: 10px; letter-spacing: 0.3px;">${safeNip}</div>
                     </div>
                 </div>`;
             } 
@@ -378,8 +378,8 @@ function harian_renderTabel(rows) {
                    "<'row'<'col-12'tr>>" + 
                    "<'row p-3'<'col-md-5 small text-muted'i><'col-md-7'p>>",
             "columnDefs": [
-                { "targets": 0, "className": "col-sticky-left bg-white border-right shadow-sm-right" },
-                { "targets": "_all", "className": "align-middle text-center px-2 py-1" } // Padding reduced to py-1
+                { "targets": 0, "className": "col-sticky-left border-right font-weight-bold" },
+                { "targets": Array.from({length: 82}, function(_, i) { return i + 1; }), "className": "align-middle text-center px-2 py-1" }
             ],
             "language": { "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", "search": "" , "searchPlaceholder": "Cari Nama..."},
             "createdRow": function(row, data, dataIndex) {
@@ -456,10 +456,19 @@ function harian_escapeHtml(text) {
 .text-rekap-sultan { font-size: 12px; }
 
 /* Sticky Stability */
-.col-sticky-left { position: sticky !important; left: 0 !important; z-index: 5 !important; border-right: 1px solid #e2e8f0 !important; }
-th.col-sticky-left { z-index: 10 !important; background-color: #f8f9fa !important; }
-
-/* Pulse Animation */
-.sultan-skeleton { background: linear-gradient(90deg, #f7fafc 25%, #edf2f7 50%, #f7fafc 75%); background-size: 200% 100%; animation: sultan-p-loading 1.5s infinite; }
-@keyframes sultan-p-loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+.col-sticky-left { 
+    position: sticky !important; 
+    left: -1px !important; /* Slight offset to align with border */
+    z-index: 10 !important; 
+    background-color: #ffffff !important;
+    border-right: 2px solid #e2e8f0 !important;
+    box-shadow: 4px 0 8px rgba(0,0,0,0.03); 
+}
+th.col-sticky-left { 
+    z-index: 50 !important; 
+    background-color: #f8f9fa !important; 
+}
+#harian_tabelUtama tbody tr:hover .col-sticky-left { 
+    background-color: #f8f9fa !important; 
+}
 </style>
