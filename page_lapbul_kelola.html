@@ -1571,7 +1571,7 @@ function lapbulkelola_submitUpdatePAUD() {
 // 7. EDIT DATA (POPULATOR)
 // =================================================================
 function lapbulkelola_editLapbul(source, rowId) {
-    Sultan.notif.info("Memuat data " + source + "...");
+    Sultan.notif.loading("Memuat data " + source + "...");
     var backendFunction = (source === 'SD') 
         ? google.script.run.withSuccessHandler(onSuccessLoad).withFailureHandler(onErr).getDetailRowSD(rowId)
         : google.script.run.withSuccessHandler(onSuccessLoad).withFailureHandler(onErr).getDetailRowPAUD(rowId);
@@ -1579,6 +1579,7 @@ function lapbulkelola_editLapbul(source, rowId) {
     function onErr(e) { Sultan.notif.gagal("Koneksi gagal: " + e.message); }
     function onSuccessLoad(data) {
         if (data.error) { Sultan.notif.gagal(data.error); return; }
+        Sultan.notif.tutup();
         $('#lapbulkelola_formContentArea').empty(); 
         LAPBULKELOLA_IS_EDIT_MODE = true; LAPBULKELOLA_EDIT_ROW_ID = rowId; lapbulkelola_URL_FILE_LAMA = data.Dokumen || data.fileUrl || "";
 
