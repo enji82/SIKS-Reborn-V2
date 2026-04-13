@@ -189,8 +189,8 @@ function sultan_updateAllNotifUI() {
     if (!user) return;
     
     var role = user.role || "";
-    var isAdmin = role.toLowerCase().includes("admin") || role.toLowerCase().includes("verifikator");
-    var identifier = user.npsn || user.unit || user.username || ""; // ID Sekolah/Pesan
+    var isAdmin = role.toLowerCase().indexOf("admin") !== -1 || role.toLowerCase().indexOf("verifikator") !== -1;
+    var identifier = user.npsn || user.unit || user.username || ""; 
     
     google.script.run
         .withSuccessHandler(function(data) {
@@ -200,7 +200,6 @@ function sultan_updateAllNotifUI() {
             var sk_badge = $('#sk_data_badge');
             var lb_badge = $('#lapbul_kelola_badge');
             
-            // SK Badge
             if (sk_badge.length) {
                 if (data.sk > 0) {
                     sk_badge.text(data.sk > 99 ? '99+' : data.sk).show();
@@ -208,7 +207,6 @@ function sultan_updateAllNotifUI() {
                 } else { sk_badge.hide(); }
             }
             
-            // Lapbul Badge
             if (lb_badge.length) {
                 if (data.lapbul > 0) {
                     lb_badge.text(data.lapbul > 99 ? '99+' : data.lapbul).show();
@@ -222,45 +220,45 @@ function sultan_updateAllNotifUI() {
             var navCont  = $('#notif-list-container');
             
             if (data.total > 0) {
-                // Tampilkan angka di Lonceng
                 if (navBadge.length) {
                     navBadge.text(data.total > 99 ? '99+' : data.total).show();
-                    if (navBell.length) navBell.get(0).style.color = '#dc3545';
+                    if (navBell.length) navBell.css('color', '#dc3545');
                 }
                 
-                // Render List di Dropdown
                 var html = '';
-                data.rincian.forEach(function(item) {
-                    var iconClass = "fas fa-file-signature text-danger";
-                    var iconBg = "bg-light-danger";
-                    var title = isAdmin ? "Antrean Verifikasi" : "Perlu Revisi";
-                    var desc = isAdmin ? `Ada ${item.jumlah} data ${item.modul} menunggu diproses.` : `Ada ${item.jumlah} data ${item.modul} Anda yang perlu diperbaiki.`;
-                    
-                    if (!isAdmin) {
-                        iconClass = "fas fa-exclamation-triangle text-warning";
-                        iconBg = "bg-light-warning";
-                    } else if (item.page === 'lapbul_kelola') {
-                        iconClass = "fas fa-calendar-check text-emerald";
-                        iconBg = "bg-light-emerald";
-                    }
+                if (data.rincian && data.rincian.length) {
+                    data.rincian.forEach(function(item) {
+                        var iconClass = "fas fa-file-signature text-danger";
+                        var iconBg = "bg-light-danger";
+                        var title = isAdmin ? "Antrean Verifikasi" : "Perlu Revisi";
+                        var desc = isAdmin ? "Ada " + item.jumlah + " data " + item.modul + " menunggu diproses." : "Ada " + item.jumlah + " data " + item.modul + " Anda yang perlu diperbaiki.";
+                        var targetFilter = isAdmin ? "Diproses" : "Revisi";
 
-                    html += `
-                        <a href="#" class="dropdown-item p-3 border-bottom sk-notif-item" onclick="sk_notifNavigate('${item.page}', '${isAdmin ? 'Diproses' : 'Revisi'}')">
-                            <div class="d-flex align-items-center">
-                                <div class="${iconBg} p-2 rounded-circle mr-3" style="width:40px; height:40px; display:flex; align-items:center; justify-content:center;">
-                                    <i class="${iconClass}"></i>
-                                </div>
-                                <div style="flex:1;">
-                                    <p class="mb-0 font-weight-bold text-dark" style="font-size:13.5px; line-height:1.2;">${title}: ${item.modul}</p>
-                                    <small class="text-muted d-block mt-1" style="font-size:11.5px; line-height:1.3;">${desc}</small>
-                                </div>
-                            </div>
-                        </a>`;
-                });
+                        if (!isAdmin) {
+                            iconClass = "fas fa-exclamation-triangle text-warning";
+                            iconBg = "bg-light-warning";
+                        } else if (item.page === 'lapbul_kelola') {
+                            iconClass = "fas fa-calendar-check text-emerald";
+                            iconBg = "bg-light-emerald";
+                        }
+
+                        html += '<a href="#" class="dropdown-item p-3 border-bottom sk-notif-item" onclick="sk_notifNavigate(\''+item.page+'\', \''+targetFilter+'\')">' +
+                                '<div class="d-flex align-items-center">' +
+                                    '<div class="'+iconBg+' p-2 rounded-circle mr-3" style="width:40px; height:40px; display:flex; align-items:center; justify-content:center;">' +
+                                        '<i class="'+iconClass+'"></i>' +
+                                    '</div>' +
+                                    '<div style="flex:1;">' +
+                                        '<p class="mb-0 font-weight-bold text-dark" style="font-size:13.5px; line-height:1.2;">'+title+': '+item.modul+'</p>' +
+                                        '<small class="text-muted d-block mt-1" style="font-size:11.5px; line-height:1.3;">'+desc+'</small>' +
+                                    '</div>' +
+                                '</div>' +
+                            '</a>';
+                    });
+                }
                 if (navCont.length) navCont.html(html);
             } else {
                 if (navBadge.length) navBadge.hide();
-                if (navBell.length) navBell.get(0).style.color = '#64748b';
+                if (navBell.length) navBell.css('color', '#64748b');
                 if (navCont.length) navCont.html('<div class="text-center p-4 text-muted small">Tidak ada notifikasi baru</div>');
             }
         })

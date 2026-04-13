@@ -273,7 +273,7 @@ function sultan_getUnifiedNotificationCounts(role, npsn) {
             }
           }
         }
-      } catch (e) { console.log("Error count Lapbul " + source.label + ": " + e.message); }
+      } catch (e) { Logger.log("Error count Lapbul " + source.label + ": " + e.message); }
     });
 
     counts.total = counts.sk + counts.lapbul;
