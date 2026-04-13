@@ -16,18 +16,18 @@
     <div class="row justify-content-center">
       <div class="col-12">
 
-        <!-- 1. INFORMASI -->
-        <div class="card-sultan mb-3">
-          <div class="card-body py-2 px-3 border-left-dark shadow-xs" style="border-radius: 12px; border: 1px solid #e2e8f0;">
-            <div class="d-flex align-items-center justify-content-between cursor-pointer" data-toggle="collapse" data-target="#harian_infoCollapse">
-              <div class="d-flex align-items-center text-maroon font-weight-bold" style="font-size: 0.95rem;">
+        <!-- 1. KARTU INFORMASI (GAYA SULTAN COMPACT) -->
+        <div class="card-sultan card-sultan-info-compact mb-3">
+          <div class="card-body border-left-dark">
+            <div class="d-flex-info-header cursor-pointer" data-toggle="collapse" data-target="#harian_infoCollapse">
+              <div class="d-flex align-items-center text-maroon font-weight-bold">
                 <i class="fas fa-info-circle mr-2"></i> Informasi
               </div>
               <i class="fas fa-chevron-down text-muted icon-sm"></i>
             </div>
             <div id="harian_infoCollapse" class="collapse">
               <div class="mt-2 pt-2 border-top small text-muted">
-                <ul class="mb-2 pl-3 text-justify" style="line-height: 1.6;">
+                <ul class="mb-2 pl-3 text-dark mt-2" style="font-size:14px; line-height: 1.6;">
                   <li>Halaman ini menampilkan rekaman presensi harian ASN pada aplikasi Siaba.</li>
                   <li>Data yang ditampilkan diperbarui pada jangka waktu tertentu (tidak realtime).</li>
                   <li><strong>Kode:</strong> TP: Tidak Presensi, HK: Hari Kerja, H: Hadir, HA: Hari Apel, APL: Apel, TAp: Tidak Apel, HU: Hari Upacara, U: Upacara, TU: Tidak Upacara, CT: Cuti Tahunan, CAP: Cuti Alasan Penting, CS: Cuti Sakit, CM: Cuti Melahirkan, DD: Dinas Dalam, DL: Dinas Luar, TA: Terlambat, PLA: Pulang Awal.</li>
@@ -37,30 +37,25 @@
           </div>
         </div>
 
-        <!-- 2. FILTER DATA -->
-        <div class="card shadow-sm border-0 mb-3" style="border-radius: 12px;">
-          <div class="card-body p-3">
-            <div class="row align-items-end">
-              <div class="col-md-2 col-6 mb-2 mb-md-0">
-                <label class="small font-weight-bold text-muted mb-1"><i class="fas fa-calendar mr-1"></i> Tahun</label>
-                <select id="harian_filterTahun" class="form-control form-control-sm select2-sultan" style="border-radius: 8px;" disabled></select>
-              </div>
-              <div class="col-md-2 col-6 mb-2 mb-md-0">
-                <label class="small font-weight-bold text-muted mb-1"><i class="fas fa-calendar-alt mr-1"></i> Bulan</label>
-                <select id="harian_filterBulan" class="form-control form-control-sm select2-sultan" style="border-radius: 8px;" disabled></select>
-              </div>
-              <div class="col-md-5 col-12 mb-2 mb-md-0">
-                <label class="small font-weight-bold text-muted mb-1"><i class="fas fa-university mr-1"></i> Unit Kerja</label>
-                <select id="harian_filterUnit" class="form-control form-control-sm select2-sultan font-weight-bold text-maroon" style="border-radius: 8px;" disabled>
-                   <option value="">- Memvalidasi Akses... -</option>
-                </select>
-              </div>
-              <div class="col-md-3 col-12 text-md-right">
-                <button type="button" id="harian_btnRefresh" class="btn btn-maroon btn-sm px-4 shadow-none font-weight-bold rounded-pill" disabled>
-                  <i class="fas fa-sync-alt mr-1"></i> Sinkron Data
-                </button>
-              </div>
-            </div>
+        <!-- 2. KARTU FILTER (GAYA SULTAN) -->
+        <div class="card-sultan p-3 mb-3">
+          <div class="d-flex-gap align-items-center flex-wrap">
+              
+              <select id="harian_filterTahun" class="form-control form-control-sultan input-auto-width min-w-80" disabled></select>
+              
+              <select id="harian_filterBulan" class="form-control form-control-sultan input-auto-width" disabled></select>
+
+              <select id="harian_filterUnit" class="form-control form-control-sultan input-auto-width min-w-250 font-weight-bold text-maroon bg-light" disabled>
+                  <option value="">- Memvalidasi Akses... -</option>
+              </select>
+
+              <div class="divider-vertical d-none d-md-block"></div>
+
+              <button type="button" id="harian_btnRefresh" class="btn bg-white border shadow-sm text-secondary" title="Segarkan Data dari Server" disabled>
+                  <i class="fas fa-sync-alt text-maroon"></i>
+              </button>
+              
+              <div class="ml-auto d-none d-md-block"></div>
           </div>
         </div>
 
