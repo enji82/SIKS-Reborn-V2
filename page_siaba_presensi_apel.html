@@ -128,9 +128,13 @@
 
 <script>
 // ======================================================================
-// ISOLASI VARIABEL GLOBAL (MASTER BLUEPRINT V8 - READ ONLY MULTI COLUMN)
-// BAB I: Prefix Mutlak apel_
 // ======================================================================
+function apel_escapeHtml(text) { 
+    if(!text) return ""; 
+    return String(text).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"); 
+}
+
+
 var APEL_CACHE_DATA = []; 
 var APEL_CACHE_THN = "";
 var APEL_CACHE_BLN = "";
@@ -489,8 +493,6 @@ function apel_renderTabel(dataRows) {
         setTimeout(function(){ APEL_TABEL_INSTANCE.columns.adjust(); }, 50);
     }
 }
-
-
 </script>
 
 <style>
@@ -543,11 +545,3 @@ function apel_renderTabel(dataRows) {
 .bg-weekend { background-color: #fff5f5 !important; color: #dc3545 !important; }
 .text-navy { color: #1e293b !important; }
 </style>
-
-// =================================================================
-// 5. HELPER UTILITIES: PEMBERSIH XSS (Hukum Ke-5)
-// =================================================================
-function apel_escapeHtml(text) { 
-    if(!text) return ""; 
-    return String(text).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"); 
-}
