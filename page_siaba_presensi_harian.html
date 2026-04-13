@@ -246,14 +246,14 @@ function harian_tarikDataServer() {
     var bl = $('#harian_filterBulan').val();
     if(!th || !bl) return;
 
-    $('#harian_btnRefresh').prop('disabled', true).html('<i class="fas fa-sync-alt fa-spin mr-1"></i> Sinkron...');
+    $('#harian_btnRefresh').prop('disabled', true).html('<i class="fas fa-sync-alt fa-spin text-maroon"></i>');
     $('#harian_tableState').hide();
     $('#harian_loadingState').show();
 
     google.script.run
         .withSuccessHandler(function(res) {
             HARIAN_IS_FETCHING = false;
-            $('#harian_btnRefresh').prop('disabled', false).html('<i class="fas fa-sync-alt mr-1"></i> Sinkron Data');
+            $('#harian_btnRefresh').prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon"></i>');
             
             var data = JSON.parse(res);
             if (data.error) { Sultan.alert('error', 'Gagal', data.error); return; }
@@ -268,7 +268,7 @@ function harian_tarikDataServer() {
         })
         .withFailureHandler(function(err) {
             HARIAN_IS_FETCHING = false;
-            $('#harian_btnRefresh').prop('disabled', false).html('<i class="fas fa-sync-alt mr-1"></i> Sinkron Data');
+            $('#harian_btnRefresh').prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon"></i>');
             Sultan.alert('error', 'Koneksi Error', err.message);
         })
         .getSiabaPresensiHarian(th, bl, "SEMUA");
