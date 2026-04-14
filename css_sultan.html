@@ -545,40 +545,87 @@
    =================================================================== */
 
 /* ===================================================================
-   V6.0: SULTAN COMPACT PREVIEW (ULTRA-SLIM DARK DESIGN)
-   Gunakan untuk pratinjau dokumen agar hemat ruang.
+   V6.5: SULTAN ELITE PREVIEW (PREMIUM WHITE CONCEPT)
+   Gunakan untuk pratinjau dokumen dengan estetika SaaS bersih.
    =================================================================== */
 
-.sultan-compact-header {
-    background: #0d0d0d !important;
-    backdrop-filter: blur(5px);
+.sultan-preview-header {
+    background: #ffffff !important;
     height: 44px !important;
-    border-bottom: 1px solid #333 !important;
+    border-bottom: 2px solid #f1f5f9 !important;
     display: flex !important;
     align-items: center !important;
-    padding: 0 1rem !important;
+    justify-content: space-between !important;
+    padding: 0 1.25rem !important;
+    z-index: 1050;
 }
 
-.sultan-compact-header .modal-title {
-    font-size: 0.82rem !important;
-    color: rgba(255, 255, 255, 0.6) !important;
-    letter-spacing: 0.5px !important;
+.sultan-preview-title {
+    display: flex;
+    align-items: center;
+    font-size: 0.85rem !important;
     font-weight: 700 !important;
+    color: #1e293b !important;
 }
 
-.sultan-compact-header .hover-white:hover {
-    color: #fff !important;
-    text-decoration: none !important;
+.sultan-preview-actions {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.sultan-preview-btn {
+    color: #1D3573 !important;
+    font-size: 0.72rem !important;
+    font-weight: 800 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 6px 12px;
+    border-radius: 6px;
     transition: all 0.2s ease;
+    text-decoration: none !important;
+    border: none !important;
+    background: transparent !important;
+    display: inline-flex;
+    align-items: center;
+}
+
+.sultan-preview-btn:hover {
+    color: #0f172a !important;
+    background: rgba(29, 53, 115, 0.05) !important;
+    transform: translateY(-1px);
+}
+
+.sultan-preview-divider {
+    height: 18px;
+    width: 1px;
+    background-color: #e2e8f0;
+    margin: 0 8px;
+}
+
+.sultan-preview-close {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    font-size: 1.1rem;
+    padding: 0 5px;
+    transition: all 0.2s;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sultan-preview-close:hover {
+    color: #ef4444;
+    transform: scale(1.1);
 }
 
 .sultan-spinner-compact {
-    width: 32px;
-    height: 32px;
-    border: 3px solid rgba(255, 255, 255, 0.1);
-    border-top: 3px solid #8B0000;
-    border-radius: 50%;
-    animation: sultan-spin-mini 0.8s linear infinite;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 @keyframes sultan-spin-mini {

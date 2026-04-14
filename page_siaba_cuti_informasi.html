@@ -138,23 +138,26 @@
 </section>
 
 <div class="modal fade" id="infoCutiModalPreview" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-xl" role="document" style="max-width: 95%;">
-        <div class="modal-content border-0 shadow-lg bg-dark">
+    <div class="modal-dialog modal-dialog-full" role="document">
+        <div class="modal-content modal-content-full-height border-0 shadow-lg">
             
-            <div class="modal-header bg-maroon py-2 text-white border-bottom-0">
-                <h6 class="modal-title font-weight-bold"><i class="fas fa-book-open mr-2"></i>Baca Peraturan</h6>
-                <div class="ml-auto">
-                    <a href="#" id="infoCutiBtnUnduhPDF" target="_blank" class="btn btn-xs btn-light text-maroon font-weight-bold shadow-sm mr-2 rounded-pill px-3">
-                        <i class="fas fa-external-link-alt mr-1"></i> Buka di Tab Baru
-                    </a>
-                    <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
+            <div class="sultan-preview-header">
+                <div class="sultan-preview-title">
+                    <i class="fas fa-book-open text-danger mr-2"></i>
+                    <span>Baca Peraturan Cuti</span>
+                </div>
+                <div class="sultan-preview-actions">
+                    <a href="#" id="infoCutiBtnUnduhPDF" class="sultan-preview-btn" target="_blank">BUKA TAB BARU</a>
+                    <div class="sultan-preview-divider"></div>
+                    <button type="button" class="sultan-preview-close" data-dismiss="modal">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
             </div>
             
-            <div class="modal-body p-0" style="height: 85vh;">
+            <div class="modal-body modal-body-full position-relative p-0" style="height: calc(100vh - 44px);">
                 <iframe id="infoCutiFramePreview" src="" style="width: 100%; height: 100%; border: none;"></iframe>
             </div>
-
         </div>
     </div>
 </div>
