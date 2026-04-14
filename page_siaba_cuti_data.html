@@ -118,121 +118,106 @@
 
 <div class="modal fade" id="cuti_modalForm" tabindex="-1" role="dialog" data-backdrop="static">
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-    <div class="modal-content modal-content-sultan border-0 shadow-lg">
-      <div class="modal-header bg-maroon text-white" id="cuti_headerModalForm">
+    <div class="modal-content sultan-modal-content">
+      <div class="sultan-modal-header sultan-header-maroon" id="cuti_headerModalForm">
         <h5 class="modal-title font-weight-bold" id="cuti_judulModalForm">
           <i class="fas fa-plus-circle mr-2"></i>Form Pengajuan Cuti
         </h5>
-        <button type="button" class="close text-white" data-dismiss="modal" id="cuti_closeModalForm"><span>&times;</span></button>
+        <button type="button" class="close" data-dismiss="modal" id="cuti_closeModalForm"><span>&times;</span></button>
       </div>
 
       <form id="cuti_formUtama" novalidate>
-      <div class="modal-body bg-light p-4">
+        <div class="sultan-modal-body bg-light">
           <input type="hidden" id="cuti_editRowId" value="">
+          
           <div class="form-row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 mb-3">
               <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Unit Kerja <span class="text-danger">*</span></label>
-              <select id="cuti_inputUnit" class="form-control form-control-sultan font-weight-bold text-maroon bg-light" disabled>
+              <select id="cuti_inputUnit" class="form-control form-control-sultan font-weight-bold" disabled>
                 <option value="">- Pilih Unit -</option>
               </select>
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 mb-3">
               <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Nama ASN <span class="text-danger">*</span></label>
-              <select id="cuti_inputNama" class="form-control form-control-sultan border-maroon" disabled required>
+              <select id="cuti_inputNama" class="form-control form-control-sultan" disabled required>
                 <option value="">- Pilih Unit Dulu -</option>
               </select>
             </div>
           </div>
+
           <div class="form-row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 mb-3">
               <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">NIP</label>
               <select id="cuti_inputNIP" class="form-control form-control-sultan" disabled required>
                 <option value="">- Otomatis -</option>
               </select>
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 mb-3">
               <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Status Kepegawaian</label>
               <input type="text" id="cuti_inputStatusPegawai" class="form-control form-control-sultan bg-white font-weight-bold" readonly placeholder="-">
             </div>
           </div>
+
           <hr class="style-sultan-solid my-3">
+
           <div class="form-row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 mb-3">
                 <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Jenis Cuti <span class="text-danger">*</span></label>
-                <select id="cuti_inputJenisCuti" class="form-control form-control-sultan border-maroon" required>
+                <select id="cuti_inputJenisCuti" class="form-control form-control-sultan" required>
                    <option value="">- Pilih Jenis Cuti -</option>
                 </select>
-                <small class="text-muted font-italic mt-1 d-block"><i class="fas fa-info-circle mr-1"></i> Pilihan cuti menyesuaikan status kepegawaian.</small>
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 mb-3">
                 <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Tgl Pengajuan <span class="text-danger">*</span></label>
-                <input type="date" id="cuti_inputTglPengajuan" class="form-control form-control-sultan border-maroon" required>
+                <input type="date" id="cuti_inputTglPengajuan" class="form-control form-control-sultan" required>
             </div>
           </div>
+
           <div class="form-row">
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-4 mb-3">
               <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Tgl Mulai <span class="text-danger">*</span></label>
-              <input type="date" id="cuti_inputTglMulai" class="form-control form-control-sultan border-maroon" required>
+              <input type="date" id="cuti_inputTglMulai" class="form-control form-control-sultan" required>
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-4 mb-3">
               <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Tgl Selesai <span class="text-danger">*</span></label>
-              <input type="date" id="cuti_inputTglSelesai" class="form-control form-control-sultan border-maroon" required>
+              <input type="date" id="cuti_inputTglSelesai" class="form-control form-control-sultan" required>
             </div>
-            <div class="form-group col-md-4">
-              <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Jumlah Hari <span class="text-danger">*</span></label>
-              <input type="number" id="cuti_inputJumlahHari" class="form-control form-control-sultan bg-light font-weight-bold text-maroon" placeholder="0" readonly required>
+            <div class="form-group col-md-4 mb-3">
+              <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Jumlah Hari</label>
+              <input type="number" id="cuti_inputJumlahHari" class="form-control form-control-sultan bg-light font-weight-bold" readonly required>
             </div>
           </div>
-          <div class="form-group">
+
+          <div class="form-group mb-3">
             <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Alasan Cuti <span class="text-danger">*</span></label>
-            <textarea id="cuti_inputAlasan" class="form-control form-control-sultan border-maroon" rows="2" placeholder="Tulis alasan lengkap..." style="resize:none;" required></textarea>
+            <textarea id="cuti_inputAlasan" class="form-control form-control-sultan" rows="2" placeholder="Tulis alasan lengkap..." required></textarea>
           </div>
-          <div class="form-row mb-0">
+
+          <div class="form-row">
             <div class="form-group col-md-6 mb-0">
               <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Alamat Selama Cuti</label>
-              <textarea id="cuti_inputAlamat" class="form-control form-control-sultan border-maroon" rows="4" style="min-height: 110px !important; height: auto !important; resize: vertical;" placeholder="Isikan alamat selama menjalankan cuti." required></textarea>
+              <textarea id="cuti_inputAlamat" class="form-control form-control-sultan" rows="3" placeholder="Isikan alamat lengkap..."></textarea>
             </div>
             <div class="form-group col-md-6 mb-0">
               <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Nomor HP / WhatsApp <span class="text-danger">*</span></label>
-              <input type="text" id="cuti_inputHP" class="form-control form-control-sultan border-maroon" placeholder="08xxx" required>
+              <input type="text" id="cuti_inputHP" class="form-control form-control-sultan" placeholder="08xxx" required>
             </div>
           </div>
-      </div>
-      <div class="modal-footer bg-white p-3 justify-content-between border-top">
-        <button type="button" class="btn btn-default shadow-sm font-weight-bold px-4" data-dismiss="modal">Batal</button>
-        <button type="submit" class="btn btn-maroon text-white font-weight-bold shadow-sm px-4" id="cuti_btnSimpanForm">
-          <i class="fas fa-paper-plane mr-2"></i>Kirim Pengajuan
-        </button>
-      </div>
+        </div>
+
+        <div class="sultan-modal-footer d-flex justify-content-between">
+          <button type="button" class="btn btn-secondary shadow-sm px-4" data-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-maroon text-white font-weight-bold shadow-sm px-4" id="cuti_btnSimpanForm">
+            <i class="fas fa-paper-plane mr-2"></i>Kirim Pengajuan
+          </button>
+        </div>
       </form>
     </div>
   </div>
 </div>
 
+<!-- 2. MODAL HAPUS -->
 <div class="modal fade" id="cuti_modalHapus" tabindex="-1" role="dialog" data-backdrop="static">
-    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 400px;">
-        <div class="modal-content border-0 shadow-lg modal-content-sultan">
-            <div class="modal-header bg-danger text-white">
-                <h6 class="modal-title font-weight-bold"><i class="fas fa-trash-alt mr-2"></i>Konfirmasi Hapus Cuti</h6>
-                <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
-            </div>
-            <form id="cuti_formHapus" novalidate>
-            <div class="modal-body bg-white p-4">
-                <input type="hidden" id="cuti_hapusRowId">
-                <div class="alert alert-warning text-dark border-warning shadow-sm mb-3">
-                    <div class="d-flex align-items-start">
-                        <i class="fas fa-exclamation-triangle mt-1 mr-3 fa-lg"></i>
-                        <div>
-                            <strong>Peringatan!</strong><br>
-                            Anda akan menghapus data pengajuan cuti milik:<br>
-                            <span id="cuti_hapusViewNama" class="font-weight-bold text-uppercase" style="font-size: 1.1em; color: #000;">-</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group mb-0">
-                    <label class="form-label-sultan small font-weight-bold text-uppercase text-muted">Kode Keamanan <span class="text-danger">*</span></label>
-                    <div class="input-group">
-                        <div class="input-group-prepend"><span class="input-group-text bg-light border-right-0"><i class="fas fa-key text-danger"></i></span></div>
                         <input type="password" id="cuti_inputKodeHapus" class="form-control form-control-sultan border-left-0 text-center font-weight-bold letter-spacing-2" placeholder="Ketik kode hapus..." required autocomplete="off">
                     </div>
                 </div>

@@ -108,13 +108,13 @@
 <!-- MODAL UNGGAH & EDIT ARSIP (KHUSUS ADMIN) -->
 <div class="modal fade" id="arsipsiaba_modalForm" tabindex="-1" role="dialog" data-backdrop="static">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content border-0 shadow-lg modal-content-sultan">
-            <div class="modal-header bg-maroon text-white" id="arsipsiaba_headerModalForm">
-                <h5 class="modal-title font-weight-bold" id="arsipsiaba_judulModalForm"><i class="fas fa-cloud-upload-alt mr-2"></i>Unggah Arsip SIABA</h5>
-                <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
+        <div class="modal-content sultan-modal-content">
+            <div class="sultan-modal-header sultan-header-maroon" id="arsipsiaba_headerModalForm">
+                <h5 class="modal-title"><i class="fas fa-cloud-upload-alt mr-2"></i>Unggah Arsip SIABA</h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
             </div>
             <form id="arsipsiaba_formUtama" novalidate>
-                <div class="modal-body bg-light">
+                <div class="sultan-modal-body bg-light">
                     <input type="hidden" id="arsipsiaba_inputIdData" name="id">
                     <input type="hidden" id="arsipsiaba_inputMode" name="mode">
                     <input type="hidden" id="arsipsiaba_existingUrl">
@@ -159,11 +159,34 @@
                     </div>
 
                 </div>
-                <div class="modal-footer bg-white justify-content-between p-3">
-                    <button type="button" class="btn btn-default shadow-sm font-weight-bold px-4" data-dismiss="modal">Batal</button>
-                    <button type="submit" id="arsipsiaba_btnSimpanForm" class="btn btn-maroon shadow-sm font-weight-bold px-4"><i class="fas fa-upload mr-1"></i> Mulai Unggah</button>
+                <div class="sultan-modal-footer d-flex justify-content-between">
+                    <button type="button" class="btn btn-secondary shadow-sm px-4" data-dismiss="modal">Tutup</button>
+                    <button type="submit" id="arsipsiaba_btnSimpan" class="btn btn-maroon shadow-sm px-4">
+                        <i class="fas fa-save mr-1"></i> Simpan Data
+                    </button>
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+
+<!-- 3. MODAL HAPUS (GAYA SULTAN) -->
+<div class="modal fade" id="arsipsiaba_modalHapus" tabindex="-1" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content sultan-modal-content">
+            <div class="sultan-modal-header sultan-header-danger">
+                <h5 class="modal-title"><i class="fas fa-trash-alt mr-2"></i>Konfirmasi Hapus</h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+            </div>
+            <div class="sultan-modal-body bg-white text-center py-4">
+                <i class="fas fa-exclamation-triangle text-danger mb-3" style="font-size: 3rem;"></i>
+                <h5 class="font-weight-bold text-dark mb-2">Hapus Data Ini?</h5>
+                <p class="text-muted mb-0">Data yang sudah dihapus tidak dapat dikembalikan lagi. Apakah Anda yakin?</p>
+            </div>
+            <div class="sultan-modal-footer d-flex justify-content-center" style="gap:10px;">
+                <button type="button" class="btn btn-secondary px-4" data-dismiss="modal">Batal</button>
+                <button type="button" id="arsipsiaba_btnKonfirmasiHapus" class="btn btn-danger px-4">Ya, Hapus</button>
+            </div>
         </div>
     </div>
 </div>

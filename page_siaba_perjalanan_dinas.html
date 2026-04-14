@@ -120,35 +120,38 @@
 
 <div class="modal fade" id="perdin_modalForm" tabindex="-1" role="dialog" data-backdrop="static">
   <div class="modal-dialog modal-xl" role="document"> 
-    <div class="modal-content border-0 shadow-lg modal-content-sultan">
-      <div class="modal-header bg-maroon text-white" id="perdin_headerModalForm">
+    <div class="modal-content sultan-modal-content">
+      <div class="sultan-modal-header sultan-header-maroon" id="perdin_headerModalForm">
         <h5 class="modal-title font-weight-bold" id="perdin_judulModalForm"><i class="fas fa-file-signature mr-2"></i>Formulir Perjalanan Dinas</h5>
-        <button type="button" class="close text-white" data-dismiss="modal" id="perdin_closeModalForm"><span>&times;</span></button>
+        <button type="button" class="close" data-dismiss="modal" id="perdin_closeModalForm"><span>&times;</span></button>
       </div>
-      <div class="modal-body bg-light p-4">
+
+      <div class="sultan-modal-body bg-light">
         <input type="hidden" id="perdin_inputUserLogin">
         
         <div class="row mb-3">
             <div class="col-md-5 mb-3 mb-md-0">
                 <div class="card-sultan shadow-sm h-100">
                     <div class="card-body p-3 d-flex flex-column justify-content-center">
-                        <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Nomor Surat Perintah Tugas (SPT) <span class="text-danger">*</span></label>
+                        <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Nomor SPT <span class="text-danger">*</span></label>
                         <div class="input-group">
-                            <input type="text" id="perdin_inputNoSpt" class="form-control form-control-sultan border-maroon font-weight-bold text-uppercase" placeholder="Ketik Nomor SPT..." autocomplete="off">
-                            <div class="input-group-append"><button class="btn btn-maroon text-white px-3" type="button" id="perdin_btnCariSpt"><i class="fas fa-search"></i></button></div>
+                            <input type="text" id="perdin_inputNoSpt" class="form-control form-control-sultan font-weight-bold text-uppercase" placeholder="Ketik Nomor SPT..." autocomplete="off">
+                            <div class="input-group-append">
+                                <button class="btn btn-maroon text-white px-3" type="button" id="perdin_btnCariSpt"><i class="fas fa-search"></i></button>
+                            </div>
                         </div>
-                        <small class="text-muted mt-2" id="perdin_msgCekSpt">Tekan <b>Enter</b> atau klik ikon cari untuk memulai.</small>
+                        <small class="text-muted mt-2" id="perdin_msgCekSpt">Tekan <b>Enter</b> untuk memvalidasi nomor SPT.</small>
                     </div>
                 </div>
             </div>
             <div class="col-md-7">
                 <div class="card-sultan shadow-sm bg-white h-100">
                     <div class="card-body p-3">
-                        <h6 class="font-weight-bold text-info border-bottom pb-2 mb-2"><i class="fas fa-lightbulb mr-1"></i> Panduan Alur Kerja</h6>
-                        <p class="text-muted text-xs mb-0">
-                        <b>1. SPT Baru:</b> Ketik nomor baru, lengkapi Tujuan & Kegiatan, unggah file SPT, lalu masukkan nama-nama ASN Peserta.<br>
-                        <b>2. SPT Terdaftar:</b> Ketik nomor SPT yang sudah ada, Anda bisa langsung menambahkan nama ASN baru ke daftar peserta.<br>
-                        <b>3.</b> Apabila sudah terkunci, proses edit hanya dapat dilakukan oleh Admin Korwil.
+                        <h6 class="font-weight-bold text-primary border-bottom pb-2 mb-2 small text-uppercase"><i class="fas fa-lightbulb mr-1"></i> Panduan Pengisian</h6>
+                        <p class="text-muted small mb-0">
+                        1. Gunakan <b>Nomor SPT yang unik</b> untuk input baru.<br>
+                        2. Untuk SPT yang sudah terdaftar, Anda hanya perlu menambahkan <b>Peserta Baru</b>.<br>
+                        3. Pastikan mengunggah file PDF dengan ukuran maksimal <b>1 MB</b>.
                         </p>
                     </div>
                 </div>
@@ -161,39 +164,36 @@
                     <div class="col-md-5 mb-3 mb-md-0">
                         <div class="card-sultan h-100 shadow-sm">
                             <div class="card-header bg-white border-bottom py-2">
-                                <h6 class="m-0 font-weight-bold text-maroon"><i class="fas fa-file-alt mr-1"></i> Data Surat Tugas</h6>
-                                <span id="perdin_badgeStatusSpt" class="float-right badge badge-sultan badge-sultan-light-info">BARU</span>
+                                <h6 class="m-0 font-weight-bold text-maroon small text-uppercase"><i class="fas fa-file-alt mr-2"></i>Data Surat Tugas</h6>
                             </div>
                             <div class="card-body p-3">
                                 <fieldset id="perdin_fieldHeader">
-                                    <div class="row">
-                                        <div class="col-6"><div class="form-group"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Jenis <span class="text-danger">*</span></label><select id="perdin_inputJenis" class="form-control form-control-sultan" required><option value="">- Pilih -</option><option value="DL">DL (Luar Daerah)</option><option value="DD">DD (Dalam Daerah)</option></select></div></div>
-                                        <div class="col-6"><div class="form-group"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Tgl SPT <span class="text-danger">*</span></label><input type="date" id="perdin_inputTglSpt" class="form-control form-control-sultan" required></div></div>
+                                    <div class="form-row">
+                                        <div class="col-6 mb-3"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Jenis <span class="text-danger">*</span></label><select id="perdin_inputJenis" class="form-control form-control-sultan" required><option value="">- Pilih -</option><option value="DL">DL (Daerah)</option><option value="DD">DD (Dalam)</option></select></div>
+                                        <div class="col-6 mb-3"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Tgl SPT <span class="text-danger">*</span></label><input type="date" id="perdin_inputTglSpt" class="form-control form-control-sultan" required></div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-6"><div class="form-group"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Berangkat <span class="text-danger">*</span></label><input type="date" id="perdin_inputTglMulai" class="form-control form-control-sultan" required></div></div>
-                                        <div class="col-6"><div class="form-group"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Pulang <span class="text-danger">*</span></label><input type="date" id="perdin_inputTglSelesai" class="form-control form-control-sultan" required></div></div>
+                                    <div class="form-row">
+                                        <div class="col-6 mb-3"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Berangkat <span class="text-danger">*</span></label><input type="date" id="perdin_inputTglMulai" class="form-control form-control-sultan" required></div>
+                                        <div class="col-6 mb-3"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Pulang <span class="text-danger">*</span></label><input type="date" id="perdin_inputTglSelesai" class="form-control form-control-sultan" required></div>
                                     </div>
-                                    <div class="form-group"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Tujuan <span class="text-danger">*</span></label><input type="text" id="perdin_inputTujuan" class="form-control form-control-sultan" placeholder="Tempat / Instansi Tujuan..." required></div>
-                                    <div class="form-group"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Uraian Kegiatan <span class="text-danger">*</span></label><textarea id="perdin_inputKegiatan" class="form-control form-control-sultan" rows="3" placeholder="Tuliskan detail kegiatan dinas..." required style="resize:none;"></textarea></div>
+                                    <div class="form-group mb-3"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Tujuan <span class="text-danger">*</span></label><input type="text" id="perdin_inputTujuan" class="form-control form-control-sultan" placeholder="Tempat Tujuan..." required></div>
+                                    <div class="form-group mb-3"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Kegiatan <span class="text-danger">*</span></label><textarea id="perdin_inputKegiatan" class="form-control form-control-sultan" rows="2" placeholder="Uraian kegiatan..." required></textarea></div>
                                     
-                                    <div id="perdin_divUniFile" class="bg-abu-terang p-3 rounded border">
-                                        <div class="form-group">
+                                    <div id="perdin_divUniFile" class="bg-light p-3 rounded border">
+                                        <div class="form-group mb-3">
                                             <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Jenis Dokumen <span class="text-danger">*</span></label>
                                             <select id="perdin_inputJenisDok" class="form-control form-control-sultan" required>
-                                                <option value="">- Pilih -</option>
                                                 <option value="SPT">SPT Final</option>
-                                                <option value="SPT Sementara">SPT Sementara (Belum ditandatangani)</option>
+                                                <option value="SPT Sementara">SPT Sementara</option>
                                                 <option value="Undangan">Surat Undangan</option>
                                             </select>
                                         </div>
                                         <div class="form-group mb-0">
-                                            <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Unggah File (PDF) <span class="text-danger" id="perdin_reqFileAsterisk">*</span></label>
+                                            <label class="small font-weight-bold text-muted text-uppercase">File PDF <span class="text-danger" id="perdin_reqFileAsterisk">*</span></label>
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input border-maroon" id="perdin_inputFile" accept="application/pdf">
-                                                <label class="custom-file-label text-truncate" for="perdin_inputFile">Pilih file...</label>
+                                                <input type="file" class="custom-file-input" id="perdin_inputFile" accept="application/pdf">
+                                                <label class="custom-file-label" for="perdin_inputFile">Pilih file...</label>
                                             </div>
-                                            <small class="text-muted mt-2 d-block"><i class="fas fa-info-circle mr-1"></i> Maksimal ukuran file 1 MB.</small>
                                         </div>
                                     </div>
                                 </fieldset>
@@ -203,23 +203,22 @@
                     <div class="col-md-7">
                         <div class="card-sultan h-100 shadow-sm d-flex flex-column">
                             <div class="card-header bg-white border-bottom py-2 d-flex justify-content-between align-items-center">
-                                <h6 class="m-0 font-weight-bold text-maroon"><i class="fas fa-users mr-1"></i> Daftar ASN Peserta</h6>
-                                <button type="button" id="perdin_btnTambahAsn" class="btn btn-sm btn-primary font-weight-bold shadow-sm"><i class="fas fa-user-plus mr-1"></i> Tambah ASN</button>
+                                <h6 class="m-0 font-weight-bold text-maroon small text-uppercase"><i class="fas fa-users mr-2"></i>Daftar Peserta</h6>
+                                <button type="button" id="perdin_btnTambahAsn" class="btn btn-sm btn-primary px-3 shadow-sm font-weight-bold"><i class="fas fa-user-plus mr-1"></i> Tambah ASN</button>
                             </div>
                             <div id="perdin_panelCariPegawai" class="bg-light p-3 border-bottom" style="display:none;">
-                                <label class="form-label-sultan small font-weight-bold text-muted text-uppercase"><i class="fas fa-search mr-1"></i> Cari & Tambah Pegawai</label>
-                                <div class="input-group input-group-sm">
-                                    <input type="text" id="perdin_inputCariPegawai" class="form-control form-control-sultan border-secondary" placeholder="Ketik nama atau NIP..." autocomplete="off">
-                                    <div class="input-group-append"><button type="button" class="btn btn-secondary" id="perdin_btnCloseCariPegawai"><i class="fas fa-times"></i></button></div>
+                                <div class="input-group">
+                                    <input type="text" id="perdin_inputCariPegawai" class="form-control form-control-sultan" placeholder="Cari Nama / NIP..." autocomplete="off">
+                                    <div class="input-group-append"><button type="button" class="btn btn-secondary" id="perdin_btnCloseCariPegawai">&times;</button></div>
                                 </div>
-                                <div id="perdin_hasilCari" class="list-group mt-2 shadow-sm bg-white" style="max-height: 200px; overflow-y: auto;"></div>
+                                <div id="perdin_hasilCari" class="list-group mt-2 border shadow-sm bg-white" style="max-height: 180px; overflow-y: auto; z-index: 100;"></div>
                             </div>
-                            <div class="card-body p-0 table-responsive flex-grow-1" style="min-height: 250px; background-color: #fff;">
-                                <table class="table table-sm table-striped mb-0 text-sm table-head-fixed w-100">
-                                    <thead><tr><th class="pl-3 bg-light text-left w-auto">Nama ASN</th><th class="bg-light text-left" style="width:25%;">NIP</th><th class="bg-light text-left" style="width:25%;">Unit Kerja</th><th class="text-center bg-light" style="width: 1%;">Aksi</th></tr></thead>
+                            <div class="card-body p-0 overflow-auto" style="min-height: 250px;">
+                                <table class="table table-sm table-striped mb-0 text-dark" style="font-size: 0.9rem;">
+                                    <thead class="bg-light"><tr><th class="pl-3 py-2">Nama ASN / Unit Kerja</th><th class="text-center py-2" width="1%">Aksi</th></tr></thead>
                                     <tbody id="perdin_tabelPeserta"></tbody>
                                 </table>
-                                <div id="perdin_emptyState" class="text-center p-5 text-muted"><div class="mb-3"><i class="fas fa-user-friends fa-3x opacity-50"></i></div><h6 class="font-weight-bold">Peserta masih kosong</h6></div>
+                                <div id="perdin_emptyState" class="text-center p-5 text-muted"><i class="fas fa-user-friends fa-2x mb-2 opacity-50"></i><p class="small mb-0">Belum ada peserta yang ditambahkan.</p></div>
                             </div>
                         </div>
                     </div>
@@ -227,19 +226,125 @@
             </div>
         </form>
       </div>
-      <div class="modal-footer justify-content-between bg-white border-top p-3">
-          <button type="button" class="btn btn-default shadow-sm font-weight-bold px-4" data-dismiss="modal">Batal</button>
+
+      <div class="sultan-modal-footer d-flex justify-content-between">
+          <button type="button" class="btn btn-secondary shadow-sm px-4" data-dismiss="modal">Tutup</button>
           <button type="button" id="perdin_btnSimpanForm" class="btn btn-maroon text-white shadow-sm px-5 font-weight-bold" style="display:none;"><i class="fas fa-save mr-2"></i> SIMPAN SPT</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- MODAL PREVIEW DOKUMEN (SULTAN COMPACT) -->
+<!-- 2. MODAL VERIFIKASI (EMERALD) -->
+<div class="modal fade" id="perdin_modalVerifikasi" tabindex="-1" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document"> 
+      <div class="modal-content sultan-modal-content" style="height: 90vh;">
+        <div class="sultan-modal-header sultan-header-emerald flex-shrink-0">
+          <h5 class="modal-title font-weight-bold"><i class="fas fa-clipboard-check mr-2"></i>Panel Verifikasi Perjalanan Dinas</h5>
+          <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+        </div>
+        <form id="perdin_formVerif" class="d-flex flex-column flex-grow-1 overflow-hidden m-0 p-0">
+            <div class="sultan-modal-body p-0 bg-light flex-grow-1 overflow-hidden">
+              <div class="row no-gutters h-100">
+                <div class="col-md-7 bg-dark d-flex align-items-center justify-content-center position-relative border-right">
+                    <iframe id="perdin_framePreviewVerif" class="d-none w-100 h-100 border-0" src=""></iframe>
+                    <div id="perdin_loadingVerifPDF" class="text-center sultan-spinner-compact">
+                        <div class="spinner-border text-light mb-2" role="status"></div>
+                        <div class="text-white-50 small font-weight-bold">Memuat Dokumen...</div>
+                    </div>
+                    <div id="perdin_previewErrorVerif" class="d-none text-center text-white-50 p-4">
+                        <i class="fas fa-file-pdf fa-4x mb-3"></i>
+                        <p class="mb-0">Dokumen tidak ditemukan atau gagal dimuat.</p>
+                    </div>
+                    <a href="#" id="perdin_btnUnduhDirectVerif" class="btn btn-sm btn-success shadow-sm position-absolute font-weight-bold px-3" style="bottom: 15px; left: 15px; z-index: 20; display: none;" target="_blank">
+                        <i class="fas fa-download mr-1"></i> Unduh PDF
+                    </a>
+                </div>
+                
+                <div class="col-md-5 d-flex flex-column bg-white h-100">
+                    <div class="p-4 flex-grow-1 overflow-auto">
+                        <input type="hidden" id="perdin_verifRowId">
+                        <h6 class="text-primary font-weight-bold border-bottom pb-2 mb-4"><i class="fas fa-list-alt mr-2"></i> Detail Pengajuan</h6>
+                        <table class="table table-borderless small mb-4 text-dark">
+                            <tr><td class="text-muted font-weight-bold py-1" width="35%">No. SPT</td><td class="font-weight-bold py-1 text-uppercase" id="perdin_vNoSpt">-</td></tr>
+                            <tr><td class="text-muted font-weight-bold py-1">Periode</td><td class="font-weight-bold text-primary py-1" id="perdin_vTglDinas">-</td></tr>
+                            <tr><td class="text-muted font-weight-bold py-1">Tujuan</td><td class="py-1" id="perdin_vTujuan">-</td></tr>
+                            <tr><td class="text-muted font-weight-bold py-1">Kegiatan</td><td class="py-1" id="perdin_vKegiatan" style="white-space: pre-wrap;">-</td></tr>
+                            <tr><td class="text-muted font-weight-bold py-1">Jml Peserta</td><td class="py-1"><span class="badge badge-sultan badge-sultan-light-info" id="perdin_vJml">- Orang</span></td></tr>
+                        </table>
+                        
+                        <h6 class="font-weight-bold text-primary border-bottom pb-2 mb-3"><i class="fas fa-users mr-1"></i> Daftar Peserta ASN</h6>
+                        <div class="bg-light p-3 rounded border mb-4" style="max-height: 150px; overflow-y: auto;">
+                            <ul id="perdin_vListPeserta" class="pl-3 mb-0 text-sm list-unstyled text-dark"></ul>
+                        </div>
+
+                        <div class="card bg-light border-0 shadow-sm mb-0">
+                            <div class="card-body p-3">
+                                <div class="form-group mb-3">
+                                    <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Keputusan <span class="text-danger">*</span></label>
+                                    <select class="form-control form-control-sultan font-weight-bold" id="perdin_verifStatus" required>
+                                        <option value="">-- Pilih Status --</option>
+                                        <option value="Disetujui">Disetujui</option>
+                                        <option value="Revisi">Revisi</option>
+                                        <option value="Ditolak">Ditolak</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-0">
+                                    <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Catatan Admin</label>
+                                    <textarea class="form-control form-control-sultan" id="perdin_verifCatatan" rows="3" placeholder="Wajib jika ditolak / revisi..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sultan-modal-footer d-flex justify-content-between flex-shrink-0">
+                        <button type="button" class="btn btn-secondary px-4 font-weight-bold" data-dismiss="modal">Tutup</button>
+                        <button type="submit" id="perdin_btnVerifEksekusi" class="btn btn-emerald font-weight-bold shadow-sm px-4"><i class="fas fa-check-double mr-2"></i> Eksekusi</button>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
+</div>
+
+<!-- 3. MODAL HAPUS (DANGER) -->
+<div class="modal fade" id="perdin_modalHapus" tabindex="-1" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content sultan-modal-content">
+            <div class="sultan-modal-header sultan-header-danger">
+                <h5 class="modal-title font-weight-bold"><i class="fas fa-trash-alt mr-2"></i>Hapus Data SPT</h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+            </div>
+            <form id="perdin_formHapus">
+                <div class="sultan-modal-body bg-white py-4 text-center">
+                    <input type="hidden" id="perdin_hapusRowId">
+                    <i class="fas fa-exclamation-circle text-danger mb-3" style="font-size: 3.5rem;"></i>
+                    <h5 class="font-weight-bold text-dark mb-2">Konfirmasi Hapus?</h5>
+                    <p class="text-muted px-4 mb-4">Seluruh data SPT Nomor <b><span id="perdin_hapusViewNomor" class="text-danger">-</span></b> beserta daftar pesertanya akan dihapus permanen.</p>
+                    
+                    <div class="px-4 text-left">
+                        <div class="form-group mb-0">
+                            <label class="form-label-sultan small font-weight-bold text-uppercase text-muted">Kode Keamanan <span class="text-danger">*</span></label>
+                            <input type="password" id="perdin_inputKodeHapus" class="form-control form-control-sultan text-center letter-spacing-2" placeholder="Masukkan Kode Host Admin" required autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+                <div class="sultan-modal-footer d-flex justify-content-center" style="gap:10px;">
+                    <button type="button" class="btn btn-secondary px-4 font-weight-bold" data-dismiss="modal">Batal</button>
+                    <button type="submit" id="perdin_btnEksekusiHapus" class="btn btn-danger shadow-sm font-weight-bold px-4">
+                        <i class="fas fa-trash mr-1"></i> Hapus Permanen
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- 4. MODAL PREVIEW DOKUMEN -->
 <div class="modal fade" id="perdin_modalPreviewDokumen" tabindex="-1" role="dialog" data-backdrop="static">
     <div class="modal-dialog modal-dialog-full" role="document">
         <div class="modal-content modal-content-full-height border-0 shadow-lg bg-dark">
-            
             <div class="sultan-preview-header">
                 <div class="sultan-preview-title">
                     <i class="fas fa-file-pdf text-danger mr-2"></i>
@@ -254,127 +359,13 @@
                     </button>
                 </div>
             </div>
-
             <div class="modal-body p-0 position-relative d-flex align-items-center justify-content-center bg-secondary" style="height: calc(100vh - 44px);">
                 <iframe id="perdin_frameDokumenViewer" class="iframe-full w-100 h-100 border-0 d-none" src=""></iframe>
-                
-                <div id="perdin_loadingPreviewPDF" class="sultan-spinner-compact">
-                    <div class="spinner-border text-light" role="status"></div>
-                    <span class="mt-2 text-white-50 small font-weight-bold">Memuat Dokumen SPT...</span>
+                <div id="perdin_loadingPreviewPDF" class="sultan-spinner-compact text-center">
+                    <div class="spinner-border text-light mb-2" role="status"></div>
+                    <div class="text-white-50 small font-weight-bold">Memuat Dokumen SPT...</div>
                 </div>
             </div>
-
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="perdin_modalVerifikasi" tabindex="-1" role="dialog" data-backdrop="static">
-    <div class="modal-dialog modal-xl modal-dialog-centered" role="document"> 
-      <div class="modal-content border-0 shadow-lg d-flex flex-column modal-content-sultan-verif" style="height: 90vh;">
-        <div class="modal-header bg-primary text-white py-2 flex-shrink-0">
-          <h5 class="modal-title font-weight-bold h6 mb-0"><i class="fas fa-clipboard-check mr-2"></i>Panel Verifikasi Perjalanan Dinas</h5>
-          <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
-        </div>
-        <form id="perdin_formVerif" class="d-flex flex-column flex-grow-1 overflow-hidden m-0 p-0">
-            <div class="modal-body p-0 bg-light flex-grow-1 overflow-hidden">
-              <div class="row no-gutters h-100">
-                
-                <div class="col-md-7 border-right d-flex flex-column bg-dark h-100 position-relative">
-                    <iframe id="perdin_framePreviewVerif" class="d-none w-100 h-100 flex-grow-1 border-0" src=""></iframe>
-                    <div id="perdin_loadingVerifPDF" class="d-flex h-100 align-items-center justify-content-center text-white-50 position-absolute w-100" style="top:0; left:0; z-index:10; pointer-events:none;">
-                        <div class="text-center"><i class="fas fa-circle-notch fa-spin fa-3x mb-3"></i><p>Memuat Dokumen...</p></div>
-                    </div>
-                    <div id="perdin_previewErrorVerif" class="d-none d-flex h-100 flex-column justify-content-center align-items-center text-white-50 w-100 position-absolute" style="top:0; left:0; z-index:10;">
-                        <i class="fas fa-eye-slash fa-4x mb-3"></i><p class="mb-0 text-center">Dokumen tidak terdeteksi atau tidak valid.<br>Silakan periksa lampiran file.</p>
-                    </div>
-                    <a href="#" id="perdin_btnUnduhDirectVerif" class="btn btn-sm btn-success shadow-sm position-absolute font-weight-bold px-3" style="bottom: 15px; left: 15px; z-index: 20; display: none;" target="_blank">
-                        <i class="fas fa-download mr-1"></i> Unduh PDF
-                    </a>
-                </div>
-                
-                <div class="col-md-5 d-flex flex-column bg-white h-100">
-                    <div class="p-4 flex-grow-1 overflow-auto">
-                        <input type="hidden" id="perdin_verifRowId">
-                        <h5 class="font-weight-bold text-primary border-bottom pb-2 mb-3"><i class="fas fa-list-alt mr-2"></i> Detail Pengajuan</h5>
-                        <table class="table table-borderless text-sm mb-4">
-                            <tr><td class="text-muted font-weight-bold align-middle py-1" style="width: 35%;">No. SPT</td><td class="font-weight-bold text-dark py-1 text-wrap text-uppercase" id="perdin_vNoSpt">-</td></tr>
-                            <tr><td class="text-muted font-weight-bold align-middle py-1">Tanggal SPT</td><td class="py-1 font-weight-bold" id="perdin_vTglSpt">-</td></tr>
-                            <tr><td class="text-muted font-weight-bold align-middle py-1">Tanggal Dinas</td><td class="font-weight-bold text-primary py-1" id="perdin_vTglDinas">-</td></tr>
-                            <tr><td class="text-muted font-weight-bold py-1">Tujuan</td><td class="py-1 text-dark" id="perdin_vTujuan" style="white-space: normal;">-</td></tr>
-                            <tr><td class="text-muted font-weight-bold py-1">Kegiatan</td><td class="py-1 text-dark" id="perdin_vKegiatan" style="white-space: pre-wrap;">-</td></tr>
-                            <tr><td class="text-muted font-weight-bold align-middle py-1">Jml Peserta</td><td class="py-1"><span class="badge badge-sultan badge-sultan-light-info" id="perdin_vJml">- Orang</span></td></tr>
-                        </table>
-                        
-                        <h6 class="font-weight-bold text-primary border-bottom pb-2 mb-2"><i class="fas fa-users mr-1"></i> Peserta ASN</h6>
-                        <div class="bg-light p-2 rounded border mb-4" style="max-height: 150px; overflow-y: auto;">
-                            <ul id="perdin_vListPeserta" class="pl-3 mb-0 text-sm text-dark"><li class="text-muted font-italic">Memuat data...</li></ul>
-                        </div>
-
-                        <div class="card bg-white border-0 shadow-sm mb-0">
-                            <div class="card-body p-0">
-                                <div class="form-group mb-3">
-                                    <label class="form-label-sultan font-weight-bold text-muted text-uppercase" style="font-size:12px; letter-spacing: 0.5px;">Keputusan Verifikasi <span class="text-danger">*</span></label>
-                                    <select class="form-control form-control-sultan font-weight-bold text-dark border-primary" id="perdin_verifStatus" required style="font-size: 16px; height: auto !important; padding: 10px 15px;">
-                                        <option value="">-- Tentukan Status --</option>
-                                        <option value="Disetujui">Disetujui</option>
-                                        <option value="Revisi">Revisi</option>
-                                        <option value="Ditolak">Ditolak</option>
-                                    </select>
-                                </div>
-                                <div class="form-group mb-0">
-                                    <label class="form-label-sultan font-weight-bold text-muted text-uppercase" style="font-size:12px; letter-spacing: 0.5px;">Catatan Admin <span id="perdin_reqCatatanVerif" class="text-danger" style="display:none;">*</span></label>
-                                    <textarea class="form-control form-control-sultan border-primary" id="perdin_verifCatatan" rows="3" placeholder="Wajib diisi jika ditolak / direvisi..." style="font-size: 15px; padding: 10px 15px; resize:none;"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-3 bg-white border-top shadow-lg d-flex justify-content-between flex-shrink-0 z-index-10">
-                        <button type="button" class="btn btn-default shadow-sm font-weight-bold px-4 py-2" style="font-size:16px;" data-dismiss="modal">Tutup</button>
-                        <button type="submit" id="perdin_btnVerifEksekusi" class="btn btn-primary font-weight-bold shadow-sm px-4 py-2" style="font-size:16px;"><i class="fas fa-check-double mr-2"></i> Eksekusi</button>
-                    </div>
-                </div>
-              </div>
-            </div>
-        </form>
-      </div>
-    </div>
-</div>
-
-<div class="modal fade" id="perdin_modalHapus" tabindex="-1" role="dialog" data-backdrop="static">
-    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 400px;">
-        <div class="modal-content border-0 shadow-lg modal-content-sultan">
-            <div class="modal-header bg-danger text-white py-2">
-                <h6 class="modal-title font-weight-bold"><i class="fas fa-trash-alt mr-2"></i>Konfirmasi Hapus SPT</h6>
-                <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
-            </div>
-            <form id="perdin_formHapus">
-            <div class="modal-body bg-white p-4">
-                <input type="hidden" id="perdin_hapusRowId">
-                <div class="alert alert-warning text-dark border-warning shadow-sm mb-3">
-                    <div class="d-flex align-items-start">
-                        <i class="fas fa-exclamation-triangle mt-1 mr-3 fa-lg"></i>
-                        <div>
-                            <strong>Peringatan!</strong><br>
-                            Anda akan menghapus seluruh data SPT dan seluruh peserta yang ada di dalamnya secara permanen:<br>
-                            <span id="perdin_hapusViewNomor" class="font-weight-bold text-uppercase" style="font-size: 1.1em; color: #000;">-</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group mb-0">
-                    <label class="form-label-sultan small font-weight-bold text-uppercase text-muted">Kode Keamanan <span class="text-danger">*</span></label>
-                    <div class="input-group">
-                        <div class="input-group-prepend"><span class="input-group-text bg-light border-right-0"><i class="fas fa-key text-danger"></i></span></div>
-                        <input type="password" id="perdin_inputKodeHapus" class="form-control form-control-sultan border-left-0 text-center font-weight-bold letter-spacing-2" placeholder="Ketik kode hapus..." required autocomplete="off">
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer justify-content-between bg-light p-3">
-                <button type="button" class="btn btn-default border shadow-sm px-4 font-weight-bold" data-dismiss="modal">Batal</button>
-                <button type="submit" id="perdin_btnEksekusiHapus" class="btn btn-danger shadow-sm font-weight-bold px-4">
-                    <i class="fas fa-trash mr-1"></i> Hapus Permanen
-                </button>
-            </div>
-            </form>
         </div>
     </div>
 </div>

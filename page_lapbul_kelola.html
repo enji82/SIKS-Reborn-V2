@@ -382,15 +382,94 @@
     </form>
 </script>
 
+<div class="modal fade" id="lapbulkelola_modalPreview" tabindex="-1" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-full" role="document">
+        <div class="modal-content modal-content-full-height border-0 shadow-lg bg-dark">
+            <div class="sultan-preview-header">
+                <div class="sultan-preview-title">
+                    <i class="fas fa-file-pdf text-danger mr-2"></i>
+                    <span>Pratinjau Dokumen Laporan</span>
+                </div>
+                <div class="sultan-preview-actions">
+                    <a href="#" id="lapbulkelola_linkDownloadHeader" class="sultan-preview-btn" target="_blank" title="Unduh File">UNDUH</a>
+                    <a href="#" id="lapbulkelola_linkTabHeader" class="sultan-preview-btn" target="_blank" title="Buka di Tab Baru">TAB BARU</a>
+                    <div class="sultan-preview-divider"></div>
+                    <button type="button" class="sultan-preview-close" data-dismiss="modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body modal-body-full position-relative p-0" style="height: calc(100vh - 44px);">
+                <iframe id="lapbulkelola_framePreview" class="w-100 h-100 border-0 d-none" src=""></iframe>
+                <div id="lapbulkelola_loadingPreviewPDF" class="text-center sultan-spinner-compact">
+                    <div class="spinner-border text-light mb-2" role="status"></div>
+                    <div class="text-white-50 small font-weight-bold">MEMUAT DOKUMEN...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="lapbulkelola_modalTambahData" tabindex="-1" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+        <div class="modal-content sultan-modal-content" style="min-height: 85vh;">
+            <div class="sultan-modal-header sultan-header-maroon" id="lapbulkelola_headerModalForm">
+                <h5 class="modal-title font-weight-bold" id="lapbulkelola_judulModalForm"><i class="fas fa-plus-circle mr-2"></i>Form Laporan Bulan</h5>
+                <button type="button" class="close" data-dismiss="modal" id="lapbulkelola_btnTutupModalForm"><span>&times;</span></button>
+            </div>
+            <div class="sultan-modal-body p-0 bg-light position-relative">
+                <div id="lapbulkelola_viewPilihJenjang" class="d-flex align-items-center justify-content-center h-100 w-100 p-5">
+                    <div class="row w-100 justify-content-center">
+                        <div class="col-12 text-center mb-5">
+                            <h3 class="font-weight-bold text-dark">Pilih Jenjang Sekolah</h3>
+                            <p class="text-muted">Silakan pilih formulir laporan sesuai dengan jenjang sekolah Anda.</p>
+                        </div>
+                        <div class="col-md-5 mb-4">
+                            <div class="card card-sultan shadow-sm cursor-pointer hover-scale-sm btn-pilih-jenjang border-0" data-jenjang="PAUD">
+                                <div class="card-body text-center py-5">
+                                    <div class="icon-circle mb-4 bg-light-info text-info mx-auto shadow-sm" style="width: 80px; height: 80px; font-size: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%;">
+                                        <i class="fas fa-cubes"></i>
+                                    </div>
+                                    <h4 class="font-weight-bold text-maroon mb-2">PAUD / TK</h4>
+                                    <p class="mb-0 text-muted small px-3">Formulir untuk jenjang TK, KB (Kelompok Belajar), SPS, dan TPA.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 mb-4">
+                            <div class="card card-sultan shadow-sm cursor-pointer hover-scale-sm btn-pilih-jenjang border-0" data-jenjang="SD">
+                                <div class="card-body text-center py-5">
+                                    <div class="icon-circle mb-4 bg-light-success text-success mx-auto shadow-sm" style="width: 80px; height: 80px; font-size: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%;">
+                                        <i class="fas fa-school"></i>
+                                    </div>
+                                    <h4 class="font-weight-bold text-maroon mb-2">SEKOLAH DASAR</h4>
+                                    <p class="mb-0 text-muted small px-3">Formulir khusus untuk jenjang Sekolah Dasar (SD) Negeri / Swasta.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="lapbulkelola_viewFormContainer" class="d-none h-100 flex-column">
+                    <div class="bg-white border-bottom px-4 py-3 d-flex justify-content-between align-items-center">
+                        <button id="lapbulkelola_btnKembaliPilih" class="btn btn-sm btn-outline-secondary font-weight-bold shadow-sm"><i class="fas fa-arrow-left mr-1"></i> Kembali</button>
+                        <span class="font-weight-bold text-maroon" id="lapbulkelola_labelFormAktif" style="font-size: 1.1rem;">FORMULIR</span>
+                        <div style="width: 80px;"></div>
+                    </div>
+                    <div id="lapbulkelola_formContentArea" class="p-0" style="flex: 1; overflow-y: auto;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="lapbulkelola_modalKonfirmasiGuru" tabindex="-1" role="dialog" data-backdrop="static" style="z-index: 1060;">
     <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 400px;">
-        <div class="modal-content border-0 shadow-lg modal-content-sultan">
-            <div class="modal-body p-4 text-center">
+        <div class="modal-content sultan-modal-content">
+            <div class="sultan-modal-body p-4 text-center">
                 <div class="mb-3"><i class="fas fa-exclamation-triangle text-warning fa-3x"></i></div>
                 <h5 class="font-weight-bold text-dark">Data Guru Kosong</h5>
                 <p class="text-muted small mb-4">Jumlah Pendidik (Guru) belum diisi (0).<br>Apakah Anda yakin ingin melanjutkan?</p>
-                <div class="d-flex justify-content-center">
-                    <button type="button" class="btn btn-default shadow-sm mr-2 px-4 font-weight-bold" data-dismiss="modal">Batal</button>
+                <div class="d-flex justify-content-center" style="gap:10px;">
+                    <button type="button" class="btn btn-secondary shadow-sm px-4 font-weight-bold" data-dismiss="modal">Batal</button>
                     <button type="button" class="btn btn-maroon text-white shadow-sm px-4 font-weight-bold btn-paksa-lanjut">Ya, Lanjut</button>
                 </div>
             </div>
@@ -400,13 +479,13 @@
 
 <div class="modal fade" id="lapbulkelola_modalKonfirmasiPeriode" tabindex="-1" role="dialog" data-backdrop="static" style="z-index: 1060;">
     <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 400px;">
-        <div class="modal-content border-0 shadow-lg modal-content-sultan">
-            <div class="modal-body p-4 text-center">
-                <div class="mb-3"><div class="icon-circle bg-light-maroon mx-auto text-maroon"><i class="fas fa-calendar-alt fa-2x"></i></div></div>
+        <div class="modal-content sultan-modal-content">
+            <div class="sultan-modal-body p-4 text-center">
+                <div class="mb-3"><div class="icon-circle bg-light-maroon mx-auto text-maroon" style="width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center;"><i class="fas fa-calendar-alt fa-2x"></i></div></div>
                 <h5 class="font-weight-bold text-dark mb-3">Konfirmasi Periode</h5>
                 <p class="text-muted mb-4">Anda akan memproses laporan bulan:<br><span id="lapbulkelola_textPeriodeKonfirmasi" class="font-weight-bold text-maroon h5 d-block mt-2"></span></p>
-                <div class="d-flex justify-content-center">
-                    <button type="button" class="btn btn-default shadow-sm mr-2 px-4 font-weight-bold" data-dismiss="modal">Kembali</button>
+                <div class="d-flex justify-content-center" style="gap:10px;">
+                    <button type="button" class="btn btn-secondary shadow-sm px-4 font-weight-bold" data-dismiss="modal">Kembali</button>
                     <button type="button" class="btn btn-maroon text-white shadow-sm px-4 font-weight-bold" id="lapbulkelola_btnKonfirmLanjutTab2">Lanjut <i class="fas fa-arrow-right ml-1"></i></button>
                 </div>
             </div>
@@ -415,14 +494,14 @@
 </div>
 
 <div class="modal fade" id="lapbulkelola_modalHapus" tabindex="-1" role="dialog" data-backdrop="static">
-    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 400px;">
-        <div class="modal-content border-0 shadow-lg modal-content-sultan">
-            <div class="modal-header sultan-header-maroon py-2">
-                <h6 class="modal-title font-weight-bold text-white"><i class="fas fa-trash-alt mr-2"></i>Hapus Laporan Bulan</h6>
-                <button type="button" class="close text-white" data-dismiss="modal" style="opacity: 0.8;">&times;</button>
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content sultan-modal-content">
+            <div class="sultan-modal-header sultan-header-danger">
+                <h5 class="modal-title font-weight-bold"><i class="fas fa-trash-alt mr-2"></i>Hapus Laporan Bulan</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            <div class="modal-body p-4 text-center">
-                <div class="sultan-info-box info-maroon text-left mb-3">
+            <div class="sultan-modal-body bg-white p-4">
+                <div class="alert alert-sultan-info-compact info-maroon text-left mb-4">
                     <i class="fas fa-exclamation-triangle"></i>
                     <div>
                         <strong style="font-size:1.1em;">Konfirmasi Hapus Permanen</strong><br>
@@ -430,12 +509,12 @@
                         Data akan dihapus permanen dari server dan database.
                     </div>
                 </div>
-                <div class="bg-light p-3 rounded border mb-3">
-                    <label class="form-label-sultan small font-weight-bold text-secondary mb-1 text-uppercase">Kode Otorisasi Keamanan:</label>
+                <div class="bg-light p-3 rounded border mb-4 shadow-sm">
+                    <label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Kode Otorisasi Keamanan</label>
                     <input type="password" id="lapbulkelola_inputKodeHapus" class="form-control form-control-sultan text-center font-weight-bold letter-spacing-1" placeholder="Ketik kode hapus..." autocomplete="off">
                 </div>
-                <div class="d-flex justify-content-between">
-                    <button type="button" class="btn btn-default border shadow-sm px-3 font-weight-bold" data-dismiss="modal">Batal</button>
+                <div class="d-flex justify-content-center" style="gap:10px;">
+                    <button type="button" class="btn btn-secondary shadow-sm px-4 font-weight-bold" data-dismiss="modal">Batal</button>
                     <button type="button" id="lapbulkelola_btnEksekusiHapus" class="btn btn-danger px-4 font-weight-bold shadow-sm"><i class="fas fa-trash mr-1"></i> Hapus Permanen</button>
                 </div>
             </div>
@@ -444,20 +523,21 @@
 </div>
 
 <div class="modal fade" id="lapbulkelola_modalVerifikasi" tabindex="-1" role="dialog" data-backdrop="static">
-    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-sultan-verif" role="document">
-        <div class="modal-content border-0 shadow-lg modal-content-sultan d-flex flex-column" style="height: 90vh;">
-            <div class="modal-header sultan-header-emerald flex-shrink-0">
-                <h5 class="modal-title font-weight-bold h6 mb-0 text-white"><i class="fas fa-clipboard-check mr-2"></i>Verifikasi Laporan Bulan</h5>
-                <button type="button" class="close text-white" data-dismiss="modal" style="opacity: 0.8;"><span>&times;</span></button>
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+        <div class="modal-content sultan-modal-content" style="height: 90vh;">
+            <div class="sultan-modal-header sultan-header-emerald flex-shrink-0">
+                <h5 class="modal-title font-weight-bold h6 mb-0"><i class="fas fa-clipboard-check mr-2"></i>Verifikasi Laporan Bulan</h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
             </div>
             <form id="lapbulkelola_formVerifLapbul" class="h-100 p-0 m-0 d-flex flex-column">
-                <div class="modal-body p-0 bg-light flex-grow-1 overflow-hidden">
+                <div class="sultan-modal-body p-0 bg-light flex-grow-1 overflow-hidden">
                     <div class="row no-gutters h-100">
-                        <div class="col-lg-7 bg-dark d-flex align-items-center justify-content-center position-relative border-right h-100">
-                            <div id="lapbulkelola_loaderPreview" class="text-white text-center position-absolute w-100">
-                                <i class="fas fa-circle-notch fa-spin fa-3x mb-3 text-emerald"></i><p>Memuat Dokumen...</p>
-                            </div>
+                        <div class="col-lg-7 bg-dark d-flex align-items-center justify-content-center position-relative h-100 border-right">
                             <iframe id="lapbulkelola_frameFileVerif" class="d-none w-100 h-100 border-0" src=""></iframe>
+                            <div id="lapbulkelola_loaderPreview" class="text-center sultan-spinner-compact">
+                                <div class="spinner-border text-light mb-2" role="status"></div>
+                                <div class="text-white-50 small font-weight-bold">Memuat Dokumen...</div>
+                            </div>
                             <div id="lapbulkelola_noFileVerif" class="d-none text-center text-white-50 position-absolute w-100">
                                 <i class="fas fa-file-excel fa-4x mb-3 opacity-50"></i><p>Tidak ada lampiran dokumen PDF.</p>
                             </div>
@@ -465,7 +545,7 @@
                         <div class="col-lg-5 bg-white d-flex flex-column h-100">
                             <div class="p-4 overflow-auto flex-grow-1">
                                 <h6 class="text-emerald font-weight-bold border-bottom pb-2 mb-3"><i class="fas fa-school mr-1"></i> Data Identitas Laporan</h6>
-                                <table class="table table-sm table-borderless small mb-4 text-dark" style="font-size: 14px;">
+                                <table class="table table-borderless small mb-4">
                                     <tr><td class="text-muted font-weight-bold" width="35%">Unit Kerja</td><td class="font-weight-bold text-dark text-wrap" id="lapbulkelola_vNamaSekolah">-</td></tr>
                                     <tr><td class="text-muted font-weight-bold">NPSN</td><td id="lapbulkelola_vNpsn">-</td></tr>
                                     <tr><td class="text-muted font-weight-bold">Bulan</td><td class="font-weight-bold" id="lapbulkelola_vBulan">-</td></tr>
@@ -473,12 +553,11 @@
                                     <tr><td colspan="2"><hr class="my-1 dashed"></td></tr>
                                     <tr><td class="text-muted font-weight-bold">Status Awal</td><td><span class="badge badge-sultan badge-sultan-light-info" id="lapbulkelola_vStatusAwal">-</span></td></tr>
                                 </table>
-
-                                <div class="card bg-light border-0 shadow-sm">
+                                <div class="card bg-light border-0 shadow-sm mb-0">
                                     <div class="card-body p-3">
                                         <div class="form-group mb-3">
-                                            <label class="form-label-sultan small font-weight-bold text-muted text-uppercase" style="font-size:12px; letter-spacing: 0.5px;">Keputusan Verifikasi <span class="text-danger">*</span></label>
-                                            <select class="form-control form-control-sultan font-weight-bold text-dark" id="lapbulkelola_selStatusVerif" required style="font-size: 16px; height: auto !important; padding: 10px 15px;">
+                                            <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Keputusan <span class="text-danger">*</span></label>
+                                            <select class="form-control form-control-sultan font-weight-bold" id="lapbulkelola_selStatusVerif" required>
                                                 <option value="">-- Pilih Status --</option>
                                                 <option value="Disetujui">✅ Disetujui</option>
                                                 <option value="Revisi">🔄 Revisi</option>
@@ -486,18 +565,18 @@
                                             </select>
                                         </div>
                                         <div class="form-group mb-0">
-                                            <label class="form-label-sultan small font-weight-bold text-muted text-uppercase" style="font-size:12px; letter-spacing: 0.5px;">Catatan Admin</label>
-                                            <textarea class="form-control form-control-sultan" id="lapbulkelola_txtKetVerif" rows="3" placeholder="Tambahkan catatan jika diperlukan..." style="font-size: 15px; padding: 10px 15px;"></textarea>
+                                            <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Catatan Admin</label>
+                                            <textarea class="form-control form-control-sultan" id="lapbulkelola_txtKetVerif" rows="3" placeholder="Alasan..."></textarea>
                                             <small class="text-danger d-none font-weight-bold mt-1" id="lapbulkelola_verifWajibCatatan">
-                                                <i class="fas fa-exclamation-circle mr-1"></i> Wajib mengisi alasan penolakan/revisi!
+                                                <i class="fas fa-exclamation-circle mr-1"></i> Wajib mengisi alasan!
                                             </small>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="modal-footer bg-white border-top shadow-sm d-flex justify-content-between flex-shrink-0 z-index-10 p-3">
-                                <button type="button" class="btn btn-sultan-outline btn-sultan-standard px-4" data-dismiss="modal">Tutup</button>
-                                <button type="submit" id="lapbulkelola_btnSimpanVerif" class="btn btn-sultan-emerald btn-sultan-bold btn-sultan-standard px-4 text-white"><i class="fas fa-check-double mr-2"></i> Eksekusi</button>
+                            <div class="sultan-modal-footer d-flex justify-content-between flex-shrink-0">
+                                <button type="button" class="btn btn-secondary shadow-sm px-4" data-dismiss="modal">Tutup</button>
+                                <button type="submit" id="lapbulkelola_btnSimpanVerif" class="btn btn-emerald text-white font-weight-bold shadow-sm px-4"><i class="fas fa-check-double mr-2"></i> Eksekusi</button>
                             </div>
                         </div>
                     </div>

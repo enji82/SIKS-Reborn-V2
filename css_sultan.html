@@ -639,16 +639,128 @@
 /* 1. Dialog (Wrapper Luar): Lebar 95% */
 .modal-dialog-full {
     max-width: 95% !important;
-    width: 95% !important;
-    margin: 1.75rem auto; 
+    margin: 10px auto !important;
+    height: calc(100vh - 20px) !important;
 }
 
-/* 2. Content (Kotak Putih): Tinggi 90% Layar (Viewport Height) */
+/* 2. Content (Box Utama Dokumen) */
 .modal-content-full-height {
-    height: 90vh !important; /* KUNCI: Memaksa tinggi 90% dari layar */
-    display: flex;
-    flex-direction: column;
-    overflow: hidden; /* Mencegah scroll ganda */
+    height: 100% !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+}
+
+/* ===================================================================
+   SULTAN CRUD MODAL STANDARDIZATION
+   Centralized rules for Add, Edit, Delete, and Verif modals.
+   =================================================================== */
+
+.sultan-modal-content {
+    border: none !important;
+    border-radius: 18px !important;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.1) !important;
+    overflow: hidden !important;
+}
+
+/* Modal Header Variants */
+.sultan-modal-header {
+    padding: 1rem 1.25rem !important;
+    border-bottom: 0 !important;
+}
+
+.sultan-modal-header.sultan-header-maroon {
+    background: var(--warna-maroon) !important;
+    color: #ffffff !important;
+}
+
+.sultan-modal-header.sultan-header-emerald {
+    background: #059669 !important;
+    color: #ffffff !important;
+}
+
+.sultan-modal-header.sultan-header-danger {
+    background: #dc3545 !important;
+    color: #ffffff !important;
+}
+
+.sultan-modal-header .modal-title {
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+}
+
+.sultan-modal-header .close {
+    color: #ffffff !important;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+    outline: none !important;
+}
+
+.sultan-modal-header .close:hover {
+    opacity: 1;
+}
+
+.sultan-modal-body {
+    padding: 1.5rem !important;
+}
+
+.sultan-modal-footer {
+    padding: 1rem 1.25rem !important;
+    background: #ffffff !important;
+    border-top: 1px solid #f1f5f9 !important;
+}
+
+/* ===================================================================
+   SULTAN NOTIFICATION SYSTEM (SWEETALERT2 OVERRIDES)
+   Centralized styling for global notifications.
+   =================================================================== */
+
+.sultan-alert-popup {
+    border-radius: 18px !important;
+    padding: 1.25rem !important;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1) !important;
+    border: none !important;
+}
+
+.sultan-alert-text {
+    font-size: 1rem !important;
+    color: #1e293b !important;
+}
+
+.sultan-swal-confirm {
+    background: var(--warna-maroon) !important;
+    border-radius: 10px !important;
+    font-weight: 700 !important;
+    padding: 0.6rem 2rem !important;
+    box-shadow: 0 4px 12px rgba(139,0,0,0.2) !important;
+    border: none !important;
+}
+
+.sultan-swal-cancel {
+    background: #f1f5f9 !important;
+    color: #475569 !important;
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+    padding: 0.6rem 2rem !important;
+    border: 1px solid #e2e8f0 !important;
+}
+
+/* Success/Error Popup Specifics */
+.sultan-success-popup { border-top: 5px solid #059669 !important; }
+.sultan-error-popup { border-top: 5px solid #dc3545 !important; }
+.sultan-warning-popup { border-top: 5px solid #f59e0b !important; }
+
+/* Sultan Orbit Loading Animation */
+.sultan-orbit {
+    width: 60px;
+    height: 60px;
+    border: 3px solid rgba(139, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top-color: var(--warna-maroon);
+    animation: sultan-spin 1s ease-in-out infinite;
+}
+
+@keyframes sultan-spin {
+    to { transform: rotate(360deg); }
 }
 
 /* 3. Body (Tempat Iframe): Mengisi sisa ruang antara Header & Footer */

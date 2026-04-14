@@ -50,28 +50,36 @@
 
 <div class="modal fade" id="efilekelola_modalForm" tabindex="-1" role="dialog" data-backdrop="static">
   <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
-    <div class="modal-content border-0 shadow-lg modal-content-sultan bg-light">
-      <div class="modal-header bg-maroon text-white py-3"><h5 class="modal-title font-weight-bold"><i class="fas fa-cloud-upload-alt mr-2"></i>Unggah Arsip Baru</h5><button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button></div>
+    <div class="modal-content sultan-modal-content">
+      <div class="sultan-modal-header sultan-header-maroon">
+        <h5 class="modal-title font-weight-bold"><i class="fas fa-cloud-upload-alt mr-2"></i>Unggah Arsip Baru</h5>
+        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+      </div>
       <form id="efilekelola_formUpload" novalidate>
-      <div class="modal-body p-4">
+      <div class="sultan-modal-body">
         <div class="form-group mb-4 position-relative">
             <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Pilih Pegawai <span class="text-danger">*</span></label>
             <div class="input-group shadow-sm">
                 <div class="input-group-prepend"><span class="input-group-text bg-white border-maroon border-right-0"><i class="fas fa-search text-maroon"></i></span></div>
                 <input type="text" id="efilekelola_in_ptk_search" class="form-control form-control-sultan border-maroon border-left-0 font-weight-bold text-dark" placeholder="Ketik NIP, NIK, atau Nama Pegawai..." autocomplete="off">
-                <div class="input-group-append"><button type="button" class="btn btn-secondary font-weight-bold" id="efilekelola_btnResetPtk" style="display:none;"><i class="fas fa-times"></i> Batal</button></div>
+                <div class="input-group-append"><button type="button" class="btn btn-secondary font-weight-bold" id="efilekelola_btnResetPtk" style="display:none;"><i class="fas fa-times"></i></button></div>
             </div>
             <input type="hidden" id="efilekelola_in_ptk" required>
-            <div id="efilekelola_ptk_results" class="list-group position-absolute w-100 shadow-lg mt-1 text-left" style="display:none; z-index:9999; max-height:250px; overflow-y:auto; border-radius:8px;"></div>
+            <div id="efilekelola_ptk_results" class="list-group position-absolute w-100 shadow-lg mt-1 text-left" style="display:none; z-index:9999; max-height:250px; overflow-y:auto;"></div>
         </div>
-        <div class="d-flex justify-content-between align-items-center mb-2 border-bottom pb-2">
-            <h6 class="font-weight-bold text-dark m-0"><i class="fas fa-layer-group mr-1 text-primary"></i> Daftar Berkas Baru</h6>
-            <button type="button" id="efilekelola_btnAddRow" class="btn btn-sm btn-outline-primary font-weight-bold rounded-pill px-3 shadow-sm" disabled><i class="fas fa-plus mr-1"></i> Tambah Berkas</button>
+        <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
+            <h6 class="font-weight-bold text-dark m-0 small text-uppercase"><i class="fas fa-layer-group mr-2 text-primary"></i>Daftar Berkas Baru</h6>
+            <button type="button" id="efilekelola_btnAddRow" class="btn btn-sm btn-primary font-weight-bold px-3 shadow-sm" disabled><i class="fas fa-plus mr-1"></i> Tambah</button>
         </div>
-        <div id="efilekelola_uploadContainer" class="mt-3"><div class="text-center text-muted p-3" id="efilekelola_msgPilihPtk"><i class="fas fa-info-circle mr-1"></i> Pilih pegawai terlebih dahulu.</div></div>
+        <div id="efilekelola_uploadContainer" class="mt-3">
+            <div class="text-center text-muted p-5 bg-light rounded border border-dashed" id="efilekelola_msgPilihPtk">
+                <i class="fas fa-user-check fa-2x mb-2 opacity-50"></i>
+                <p class="small mb-0">Silakan pilih pegawai terlebih dahulu.</p>
+            </div>
+        </div>
       </div>
-      <div class="modal-footer justify-content-between bg-white border-top p-3">
-          <button type="button" class="btn btn-default shadow-sm font-weight-bold px-4" data-dismiss="modal">Tutup</button>
+      <div class="sultan-modal-footer d-flex justify-content-between">
+          <button type="button" class="btn btn-secondary shadow-sm px-4" data-dismiss="modal">Tutup</button>
           <button type="submit" id="efilekelola_btnSimpan" class="btn btn-maroon text-white shadow-sm px-5 font-weight-bold" disabled><i class="fas fa-paper-plane mr-2"></i> UNGGAH SEMUA</button>
       </div>
       </form>
@@ -81,37 +89,44 @@
 
 <div class="modal fade" id="efilekelola_modalPerbaiki" tabindex="-1" role="dialog" data-backdrop="static">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content border-0 shadow-lg modal-content-sultan">
-      <div class="modal-header bg-warning text-dark py-3"><h5 class="modal-title font-weight-bold"><i class="fas fa-tools mr-2"></i>Perbaiki Berkas</h5><button type="button" class="close text-dark" data-dismiss="modal"><span>&times;</span></button></div>
+    <div class="modal-content sultan-modal-content">
+      <div class="sultan-modal-header sultan-header-maroon">
+        <h5 class="modal-title font-weight-bold"><i class="fas fa-tools mr-2"></i>Perbaiki Berkas</h5>
+        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+      </div>
       <form id="efilekelola_formPerbaiki" novalidate>
-      <div class="modal-body bg-light p-4">
+      <div class="sultan-modal-body bg-light">
         <input type="hidden" id="efilekelola_p_rowid"><input type="hidden" id="efilekelola_p_idptk">
-        <table class="table table-sm table-borderless text-sm mb-3">
-            <tr><td class="font-weight-bold text-muted w-25">Pegawai</td><td class="font-weight-bold text-dark text-uppercase" id="efilekelola_p_nama">-</td></tr>
-            <tr><td class="font-weight-bold text-muted">Kategori</td><td class="font-weight-bold text-primary" id="efilekelola_p_kategori">-</td></tr>
-            <tr><td class="font-weight-bold text-muted">Catatan Admin</td><td class="font-weight-bold text-danger bg-white p-2 rounded border border-danger" id="efilekelola_p_catatan">-</td></tr>
-        </table>
+        <div class="card-sultan shadow-sm mb-3">
+            <div class="card-body p-3">
+                <table class="table table-sm table-borderless small mb-0">
+                    <tr><td class="font-weight-bold text-muted w-25">Pegawai</td><td class="font-weight-bold text-dark text-uppercase" id="efilekelola_p_nama">-</td></tr>
+                    <tr><td class="font-weight-bold text-muted">Kategori</td><td class="font-weight-bold text-primary" id="efilekelola_p_kategori">-</td></tr>
+                    <tr><td class="font-weight-bold text-muted">Catatan</td><td class="font-weight-bold text-danger border p-2 rounded bg-white" id="efilekelola_p_catatan">-</td></tr>
+                </table>
+            </div>
+        </div>
         
-        <div class="row mb-3">
-            <div class="col-md-6">
+        <div class="form-row mb-3">
+            <div class="col-md-6 mb-3 mb-md-0">
                 <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Tahun <span class="text-danger">*</span></label>
-                <input type="number" id="efilekelola_p_tahun_input" class="form-control form-control-sultan border-warning" required>
+                <input type="number" id="efilekelola_p_tahun_input" class="form-control form-control-sultan" required>
             </div>
             <div class="col-md-6" id="efilekelola_p_periode_wrapper" style="display:none;">
                 <label class="form-label-sultan small font-weight-bold text-muted text-uppercase"><span id="efilekelola_p_periode_label">Periode</span> <span class="text-danger">*</span></label>
-                <input type="text" id="efilekelola_p_periode_input" class="form-control form-control-sultan border-warning">
+                <input type="text" id="efilekelola_p_periode_input" class="form-control form-control-sultan">
             </div>
         </div>
         
         <div class="form-group mb-0 border p-3 bg-white rounded shadow-sm">
             <label class="form-label-sultan small font-weight-bold text-muted text-uppercase"><i class="fas fa-file-upload text-danger mr-1" id="efilekelola_p_iconFormat"></i> <span id="efilekelola_p_lblFormat">Dokumen (Maks 1MB)</span></label> 
-            <div class="small text-muted mb-2 font-italic">Biarkan kosong jika tidak ingin mengubah file asli.</div>
-            <div class="custom-file"><input type="file" class="custom-file-input border-warning efilekelola-file-input" id="efilekelola_p_file"><label class="custom-file-label text-truncate">Pilih file baru...</label></div>
+            <div class="small text-muted mb-2 font-italic">Kosongi jika tidak ingin mengubah file asli.</div>
+            <div class="custom-file"><input type="file" class="custom-file-input efilekelola-file-input" id="efilekelola_p_file"><label class="custom-file-label text-truncate">Pilih file baru...</label></div>
         </div>
       </div>
-      <div class="modal-footer justify-content-between bg-white border-top p-3">
-          <button type="button" class="btn btn-default shadow-sm font-weight-bold px-4" data-dismiss="modal">Batal</button>
-          <button type="submit" class="btn btn-warning text-dark shadow-sm px-4 font-weight-bold"><i class="fas fa-save mr-2"></i> Simpan Perbaikan</button>
+      <div class="sultan-modal-footer d-flex justify-content-between">
+          <button type="button" class="btn btn-secondary shadow-sm px-4" data-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-maroon text-white shadow-sm px-4 font-weight-bold"><i class="fas fa-save mr-2"></i> Simpan Perbaikan</button>
       </div>
       </form>
     </div>
@@ -120,38 +135,44 @@
 
 <div class="modal fade" id="efilekelola_modalVerifikasi" tabindex="-1" role="dialog" data-backdrop="static">
     <div class="modal-dialog modal-xl modal-dialog-centered" role="document"> 
-      <div class="modal-content border-0 shadow-lg d-flex flex-column modal-content-sultan-verif" style="height: 90vh;">
-        <div class="modal-header bg-primary text-white py-2 flex-shrink-0"><h5 class="modal-title font-weight-bold h6 mb-0"><i class="fas fa-clipboard-check mr-2"></i>Verifikasi E-File</h5><button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button></div>
+      <div class="modal-content sultan-modal-content" style="height: 90vh;">
+        <div class="sultan-modal-header sultan-header-maroon flex-shrink-0">
+          <h5 class="modal-title font-weight-bold h6 mb-0"><i class="fas fa-clipboard-check mr-2"></i>Verifikasi E-File</h5>
+          <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+        </div>
         <form id="efilekelola_formVerif" class="d-flex flex-column flex-grow-1 overflow-hidden m-0 p-0">
-            <div class="modal-body p-0 bg-light flex-grow-1 overflow-hidden">
+            <div class="sultan-modal-body p-0 bg-light flex-grow-1 overflow-hidden">
               <div class="row no-gutters h-100">
-                <div class="col-md-8 border-right d-flex flex-column bg-dark h-100 position-relative">
-                    <iframe id="efilekelola_frameVerif" class="d-none w-100 h-100 flex-grow-1 border-0" src=""></iframe>
-                    <div id="efilekelola_loadingVerif" class="d-flex h-100 align-items-center justify-content-center text-white-50 position-absolute w-100" style="top:0; left:0; z-index:10; pointer-events:none;"><div class="text-center"><i class="fas fa-circle-notch fa-spin fa-4x mb-3"></i><p>Memuat Dokumen...</p></div></div>
+                <div class="col-md-8 border-right bg-dark d-flex align-items-center justify-content-center position-relative">
+                    <iframe id="efilekelola_frameVerif" class="d-none w-100 h-100 border-0" src=""></iframe>
+                    <div id="efilekelola_loadingVerif" class="text-center sultan-spinner-compact">
+                        <div class="spinner-border text-light mb-2" role="status"></div>
+                        <div class="text-white-50 small font-weight-bold">Memuat Dokumen...</div>
+                    </div>
                 </div>
                 <div class="col-md-4 d-flex flex-column bg-white h-100">
                     <div class="p-4 flex-grow-1 overflow-auto">
                         <input type="hidden" id="efilekelola_v_rowid">
                         <h6 class="font-weight-bold text-primary border-bottom pb-2 mb-3"><i class="fas fa-info-circle mr-2"></i> Info Berkas</h6>
-                        <table class="table table-borderless text-sm mb-4">
-                            <tr><td class="text-muted font-weight-bold py-1" style="width: 35%;">Pegawai</td><td class="font-weight-bold text-dark py-1 text-uppercase" id="efilekelola_v_nama">-</td></tr>
+                        <table class="table table-borderless small mb-4">
+                            <tr><td class="text-muted font-weight-bold py-1" width="35%">Pegawai</td><td class="font-weight-bold text-dark text-uppercase py-1" id="efilekelola_v_nama">-</td></tr>
                             <tr><td class="text-muted font-weight-bold py-1">Kategori</td><td class="py-1 font-weight-bold text-primary" id="efilekelola_v_kategori">-</td></tr>
-                            <tr><td class="text-muted font-weight-bold py-1">Tahun</td><td class="font-weight-bold text-dark py-1"><span id="efilekelola_v_tahun"></span> <span id="efilekelola_v_periode" class="ml-2 badge badge-info"></span></td></tr>
+                            <tr><td class="text-muted font-weight-bold py-1">Tahun</td><td class="font-weight-bold text-dark py-1"><span id="efilekelola_v_tahun"></span> <span id="efilekelola_v_periode" class="ml-2 badge badge-info px-2 py-1"></span></td></tr>
                         </table>
                         <div class="card bg-light border-0 shadow-sm mb-0">
                             <div class="card-body p-3">
-                                <div class="form-group mb-3"><label class="form-label-sultan font-weight-bold text-muted text-uppercase">Keputusan <span class="text-danger">*</span></label>
-                                    <select class="form-control form-control-sultan font-weight-bold text-dark border-primary" id="efilekelola_v_status" required><option value="">-- Status --</option><option value="Disetujui">✅ Disetujui</option><option value="Revisi">🔄 Revisi</option><option value="Ditolak">❌ Ditolak</option></select>
+                                <div class="form-group mb-3"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Keputusan <span class="text-danger">*</span></label>
+                                    <select class="form-control form-control-sultan font-weight-bold" id="efilekelola_v_status" required><option value="">-- Status --</option><option value="Disetujui">✅ Disetujui</option><option value="Revisi">🔄 Revisi</option><option value="Ditolak">❌ Ditolak</option></select>
                                 </div>
-                                <div class="form-group mb-0"><label class="form-label-sultan font-weight-bold text-muted text-uppercase">Catatan <span id="efilekelola_reqCatatan" class="text-danger" style="display:none;">*</span></label>
-                                    <textarea class="form-control form-control-sultan border-primary" id="efilekelola_v_catatan" rows="3" placeholder="Alasan..."></textarea>
+                                <div class="form-group mb-0"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Catatan <span id="efilekelola_reqCatatan" class="text-danger" style="display:none;">*</span></label>
+                                    <textarea class="form-control form-control-sultan" id="efilekelola_v_catatan" rows="3" placeholder="Alasan..."></textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="p-3 bg-white border-top shadow-lg d-flex justify-content-between flex-shrink-0 z-index-10">
-                        <button type="button" class="btn btn-default shadow-sm font-weight-bold px-4" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary font-weight-bold shadow-sm px-4"><i class="fas fa-check-double mr-2"></i> Eksekusi</button>
+                    <div class="sultan-modal-footer d-flex justify-content-between flex-shrink-0">
+                        <button type="button" class="btn btn-secondary shadow-sm px-4" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-maroon text-white font-weight-bold shadow-sm px-4"><i class="fas fa-check-double mr-2"></i> Eksekusi</button>
                     </div>
                 </div>
               </div>
@@ -161,11 +182,9 @@
     </div>
 </div>
 
-<!-- MODAL PREVIEW DOKUMEN (SULTAN COMPACT) -->
 <div class="modal fade" id="efilekelola_modalPreview" tabindex="-1" role="dialog" data-backdrop="static">
     <div class="modal-dialog modal-dialog-full" role="document">
         <div class="modal-content modal-content-full-height border-0 shadow-lg bg-dark">
-            
             <div class="sultan-preview-header">
                 <div class="sultan-preview-title">
                     <i class="fas fa-file-pdf text-danger mr-2"></i>
@@ -180,30 +199,39 @@
                     </button>
                 </div>
             </div>
-
             <div class="modal-body p-0 position-relative d-flex align-items-center justify-content-center bg-secondary" style="height: calc(100vh - 44px);">
                 <iframe id="efilekelola_framePreview" src="" class="iframe-full w-100 h-100 border-0 d-none"></iframe>
-                
-                <div id="efilekelola_loadingPreview" class="sultan-spinner-compact">
-                    <div class="spinner-border text-light" role="status"></div>
-                    <span class="mt-2 text-white-50 small font-weight-bold">Memuat Berkas...</span>
+                <div id="efilekelola_loadingPreview" class="sultan-spinner-compact text-center">
+                    <div class="spinner-border text-light mb-2" role="status"></div>
+                    <div class="text-white-50 small font-weight-bold">Memuat Berkas...</div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
 
 <div class="modal fade" id="efilekelola_modalHapus" tabindex="-1" role="dialog" data-backdrop="static">
-    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 400px;">
-        <div class="modal-content border-0 shadow-lg modal-content-sultan">
-            <div class="modal-header bg-danger text-white py-2"><h6 class="modal-title font-weight-bold"><i class="fas fa-trash-alt mr-2"></i>Hapus Berkas</h6><button type="button" class="close text-white" data-dismiss="modal">&times;</button></div>
-            <form id="efilekelola_formHapus">
-            <div class="modal-body bg-white p-4 text-center">
-                <input type="hidden" id="efilekelola_hapusRowId"><div class="mb-3"><div class="icon-circle bg-light-danger mx-auto text-danger" style="width:60px;height:60px;font-size:25px;line-height:60px;border-radius:50%;"><i class="fas fa-exclamation-triangle"></i></div></div><h6 class="font-weight-bold text-dark">Hapus File Ini?</h6><p class="text-muted small mb-3">Tindakan ini permanen.</p>
-                <div class="bg-light p-3 rounded border text-left"><label class="form-label-sultan small font-weight-bold text-secondary mb-1">Kode Keamanan:</label><input type="password" id="efilekelola_inputKodeHapus" class="form-control text-center font-weight-bold" required autocomplete="off"></div>
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content sultan-modal-content">
+            <div class="sultan-modal-header sultan-header-danger">
+                <h5 class="modal-title font-weight-bold"><i class="fas fa-trash-alt mr-2"></i>Hapus Berkas</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            <div class="modal-footer justify-content-between bg-light p-3"><button type="button" class="btn btn-default border shadow-sm px-3 font-weight-bold" data-dismiss="modal">Batal</button><button type="submit" class="btn btn-danger px-4 font-weight-bold shadow-sm"><i class="fas fa-trash mr-1"></i> Hapus</button></div>
+            <form id="efilekelola_formHapus">
+            <div class="sultan-modal-body bg-white p-4 text-center">
+                <input type="hidden" id="efilekelola_hapusRowId">
+                <i class="fas fa-exclamation-circle text-danger mb-3" style="font-size: 3.5rem;"></i>
+                <h5 class="font-weight-bold text-dark mb-2">Hapus Berkas Ini?</h5>
+                <p class="text-muted small px-4 mb-4">Tindakan ini akan menghapus file dari server secara permanen. Pastikan Anda sudah yakin.</p>
+                <div class="bg-light p-3 rounded border text-left mx-4 shadow-sm">
+                    <label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Kode Keamanan <span class="text-danger">*</span></label>
+                    <input type="password" id="efilekelola_inputKodeHapus" class="form-control form-control-sultan text-center letter-spacing-2" placeholder="Host Admin Code" required autocomplete="off">
+                </div>
+            </div>
+            <div class="sultan-modal-footer d-flex justify-content-center" style="gap:10px;">
+                <button type="button" class="btn btn-secondary px-4 font-weight-bold" data-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-danger px-4 font-weight-bold shadow-sm"><i class="fas fa-trash mr-1"></i> Hapus Permanen</button>
+            </div>
             </form>
         </div>
     </div>

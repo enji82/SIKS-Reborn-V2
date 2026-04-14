@@ -115,149 +115,140 @@
 
 <div class="modal fade" id="salah_modalForm" tabindex="-1" role="dialog" data-backdrop="static">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content border-0 shadow-lg modal-content-sultan">
-      <div class="modal-header bg-maroon" id="salah_headerModalForm">
-        <h5 class="modal-title font-weight-bold" id="salah_judulModalForm" style="color: #fff;"><i class="fas fa-file-signature mr-2"></i>Tambah Data</h5>
-        <button type="button" class="close text-white" data-dismiss="modal" id="salah_closeModalForm"><span>&times;</span></button>
+    <div class="modal-content sultan-modal-content">
+      <div class="sultan-modal-header sultan-header-maroon" id="salah_headerModalForm">
+        <h5 class="modal-title font-weight-bold" id="salah_judulModalForm"><i class="fas fa-file-signature mr-2"></i>Tambah Data</h5>
+        <button type="button" class="close" data-dismiss="modal" id="salah_closeModalForm"><span>&times;</span></button>
       </div>
       <form id="salah_formUtama">
-      <div class="modal-body bg-light p-4">
-        <input type="hidden" id="salah_inputIdData">
-        <input type="hidden" id="salah_inputNipLama">
-        <input type="hidden" id="salah_inputTglLama">
-        <input type="hidden" id="salah_inputJamLama">
-        
-        <div class="form-group">
+        <div class="sultan-modal-body bg-light">
+          <input type="hidden" id="salah_inputIdData">
+          <input type="hidden" id="salah_inputNipLama">
+          <input type="hidden" id="salah_inputTglLama">
+          <input type="hidden" id="salah_inputJamLama">
+
+          <div class="form-group mb-3">
             <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Unit Kerja <span class="text-danger">*</span></label>
             <select class="form-control form-control-sultan font-weight-bold text-maroon bg-light" id="salah_inputUnit" required disabled>
-                <option value="">- Memuat Database Pegawai... -</option>
+              <option value="">- Memuat Database Pegawai... -</option>
             </select>
-        </div>
-        <div class="form-group">
+          </div>
+          <div class="form-group mb-3">
             <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Nama ASN <span class="text-danger">*</span></label>
             <select class="form-control form-control-sultan" id="salah_inputNama" required disabled>
-                <option value="">- Pilih Unit Dulu -</option>
+              <option value="">- Pilih Unit Dulu -</option>
             </select>
-        </div>
-        <div class="form-group">
+          </div>
+          <div class="form-group mb-3">
             <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">NIP / NIY</label>
-            <select class="form-control form-control-sultan" id="salah_inputNip" required disabled>
-                <option value="">- Otomatis -</option>
+            <select class="form-control form-control-sultan font-weight-bold" id="salah_inputNip" required disabled>
+              <option value="">- Otomatis -</option>
             </select>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                <div class="form-group">
-                    <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Tanggal <span class="text-danger">*</span></label>
-                    <input type="date" id="salah_inputTanggal" class="form-control form-control-sultan" required>
-                </div>
+          </div>
+          <div class="row">
+            <div class="col-6 mb-3">
+              <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Tanggal <span class="text-danger">*</span></label>
+              <input type="date" id="salah_inputTanggal" class="form-control form-control-sultan" required>
             </div>
-            <div class="col-6">
-                <div class="form-group">
-                    <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Waktu (Jam) <span class="text-danger">*</span></label>
-                    <input type="time" id="salah_inputWaktu" class="form-control form-control-sultan" required>
-                </div>
+            <div class="col-6 mb-3">
+              <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Waktu (Jam) <span class="text-danger">*</span></label>
+              <input type="time" id="salah_inputWaktu" class="form-control form-control-sultan" required>
             </div>
-        </div>
-        <div class="form-group mb-0">
+          </div>
+          <div class="form-group mb-0">
             <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Presensi yang Terekam (Salah) <span class="text-danger">*</span></label>
-            <select id="salah_inputJenis" class="form-control form-control-sultan border-maroon" required>
-                <option value="">- Pilih -</option>
-                <option value="Datang">Datang</option>
-                <option value="Pulang">Pulang</option>
+            <select id="salah_inputJenis" class="form-control form-control-sultan font-weight-bold text-maroon border-maroon" required>
+              <option value="">- Pilih -</option>
+              <option value="Datang">Datang</option>
+              <option value="Pulang">Pulang</option>
             </select>
-            <small class="text-muted mt-2 d-block"><i class="fas fa-info-circle mr-1"></i> Pilih jenis presensi sesuai yang terekam di aplikasi Siaba.</small>
+            <div class="text-muted mt-2 small font-italic">
+              <i class="fas fa-info-circle mr-1 text-maroon"></i> Pilih jenis presensi sesuai data di aplikasi Siaba.
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="modal-footer bg-white justify-content-between p-3 border-top">
-          <button type="button" class="btn btn-default shadow-sm font-weight-bold px-4" data-dismiss="modal">Batal</button>
-          <button type="submit" id="salah_btnSimpanForm" class="btn btn-maroon text-white shadow-sm font-weight-bold px-4"><i class="fas fa-save mr-1"></i> Simpan</button>
-      </div>
+        <div class="sultan-modal-footer d-flex justify-content-between">
+          <button type="button" class="btn btn-secondary shadow-sm font-weight-bold px-4" data-dismiss="modal">Batal</button>
+          <button type="submit" id="salah_btnSimpanForm" class="btn btn-maroon text-white shadow-sm font-weight-bold px-4"><i class="fas fa-save mr-2"></i> Simpan</button>
+        </div>
       </form>
     </div>
   </div>
 </div>
 
 <div class="modal fade" id="salah_modalHapus" tabindex="-1" role="dialog" data-backdrop="static">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content border-0 shadow-lg modal-content-sultan">
-            <div class="modal-header bg-danger text-white">
-                <h5 class="modal-title font-weight-bold"><i class="fas fa-trash-alt mr-2"></i>Konfirmasi Hapus</h5>
-                <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
-            </div>
-            <form id="salah_formHapus">
-            <div class="modal-body bg-white p-4">
-                <input type="hidden" id="salah_hapusIdData">
-                <div class="alert alert-warning text-dark border-warning shadow-sm mb-3">
-                    <div class="d-flex align-items-start">
-                        <i class="fas fa-exclamation-triangle mt-1 mr-3 fa-lg"></i>
-                        <div>
-                            <strong>Peringatan!</strong><br>
-                            Anda akan menghapus data Salah Presensi atas nama:<br>
-                            <span id="salah_hapusNamaView" class="font-weight-bold text-uppercase" style="font-size: 1.1em; color: #000;">-</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group mb-0">
-                    <label class="form-label-sultan small font-weight-bold text-uppercase text-muted">Kode Keamanan <span class="text-danger">*</span></label>
-                    <div class="input-group">
-                        <div class="input-group-prepend"><span class="input-group-text bg-light border-right-0"><i class="fas fa-key text-danger"></i></span></div>
-                        <input type="password" id="salah_hapusKode" class="form-control form-control-sultan border-left-0" placeholder="Hubungi admin Korwil untuk mendapatkan kode." required autocomplete="off">
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer bg-light justify-content-between p-3 border-top">
-                <button type="button" class="btn btn-default border shadow-sm px-4 font-weight-bold" data-dismiss="modal">Batal</button>
-                <button type="submit" id="salah_btnEksekusiHapus" class="btn btn-danger shadow-sm px-4 font-weight-bold"><i class="fas fa-trash mr-1"></i> HAPUS DATA</button>
-            </div>
-            </form>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content sultan-modal-content">
+      <div class="sultan-modal-header sultan-header-danger">
+        <h5 class="modal-title font-weight-bold"><i class="fas fa-trash-alt mr-2"></i>Konfirmasi Hapus</h5>
+        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+      </div>
+      <form id="salah_formHapus">
+        <div class="sultan-modal-body bg-white text-center py-4">
+          <input type="hidden" id="salah_hapusIdData">
+          <i class="fas fa-exclamation-circle text-danger mb-3" style="font-size: 3.5rem;"></i>
+          <h5 class="font-weight-bold text-dark mb-2">Hapus Data Ini?</h5>
+          <p class="text-muted small px-4 mb-4">Menghapus data Salah Presensi untuk:<br><span id="salah_hapusNamaView" class="font-weight-bold text-danger">-</span></p>
+
+          <div class="bg-light p-3 rounded border mx-4 shadow-sm text-left">
+            <label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Kode Keamanan <span class="text-danger">*</span></label>
+            <input type="password" id="salah_hapusKode" class="form-control form-control-sultan text-center letter-spacing-2" placeholder="Input authorization code" required autocomplete="off">
+          </div>
         </div>
+        <div class="sultan-modal-footer d-flex justify-content-center" style="gap:10px;">
+          <button type="button" class="btn btn-secondary shadow-sm px-4 font-weight-bold" data-dismiss="modal">Batal</button>
+          <button type="submit" id="salah_btnEksekusiHapus" class="btn btn-danger shadow-sm px-4 font-weight-bold"><i class="fas fa-trash mr-2"></i> HAPUS DATA</button>
+        </div>
+      </form>
     </div>
+  </div>
 </div>
 
 <div class="modal fade" id="salah_modalVerif" tabindex="-1" role="dialog" data-backdrop="static">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content border-0 shadow-lg modal-content-sultan">
-            <div class="modal-header bg-primary text-white py-2">
-                <h5 class="modal-title font-weight-bold h6 mb-0"><i class="fas fa-clipboard-check mr-2"></i>Panel Verifikasi Data</h5>
-                <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content sultan-modal-content">
+      <div class="sultan-modal-header sultan-header-emerald">
+        <h5 class="modal-title font-weight-bold"><i class="fas fa-clipboard-check mr-2"></i>Verifikasi Data Ajuan</h5>
+        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+      </div>
+      <form id="salah_formVerif">
+        <div class="sultan-modal-body bg-light">
+          <input type="hidden" id="salah_verifIdData">
+
+          <h6 class="text-emerald font-weight-bold border-bottom pb-2 mb-3"><i class="fas fa-user-circle mr-2"></i> Informasi Ajuan</h6>
+          <table class="table table-borderless small mb-4">
+            <tr><td class="text-muted font-weight-bold py-1" width="35%">Nama ASN</td><td class="font-weight-bold text-dark py-1 text-uppercase" id="salah_vNama">-</td></tr>
+            <tr><td class="text-muted font-weight-bold py-1">NIP</td><td class="text-dark py-1" id="salah_vNip">-</td></tr>
+            <tr><td class="text-muted font-weight-bold py-1">Tanggal</td><td class="font-weight-bold text-dark py-1" id="salah_vTgl">-</td></tr>
+            <tr><td class="text-muted font-weight-bold py-1">Jam Terekam</td><td class="font-weight-bold text-danger py-1" id="salah_vJam">-</td></tr>
+            <tr><td class="text-muted font-weight-bold py-1">Status Salah</td><td class="font-weight-bold py-1" id="salah_vJenis">-</td></tr>
+          </table>
+
+          <div class="card bg-white border-0 shadow-sm mb-0">
+            <div class="card-body p-3">
+              <div class="form-group mb-3">
+                <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Keputusan <span class="text-danger">*</span></label>
+                <select class="form-control form-control-sultan font-weight-bold" id="salah_verifStatus" required>
+                  <option value="">-- Tentukan Status --</option>
+                  <option value="Disetujui">✅ Disetujui</option>
+                  <option value="Revisi">🔄 Revisi</option>
+                  <option value="Ditolak">❌ Ditolak</option>
+                </select>
+              </div>
+              <div class="form-group mb-0">
+                <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Catatan Admin</label>
+                <textarea class="form-control form-control-sultan" id="salah_verifCatatan" rows="3" placeholder="Alasan..."></textarea>
+              </div>
             </div>
-            <form id="salah_formVerif">
-                <div class="modal-body bg-light p-4">
-                    <input type="hidden" id="salah_verifIdData">
-                    
-                    <h5 class="text-primary font-weight-bold border-bottom pb-2 mb-4"><i class="fas fa-user-circle mr-2"></i> Informasi Ajuan</h5>
-                    <table class="table table-borderless mb-4 text-dark">
-                        <tr><td class="text-muted font-weight-bold align-middle py-2" width="35%" style="font-size: 14px;">Nama ASN</td><td class="font-weight-bold text-dark py-2" id="salah_vNama" style="font-size: 18px; text-transform: uppercase;">-</td></tr>
-                        <tr><td class="text-muted font-weight-bold align-middle py-2" style="font-size: 14px;">NIP</td><td class="text-dark py-2" id="salah_vNip" style="font-size: 16px;">-</td></tr>
-                        <tr><td colspan="2" class="py-2"><hr class="my-0 dashed"></td></tr>
-                        <tr><td class="text-muted font-weight-bold align-middle py-2" style="font-size: 14px;">Tanggal</td><td class="font-weight-bold text-dark py-2" id="salah_vTgl" style="font-size: 16px;">-</td></tr>
-                        <tr><td class="text-muted font-weight-bold align-middle py-2" style="font-size: 14px;">Jam</td><td class="font-weight-bold text-danger py-2" id="salah_vJam" style="font-size: 16px;">-</td></tr>
-                        <tr><td class="text-muted font-weight-bold align-middle py-2" style="font-size: 14px;">Terekam (Salah)</td><td class="font-weight-bold py-2" id="salah_vJenis" style="font-size: 16px;">-</td></tr>
-                    </table>
-                    
-                    <div class="card bg-white border-0 shadow-sm">
-                        <div class="card-body p-3">
-                            <div class="form-group mb-3">
-                                <label class="form-label-sultan font-weight-bold text-muted text-uppercase" style="font-size:12px; letter-spacing: 0.5px;">Keputusan Verifikasi <span class="text-danger">*</span></label>
-                                <select class="form-control form-control-sultan font-weight-bold text-dark" id="salah_verifStatus" required style="font-size: 16px; height: auto !important; padding: 10px 15px;">
-                                    <option value="">-- Tentukan Status --</option><option value="Disetujui">Disetujui</option><option value="Revisi">Revisi</option><option value="Ditolak">Ditolak</option>
-                                </select>
-                            </div>
-                            <div class="form-group mb-0">
-                                <label class="form-label-sultan font-weight-bold text-muted text-uppercase" style="font-size:12px; letter-spacing: 0.5px;">Catatan Admin</label>
-                                <textarea class="form-control form-control-sultan" id="salah_verifCatatan" rows="3" placeholder="Wajib diisi jika ditolak / direvisi..." style="font-size: 15px; padding: 10px 15px;"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer bg-white border-top shadow-lg d-flex justify-content-between p-3">
-                    <button type="button" class="btn btn-default shadow-sm font-weight-bold px-4 py-2" style="font-size:16px;" data-dismiss="modal">Tutup</button>
-                    <button type="submit" id="salah_btnVerifEksekusi" class="btn btn-primary font-weight-bold shadow-sm px-4 py-2" style="font-size:16px;"><i class="fas fa-check-double mr-2"></i> Eksekusi</button>
-                </div>
-            </form>
+          </div>
         </div>
+        <div class="sultan-modal-footer d-flex justify-content-between">
+          <button type="button" class="btn btn-secondary shadow-sm font-weight-bold px-4" data-dismiss="modal">Tutup</button>
+          <button type="submit" id="salah_btnVerifEksekusi" class="btn btn-emerald font-weight-bold shadow-sm px-4"><i class="fas fa-check-double mr-2"></i> Eksekusi</button>
+        </div>
+      </form>
     </div>
+  </div>
 </div>
 
 <script>

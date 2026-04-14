@@ -17,7 +17,10 @@ var Sultan = {
             Swal.mixin({ 
                 toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, timerProgressBar: true,
                 background: 'rgba(255, 255, 255, 0.95)',
-                customClass: { popup: 'sultan-alert-popup shadow-sm py-2 px-3', title: 'sultan-alert-text font-weight-bold ml-2' }
+                customClass: { 
+                    popup: 'sultan-alert-popup shadow-sm py-2 px-3', 
+                    title: 'sultan-alert-text font-weight-bold ml-2' 
+                }
             }).fire({ 
                 html: `<div class="d-flex align-items-center" style="color:${colors[type]}"><i class="fas ${icons[type]} mr-2"></i> ${msg}</div>` 
             });
@@ -27,11 +30,9 @@ var Sultan = {
         info: (msg) => Sultan.alert('info', 'Informasi', msg),
         loading: (msg) => {
             Swal.fire({
-                iconHtml: '<div class="sultan-orbit"></div>',
-                title: 'Memproses...',
-                text: msg || 'Harap tunggu bentar...',
+                html: `<div class="d-flex flex-column align-items-center"><div class="sultan-orbit mb-3"></div><p class="font-weight-bold mb-0">${msg || 'Memproses...'}</p></div>`,
                 showConfirmButton: false, allowOutsideClick: false,
-                customClass: { popup: 'sultan-alert-popup', icon: 'sultan-orbit-icon' }
+                customClass: { popup: 'sultan-alert-popup' }
             });
         },
         tutup: () => Swal.close()
@@ -47,11 +48,12 @@ var Sultan = {
             text: text,
             showConfirmButton: true,
             confirmButtonText: 'OK',
-            buttonsStyling: true,
-            showClass: { popup: 'swal2-show sultan-alert-popup' },
-            hideClass: { popup: 'swal2-hide sultan-alert-popup' },
+            buttonsStyling: false, // Force custom classes
+            showClass: { popup: 'swal2-show' },
+            hideClass: { popup: 'swal2-hide' },
             customClass: {
                 popup: `sultan-alert-popup ${typeClass}`,
+                title: 'sultan-alert-text font-weight-bold',
                 confirmButton: 'sultan-swal-confirm'
             }
         });
@@ -66,13 +68,12 @@ var Sultan = {
             showCancelButton: true,
             confirmButtonText: opsi.btnYa || 'Ya, Lanjutkan',
             cancelButtonText: opsi.btnBatal || 'Batal',
-            buttonsStyling: true,
-            showClass: { popup: 'swal2-show sultan-alert-popup' },
-            hideClass: { popup: 'swal2-hide sultan-alert-popup' },
+            buttonsStyling: false, // Force custom classes
             customClass: {
-                popup: 'sultan-alert-popup sultan-error-popup', // Konfirmasi default maroon
-                confirmButton: 'swal2-confirm',
-                cancelButton: 'swal2-cancel'
+                popup: 'sultan-alert-popup sultan-error-popup', // Konfirmasi default maroon top border
+                title: 'sultan-alert-text font-weight-bold',
+                confirmButton: 'sultan-swal-confirm mx-1',
+                cancelButton: 'sultan-swal-cancel mx-1'
             }
         }).then((res) => {
             if (res.isConfirmed && callbackYa) callbackYa();
