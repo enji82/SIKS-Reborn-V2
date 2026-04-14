@@ -981,7 +981,6 @@ function lapbulkelola_convertDriveUrl(url) {
 function lapbulkelola_previewPDF(url) {
     if (!url || url.length < 5) { Sultan.notif.gagal("Link file kosong."); return; }
 
-    // Transform URL for direct download
     var dlUrl = url;
     if (url.includes('drive.google.com')) {
         var fileId = "";
@@ -999,8 +998,8 @@ function lapbulkelola_previewPDF(url) {
     $('#lapbulkelola_loadingPreviewPDF').removeClass('d-none');
     $('#lapbulkelola_framePreview').addClass('d-none').attr('src', previewUrl);
     
-    $('#lapbulkelola_btnQuickDownload').attr('href', dlUrl);
-    $('#lapbulkelola_btnFullDownload').attr('href', url);
+    $('#lapbulkelola_linkDownloadHeader').attr('href', dlUrl);
+    $('#lapbulkelola_linkTabHeader').attr('href', url);
     $('#lapbulkelola_modalPreview').modal('show');
 
     $('#lapbulkelola_framePreview').off('load').on('load', function() {
@@ -1008,7 +1007,6 @@ function lapbulkelola_previewPDF(url) {
         $(this).removeClass('d-none');
     });
     
-    // Fallback 2.5 Detik sesuai BAB V
     setTimeout(function() {
         $('#lapbulkelola_loadingPreviewPDF').addClass('d-none');
         $('#lapbulkelola_framePreview').removeClass('d-none');

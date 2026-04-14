@@ -544,6 +544,51 @@
    Digunakan untuk Preview File agar lega
    =================================================================== */
 
+/* ===================================================================
+   V6.0: SULTAN COMPACT PREVIEW (ULTRA-SLIM DARK DESIGN)
+   Gunakan untuk pratinjau dokumen agar hemat ruang.
+   =================================================================== */
+
+.sultan-compact-header {
+    background: #0d0d0d !important;
+    backdrop-filter: blur(5px);
+    height: 44px !important;
+    border-bottom: 1px solid #333 !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 0 1rem !important;
+}
+
+.sultan-compact-header .modal-title {
+    font-size: 0.82rem !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+    letter-spacing: 0.5px !important;
+    font-weight: 700 !important;
+}
+
+.sultan-compact-header .hover-white:hover {
+    color: #fff !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease;
+}
+
+.sultan-spinner-compact {
+    width: 32px;
+    height: 32px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top: 3px solid #8B0000;
+    border-radius: 50%;
+    animation: sultan-spin-mini 0.8s linear infinite;
+}
+
+@keyframes sultan-spin-mini {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.bg-black { background-color: #000 !important; }
+.text-white-50 { color: rgba(255, 255, 255, 0.5) !important; }
+
 /* 1. Dialog (Wrapper Luar): Lebar 95% */
 .modal-dialog-full {
     max-width: 95% !important;
