@@ -1597,57 +1597,133 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
    Teks 1 baris. Sisi kanan rata. Warna aktif beda per level.
    =================================================================== */
 
-/* ---------- Warna Dasar Sidebar ---------- */
+/* ===================================================================
+   7. TAILADMIN SHELL & NAVIGATION (v2.4)
+   - Layout: Flex h-screen
+   - Sidebar: 290px Drawer
+   =================================================================== */
+
 :root {
-    --sb-bg-1:     var(--warna-utama);           /* Maroon tua sejati */
-    --sb-bg-2:     #4A0000;           /* Maroon lebih gelap */
-    --sb-active-1: #FFF8E7;           /* Cream/Gold tint — Bapak AKTIF */
-    --sb-active-2: #B3E5FC;           /* Sky-blue tint   — Anak AKTIF */
-    --sb-active-3: #EAC947;           /* Gold solid      — Cucu AKTIF */
+  --sidebar-width: 290px;
+  --sidebar-bg: #1C2434;
+  --sidebar-active: #333A48;
 }
 
-/* Container Sidebar */
-.main-sidebar {
-    background: linear-gradient(170deg, var(--sb-bg-1) 0%, var(--sb-bg-2) 100%) !important;
-    border-right: 1px solid rgba(255,255,255,0.06) !important;
-    box-shadow: 3px 0 20px rgba(0,0,0,0.35) !important;
+/* AUTHENTIC TAILADMIN WRAPPERS */
+.page-wrapper {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
 }
 
-/* Brand/Judul sidebar — tinggi dikontrol via inline style di index.html */
-.brand-link,
-#sidebar-brand {
-    text-decoration: none !important;
-}
-.brand-link .brand-text { color: #fff !important; }
-.brand-link i,
-#sidebar-brand i { color: #EAC947 !important; }
-
-/* Struktur sidebar: brand-link (57px) di atas, menu di bawah — tidak overlap */
-.main-sidebar {
-    overflow: hidden !important;
-}
-.brand-link {
-    position: relative !important;
-    z-index: 10 !important;
+.content-area {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
-/* Menu area: mulai tepat SETELAH brand-link (57px) dan bisa di-scroll */
-.sidebar {
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-    height: calc(100% - 57px) !important;
-    padding-top: 0.4rem !important;
-    padding-bottom: 2rem !important;
-    margin-top: 0 !important;
-    position: relative !important;
+/* SIDEBAR DRAWER */
+.sidebar-drawer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  display: flex;
+  height: 100vh;
+  width: var(--sidebar-width);
+  flex-direction: column;
+  background-color: var(--sidebar-bg);
+  transition: transform 0.3s linear;
+  transform: translateX(-100%);
 }
 
-/* ================================================
-   RESET DASAR: semua level nav-link
-   - min-height 44px (HP friendly)
-   - 1 baris teks, ellipsis
-   - Layout flex dengan kanan rata
-   ================================================ */
+@media (min-width: 1024px) {
+  .sidebar-drawer {
+    position: static;
+    transform: translateX(0);
+  }
+}
+
+.sidebar-drawer.open {
+  transform: translateX(0);
+}
+
+/* MENU GROUPS */
+.menu-group-title {
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #8A99AF;
+  text-transform: uppercase;
+}
+
+/* NAVIGATION LINKS */
+.nav-link-tail {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 0.25rem;
+  padding: 0.625rem 1rem;
+  font-weight: 500;
+  color: #DEE4EE;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-link-tail:hover, 
+.nav-link-tail.active {
+  background-color: var(--sidebar-active);
+  color: white;
+}
+
+.nav-link-tail i {
+  font-size: 1.15rem;
+  width: 24px;
+  text-align: center;
+}
+
+/* DROPDOWN SUBMENU */
+.submenu-tail {
+  margin-top: 0.5rem;
+  margin-bottom: 2.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  padding-left: 3rem;
+}
+
+.submenu-link-tail {
+  font-weight: 500;
+  color: #8A99AF;
+  transition: color 0.3s;
+}
+
+.submenu-link-tail:hover,
+.submenu-link-tail.active {
+  color: white;
+}
+
+/* CUSTOM SCROLLBAR (TAILADMIN) */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* OVERLAY (FOR MOBILE SIDEBAR) */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+}
+
+.sidebar-overlay.show {
+  display: block;
+}
+@media (min-width: 1024px) { .sidebar-overlay.show { display: none; } }
 .nav-sidebar .nav-link {
     display: flex !important;
     align-items: center !important;

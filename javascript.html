@@ -40,8 +40,16 @@ var Sultan = {
     // 2.1 THEME ENGINE
     theme: {
         toggle: function() {
+            // Support both jQuery and Alpine.js context
             const isDark = document.documentElement.classList.toggle('dark');
             localStorage.setItem('sultan_darkMode', isDark);
+            
+            // Sync Alpine.js if present
+            const body = document.querySelector('body');
+            if (body && body.__x_data_stack) {
+                body.__x_data_stack[0].darkMode = isDark;
+            }
+
             Sultan.notif.toast('info', `Mode ${isDark ? 'Gelap' : 'Terang'} Aktif`);
         }
     },
@@ -239,15 +247,22 @@ $(document).ready(function() {
         }
     }, 5000);
 
-    $(document).on('show.bs.modal', '.modal', function () { $(this).appendTo('body'); });
-    inisialisasiAplikasi();
-
-    $(document).on('click', '.nav-link[data-page], .btn-home-crumb', function(e) {
+    // 9. NAVIGATION LISTENERS (TailAdmin Support)
+    $(document).on('click', '.nav-link[data-page], .nav-link-tail[data-page], .submenu-link-tail[data-page], .btn-home-crumb', function(e) {
         e.preventDefault();
         let page = $(this).data('page') || 'home';
         loadContent(page);
-        if ($(window).width() < 768) $('body').removeClass('sidebar-open').addClass('sidebar-collapse');
+        
+        // Mobile Sidebar Close Logic (TailAdmin/Alpine compliant)
+        const body = document.querySelector('body');
+        if (body && body.__x_data_stack) {
+            body.__x_data_stack[0].sidebarOpened = false;
+        }
     });
+
+    // Initial load
+    inisialisasiAplikasi();
+});
 });
 
 function inisialisasiAplikasi() {
@@ -452,17 +467,15 @@ function tampilkanMenuAdmin(user) {
  * MENU MAPPING & BREADCRUMBS (THEME SYNCED)
  */
 function updateBreadcrumb(pageName) {
-    let html = `<span class="btn-home-crumb" style="cursor:pointer"><i class="fas fa-home mr-1"></i> Beranda</span>`;
-    if (pageName !== 'home') {
-        let title = (window.MENU_MAPPING && MENU_MAPPING[pageName]) ? MENU_MAPPING[pageName] : pageName;
-        html += ` <i class="fas fa-angle-right mx-2 opacity-50 small"></i> <span class="font-weight-bold">${title}</span>`;
-    }
-    $('#page-breadcrumb').html(html).addClass('animate__animated animate__fadeIn');
+    const title = (window.MENU_MAPPING && MENU_MAPPING[pageName]) ? MENU_MAPPING[pageName] : pageName;
+    const breadcrumbText = title.toUpperCase();
+    $('#page-breadcrumb').text(breadcrumbText).addClass('animate-reveal');
+    document.title = "SIKS-REBORN | " + title;
 }
 
 function highlightSidebar(page) {
-    $('.nav-sidebar .nav-link').removeClass('active');
-    $(`.nav-sidebar .nav-link[data-page="${page}"]`).addClass('active').parents('.nav-item').addClass('menu-open');
+    $('.nav-link-tail, .submenu-link-tail').removeClass('active');
+    $(`.nav-link-tail[data-page="${page}"], .submenu-link-tail[data-page="${page}"]`).addClass('active');
 }
 
 /**

@@ -1,118 +1,222 @@
-<nav class="mt-3">
-  <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="true">
+<!-- 
+  SULTAN TAILADMIN SIDEBAR (v2.5)
+  - Engine: Alpine.js
+  - Style: Official TailAdmin Free/Pro Layout
+-->
 
-    <li class="nav-item"><a href="#" class="nav-link" data-page="home"><i class="nav-icon fas fa-home text-maroon"></i> <p>Beranda</p></a></li>
+<aside class="sidebar-drawer no-scrollbar" 
+       :class="sidebarOpened ? 'open' : ''"
+       @click.away="sidebarOpened = false">
+  
+  <!-- SIDEBAR HEADER (LOGO) -->
+  <div class="flex items-center justify-between gap-2 px-6 py-6 lg:py-7">
+    <a href="#" class="flex items-center gap-3" data-page="home">
+      <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white shadow-lg ring-4 ring-primary/10">
+        <i class="fas fa-school text-xl"></i>
+      </div>
+      <div>
+        <h1 class="text-xl font-bold text-white tracking-widest leading-none">SIKS</h1>
+        <p class="text-[10px] text-bodydark font-semibold mt-1 uppercase tracking-tighter opacity-70">REBORN v2.5</p>
+      </div>
+    </a>
 
-    <li class="nav-item"><a href="#" class="nav-link"><i class="nav-icon fas fa-file-signature text-maroon"></i><p>SK Pembagian Tugas <i class="right fas fa-angle-left"></i></p></a>
-      <ul class="nav nav-treeview">
-        <li class="nav-item"><a href="#" class="nav-link" data-page="sk_dashboard"><i class="far fa-circle nav-icon"></i><p>Dashboard SK</p></a></li>
-        <li class="nav-item"><a href="#" class="nav-link" data-page="sk_data"><i class="far fa-circle nav-icon"></i><p>Data SK <span id="sk_data_badge" class="badge right" style="display: none;"></span></p></a></li>
-        <li class="nav-item"><a href="#" class="nav-link" data-page="sk_status"><i class="far fa-circle nav-icon"></i><p>Status Pengiriman</p></a></li>
-      </ul>
-    </li>
+    <!-- Close Button (Mobile) -->
+    <button @click.prevent="sidebarOpened = false" class="lg:hidden text-bodydark hover:text-white transition-colors">
+      <i class="fas fa-arrow-left"></i>
+    </button>
+  </div>
 
-    <li class="nav-item"><a href="#" class="nav-link"><i class="nav-icon fas fa-file-invoice text-maroon"></i><p>Laporan Bulan <i class="right fas fa-angle-left"></i></p></a>
-      <ul class="nav nav-treeview">
-        <li class="nav-item"><a href="#" class="nav-link" data-page="lapbul_dashboard"><i class="far fa-circle nav-icon"></i><p>Dashboard Laporan Bulan</p></a></li>
-        <li class="nav-item"><a href="#" class="nav-link" data-page="lapbul_kelola"><i class="nav-icon fas fa-calendar-alt text-maroon"></i><p>Kelola Data <span id="lapbul_kelola_badge" class="badge right" style="display: none;"></span></p></a></li>
-        <li class="nav-item"><a href="#" class="nav-link" data-page="lapbul_status"><i class="far fa-circle nav-icon"></i><p>Status Laporan</p></a></li>
-        <li class="nav-item"><a href="#" class="nav-link" data-page="lapbul_format"><i class="fas fa-file-excel nav-icon"></i><p>Format Laporan</p></a></li>
-      </ul>
-    </li>
+  <!-- MENU AREA -->
+  <div class="flex flex-col overflow-y-auto no-scrollbar duration-300 ease-linear flex-grow px-4 pb-12">
+    <nav class="mt-5 px-2">
+      
+      <!-- GROUP: UTAMA -->
+      <div class="mb-6">
+        <h3 class="menu-group-title">Menu Utama</h3>
+        <ul class="mb-6 flex flex-col gap-1.5">
+          <li>
+            <a href="#" class="nav-link-tail" data-page="home" @click="sidebarOpened = false">
+              <i class="fas fa-th-large"></i>
+              Beranda
+            </a>
+          </li>
+        </ul>
+      </div>
 
-    <li class="nav-item"><a href="#" class="nav-link"><i class="nav-icon fas fa-fingerprint text-maroon"></i><p>SIABA<i class="right fas fa-angle-left"></i></p></a>
-      <ul class="nav nav-treeview">
-        <li class="nav-item"><a href="#" class="nav-link" data-page="siaba_dashboard"><i class="far fa-circle nav-icon"></i><p>Dashboard Siaba</p></a></li>
-        <li class="nav-item"><a href="#" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Presensi<i class="right fas fa-angle-left"></i></p></a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item"><a href="#" class="nav-link" data-page="siaba_presensi_harian"><i class="far fa-dot-circle nav-icon"></i><p>Harian</p></a></li>
-            <li class="nav-item"><a href="#" class="nav-link" data-page="siaba_presensi_apel"><i class="far fa-dot-circle nav-icon"></i><p>Apel dan Upacara</p></a></li>
-            <li class="nav-item"><a href="#" class="nav-link" data-page="siaba_presensi_tidak"><i class="far fa-dot-circle nav-icon"></i><p>Tidak Presensi</p></a></li>
-            <li class="nav-item"><a href="#" class="nav-link" data-page="siaba_presensi_terlambat"><i class="far fa-dot-circle nav-icon"></i><p>Terlambat</p></a></li>
-            <li class="nav-item"><a href="#" class="nav-link" data-page="siaba_presensi_pulang"><i class="far fa-dot-circle nav-icon"></i><p>Pulang Awal</p></a></li>
-            <li class="nav-item"><a href="#" class="nav-link" data-page="siaba_presensi_unduh"><i class="far fa-dot-circle nav-icon"></i><p>Unduh Rekap Bulanan</p></a></li>
-            <li class="nav-item"><a href="#" class="nav-link" data-page="siaba_presensi_arsip"><i class="far fa-dot-circle nav-icon"></i><p>Arsip Siaba</p></a></li>
-          </ul>
-        </li>
-        <li class="nav-item"><a href="#" class="nav-link" data-page="siaba_presensi_lupa"><i class="far fa-circle nav-icon"></i><p>Lupa Presensi</p></a></li>
-        <li class="nav-item"><a href="#" class="nav-link" data-page="siaba_presensi_salah"><i class="far fa-circle nav-icon"></i><p>Salah Presensi</p></a></li>
-        <li class="nav-item"><a href="#" class="nav-link" data-page="siaba_perjalanan_dinas"><i class="far fa-circle nav-icon"></i><p>Perjalanan Dinas</p></a></li>
-        <li class="nav-item"><a href="#" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Cuti<i class="right fas fa-angle-left"></i></p></a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item"><a href="#" class="nav-link" data-page="siaba_cuti_data"><i class="far fa-dot-circle nav-icon"></i><p>Pengajuan</p></a></li>
-            <li class="nav-item"><a href="#" class="nav-link" data-page="siaba_cuti_sisa"><i class="far fa-dot-circle nav-icon"></i><p>Sisa Cuti Tahunan</p></a></li>
-            <li class="nav-item"><a href="#" class="nav-link" data-page="siaba_cuti_rekap"><i class="far fa-dot-circle nav-icon"></i><p>Rekap Cuti</p></a></li>
-            <li class="nav-item"><a href="#" class="nav-link" data-page="siaba_cuti_unggah"><i class="far fa-dot-circle nav-icon"></i><p>Unggah Surat Cuti</p></a></li>
-            <li class="nav-item"><a href="#" class="nav-link" data-page="siaba_cuti_informasi"><i class="far fa-dot-circle nav-icon"></i><p>Informasi</p></a></li>
-          </ul>
-        </li>
-        <li class="nav-item"><a href="#" class="nav-link" data-page="siaba_format_panduan"><i class="far fa-circle nav-icon"></i><p>Format dan Panduan</p></a></li>
-      </ul>
-    </li>
+      <!-- GROUP: OPERASIONAL -->
+      <div class="mb-6">
+        <h3 class="menu-group-title">Operasional</h3>
+        <ul class="mb-6 flex flex-col gap-1.5">
+          
+          <!-- Dropdown: SK Pembagian Tugas -->
+          <li x-data="{ selected: false }">
+            <a href="#" class="nav-link-tail justify-between" 
+               @click.prevent="selected = !selected"
+               :class="{ 'bg-meta-4 text-white': selected }">
+              <div class="flex items-center gap-2.5">
+                <i class="fas fa-file-signature"></i>
+                SK Pembagian Tugas
+              </div>
+              <i class="fas fa-chevron-down text-xs transition-transform" :class="{ 'rotate-180': selected }"></i>
+            </a>
+            <div x-show="selected" x-transition class="submenu-tail">
+              <a href="#" class="submenu-link-tail" data-page="sk_dashboard" @click="sidebarOpened = false">Dashboard SK</a>
+              <a href="#" class="submenu-link-tail flex justify-between items-center" data-page="sk_data" @click="sidebarOpened = false">
+                Data SK
+                <span id="sk_data_badge" class="bg-primary text-[10px] px-1.5 rounded-full hidden"></span>
+              </a>
+              <a href="#" class="submenu-link-tail" data-page="sk_status" @click="sidebarOpened = false">Status Pengiriman</a>
+            </div>
+          </li>
 
-    <li class="nav-item">
-      <a href="#" class="nav-link" data-page="tata_naskah_dinas">
-        <i class="fas fa-file-signature nav-icon text-maroon"></i>
-        <p>Tata Naskah Dinas</p>
-      </a>
-    </li>
+          <!-- Dropdown: Laporan Bulan -->
+          <li x-data="{ selected: false }">
+            <a href="#" class="nav-link-tail justify-between" 
+               @click.prevent="selected = !selected"
+               :class="{ 'bg-meta-4 text-white': selected }">
+              <div class="flex items-center gap-2.5">
+                <i class="fas fa-file-invoice"></i>
+                Laporan Bulan
+              </div>
+              <i class="fas fa-chevron-down text-xs transition-transform" :class="{ 'rotate-180': selected }"></i>
+            </a>
+            <div x-show="selected" x-transition class="submenu-tail">
+              <a href="#" class="submenu-link-tail" data-page="lapbul_dashboard" @click="sidebarOpened = false">Dashboard Lapbul</a>
+              <a href="#" class="submenu-link-tail" data-page="lapbul_kelola" @click="sidebarOpened = false">Kelola Data</a>
+              <a href="#" class="submenu-link-tail" data-page="lapbul_status" @click="sidebarOpened = false">Status Laporan</a>
+              <a href="#" class="submenu-link-tail" data-page="lapbul_format" @click="sidebarOpened = false">Format Laporan</a>
+            </div>
+          </li>
 
-    <li class="nav-item"><a href="#" class="nav-link"><i class="nav-icon fas fa-users text-maroon"></i><p>Data PTK <i class="right fas fa-angle-left"></i></p></a>
-      <ul class="nav nav-treeview">
-        <li class="nav-item"><a href="#" class="nav-link" data-page="ptk_dashboard"><i class="far fa-circle nav-icon"></i><p>Dashboard PTK</p></a></li>
-        <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-child nav-icon"></i><p>PAUD <i class="right fas fa-angle-left"></i></p></a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item"><a href="#" class="nav-link" data-page="ptk_kelola_paud"><i class="far fa-circle nav-icon"></i><p>Daftar Nama PTK PAUD</p></a></li>
-            <li class="nav-item"><a href="#" class="nav-link" data-page="ptk_keadaan_paud"><i class="far fa-circle nav-icon"></i><p>Keadaan PTK PAUD</p></a></li>
-          </ul>
-        </li>
-        <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-school nav-icon"></i><p>SD Negeri<i class="right fas fa-angle-left"></i></p></a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item"><a href="#" class="nav-link" data-page="ptk_kelola_sdn"><i class="far fa-circle nav-icon"></i><p>Daftar Nama PTK SDN</p></a></li>
-            <li class="nav-item"><a href="#" class="nav-link" data-page="ptk_keadaan_sdn"><i class="far fa-circle nav-icon"></i><p>Keadaan PTK SDN</p></a></li>
-            <li class="nav-item"><a href="#" class="nav-link" data-page="ptk_kebutuhan_sdn"><i class="far fa-circle nav-icon"></i><p>Kebutuhan Guru SDN</p></a></li>
-          </ul>
-        </li>
-        <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-school nav-icon"></i><p>SD Swasta<i class="right fas fa-angle-left"></i></p></a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item"><a href="#" class="nav-link" data-page="ptk_kelola_sds"><i class="far fa-circle nav-icon"></i><p>Daftar Nama PTK SDS</p></a></li>
-            <li class="nav-item"><a href="#" class="nav-link" data-page="ptk_keadaan_sds"><i class="far fa-circle nav-icon"></i><p>Keadaan PTK SDS</p></a></li>
-            <li class="nav-item"><a href="#" class="nav-link" data-page="ptk_kebutuhan_sds"><i class="far fa-circle nav-icon"></i><p>Kebutuhan Guru SDS</p></a></li>
-          </ul>
-        </li>
-      </ul>
-    </li>
+          <!-- Dropdown: SIABA -->
+          <li x-data="{ selected: false }">
+            <a href="#" class="nav-link-tail justify-between" 
+               @click.prevent="selected = !selected"
+               :class="{ 'bg-meta-4 text-white': selected }">
+              <div class="flex items-center gap-2.5">
+                <i class="fas fa-fingerprint"></i>
+                SIABA
+              </div>
+              <i class="fas fa-chevron-down text-xs transition-transform" :class="{ 'rotate-180': selected }"></i>
+            </a>
+            <div x-show="selected" x-transition class="submenu-tail">
+              <a href="#" class="submenu-link-tail" data-page="siaba_dashboard" @click="sidebarOpened = false">Dashboard SIABA</a>
+              <a href="#" class="submenu-link-tail" data-page="siaba_presensi_harian" @click="sidebarOpened = false">Presensi Harian</a>
+              <a href="#" class="submenu-link-tail" data-page="siaba_presensi_apel" @click="sidebarOpened = false">Apel & Upacara</a>
+              <a href="#" class="submenu-link-tail" data-page="siaba_presensi_tidak" @click="sidebarOpened = false">Tidak Presensi</a>
+              <a href="#" class="submenu-link-tail" data-page="siaba_presensi_unduh" @click="sidebarOpened = false">Unduh Rekap</a>
+              <a href="#" class="submenu-link-tail" data-page="siaba_cuti_data" @click="sidebarOpened = false">Pengajuan Cuti</a>
+            </div>
+          </li>
 
-    <li class="nav-item"><a href="#" class="nav-link"><i class="nav-icon fas fa-user-graduate text-maroon"></i><p>Data Murid <i class="right fas fa-angle-left"></i></p></a>
-      <ul class="nav nav-treeview">
-        <li class="nav-item"><a href="#" class="nav-link" data-page="murid_dashboard"><i class="far fa-circle nav-icon"></i><p>Dashboard Murid</p></a></li>
-        <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-child nav-icon"></i><p>PAUD <i class="right fas fa-angle-left"></i></p></a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item"><a href="#" class="nav-link" data-page="murid_paud_rombel"><i class="far fa-circle nav-icon"></i><p>PAUD Menurut Rombel</p></a></li>
-            <li class="nav-item"><a href="#" class="nav-link" data-page="murid_paud_jenis_kelamin"><i class="far fa-circle nav-icon"></i><p>PAUD Menurut Jenis Kelamin</p></a></li>
-          </ul>
-        </li>
-        <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-school nav-icon"></i><p>SD <i class="right fas fa-angle-left"></i></p></a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item"><a href="#" class="nav-link" data-page="murid_sd_kelas"><i class="far fa-circle nav-icon"></i><p>SD Menurut Kelas</p></a></li>
-            <li class="nav-item"><a href="#" class="nav-link" data-page="murid_sd_rombel"><i class="far fa-circle nav-icon"></i><p>SD Menurut Rombel</p></a></li>
-            <li class="nav-item"><a href="#" class="nav-link" data-page="murid_sd_agama"><i class="far fa-circle nav-icon"></i><p>SD Menurut Agama</p></a></li>
-          </ul>
-        </li>
-      </ul>
-    </li>
+          <li>
+            <a href="#" class="nav-link-tail" data-page="tata_naskah_dinas" @click="sidebarOpened = false">
+              <i class="fas fa-pen-nib"></i>
+              Tata Naskah Dinas
+            </a>
+          </li>
+        </ul>
+      </div>
 
-    <li class="nav-item"><a href="#" class="nav-link"><i class="nav-icon fas fa-folder-open text-maroon"></i><p>E-File Pegawai <i class="right fas fa-angle-left"></i></p></a>
-      <ul class="nav nav-treeview">
-        <li class="nav-item"><a href="#" class="nav-link" data-page="efile_dashboard"><i class="fas fa-tachometer-alt nav-icon"></i><p>Dashboard E-File</p></a></li>
-        <li class="nav-item"><a href="#" class="nav-link" data-page="efile_kelola"><i class="fas fa-upload nav-icon"></i><p>Kelola & Verifikasi</p></a></li>
-        <li class="nav-item"><a href="#" class="nav-link" data-page="efile_viewer"><i class="fas fa-search nav-icon"></i><p>Berkas E-File</p></a></li>
-      </ul>
-    </li>
+      <!-- GROUP: DATA MASTER -->
+      <div class="mb-6">
+        <h3 class="menu-group-title">Data Master</h3>
+        <ul class="mb-6 flex flex-col gap-1.5">
+          
+          <!-- Dropdown: Data PTK -->
+          <li x-data="{ selected: false }">
+            <a href="#" class="nav-link-tail justify-between" 
+               @click.prevent="selected = !selected"
+               :class="{ 'bg-meta-4 text-white': selected }">
+              <div class="flex items-center gap-2.5">
+                <i class="fas fa-users-viewfinder"></i>
+                Data PTK
+              </div>
+              <i class="fas fa-chevron-down text-xs transition-transform" :class="{ 'rotate-180': selected }"></i>
+            </a>
+            <div x-show="selected" x-transition class="submenu-tail">
+              <a href="#" class="submenu-link-tail" data-page="ptk_dashboard" @click="sidebarOpened = false">Dashboard PTK</a>
+              <a href="#" class="submenu-link-tail" data-page="ptk_kelola_sdn" @click="sidebarOpened = false">Data SD Negeri</a>
+              <a href="#" class="submenu-link-tail" data-page="ptk_kelola_sds" @click="sidebarOpened = false">Data SD Swasta</a>
+            </div>
+          </li>
 
-    <li class="nav-item" id="menu-setting-admin"><a href="#" class="nav-link" data-page="page_setting"><i class="nav-icon fas fa-cogs text-warning"></i><p>Pengaturan</p></a></li>
+          <!-- Dropdown: Data Murid -->
+          <li x-data="{ selected: false }">
+            <a href="#" class="nav-link-tail justify-between" 
+               @click.prevent="selected = !selected"
+               :class="{ 'bg-meta-4 text-white': selected }">
+              <div class="flex items-center gap-2.5">
+                <i class="fas fa-user-graduate"></i>
+                Data Murid
+              </div>
+              <i class="fas fa-chevron-down text-xs transition-transform" :class="{ 'rotate-180': selected }"></i>
+            </a>
+            <div x-show="selected" x-transition class="submenu-tail">
+              <a href="#" class="submenu-link-tail" data-page="murid_dashboard" @click="sidebarOpened = false">Dashboard Murid</a>
+              <a href="#" class="submenu-link-tail" data-page="murid_sd_kelas" @click="sidebarOpened = false">SD Menurut Kelas</a>
+            </div>
+          </li>
 
-    <li class="nav-item" id="menu-monitoring"><a href="#" class="nav-link" data-page="page_monitoring"><i class="nav-icon fas fa-chart-pie text-info"></i><p>Monitoring Aktivitas</p></a></li>
+          <!-- Dropdown: E-File -->
+          <li x-data="{ selected: false }">
+            <a href="#" class="nav-link-tail justify-between" 
+               @click.prevent="selected = !selected"
+               :class="{ 'bg-meta-4 text-white': selected }">
+              <div class="flex items-center gap-2.5">
+                <i class="fas fa-folder-tree"></i>
+                E-File Pegawai
+              </div>
+              <i class="fas fa-chevron-down text-xs transition-transform" :class="{ 'rotate-180': selected }"></i>
+            </a>
+            <div x-show="selected" x-transition class="submenu-tail">
+              <a href="#" class="submenu-link-tail" data-page="efile_dashboard" @click="sidebarOpened = false">Dashboard E-File</a>
+              <a href="#" class="submenu-link-tail" data-page="efile_kelola" @click="sidebarOpened = false">Kelola Berkas</a>
+              <a href="#" class="submenu-link-tail" data-page="efile_viewer" @click="sidebarOpened = false">Berkas Pegawai</a>
+            </div>
+          </li>
 
-  </ul>
-</nav>
+        </ul>
+      </div>
+
+      <!-- GROUP: SISTEM -->
+      <div class="mb-6">
+        <h3 class="menu-group-title">Sistem</h3>
+        <ul class="mb-6 flex flex-col gap-1.5">
+          <li>
+            <a href="#" class="nav-link-tail" data-page="page_setting" id="menu-setting-admin" @click="sidebarOpened = false">
+              <i class="fas fa-sliders"></i>
+              Pengaturan
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link-tail" data-page="page_monitoring" id="menu-monitoring" @click="sidebarOpened = false">
+              <i class="fas fa-laptop-medical"></i>
+              Monitoring
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </nav>
+  </div>
+
+  <!-- SIDEBAR FOOTER (AUTH INFO) -->
+  <div class="px-6 py-4 border-t border-stroke-dark/30 bg-meta-4/20 mt-auto">
+    <div class="flex items-center gap-3">
+      <div class="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-[10px] text-white font-bold">
+        DIS
+      </div>
+      <div class="min-w-0">
+        <p class="text-xs font-bold text-white truncate">Korwil Secang</p>
+        <p class="text-[9px] text-bodydark uppercase tracking-widest font-bold">Kecamatan Secang</p>
+      </div>
+    </div>
+  </div>
+
+</aside>
+
+<!-- MOBILE OVERLAY -->
+<div class="sidebar-overlay"
+     :class="sidebarOpened ? 'show' : ''"
+     @click="sidebarOpened = false"></div>
