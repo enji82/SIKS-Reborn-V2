@@ -37,6 +37,8 @@
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     text-decoration: none !important;
+    height: 100%;
+    display: block;
   }
   .module-card:hover {
     transform: translateY(-8px);
@@ -82,20 +84,22 @@
 <div class="px-3 pt-3">
   <!-- 1. HERO SECTION -->
   <div class="sultan-hero sk-animate-reveal">
-    <div style="display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap;">
-      <div style="flex:1; min-width:300px;">
+    <div class="row align-items-center">
+      <div class="col-lg-8 col-md-12 mb-4 mb-lg-0">
         <div class="sultan-subtitle" style="color:var(--warna-emas);">
           <i class="fas fa-sparkles" id="greeting-icon"></i> <span id="greeting-text">Selamat Pagi,</span>
         </div>
-        <h1 class="text-white mt-1 mb-3" style="font-size:2.8rem; font-weight:800; letter-spacing:-1.5px;" id="user-fullname-home">Memuat...</h1>
+        <h1 class="text-white mt-1 mb-3" style="font-size:2.8rem; font-weight:800; letter-spacing:-1.5px; color:#fff !important;" id="user-fullname-home">Memuat...</h1>
         <p class="text-white-50" style="max-width:500px; line-height:1.7;">
           Selamat datang di portal <b>REBORN</b>. Ruang Edukasi & Layanan Berbasis Online Terintegrasi untuk masa depan pendidikan yang lebih cerdas.
         </p>
       </div>
-      <div class="hero-clock-box">
-        <div id="display-jam-home" class="display-jam">00:00:00</div>
-        <div id="display-tgl-nasional" class="display-tgl">---</div>
-        <div id="display-hari-pasaran" style="font-size:0.75rem; font-weight:800; color:var(--warna-emas); margin-top:5px; text-transform:uppercase;">---</div>
+      <div class="col-lg-4 col-md-12 text-lg-right text-center">
+        <div class="hero-clock-box d-inline-block">
+          <div id="display-jam-home" class="display-jam">00:00:00</div>
+          <div id="display-tgl-nasional" class="display-tgl">---</div>
+          <div id="display-hari-pasaran" style="font-size:0.75rem; font-weight:800; color:var(--warna-emas); margin-top:5px; text-transform:uppercase;">---</div>
+        </div>
       </div>
     </div>
   </div>
@@ -108,100 +112,120 @@
     </div>
   </div>
 
-  <!-- 3. KPI INTELLIGENCE GRID -->
-  <div class="sultan-grid mb-5 sk-animate-reveal" style="animation-delay: 0.2s;">
+  <!-- 3. KPI INTELLIGENCE GRID (Using Bootstrap Grid for stability) -->
+  <div class="row mb-5 sk-animate-reveal" style="animation-delay: 0.2s;">
     <!-- Akses Total -->
-    <div class="sultan-card p-4">
-      <div class="kpi-icon-wrapper" style="background:rgba(29, 53, 115, 0.1); color:var(--warna-utama);">
-        <i class="fas fa-chart-line"></i>
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="sultan-card p-4">
+        <div class="kpi-icon-wrapper" style="background:rgba(29, 53, 115, 0.1); color:var(--warna-utama);">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <div style="font-size:2rem; font-weight:800; color:#1E293B;" id="stat-total">0</div>
+        <div class="sultan-subtitle">Total Kunjungan</div>
       </div>
-      <div style="font-size:2rem; font-weight:800; color:#1E293B;" id="stat-total">0</div>
-      <div class="sultan-subtitle">Total Kunjungan</div>
     </div>
     <!-- Hari Ini -->
-    <div class="sultan-card p-4">
-      <div class="kpi-icon-wrapper" style="background:rgba(5, 150, 105, 0.1); color:#059669;">
-        <i class="fas fa-calendar-check"></i>
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="sultan-card p-4">
+        <div class="kpi-icon-wrapper" style="background:rgba(5, 150, 105, 0.1); color:#059669;">
+          <i class="fas fa-calendar-check"></i>
+        </div>
+        <div style="font-size:2rem; font-weight:800; color:#1E293B;" id="stat-today">0</div>
+        <div class="sultan-subtitle">Hits Hari Ini</div>
       </div>
-      <div style="font-size:2rem; font-weight:800; color:#1E293B;" id="stat-today">0</div>
-      <div class="sultan-subtitle">Hits Hari Ini</div>
     </div>
     <!-- User -->
-    <div class="sultan-card p-4">
-      <div class="kpi-icon-wrapper" style="background:rgba(217, 119, 6, 0.1); color:#D97706;">
-        <i class="fas fa-users"></i>
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="sultan-card p-4">
+        <div class="kpi-icon-wrapper" style="background:rgba(217, 119, 6, 0.1); color:#D97706;">
+          <i class="fas fa-users"></i>
+        </div>
+        <div style="font-size:2rem; font-weight:800; color:#1E293B;" id="stat-users">0</div>
+        <div class="sultan-subtitle">User Terdaftar</div>
       </div>
-      <div style="font-size:2rem; font-weight:800; color:#1E293B;" id="stat-users">0</div>
-      <div class="sultan-subtitle">User Terdaftar</div>
     </div>
     <!-- Online -->
-    <div class="sultan-card p-4">
-      <div class="kpi-icon-wrapper" style="background:rgba(2, 132, 199, 0.1); color:#0284C7;">
-        <i class="fas fa-wifi"></i>
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="sultan-card p-4">
+        <div class="kpi-icon-wrapper" style="background:rgba(2, 132, 199, 0.1); color:#0284C7;">
+          <i class="fas fa-wifi"></i>
+        </div>
+        <div style="font-size:2rem; font-weight:800; color:#1E293B;" id="stat-online">0</div>
+        <div class="sultan-subtitle">Sedang Online</div>
       </div>
-      <div style="font-size:2rem; font-weight:800; color:#1E293B;" id="stat-online">0</div>
-      <div class="sultan-subtitle">Sedang Online</div>
     </div>
   </div>
 
   <!-- 4. OPERATION HUB (MODULE GRID) -->
   <div class="mb-3 sk-animate-reveal" style="animation-delay: 0.3s;">
     <div class="sultan-subtitle mb-4">Pusat Layanan Operasional</div>
-    <div class="sultan-grid">
+    <div class="row">
       
       <!-- Module SK -->
-      <a href="#" class="sultan-card p-4 module-card nav-link" data-page="sk_dashboard">
-        <div class="module-icon" style="background:#FEF2F2; color:#DC2626;">
-          <i class="fas fa-file-signature"></i>
-        </div>
-        <h6 class="font-weight-bold mb-1" style="color:#0F172A;">SK Pembagian Tugas</h6>
-        <p class="small text-muted mb-0">Kelola dokumen SK & penetapan tugas guru.</p>
-      </a>
+      <div class="col-lg-4 col-md-6 mb-4">
+        <a href="#" class="sultan-card p-4 module-card nav-link" data-page="sk_dashboard">
+          <div class="module-icon" style="background:#FEF2F2; color:#DC2626;">
+            <i class="fas fa-file-signature"></i>
+          </div>
+          <h6 class="font-weight-bold mb-1" style="color:#0F172A;">SK Pembagian Tugas</h6>
+          <p class="small text-muted mb-0">Kelola dokumen SK & penetapan tugas guru.</p>
+        </a>
+      </div>
 
       <!-- Module Lapbul -->
-      <a href="#" class="sultan-card p-4 module-card nav-link" data-page="lapbul_dashboard">
-        <div class="module-icon" style="background:#F0F9FF; color:#0284C7;">
-          <i class="fas fa-file-invoice"></i>
-        </div>
-        <h6 class="font-weight-bold mb-1" style="color:#0F172A;">Laporan Bulanan</h6>
-        <p class="small text-muted mb-0">Monitoring & laporan rutin satuan pendidikan.</p>
-      </a>
+      <div class="col-lg-4 col-md-6 mb-4">
+        <a href="#" class="sultan-card p-4 module-card nav-link" data-page="lapbul_dashboard">
+          <div class="module-icon" style="background:#F0F9FF; color:#0284C7;">
+            <i class="fas fa-file-invoice"></i>
+          </div>
+          <h6 class="font-weight-bold mb-1" style="color:#0F172A;">Laporan Bulanan</h6>
+          <p class="small text-muted mb-0">Monitoring & laporan rutin satuan pendidikan.</p>
+        </a>
+      </div>
 
       <!-- Module SIABA -->
-      <a href="#" class="sultan-card p-4 module-card nav-link" data-page="siaba_dashboard">
-        <div class="module-icon" style="background:#ECFDF5; color:#059669;">
-          <i class="fas fa-fingerprint"></i>
-        </div>
-        <h6 class="font-weight-bold mb-1" style="color:#0F172A;">SIABA Presensi</h6>
-        <p class="small text-muted mb-0">Kehadiran, Cuti & Perjalanan Dinas Pegawai.</p>
-      </a>
+      <div class="col-lg-4 col-md-6 mb-4">
+        <a href="#" class="sultan-card p-4 module-card nav-link" data-page="siaba_dashboard">
+          <div class="module-icon" style="background:#ECFDF5; color:#059669;">
+            <i class="fas fa-fingerprint"></i>
+          </div>
+          <h6 class="font-weight-bold mb-1" style="color:#0F172A;">SIABA Presensi</h6>
+          <p class="small text-muted mb-0">Kehadiran, Cuti & Perjalanan Dinas Pegawai.</p>
+        </a>
+      </div>
 
       <!-- Module PTK -->
-      <a href="#" class="sultan-card p-4 module-card nav-link" data-page="ptk_dashboard">
-        <div class="module-icon" style="background:#F5F3FF; color:#7C3AED;">
-          <i class="fas fa-user-friends"></i>
-        </div>
-        <h6 class="font-weight-bold mb-1" style="color:#0F172A;">Data PTK</h6>
-        <p class="small text-muted mb-0">Database Pendidik & Tenaga Kependidikan.</p>
-      </a>
+      <div class="col-lg-4 col-md-6 mb-4">
+        <a href="#" class="sultan-card p-4 module-card nav-link" data-page="ptk_dashboard">
+          <div class="module-icon" style="background:#F5F3FF; color:#7C3AED;">
+            <i class="fas fa-user-friends"></i>
+          </div>
+          <h6 class="font-weight-bold mb-1" style="color:#0F172A;">Data PTK</h6>
+          <p class="small text-muted mb-0">Database Pendidik & Tenaga Kependidikan.</p>
+        </a>
+      </div>
 
       <!-- Module Murid -->
-      <a href="#" class="sultan-card p-4 module-card nav-link" data-page="murid_dashboard">
-        <div class="module-icon" style="background:#FFFBEB; color:#D97706;">
-          <i class="fas fa-user-graduate"></i>
-        </div>
-        <h6 class="font-weight-bold mb-1" style="color:#0F172A;">Data Siswa</h6>
-        <p class="small text-muted mb-0">Statistik rombel & distribusi peserta didik.</p>
-      </a>
+      <div class="col-lg-4 col-md-6 mb-4">
+        <a href="#" class="sultan-card p-4 module-card nav-link" data-page="murid_dashboard">
+          <div class="module-icon" style="background:#FFFBEB; color:#D97706;">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+          <h6 class="font-weight-bold mb-1" style="color:#0F172A;">Data Siswa</h6>
+          <p class="small text-muted mb-0">Statistik rombel & distribusi peserta didik.</p>
+        </a>
+      </div>
 
       <!-- Module E-File -->
-      <a href="#" class="sultan-card p-4 module-card nav-link" data-page="efile_dashboard">
-        <div class="module-icon" style="background:#F8FAFC; color:#475569;">
-          <i class="fas fa-folder-tree"></i>
-        </div>
-        <h6 class="font-weight-bold mb-1" style="color:#0F172A;">Arsip E-File</h6>
-        <p class="small text-muted mb-0">Digitalisasi berkas & dokumen kepegawaian.</p>
-      </a>
+      <div class="col-lg-4 col-md-6 mb-4">
+        <a href="#" class="sultan-card p-4 module-card nav-link" data-page="efile_dashboard">
+          <div class="module-icon" style="background:#F8FAFC; color:#475569;">
+            <i class="fas fa-folder-tree"></i>
+          </div>
+          <h6 class="font-weight-bold mb-1" style="color:#0F172A;">Arsip E-File</h6>
+          <p class="small text-muted mb-0">Digitalisasi berkas & dokumen kepegawaian.</p>
+        </a>
+      </div>
 
     </div>
   </div>
