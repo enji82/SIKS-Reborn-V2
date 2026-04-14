@@ -24,35 +24,44 @@ var Sultan = {
     bridge: function(method, params, successCallback, failureCallback, loadingMsg) {
         if (typeof google === 'undefined' || !google.script) {
             console.error("Sultan Bridge: Google Script Environment not found.");
+            if (failureCallback) failureCallback("No Environment");
             return;
         }
         
         if (loadingMsg) Sultan.notif.loading(loadingMsg);
         
-        // Handle single param or array of params
-        let runner = google.script.run
-            .withSuccessHandler(function(response) {
-                if (loadingMsg) Sultan.notif.tutup();
-                if (successCallback) successCallback(response);
-            })
-            .withFailureHandler(function(err) {
-                if (loadingMsg) Sultan.notif.tutup();
-                console.error("Sultan Bridge Error [" + method + "]:", err);
-                Sultan.alert('error', 'Koneksi Gagal', err.message || "Terjadi kesalahan pada server.");
-                if (failureCallback) failureCallback(err);
-            });
-            
-        // Dynamic method calling
-        if (runner[method]) {
+        // Handle Success
+        const onDone = function(response) {
+            if (loadingMsg) Sultan.notif.tutup();
+            if (successCallback) successCallback(response);
+        };
+        
+        // Handle Failure
+        const onFail = function(err) {
+            if (loadingMsg) Sultan.notif.tutup();
+            console.error("Sultan Bridge Error [" + method + "]:", err);
+            Sultan.alert('error', 'Koneksi Gagal', err.message || "Terjadi kesalahan pada server.");
+            if (failureCallback) failureCallback(err);
+        };
+
+        // Safer Dynamic Call Pattern (Incompatible with .apply in GAS Proxy)
+        let runner = google.script.run.withSuccessHandler(onDone).withFailureHandler(onFail);
+        
+        try {
             if (params === undefined) {
                 runner[method]();
             } else if (Array.isArray(params)) {
-                runner[method].apply(runner, params);
+                // GAS Proxy doesn't support .apply(), must use call mapping for common arg lengths
+                if (params.length === 0) runner[method]();
+                else if (params.length === 1) runner[method](params[0]);
+                else if (params.length === 2) runner[method](params[0], params[1]);
+                else if (params.length === 3) runner[method](params[0], params[1], params[2]);
+                else runner[method](params); // Multi-arg fallback
             } else {
                 runner[method](params);
             }
-        } else {
-            console.error("Sultan Bridge: Method '" + method + "' not found.");
+        } catch(e) {
+            onFail(e);
         }
     },
 
@@ -61,7 +70,12 @@ var Sultan = {
         set: (key, val) => localStorage.setItem('sultan_' + key, JSON.stringify(val)),
         get: (key) => {
             try { 
+                // Migration Check: support legacy siksUser key
                 let val = localStorage.getItem('sultan_' + key);
+                if (!val && key === 'siksUser') {
+                    val = localStorage.getItem('siksUser');
+                    if (val) localStorage.setItem('sultan_siksUser', val); // Auto-Migrate
+                }
                 return val ? JSON.parse(val) : null; 
             } catch(e) { return null; }
         },
@@ -173,6 +187,15 @@ var Sultan = {
  */
 $(document).ready(function() {
     console.log("SIKS-REBORN: Sultan Engine v2.0 Activated.");
+    
+    // Emergency Preloader Force-Close (Safety First)
+    setTimeout(() => {
+        if($('#loading-awal').is(':visible')) {
+            console.warn("Sultan Engine: Force-closing preloader due to timeout.");
+            $('#loading-awal').fadeOut('slow');
+        }
+    }, 5000);
+
     $(document).on('show.bs.modal', '.modal', function () { $(this).appendTo('body'); });
     inisialisasiAplikasi();
 
@@ -185,23 +208,31 @@ $(document).ready(function() {
 });
 
 function inisialisasiAplikasi() {
-    let preloader = $('#loading-awal');
+    const $preloader = $('#loading-awal');
+    const tutupPreloader = () => { if ($preloader.length) $preloader.fadeOut('fast'); };
+    
     try {
         let user = Sultan.db.get('siksUser');
         if (!user) {
-            $('#konten-aplikasi').hide(); $('#gerbang-login').fadeIn('fast');
-            if (preloader.length) preloader.fadeOut('fast');
+            $('#konten-aplikasi').hide(); 
+            $('#gerbang-login').fadeIn('fast');
+            tutupPreloader();
             return;
         }
-        $('#gerbang-login').hide(); $('#konten-aplikasi').fadeIn('fast');
-        updateUI(user); tampilkanMenuAdmin(user); loadContent('home');
-        if (preloader.length) preloader.fadeOut('fast');
+        $('#gerbang-login').hide(); 
+        $('#konten-aplikasi').show().css('display', 'flex'); 
+        updateUI(user); 
+        tampilkanMenuAdmin(user); 
+        loadContent('home');
+        tutupPreloader();
         
         // Sync Notifications
         setTimeout(sultan_updateAllNotifUI, 2000);
         setInterval(sultan_updateAllNotifUI, 3 * 60 * 1000);
     } catch(e) {
-        $('#gerbang-login').hide(); $('#konten-aplikasi').show();
+        console.error("Initialization Error:", e);
+        tutupPreloader();
+        $('#konten-aplikasi').show();
         loadContent('home');
     }
 }

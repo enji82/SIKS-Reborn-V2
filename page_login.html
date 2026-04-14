@@ -322,10 +322,11 @@
       .withSuccessHandler(function(res) {
         if (res && res.status === 'success') {
 
-          /* Simpan user ke localStorage */
+          /* Simpan user ke localStorage (Sultan v2 Format) */
           if (res.userData) {
             if (!res.userData.nama_lengkap) res.userData.nama_lengkap = res.userData.username;
-            localStorage.setItem('siksUser', JSON.stringify(res.userData));
+            localStorage.setItem('sultan_siksUser', JSON.stringify(res.userData));
+            localStorage.setItem('siksUser', JSON.stringify(res.userData)); // Legacy Sync
           }
 
           var fullName = (res.userData && res.userData.nama_lengkap) ? res.userData.nama_lengkap : 'User';
