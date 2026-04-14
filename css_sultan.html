@@ -1,103 +1,127 @@
 <style>
-  /* ===================================================================
-     SULTAN ELITE DESIGN SYSTEM (v2026.1)
-     Master Repository for all UI/UX Templates
-     =================================================================== */
+/* 
+  SULTAN TAILADMIN EDITION (v2.3)
+  Design System: Satoshi + TailAdmin Palette + Dark Mode
+*/
 
-  :root {
-    /* --- 1. CORE TOKENS (Navy Elite Palette) --- */
-    --warna-utama: #1D3573;        /* Deep Navy */
-    --warna-utama-dark: #12224A;   /* Extra Dark Navy */
-    --warna-utama-glow: rgba(29, 53, 115, 0.15);
-    --warna-emas: #EAC947;         /* Codebyte Gold */
-    --warna-emas-soft: rgba(234, 201, 71, 0.2);
-    --warna-sukses: #059669;       /* Emerald */
-    --warna-bahaya: #DC2626;       /* Rose Red */
-    --warna-peringatan: #D97706;   /* Amber */
-    --warna-info: #0284C7;         /* Sky Blue */
-    
-    /* --- 2. SURFACE & GLASS --- */
-    --warna-bg: #F1F4F9;
-    --warna-surface: #FFFFFF;
-    --glass-bg: rgba(255, 255, 255, 0.75);
-    --glass-border: rgba(255, 255, 255, 0.4);
-    --glass-blur: blur(12px) saturate(180%);
-    
-    /* --- 3. GEOMETRY & TYPOGRAPHY --- */
-    --radius-sultan: 1.15rem;
-    --shadow-sultan: 0 10px 30px rgba(0, 0, 0, 0.05);
-    --poppins: 'Poppins', -apple-system, sans-serif;
-    
-    /* Legacy Compatibility Aliases */
-    --warna-maroon: var(--warna-utama);
-    --warna-maroon-dark: var(--warna-utama-dark);
-    --warna-abu-bg: var(--warna-bg);
-    --warna-kartu-bg: var(--warna-surface);
-  }
+:root {
+  --warna-utama: #3C50E0; /* TailAdmin Blue */
+  --warna-utama-dark: #2A3BB7;
+  --bg-light: #F1F5F9;
+  --bg-dark: #1A222C;
+  --panel-dark: #24303F;
+  --stroke: #E2E8F0;
+  --stroke-dark: #313D4A;
+}
 
-  /* --- GLOBAL RESETS --- */
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-  
-  body {
-    font-family: var(--poppins) !important;
-    background-color: var(--warna-bg) !important;
-    color: #1E293B !important;
-    overflow-x: hidden;
-  }
+body {
+  font-family: 'Satoshi', sans-serif !important;
+  background-color: var(--bg-light);
+  color: #1C2434;
+  transition: background-color 0.3s, color 0.3s;
+}
 
+/* Base Dark Mode Overrides */
+.dark body {
+  background-color: var(--bg-dark);
+  color: #DEE4EE;
+}
 
-  .sultan-card-glass {
-    background: var(--glass-bg) !important;
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-    border: 1px solid var(--glass-border) !important;
-    border-radius: var(--radius-sultan) !important;
-    box-shadow: var(--shadow-sultan) !important;
-  }
-  .sultan-card-header {
-    padding: 1.25rem 1.5rem !important;
-    background: transparent !important;
-    border-bottom: 1px solid rgba(0,0,0,0.05) !important;
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  .sultan-card-title {
-    font-weight: 800 !important;
-    font-size: 1rem !important;
-    color: var(--warna-utama) !important;
-    letter-spacing: -0.5px;
-    margin: 0;
-  }
+/* TAILADMIN MODERN CARD */
+.sultan-card {
+  background: #FFFFFF;
+  border: 1px solid var(--stroke);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
 
-  /* --- SULTAN COMPONENTS: BUTTONS --- */
-  .sultan-btn {
+.dark .sultan-card {
+  background: var(--panel-dark);
+  border-color: var(--stroke-dark);
+  box-shadow: none;
+}
+
+/* KPI METRICS (TailAdmin Style) */
+.metric-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-icon-ring {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  margin-bottom: 16px;
+  background-color: rgba(60, 80, 224, 0.05); /* Soft Primary */
+  color: var(--warna-utama);
+}
+
+.dark .metric-icon-ring {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: white;
+}
+
+/* TYPOGRAPHY */
+.heading-sultan {
+  font-weight: 700;
+  color: #1C2434;
+  letter-spacing: -0.02em;
+}
+
+.dark .heading-sultan {
+  color: white;
+}
+
+.label-sultan {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #64748B;
+}
+
+.dark .label-sultan {
+  color: #8A99AF;
+}
+
+/* AdminLTE Content Wrapper Polish */
+.content-wrapper {
+  background-color: transparent !important;
+}
+
+/* Sultan Bridge Loading (The Orbit) */
+.sultan-orbit {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(60, 80, 224, 0.1);
+  border-top-color: var(--warna-utama);
+  border-radius: 50%;
+  animation: sultan-spin 1s linear infinite;
+}
+
+@keyframes sultan-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Dark Mode Transitions */
+* { transition: background-color 0.15s ease-out, border-color 0.15s ease-out; }
+
+/* LEGACY OVERRIDES TO ENSURE CONSISTENCY */
+.sultan-btn {
     padding: 0.65rem 1.5rem;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.2s;
     border: none;
     display: inline-flex; align-items: center; gap: 8px;
-    cursor: pointer;
-  }
-  .sultan-btn:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.1);
-  }
-  .sultan-btn:active { transform: scale(0.95); }
-  
-  .sultan-btn-primary { background: var(--warna-utama) !important; color: #fff !important; box-shadow: 0 4px 15px var(--warna-utama-glow); }
-  .sultan-btn-gold { background: var(--warna-emas) !important; color: var(--warna-utama) !important; box-shadow: 0 4px 15px var(--warna-emas-soft); }
-  .sultan-btn-white { background: #fff !important; color: var(--warna-utama) !important; border: 1px solid #E2E8F0 !important; }
-
-  /* --- SULTAN COMPONENTS: TYPOGRAPHY --- */
-  .sultan-title-premium {
-    font-weight: 800;
-    font-size: 1.5rem;
-    background: linear-gradient(135deg, var(--warna-utama) 0%, #4A0000 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+}
+.sultan-btn-primary { background: var(--warna-utama) !important; color: #fff !important; }
+.dark .sultan-btn-white { background: var(--panel-dark) !important; color: #fff !important; border-color: var(--stroke-dark) !important; }
     letter-spacing: -1px;
   }
   .sultan-subtitle {

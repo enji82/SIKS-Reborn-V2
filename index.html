@@ -8,11 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SIKS - REBORN</title>
 
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,300,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css">
@@ -20,22 +17,36 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    window.SULTAN_ENGINE_ID = "Elite-v2.2.0-Restoration";
+    // THEME ENGINE CORE: Apply dark mode immediately to prevent flash
+    if (localStorage.getItem('sultan_darkMode') === 'true' || 
+       (!('sultan_darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+    }
+
     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
           colors: {
+            // TAILADMIN OFFICIAL PALETTE
+            primary: '#3C50E0',
+            stroke: '#E2E8F0',
+            body: '#64748B',
+            bodydark: '#AEB7C0',
+            bodydark1: '#DEE4EE',
+            bodydark2: '#8A99AF',
+            boxdark: '#24303F',
+            boxdark2: '#1A222C',
+            whiten: '#F1F5F9',
+            // SULTAN LEGACY COMPAT
             'sultan-navy': '#1D3573',
-            'sultan-navy-dark': '#12224A',
             'sultan-gold': '#EAC947',
           },
-          borderRadius: {
-            'sultan': '1.25rem',
+          fontFamily: {
+            satoshi: ['Satoshi', 'sans-serif'],
           },
-          boxShadow: {
-            'sultan': '0 10px 40px rgba(0, 0, 0, 0.12)',
-            'sultan-xl': '0 25px 60px rgba(29, 53, 115, 0.2)',
-          }
         }
       }
     }
@@ -85,6 +96,14 @@
       <!-- Kanan: Bell Notifikasi + User Dropdown -->
       <ul class="navbar-nav ml-auto"
         style="gap:0.25rem; flex-shrink:0; display:flex; align-items:center; height:57px; margin:0; padding:0;">
+
+        <!-- Theme Toggle (TailAdmin Style) -->
+        <li class="nav-item" style="display:flex; align-items:center; height:100%;">
+          <button id="dark-mode-toggle" class="nav-link flex items-center justify-center w-9 h-9 rounded-full bg-whiten border border-stroke text-body dark:bg-boxdark dark:border-stroke/10 dark:text-white transition-all hover:text-primary" title="Ganti Tema">
+            <i class="fas fa-moon dark:hidden"></i>
+            <i class="fas fa-sun hidden dark:block"></i>
+          </button>
+        </li>
 
         <!-- Bell Notifikasi -->
         <li class="nav-item dropdown" style="display:flex; align-items:center; height:100%;">

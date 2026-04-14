@@ -24,12 +24,25 @@ var Sultan = {
     init: function() {
         console.log("Sultan Engine v" + this.version + " Initializing...");
         
-        // Anti-Legacy Fallback: Jika versi berubah, bakar semua cache lama!
+        // Anti-Legacy Cache Buster
         const lastVersion = localStorage.getItem('sultan_v');
         if (lastVersion !== this.version) {
-            console.warn("Sultan Engine: Version Mismatch! Purging legacy cache...");
             sessionStorage.clear();
             localStorage.setItem('sultan_v', this.version);
+        }
+
+        // Apply dark mode on boot (redundant but safe)
+        if (localStorage.getItem('sultan_darkMode') === 'true') {
+            document.documentElement.classList.add('dark');
+        }
+    },
+
+    // 2.1 THEME ENGINE
+    theme: {
+        toggle: function() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('sultan_darkMode', isDark);
+            Sultan.notif.toast('info', `Mode ${isDark ? 'Gelap' : 'Terang'} Aktif`);
         }
     },
 
@@ -210,6 +223,13 @@ window.MENU_MAPPING = {
  */
 $(document).ready(function() {
     console.log("SIKS-REBORN: Sultan Engine v2.0 Activated.");
+    Sultan.init(); // Initialize Engine & Themes
+
+    // Theme Toggle Handler
+    $('#dark-mode-toggle').on('click', function(e) {
+        e.preventDefault();
+        Sultan.theme.toggle();
+    });
     
     // Emergency Preloader Force-Close (Safety First)
     setTimeout(() => {
