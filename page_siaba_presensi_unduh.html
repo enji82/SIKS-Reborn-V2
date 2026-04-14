@@ -159,14 +159,10 @@
   function unduh_loadFolder(folderId) {
       $('#unduh_folderNameLabel').html('<i class="fas fa-spinner fa-spin mr-2"></i> MEMUAT...');
       
-      if ($.fn.DataTable.isDataTable('#unduh_tabelUtama')) {
-          UNDUH_TABEL_INSTANCE.clear().draw(false);
-          $('.dataTables_empty').html('<div class="py-5 text-center text-muted"><i class="fas fa-circle-notch fa-spin fa-2x mb-3 text-maroon"></i><br>Membuka Folder...</div>');
-      } else {
-          $('#unduh_tableState').hide();
-          unduh_renderSkeleton();
-          $('#unduh_skeletonState').show();
-      }
+      // SULTAN UX: Selalu tampilkan skeleton saat transisi folder (Anti-Spinner)
+      $('#unduh_tableState').hide();
+      unduh_renderSkeleton();
+      $('#unduh_skeletonState').show();
       
       google.script.run
         .withSuccessHandler(unduh_renderArsipTable)
