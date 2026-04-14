@@ -6,10 +6,11 @@
  * ====================================================================
  */
 var Sultan = {
+    version: "2.2.0-Elite",
+    
     // 1. CONFIGURATION (Sync with css_sultan.html)
     config: {
         theme: 'Navy Elite',
-        version: '2.0-Turbo',
         colors: {
             primary: '#1D3573',
             gold: '#EAC947',
@@ -19,7 +20,20 @@ var Sultan = {
         }
     },
 
-    // 2. NETWORKING ENGINE (THE BRIDGE)
+    // 2. BOOTSTRAP: Cache Buster & Version Management
+    init: function() {
+        console.log("Sultan Engine v" + this.version + " Initializing...");
+        
+        // Anti-Legacy Fallback: Jika versi berubah, bakar semua cache lama!
+        const lastVersion = localStorage.getItem('sultan_v');
+        if (lastVersion !== this.version) {
+            console.warn("Sultan Engine: Version Mismatch! Purging legacy cache...");
+            sessionStorage.clear();
+            localStorage.setItem('sultan_v', this.version);
+        }
+    },
+
+    // 3. NETWORKING ENGINE (THE BRIDGE)
     // Standarisasi komunikasi ke Google Apps Script
     bridge: function(method, params, successCallback, failureCallback, loadingMsg) {
         if (typeof google === 'undefined' || !google.script) {
@@ -65,7 +79,7 @@ var Sultan = {
         }
     },
 
-    // 3. STORAGE ENGINE (TURBO CACHE)
+    // 4. STORAGE ENGINE (TURBO CACHE)
     db: {
         set: (key, val) => localStorage.setItem('sultan_' + key, JSON.stringify(val)),
         get: (key) => {
@@ -93,7 +107,7 @@ var Sultan = {
         }
     },
 
-    // 4. NOTIFICATION SYSTEM (Premium UI)
+    // 5. NOTIFICATION SYSTEM (Premium UI)
     notif: {
         toast: (type, msg) => {
             const icons = { success:'fa-check-circle', error:'fa-times-circle', warning:'fa-exclamation-triangle', info:'fa-info-circle' };
@@ -119,7 +133,7 @@ var Sultan = {
         tutup: () => Swal.close()
     },
 
-    // 5. GLOBAL ALERTS & DIALOGS
+    // 6. GLOBAL ALERTS & DIALOGS
     alert: (type, title, text) => {
         const typeClass = type === 'success' ? 'sultan-success-popup' : (type === 'warning' ? 'sultan-warning-popup' : 'sultan-error-popup');
         return Swal.fire({
@@ -137,7 +151,7 @@ var Sultan = {
         }).then((res) => { if (res.isConfirmed && callbackYa) callbackYa(); });
     },
 
-    // 6. FORMATTERS (Clean Assets)
+    // 7. FORMATTERS (Clean Assets)
     format: {
         strip: (val) => (!val || val == "0" || val == "") ? "-" : val,
         rupiah: (v) => new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", minimumFractionDigits: 0 }).format(v || 0),
@@ -150,7 +164,7 @@ var Sultan = {
         }
     },
 
-    // 7. UI COMPONENTS (Sultan Mode)
+    // 8. UI COMPONENTS (Sultan Mode)
     ui: {
         badge: function(status) {
             if (!status || status === "-") return '<i class="fas fa-minus text-black-50 small opacity-25"></i>';
@@ -178,6 +192,15 @@ var Sultan = {
             </div>`;
         }
     }
+};
+
+// Global Menu Mapping (Theme Synced)
+window.MENU_MAPPING = {
+    'home': 'Beranda', 'sk_dashboard': 'Dashboard SK', 'sk_data': 'Data SK', 'sk_status': 'Status Pengiriman',
+    'lapbul_dashboard': 'Dashboard Laporan Bulan', 'lapbul_kelola': 'Kelola Data', 
+    'siaba_dashboard': 'Dashboard SIABA', 'siaba_presensi_harian': 'Harian',
+    'efile_dashboard': 'Dashboard E-File','efile_kelola': 'Kelola & Verifikasi',
+    'tata_naskah_dinas': 'Tata Naskah Dinas', 'ptk_dashboard': 'Dashboard PTK', 'murid_dashboard': 'Dashboard Murid'
 };
 
 /**
@@ -434,10 +457,5 @@ function runCounterUp() {
     });
 }
 
-// Global Menu Mapping consistent with app
-window.MENU_MAPPING = {
-    'home': 'Beranda', 'sk_dashboard': 'Dashboard SK', 'sk_data': 'Data SK', 
-    'siaba_dashboard': 'Dashboard SIABA', 'siaba_presensi_harian': 'Harian',
-    'efile_dashboard': 'Dashboard E-File','efile_kelola': 'Kelola & Verifikasi'
-};
+// Global Menu Mapping was moved higher up to prevent race conditions
 </script>

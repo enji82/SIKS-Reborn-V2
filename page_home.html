@@ -11,9 +11,14 @@
     
     <div class="flex flex-col lg:flex-row justify-between items-center gap-10 relative z-10">
       <div class="flex-1 text-center lg:text-left">
-        <div class="inline-flex items-center gap-2 bg-sultan-gold/10 text-sultan-gold px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-4 border border-sultan-gold/20">
-          <i class="fas fa-sparkles" id="greeting-icon"></i>
+        <div class="inline-flex items-center gap-2 bg-sultan-gold/10 text-sultan-gold px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-4 border border-sultan-gold/20 animate__animated animate__fadeInDown">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sultan-gold opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-sultan-gold"></span>
+          </span>
           <span id="greeting-text">Selamat Pagi,</span>
+          <span class="mx-1 opacity-25">|</span>
+          <span>v2.2.0-Elite</span>
         </div>
         <h1 class="text-white text-4xl md:text-6xl font-black tracking-tighter mb-4" id="user-fullname-home">Memuat...</h1>
         <p class="text-slate-300 max-w-xl leading-relaxed text-sm md:text-lg font-medium opacity-90">
