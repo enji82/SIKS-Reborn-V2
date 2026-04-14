@@ -1,28 +1,96 @@
 <script>
-/* =============================================================
-   1. GLOBAL HELPER: NOTIFIKASI SULTAN (THEME FIX)
-   ============================================================= */
-/* =============================================================
-   1. GLOBAL ENGINE: SULTAN NOTIFICATION (UNIFIED V6.4)
-   ============================================================= */
+/**
+ * ====================================================================
+ * SULTAN CORE ENGINE (v2026.1)
+ * Centralized logic for Theme, Networking, UI & Performance.
+ * ====================================================================
+ */
 var Sultan = {
-    config: { maroon: '#8B0000', navy: '#1D3573', emerald: '#059669', gold: '#d97706' },
-    
-    // Core Notifikasi
+    // 1. CONFIGURATION (Sync with css_sultan.html)
+    config: {
+        theme: 'Navy Elite',
+        version: '2.0-Turbo',
+        colors: {
+            primary: '#1D3573',
+            gold: '#EAC947',
+            success: '#059669',
+            danger: '#D0412E',
+            warning: '#d97706'
+        }
+    },
+
+    // 2. NETWORKING ENGINE (THE BRIDGE)
+    // Standarisasi komunikasi ke Google Apps Script
+    bridge: function(method, params, successCallback, failureCallback, loadingMsg) {
+        if (typeof google === 'undefined' || !google.script) {
+            console.error("Sultan Bridge: Google Script Environment not found.");
+            return;
+        }
+        
+        if (loadingMsg) Sultan.notif.loading(loadingMsg);
+        
+        // Handle single param or array of params
+        let runner = google.script.run
+            .withSuccessHandler(function(response) {
+                if (loadingMsg) Sultan.notif.tutup();
+                if (successCallback) successCallback(response);
+            })
+            .withFailureHandler(function(err) {
+                if (loadingMsg) Sultan.notif.tutup();
+                console.error("Sultan Bridge Error [" + method + "]:", err);
+                Sultan.alert('error', 'Koneksi Gagal', err.message || "Terjadi kesalahan pada server.");
+                if (failureCallback) failureCallback(err);
+            });
+            
+        // Dynamic method calling
+        if (runner[method]) {
+            if (params === undefined) {
+                runner[method]();
+            } else if (Array.isArray(params)) {
+                runner[method].apply(runner, params);
+            } else {
+                runner[method](params);
+            }
+        } else {
+            console.error("Sultan Bridge: Method '" + method + "' not found.");
+        }
+    },
+
+    // 3. STORAGE ENGINE (TURBO CACHE)
+    db: {
+        set: (key, val) => localStorage.setItem('sultan_' + key, JSON.stringify(val)),
+        get: (key) => {
+            try { 
+                let val = localStorage.getItem('sultan_' + key);
+                return val ? JSON.parse(val) : null; 
+            } catch(e) { return null; }
+        },
+        sessionSet: (key, val) => sessionStorage.setItem('sultan_tmp_' + key, JSON.stringify(val)),
+        sessionGet: (key) => {
+            try { 
+                let val = sessionStorage.getItem('sultan_tmp_' + key);
+                return val ? JSON.parse(val) : null; 
+            } catch(e) { return null; }
+        },
+        clear: () => { 
+            // Only clear our own keys to be safe
+            Object.keys(localStorage).forEach(k => { if(k.startsWith('sultan_')) localStorage.removeItem(k); });
+            sessionStorage.clear(); 
+        }
+    },
+
+    // 4. NOTIFICATION SYSTEM (Premium UI)
     notif: {
         toast: (type, msg) => {
-            const colors = { success: '#059669', error: '#b91c1c', warning: '#d97706', info: '#1D3573' };
-            const icons = { success: 'fa-check-circle', error: 'fa-times-circle', warning: 'fa-exclamation-triangle', info: 'fa-info-circle' };
+            const icons = { success:'fa-check-circle', error:'fa-times-circle', warning:'fa-exclamation-triangle', info:'fa-info-circle' };
+            const colors = { success:'#059669', error:'#d63031', warning:'#d97706', info:'#1D3573' };
             
-            Swal.mixin({ 
+            Swal.mixin({
                 toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, timerProgressBar: true,
                 background: 'rgba(255, 255, 255, 0.95)',
-                customClass: { 
-                    popup: 'sultan-alert-popup shadow-sm py-2 px-3', 
-                    title: 'sultan-alert-text font-weight-bold ml-2' 
-                }
-            }).fire({ 
-                html: `<div class="d-flex align-items-center" style="color:${colors[type]}"><i class="fas ${icons[type]} mr-2"></i> ${msg}</div>` 
+                customClass: { popup: 'sultan-alert-popup shadow-sm py-2 px-3', title: 'sultan-alert-text font-weight-bold ml-2' }
+            }).fire({
+                html: `<div class="d-flex align-items-center" style="color:${colors[type]||colors.info}"><i class="fas ${icons[type]||icons.info} mr-2"></i> ${msg}</div>`
             });
         },
         sukses: (msg) => Sultan.alert('success', 'Berhasil', msg),
@@ -31,616 +99,314 @@ var Sultan = {
         loading: (msg) => {
             Swal.fire({
                 html: `<div class="d-flex flex-column align-items-center"><div class="sultan-orbit mb-3"></div><p class="font-weight-bold mb-0">${msg || 'Memproses...'}</p></div>`,
-                showConfirmButton: false, allowOutsideClick: false,
-                customClass: { popup: 'sultan-alert-popup' }
+                showConfirmButton: false, allowOutsideClick: false, customClass: { popup: 'sultan-alert-popup' }
             });
         },
         tutup: () => Swal.close()
     },
 
-    // Global Alert (Success, Error, Warning)
+    // 5. GLOBAL ALERTS & DIALOGS
     alert: (type, title, text) => {
         const typeClass = type === 'success' ? 'sultan-success-popup' : (type === 'warning' ? 'sultan-warning-popup' : 'sultan-error-popup');
-        
         return Swal.fire({
-            icon: type,
-            title: title,
-            text: text,
-            showConfirmButton: true,
-            confirmButtonText: 'OK',
-            buttonsStyling: false, // Force custom classes
-            showClass: { popup: 'swal2-show' },
-            hideClass: { popup: 'swal2-hide' },
-            customClass: {
-                popup: `sultan-alert-popup ${typeClass}`,
-                title: 'sultan-alert-text font-weight-bold',
-                confirmButton: 'sultan-swal-confirm'
-            }
+            icon: type, title: title, text: text,
+            showConfirmButton: true, confirmButtonText: 'OK', buttonsStyling: false,
+            customClass: { popup: `sultan-alert-popup ${typeClass}`, title: 'sultan-alert-text font-weight-bold', confirmButton: 'sultan-swal-confirm' }
         });
     },
-
-    // Dialog Konfirmasi
     konfirmasi: function(opsi, callbackYa) {
         return Swal.fire({
-            icon: 'warning',
-            title: opsi.judul || 'Konfirmasi',
-            text: opsi.teks || 'Apakah Anda yakin?',
-            showCancelButton: true,
-            confirmButtonText: opsi.btnYa || 'Ya, Lanjutkan',
-            cancelButtonText: opsi.btnBatal || 'Batal',
-            buttonsStyling: false, // Force custom classes
-            customClass: {
-                popup: 'sultan-alert-popup sultan-error-popup', // Konfirmasi default maroon top border
-                title: 'sultan-alert-text font-weight-bold',
-                confirmButton: 'sultan-swal-confirm mx-1',
-                cancelButton: 'sultan-swal-cancel mx-1'
-            }
-        }).then((res) => {
-            if (res.isConfirmed && callbackYa) callbackYa();
-        });
+            icon: 'warning', title: opsi.judul || 'Konfirmasi', text: opsi.teks || 'Apakah Anda yakin?',
+            showCancelButton: true, confirmButtonText: opsi.btnYa || 'Ya, Lanjutkan', cancelButtonText: opsi.btnBatal || 'Batal',
+            buttonsStyling: false,
+            customClass: { popup: 'sultan-alert-popup sultan-error-popup', title: 'sultan-alert-text font-weight-bold', confirmButton: 'sultan-swal-confirm mx-1', cancelButton: 'sultan-swal-cancel mx-1' }
+        }).then((res) => { if (res.isConfirmed && callbackYa) callbackYa(); });
     },
 
+    // 6. FORMATTERS (Clean Assets)
     format: {
-        strip: function(val) { return (!val || val == "0" || val == "") ? "-" : val; },
-        rupiah: function(angka) { return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", minimumFractionDigits: 0 }).format(angka); },
-        tanggal: function(dateStr) {
-            if(!dateStr) return "-";
-            var d = new Date(dateStr);
-            return d.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+        strip: (val) => (!val || val == "0" || val == "") ? "-" : val,
+        rupiah: (v) => new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", minimumFractionDigits: 0 }).format(v || 0),
+        tanggal: (s) => s ? new Date(s).toLocaleDateString('id-ID', { day:'numeric', month:'long', year:'numeric' }) : "-",
+        inputDate: (s) => {
+            if(!s) return "";
+            if(typeof s==='string' && s.match(/^\d{4}-\d{2}-\d{2}$/)) return s;
+            let d = new Date(s);
+            return isNaN(d) ? "" : d.toISOString().split('T')[0];
+        }
+    },
+
+    // 7. UI COMPONENTS (Sultan Mode)
+    ui: {
+        badge: function(status) {
+            if (!status || status === "-") return '<i class="fas fa-minus text-black-50 small opacity-25"></i>';
+            let s = String(status).trim(), sl = s.toLowerCase();
+            if (sl.includes('revisi') || sl.includes('perbaiki')) return `<div class="btn-icon-sultan btn-icon-sultan-warning badge-pulse-warning" title="${s}"><i class="fas fa-sync-alt"></i></div>`;
+            if (sl.includes('tolak') || sl.includes('salah')) return `<div class="btn-icon-sultan btn-icon-sultan-danger" title="${s}"><i class="fas fa-times"></i></div>`;
+            if (sl.includes('verif') || sl.includes('setuju') || sl.includes('valid')) return `<div class="btn-icon-sultan btn-icon-sultan-success" title="${s}"><i class="fas fa-check"></i></div>`;
+            if (sl.includes('proses') || sl.includes('tunggu')) return `<div class="btn-icon-sultan btn-icon-sultan-info badge-pulse-warning" title="${s}"><i class="fas fa-spinner fa-spin"></i></div>`;
+            
+            let color = 'secondary', pulse = '';
+            if (sl.includes('hadir') || sl.includes('aktif') || sl.includes('sudah')) color = 'success';
+            else if (sl.includes('belum') || sl.includes('absen')) { color = 'danger'; pulse = 'badge-pulse-danger'; }
+            else if (sl.includes('izin') || sl.includes('sakit')) color = 'warning';
+            return `<span class="badge badge-pill badge-${color} ${pulse} shadow-sm px-3 py-1 font-weight-bold">${s}</span>`;
+        },
+        skeleton: function() {
+            return `<div class="p-4 p-md-5 animate__animated animate__fadeIn">
+                <div class="skeleton-box mb-4" style="width:40%; height:45px; border-radius:12px;"></div>
+                <div class="skeleton-grid mt-5">
+                    <div class="skeleton-box w-100 mb-3" style="height:120px; border-radius:18px;"></div>
+                    <div class="skeleton-box w-100 mb-2" style="height:40px;"></div>
+                    <div class="skeleton-box w-100 mb-2" style="height:40px;"></div>
+                    <div class="skeleton-box w-75" style="height:40px;"></div>
+                </div>
+            </div>`;
         }
     }
 };
 
-function toast(pesan, tipe) { Sultan.notif.toast(tipe || 'info', pesan); }
-function tampilkanNotif(pesan, tipe) { Sultan.notif.toast(tipe || 'info', pesan); }
-
-/* =============================================================
-   2. SISTEM MANAJEMEN SESI & ROLE
-   ============================================================= */
-function getSesiUser() {
-    var raw = localStorage.getItem("siksUser");
-    if (!raw || raw === "null" || raw === "undefined") return null;
-    try { 
-        var parsed = JSON.parse(raw); 
-        if (typeof parsed === 'string') parsed = JSON.parse(parsed); 
-        return parsed;
-    } catch (e) { return null; }
-}
-
-function checkUserRoleIsAdmin() {
-    try {
-        var user = getSesiUser();
-        if (!user) return false;
-        var role = String(user.role || "").toLowerCase();
-        
-        // VAKSIN 1: Gunakan .includes() agar "Administrator", "Admin Korwil", dll bisa lolos
-        if (role.includes('admin') || role.includes('verifikator') || role.includes('korwil')) return true;
-        return false;
-    } catch (e) { return false; }
-}
-
-/* =============================================================
-   3. CORE APP SCRIPT (INISIALISASI & ROUTING)
-   ============================================================= */
+/**
+ * ====================================================================
+ * CORE SPA ENGINE (ROUTING & APP LIFE CYCLE)
+ * ====================================================================
+ */
 $(document).ready(function() {
-  console.log("SIKS-REBORN: Engine Started.");
-  $(document).on('show.bs.modal', '.modal', function () { $(this).appendTo('body'); });
-  inisialisasiAplikasi();
+    console.log("SIKS-REBORN: Sultan Engine v2.0 Activated.");
+    $(document).on('show.bs.modal', '.modal', function () { $(this).appendTo('body'); });
+    inisialisasiAplikasi();
 
-  $(document).on('click', '.nav-link', function(e) {
-      var pageName = $(this).data('page'); 
-      if (pageName) {
-          e.preventDefault(); loadContent(pageName); 
-          if ($(window).width() < 768) { $('body').removeClass('sidebar-open').addClass('sidebar-closed sidebar-collapse'); }
-      }
-  });
-
-  $(document).on('click', '.btn-home-crumb', function(e) {
-      e.preventDefault(); loadContent('home');
-  });
+    $(document).on('click', '.nav-link[data-page], .btn-home-crumb', function(e) {
+        e.preventDefault();
+        let page = $(this).data('page') || 'home';
+        loadContent(page);
+        if ($(window).width() < 768) $('body').removeClass('sidebar-open').addClass('sidebar-collapse');
+    });
 });
 
 function inisialisasiAplikasi() {
-  var preloader = $('#loading-awal, .preloader');
-  try {
-      var user = getSesiUser();
-      if (!user) {
-        $('#konten-aplikasi').hide(); $('#gerbang-login').fadeIn('fast'); 
+    let preloader = $('#loading-awal');
+    try {
+        let user = Sultan.db.get('siksUser');
+        if (!user) {
+            $('#konten-aplikasi').hide(); $('#gerbang-login').fadeIn('fast');
+            if (preloader.length) preloader.fadeOut('fast');
+            return;
+        }
+        $('#gerbang-login').hide(); $('#konten-aplikasi').fadeIn('fast');
+        updateUI(user); tampilkanMenuAdmin(user); loadContent('home');
         if (preloader.length) preloader.fadeOut('fast');
-        return;
-      }
-      $('#gerbang-login').hide(); $('#konten-aplikasi').fadeIn('fast');
-      updateUI(user); tampilkanMenuAdmin(user); loadContent('home');
-      if (preloader.length) preloader.fadeOut('fast');
-      /* Muat notifikasi setelah login, ulangi setiap 3 menit */
-      setTimeout(sultan_updateAllNotifUI, 2000);
-      setInterval(sultan_updateAllNotifUI, 3 * 60 * 1000);
-
-      var isInvalidName = !user.nama_lengkap || user.nama_lengkap === "User Web" || user.nama_lengkap === user.username;
-      if (isInvalidName && user.username) {
-          google.script.run.withSuccessHandler(function(res){
-              if(res.found && res.nama_lengkap) {
-                  user.nama_lengkap = res.nama_lengkap; user.nama = res.nama_lengkap; 
-                  user.role = res.role; user.unit = res.unit;
-                  localStorage.setItem("siksUser", JSON.stringify(user));
-                  updateUI(user);
-              }
-          }).getUserProfileByName(user.username);
-      }
-  } catch(fatalError) {
-      $('#gerbang-login').hide(); $('#konten-aplikasi').show();
-      loadContent('home');
-      if (preloader.length) preloader.fadeOut('fast');
-  }
+        
+        // Sync Notifications
+        setTimeout(sultan_updateAllNotifUI, 2000);
+        setInterval(sultan_updateAllNotifUI, 3 * 60 * 1000);
+    } catch(e) {
+        $('#gerbang-login').hide(); $('#konten-aplikasi').show();
+        loadContent('home');
+    }
 }
 
-/* =============================================================
-   6. SISTEM NOTIFIKASI — Hitung semua data berstatus "Diproses"
-      Memanggil fungsi GAS: getTotalDiproses() yang mengembalikan
-      objek { total: Number, rincian: [ { modul, jumlah }, ... ] }
-   ============================================================= */
 /**
- * SULTAN UNIFIED NOTIFICATION SYSTEM (v2.0)
- * Sinkronisasi penuh antara Navbar Bell, Dropdown, dan Sidebar Badges
+ * SPA ROUTER: ANTI-BLINK TURBO MODE (DOUBLE BUFFERING)
+ */
+function loadContent(pageName) {
+    if (!pageName) return;
+    
+    const $active = $('#app-content-active');
+    const $buffer = $('#app-content-buffer');
+    
+    // Cleanup UI
+    $('body > .modal, .modal-backdrop').remove();
+    $('body').removeClass('modal-open').css('padding-right', '');
+    
+    highlightSidebar(pageName);
+    updateBreadcrumb(pageName);
+
+    if (window.NProgress) NProgress.start();
+    
+    // 1. Persiapkan Buffer dengan Skeleton
+    $buffer.html(Sultan.ui.skeleton()).show().css('opacity', '0.5');
+    
+    // 2. Check Cache (Turbo Mode)
+    let cached = Sultan.db.sessionGet('cache_page_' + pageName);
+    if (cached) {
+        if (window.NProgress) NProgress.done();
+        setTimeout(function() {
+            $buffer.html('<div class="slide-in-right active">' + cached + '</div>');
+            $active.fadeOut(50, function() {
+                $active.html('').hide();
+                $buffer.css({'opacity':'1','display':'block'}).removeClass('buffer').addClass('active').attr('id','app-content-active');
+                $active.removeClass('active').addClass('buffer').attr('id','app-content-buffer');
+                runCounterUp();
+            });
+        }, 50);
+        return;
+    }
+    
+    // 3. Muat Konten Baru di Background (Server Call)
+    Sultan.bridge('loadPage', [pageName], function(html) {
+        if (window.NProgress) NProgress.done();
+        
+        // Simpan ke Cache
+        Sultan.db.sessionSet('cache_page_' + pageName, html);
+        
+        // 4. Masukkan HTML ke Buffer & Tunggu Rendereing Selesai
+        $buffer.html('<div class="slide-in-right active">' + html + '</div>');
+        
+        // 5. INSTANT SWAP (The Double-Buffering Magic)
+        $active.fadeOut(100, function() {
+            $active.html('').hide(); // Kosongkan active lama
+            
+            $buffer.css({
+                'opacity': '1',
+                'display': 'block'
+            }).removeClass('buffer').addClass('active').attr('id', 'app-content-active');
+            
+            $active.removeClass('active').addClass('buffer').attr('id', 'app-content-buffer');
+            
+            runCounterUp();
+        });
+    }, function() {
+        if (window.NProgress) NProgress.done();
+        $buffer.html('<div class="alert alert-danger m-4 shadow-sm border-0" style="border-radius:12px;">Gagal memuat halaman.</div>').css('opacity', '1');
+    });
+}
+
+/**
+ * ====================================================================
+ * ANALYTICS & NOTIFICATION ENGINE
+ * ====================================================================
  */
 function sultan_updateAllNotifUI() {
-    if (typeof google === 'undefined' || !google.script) return;
-    
-    var user = getSesiUser();
+    let user = Sultan.db.get('siksUser');
     if (!user) return;
     
-    var role = user.role || "";
-    var isAdmin = role.toLowerCase().indexOf("admin") !== -1 || role.toLowerCase().indexOf("verifikator") !== -1;
-    var identifier = user.npsn || user.unit || user.username || ""; 
+    let role = user.role || "";
+    let isAdmin = role.toLowerCase().includes("admin") || role.toLowerCase().includes("verifikator");
+    let identifier = user.npsn || user.unit || user.username || "";
     
-    google.script.run
-        .withSuccessHandler(function(data) {
-            if (!data) return;
+    Sultan.bridge('sultan_getUnifiedNotificationCounts', [role, identifier], function(data) {
+        if (!data) return;
+        
+        // Update Sidebars & Navbar (Implementation consistent with blueprint)
+        const skb = $('#sk_data_badge'), lbb = $('#lapbul_kelola_badge'), nvb = $('#notif-badge'), nbc = $('#notif-list-container');
+        
+        if (skb.length) data.sk > 0 ? skb.text(data.sk).show() : skb.hide();
+        if (lbb.length) data.lapbul > 0 ? lbb.text(data.lapbul).show() : lbb.hide();
+        
+        if (nvb.length && data.total > 0) {
+            nvb.text(data.total > 99 ? '99+' : data.total).show();
+            $('#btn-notif-bell').css('color', Sultan.config.colors.danger);
             
-            // 1. UPDATE SIDEBAR BADGES
-            var sk_badge = $('#sk_data_badge');
-            var lb_badge = $('#lapbul_kelola_badge');
-            
-            if (sk_badge.length) {
-                if (data.sk > 0) {
-                    sk_badge.text(data.sk > 99 ? '99+' : data.sk).show();
-                    sk_badge.removeClass('badge-danger badge-warning').addClass(isAdmin ? 'badge-danger' : 'badge-warning');
-                } else { sk_badge.hide(); }
-            }
-            
-            if (lb_badge.length) {
-                if (data.lapbul > 0) {
-                    lb_badge.text(data.lapbul > 99 ? '99+' : data.lapbul).show();
-                    lb_badge.removeClass('badge-danger badge-warning').addClass(isAdmin ? 'badge-danger' : 'badge-warning');
-                } else { lb_badge.hide(); }
-            }
-            
-            // 2. UPDATE NAVBAR BELL & DROPDOWN
-            var navBadge = $('#notif-badge');
-            var navBell  = $('#btn-notif-bell');
-            var navCont  = $('#notif-list-container');
-            
-            if (data.total > 0) {
-                if (navBadge.length) {
-                    navBadge.text(data.total > 99 ? '99+' : data.total).show();
-                    if (navBell.length) navBell.css('color', '#dc3545');
-                }
-                
-                var html = '';
-                if (data.rincian && data.rincian.length) {
-                    data.rincian.forEach(function(item) {
-                        var iconClass = "fas fa-file-signature text-danger";
-                        var iconBg = "bg-light-danger";
-                        var title = isAdmin ? "Antrean Verifikasi" : "Perlu Revisi";
-                        var desc = isAdmin ? "Ada " + item.jumlah + " data " + item.modul + " menunggu diproses." : "Ada " + item.jumlah + " data " + item.modul + " Anda yang perlu diperbaiki.";
-                        var targetFilter = isAdmin ? "Diproses" : "Revisi";
-
-                        if (!isAdmin) {
-                            iconClass = "fas fa-exclamation-triangle text-warning";
-                            iconBg = "bg-light-warning";
-                        } else if (item.page === 'lapbul_kelola') {
-                            iconClass = "fas fa-calendar-check text-emerald";
-                            iconBg = "bg-light-emerald";
-                        }
-
-                        html += '<a href="#" class="dropdown-item p-3 border-bottom sk-notif-item" onclick="sk_notifNavigate(\''+item.page+'\', \''+targetFilter+'\')">' +
-                                '<div class="d-flex align-items-center">' +
-                                    '<div class="'+iconBg+' p-2 rounded-circle mr-3" style="width:40px; height:40px; display:flex; align-items:center; justify-content:center;">' +
-                                        '<i class="'+iconClass+'"></i>' +
-                                    '</div>' +
-                                    '<div style="flex:1;">' +
-                                        '<p class="mb-0 font-weight-bold text-dark" style="font-size:13.5px; line-height:1.2;">'+title+': '+item.modul+'</p>' +
-                                        '<small class="text-muted d-block mt-1" style="font-size:11.5px; line-height:1.3;">'+desc+'</small>' +
-                                    '</div>' +
-                                '</div>' +
-                            '</a>';
-                    });
-                }
-                if (navCont.length) navCont.html(html);
-            } else {
-                if (navBadge.length) navBadge.hide();
-                if (navBell.length) navBell.css('color', '#64748b');
-                if (navCont.length) navCont.html('<div class="text-center p-4 text-muted small">Tidak ada notifikasi baru</div>');
-            }
-        })
-        .withFailureHandler(function() { /* silent fallback */ })
-        .sultan_getUnifiedNotificationCounts(role, identifier);
+            let html = '';
+            (data.rincian || []).forEach(item => {
+                html += `<a href="#" class="dropdown-item p-3 border-bottom animate__animated animate__fadeInSmall" onclick="sk_notifNavigate('${item.page}', '${isAdmin?'Diproses':'Revisi'}')">
+                    <div class="d-flex align-items-center">
+                        <div class="p-2 rounded-circle mr-3 bg-light" style="width:40px; height:40px; display:flex; align-items:center; justify-content:center;">
+                            <i class="fas fa-bell text-utama"></i>
+                        </div>
+                        <div style="flex:1;">
+                            <p class="mb-0 font-weight-bold text-dark small">${item.modul}</p>
+                            <small class="text-muted d-block" style="font-size:11px;">Ada ${item.jumlah} data baru.</small>
+                        </div>
+                    </div>
+                </a>`;
+            });
+            if (nbc.length) nbc.html(html);
+        } else {
+            if (nvb.length) nvb.hide();
+            if (nbc.length) nbc.html('<div class="text-center p-4 text-muted small">Tidak ada notifikasi</div>');
+        }
+    });
 }
 
-// Logic Navigasi & Auto-Filter
-var SK_GLOBAL_FILTER_PRESET = null;
-function sk_notifNavigate(page, filterVal) {
-    SK_GLOBAL_FILTER_PRESET = filterVal;
+function sk_notifNavigate(page, filter) {
+    window.SK_GLOBAL_FILTER_PRESET = filter;
     loadContent(page);
-    $('#notif-badge').fadeOut('fast');
 }
 
-// Handler klik lonceng (Mark as Read Visual)
-$(document).on('click', '#btn-notif-bell', function() {
-    $('#notif-badge').fadeOut('fast');
-});
-
-/* =============================================================
-   4. ENGINE ROUTING ANTI-BLINK
-   ============================================================= */
-function loadContent(pageName) {
-  if(!pageName) return;
-  const $content = $('#app-content'); 
-
-  $('body > .modal').remove(); $('.modal-backdrop').remove(); $('body').removeClass('modal-open').css('padding-right', '');
-  highlightSidebar(pageName); updateBreadcrumb(pageName);
-  
-  if (typeof NProgress !== 'undefined') { NProgress.configure({ showSpinner: false, speed: 400 }); NProgress.start(); }
-  
-  $content.css('min-height', Math.max($content.height(), 400) + 'px');
-  // Tampilkan Skeleton Loading saat memuat
-  $content.html('<div class="p-4"><div class="skeleton-box mb-4" style="width:30%; height:40px;"></div><br><div class="skeleton-box w-100 mb-3" style="height:50px;"></div><div class="skeleton-box w-100 mb-2" style="height:30px;"></div><div class="skeleton-box w-100 mb-2" style="height:30px;"></div><div class="skeleton-box w-75" style="height:30px;"></div></div>');
-  $content.css('opacity', '1');
-
-  google.script.run
-    .withSuccessHandler(function(html) {
-      if (typeof NProgress !== 'undefined') NProgress.done();
-      setTimeout(function() {
-          // VAKSIN: Transisi Slide-In-Right
-          $content.html('<div class="slide-in-right" id="slide-wrapper">' + html + '</div>'); 
-          void $content[0].offsetWidth; 
-          $('#slide-wrapper').addClass('active');
-          $content.css('opacity', '1');
-          setTimeout(function() { $content.css('min-height', ''); runCounterUp(); }, 300);
-      }, 200);
-    })
-    .withFailureHandler(function(err){
-      if (typeof NProgress !== 'undefined') NProgress.done();
-      setTimeout(function() {
-          $content.html('<div class="alert alert-danger m-3">Gagal memuat halaman: ' + err.message + '</div>').css('opacity', '1');
-          $content.css('min-height', '');
-      }, 200);
-      Sultan.notif.gagal('Gagal Memuat Halaman');
-    })
-    .loadPage(pageName); 
-}
-
-/* =============================================================
-   5. FUNGSI LOGIN & LOGOUT (FIX BLANK SCREEN)
-   ============================================================= */
+/**
+ * LOGIN / LOGOUT ENGINE
+ */
 function handleLoginV2(event) {
-  event.preventDefault();
-  var btn = document.getElementById("tombolLogin");
-  var form = document.getElementById("formLogin");
-  
-  btn.innerHTML = '<i class="fas fa-circle-notch fa-spin mr-2"></i> Memproses...';
-  btn.disabled = true;
-
-  google.script.run
-    .withSuccessHandler(function(response) {
-      if (response.status === "success") {
-        var userBersih = response.userData ? response.userData : response;
-        localStorage.setItem("siksUser", JSON.stringify(userBersih));
-        Sultan.notif.sukses('Login Berhasil!');
-        setTimeout(function() { 
-            btn.innerText = "MASUK"; btn.disabled = false;
-            inisialisasiAplikasi(); 
-        }, 500); 
-      } else {
-        btn.innerText = "MASUK"; btn.disabled = false;
-        Sultan.alert('error', 'Login Gagal', response.message || "Username/Password salah.");
-      }
-    })
-    .withFailureHandler(function(err) {
-      btn.innerText = "MASUK"; btn.disabled = false;
-      Sultan.alert('error', 'Koneksi Gagal', err.message);
-    })
-    .processLogin(form);
+    event.preventDefault();
+    let btn = $('#tombolLogin'), form = $('#formLogin')[0];
+    btn.prop('disabled', true).html('<i class="fas fa-circle-notch fa-spin mr-2"></i> Memproses...');
+    
+    Sultan.bridge('processLogin', [form], function(res) {
+        if (res.status === "success") {
+            Sultan.db.set('siksUser', res.userData || res);
+            Sultan.notif.sukses('Selamat Datang!');
+            setTimeout(() => inisialisasiAplikasi(), 600);
+        } else {
+            btn.prop('disabled', false).text('MASUK');
+            Sultan.alert('error', 'Login Gagal', res.message || "Username/Password salah.");
+        }
+    }, () => btn.prop('disabled', false).text('MASUK'));
 }
 
 function handleLogout() {
-    Swal.fire({
-        title: '<h5 class="font-weight-bold mb-0" style="color:#7B0000;">Keluar Aplikasi?</h5>',
-        text: 'Sesi Anda akan diakhiri.',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#7B0000',
-        cancelButtonColor: '#6c757d',
-        confirmButtonText: 'Ya, Logout',
-        cancelButtonText: 'Batal',
-        customClass: { popup: 'card-sultan' }
-    }).then(function(result) {
-        if (!result.isConfirmed) return;
-
-        /* =========================================================
-           PEMBERSIHAN TOTAL — Tidak ada sisa data user lama
-           ========================================================= */
-
-        // 1. Hapus SEMUA data sesi dari storage
-        localStorage.removeItem('siksUser');
-        sessionStorage.clear();
-
-        // 2. Reset variabel global Chart & Cache (antisipasi modul yg pakai global var)
-        try {
-            if (typeof DASHSK_CHART_INSTANCE !== 'undefined' && DASHSK_CHART_INSTANCE) {
-                DASHSK_CHART_INSTANCE.destroy(); DASHSK_CHART_INSTANCE = null;
-            }
-            if (typeof DASHSK_LIST_BELUM_CACHE !== 'undefined') DASHSK_LIST_BELUM_CACHE = [];
-            if (typeof DASHSK_IS_FETCHING !== 'undefined')      DASHSK_IS_FETCHING = false;
-            if (typeof DASHSK_LAST_FETCH_TIME !== 'undefined')  DASHSK_LAST_FETCH_TIME = 0;
-            if (typeof DASHSK_USER_IS_ADMIN !== 'undefined')    DASHSK_USER_IS_ADMIN = false;
-        } catch(e) {}
-
-        // 3. Sembunyikan dashboard, bersihkan konten halaman
+    Sultan.konfirmasi({judul: 'Keluar Aplikasi?', teks: 'Sesi Anda akan diakhiri.'}, function() {
+        Sultan.db.clear();
         $('#konten-aplikasi').hide();
         $('#app-content').empty();
-        $('body').removeClass('sidebar-open modal-open sidebar-open')
-                 .css('padding-right', '0');
-        $('.modal-backdrop').remove();
-
-        // 4. Reset UI navbar & dropdown ke keadaan awal (bukan user lama)
-        var defaultAvatar = 'https://ui-avatars.com/api/?name=User&background=8B0000&color=fff';
-        $('#nav-user-name').text('-');
-        $('#nav-user-photo').attr('src', defaultAvatar);
-        $('#dropdown-user-photo').attr('src', defaultAvatar);
-        $('#dropdown-user-name-big').text('-');
-        $('#dropdown-user-role').text('-');
-
-        // 5. Reset badge notifikasi
-        $('#notif-badge').text('0').hide();
-        var bell = document.getElementById('btn-notif-bell');
-        if (bell) { bell.style.color = '#64748b'; bell.title = ''; }
-
-        // 6. Reset form login ke kondisi awal
-        if ($('#formLogin').length) {
-            $('#formLogin')[0].reset();
-        }
-        $('#tombolLogin').prop('disabled', false);
-        $('#btnLoginText').text('Masuk ke Dasbor');
-        $('#spinIcon').remove();
-        $('#password').prop('type', 'password');
-        var toggleIcon = document.getElementById('togglePass');
-        if (toggleIcon) {
-            toggleIcon.className = 'fas fa-eye toggle-pass';
-            toggleIcon.style.color = '#94A3B8';
-        }
-
-        // 7. Kembalikan login ke view form (bukan view success)
-        $('#viewSuccess').hide();
-        $('#viewForm').show();
-
-        // 8. Re-animate card login agar tampak segar
-        var card = document.getElementById('cardLogin');
-        if (card) {
-            card.style.animation = 'none';
-            card.offsetHeight; // reflow trigger
-            card.style.animation = '';
-        }
-
-        // 9. Tampilkan kembali halaman login
-        window.scrollTo(0, 0);
         $('#gerbang-login').fadeIn('fast');
-        $('.login-screen-wrapper').show();
     });
 }
 
-
-/* =============================================================
-   6. MANAJEMEN UI (Sidebar & Navigation)
-   ============================================================= */
+/**
+ * UI SYNC HELPERS
+ */
 function updateUI(u) {
-  if (!u) return; 
-  var name = u.nama_lengkap || u.fullName || u.nama || u.username || "User";
-  var photo = u.photo || u.foto || "";
-  var role = u.role || "User";
-  var f = photo ? 'https://drive.google.com/thumbnail?id=' + photo + '&sz=w200' : 'https://ui-avatars.com/api/?name=' + encodeURIComponent(name) + '&background=random';
-  
-  $('#nav-user-photo, #dropdown-user-photo').attr('src', f);
-  $('#nav-user-name, #dropdown-user-name-big, .user-panel .info a').text(name);
-  $('#dropdown-user-role').text(role);
-  $('.user-capsule span, .user-menu .nav-link span, .dropdown-user .dropdown-toggle span').text(name);
-
-  if($('#uniUserLogin').length) $('#uniUserLogin').val(name);
+    if (!u) return;
+    let name = u.nama_lengkap || u.username || "User";
+    let photo = u.photo || u.foto || "";
+    let role = u.role || "User";
+    let f = photo ? 'https://drive.google.com/thumbnail?id=' + photo + '&sz=200' : 'https://ui-avatars.com/api/?name=' + encodeURIComponent(name) + '&background=1D3573&color=fff';
+    
+    $('#nav-user-photo, #dropdown-user-photo, #sidebar-user-photo').attr('src', f);
+    $('#nav-user-name, #dropdown-user-name-big').text(name);
+    $('#dropdown-user-role').text(role);
 }
 
 function tampilkanMenuAdmin(user) {
-  if (!user) return;
-  var daftarMenuAdmin = ["menuTrashSK", "menu-setting-admin", "menu-monitoring-admin"];
-  var isAdmin = checkUserRoleIsAdmin(); 
-  daftarMenuAdmin.forEach(function(id) {
-    var el = document.getElementById(id);
-    if (el) {
-      if (isAdmin) { el.classList.remove("d-none"); el.style.display = "block"; } 
-      else { el.classList.add("d-none"); }
-    }
-  });
+    let isAdmin = (user.role || "").toLowerCase().includes("admin");
+    $(".menu-admin-only")[isAdmin ? 'show' : 'hide']();
 }
 
-// VAKSIN ROUTING: Penambahan Dictionary E-File di baris ini
-var MENU_MAPPING = {
-    'home': 'Beranda', 'sk_dashboard': 'Dashboard SK', 'sk_data': 'Data SK', 'sk_status': 'Status Pengiriman',
-    'lapbul_dashboard': 'Dashboard Laporan Bulan', 'lapbul_kelola': 'Kelola Data', 'lapbul_status': 'Status Laporan',
-    'lapbul_format': 'Format Laporan',
-    'siaba_dashboard': 'Dashboard SIABA', 'siaba_presensi_harian': 'Harian', 'siaba_presensi_apel': 'Apel dan Upacara',
-    'siaba_presensi_tidak': 'Tidak Presensi', 'siaba_presensi_terlambat': 'Terlambat', 'siaba_presensi_pulang': 'Pulang Awal',
-    'siaba_presensi_unduh': 'Unduh Rekap Bulanan', 
-    'siaba_presensi_arsip': 'Arsip Siaba',
-    'siaba_presensi_lupa': 'Lupa Presensi', 'siaba_presensi_salah': 'Salah Presensi',
-    'siaba_perjalanan_dinas': 'Perjalanan Dinas', 'siaba_cuti_data': 'Pengajuan', 'siaba_cuti_sisa': 'Sisa Cuti Tahunan',
-    'siaba_cuti_rekap': 'Rekap Cuti', 'siaba_cuti_unggah': 'Unggah Surat Cuti', 'siaba_cuti_informasi': 'Informasi',
-    'siaba_format_panduan': 'Format dan Panduan', 'tata_naskah_dinas': 'Tata Naskah Dinas',  
-    'ptk_dashboard': 'Dashboard PTK', 'ptk_kelola_paud': 'Daftar Nama PTK PAUD',
-    'ptk_keadaan_paud': 'Keadaan PTK PAUD', 'ptk_kelola_sdn': 'Daftar Nama PTK SDN', 'ptk_keadaan_sdn': 'Keadaan PTK SDN',
-    'ptk_kebutuhan_sdn': 'Kebutuhan Guru SDN', 'ptk_kelola_sds': 'Daftar Nama PTK SDS', 'ptk_keadaan_sds': 'Keadaan PTK SDS',
-    'ptk_kebutuhan_sds': 'Kebutuhan Guru SDS', 'murid_dashboard': 'Dashboard Murid', 'murid_paud_rombel': 'PAUD Menurut Rombel',
-    'murid_paud_jenis_kelamin': 'PAUD Menurut Jenis Kelamin', 'murid_sd_kelas': 'SD Menurut Kelas', 'murid_sd_rombel': 'SD Menurut Rombel',
-    'murid_sd_agama': 'SD Menurut Agama', 'setting': 'Pengaturan', 'monitoring': 'Monitoring Aktivitas',
-    'efile_dashboard': 'Dashboard E-File','efile_kelola': 'Kelola & Verifikasi', 'efile_viewer': 'Berkas E-File'
-};
-
-function highlightSidebar(pageName) {
-    var textMenu = MENU_MAPPING[pageName] || pageName.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-    $('.nav-sidebar .nav-link').removeClass('active');
-    var target = $('.nav-sidebar .nav-link').filter(function() { return $(this).text().trim() === textMenu; });
-
-    if (target.length > 0) {
-        $('.nav-sidebar li.menu-open').not(target.parents('li')).removeClass('menu-open').children('.nav-treeview').slideUp(300);
-        target.addClass('active');
-        target.parents('.nav-item').each(function() {
-            $(this).children('.nav-link').addClass('active');
-            if (!$(this).hasClass('menu-open')) {
-                $(this).addClass('menu-open');
-                $(this).children('.nav-treeview').slideDown(300);
-            }
-        });
-    }
-}
-
+/**
+ * MENU MAPPING & BREADCRUMBS (THEME SYNCED)
+ */
 function updateBreadcrumb(pageName) {
-    var textMenu = MENU_MAPPING[pageName] || pageName;
-    var $activeLink = $('a[data-page="' + pageName + '"]');
-    var homeHtml = '<span style="cursor:pointer" class="btn-home-crumb"><i class="fas fa-home mr-1"></i> Beranda</span>';
-    var separator = ' <i class="fas fa-angle-right mx-2 text-white-50" style="font-size: 0.8em;"></i> ';
-    var breadHtml = homeHtml;
-
-    if (pageName !== 'home' && $activeLink.length > 0) {
-        var currentTitle = $activeLink.find('p').clone().children().remove().end().text().trim(); 
-        var $parentTree = $activeLink.closest('.nav-treeview');
-        
-        if ($parentTree.length > 0) {
-            var $parentLi = $parentTree.closest('.nav-item');
-            var $parentLink = $parentLi.children('.nav-link');
-            if ($parentLink.length > 0) {
-                var parentTitle = $parentLink.find('p').clone().children().remove().end().text().trim();
-                var $grandParentTree = $parentLi.closest('.nav-treeview');
-                if ($grandParentTree.length > 0) {
-                     var $grandParentLink = $grandParentTree.closest('.nav-item').children('.nav-link');
-                     if ($grandParentLink.length > 0) {
-                         breadHtml += separator + '<span class="text-white-50">' + $grandParentLink.find('p').clone().children().remove().end().text().trim() + '</span>';
-                     }
-                }
-                breadHtml += separator + '<span class="text-white-50">' + parentTitle + '</span>';
-            }
-        }
-        breadHtml += separator + '<span class="font-weight-bold text-white">' + (currentTitle || textMenu) + '</span>';
+    let html = `<span class="btn-home-crumb" style="cursor:pointer"><i class="fas fa-home mr-1"></i> Beranda</span>`;
+    if (pageName !== 'home') {
+        let title = (window.MENU_MAPPING && MENU_MAPPING[pageName]) ? MENU_MAPPING[pageName] : pageName;
+        html += ` <i class="fas fa-angle-right mx-2 opacity-50 small"></i> <span class="font-weight-bold">${title}</span>`;
     }
-    $('#page-breadcrumb').html(breadHtml);
+    $('#page-breadcrumb').html(html).addClass('animate__animated animate__fadeIn');
 }
 
-/* =============================================================
-   7. SUPER HELPER: RENDER TABEL (ANTI-BLINK SULTAN)
-   ============================================================= */
-var SultanTable = {
-    renderNative: function(targetId, columns, data, emptyText, onComplete) {
-        var $tabel = $(targetId);
-        if ($tabel.length === 0) return;
-
-        if ($.fn.DataTable.isDataTable(targetId)) {
-            $tabel.DataTable().destroy();
-        }
-        $tabel.empty();
-
-        $tabel.DataTable({
-            data: data || [],
-            columns: columns || [{title: "Data"}],
-            ordering: false,
-            pageLength: 10,
-            autoWidth: false,
-            destroy: true,
-            language: {
-                url: "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json",
-                emptyTable: `<div class="text-center p-4">
-                               <img src="https://cdni.iconscout.com/illustration/premium/thumb/folder-is-empty-illustration-download-in-svg-png-gif-file-formats--no-data-missing-file-states-pack-design-development-illustrations-6169997.png" 
-                                    style="height:140px; opacity:0.9; margin-bottom:15px;">
-                               <h6 class="font-weight-bold text-muted">${emptyText || "Wah, belum ada data di sini. Yuk ditambahkan!"}</h6>
-                             </div>`
-            },
-            dom: "<'row mb-2'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
-                 "<'row'<'col-sm-12 table-responsive'tr>>" +
-                 "<'row mt-2'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-            initComplete: function() {
-                var api = this.api();
-                $('[data-toggle="tooltip"]').tooltip();
-                if (typeof onComplete === 'function') {
-                    setTimeout(function() { 
-                        api.columns.adjust();
-                        onComplete(); 
-                    }, 50);
-                }
-            }
-        });
-    }
-};
-
-function getBadgeSultan(status) {
-    if (!status || status === "-" || status === "") {
-        return '<i class="fas fa-minus text-black-50 small" style="opacity:0.2"></i>';
-    }
-    var s = String(status).trim();
-    var stLower = s.toLowerCase();
-    
-    if (stLower.includes('revisi') || stLower.includes('perbaiki')) {
-         return `<div class="btn-icon-sultan btn-icon-sultan-warning badge-pulse-warning" data-toggle="tooltip" title="${s}"><i class="fas fa-sync-alt"></i></div>`;
-    } else if (stLower.includes('tolak') || stLower.includes('x') || stLower.includes('salah')) {
-         return `<div class="btn-icon-sultan btn-icon-sultan-danger badge-pulse-danger" data-toggle="tooltip" title="${s}"><i class="fas fa-times"></i></div>`;
-    } else if (stLower.includes('verif') || stLower.includes('setuju') || stLower.includes('ok') || stLower.includes('valid')) {
-         return `<div class="btn-icon-sultan btn-icon-sultan-success" data-toggle="tooltip" title="${s}"><i class="fas fa-check"></i></div>`;
-    } else if (s.length > 5 && (stLower.includes('proses') || stLower.includes('tunggu'))) {
-         return `<div class="btn-icon-sultan btn-icon-sultan-info badge-pulse-warning" data-toggle="tooltip" title="${s}"><i class="fas fa-spinner fa-spin"></i></div>`;
-    }
-    
-    var pillColor = 'secondary';
-    var pulseClass = '';
-    if (stLower.includes('hadir') || stLower.includes('aktif') || stLower.includes('sudah')) pillColor = 'success';
-    else if (stLower.includes('belum') || stLower.includes('absen')) { pillColor = 'danger'; pulseClass = 'badge-pulse-danger'; }
-    else if (stLower.includes('izin') || stLower.includes('sakit') || stLower.includes('revisi')) { pillColor = 'warning'; pulseClass = 'badge-pulse-warning'; }
-    else if (stLower.includes('proses')) { pillColor = 'info'; pulseClass = 'badge-pulse-warning'; }
-    
-    return `<span class="badge badge-pill badge-${pillColor} ${pulseClass} shadow-sm px-3 py-1 font-weight-bold">${s}</span>`;
+function highlightSidebar(page) {
+    $('.nav-sidebar .nav-link').removeClass('active');
+    $(`.nav-sidebar .nav-link[data-page="${page}"]`).addClass('active').parents('.nav-item').addClass('menu-open');
 }
 
-function renderBadgeSultan(text) { return getBadgeSultan(text); }
-function previewPDF(u){ $('#framePreview').attr('src',u.replace('/view','/preview')); $('#modalPreviewSK').modal('show'); }
-function formatDateForInput(s){ if(!s) return ""; if(typeof s==='string'&&s.match(/^\d{4}-\d{2}-\d{2}$/)) return s; var d=new Date(s); return isNaN(d)?s:d.toISOString().split('T')[0]; }
-
-/* =============================================================
-   8. STUDENT PORTAL SAAS ENGINE
-   ============================================================= */
-
+/**
+ * LEGACY COMPATIBILITY HELPERS (BRIDGE TO NEW Sultan)
+ */
+function toast(m, t) { Sultan.notif.toast(t, m); }
 function runCounterUp() {
-    $('.counter-up, .small-box h3, .info-box-number').each(function () {
-        var $this = $(this);
-        var text = $this.text().replace(/[^0-9]/g, '');
-        if (!text || text === "") return;
-        var num = parseInt(text);
-        if(num < 2) return;
-        
-        $this.prop('Counter', 0).animate({
-            Counter: num
-        }, {
-            duration: 1200,
-            easing: 'swing',
-            step: function (now) {
-                // Formatting back to string with dots if necessary
-                $this.text(Math.ceil(now).toLocaleString('id-ID'));
-            }
-        });
-        $this.removeClass('counter-up'); // Biar tidak run 2x
+    $('.counter-up, h3.stat, .stat-num').each(function() {
+        let $t = $(this), n = parseInt($t.text().replace(/\D/g,'')) || 0;
+        if (n < 2) return;
+        $t.prop('Counter',0).animate({ Counter: n }, { duration: 1200, step: (now) => $t.text(Math.ceil(now).toLocaleString('id-ID')) });
     });
 }
+
+// Global Menu Mapping consistent with app
+window.MENU_MAPPING = {
+    'home': 'Beranda', 'sk_dashboard': 'Dashboard SK', 'sk_data': 'Data SK', 
+    'siaba_dashboard': 'Dashboard SIABA', 'siaba_presensi_harian': 'Harian',
+    'efile_dashboard': 'Dashboard E-File','efile_kelola': 'Kelola & Verifikasi'
+};
 </script>

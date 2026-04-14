@@ -3,251 +3,79 @@
    HOME PAGE — Maroon Heritage Premium
    ===================================================== */
 
-/* Hero Header */
+/* Hero Header (Navy Elite Glass) */
 .home-hero {
-  background: linear-gradient(135deg, #8B0000 0%, #5A0000 55%, #3A0000 100%);
-  border-radius: 18px;
-  padding: 2rem 2rem 1.5rem;
-  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--warna-utama) 0%, var(--warna-utama-dark) 100%);
+  border-radius: var(--radius-sultan);
+  padding: 2.5rem 2.5rem 2rem;
+  margin-bottom: 2rem;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(139,0,0,0.25);
+  box-shadow: 0 15px 35px rgba(29, 53, 115, 0.2);
+  border: var(--border-sultan);
 }
 .home-hero::before {
   content: '';
   position: absolute; inset: 0;
-  background: radial-gradient(circle at 85% 50%, rgba(234,201,71,0.08) 0%, transparent 55%),
-              radial-gradient(circle at 10% 80%, rgba(255,255,255,0.04) 0%, transparent 40%);
+  background: radial-gradient(circle at 85% 50%, rgba(234, 201, 71, 0.12) 0%, transparent 60%);
   pointer-events: none;
 }
 .home-hero-left { position: relative; z-index: 2; }
 .home-greeting {
-  font-size: 1.05rem; font-weight: 700;
-  color: #EAC947 !important;
-  letter-spacing: 0.3px; margin-bottom: 0.4rem;
-  display: flex; align-items: center; gap: 6px;
+  font-size: 1.1rem; font-weight: 700;
+  color: var(--warna-emas) !important;
+  letter-spacing: 0.5px; margin-bottom: 0.6rem;
+  display: flex; align-items: center; gap: 8px;
 }
-.home-greeting i,
-.home-greeting span { color: #EAC947 !important; font-weight: 700; }
-.home-greeting i { font-size: 1.1rem; }
 .home-username {
-  font-size: 1.9rem; font-weight: 800;
-  color: #fff; line-height: 1.15;
-  margin-bottom: 0.6rem;
-  letter-spacing: -0.5px;
+  font-size: 2.2rem; font-weight: 800;
+  color: #fff; line-height: 1.2;
+  margin-bottom: 0.8rem;
+  letter-spacing: -0.8px;
 }
 .home-tagline {
-  font-size: 0.82rem; color: rgba(255,255,255,0.55);
-  font-weight: 400; line-height: 1.5;
+  font-size: 0.88rem; color: rgba(255,255,255,0.65);
+  font-weight: 400; line-height: 1.6;
 }
-.home-tagline b { color: #EAC947; font-weight: 600; }
+.home-tagline b { color: var(--warna-emas); font-weight: 700; }
 
-/* Jam & Tanggal Card */
+/* Clock & Ticker Standarization */
 .home-clock-card {
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 14px;
-  padding: 1rem 1.25rem;
-  min-width: 210px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-sultan);
+  padding: 1.25rem 1.5rem;
+  min-width: 230px;
   position: relative; z-index: 2;
-  backdrop-filter: blur(8px);
-}
-.home-clock-time {
-  font-size: 2.2rem; font-weight: 800;
-  color: #fff; font-variant-numeric: tabular-nums;
-  letter-spacing: 2px; line-height: 1;
-  margin-bottom: 0.4rem;
-}
-.home-clock-date {
-  font-size: 0.78rem; color: rgba(255,255,255,0.7);
-  font-weight: 500; line-height: 1.5;
-}
-.home-clock-pasaran {
-  font-size: 0.72rem; color: #EAC947;
-  font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.8px;
-}
-
-/* Info Marquee Bar */
-.info-bar {
-  display: flex; align-items: stretch;
-  background: #fff;
-  border-radius: 12px;
-  border: 1px solid #E2E8F0;
-  overflow: hidden;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  height: 44px;
+  backdrop-filter: var(--glass-blur);
 }
 .info-bar-label {
-  background: linear-gradient(135deg, #8B0000, #5A0000);
-  color: #fff; font-weight: 700; font-size: 0.75rem;
-  padding: 0 1.1rem; display: flex; align-items: center; gap: 6px;
-  flex-shrink: 0; letter-spacing: 0.5px;
-  min-width: 90px;
-}
-.info-bar-ticker {
-  flex: 1; overflow: hidden; position: relative;
-  display: flex; align-items: center;
-}
-.info-bar-text {
-  white-space: nowrap; display: inline-block;
-  padding-left: 100%;
-  animation: tickerScroll 30s linear infinite;
-  font-size: 0.82rem; color: #374151; font-weight: 500;
-}
-.info-bar-text:hover { animation-play-state: paused; cursor: pointer; }
-@keyframes tickerScroll {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
-}
-
-/* ---- Section Title ---- */
-.home-section-title {
-  display: flex; align-items: center; gap: 0.6rem;
-  font-size: 1rem; font-weight: 700; color: #1e293b;
-  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--warna-utama), var(--warna-utama-dark));
+  color: #fff; font-weight: 800; font-size: 0.75rem;
 }
 .home-section-title .title-icon {
-  width: 32px; height: 32px; border-radius: 8px;
-  background: linear-gradient(135deg, #8B0000, #5A0000);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.home-section-title .title-icon i { color: #EAC947; font-size: 0.85rem; }
-.home-section-divider {
-  flex: 1; height: 1px; background: #E2E8F0;
-}
-
-/* ---- About Card ---- */
-.about-card {
-  background: #fff;
-  border-radius: 16px;
-  border: 1px solid #E2E8F0;
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-}
-.about-card p {
-  font-size: 0.9rem; color: #475569;
-  line-height: 1.8; margin: 0;
-}
-.about-card b { color: #8B0000; font-weight: 700; }
-
-/* ---- Feature Cards (Tujuan/ Keunggulan) ---- */
-.feature-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-@media (max-width: 768px) {
-  .feature-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 480px) {
-  .feature-grid { grid-template-columns: 1fr; }
-}
-.feature-card {
-  background: #fff;
-  border: 1px solid #E2E8F0;
-  border-radius: 14px;
-  padding: 1.25rem 1rem;
-  text-align: center;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s;
-  cursor: default;
+  background: linear-gradient(135deg, var(--warna-utama), var(--warna-utama-dark));
+  box-shadow: 0 4px 12px rgba(29, 53, 115, 0.2);
 }
 .feature-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(139,0,0,0.1);
-  border-color: rgba(139,0,0,0.2);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-sultan);
+  border-color: var(--warna-utama-light);
 }
 .feature-icon {
-  width: 52px; height: 52px; border-radius: 14px;
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 0.8rem;
-  font-size: 1.3rem;
+  background: var(--warna-utama-light) !important;
 }
-.feature-card h6 {
-  font-size: 0.85rem; font-weight: 700; color: #1e293b;
-  margin-bottom: 0.3rem;
-}
-.feature-card p {
-  font-size: 0.75rem; color: #64748b; margin: 0; line-height: 1.5;
-}
+.feature-icon i { color: var(--warna-utama) !important; }
 
-/* ---- Layanan / Katalog Menu ---- */
-.layanan-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-@media (max-width: 992px) { .layanan-grid { grid-template-columns: repeat(2,1fr); } }
-@media (max-width: 480px) { .layanan-grid { grid-template-columns: 1fr; } }
-
-.layanan-card {
-  background: #fff;
-  border: 1px solid #E2E8F0;
-  border-radius: 14px;
-  overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s;
-  cursor: pointer;
-  text-decoration: none !important;
-  display: block;
-}
-.layanan-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-}
-.layanan-header {
-  padding: 0.9rem 1rem;
-  display: flex; align-items: center; gap: 0.6rem;
-}
-.layanan-header-icon {
-  width: 32px; height: 32px; border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0; font-size: 0.9rem;
-}
-.layanan-header h6 {
-  font-size: 0.82rem; font-weight: 700;
-  color: #1e293b; margin: 0;
-}
-.layanan-body {
-  padding: 0 1rem 0.9rem;
-}
-.layanan-body ul {
-  margin: 0; padding-left: 1.2rem;
-  font-size: 0.75rem; color: #64748b; line-height: 1.8;
-}
-
-/* ---- Stats Footer ---- */
+/* Stats Bar Premium */
 .home-stats-bar {
-  background: linear-gradient(135deg, #8B0000 0%, #5A0000 50%, #3A0000 100%);
-  border-radius: 16px;
-  padding: 1.5rem 2rem;
-  display: grid;
-  grid-template-columns: repeat(4,1fr);
-  gap: 1rem;
-  margin-bottom: 1rem;
-  border: 1px solid rgba(255,255,255,0.06);
-  box-shadow: 0 8px 32px rgba(139,0,0,0.2);
+  background: linear-gradient(135deg, var(--warna-utama) 0%, var(--warna-utama-dark) 100%);
+  border-radius: var(--radius-sultan);
+  padding: 2rem;
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 30px rgba(29, 53, 115, 0.3);
 }
-@media (max-width: 768px) { .home-stats-bar { grid-template-columns: repeat(2,1fr); } }
-.stat-pill {
-  text-align: center; padding: 0.75rem 0.5rem;
-  border-right: 1px solid rgba(255,255,255,0.1);
-}
-.stat-pill:last-child { border-right: none; }
-.stat-pill-num {
-  font-size: 1.8rem; font-weight: 800; color: #fff;
-  line-height: 1; margin-bottom: 0.2rem;
-  font-variant-numeric: tabular-nums;
-}
-.stat-pill-lbl {
-  font-size: 0.68rem; color: rgba(255,255,255,0.55);
-  text-transform: uppercase; font-weight: 600; letter-spacing: 0.8px;
-}
-.stat-pill-icon { color: #EAC947; font-size: 1rem; margin-bottom: 0.4rem; }
 </style>
 
 <!-- ====================================================
@@ -600,51 +428,48 @@ function getJavaneseDateInfo(date) {
   }
 }
 
-/* ---- Muat Data User dari LocalStorage ---- */
+/* ---- Muat Data User dari LocalStorage via Sultan.db ---- */
 function muatDataUserLocal() {
-  try {
-    var raw = localStorage.getItem('siksUser');
-    if (!raw) return;
-    var u = JSON.parse(raw);
-    var nama = u.nama_lengkap || u.fullName || u.nama || u.username || 'User';
-    var el = document.getElementById('user-fullname-home');
-    if (el) el.textContent = nama;
-    // Log kunjungan
-    if (typeof google !== 'undefined') {
-      google.script.run.logUserVisit(u);
-    }
-  } catch(e) {}
+  let u = Sultan.db.get('siksUser');
+  if (!u) return;
+  let nama = u.nama_lengkap || u.fullName || u.nama || u.username || 'User';
+  let el = document.getElementById('user-fullname-home');
+  if (el) el.textContent = nama;
+  
+  // Log kunjungan via Bridge
+  Sultan.bridge('logUserVisit', u);
 }
 
-/* ---- Statistik Counter ---- */
+/* ---- Statistik Counter via Bridge ---- */
+function fetchHomeStats() {
+  Sultan.bridge('getVisitorStats', undefined, function(data) {
+    if (!data) return;
+    animateCounter('stat-total',  data.total,  1500);
+    animateCounter('stat-today',  data.today,  1500);
+    animateCounter('stat-users',  data.users,  1500);
+    animateCounter('stat-online', data.online, 1500);
+    if (data.info) {
+      let el = document.getElementById('dynamic-marquee-text');
+      if (el) el.innerHTML = data.info;
+    }
+  });
+}
+
 function animateCounter(id, end, dur) {
-  var el = document.getElementById(id);
+  let el = document.getElementById(id);
   if (!el || !end) return;
-  var start = 0, step = end / (dur / 16);
-  var timer = setInterval(function() {
+  let start = 0, step = end / (dur / 16);
+  let timer = setInterval(function() {
     start += step;
     if (start >= end) { start = end; clearInterval(timer); }
     el.textContent = Math.floor(start).toLocaleString('id-ID');
   }, 16);
 }
 
-if (typeof google !== 'undefined' && google.script) {
-  google.script.run.withSuccessHandler(function(data) {
-    if (!data) return;
-    animateCounter('stat-total',  data.total,  1800);
-    animateCounter('stat-today',  data.today,  1800);
-    animateCounter('stat-users',  data.users,  1800);
-    animateCounter('stat-online', data.online, 1800);
-    if (data.info) {
-      var el = document.getElementById('dynamic-marquee-text');
-      if (el) el.innerHTML = data.info;
-    }
-  }).withFailureHandler(function(){}).getVisitorStats();
-}
-
 /* ---- Init ---- */
 $(document).ready(function() {
   startTime();
   muatDataUserLocal();
+  fetchHomeStats();
 });
 </script>

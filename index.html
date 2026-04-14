@@ -27,11 +27,12 @@
 
 <body class="hold-transition sidebar-mini layout-fixed layout-footer-fixed layout-navbar-fixed">
 
-  <!-- VAKSIN LOADING SCREEN AWAL -->
+  <!-- VAKSIN LOADING SCREEN AWAL (NAVY ELITE) -->
   <div id="loading-awal"
-    style="position:fixed; z-index:9999; top:0; left:0; width:100%; height:100%; background:#fff; display:flex; align-items:center; justify-content:center;">
-    <div class="text-center"><i class="fas fa-circle-notch fa-spin fa-3x text-maroon mb-3"></i>
-      <h5 class="text-maroon font-weight-bold">Memuat SIKS Reborn...</h5>
+    style="position:fixed; z-index:9999; top:0; left:0; width:100%; height:100%; background:var(--warna-abu-bg); display:flex; align-items:center; justify-content:center;">
+    <div class="text-center">
+      <div class="sultan-orbit mb-4"></div>
+      <h5 class="text-utama font-weight-bold animate__animated animate__pulse animate__infinite" style="color:var(--warna-utama) !important; letter-spacing:1px;">MEMUAT SIKS REBORN...</h5>
     </div>
   </div>
 
@@ -105,9 +106,9 @@
                     text-decoration:none; color:#1e293b;
                     transition:background 0.2s, box-shadow 0.2s;">
             <!-- Avatar foto kecil -->
-            <img id="nav-user-photo" src="https://ui-avatars.com/api/?name=User&background=7B0000&color=fff"
+            <img id="nav-user-photo" src="https://ui-avatars.com/api/?name=User&background=1D3573&color=fff"
               alt="Avatar" style="width:34px; height:34px; border-radius:50%; object-fit:cover;
-                        border:2px solid #7B0000; flex-shrink:0;">
+                        border:2px solid var(--warna-utama); flex-shrink:0;">
             <!-- Nama -->
             <span id="nav-user-name" class="font-weight-bold" style="font-size:0.82rem; max-width:120px;
                          white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">-</span>
@@ -120,15 +121,15 @@
                       box-shadow:0 20px 60px rgba(0,0,0,0.18);
                       overflow:hidden; padding:0; margin-top:8px;">
 
-            <!-- Header: Maroon background + foto + nama + role -->
-            <div style="background:linear-gradient(160deg,#8B0000 0%,#5A0000 100%);
+            <!-- Header: Navy background + foto + nama + role -->
+            <div style="background:linear-gradient(160deg, var(--warna-utama) 0%, var(--warna-utama-dark) 100%);
                         padding:2rem 1.5rem 1.5rem; text-align:center;">
               <!-- Foto profil besar -->
               <div style="display:flex; justify-content:center; margin-bottom:0.9rem;">
-                <img id="dropdown-user-photo" src="https://ui-avatars.com/api/?name=User&background=7B0000&color=fff"
+                <img id="dropdown-user-photo" src="https://ui-avatars.com/api/?name=User&background=1D3573&color=fff"
                   alt="Foto Profil" style="width:90px; height:90px; border-radius:50%; object-fit:cover;
                             border:3px solid rgba(255,255,255,0.3);
-                            box-shadow:0 4px 20px rgba(0,0,0,0.3);">
+                            box-shadow:0 4px 20px rgba(139,0,0,0.3);">
               </div>
               <!-- Nama -->
               <div id="dropdown-user-name-big" class="font-weight-bold"
@@ -152,11 +153,11 @@
                 <i class="fas fa-user-cog"></i> Profil
               </button>
               <!-- Logout -->
-              <button onclick="handleLogout()" style="flex:1; background:linear-gradient(135deg,#8B0000,#5A0000);
+              <button onclick="handleLogout()" style="background:linear-gradient(135deg, var(--warna-utama), var(--warna-utama-dark));
                              border:none; color:#fff; font-weight:700; font-size:0.85rem;
-                             padding:0.6rem 1rem; border-radius:50px; cursor:pointer;
+                             padding:0.6rem 1.5rem; border-radius:50px; cursor:pointer;
                              display:flex; align-items:center; justify-content:center; gap:0.5rem;
-                             box-shadow:0 4px 12px rgba(139,0,0,0.35);
+                             box-shadow:0 4px 12px rgba(29,53,115,0.35);
                              transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85';"
                 onmouseout="this.style.opacity='1';">
                 <i class="fas fa-sign-out-alt"></i> Logout
@@ -213,7 +214,9 @@
     </aside>
 
     <div class="content-wrapper">
-      <div id="app-content" class="p-3"></div>
+      <!-- Double-Buffering Viewport -->
+      <div id="app-content-active" class="viewport active p-3"></div>
+      <div id="app-content-buffer" class="viewport buffer p-3" style="display:none; opacity:0;"></div>
     </div>
 
     <footer class="main-footer text-sm">

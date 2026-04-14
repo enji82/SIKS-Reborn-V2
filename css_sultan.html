@@ -4,26 +4,42 @@
      Ganti --warna-maroon di sini, seluruh web otomatis berubah.
      =================================================================== */
   :root {
-    /* --- CODEBYTE THEME PALETTE --- */
-    --warna-maroon: #1D3573;       /* Primary Navy Blue */
-    --warna-maroon-dark: #12224A;  
-    --warna-maroon-light: rgba(29, 53, 115, 0.1); 
+    /* --- SULTAN CORE IDENTITY (NAVY ELITE) --- */
+    --warna-utama: #1D3573;        /* Primary Navy */
+    --warna-utama-dark: #12224A;  
+    --warna-utama-light: rgba(29, 53, 115, 0.1); 
     
-    /* --- AKSEN PASTEL SULTAN --- */
-    --warna-emas: #EAC947;         /* Codebyte Gold/Yellow */
+    /* Legacy Alias (Mencegah Break pada Class .text-maroon lama) */
+    --warna-maroon: var(--warna-utama);
+    --warna-maroon-dark: var(--warna-utama-dark);
+    --warna-maroon-light: var(--warna-utama-light);
+    
+    /* --- SULTAN ACCENTS (GOLD & SUCCESS) --- */
+    --warna-emas: #EAC947;         /* Codebyte Gold */
     --warna-emas-soft: rgba(234, 201, 71, 0.2);    
-    --warna-cyan: #00AFEF;         /* Info Blue */
-    --warna-hijau: #09BD3C;        /* Success Green */
-    --warna-orange-pastel: #D0412E; /* Danger Red */
-    --warna-header-tabel: #FFFFFF; 
+    --warna-info: #00AFEF;         /* Info Blue */
+    --warna-sukses: #059669;       /* Emerald Success */
+    --warna-bahaya: #D0412E;       /* Danger Red */
     
-    /* --- UTILITY --- */
-    --warna-tegas: #10131E;        /* Dark heading text */
-    --warna-abu-bg: #E6EBEE;       /* Base Background */
-    --warna-kartu-bg: #FFFFFF;     /* Pure White untuk Cards & Elements */
-    --shadow-sultan: 0 0.5rem 1rem rgba(0, 0, 0, 0.08); /* Codebyte Shadow */
-    --radius-sultan: 14px;         /* Codebyte border radius */
-    --border-sultan: 1px solid #E6E6E6; /* Thin Border */
+    /* --- MATRIX COLORS (PTK/MURID STANDARDIZATION) --- */
+    --warna-mtx-pns: #e3f2fd;
+    --warna-mtx-pppk: #e8f5e9;
+    --warna-mtx-gtt: #fff3e0;
+    --warna-mtx-tendik: #f3e5f5;
+    --warna-mtx-total: #ffecb3;
+    
+    /* --- THEME SURFACE & GLASS --- */
+    --warna-tegas: #10131E;        
+    --warna-abu-bg: #E6EBEE;       
+    --warna-kartu-bg: #FFFFFF;     
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --glass-blur: blur(12px) saturate(180%);
+    
+    /* --- GEOMETRY & SHADOW --- */
+    --shadow-sultan: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    --radius-sultan: 1.15rem;      
+    --border-sultan: 1px solid rgba(0, 0, 0, 0.05);
   }
 
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -88,7 +104,7 @@
     align-items: center !important;
   }
   .main-header .nav-link { color: #475569 !important; }
-  .main-header .nav-link:hover { color: #7B0000 !important; }
+  .main-header .nav-link:hover { color: var(--warna-utama) !important; }
 
   /* Animasi bell notifikasi */
   @keyframes bellRing {
@@ -359,14 +375,14 @@
 }
 
 .sultan-btn-success, .swal2-confirm.swal2-styled.sultan-btn-success { background: #059669 !important; box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3) !important; }
-.sultan-btn-error, .swal2-confirm.swal2-styled.sultan-btn-error { background: #8B0000 !important; box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3) !important; }
+.sultan-btn-error, .swal2-confirm.swal2-styled.sultan-btn-error { background: var(--warna-utama) !important; box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3) !important; }
 .sultan-btn-warning, .swal2-confirm.swal2-styled.sultan-btn-warning { background: #d97706 !important; box-shadow: 0 4px 15px rgba(217, 119, 6, 0.3) !important; }
 
 /* Orbit Loader */
 .sultan-orbit {
     width: 60px; height: 60px;
     border: 4px solid #f1f5f9;
-    border-top: 4px solid #8B0000;
+    border-top: 4px solid var(--warna-utama);
     border-radius: 50%;
     animation: sultan-spin 1s linear infinite;
     margin: 0 auto 20px;
@@ -932,12 +948,12 @@
    ============================================================== */
 /* 1. Loading Bar Atas (NProgress) */
 #nprogress .bar {
-  background: #800000 !important; /* Warna Maroon Sultan */
+  background: var(--warna-utama) !important; /* Warna Maroon Sultan */
   height: 4px !important;
   z-index: 99999 !important;
 }
 #nprogress .peg {
-  box-shadow: 0 0 10px #800000, 0 0 5px #800000 !important;
+  box-shadow: 0 0 10px var(--warna-utama), 0 0 5px var(--warna-utama) !important;
 }
 
 /* 2. Animasi Konten Muncul (Fade In + Slide Up) */
@@ -1177,8 +1193,8 @@ button.btn-icon-sultan-info:hover, a.btn-icon-sultan-info:hover { background-col
 button.btn-icon-sultan-primary:hover, a.btn-icon-sultan-primary:hover { background-color: #007bff; color: #ffffff; }
 
 /* 6. MAROON (Warna Utama Aplikasi) */
-.btn-icon-sultan-maroon { background-color: #f8dada; color: #800000; }
-button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background-color: #800000; color: #ffffff; }
+.btn-icon-sultan-maroon { background-color: #f8dada; color: var(--warna-utama); }
+button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background-color: var(--warna-utama); color: #ffffff; }
 
 .preloader { display: none !important; }
 
@@ -1537,14 +1553,14 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
 
 /* ===================================================================
    7. MODERN SIDEBAR — Deep Maroon Heritage Theme
-   Maroon sejati: #7B0000 (bukan pinkish).
+   Maroon sejati: var(--warna-utama) (bukan pinkish).
    HP-friendly: min-height 44px.
    Teks 1 baris. Sisi kanan rata. Warna aktif beda per level.
    =================================================================== */
 
 /* ---------- Warna Dasar Sidebar ---------- */
 :root {
-    --sb-bg-1:     #7B0000;           /* Maroon tua sejati */
+    --sb-bg-1:     var(--warna-utama);           /* Maroon tua sejati */
     --sb-bg-2:     #4A0000;           /* Maroon lebih gelap */
     --sb-active-1: #FFF8E7;           /* Cream/Gold tint — Bapak AKTIF */
     --sb-active-2: #B3E5FC;           /* Sky-blue tint   — Anak AKTIF */
@@ -1683,7 +1699,7 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
 }
 .nav-sidebar > .nav-item > .nav-link.active > .nav-icon,
 .nav-sidebar > .nav-item > .nav-link.active i.right {
-    color: #8B0000 !important;
+    color: var(--warna-utama) !important;
 }
 /* Gold bar indikator aktif (kiri) */
 .nav-sidebar > .nav-item > .nav-link.active::before {
@@ -1789,7 +1805,7 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     width: 40px; height: 40px;
     border: 3px solid rgba(123, 0, 0, 0.1);
     border-radius: 50%;
-    border-top-color: #7B0000;
+    border-top-color: var(--warna-utama);
     animation: sk-spin 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
     margin-bottom: 12px;
 }
@@ -1846,12 +1862,12 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     position: absolute;
     left: 0; top: 0;
     width: 80px; height: 100%;
-    background: #7B0000;
+    background: var(--warna-utama);
     border-radius: 2px;
 }
 
 .sk-premium-info {
-    border-left: 5px solid #7B0000 !important;
+    border-left: 5px solid var(--warna-utama) !important;
     background: linear-gradient(to right, #ffffff, #fffdfd) !important;
     min-height: 48px !important;
     border-radius: 12px !important;
@@ -1902,12 +1918,12 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
 }
 .sk-input-premium:focus:not(:disabled) {
     background: #fff !important;
-    border-color: #7B0000 !important;
+    border-color: var(--warna-utama) !important;
     box-shadow: 0 0 0 3px rgba(123, 0, 0, 0.1) !important;
 }
 .sk-input-premium:disabled {
     background: #F1F5F9 !important;
-    color: #7B0000 !important;
+    color: var(--warna-utama) !important;
     font-weight: 800 !important;
 }
 
@@ -2148,7 +2164,7 @@ table.table-premium tbody tr:hover td.col-sticky-left {
 }
 
 /* KPI Variants */
-.kpi-main { background: linear-gradient(135deg, #7B0000 0%, #4A0000 100%); color: #fff; box-shadow: 0 10px 25px rgba(123, 0, 0, 0.25); }
+.kpi-main { background: linear-gradient(135deg, var(--warna-utama) 0%, #4A0000 100%); color: #fff; box-shadow: 0 10px 25px rgba(123, 0, 0, 0.25); }
 .kpi-gold { background: linear-gradient(135deg, #EAC947 0%, #C0A020 100%); color: #1e293b; box-shadow: 0 10px 25px rgba(234, 201, 71, 0.25); }
 .kpi-blue { background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%); color: #fff; box-shadow: 0 10px 25px rgba(2, 132, 199, 0.25); }
 .kpi-teal { background: linear-gradient(135deg, #0D9488 0%, #0F766E 100%); color: #fff; box-shadow: 0 10px 25px rgba(13, 148, 136, 0.25); }
@@ -2244,7 +2260,7 @@ table.table-premium tbody tr:hover td.col-sticky-left {
     --cb-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     --cb-border: #E2E8F0;
     --cb-bg-soft: #FDF2F2; /* Soft pinkish tint from mockup */
-    --cb-maroon: #7B0000;
+    --cb-maroon: var(--warna-utama);
 }
 
 /* 1. CARDS & CONTAINERS */
@@ -2273,7 +2289,7 @@ table.table-premium tbody tr:hover td.col-sticky-left {
 }
 .cb-table thead th {
     background: #FFF9E6 !important; /* Pale yellowish gold */
-    color: #7B0000 !important; /* Maroon text */
+    color: var(--warna-utama) !important; /* Maroon text */
     font-size: 0.85rem;
     font-weight: 800;
     text-transform: none;
@@ -2654,7 +2670,7 @@ body .modal-header-sultan .modal-title i { color: var(--warna-emas) !important; 
 .sultan-header-navy { background: #1D3573 !important; color: #fff !important; padding: 0.75rem 1.5rem !important; border-bottom: 3px solid rgba(0,0,0,0.15) !important; }
 .sultan-header-indigo { background: #4F46E5 !important; color: #fff !important; padding: 0.75rem 1.5rem !important; border-bottom: 3px solid rgba(0,0,0,0.15) !important; }
 .sultan-header-emerald { background: #059669 !important; color: #fff !important; padding: 0.75rem 1.5rem !important; border-bottom: 3px solid rgba(0,0,0,0.15) !important; }
-.sultan-header-maroon { background: #8B0000 !important; color: #fff !important; padding: 0.75rem 1.5rem !important; border-bottom: 3px solid rgba(0,0,0,0.15) !important; }
+.sultan-header-maroon { background: var(--warna-utama) !important; color: #fff !important; padding: 0.75rem 1.5rem !important; border-bottom: 3px solid rgba(0,0,0,0.15) !important; }
 .sultan-header-gold { background: #EAC947 !important; color: #1D3573 !important; padding: 0.75rem 1.5rem !important; border-bottom: 3px solid rgba(0,0,0,0.15) !important; }
 
 /* Ensure white text inside color headers */
@@ -2682,8 +2698,8 @@ body .modal-header-sultan .modal-title i { color: var(--warna-emas) !important; 
 .sultan-info-box i { font-size: 1.25rem; margin-top: 2px; }
 .sultan-info-box.info-navy { border-left-color: #1D3573 !important; color: #1e293b !important; }
 .sultan-info-box.info-navy i { color: #1D3573 !important; }
-.sultan-info-box.info-maroon { border-left-color: #8B0000 !important; }
-.sultan-info-box.info-maroon i { color: #8B0000 !important; }
+.sultan-info-box.info-maroon { border-left-color: var(--warna-utama) !important; }
+.sultan-info-box.info-maroon i { color: var(--warna-utama) !important; }
 .sultan-info-box.info-emerald { border-left-color: #059669 !important; }
 .sultan-info-box.info-emerald i { color: #059669 !important; }
 .sultan-info-box.info-gold { border-left-color: #EAC947 !important; }
@@ -2728,8 +2744,8 @@ body .modal-header-sultan .modal-title i { color: var(--warna-emas) !important; 
 
 /* Color Variants */
 .btn-sultan-maroon {
-    background-color: #8B0000 !important;
-    border-color: #8B0000 !important;
+    background-color: var(--warna-utama) !important;
+    border-color: var(--warna-utama) !important;
     color: #ffffff !important;
 }
 .btn-sultan-maroon:hover {
@@ -2828,7 +2844,7 @@ body .modal-header-sultan .modal-title i { color: var(--warna-emas) !important; 
 .swal2-confirm.swal2-styled:focus { box-shadow: none !important; }
 
 /* Theme Colors */
-.swal2-popup.sultan-alert-popup .swal2-confirm.swal2-styled { background-color: #8B0000 !important; } /* Default Maroon */
+.swal2-popup.sultan-alert-popup .swal2-confirm.swal2-styled { background-color: var(--warna-utama) !important; } /* Default Maroon */
 .swal2-popup.sultan-success-popup .swal2-confirm.swal2-styled { background-color: #059669 !important; } /* Emerald for Success */
 .swal2-popup.sultan-warning-popup .swal2-confirm.swal2-styled { background-color: #d97706 !important; } /* Gold for Warning */
 
@@ -2842,7 +2858,7 @@ body .modal-header-sultan .modal-title i { color: var(--warna-emas) !important; 
 /* Sultan Orbit Loader Fix */
 .sultan-orbit-icon { border: 0 !important; background: transparent !important; }
 .sultan-orbit {
-    width: 50px; height: 50px; border: 4px solid #f1f5f9; border-top: 4px solid #8B0000;
+    width: 50px; height: 50px; border: 4px solid #f1f5f9; border-top: 4px solid var(--warna-utama);
     border-radius: 50%; animation: sultan-spin 1s linear infinite; margin: 0 auto;
 }
 @keyframes sultan-spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
