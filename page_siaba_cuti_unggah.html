@@ -647,9 +647,11 @@ function unggahcuti_previewFile(rowId) {
             });
 
             setTimeout(function() {
-                $('#unggahcuti_loadingPreviewPDF').removeClass('d-flex').addClass('d-none');
-                $('#unggahcuti_framePreviewFile').removeClass('d-none');
-            }, 2500);
+                if ($('#unggahcuti_loadingPreviewPDF').is(':visible')) {
+                    $('#unggahcuti_loadingPreviewPDF').removeClass('d-flex').addClass('d-none');
+                    $('#unggahcuti_framePreviewFile').removeClass('d-none');
+                }
+            }, 3500);
 
         } else { 
             Sultan.alert('error', 'Error', 'Tautan file tidak valid.'); 
@@ -764,6 +766,7 @@ function unggahcuti_bukaModalVerif(id) {
             var directDownloadUrl = 'https://drive.google.com/uc?export=download&id=' + fileId;
             
             $('#unggahcuti_loadingPreviewVerif').removeClass('d-none').addClass('d-flex');
+            $('#unggahcuti_noFileVerif').addClass('d-none'); // FIX: Sembunyikan placeholder jika ada file
             $('#unggahcuti_frameVerif').attr('src', previewUrl);
             $('#unggahcuti_btnUnduhVerif').attr('href', directDownloadUrl).show();
             
@@ -773,9 +776,11 @@ function unggahcuti_bukaModalVerif(id) {
             });
             
             setTimeout(function() {
-                $('#unggahcuti_loadingPreviewVerif').removeClass('d-flex').addClass('d-none');
-                $('#unggahcuti_frameVerif').removeClass('d-none');
-            }, 2500);
+                if ($('#unggahcuti_loadingPreviewVerif').is(':visible')) {
+                    $('#unggahcuti_loadingPreviewVerif').removeClass('d-flex').addClass('d-none');
+                    $('#unggahcuti_frameVerif').removeClass('d-none');
+                }
+            }, 3500);
         }
     }
 
