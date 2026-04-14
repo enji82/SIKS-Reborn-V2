@@ -129,27 +129,34 @@
 
 <div class="modal fade" id="lapbulkelola_modalPreview" tabindex="-1" role="dialog" data-backdrop="static">
     <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
-        <div class="modal-content border-0 shadow-lg modal-content-sultan">
-            <div class="modal-header modal-header-sultan bg-maroon text-white py-3">
-                <h5 class="modal-title font-weight-bold"><i class="fas fa-file-pdf mr-2"></i> Pratinjau Dokumen Laporan</h5>
-                <div class="ml-auto d-flex align-items-center">
-                    <a href="#" id="lapbulkelola_btnQuickDownload" class="btn btn-maroon btn-sultan-twin text-white shadow-sm mr-2">
-                        <i class="fas fa-download mr-1"></i> UNDUH
-                    </a>
-                    <a href="#" id="lapbulkelola_btnFullDownload" target="_blank" class="btn btn-dark btn-sultan-twin text-white shadow-sm mr-4">
-                        <i class="fas fa-external-link-alt mr-1"></i> TAB BARU
-                    </a>
-                    <button type="button" class="close text-white" data-dismiss="modal" style="opacity: 1; font-size: 1.8rem; height: 40px; width: 40px; display: flex; align-items: center; justify-content: center; margin-top: -2px;">
-                        <i class="fas fa-times" style="font-size: 1.2rem;"></i>
-                    </button>
+        <div class="modal-content border-0 shadow-lg modal-content-sultan bg-dark">
+            
+            <!-- SULTAN COMPACT DARK HEADER -->
+            <div class="modal-header bg-black py-0 px-3 d-flex align-items-center" style="height: 44px; border-bottom: 1px solid #333 !important;">
+                <div class="d-flex align-items-center w-100">
+                    <h6 class="modal-title font-weight-bold text-white-50 mb-0 small text-uppercase" style="letter-spacing: 1px;">
+                        <i class="fas fa-file-pdf mr-2 text-danger"></i> PRATINJAU DOKUMEN LAPORAN
+                    </h6>
+                    
+                    <div class="ml-auto d-flex align-items-center" style="gap: 20px;">
+                        <a id="lapbulkelola_linkDownloadHeader" href="#" target="_blank" class="text-white-50 hover-white small font-weight-bold" title="Unduh File">
+                            <i class="fas fa-download mr-1"></i> <span class="d-none d-md-inline">UNDUH</span>
+                        </a>
+                        <a id="lapbulkelola_linkTabHeader" href="#" target="_blank" class="text-white-50 hover-white small font-weight-bold" title="Buka di Tab Baru">
+                            <i class="fas fa-external-link-alt mr-1"></i> <span class="d-none d-md-inline">TAB BARU</span>
+                        </a>
+                        <div class="border-left border-secondary h-100 mx-2" style="height: 20px !important; opacity: 0.3;"></div>
+                        <button type="button" class="close text-white opacity-50 hover-opacity-100 m-0 p-0" data-dismiss="modal" style="font-size: 1.5rem; line-height: 1;">&times;</button>
+                    </div>
                 </div>
             </div>
-            <div class="modal-body modal-body-full bg-dark position-relative p-0" style="height: calc(100vh - 55px);">
+
+            <div class="modal-body modal-body-full bg-dark position-relative p-0" style="height: calc(100vh - 44px);">
                 <iframe id="lapbulkelola_framePreview" class="w-100 h-100 border-0 d-none" src=""></iframe>
                 <div id="lapbulkelola_loadingPreviewPDF" class="d-flex h-100 align-items-center justify-content-center text-white-50 position-absolute w-100">
                     <div class="text-center">
-                        <i class="fas fa-circle-notch fa-spin fa-3x mb-3"></i>
-                        <p>Memuat Dokumen...</p>
+                        <div class="sultan-spinner-compact mb-3"></div>
+                        <p class="small font-weight-bold opacity-50">MEMUAT DOKUMEN...</p>
                     </div>
                 </div>
             </div>

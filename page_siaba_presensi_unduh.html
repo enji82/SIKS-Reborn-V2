@@ -80,31 +80,36 @@
 
 <div class="modal fade" id="unduh_modalPreview" tabindex="-1" role="dialog" data-backdrop="static">
   <div class="modal-dialog modal-dialog-full" role="document"> 
-    <div class="modal-content modal-content-full-height border-0 shadow-lg modal-content-sultan"> 
+    <div class="modal-content modal-content-full-height border-0 shadow-lg modal-content-sultan bg-dark"> 
       
-      <!-- SULTAN GLASSMORPHISM HEADER -->
-      <div class="modal-header sultan-glass-maroon py-2">
-        <h6 class="modal-title font-weight-bold text-white">
-            <i class="fas fa-file-alt mr-2"></i> PREVIEW DOKUMEN
-        </h6>
-        <button type="button" class="close text-white opacity-80 hover-opacity-100" data-dismiss="modal">&times;</button>
+      <!-- SULTAN COMPACT DARK HEADER -->
+      <div class="modal-header sultan-compact-header bg-black py-0 px-3 d-flex align-items-center" style="height: 44px; border-bottom: 1px solid #333 !important;">
+        <div class="d-flex align-items-center w-100">
+            <h6 class="modal-title font-weight-bold text-white-50 mb-0 small text-uppercase" style="letter-spacing: 1px;">
+                <i class="fas fa-file-pdf mr-2 text-danger"></i> PRATINJAU DOKUMEN
+            </h6>
+            
+            <div class="ml-auto d-flex align-items-center" style="gap: 20px;">
+                <a id="unduh_linkDownloadHeader" href="#" target="_blank" class="text-white-50 hover-white small font-weight-bold" title="Unduh File">
+                    <i class="fas fa-download mr-1"></i> <span class="d-none d-md-inline">UNDUH</span>
+                </a>
+                <a id="unduh_linkTabHeader" href="#" target="_blank" class="text-white-50 hover-white small font-weight-bold" title="Buka di Tab Baru">
+                    <i class="fas fa-external-link-alt mr-1"></i> <span class="d-none d-md-inline">TAB BARU</span>
+                </a>
+                <div class="border-left border-secondary h-100 mx-2" style="height: 20px !important; opacity: 0.3;"></div>
+                <button type="button" class="close text-white opacity-50 hover-opacity-100 m-0 p-0" data-dismiss="modal" style="font-size: 1.5rem; line-height: 1;">&times;</button>
+            </div>
+        </div>
       </div>
       
-      <div class="modal-body modal-body-full bg-dark position-relative p-0" style="height: calc(100vh - 55px);">
+      <div class="modal-body modal-body-full bg-dark position-relative p-0" style="height: calc(100vh - 44px);">
           <iframe id="unduh_framePreview" class="iframe-full w-100 h-100 border-0 d-none" src=""></iframe>
           <div id="unduh_loadingPreviewPDF" class="d-flex h-100 align-items-center justify-content-center text-white-50 position-absolute w-100">
-              <div class="text-center"><i class="fas fa-circle-notch fa-spin fa-3x mb-3"></i><p>Memuat Dokumen...</p></div>
+              <div class="text-center">
+                  <div class="sultan-spinner-compact mb-3"></div>
+                  <p class="small font-weight-bold opacity-50">MEMUAT DOKUMEN...</p>
+              </div>
           </div>
-      </div>
-      
-      <div class="modal-footer justify-content-between bg-white py-2 border-top" style="flex-shrink: 0;">
-          <button type="button" class="btn btn-sultan-nav bg-light border-0 px-4 font-weight-bold text-dark shadow-sm" data-dismiss="modal">
-            <i class="fas fa-times-circle mr-2 opacity-50"></i> TUTUP
-          </button>
-          
-          <a id="unduh_btnDownloadFinal" href="#" target="_blank" class="btn btn-sultan-success px-4 font-weight-bold shadow-sm">
-              <i class="fas fa-download mr-2"></i> UNDUH FILE
-          </a>
       </div>
 
     </div>
@@ -323,7 +328,10 @@
 
       $('#unduh_loadingPreviewPDF').removeClass('d-none');
       $('#unduh_framePreview').addClass('d-none').attr('src', previewUrl);
-      $('#unduh_btnDownloadFinal').attr('href', downloadUrl);
+      
+      // Update header links
+      $('#unduh_linkDownloadHeader').attr('href', downloadUrl);
+      $('#unduh_linkTabHeader').attr('href', 'https://drive.google.com/file/d/' + fileId + '/view');
 
       $('#unduh_modalPreview').modal('show');
 
@@ -396,6 +404,30 @@
     box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3) !important;
     transform: translateY(-2px);
     background: linear-gradient(135deg, #218838 0%, #1e7e34 100%) !important;
+}
+
+/* SULTAN COMPACT PREVIEW STYLES */
+.bg-black { background-color: #000 !important; }
+.hover-white:hover { color: #fff !important; text-decoration: none !important; }
+.opacity-50 { opacity: 0.5 !important; }
+.opacity-80 { opacity: 0.8 !important; }
+
+.sultan-compact-header {
+    background: #0d0d0d !important;
+    backdrop-filter: blur(5px);
+}
+
+.sultan-spinner-compact {
+    width: 30px;
+    height: 30px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    border-top-color: #800000;
+    animation: sultan-spin 0.8s linear infinite;
+}
+
+@keyframes sultan-spin {
+    to { transform: rotate(360deg); }
 }
 
 .sultan-glass-maroon {
