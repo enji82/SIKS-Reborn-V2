@@ -45,19 +45,7 @@
     overflow-x: hidden;
   }
 
-  /* --- SULTAN COMPONENTS: SURFACES --- */
-  .sultan-card {
-    background: var(--warna-surface) !important;
-    border: 1px solid rgba(0,0,0,0.05) !important;
-    border-radius: var(--radius-sultan) !important;
-    box-shadow: var(--shadow-sultan) !important;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    overflow: hidden;
-  }
-  .sultan-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.08) !important;
-  }
+
   .sultan-card-glass {
     background: var(--glass-bg) !important;
     backdrop-filter: var(--glass-blur);
@@ -120,25 +108,7 @@
     letter-spacing: 1px;
   }
 
-  /* --- SULTAN COMPONENTS: LAYOUT CONTROLLERS --- */
-  .sultan-grid {
-    display: grid;
-    gap: 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  }
-  .sultan-hero {
-    padding: 2.5rem 2rem;
-    border-radius: var(--radius-sultan);
-    background: linear-gradient(135deg, var(--warna-utama) 0%, var(--warna-utama-dark) 100%);
-    color: #fff;
-    margin-bottom: 2rem;
-    position: relative;
-    overflow: hidden;
-  }
-  .sultan-hero::after {
-    content: ''; position: absolute; top:0; left:0; right:0; bottom:0;
-    background: radial-gradient(circle at 80% 20%, rgba(234, 201, 71, 0.15) 0%, transparent 40%);
-  }
+
 
   /* ADMINLTE OVERRIDES (CLEAN SAAS THEME) */
   /* Keep necessary core overrides but cleanup clutter */

@@ -1,231 +1,158 @@
-<style>
-  /* =====================================================
-     HOME PAGE — Sultan Elite Edition (v2026)
-     ===================================================== */
+<!-- 
+  SULTAN ELITE DASHBOARD (v2026.Tailwind)
+  Refactored using Tailwind CSS for zero-conflict, high-performance UI.
+-->
+
+<div class="px-6 py-8 animate-reveal">
   
-  /* Hero Clock Styling */
-  .hero-clock-box {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
-    padding: 1.5rem;
-    text-align: right;
-    min-width: 260px;
-  }
-  .display-jam {
-    font-size: 2.8rem; font-weight: 800; line-height: 1;
-    letter-spacing: -2px; margin-bottom: 0.25rem;
-    color: #fff;
-  }
-  .display-tgl {
-    font-size: 0.85rem; font-weight: 600; opacity: 0.8;
-  }
-  
-  /* KPI Cards Styling */
-  .kpi-icon-wrapper {
-    width: 50px; height: 50px;
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-  }
+  <!-- 1. HERO HEADER (Navy Elite Gradient) -->
+  <div class="bg-gradient-to-br from-sultan-navy to-sultan-navy-dark rounded-sultan p-8 md:p-12 mb-8 shadow-sultan-xl relative overflow-hidden">
+    <!-- Decorative Accents -->
+    <div class="absolute top-0 right-0 w-64 h-64 bg-sultan-gold/10 rounded-full -mr-20 -mt-20 blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full -ml-10 -mb-10 blur-2xl pointer-events-none"></div>
 
-  /* Operation Module Cards */
-  .module-card {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
-    text-decoration: none !important;
-    height: 100%;
-    display: block;
-  }
-  .module-card:hover {
-    transform: translateY(-8px);
-  }
-  .module-icon {
-    width: 56px; height: 56px;
-    border-radius: 14px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.5rem;
-    margin-bottom: 1.25rem;
-    transition: all 0.3s;
-  }
-  .module-card:hover .module-icon {
-    transform: scale(1.1) rotate(5deg);
-  }
-
-  /* Info Marquee Bar */
-  .sultan-marquee-bar {
-    background: #fff;
-    border-radius: 50px;
-    padding: 10px 25px;
-    margin-bottom: 2rem;
-    display: flex; align-items: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-    border: 1px solid #E2E8F0;
-  }
-  .marquee-label {
-    background: var(--warna-utama);
-    color: #fff;
-    font-size: 0.7rem;
-    font-weight: 800;
-    padding: 4px 12px;
-    border-radius: 20px;
-    margin-right: 15px;
-    flex-shrink: 0;
-  }
-  .marquee-content {
-    flex: 1; overflow: hidden; white-space: nowrap;
-    font-size: 0.85rem; font-weight: 600; color: #475569;
-  }
-</style>
-
-<div class="px-3 pt-3">
-  <!-- 1. HERO SECTION -->
-  <div class="sultan-hero sk-animate-reveal">
-    <div class="row align-items-center">
-      <div class="col-lg-8 col-md-12 mb-4 mb-lg-0">
-        <div class="sultan-subtitle" style="color:var(--warna-emas);">
-          <i class="fas fa-sparkles" id="greeting-icon"></i> <span id="greeting-text">Selamat Pagi,</span>
+    <div class="flex flex-col md:flex-row justify-between items-center gap-8 relative z-10">
+      <!-- Greeting & User -->
+      <div class="flex-1">
+        <div class="flex items-center gap-3 text-sultan-gold font-bold uppercase tracking-wider text-xs mb-3">
+          <i class="fas fa-sparkles" id="greeting-icon"></i>
+          <span id="greeting-text">Selamat Pagi,</span>
         </div>
-        <h1 class="text-white mt-1 mb-3" style="font-size:2.8rem; font-weight:800; letter-spacing:-1.5px; color:#fff !important;" id="user-fullname-home">Memuat...</h1>
-        <p class="text-white-50" style="max-width:500px; line-height:1.7;">
-          Selamat datang di portal <b>REBORN</b>. Ruang Edukasi & Layanan Berbasis Online Terintegrasi untuk masa depan pendidikan yang lebih cerdas.
+        <h1 class="text-white text-4xl md:text-5xl font-extrabold tracking-tight mb-4" id="user-fullname-home">Memuat...</h1>
+        <p class="text-white/60 max-w-lg leading-relaxed text-sm md:text-base">
+          Selamat datang kembali di <span class="text-sultan-gold font-bold">REBORN</span>. Kelola data pendidikan lebih cepat, transparan, dan terintegrasi melalui satu pintu.
         </p>
       </div>
-      <div class="col-lg-4 col-md-12 text-lg-right text-center">
-        <div class="hero-clock-box d-inline-block">
-          <div id="display-jam-home" class="display-jam">00:00:00</div>
-          <div id="display-tgl-nasional" class="display-tgl">---</div>
-          <div id="display-hari-pasaran" style="font-size:0.75rem; font-weight:800; color:var(--warna-emas); margin-top:5px; text-transform:uppercase;">---</div>
-        </div>
+
+      <!-- Live Clock Glass Card -->
+      <div class="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-2xl min-w-[280px] text-right">
+        <div id="display-hari-pasaran" class="text-sultan-gold font-black text-xs uppercase tracking-widest mb-1">---</div>
+        <div id="display-jam-home" class="text-white text-4xl font-extrabold tracking-tighter mb-1">00:00:00</div>
+        <div id="display-tgl-nasional" class="text-white/80 text-xs font-semibold">---</div>
       </div>
     </div>
   </div>
 
-  <!-- 2. INFO MARQUEE -->
-  <div class="sultan-marquee-bar sk-animate-reveal" style="animation-delay: 0.1s;">
-    <div class="marquee-label">PENGUMUMAN</div>
-    <div class="marquee-content">
-      <marquee behavior="scroll" direction="left" id="dynamic-marquee-text">Selamat datang di SIKS-REBORN &nbsp;|&nbsp; Sistem Informasi Korwil Disdikbud Kecamatan Secang</marquee>
+  <!-- 2. ANNOUNCEMENT BAR -->
+  <div class="bg-white rounded-full py-3 px-6 shadow-sultan border border-slate-100 mb-8 flex items-center gap-4">
+    <div class="bg-sultan-navy text-white text-[10px] font-black px-3 py-1 rounded-full shrink-0">PENGUMUMAN</div>
+    <div class="flex-1 overflow-hidden">
+      <marquee behavior="scroll" direction="left" class="text-slate-600 font-bold text-sm" id="dynamic-marquee-text">
+        Selamat datang di SIKS-REBORN &nbsp;|&nbsp; Sistem Informasi Korwil Disdikbud Kecamatan Secang &nbsp;|&nbsp;
+      </marquee>
     </div>
   </div>
 
-  <!-- 3. KPI INTELLIGENCE GRID (Using Bootstrap Grid for stability) -->
-  <div class="row mb-5 sk-animate-reveal" style="animation-delay: 0.2s;">
-    <!-- Akses Total -->
-    <div class="col-lg-3 col-md-6 mb-4">
-      <div class="sultan-card p-4">
-        <div class="kpi-icon-wrapper" style="background:rgba(29, 53, 115, 0.1); color:var(--warna-utama);">
-          <i class="fas fa-chart-line"></i>
-        </div>
-        <div style="font-size:2rem; font-weight:800; color:#1E293B;" id="stat-total">0</div>
-        <div class="sultan-subtitle">Total Kunjungan</div>
+  <!-- 3. KPI INTELLIGENCE GRID -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+    <!-- Stat 1 -->
+    <div class="bg-white p-6 rounded-sultan shadow-sultan border border-slate-50 hover:shadow-xl transition-all duration-300 group">
+      <div class="w-12 h-12 bg-sultan-navy/5 text-sultan-navy rounded-xl flex items-center justify-center text-xl mb-4 group-hover:bg-sultan-navy group-hover:text-white transition-colors">
+        <i class="fas fa-chart-line"></i>
       </div>
+      <div class="text-3xl font-black text-slate-800 tracking-tighter" id="stat-total">0</div>
+      <div class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mt-1">Total Kunjungan</div>
     </div>
-    <!-- Hari Ini -->
-    <div class="col-lg-3 col-md-6 mb-4">
-      <div class="sultan-card p-4">
-        <div class="kpi-icon-wrapper" style="background:rgba(5, 150, 105, 0.1); color:#059669;">
-          <i class="fas fa-calendar-check"></i>
-        </div>
-        <div style="font-size:2rem; font-weight:800; color:#1E293B;" id="stat-today">0</div>
-        <div class="sultan-subtitle">Hits Hari Ini</div>
+    <!-- Stat 2 -->
+    <div class="bg-white p-6 rounded-sultan shadow-sultan border border-slate-50 hover:shadow-xl transition-all duration-300 group">
+      <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center text-xl mb-4 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+        <i class="fas fa-calendar-check"></i>
       </div>
+      <div class="text-3xl font-black text-slate-800 tracking-tighter" id="stat-today">0</div>
+      <div class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mt-1">Hits Hari Ini</div>
     </div>
-    <!-- User -->
-    <div class="col-lg-3 col-md-6 mb-4">
-      <div class="sultan-card p-4">
-        <div class="kpi-icon-wrapper" style="background:rgba(217, 119, 6, 0.1); color:#D97706;">
-          <i class="fas fa-users"></i>
-        </div>
-        <div style="font-size:2rem; font-weight:800; color:#1E293B;" id="stat-users">0</div>
-        <div class="sultan-subtitle">User Terdaftar</div>
+    <!-- Stat 3 -->
+    <div class="bg-white p-6 rounded-sultan shadow-sultan border border-slate-50 hover:shadow-xl transition-all duration-300 group">
+      <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center text-xl mb-4 group-hover:bg-amber-600 group-hover:text-white transition-colors">
+        <i class="fas fa-users"></i>
       </div>
+      <div class="text-3xl font-black text-slate-800 tracking-tighter" id="stat-users">0</div>
+      <div class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mt-1">User Terdaftar</div>
     </div>
-    <!-- Online -->
-    <div class="col-lg-3 col-md-6 mb-4">
-      <div class="sultan-card p-4">
-        <div class="kpi-icon-wrapper" style="background:rgba(2, 132, 199, 0.1); color:#0284C7;">
-          <i class="fas fa-wifi"></i>
-        </div>
-        <div style="font-size:2rem; font-weight:800; color:#1E293B;" id="stat-online">0</div>
-        <div class="sultan-subtitle">Sedang Online</div>
+    <!-- Stat 4 -->
+    <div class="bg-white p-6 rounded-sultan shadow-sultan border border-slate-50 hover:shadow-xl transition-all duration-300 group">
+      <div class="w-12 h-12 bg-info-50 text-info rounded-xl flex items-center justify-center text-xl mb-4 group-hover:bg-info group-hover:text-white transition-colors" style="background:#F0F9FF; color:#0284C7;">
+        <i class="fas fa-wifi"></i>
       </div>
+      <div class="text-3xl font-black text-slate-800 tracking-tighter" id="stat-online">0</div>
+      <div class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mt-1">Sedang Online</div>
     </div>
   </div>
 
-  <!-- 4. OPERATION HUB (MODULE GRID) -->
-  <div class="mb-3 sk-animate-reveal" style="animation-delay: 0.3s;">
-    <div class="sultan-subtitle mb-4">Pusat Layanan Operasional</div>
-    <div class="row">
+  <!-- 4. OPERATION CENTER GRID -->
+  <div class="space-y-6">
+    <div class="flex items-center gap-4">
+      <div class="h-[2px] w-8 bg-sultan-gold"></div>
+      <h2 class="text-xs font-black text-slate-400 uppercase tracking-widest">Pusat Layanan Operasional</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       
       <!-- Module SK -->
-      <div class="col-lg-4 col-md-6 mb-4">
-        <a href="#" class="sultan-card p-4 module-card nav-link" data-page="sk_dashboard">
-          <div class="module-icon" style="background:#FEF2F2; color:#DC2626;">
+      <a href="#" class="nav-link group" data-page="sk_dashboard">
+        <div class="bg-white p-6 rounded-sultan shadow-sultan border border-slate-50 hover:shadow-sultan-xl transition-all duration-300 h-full">
+          <div class="w-14 h-14 bg-rose-50 text-rose-600 rounded-2xl flex items-center justify-center text-2xl mb-5 group-hover:scale-110 group-hover:rotate-6 transition-transform">
             <i class="fas fa-file-signature"></i>
           </div>
-          <h6 class="font-weight-bold mb-1" style="color:#0F172A;">SK Pembagian Tugas</h6>
-          <p class="small text-muted mb-0">Kelola dokumen SK & penetapan tugas guru.</p>
-        </a>
-      </div>
+          <h3 class="text-lg font-bold text-slate-800 mb-2">SK Pembagian Tugas</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Kelola penetapan tugas guru & dokumen digital secara terpusat.</p>
+        </div>
+      </a>
 
       <!-- Module Lapbul -->
-      <div class="col-lg-4 col-md-6 mb-4">
-        <a href="#" class="sultan-card p-4 module-card nav-link" data-page="lapbul_dashboard">
-          <div class="module-icon" style="background:#F0F9FF; color:#0284C7;">
+      <a href="#" class="nav-link group" data-page="lapbul_dashboard">
+        <div class="bg-white p-6 rounded-sultan shadow-sultan border border-slate-50 hover:shadow-sultan-xl transition-all duration-300 h-full">
+          <div class="w-14 h-14 bg-sky-50 text-sky-600 rounded-2xl flex items-center justify-center text-2xl mb-5 group-hover:scale-110 group-hover:rotate-6 transition-transform">
             <i class="fas fa-file-invoice"></i>
           </div>
-          <h6 class="font-weight-bold mb-1" style="color:#0F172A;">Laporan Bulanan</h6>
-          <p class="small text-muted mb-0">Monitoring & laporan rutin satuan pendidikan.</p>
-        </a>
-      </div>
+          <h3 class="text-lg font-bold text-slate-800 mb-2">Laporan Bulanan</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Pengiriman & verifikasi rekapitulasi bulanan satuan pendidikan.</p>
+        </div>
+      </a>
 
       <!-- Module SIABA -->
-      <div class="col-lg-4 col-md-6 mb-4">
-        <a href="#" class="sultan-card p-4 module-card nav-link" data-page="siaba_dashboard">
-          <div class="module-icon" style="background:#ECFDF5; color:#059669;">
+      <a href="#" class="nav-link group" data-page="siaba_dashboard">
+        <div class="bg-white p-6 rounded-sultan shadow-sultan border border-slate-50 hover:shadow-sultan-xl transition-all duration-300 h-full">
+          <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl mb-5 group-hover:scale-110 group-hover:rotate-6 transition-transform">
             <i class="fas fa-fingerprint"></i>
           </div>
-          <h6 class="font-weight-bold mb-1" style="color:#0F172A;">SIABA Presensi</h6>
-          <p class="small text-muted mb-0">Kehadiran, Cuti & Perjalanan Dinas Pegawai.</p>
-        </a>
-      </div>
+          <h3 class="text-lg font-bold text-slate-800 mb-2">SIABA Presensi</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Rekap kehadiran harian, cuti, & perjalanan dinas ASN/Non-ASN.</p>
+        </div>
+      </a>
 
       <!-- Module PTK -->
-      <div class="col-lg-4 col-md-6 mb-4">
-        <a href="#" class="sultan-card p-4 module-card nav-link" data-page="ptk_dashboard">
-          <div class="module-icon" style="background:#F5F3FF; color:#7C3AED;">
+      <a href="#" class="nav-link group" data-page="ptk_dashboard">
+        <div class="bg-white p-6 rounded-sultan shadow-sultan border border-slate-50 hover:shadow-sultan-xl transition-all duration-300 h-full">
+          <div class="w-14 h-14 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center text-2xl mb-5 group-hover:scale-110 group-hover:rotate-6 transition-transform">
             <i class="fas fa-user-friends"></i>
           </div>
-          <h6 class="font-weight-bold mb-1" style="color:#0F172A;">Data PTK</h6>
-          <p class="small text-muted mb-0">Database Pendidik & Tenaga Kependidikan.</p>
-        </a>
-      </div>
+          <h3 class="text-lg font-bold text-slate-800 mb-2">Database PTK</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Data statistik pendidik & tenaga kependidikan semua jenjang.</p>
+        </div>
+      </a>
 
       <!-- Module Murid -->
-      <div class="col-lg-4 col-md-6 mb-4">
-        <a href="#" class="sultan-card p-4 module-card nav-link" data-page="murid_dashboard">
-          <div class="module-icon" style="background:#FFFBEB; color:#D97706;">
+      <a href="#" class="nav-link group" data-page="murid_dashboard">
+        <div class="bg-white p-6 rounded-sultan shadow-sultan border border-slate-50 hover:shadow-sultan-xl transition-all duration-300 h-full">
+          <div class="w-14 h-14 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center text-2xl mb-5 group-hover:scale-110 group-hover:rotate-6 transition-transform">
             <i class="fas fa-user-graduate"></i>
           </div>
-          <h6 class="font-weight-bold mb-1" style="color:#0F172A;">Data Siswa</h6>
-          <p class="small text-muted mb-0">Statistik rombel & distribusi peserta didik.</p>
-        </a>
-      </div>
+          <h3 class="text-lg font-bold text-slate-800 mb-2">Data Kesiswaan</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Manajemen rombongan belajar & rekapitulasi peserta didik.</p>
+        </div>
+      </a>
 
       <!-- Module E-File -->
-      <div class="col-lg-4 col-md-6 mb-4">
-        <a href="#" class="sultan-card p-4 module-card nav-link" data-page="efile_dashboard">
-          <div class="module-icon" style="background:#F8FAFC; color:#475569;">
+      <a href="#" class="nav-link group" data-page="efile_dashboard">
+        <div class="bg-white p-6 rounded-sultan shadow-sultan border border-slate-50 hover:shadow-sultan-xl transition-all duration-300 h-full">
+          <div class="w-14 h-14 bg-slate-50 text-slate-600 rounded-2xl flex items-center justify-center text-2xl mb-5 group-hover:scale-110 group-hover:rotate-6 transition-transform">
             <i class="fas fa-folder-tree"></i>
           </div>
-          <h6 class="font-weight-bold mb-1" style="color:#0F172A;">Arsip E-File</h6>
-          <p class="small text-muted mb-0">Digitalisasi berkas & dokumen kepegawaian.</p>
-        </a>
-      </div>
+          <h3 class="text-lg font-bold text-slate-800 mb-2">Arsip E-File</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Digitalisasi folder berkas & dokumen fisik kepegawaian.</p>
+        </div>
+      </a>
 
     </div>
   </div>
@@ -233,7 +160,7 @@
 
 <script>
 /**
- * START SULTAN HOME ENGINE
+ * START SULTAN HOME ENGINE (Tailwind Edition)
  */
 function startSultanSystem() {
   muatDataUserLocal();
@@ -259,12 +186,12 @@ function updateClock() {
   $("#display-jam-home").text(`${pad(h)}:${pad(m)}:${pad(s)}`);
 
   // Date Logic
-  const opt = { weekday:'long', day:'numeric', month:'long', year:'numeric' };
+  const opt = { day:'numeric', month:'long', year:'numeric' };
   $("#display-tgl-nasional").text(t.toLocaleDateString('id-ID', opt));
   
-  // Pasaran Logic (Optimized)
+  // Pasaran Logic
   const jawa = getPasaranJawa(t);
-  const hariId = t.toLocaleDateString('id-ID', {weekday:'long'}).toUpperCase();
+  const hariId = t.toLocaleDateString('id-ID', {weekday:'long'});
   $("#display-hari-pasaran").text(`${hariId} ${jawa.pasaran}`);
 
   setTimeout(updateClock, 1000);
@@ -299,8 +226,8 @@ function fetchStats() {
 function animateSultanCounter(id, target) {
   const $el = $("#" + id);
   if (!$el.length || !target) return;
-  $({ countNum: 0 }).animate({ countNum: target }, {
-    duration: 1000,
+  $({ countNum: parseInt($el.text().replace(/\D/g,'')) || 0 }).animate({ countNum: target }, {
+    duration: 1200,
     easing: 'swing',
     step: function() { $el.text(Math.floor(this.countNum).toLocaleString('id-ID')); },
     complete: function() { $el.text(target.toLocaleString('id-ID')); }
