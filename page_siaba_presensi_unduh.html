@@ -82,11 +82,12 @@
   <div class="modal-dialog modal-dialog-full" role="document"> 
     <div class="modal-content modal-content-full-height border-0 shadow-lg modal-content-sultan"> 
       
-      <div class="modal-header bg-maroon py-2">
+      <!-- SULTAN GLASSMORPHISM HEADER -->
+      <div class="modal-header sultan-glass-maroon py-2">
         <h6 class="modal-title font-weight-bold text-white">
-            <i class="fas fa-file-alt mr-2"></i> Preview Dokumen
+            <i class="fas fa-file-alt mr-2"></i> PREVIEW DOKUMEN
         </h6>
-        <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
+        <button type="button" class="close text-white opacity-80 hover-opacity-100" data-dismiss="modal">&times;</button>
       </div>
       
       <div class="modal-body modal-body-full bg-dark position-relative p-0" style="height: calc(100vh - 55px);">
@@ -97,9 +98,11 @@
       </div>
       
       <div class="modal-footer justify-content-between bg-white py-2 border-top" style="flex-shrink: 0;">
-          <button type="button" class="btn border-tegas shadow-sm font-weight-bold px-4" data-dismiss="modal">Tutup</button>
+          <button type="button" class="btn btn-sultan-nav bg-light border-0 px-4 font-weight-bold text-dark shadow-sm" data-dismiss="modal">
+            <i class="fas fa-times-circle mr-2 opacity-50"></i> TUTUP
+          </button>
           
-          <a id="unduh_btnDownloadFinal" href="#" target="_blank" class="btn btn-success shadow-sm font-weight-bold px-4">
+          <a id="unduh_btnDownloadFinal" href="#" target="_blank" class="btn btn-sultan-success px-4 font-weight-bold shadow-sm">
               <i class="fas fa-download mr-2"></i> UNDUH FILE
           </a>
       </div>
@@ -380,6 +383,29 @@
     background-color: #f8f9fa !important;
     border-color: #adb5bd !important;
     transform: translateY(-1px);
+}
+
+.btn-sultan-success {
+    background: linear-gradient(135deg, #28a745 0%, #218838 100%) !important;
+    border: none !important;
+    color: white !important;
+    transition: all 0.3s ease;
+}
+
+.btn-sultan-success:hover {
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3) !important;
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #218838 0%, #1e7e34 100%) !important;
+}
+
+.sultan-glass-maroon {
+    background: rgba(128, 0, 0, 0.9) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.hover-opacity-100:hover {
+    opacity: 1 !important;
 }
 
 .text-gold-sultan { color: #d4af37 !important; }
