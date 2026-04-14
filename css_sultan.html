@@ -651,21 +651,13 @@
 }
 
 /* ===================================================================
-   SULTAN CRUD MODAL STANDARDIZATION
-   Centralized rules for Add, Edit, Delete, and Verif modals.
+   SULTAN CRUD MODAL & PREVIEW STANDARDIZATION
    =================================================================== */
 
 .sultan-modal-content {
-    background: rgba(255, 255, 255, 0.7) !important;
-    backdrop-filter: blur(12px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(12px) saturate(180%) !important;
-    border: 1px solid rgba(255, 255, 255, 0.4) !important;
-    border-radius: 18px !important;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15) !important;
-    overflow: hidden !important;
+    /* Glassmorphism inherits from .modal-content globally */
 }
 
-/* Modal Header Variants */
 .sultan-modal-header {
     padding: 1rem 1.25rem !important;
     border-bottom: 0 !important;
@@ -707,12 +699,13 @@
 
 .sultan-modal-body {
     padding: 1.5rem !important;
+    background: transparent !important;
 }
 
 .sultan-modal-footer {
     padding: 1rem 1.25rem !important;
-    background: #ffffff !important;
-    border-top: 1px solid #f1f5f9 !important;
+    background: transparent !important;
+    border-top: 1px solid rgba(0,0,0,0.05) !important;
 }
 
 /* ===================================================================
@@ -1284,15 +1277,17 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
    (Menaungi seluruh pop-up/modal yang berceceran di berbagai file)
    ========================================================================== */
 .modal-content {
-    border-radius: 1rem !important; /* Codebyte Modal Radius */
-    border: var(--border-sultan) !important;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    background: rgba(255, 255, 255, 0.7) !important;
+    backdrop-filter: blur(12px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    border-radius: 1.25rem !important;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15) !important;
     overflow: hidden;
-    background: var(--warna-kartu-bg) !important;
 }
 .modal-header {
-    background: var(--warna-kartu-bg) !important;
-    border-bottom: var(--border-sultan) !important;
+    background: transparent !important;
+    border-bottom: 1px solid rgba(0,0,0,0.05) !important;
     padding: 1.5rem !important;
     color: var(--warna-tegas) !important;
 }
@@ -1305,12 +1300,12 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
 }
 .modal-body {
     padding: 1.5rem !important;
-    background: var(--warna-kartu-bg) !important;
-    color: #737B8B !important;
+    background: transparent !important;
+    color: #475569 !important;
 }
 .modal-footer {
-    background: var(--warna-kartu-bg) !important;
-    border-top: var(--border-sultan) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-top: 1px solid rgba(0,0,0,0.05) !important;
     padding: 1.25rem 1.5rem !important;
 }
 .modal-backdrop.show {
