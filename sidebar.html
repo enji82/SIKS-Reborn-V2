@@ -1,7 +1,7 @@
 <!-- 
-  SULTAN TAILADMIN SIDEBAR (v2.5)
+  SULTAN TAILADMIN SIDEBAR (v2.6) - CLEAN LIGHT EDITION
   - Engine: Alpine.js
-  - Style: Official TailAdmin Free/Pro Layout
+  - Style: Theme-Responsive (White in LightMode, Dark in DarkMode)
 -->
 
 <aside class="sidebar-drawer no-scrollbar" 
@@ -11,17 +11,17 @@
   <!-- SIDEBAR HEADER (LOGO) -->
   <div class="flex items-center justify-between gap-2 px-6 py-6 lg:py-7">
     <a href="#" class="flex items-center gap-3" data-page="home">
-      <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white shadow-lg ring-4 ring-primary/10">
+      <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white shadow-lg ring-4 ring-primary/10 transition-transform hover:scale-105 duration-300">
         <i class="fas fa-school text-xl"></i>
       </div>
-      <div>
-        <h1 class="text-xl font-bold text-white tracking-widest leading-none">SIKS</h1>
-        <p class="text-[10px] text-bodydark font-semibold mt-1 uppercase tracking-tighter opacity-70">REBORN v2.5</p>
+      <div class="transition-opacity duration-300">
+        <h1 class="text-xl font-bold text-black dark:text-white tracking-widest leading-none">SIKS</h1>
+        <p class="text-[10px] text-body dark:text-bodydark font-semibold mt-1 uppercase tracking-tighter opacity-70">REBORN v2.6</p>
       </div>
     </a>
 
     <!-- Close Button (Mobile) -->
-    <button @click.prevent="sidebarOpened = false" class="lg:hidden text-bodydark hover:text-white transition-colors">
+    <button @click.prevent="sidebarOpened = false" class="lg:hidden text-body dark:text-bodydark hover:text-black dark:hover:text-white transition-colors">
       <i class="fas fa-arrow-left"></i>
     </button>
   </div>
@@ -32,7 +32,7 @@
       
       <!-- GROUP: UTAMA -->
       <div class="mb-6">
-        <h3 class="menu-group-title">Menu Utama</h3>
+        <h3 class="menu-group-title !text-body dark:!text-bodydark !opacity-60">Menu Utama</h3>
         <ul class="mb-6 flex flex-col gap-1.5">
           <li>
             <a href="#" class="nav-link-tail" data-page="home" @click="sidebarOpened = false">
@@ -45,14 +45,14 @@
 
       <!-- GROUP: OPERASIONAL -->
       <div class="mb-6">
-        <h3 class="menu-group-title">Operasional</h3>
+        <h3 class="menu-group-title !text-body dark:!text-bodydark !opacity-60">Operasional</h3>
         <ul class="mb-6 flex flex-col gap-1.5">
           
           <!-- Dropdown: SK Pembagian Tugas -->
           <li x-data="{ selected: false }">
             <a href="#" class="nav-link-tail justify-between" 
                @click.prevent="selected = !selected"
-               :class="{ 'bg-meta-4 text-white': selected }">
+               :class="{ 'active': selected }">
               <div class="flex items-center gap-2.5">
                 <i class="fas fa-file-signature"></i>
                 SK Pembagian Tugas
@@ -63,7 +63,7 @@
               <a href="#" class="submenu-link-tail" data-page="sk_dashboard" @click="sidebarOpened = false">Dashboard SK</a>
               <a href="#" class="submenu-link-tail flex justify-between items-center" data-page="sk_data" @click="sidebarOpened = false">
                 Data SK
-                <span id="sk_data_badge" class="bg-primary text-[10px] px-1.5 rounded-full hidden"></span>
+                <span id="sk_data_badge" class="bg-primary text-[10px] px-1.5 rounded-full text-white hidden"></span>
               </a>
               <a href="#" class="submenu-link-tail" data-page="sk_status" @click="sidebarOpened = false">Status Pengiriman</a>
             </div>
@@ -73,7 +73,7 @@
           <li x-data="{ selected: false }">
             <a href="#" class="nav-link-tail justify-between" 
                @click.prevent="selected = !selected"
-               :class="{ 'bg-meta-4 text-white': selected }">
+               :class="{ 'active': selected }">
               <div class="flex items-center gap-2.5">
                 <i class="fas fa-file-invoice"></i>
                 Laporan Bulan
@@ -92,7 +92,7 @@
           <li x-data="{ selected: false }">
             <a href="#" class="nav-link-tail justify-between" 
                @click.prevent="selected = !selected"
-               :class="{ 'bg-meta-4 text-white': selected }">
+               :class="{ 'active': selected }">
               <div class="flex items-center gap-2.5">
                 <i class="fas fa-fingerprint"></i>
                 SIABA
@@ -103,7 +103,6 @@
               <a href="#" class="submenu-link-tail" data-page="siaba_dashboard" @click="sidebarOpened = false">Dashboard SIABA</a>
               <a href="#" class="submenu-link-tail" data-page="siaba_presensi_harian" @click="sidebarOpened = false">Presensi Harian</a>
               <a href="#" class="submenu-link-tail" data-page="siaba_presensi_apel" @click="sidebarOpened = false">Apel & Upacara</a>
-              <a href="#" class="submenu-link-tail" data-page="siaba_presensi_tidak" @click="sidebarOpened = false">Tidak Presensi</a>
               <a href="#" class="submenu-link-tail" data-page="siaba_presensi_unduh" @click="sidebarOpened = false">Unduh Rekap</a>
               <a href="#" class="submenu-link-tail" data-page="siaba_cuti_data" @click="sidebarOpened = false">Pengajuan Cuti</a>
             </div>
@@ -120,14 +119,14 @@
 
       <!-- GROUP: DATA MASTER -->
       <div class="mb-6">
-        <h3 class="menu-group-title">Data Master</h3>
+        <h3 class="menu-group-title !text-body dark:!text-bodydark !opacity-60">Data Master</h3>
         <ul class="mb-6 flex flex-col gap-1.5">
           
           <!-- Dropdown: Data PTK -->
           <li x-data="{ selected: false }">
             <a href="#" class="nav-link-tail justify-between" 
                @click.prevent="selected = !selected"
-               :class="{ 'bg-meta-4 text-white': selected }">
+               :class="{ 'active': selected }">
               <div class="flex items-center gap-2.5">
                 <i class="fas fa-users-viewfinder"></i>
                 Data PTK
@@ -145,7 +144,7 @@
           <li x-data="{ selected: false }">
             <a href="#" class="nav-link-tail justify-between" 
                @click.prevent="selected = !selected"
-               :class="{ 'bg-meta-4 text-white': selected }">
+               :class="{ 'active': selected }">
               <div class="flex items-center gap-2.5">
                 <i class="fas fa-user-graduate"></i>
                 Data Murid
@@ -162,7 +161,7 @@
           <li x-data="{ selected: false }">
             <a href="#" class="nav-link-tail justify-between" 
                @click.prevent="selected = !selected"
-               :class="{ 'bg-meta-4 text-white': selected }">
+               :class="{ 'active': selected }">
               <div class="flex items-center gap-2.5">
                 <i class="fas fa-folder-tree"></i>
                 E-File Pegawai
@@ -181,7 +180,7 @@
 
       <!-- GROUP: SISTEM -->
       <div class="mb-6">
-        <h3 class="menu-group-title">Sistem</h3>
+        <h3 class="menu-group-title !text-body dark:!text-bodydark !opacity-60">Sistem</h3>
         <ul class="mb-6 flex flex-col gap-1.5">
           <li>
             <a href="#" class="nav-link-tail" data-page="page_setting" id="menu-setting-admin" @click="sidebarOpened = false">
@@ -202,14 +201,14 @@
   </div>
 
   <!-- SIDEBAR FOOTER (AUTH INFO) -->
-  <div class="px-6 py-4 border-t border-stroke-dark/30 bg-meta-4/20 mt-auto">
+  <div class="px-6 py-4 border-t border-stroke dark:border-stroke-dark/50 bg-whiten dark:bg-meta-4/20 mt-auto transition-colors duration-300">
     <div class="flex items-center gap-3">
-      <div class="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-[10px] text-white font-bold">
+      <div class="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-[10px] text-white font-bold shadow-sm">
         DIS
       </div>
       <div class="min-w-0">
-        <p class="text-xs font-bold text-white truncate">Korwil Secang</p>
-        <p class="text-[9px] text-bodydark uppercase tracking-widest font-bold">Kecamatan Secang</p>
+        <p class="text-xs font-bold text-black dark:text-white truncate">Korwil Secang</p>
+        <p class="text-[9px] text-body dark:text-bodydark uppercase tracking-widest font-bold opacity-60">Kecamatan Secang</p>
       </div>
     </div>
   </div>

@@ -1605,8 +1605,17 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
 
 :root {
   --sidebar-width: 290px;
+  --sidebar-bg: #FFFFFF; /* Light Sidebar Default */
+  --sidebar-active: #F1F5F9;
+  --sidebar-text: #1C2434;
+  --sidebar-text-active: #3C50E0;
+}
+
+.dark {
   --sidebar-bg: #1C2434;
   --sidebar-active: #333A48;
+  --sidebar-text: #DEE4EE;
+  --sidebar-text-active: #FFFFFF;
 }
 
 /* AUTHENTIC TAILADMIN WRAPPERS */
@@ -1636,8 +1645,13 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
   width: var(--sidebar-width);
   flex-direction: column;
   background-color: var(--sidebar-bg);
-  transition: transform 0.3s linear;
+  border-right: 1px solid var(--stroke);
+  transition: transform 0.3s linear, background-color 0.3s ease;
   transform: translateX(-100%);
+}
+
+.dark .sidebar-drawer {
+  border-right-color: var(--stroke-dark);
 }
 
 @media (min-width: 1024px) {
@@ -1670,14 +1684,14 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
   border-radius: 0.25rem;
   padding: 0.625rem 1rem;
   font-weight: 500;
-  color: #DEE4EE;
-  transition: background-color 0.3s, color 0.3s;
+  color: var(--sidebar-text);
+  transition: all 0.3s ease;
 }
 
 .nav-link-tail:hover, 
 .nav-link-tail.active {
   background-color: var(--sidebar-active);
-  color: white;
+  color: var(--sidebar-text-active);
 }
 
 .nav-link-tail i {
