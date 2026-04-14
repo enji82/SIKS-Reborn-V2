@@ -1,107 +1,151 @@
 <style>
   /* ===================================================================
-     1. PALET WARNA SULTAN (PUSAT KONTROL TEMA)
-     Ganti --warna-maroon di sini, seluruh web otomatis berubah.
+     SULTAN ELITE DESIGN SYSTEM (v2026.1)
+     Master Repository for all UI/UX Templates
      =================================================================== */
+
   :root {
-    /* --- SULTAN CORE IDENTITY (NAVY ELITE) --- */
-    --warna-utama: #1D3573;        /* Primary Navy */
-    --warna-utama-dark: #12224A;  
-    --warna-utama-light: rgba(29, 53, 115, 0.1); 
-    
-    /* Legacy Alias (Mencegah Break pada Class .text-maroon lama) */
-    --warna-maroon: var(--warna-utama);
-    --warna-maroon-dark: var(--warna-utama-dark);
-    --warna-maroon-light: var(--warna-utama-light);
-    
-    /* --- SULTAN ACCENTS (GOLD & SUCCESS) --- */
+    /* --- 1. CORE TOKENS (Navy Elite Palette) --- */
+    --warna-utama: #1D3573;        /* Deep Navy */
+    --warna-utama-glow: rgba(29, 53, 115, 0.15);
     --warna-emas: #EAC947;         /* Codebyte Gold */
-    --warna-emas-soft: rgba(234, 201, 71, 0.2);    
-    --warna-info: #00AFEF;         /* Info Blue */
-    --warna-sukses: #059669;       /* Emerald Success */
-    --warna-bahaya: #D0412E;       /* Danger Red */
+    --warna-emas-soft: rgba(234, 201, 71, 0.2);
+    --warna-sukses: #059669;       /* Emerald */
+    --warna-bahaya: #DC2626;       /* Rose Red */
+    --warna-peringatan: #D97706;   /* Amber */
+    --warna-info: #0284C7;         /* Sky Blue */
     
-    /* --- MATRIX COLORS (PTK/MURID STANDARDIZATION) --- */
-    --warna-mtx-pns: #e3f2fd;
-    --warna-mtx-pppk: #e8f5e9;
-    --warna-mtx-gtt: #fff3e0;
-    --warna-mtx-tendik: #f3e5f5;
-    --warna-mtx-total: #ffecb3;
-    
-    /* --- THEME SURFACE & GLASS --- */
-    --warna-tegas: #10131E;        
-    --warna-abu-bg: #E6EBEE;       
-    --warna-kartu-bg: #FFFFFF;     
+    /* --- 2. SURFACE & GLASS --- */
+    --warna-bg: #F1F4F9;
+    --warna-surface: #FFFFFF;
     --glass-bg: rgba(255, 255, 255, 0.75);
     --glass-border: rgba(255, 255, 255, 0.4);
     --glass-blur: blur(12px) saturate(180%);
     
-    /* --- GEOMETRY & SHADOW --- */
-    --shadow-sultan: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
-    --radius-sultan: 1.15rem;      
-    --border-sultan: 1px solid rgba(0, 0, 0, 0.05);
+    /* --- 3. GEOMETRY & TYPOGRAPHY --- */
+    --radius-sultan: 1.15rem;
+    --shadow-sultan: 0 10px 30px rgba(0, 0, 0, 0.05);
+    --poppins: 'Poppins', -apple-system, sans-serif;
+    
+    /* Legacy Compatibility Aliases */
+    --warna-maroon: var(--warna-utama);
+    --warna-maroon-dark: #12224A;
+    --warna-abu-bg: var(--warna-bg);
+    --warna-kartu-bg: var(--warna-surface);
   }
 
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
+  /* --- GLOBAL RESETS --- */
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+  
   body {
-    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
-    background: var(--warna-abu-bg) !important;
-    color: #334155 !important;
-    min-height: 100vh;
-  }
-  
-  /* --- RESET TEKS GLOBAL --- */
-  h1, h2, h3, h4, h5, h6 { color: #0F172A !important; font-weight: 700 !important; }
-  p, label, span { color: #334155; }
-  .text-dark { color: #0F172A !important; }
-  .text-muted { color: #64748B !important; }
-  .text-secondary { color: #475569 !important; }
-  .small, small { color: #64748B !important; }
-  
-  .form-control, .form-control-sultan { 
-      background: var(--warna-kartu-bg) !important; 
-      color: #0F172A !important; 
-      border: 1px solid #E2E8F0 !important; 
-      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
-  }
-  .form-control::placeholder { color: #94A3B8 !important; }
-  .form-control:focus { 
-      border-color: var(--warna-emas-soft) !important; 
-      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2) !important; 
-  }
-  
-  select.form-control { background-color: var(--warna-kartu-bg) !important; }
-  select option { background: var(--warna-kartu-bg); color: #0F172A; }
-  
-  .breadcrumb-item a { color: var(--warna-emas-soft) !important; font-weight: 500; }
-  .breadcrumb-item.active { color: #64748B !important; }
-
-  /* KELAS UTILITAS INAPP */
-  .glass-effect {
-      background: var(--warna-kartu-bg) !important; 
-      border: var(--border-sultan) !important;
-      box-shadow: var(--shadow-sultan) !important;
-      border-radius: var(--radius-sultan) !important;
+    font-family: var(--poppins) !important;
+    background-color: var(--warna-bg) !important;
+    color: #1E293B !important;
+    overflow-x: hidden;
   }
 
-  /* ===================================================================
-     2. ADMINLTE OVERRIDES (CLEAN SAAS THEME)
-     =================================================================== */
+  /* --- SULTAN COMPONENTS: SURFACES --- */
+  .sultan-card {
+    background: var(--warna-surface) !important;
+    border: 1px solid rgba(0,0,0,0.05) !important;
+    border-radius: var(--radius-sultan) !important;
+    box-shadow: var(--shadow-sultan) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+  }
+  .sultan-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08) !important;
+  }
+  .sultan-card-glass {
+    background: var(--glass-bg) !important;
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border) !important;
+    border-radius: var(--radius-sultan) !important;
+    box-shadow: var(--shadow-sultan) !important;
+  }
+  .sultan-card-header {
+    padding: 1.25rem 1.5rem !important;
+    background: transparent !important;
+    border-bottom: 1px solid rgba(0,0,0,0.05) !important;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .sultan-card-title {
+    font-weight: 800 !important;
+    font-size: 1rem !important;
+    color: var(--warna-utama) !important;
+    letter-spacing: -0.5px;
+    margin: 0;
+  }
 
-  /* A. NAVBAR (HEADER ATAS) — Tinggi fix 57px, sejajar brand-link */
-  .main-header,
-  #main-navbar {
-    background: #ffffff !important;
-    border-bottom: 1px solid #E2E8F0 !important;
-    box-shadow: 0 1px 0 rgba(0,0,0,0.04) !important;
+  /* --- SULTAN COMPONENTS: BUTTONS --- */
+  .sultan-btn {
+    padding: 0.65rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    cursor: pointer;
+  }
+  .sultan-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+  }
+  .sultan-btn:active { transform: scale(0.95); }
+  
+  .sultan-btn-primary { background: var(--warna-utama) !important; color: #fff !important; box-shadow: 0 4px 15px var(--warna-utama-glow); }
+  .sultan-btn-gold { background: var(--warna-emas) !important; color: var(--warna-utama) !important; box-shadow: 0 4px 15px var(--warna-emas-soft); }
+  .sultan-btn-white { background: #fff !important; color: var(--warna-utama) !important; border: 1px solid #E2E8F0 !important; }
+
+  /* --- SULTAN COMPONENTS: TYPOGRAPHY --- */
+  .sultan-title-premium {
+    font-weight: 800;
+    font-size: 1.5rem;
+    background: linear-gradient(135deg, var(--warna-utama) 0%, #4A0000 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -1px;
+  }
+  .sultan-subtitle {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #64748B;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* --- SULTAN COMPONENTS: LAYOUT CONTROLLERS --- */
+  .sultan-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+  .sultan-hero {
+    padding: 2.5rem 2rem;
+    border-radius: var(--radius-sultan);
+    background: linear-gradient(135deg, var(--warna-utama) 0%, var(--warna-utama-dark) 100%);
+    color: #fff;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .sultan-hero::after {
+    content: ''; position: absolute; top:0; left:0; right:0; bottom:0;
+    background: radial-gradient(circle at 80% 20%, rgba(234, 201, 71, 0.15) 0%, transparent 40%);
+  }
+
+  /* ADMINLTE OVERRIDES (CLEAN SAAS THEME) */
+  /* Keep necessary core overrides but cleanup clutter */
+  .main-header, #main-navbar {
+    background: var(--warna-surface) !important;
+    border-bottom: 1px solid rgba(0,0,0,0.05) !important;
     height: 57px !important;
-    min-height: 57px !important;
-    max-height: 57px !important;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-    display: flex !important;
-    align-items: center !important;
+    display: flex !important; align-items: center !important;
   }
   .main-header .nav-link { color: #475569 !important; }
   .main-header .nav-link:hover { color: var(--warna-utama) !important; }
