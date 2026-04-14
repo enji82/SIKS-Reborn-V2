@@ -168,34 +168,41 @@
     </div>
 </div>
 
-<!-- MODAL PREVIEW DOKUMEN -->
+<!-- MODAL PREVIEW DOKUMEN (SULTAN COMPACT) -->
 <div class="modal fade" id="arsipsiaba_modalPreview" tabindex="-1" role="dialog" data-backdrop="static">
-  <div class="modal-dialog modal-dialog-full" role="document"> 
-    <div class="modal-content modal-content-full-height border-0 shadow-lg modal-content-sultan"> 
-      
-      <div class="modal-header bg-maroon py-2">
-        <h6 class="modal-title font-weight-bold text-white">
-            <i class="fas fa-file-pdf mr-2"></i> Preview Arsip PDF
-        </h6>
-        <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
-      </div>
-      
-      <div class="modal-body modal-body-full bg-dark position-relative p-0" style="height: calc(100vh - 55px);">
-          <iframe id="arsipsiaba_framePreview" class="iframe-full w-100 h-100 border-0 d-none" src=""></iframe>
-          <div id="arsipsiaba_loadingPreviewPDF" class="d-flex h-100 align-items-center justify-content-center text-white-50 position-absolute w-100">
-              <div class="text-center"><i class="fas fa-circle-notch fa-spin fa-3x mb-3"></i><p>Memuat Dokumen dari Google Drive...</p></div>
-          </div>
-      </div>
-      
-      <div class="modal-footer justify-content-between bg-white py-2 border-top" style="flex-shrink: 0;">
-          <button type="button" class="btn border-tegas shadow-sm font-weight-bold px-4" data-dismiss="modal">Tutup Preview</button>
-          <a id="arsipsiaba_btnDownloadFinal" href="#" target="_blank" class="btn btn-success shadow-sm font-weight-bold px-4">
-              <i class="fas fa-download mr-2"></i> Unduh File Asli
-          </a>
-      </div>
+    <div class="modal-dialog modal-dialog-full" role="document">
+        <div class="modal-content modal-content-full-height border-0 shadow-lg bg-dark">
+            
+            <div class="sultan-preview-header">
+                <div class="sultan-preview-title">
+                    <i class="fas fa-file-pdf text-danger mr-2"></i>
+                    <span>Pratinjau Arsip Presensi</span>
+                </div>
+                <div class="sultan-preview-actions">
+                    <a href="#" id="arsipsiaba_btnDownloadHeader" class="sultan-preview-btn" target="_blank" title="Unduh File">
+                        <i class="fas fa-download"></i>
+                    </a>
+                    <a href="#" id="arsipsiaba_btnExternalHeader" class="sultan-preview-btn" target="_blank" title="Buka di Tab Baru">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    <div class="sultan-preview-divider"></div>
+                    <button type="button" class="sultan-preview-close" data-dismiss="modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
 
+            <div class="modal-body p-0 position-relative d-flex align-items-center justify-content-center bg-secondary" style="height: calc(100vh - 44px);">
+                <iframe id="arsipsiaba_framePreview" class="iframe-full w-100 h-100 border-0 d-none" src=""></iframe>
+                
+                <div id="arsipsiaba_loadingPreviewPDF" class="sultan-spinner-compact">
+                    <div class="spinner-border text-light" role="status"></div>
+                    <span class="mt-2 text-white-50 small font-weight-bold">Memuat Arsip...</span>
+                </div>
+            </div>
+
+        </div>
     </div>
-  </div>
 </div>
 
 <!-- MODAL HAPUS ARSIP (KHUSUS ADMIN) -->
@@ -545,9 +552,13 @@ function arsipsiaba_bukaPreview(fileId) {
     var previewUrl = "https://drive.google.com/file/d/" + fileId + "/preview";
     var downloadUrl = "https://drive.google.com/uc?export=download&id=" + fileId;
 
-    $('#arsipsiaba_loadingPreviewPDF').removeClass('d-none');
+    $('#arsipsiaba_loadingPreviewPDF').removeClass('d-none').addClass('d-flex');
     $('#arsipsiaba_framePreview').addClass('d-none').attr('src', previewUrl);
-    $('#arsipsiaba_btnDownloadFinal').attr('href', downloadUrl);
+    
+    // Sync Action Links to Header
+    $('#arsipsiaba_btnDownloadHeader').attr('href', downloadUrl);
+    $('#arsipsiaba_btnExternalHeader').attr('href', downloadUrl.replace('export=download', 'view')); 
+    if(!downloadUrl.includes('export=download')) $('#arsipsiaba_btnExternalHeader').attr('href', "https://drive.google.com/file/d/" + fileId + "/view");
 
     $('#arsipsiaba_modalPreview').modal('show');
 

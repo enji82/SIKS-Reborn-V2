@@ -232,27 +232,39 @@
   </div>
 </div>
 
+<!-- MODAL PREVIEW DOKUMEN (SULTAN COMPACT) -->
 <div class="modal fade" id="unggahcuti_modalPreviewFile" tabindex="-1" role="dialog" data-backdrop="static">
     <div class="modal-dialog modal-dialog-full" role="document">
         <div class="modal-content modal-content-full-height border-0 shadow-lg bg-dark">
-            <div class="modal-header bg-dark text-white py-2 border-bottom-0">
-                <h6 class="modal-title font-weight-bold"><i class="fas fa-file-pdf text-danger mr-2"></i>Pratinjau Dokumen Formulir Cuti</h6>
-                <div class="ml-auto d-flex align-items-center">
-                    <a href="#" id="unggahcuti_btnUnduhDirect" class="btn btn-xs btn-success font-weight-bold shadow-sm mr-2 rounded-pill px-3" target="_blank">
-                        <i class="fas fa-download mr-1"></i> Unduh
+            
+            <div class="sultan-preview-header">
+                <div class="sultan-preview-title">
+                    <i class="fas fa-file-pdf text-danger mr-2"></i>
+                    <span>Pratinjau Formulir Cuti</span>
+                </div>
+                <div class="sultan-preview-actions">
+                    <a href="#" id="unggahcuti_btnDownloadHeader" class="sultan-preview-btn" target="_blank" title="Unduh File">
+                        <i class="fas fa-download"></i>
                     </a>
-                    <a id="unggahcuti_btnUnduhPDF" href="#" class="btn btn-xs btn-outline-light font-weight-bold shadow-sm mr-2 rounded-pill px-3" target="_blank">
-                        <i class="fas fa-external-link-alt mr-1"></i> Tab Baru
+                    <a href="#" id="unggahcuti_btnExternalHeader" class="sultan-preview-btn" target="_blank" title="Buka di Tab Baru">
+                        <i class="fas fa-external-link-alt"></i>
                     </a>
-                    <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
+                    <div class="sultan-preview-divider"></div>
+                    <button type="button" class="sultan-preview-close" data-dismiss="modal">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
             </div>
-            <div class="modal-body p-0 position-relative d-flex align-items-center justify-content-center bg-secondary" style="height:calc(100vh - 50px);" id="unggahcuti_previewContainer">
+
+            <div class="modal-body p-0 position-relative d-flex align-items-center justify-content-center bg-secondary" style="height: calc(100vh - 44px);">
                 <iframe id="unggahcuti_framePreviewFile" src="" class="iframe-full w-100 h-100 border-0 d-none"></iframe>
-                <div id="unggahcuti_loadingPreviewPDF" class="d-flex h-100 align-items-center justify-content-center text-white-50 position-absolute w-100" style="top:0; left:0; z-index: 10; pointer-events: none;">
-                    <div class="text-center"><i class="fas fa-circle-notch fa-spin fa-3x mb-3"></i><p>Memuat Dokumen...</p></div>
+                
+                <div id="unggahcuti_loadingPreviewPDF" class="sultan-spinner-compact">
+                    <div class="spinner-border text-light" role="status"></div>
+                    <span class="mt-2 text-white-50 small font-weight-bold">Memuat Formulir...</span>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
@@ -627,8 +639,9 @@ function unggahcuti_previewFile(rowId) {
             $('#unggahcuti_loadingPreviewPDF').removeClass('d-none').addClass('d-flex');
             $('#unggahcuti_framePreviewFile').addClass('d-none').attr('src', finalUrl);
             
-            $('#unggahcuti_btnUnduhPDF').attr('href', url);
-            $('#unggahcuti_btnUnduhDirect').attr('href', directDownloadUrl);
+            // Sync Action Links to Header
+            $('#unggahcuti_btnDownloadHeader').attr('href', directDownloadUrl);
+            $('#unggahcuti_btnExternalHeader').attr('href', url);
 
             $('#unggahcuti_modalPreviewFile').modal('show');
 

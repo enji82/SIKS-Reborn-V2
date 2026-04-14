@@ -161,13 +161,39 @@
     </div>
 </div>
 
+<!-- MODAL PREVIEW DOKUMEN (SULTAN COMPACT) -->
 <div class="modal fade" id="efilekelola_modalPreview" tabindex="-1" role="dialog" data-backdrop="static">
     <div class="modal-dialog modal-dialog-full" role="document">
         <div class="modal-content modal-content-full-height border-0 shadow-lg bg-dark">
-            <div class="modal-header bg-dark text-white py-2 border-bottom-0"><h6 class="modal-title font-weight-bold"><i class="fas fa-eye text-info mr-2"></i>Pratinjau</h6><div class="ml-auto d-flex align-items-center"><a href="#" id="efilekelola_btnUnduhPdf" target="_blank" class="btn btn-xs btn-outline-light font-weight-bold shadow-sm mr-2 rounded-pill px-3"><i class="fas fa-external-link-alt mr-1"></i> Buka Tab Baru</a><button type="button" class="close text-white" data-dismiss="modal">&times;</button></div></div>
-            <div class="modal-body modal-body-full position-relative p-0 d-flex align-items-center justify-content-center bg-secondary" style="height:calc(100vh - 50px);">
-                <iframe id="efilekelola_framePreview" src="" class="iframe-full w-100 h-100 border-0 d-none"></iframe><div id="efilekelola_loadingPreview" class="d-flex h-100 align-items-center justify-content-center text-white-50 position-absolute w-100" style="z-index: 10; pointer-events: none;"><i class="fas fa-circle-notch fa-spin fa-3x mb-3"></i></div>
+            
+            <div class="sultan-preview-header">
+                <div class="sultan-preview-title">
+                    <i class="fas fa-file-pdf text-danger mr-2"></i>
+                    <span>Pratinjau Berkas E-File</span>
+                </div>
+                <div class="sultan-preview-actions">
+                    <a href="#" id="efilekelola_btnDownloadHeader" class="sultan-preview-btn" target="_blank" title="Unduh File">
+                        <i class="fas fa-download"></i>
+                    </a>
+                    <a href="#" id="efilekelola_btnExternalHeader" class="sultan-preview-btn" target="_blank" title="Buka di Tab Baru">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    <div class="sultan-preview-divider"></div>
+                    <button type="button" class="sultan-preview-close" data-dismiss="modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
             </div>
+
+            <div class="modal-body p-0 position-relative d-flex align-items-center justify-content-center bg-secondary" style="height: calc(100vh - 44px);">
+                <iframe id="efilekelola_framePreview" src="" class="iframe-full w-100 h-100 border-0 d-none"></iframe>
+                
+                <div id="efilekelola_loadingPreview" class="sultan-spinner-compact">
+                    <div class="spinner-border text-light" role="status"></div>
+                    <span class="mt-2 text-white-50 small font-weight-bold">Memuat Berkas...</span>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -612,10 +638,29 @@ function efilekelola_submitHapus(e) {
 }
 
 function efilekelola_bukaPreview(url) {
-    if (!url) return; var pUrl = url;
-    if (url.includes('drive.google.com')) { var match = url.match(/\/d\/([a-zA-Z0-9_-]+)/); if (match && match[1]) pUrl = 'https://drive.google.com/file/d/' + match[1] + '/preview'; }
-    var $m = $('#efilekelola_modalPreview'); var $f = $m.find('#efilekelola_framePreview'); var $l = $m.find('#efilekelola_loadingPreview');
-    $m.modal('show'); $f.addClass('d-none').attr('src', pUrl); $m.find('#efilekelola_btnUnduhPdf').attr('href', url); $l.removeClass('d-none').addClass('d-flex');
+    if (!url) return; 
+    var pUrl = url;
+    var dUrl = url;
+    if (url.includes('drive.google.com')) { 
+        var match = url.match(/\/d\/([a-zA-Z0-9_-]+)/); 
+        if (match && match[1]) {
+            pUrl = 'https://drive.google.com/file/d/' + match[1] + '/preview';
+            dUrl = 'https://drive.google.com/uc?export=download&id=' + match[1];
+        }
+    }
+    
+    var $m = $('#efilekelola_modalPreview'); 
+    var $f = $m.find('#efilekelola_framePreview'); 
+    var $l = $m.find('#efilekelola_loadingPreview');
+    
+    $m.modal('show'); 
+    $f.addClass('d-none').attr('src', pUrl); 
+    
+    // Sync Action Links to Header
+    $m.find('#efilekelola_btnDownloadHeader').attr('href', dUrl);
+    $m.find('#efilekelola_btnExternalHeader').attr('href', url);
+
+    $l.removeClass('d-none').addClass('d-flex');
     $f.off('load').on('load', function() { $l.removeClass('d-flex').addClass('d-none'); $(this).removeClass('d-none'); });
     setTimeout(function() { $l.removeClass('d-flex').addClass('d-none'); $f.removeClass('d-none'); }, 2500);
 }

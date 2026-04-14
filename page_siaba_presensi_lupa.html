@@ -309,22 +309,39 @@
     </div>
 </div>
 
+<!-- MODAL PREVIEW DOKUMEN (SULTAN COMPACT) -->
 <div class="modal fade" id="lupa_modalPreviewPDF" tabindex="-1" role="dialog" data-backdrop="static">
     <div class="modal-dialog modal-dialog-full" role="document">
-        <div class="modal-content modal-content-full-height border-0 shadow-lg modal-content-sultan">
-            <div class="modal-header bg-danger py-2 text-white">
-                <h6 class="modal-title font-weight-bold"><i class="fas fa-file-pdf mr-2"></i>Pratinjau Dokumen</h6>
-                <div class="ml-auto">
-                    <a id="lupa_btnUnduhPDF" href="#" class="btn btn-xs btn-light text-danger font-weight-bold shadow-sm mr-2 rounded-pill px-3" target="_blank"><i class="fas fa-external-link-alt mr-1"></i> Buka di Tab Baru</a>
-                    <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
+        <div class="modal-content modal-content-full-height border-0 shadow-lg bg-dark">
+            
+            <div class="sultan-preview-header">
+                <div class="sultan-preview-title">
+                    <i class="fas fa-file-pdf text-danger mr-2"></i>
+                    <span>Pratinjau Dokumen Lupa Presensi</span>
+                </div>
+                <div class="sultan-preview-actions">
+                    <a href="#" id="lupa_btnDownloadHeader" class="sultan-preview-btn" target="_blank" title="Unduh File">
+                        <i class="fas fa-download"></i>
+                    </a>
+                    <a href="#" id="lupa_btnExternalHeader" class="sultan-preview-btn" target="_blank" title="Buka di Tab Baru">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    <div class="sultan-preview-divider"></div>
+                    <button type="button" class="sultan-preview-close" data-dismiss="modal">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
             </div>
-            <div class="modal-body modal-body-full bg-dark position-relative p-0" style="height: calc(100vh - 55px);">
+
+            <div class="modal-body p-0 position-relative d-flex align-items-center justify-content-center bg-secondary" style="height: calc(100vh - 44px);">
                 <iframe id="lupa_iframePreviewPDF" class="iframe-full w-100 h-100 border-0 d-none" src=""></iframe>
-                <div id="lupa_loadingPreviewPDF" class="d-flex h-100 align-items-center justify-content-center text-white-50 position-absolute w-100">
-                    <div class="text-center"><i class="fas fa-circle-notch fa-spin fa-3x mb-3"></i><p>Memuat Dokumen...</p></div>
+                
+                <div id="lupa_loadingPreviewPDF" class="sultan-spinner-compact">
+                    <div class="spinner-border text-light" role="status"></div>
+                    <span class="mt-2 text-white-50 small font-weight-bold">Memuat Dokumen...</span>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
@@ -760,12 +777,15 @@ function lupa_lihatPreviewPDF(id) {
     if (match && match[1]) {
         var previewUrl = 'https://drive.google.com/file/d/' + match[1] + '/preview';
         $('#lupa_iframePreviewPDF').addClass('d-none').attr('src', ''); 
-        $('#lupa_loadingPreviewPDF').removeClass('d-none'); 
+        $('#lupa_loadingPreviewPDF').removeClass('d-none').addClass('d-flex'); 
         $('#lupa_modalPreviewPDF').modal('show');
         
         $('#lupa_iframePreviewPDF').attr('src', previewUrl); 
-        $('#lupa_btnUnduhPDF').attr('href', url);
         
+        // Sync Action Links to Header
+        $('#lupa_btnDownloadHeader').attr('href', url);
+        $('#lupa_btnExternalHeader').attr('href', previewUrl.replace('/preview', '/view'));
+
         $('#lupa_iframePreviewPDF').off('load').on('load', function() { 
             $('#lupa_loadingPreviewPDF').addClass('d-none'); 
             $(this).removeClass('d-none'); 

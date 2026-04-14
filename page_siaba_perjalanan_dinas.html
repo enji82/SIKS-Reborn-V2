@@ -235,27 +235,39 @@
   </div>
 </div>
 
+<!-- MODAL PREVIEW DOKUMEN (SULTAN COMPACT) -->
 <div class="modal fade" id="perdin_modalPreviewDokumen" tabindex="-1" role="dialog" data-backdrop="static">
     <div class="modal-dialog modal-dialog-full" role="document">
         <div class="modal-content modal-content-full-height border-0 shadow-lg bg-dark">
-            <div class="modal-header bg-dark text-white py-2 border-bottom-0">
-                <h6 class="modal-title font-weight-bold"><i class="fas fa-file-pdf text-danger mr-2"></i>Pratinjau Dokumen SPT</h6>
-                <div class="ml-auto d-flex align-items-center">
-                    <a href="#" id="perdin_btnFullDownloadDirect" class="btn btn-xs btn-success font-weight-bold shadow-sm mr-2 rounded-pill px-3" target="_blank" style="display:none;">
-                        <i class="fas fa-download mr-1"></i> Unduh
+            
+            <div class="sultan-preview-header">
+                <div class="sultan-preview-title">
+                    <i class="fas fa-file-pdf text-danger mr-2"></i>
+                    <span>Pratinjau Dokumen SPT</span>
+                </div>
+                <div class="sultan-preview-actions">
+                    <a href="#" id="perdin_btnDownloadHeader" class="sultan-preview-btn" target="_blank" title="Unduh File">
+                        <i class="fas fa-download"></i>
                     </a>
-                    <a href="#" id="perdin_btnFullDownload" target="_blank" class="btn btn-xs btn-outline-light font-weight-bold shadow-sm mr-2 rounded-pill px-3">
-                        <i class="fas fa-external-link-alt mr-1"></i> Tab Baru
+                    <a href="#" id="perdin_btnExternalHeader" class="sultan-preview-btn" target="_blank" title="Buka di Tab Baru">
+                        <i class="fas fa-external-link-alt"></i>
                     </a>
-                    <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
+                    <div class="sultan-preview-divider"></div>
+                    <button type="button" class="sultan-preview-close" data-dismiss="modal">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
             </div>
-            <div class="modal-body modal-body-full bg-secondary position-relative p-0 d-flex align-items-center justify-content-center" style="height: calc(100vh - 50px);">
+
+            <div class="modal-body p-0 position-relative d-flex align-items-center justify-content-center bg-secondary" style="height: calc(100vh - 44px);">
                 <iframe id="perdin_frameDokumenViewer" class="iframe-full w-100 h-100 border-0 d-none" src=""></iframe>
-                <div id="perdin_loadingPreviewPDF" class="d-flex h-100 align-items-center justify-content-center text-white-50 position-absolute w-100" style="top:0; left:0; z-index:10; pointer-events:none;">
-                    <div class="text-center"><i class="fas fa-circle-notch fa-spin fa-3x mb-3"></i><p>Memuat Dokumen...</p></div>
+                
+                <div id="perdin_loadingPreviewPDF" class="sultan-spinner-compact">
+                    <div class="spinner-border text-light" role="status"></div>
+                    <span class="mt-2 text-white-50 small font-weight-bold">Memuat Dokumen SPT...</span>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
@@ -946,8 +958,10 @@ function perdin_bukaPreview(rowId) {
     
     setTimeout(function() {
         $('#perdin_frameDokumenViewer').attr('src', previewUrl); 
-        $('#perdin_btnFullDownload').attr('href', url); 
-        $('#perdin_btnFullDownloadDirect').attr('href', directDownloadUrl).show();
+        
+        // Sync Action Links to Header
+        $('#perdin_btnDownloadHeader').attr('href', directDownloadUrl); 
+        $('#perdin_btnExternalHeader').attr('href', url); 
         
         $('#perdin_frameDokumenViewer').off('load').on('load', function() { 
             $('#perdin_loadingPreviewPDF').removeClass('d-flex').addClass('d-none'); 
