@@ -9,18 +9,41 @@
        @click.away="sidebarToggle = false">
   
   <!-- SIDEBAR HEADER (LOGO) -->
-  <div class="flex items-center justify-between gap-2 px-5" style="height:70px;min-height:70px;border-bottom:1px solid var(--sidebar-border);flex-shrink:0;">
-    <a href="#" class="flex flex-1 items-center gap-3 min-w-0" data-page="home" style="text-decoration:none!important;">
-      <div class="flex-shrink-0 w-9 h-9 rounded-lg bg-primary flex items-center justify-center text-white shadow-sm">
-        <i class="fas fa-school" style="font-size:1rem;"></i>
+  <div class="flex items-center justify-between" style="height:68px;min-height:68px;border-bottom:1px solid var(--sidebar-border);flex-shrink:0;padding-left:16px;padding-right:16px;">
+    <a href="#" class="flex flex-1 items-center gap-3 min-w-0 overflow-hidden" data-page="home" style="text-decoration:none!important;">
+      <!-- Premium Inline SVG Logo -->
+      <div class="flex-shrink-0" style="width:40px;height:40px;">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:40px;height:40px;border-radius:10px;">
+          <defs>
+            <linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#1E3A8A"/>
+              <stop offset="100%" stop-color="#3C50E0"/>
+            </linearGradient>
+          </defs>
+          <rect width="40" height="40" rx="10" fill="url(#logoGrad)"/>
+          <!-- Mortarboard / cap top -->
+          <path d="M20 10 L30 15 L20 20 L10 15 Z" fill="white" opacity="0.95"/>
+          <!-- Cap brim lines -->
+          <line x1="10" y1="15" x2="10" y2="21" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <!-- Tassel string -->
+          <line x1="30" y1="15" x2="30" y2="20" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="30" cy="21" r="1.5" fill="white"/>
+          <!-- S letter curved stroke -->
+          <path d="M17 24 C13 24 13 20 17 20 C21 20 21 16 17 16" stroke="white" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+        </svg>
       </div>
-      <span style="font-size:1.0625rem;font-weight:700;color:var(--sidebar-logo-text);letter-spacing:-0.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">SIKS - REBORN</span>
+      <!-- Brand Name: fills remaining space fully -->
+      <div class="flex flex-col justify-center min-w-0 flex-1">
+        <span style="font-size:1.125rem;font-weight:800;color:var(--sidebar-logo-text);letter-spacing:-0.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.15;display:block;">SIKS</span>
+        <span style="font-size:0.6rem;font-weight:600;color:#3C50E0;letter-spacing:0.12em;white-space:nowrap;text-transform:uppercase;display:block;">REBORN SYSTEM</span>
+      </div>
     </a>
     <!-- Close Button (Mobile only) -->
-    <button @click.prevent="sidebarToggle = false" class="lg:hidden flex-shrink-0 rounded-md p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-800 transition-colors" style="border:none;background:none;cursor:pointer;">
+    <button @click.prevent="sidebarToggle = false" class="lg:hidden flex-shrink-0 rounded-md p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-800 transition-colors" style="border:none;background:none;cursor:pointer;margin-left:4px;">
       <i class="fas fa-times" style="font-size:1.1rem;"></i>
     </button>
   </div>
+
 
   <!-- MENU AREA -->
   <div class="flex flex-col overflow-y-auto no-scrollbar duration-300 ease-linear flex-grow py-4 px-3">
