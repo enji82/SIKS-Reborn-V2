@@ -387,18 +387,32 @@ function sultan_updateAllNotifUI() {
             $('#btn-notif-bell').css('color', Sultan.config.colors.danger);
             
             let html = '';
-            (data.rincian || []).forEach(item => {
-                html += `<a href="#" class="dropdown-item p-3 border-bottom animate__animated animate__fadeInSmall" onclick="sk_notifNavigate('${item.page}', '${isAdmin?'Diproses':'Revisi'}')">
-                    <div class="d-flex align-items-center">
-                        <div class="p-2 rounded-circle mr-3 bg-light" style="width:40px; height:40px; display:flex; align-items:center; justify-content:center;">
-                            <i class="fas fa-bell text-utama"></i>
+            (data.rincian || []).forEach((item, index) => {
+                const statusColor = index % 2 === 0 ? 'bg-meta-3' : 'bg-meta-1'; // Success Green or Danger Red
+                const avatarName = (item.modul || "System").replace(/\s/g, '+');
+                
+                html += `
+                <li>
+                    <a href="#" class="flex flex-col gap-2.5 border-b border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4 transition-all" onclick="sk_notifNavigate('${item.page}', '${isAdmin?'Diproses':'Revisi'}')">
+                        <div class="flex items-center gap-3">
+                            <div class="relative h-12 w-12 flex-shrink-0 rounded-full">
+                                <img src="https://ui-avatars.com/api/?name=${avatarName}&background=3C50E0&color=fff&size=64" alt="Avatar" class="h-full w-full rounded-full object-cover" />
+                                <span class="absolute bottom-0 right-0 h-3.5 w-3.5 rounded-full border-2 border-white ${statusColor} dark:border-boxdark"></span>
+                            </div>
+                            <div class="flex-1 overflow-hidden">
+                                <p class="text-xs text-black dark:text-white leading-relaxed">
+                                    <span class="font-bold">${item.modul}</span> requests updates to 
+                                    <span class="font-bold">Data ${item.modul}</span>
+                                </p>
+                                <p class="text-[10px] text-body dark:text-bodydark font-medium mt-1.5 flex items-center gap-2">
+                                    <span class="uppercase tracking-wider opacity-80">${item.modul}</span>
+                                    <span class="h-1 w-1 rounded-full bg-stroke dark:bg-strokedark"></span>
+                                    <span>Tersedia ${item.jumlah} data</span>
+                                </p>
+                            </div>
                         </div>
-                        <div style="flex:1;">
-                            <p class="mb-0 font-weight-bold text-dark small">${item.modul}</p>
-                            <small class="text-muted d-block" style="font-size:11px;">Ada ${item.jumlah} data baru.</small>
-                        </div>
-                    </div>
-                </a>`;
+                    </a>
+                </li>`;
             });
             if (nbc.length) nbc.html(html);
         } else {

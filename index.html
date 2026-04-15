@@ -120,13 +120,28 @@
                     <span id="notif-badge" :class="!notifying ? 'hidden' : 'flex'" class="absolute -top-0.5 -right-0.5 z-1 h-3 w-3 rounded-full bg-danger border-2 border-white dark:border-boxdark"></span>
                     <i class="far fa-bell"></i>
                   </button>
-                  <div x-show="dropdownOpen" x-transition class="absolute right-0 mt-4 flex w-[300px] flex-col rounded-2xl border border-gray-100 !bg-white p-3 shadow-premium dark:border-gray-800 dark:!bg-boxdark z-[9999]">
-                    <div class="mb-3 border-b border-gray-50 pb-2 px-1 dark:border-gray-700">
-                      <h5 class="text-sm font-bold text-gray-800 dark:text-white">Pusat Notifikasi</h5>
+                  <div x-show="dropdownOpen" x-transition class="absolute right-0 mt-4 flex w-[340px] flex-col rounded-lg border border-stroke !bg-white shadow-default dark:border-strokedark dark:!bg-boxdark z-[9999]">
+                    
+                    <!-- Dropdown Header -->
+                    <div class="flex items-center justify-between border-b border-stroke px-4.5 py-3 dark:border-strokedark">
+                      <h5 class="text-sm font-bold text-black dark:text-white">Notification</h5>
+                      <button @click="dropdownOpen = false" class="text-body hover:text-primary dark:text-bodydark dark:hover:text-white">
+                        <i class="fas fa-times text-xs"></i>
+                      </button>
                     </div>
-                    <ul id="notif-list-container" class="max-h-[300px] overflow-y-auto">
-                      <li class="p-6 text-center text-xs text-gray-400 italic">Tidak ada notifikasi baru</li>
+
+                    <!-- Notification List Container -->
+                    <ul id="notif-list-container" class="flex h-auto max-h-[380px] flex-col overflow-y-auto">
+                      <li class="p-8 text-center text-xs text-gray-400 italic">Tidak ada notifikasi baru</li>
                     </ul>
+
+                    <!-- Dropdown Footer -->
+                    <div class="border-t border-stroke p-4 dark:border-strokedark">
+                      <a href="#" class="flex items-center justify-center rounded-lg border border-primary px-4 py-2.5 text-center text-sm font-bold text-primary hover:bg-primary hover:text-white transition-all">
+                        View All Notification
+                      </a>
+                    </div>
+
                   </div>
                 </div>
               </div>
