@@ -388,28 +388,27 @@ function sultan_updateAllNotifUI() {
             
             let html = '';
             (data.rincian || []).forEach((item, index) => {
-                const statusColor = index % 2 === 0 ? 'bg-meta-3' : 'bg-meta-1'; // Success Green or Danger Red
-                const avatarName = (item.modul || "System").replace(/\s/g, '+');
+                const statusColor = index % 2 === 0 ? 'status-online' : 'status-offline';
+                const avatarInitials = (item.modul || 'SY').split(' ').map(w => w[0]).join('').toUpperCase().substring(0, 2);
+                const avatarBg = ['#3C50E0','#10B981','#F59E0B','#EF4444','#8B5CF6'][index % 5];
                 
                 html += `
-                <li>
-                    <a href="#" class="flex flex-col gap-2.5 border-b border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4 transition-all" onclick="sk_notifNavigate('${item.page}', '${isAdmin?'Diproses':'Revisi'}')">
-                        <div class="flex items-center gap-3">
-                            <div class="relative h-12 w-12 flex-shrink-0 rounded-full">
-                                <img src="https://ui-avatars.com/api/?name=${avatarName}&background=3C50E0&color=fff&size=64" alt="Avatar" class="h-full w-full rounded-full object-cover" />
-                                <span class="absolute bottom-0 right-0 h-3.5 w-3.5 rounded-full border-2 border-white ${statusColor} dark:border-boxdark"></span>
-                            </div>
-                            <div class="flex-1 overflow-hidden">
-                                <p class="text-xs text-black dark:text-white leading-relaxed">
-                                    <span class="font-bold">${item.modul}</span> requests updates to 
-                                    <span class="font-bold">Data ${item.modul}</span>
-                                </p>
-                                <p class="text-[10px] text-body dark:text-bodydark font-medium mt-1.5 flex items-center gap-2">
-                                    <span class="uppercase tracking-wider opacity-80">${item.modul}</span>
-                                    <span class="h-1 w-1 rounded-full bg-stroke dark:bg-strokedark"></span>
-                                    <span>Tersedia ${item.jumlah} data</span>
-                                </p>
-                            </div>
+                <li class="notif-item">
+                    <a href="#" class="notif-link" onclick="sk_notifNavigate('${item.page}', '${isAdmin?'Diproses':'Revisi'}'); return false;">
+                        <div class="notif-avatar-wrap">
+                            <div class="notif-avatar" style="background:${avatarBg}">${avatarInitials}</div>
+                            <span class="notif-status-dot ${statusColor}"></span>
+                        </div>
+                        <div class="notif-content">
+                            <p class="notif-text">
+                                <span class="notif-name">${item.modul}</span> meminta pembaruan pada
+                                <span class="notif-name">Data ${item.modul}</span>
+                            </p>
+                            <p class="notif-meta">
+                                <span>${item.modul}</span>
+                                <span class="notif-dot">•</span>
+                                <span>${item.jumlah} data baru</span>
+                            </p>
                         </div>
                     </a>
                 </li>`;
@@ -417,7 +416,7 @@ function sultan_updateAllNotifUI() {
             if (nbc.length) nbc.html(html);
         } else {
             if (nvb.length) nvb.hide();
-            if (nbc.length) nbc.html('<div class="text-center p-4 text-muted small">Tidak ada notifikasi</div>');
+            if (nbc.length) nbc.html('<li class="p-8 text-center text-xs italic" style="color:#94a3b8;">Tidak ada notifikasi baru</li>');
         }
     });
 }
