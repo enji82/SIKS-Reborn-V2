@@ -378,12 +378,16 @@ function sultan_updateAllNotifUI() {
         
         // Update Sidebars & Navbar (Implementation consistent with blueprint)
         const skb = $('#sk_data_badge'), lbb = $('#lapbul_kelola_badge'), nvb = $('#notif-badge'), nbc = $('#notif-list-container');
+        const skpb = $('#sk_parent_badge'), lbpb = $('#lapbul_parent_badge');
         
         if (skb.length) data.sk > 0 ? skb.text(data.sk).show() : skb.hide();
+        if (skpb.length) data.sk > 0 ? skpb.text(data.sk).show() : skpb.hide();
+        
         if (lbb.length) data.lapbul > 0 ? lbb.text(data.lapbul).show() : lbb.hide();
+        if (lbpb.length) data.lapbul > 0 ? lbpb.text(data.lapbul).show() : lbpb.hide();
         
         if (nvb.length && data.total > 0) {
-            nvb.text(data.total > 99 ? '99+' : data.total).show();
+            nvb.text(data.total > 99 ? '99+' : data.total).css('display', 'flex');
             $('#btn-notif-bell').css('color', Sultan.config.colors.danger);
             
             let html = '';

@@ -117,7 +117,7 @@
                 <!-- Notifications (TailAdmin Style) -->
                 <div class="relative" x-data="{ dropdownOpen: false, notifying: true }" @click.outside="dropdownOpen = false">
                   <button class="relative flex h-10 w-10 items-center justify-center rounded-full border border-gray-100 bg-gray-50 text-gray-500 hover:bg-gray-100 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 transition-all shadow-sm" @click.prevent="dropdownOpen = !dropdownOpen; notifying = false">
-                    <span id="notif-badge" :class="!notifying ? 'hidden' : 'flex'" class="absolute -top-0.5 -right-0.5 z-1 h-3 w-3 rounded-full bg-danger border-2 border-white dark:border-boxdark"></span>
+                    <span id="notif-badge" :class="!notifying ? 'hidden' : 'flex'" class="absolute -top-1.5 -right-1.5 z-1 min-w-[17px] h-[17px] px-1 rounded-full bg-danger border-2 border-white dark:border-boxdark text-white text-[9px] font-bold items-center justify-center shadow-sm leading-none"></span>
                     <i class="far fa-bell"></i>
                   </button>
                   <div x-show="dropdownOpen" x-transition x-cloak class="absolute right-0 mt-4 flex w-[360px] flex-col rounded-xl border border-gray-200 !bg-white shadow-premium dark:border-gray-800 dark:!bg-boxdark z-[9999] overflow-hidden">
