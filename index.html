@@ -91,7 +91,8 @@
             <!-- Breadcrumb (Integrated) -->
             <div class="hidden lg:block ml-2">
               <nav aria-label="breadcrumb">
-                <ol class="flex items-center gap-2 text-sm">
+                <ol class="flex items-center gap-2 text-sm" id="dynamic-breadcrumb-container">
+                  <!-- Injected by JS -->
                   <li><a class="font-medium text-gray-400 hover:text-primary transition-colors" href="#" data-page="home">Dashboard</a></li>
                   <li class="text-gray-300">/</li>
                   <li id="page-breadcrumb" class="font-bold text-primary tracking-wide">BERANDA</li>
@@ -115,17 +116,17 @@
                  class="absolute right-4 top-[74px] z-50 w-[260px] flex-col gap-4 rounded-2xl border border-gray-100 bg-white p-4 lg:static lg:w-auto lg:flex-row lg:items-center lg:gap-4 lg:border-none lg:bg-transparent lg:p-0 lg:shadow-none dark:border-gray-800 dark:bg-boxdark lg:dark:bg-transparent transition-all">
               
               <!-- Toggles: Theme & Notif -->
-              <div class="flex items-center gap-2 lg:border-r lg:border-gray-200 lg:dark:border-gray-700 lg:pr-4">
-                <!-- Theme Mode -->
-                <button class="flex h-11 w-11 items-center justify-center rounded-full border border-gray-100 bg-gray-50 text-gray-500 hover:bg-gray-100 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 transition-all shadow-sm"
+              <div class="flex items-center gap-3 lg:border-r lg:border-gray-200 lg:dark:border-gray-700 lg:pr-4">
+                <!-- Theme Mode (TailAdmin Style) -->
+                <button class="flex h-10 w-10 items-center justify-center rounded-full border border-gray-100 bg-gray-50 text-gray-500 hover:bg-gray-100 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 transition-all shadow-sm"
                         @click.prevent="darkMode = !darkMode; document.documentElement.classList.toggle('dark'); localStorage.setItem('sultan_darkMode', darkMode); Sultan.notif.toast('info', 'Tema Diperbarui')">
                   <i :class="darkMode ? 'fas fa-sun' : 'fas fa-moon'"></i>
                 </button>
 
-                <!-- Notifications -->
+                <!-- Notifications (TailAdmin Style) -->
                 <div class="relative" x-data="{ dropdownOpen: false, notifying: true }" @click.outside="dropdownOpen = false">
-                  <button class="relative flex h-11 w-11 items-center justify-center rounded-full border border-gray-100 bg-gray-50 text-gray-500 hover:bg-gray-100 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 transition-all shadow-sm" @click.prevent="dropdownOpen = !dropdownOpen; notifying = false">
-                    <span id="notif-badge" :class="!notifying ? 'hidden' : 'flex'" class="absolute -top-1 -right-1 z-1 h-3.5 w-3.5 rounded-full bg-danger border-2 border-white dark:border-boxdark"></span>
+                  <button class="relative flex h-10 w-10 items-center justify-center rounded-full border border-gray-100 bg-gray-50 text-gray-500 hover:bg-gray-100 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 transition-all shadow-sm" @click.prevent="dropdownOpen = !dropdownOpen; notifying = false">
+                    <span id="notif-badge" :class="!notifying ? 'hidden' : 'flex'" class="absolute -top-0.5 -right-0.5 z-1 h-3 w-3 rounded-full bg-danger border-2 border-white dark:border-boxdark"></span>
                     <i class="far fa-bell"></i>
                   </button>
                   <div x-show="dropdownOpen" x-transition class="absolute right-0 mt-4 flex w-[300px] flex-col rounded-2xl border border-gray-100 bg-white p-3 shadow-premium dark:border-gray-800 dark:bg-boxdark">
@@ -140,17 +141,16 @@
               </div>
 
               <!-- Profile Area (Fully Integrated) -->
-              <div class="relative" x-data="{ profileOpen: false }" @click.outside="profileOpen = false">
-                <a href="#" class="flex items-center gap-3 p-1.5 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-all" @click.prevent="profileOpen = !profileOpen">
-                  <div class="relative">
-                    <img id="nav-user-photo" src="https://ui-avatars.com/api/?name=User&background=3C50E0&color=fff" alt="User" class="h-10 w-10 rounded-full object-cover ring-2 ring-gray-100 dark:ring-gray-700 shadow-sm" />
-                    <span class="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-white bg-green-500 dark:border-boxdark"></span>
-                  </div>
+              <div class="relative ml-1" x-data="{ profileOpen: false }" @click.outside="profileOpen = false">
+                <a href="#" class="flex items-center gap-3 py-1 px-2 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-all" @click.prevent="profileOpen = !profileOpen">
                   <div class="hidden xl:block text-right leading-tight">
-                    <span id="nav-user-name" class="block text-sm font-bold text-gray-900 dark:text-white">Administrator</span>
-                    <span id="dropdown-user-role" class="block text-[10px] uppercase font-bold text-gray-400">SUPER ADMIN</span>
+                    <span id="nav-user-name" class="block text-sm font-bold text-black dark:text-white">Administrator</span>
+                    <span id="dropdown-user-role" class="block text-xs font-medium text-gray-500 dark:text-gray-400">SUPER ADMIN</span>
                   </div>
-                  <i :class="profileOpen ? 'rotate-180' : ''" class="fas fa-chevron-down text-[10px] text-gray-300 transition-transform"></i>
+                  <div class="relative h-10 w-10 rounded-full overflow-hidden">
+                    <img id="nav-user-photo" src="https://ui-avatars.com/api/?name=User&background=3C50E0&color=fff" alt="User" class="h-full w-full object-cover" />
+                  </div>
+                  <i :class="profileOpen ? 'rotate-180' : ''" class="fas fa-chevron-down text-xs text-gray-400 transition-transform"></i>
                 </a>
                 
                 <div x-show="profileOpen" x-transition class="absolute right-0 mt-4 w-[220px] rounded-2xl border border-gray-100 bg-white p-2 shadow-premium dark:border-gray-800 dark:bg-boxdark z-[9999]">

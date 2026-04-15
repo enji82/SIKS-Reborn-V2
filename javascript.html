@@ -466,11 +466,52 @@ function tampilkanMenuAdmin(user) {
  * MENU MAPPING & BREADCRUMBS (THEME SYNCED)
  */
 function updateBreadcrumb(pageName) {
-    const title = (window.MENU_MAPPING && MENU_MAPPING[pageName]) ? MENU_MAPPING[pageName] : pageName;
-    const breadcrumbText = title.toUpperCase();
-    $('#page-title-main').text(breadcrumbText);
-    $('#page-breadcrumb').text(breadcrumbText).addClass('animate-reveal');
-    document.title = "SIKS-REBORN | " + title;
+    const $activeLink = $(`a[data-page="${pageName}"]`);
+    let breadcrumbs = [];
+    
+    if (pageName === 'home') {
+        breadcrumbs = ['BERANDA'];
+    } else if ($activeLink.length > 0) {
+        // Find current level name
+        breadcrumbs.push($activeLink.text().trim());
+        
+        // Traverse up
+        let $parentSubmenu = $activeLink.closest('.submenu-tail');
+        if ($parentSubmenu.length) {
+            let $parentTrigger = $parentSubmenu.prev('.nav-link-tail');
+            if ($parentTrigger.length) {
+                // Get exactly the text node, ignore the chevron icon
+                let textOnly = $parentTrigger.find('span.truncate').text().trim();
+                if (!textOnly) {
+                    textOnly = $parentTrigger.clone().children().remove().end().text().trim();
+                }
+                breadcrumbs.push(textOnly);
+            }
+        }
+    } else {
+        breadcrumbs.push((window.MENU_MAPPING && MENU_MAPPING[pageName]) ? MENU_MAPPING[pageName] : pageName);
+    }
+    
+    breadcrumbs = breadcrumbs.reverse();
+    
+    // Construct HTML string
+    let bcHtml = '<li><a class="font-medium text-gray-400 hover:text-primary transition-colors" href="#" data-page="home">Dashboard</a></li><li class="text-gray-300">/</li>';
+    
+    if (pageName !== 'home') {
+        breadcrumbs.forEach((crumb, idx) => {
+            if (idx === breadcrumbs.length - 1) {
+                bcHtml += `<li id="page-breadcrumb" class="font-bold text-primary tracking-wide animate-reveal uppercase">${crumb}</li>`;
+            } else {
+                bcHtml += `<li><span class="font-medium text-gray-500 uppercase">${crumb}</span></li><li class="text-gray-300">/</li>`;
+            }
+        });
+    } else {
+        bcHtml += '<li id="page-breadcrumb" class="font-bold text-primary tracking-wide animate-reveal uppercase">BERANDA</li>';
+    }
+    
+    // Inject and update doc title
+    $('#dynamic-breadcrumb-container').html(bcHtml);
+    document.title = "SIKS-REBORN | " + breadcrumbs.join(' - ');
 }
 
 function highlightSidebar(page) {
