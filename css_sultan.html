@@ -1805,9 +1805,9 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
   margin: 2px 0 4px 0 !important;
   padding-left: 0 !important;
   list-style: none !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 1px !important;
+  display: none; /* Hide by default, Alpine.js will toggle display: flex/none */
+  flex-direction: column;
+  gap: 1px;
 }
 
 .submenu-link-tail {
