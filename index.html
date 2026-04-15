@@ -120,24 +120,24 @@
                     <span id="notif-badge" :class="!notifying ? 'hidden' : 'flex'" class="absolute -top-0.5 -right-0.5 z-1 h-3 w-3 rounded-full bg-danger border-2 border-white dark:border-boxdark"></span>
                     <i class="far fa-bell"></i>
                   </button>
-                  <div x-show="dropdownOpen" x-transition class="absolute right-0 mt-4 flex w-[340px] flex-col rounded-lg border border-stroke !bg-white shadow-default dark:border-strokedark dark:!bg-boxdark z-[9999]">
+                  <div x-show="dropdownOpen" x-transition x-cloak class="absolute right-0 mt-4 flex w-[360px] flex-col rounded-xl border border-gray-200 !bg-white shadow-premium dark:border-gray-800 dark:!bg-boxdark z-[9999] overflow-hidden">
                     
                     <!-- Dropdown Header -->
-                    <div class="flex items-center justify-between border-b border-stroke px-4.5 py-3 dark:border-strokedark">
-                      <h5 class="text-sm font-bold text-black dark:text-white">Notification</h5>
-                      <button @click="dropdownOpen = false" class="text-body hover:text-primary dark:text-bodydark dark:hover:text-white">
-                        <i class="fas fa-times text-xs"></i>
+                    <div class="flex items-center justify-between border-b border-gray-100 px-5 py-4 dark:border-gray-800">
+                      <h5 class="text-base font-bold text-black dark:text-white">Notification</h5>
+                      <button @click="dropdownOpen = false" class="text-body hover:text-danger dark:text-bodydark dark:hover:text-white transition-colors">
+                        <i class="fas fa-times text-sm"></i>
                       </button>
                     </div>
 
                     <!-- Notification List Container -->
-                    <ul id="notif-list-container" class="flex h-auto max-h-[380px] flex-col overflow-y-auto">
-                      <li class="p-8 text-center text-xs text-gray-400 italic">Tidak ada notifikasi baru</li>
+                    <ul id="notif-list-container" class="flex flex-col h-auto max-h-[420px] overflow-y-auto no-scrollbar">
+                      <li class="p-10 text-center text-xs text-gray-400 italic">Tidak ada notifikasi baru</li>
                     </ul>
 
                     <!-- Dropdown Footer -->
-                    <div class="border-t border-stroke p-4 dark:border-strokedark">
-                      <a href="#" class="flex items-center justify-center rounded-lg border border-primary px-4 py-2.5 text-center text-sm font-bold text-primary hover:bg-primary hover:text-white transition-all">
+                    <div class="border-t border-gray-100 p-4 dark:border-gray-800 bg-gray-50/50 dark:bg-black/10">
+                      <a href="#" class="notif-view-all-btn">
                         View All Notification
                       </a>
                     </div>
