@@ -105,11 +105,18 @@
             </button>
             <!-- Application nav menu button -->
 
-            <div class="hidden lg:block">
-              <!-- Breadcrumbs injected by javascript.html -->
-              <h5 id="page-breadcrumb" class="text-sm font-bold text-gray-800 dark:text-white uppercase tracking-widest leading-none" style="position:relative;top:3px;">
-                BERANDA
-              </h5>
+            <div class="hidden lg:block ml-4 flex-1 max-w-xl">
+              <form action="#" method="POST">
+                <div class="relative">
+                  <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+                    <svg class="fill-current" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M9.16667 3.33335C5.94501 3.33335 3.33334 5.94501 3.33334 9.16668C3.33334 12.3883 5.94501 15 9.16667 15C12.3883 15 15 12.3883 15 9.16668C15 5.94501 12.3883 3.33335 9.16667 3.33335ZM1.66667 9.16668C1.66667 5.02454 5.02454 1.66668 9.16667 1.66668C13.3088 1.66668 16.6667 5.02454 16.6667 9.16668C16.6667 10.9575 16.0366 12.6015 14.9852 13.8864L18.0492 16.9504C18.3421 17.2433 18.3421 17.7181 18.0492 18.011C17.7563 18.3039 17.2814 18.3039 16.9885 18.011L13.9245 14.947C12.6396 15.9984 10.9956 16.6667 9.16667 16.6667C5.02454 16.6667 1.66667 13.3088 1.66667 9.16668Z" fill=""></path>
+                    </svg>
+                  </span>
+                  <input type="text" placeholder="Type to search..." class="w-full bg-gray-50 dark:bg-gray-800/50 border border-transparent focus:border-primary rounded-lg py-2.5 pl-12 pr-4 text-sm outline-none transition dark:text-white" />
+                  <span class="absolute right-4 top-1/2 -translate-y-1/2 hidden xl:block text-xs font-medium text-gray-400 border border-gray-200 dark:border-gray-700 px-1.5 py-0.5 rounded-md bg-white dark:bg-gray-800">⌘ K</span>
+                </div>
+              </form>
             </div>
           </div>
 
