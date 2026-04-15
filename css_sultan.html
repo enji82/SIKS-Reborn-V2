@@ -1805,7 +1805,7 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
   margin: 2px 0 4px 0 !important;
   padding-left: 0 !important;
   list-style: none !important;
-  display: flex; /* Alpine.js x-show will handle toggle by adding display:none */
+  display: flex; /* Alpine.js x-show will handle toggle */
   flex-direction: column;
   gap: 1px;
 }
@@ -1845,7 +1845,28 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
 }
 
 /* CUSTOM SCROLLBAR (TAILADMIN) */
-.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.no-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.no-scrollbar::-webkit-scrollbar-thumb {
+  background: #E2E8F0;
+  border-radius: 10px;
+}
+.dark .no-scrollbar::-webkit-scrollbar-thumb {
+  background: #313D4A;
+}
+
+/* FONT SMOOTHING */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[x-cloak] { display: none !important; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
 /* OVERLAY (FOR MOBILE SIDEBAR) */

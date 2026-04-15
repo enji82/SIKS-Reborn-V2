@@ -201,7 +201,26 @@
       </header>
       
       <!-- MAIN CONTENT -->
-      <main class="flex-1 overflow-x-hidden p-4 md:p-6 lg:p-10">
+      <main class="flex-1 overflow-x-hidden bg-[#F9FAFB] dark:bg-boxdark-2 p-4 md:p-6 2xl:p-10">
+        
+        <!-- PAGE HEADER (TailAdmin Style) -->
+        <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <h2 id="page-title-main" class="text-title-md2 font-bold text-black dark:text-white">
+            BERANDA
+          </h2>
+
+          <nav>
+            <ol class="flex items-center gap-2">
+              <li>
+                <a class="font-medium text-gray-400 hover:text-primary" href="#" data-page="home">
+                  Dashboard /
+                </a>
+              </li>
+              <li id="page-breadcrumb" class="font-medium text-primary">BERANDA</li>
+            </ol>
+          </nav>
+        </div>
+
         <!-- Viewport Container (SPA Content) -->
         <div id="app-content-active" class="animate-reveal"></div>
       </main>
