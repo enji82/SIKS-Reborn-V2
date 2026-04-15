@@ -1,257 +1,296 @@
-<div class="content-header pb-0">
-  <div class="container-fluid">
-    <div class="row mb-2">
-      <div class="col-sm-12">
-        <h5 class="m-0 font-weight-bold">
-          <i class="fas fa-tachometer-alt text-maroon mr-2"></i>Dashboard Data PTK
-        </h5>
-        <hr class="style-sultan-solid">
-      </div>
-    </div>
-  </div>
-</div>
-
-<section class="content">
-  <div class="container-fluid">
+<section class="animate-reveal">
+  <div class="flex flex-col gap-4 md:gap-6 2xl:gap-7.5">
     
-    <div id="wrapperSDN" class="card-sultan mb-4" style="display:none;">
-        <div class="card-header bg-white border-bottom-0">
-            <h3 class="card-title font-weight-bold text-maroon"><i class="fas fa-school mr-2"></i>REKAPITULASI SD NEGERI</h3>
-            <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-            </div>
+    <!-- SDN SECTION -->
+    <div id="wrapperSDN" class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mb-6" style="display:none;" x-data="{ isOpen: true }">
+        <div class="border-b border-stroke py-4 px-6.5 dark:border-strokedark flex justify-between items-center cursor-pointer" @click="isOpen = !isOpen">
+            <h3 class="font-bold text-primary dark:text-white flex items-center">
+              <i class="fas fa-school mr-2"></i> REKAPITULASI SD NEGERI
+            </h3>
+            <button class="text-body dark:text-white transition-transform" :class="{ 'rotate-180': !isOpen }">
+                <i class="fas fa-chevron-down"></i>
+            </button>
         </div>
-        <div class="card-body pt-0">
-            <div class="row">
-                <div class="col-lg-2 col-6">
-                    <div class="small-box bg-maroon">
-                        <div class="inner">
-                            <h3 id="sdn_jml_sekolah"><i class="fas fa-spinner fa-spin"></i></h3>
-                            <p>Jumlah Sekolah</p>
-                        </div>
-                        <div class="icon"><i class="fas fa-building"></i></div>
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 mt-4">
+                <!-- Jumlah Sekolah -->
+                <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4 mb-3">
+                        <i class="fas fa-building text-primary"></i>
                     </div>
+                    <h4 class="text-xl font-bold text-black dark:text-white" id="sdn_jml_sekolah"><i class="fas fa-spinner fa-spin"></i></h4>
+                    <span class="text-xs font-medium text-body">Jumlah Sekolah</span>
                 </div>
-                <div class="col-lg-2 col-6">
-                    <div class="small-box bg-primary">
-                        <div class="inner">
-                            <h3 id="sdn_jml_pns"><i class="fas fa-spinner fa-spin"></i></h3>
-                            <p>Total PNS</p>
-                        </div>
-                        <div class="icon"><i class="fas fa-id-card"></i></div>
+                <!-- Total PNS -->
+                <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4 mb-3">
+                        <i class="fas fa-id-card text-primary"></i>
                     </div>
+                    <h4 class="text-xl font-bold text-black dark:text-white" id="sdn_jml_pns"><i class="fas fa-spinner fa-spin"></i></h4>
+                    <span class="text-xs font-medium text-body">Total PNS</span>
                 </div>
-                <div class="col-lg-2 col-6">
-                    <div class="small-box bg-warning">
-                        <div class="inner">
-                            <h3 id="sdn_jml_pppk"><i class="fas fa-spinner fa-spin"></i></h3>
-                            <p>Total PPPK</p>
-                        </div>
-                        <div class="icon"><i class="fas fa-user-tie"></i></div>
+                <!-- Total PPPK -->
+                <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4 mb-3">
+                        <i class="fas fa-user-tie text-primary"></i>
                     </div>
+                    <h4 class="text-xl font-bold text-black dark:text-white" id="sdn_jml_pppk"><i class="fas fa-spinner fa-spin"></i></h4>
+                    <span class="text-xs font-medium text-body">Total PPPK</span>
                 </div>
-                <div class="col-lg-2 col-6">
-                    <div class="small-box bg-info">
-                        <div class="inner">
-                            <h3 id="sdn_jml_pppk_pw"><i class="fas fa-spinner fa-spin"></i></h3>
-                            <p>PPPK Paruh Waktu</p>
-                        </div>
-                        <div class="icon"><i class="fas fa-user-clock"></i></div>
+                <!-- PPPK Paruh Waktu -->
+                <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4 mb-3">
+                        <i class="fas fa-user-clock text-primary"></i>
                     </div>
+                    <h4 class="text-xl font-bold text-black dark:text-white" id="sdn_jml_pppk_pw"><i class="fas fa-spinner fa-spin"></i></h4>
+                    <span class="text-xs font-medium text-body">PPPK Paruh Waktu</span>
                 </div>
-                <div class="col-lg-2 col-6">
-                    <div class="small-box bg-secondary">
-                        <div class="inner">
-                            <h3 id="sdn_jml_nonasn"><i class="fas fa-spinner fa-spin"></i></h3>
-                            <p>Non ASN (GTT/PTT)</p>
-                        </div>
-                        <div class="icon"><i class="fas fa-users"></i></div>
+                <!-- Non ASN -->
+                <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4 mb-3">
+                        <i class="fas fa-users text-primary"></i>
                     </div>
+                    <h4 class="text-xl font-bold text-black dark:text-white" id="sdn_jml_nonasn"><i class="fas fa-spinner fa-spin"></i></h4>
+                    <span class="text-xs font-medium text-body">Non ASN (GTT/PTT)</span>
                 </div>
-                <div class="col-lg-2 col-6">
-                    <div class="small-box bg-success">
-                        <div class="inner">
-                            <h3 id="sdn_total_ptk"><i class="fas fa-spinner fa-spin"></i></h3>
-                            <p>Total PTK</p>
-                        </div>
-                        <div class="icon"><i class="fas fa-chart-line"></i></div>
+                <!-- Total PTK -->
+                <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark border-l-4 border-l-success">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-success/10 mb-3">
+                        <i class="fas fa-chart-line text-success"></i>
                     </div>
+                    <h4 class="text-xl font-bold text-black dark:text-white" id="sdn_total_ptk"><i class="fas fa-spinner fa-spin"></i></h4>
+                    <span class="text-xs font-medium text-body">Total PTK</span>
                 </div>
             </div>
 
-            <div class="divider-text text-muted my-3 small font-weight-bold">RINCIAN JABATAN & STATUS</div>
-
-            <div class="row">
-                <div class="col-lg-3 col-6">
-                    <div class="info-box bg-light border">
-                        <span class="info-box-icon bg-primary"><i class="fas fa-user-graduate text-white"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text font-weight-bold">Kepala Sekolah</span>
-                            <span class="info-box-number text-lg" id="sdn_det_ks">0</span>
-                            <div class="progress"><div class="progress-bar bg-primary w-100"></div></div>
-                            <span class="progress-description small text-muted">
-                                PNS: <b id="sdn_det_ks_pns" class="text-primary">0</b> | PPPK: <b id="sdn_det_ks_pppk" class="text-warning">0</b>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-3 col-6">
-                    <div class="info-box bg-light border">
-                        <span class="info-box-icon bg-success"><i class="fas fa-chalkboard-teacher text-white"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text font-weight-bold">Guru PNS</span>
-                            <span class="info-box-number text-lg" id="sdn_det_g_pns">0</span>
-                            <div class="progress"><div class="progress-bar bg-success w-100"></div></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-6">
-                    <div class="info-box bg-light border">
-                        <span class="info-box-icon bg-warning"><i class="fas fa-chalkboard-teacher text-white"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text font-weight-bold">Guru PPPK</span>
-                            <span class="info-box-number text-lg" id="sdn_det_g_pppk">0</span>
-                            <div class="progress"><div class="progress-bar bg-warning w-100"></div></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-6">
-                    <div class="info-box bg-light border">
-                        <span class="info-box-icon bg-info"><i class="fas fa-chalkboard-teacher text-white"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text font-weight-bold">Guru PPPK PW</span>
-                            <span class="info-box-number text-lg" id="sdn_det_g_pppk_pw">0</span>
-                            <div class="progress"><div class="progress-bar bg-info w-100"></div></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-6">
-                    <div class="info-box bg-light border">
-                        <span class="info-box-icon bg-secondary"><i class="fas fa-chalkboard-teacher text-white"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text font-weight-bold">Guru GTT</span>
-                            <span class="info-box-number text-lg" id="sdn_det_g_gtt">0</span>
-                            <div class="progress"><div class="progress-bar bg-secondary w-100"></div></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-6">
-                    <div class="info-box bg-light border">
-                        <span class="info-box-icon bg-warning"><i class="fas fa-user-cog text-white"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text font-weight-bold">Tendik PPPK</span>
-                            <span class="info-box-number text-lg" id="sdn_det_t_pppk">0</span>
-                            <div class="progress"><div class="progress-bar bg-warning w-100"></div></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-6">
-                    <div class="info-box bg-light border">
-                        <span class="info-box-icon bg-info"><i class="fas fa-user-cog text-white"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text font-weight-bold">Tendik PPPK PW</span>
-                            <span class="info-box-number text-lg" id="sdn_det_t_pppk_pw">0</span>
-                            <div class="progress"><div class="progress-bar bg-info w-100"></div></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-6">
-                    <div class="info-box bg-light border">
-                        <span class="info-box-icon bg-gray"><i class="fas fa-user-cog text-white"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text font-weight-bold">Tendik PTT</span>
-                            <span class="info-box-number text-lg" id="sdn_det_t_ptt">0</span>
-                            <div class="progress"><div class="progress-bar bg-gray w-100"></div></div>
-                        </div>
-                    </div>
-                </div>
+            <div class="border-t border-stroke my-4 dark:border-strokedark flex items-center justify-center">
+                <span class="bg-white dark:bg-boxdark px-4 -mt-3.5 text-xs font-bold text-body uppercase tracking-wider">RINCIAN JABATAN & STATUS</span>
             </div>
-        </div>
-    </div>
+            
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <!-- Kepala Sekolah -->
+                <div class="rounded-sm border border-stroke bg-white p-4 shadow-default dark:border-strokedark dark:bg-boxdark">
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="flex h-10 w-10 items-center justify-center rounded bg-primary/10 text-primary">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-medium text-body">Kepala Sekolah</span>
+                            <h4 class="text-lg font-bold text-black dark:text-white" id="sdn_det_ks">0</h4>
+                        </div>
+                    </div>
+                    <div class="w-full bg-gray-2 dark:bg-meta-4 h-1.5 rounded-full overflow-hidden mb-2">
+                        <div class="bg-primary h-full w-full"></div>
+                    </div>
+                    <div class="text-[10px] text-body">
+                        PNS: <b id="sdn_det_ks_pns" class="text-primary">0</b> | PPPK: <b id="sdn_det_ks_pppk" class="text-warning">0</b>
+                    </div>
+                </div>
 
-    <div id="wrapperSDS" class="card-sultan mb-4" style="display:none;">
-        <div class="card-header bg-white border-bottom-0">
-            <h3 class="card-title font-weight-bold text-maroon"><i class="fas fa-school mr-2"></i>REKAPITULASI SD SWASTA</h3>
-            <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-            </div>
-        </div>
-        <div class="card-body pt-0">
-            <div class="row">
-                <div class="col-lg-2 col-6">
-                    <div class="small-box bg-maroon">
-                        <div class="inner"><h3 id="sds_jml_sekolah"><i class="fas fa-spinner fa-spin"></i></h3><p>Jumlah Sekolah</p></div>
-                        <div class="icon"><i class="fas fa-building"></i></div>
+                <!-- Guru PNS -->
+                <div class="rounded-sm border border-stroke bg-white p-4 shadow-default dark:border-strokedark dark:bg-boxdark">
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="flex h-10 w-10 items-center justify-center rounded bg-success/10 text-success">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-medium text-body">Guru PNS</span>
+                            <h4 class="text-lg font-bold text-black dark:text-white" id="sdn_det_g_pns">0</h4>
+                        </div>
+                    </div>
+                    <div class="w-full bg-gray-2 dark:bg-meta-4 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-success h-full w-full"></div>
                     </div>
                 </div>
-                <div class="col-lg-2 col-6">
-                    <div class="small-box bg-primary">
-                        <div class="inner"><h3 id="sds_jml_pns"><i class="fas fa-spinner fa-spin"></i></h3><p>Jumlah PNS/PPPK</p></div>
-                        <div class="icon"><i class="fas fa-user-shield"></i></div>
+
+                <!-- Guru PPPK -->
+                <div class="rounded-sm border border-stroke bg-white p-4 shadow-default dark:border-strokedark dark:bg-boxdark">
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="flex h-10 w-10 items-center justify-center rounded bg-warning/10 text-warning">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-medium text-body">Guru PPPK</span>
+                            <h4 class="text-lg font-bold text-black dark:text-white" id="sdn_det_g_pppk">0</h4>
+                        </div>
+                    </div>
+                    <div class="w-full bg-gray-2 dark:bg-meta-4 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-warning h-full w-full"></div>
                     </div>
                 </div>
-                <div class="col-lg-2 col-6">
-                    <div class="small-box bg-success">
-                        <div class="inner"><h3 id="sds_jml_gty"><i class="fas fa-spinner fa-spin"></i></h3><p>Jumlah GTY</p></div>
-                        <div class="icon"><i class="fas fa-chalkboard-teacher"></i></div>
+
+                <!-- Guru PPPK PW -->
+                <div class="rounded-sm border border-stroke bg-white p-4 shadow-default dark:border-strokedark dark:bg-boxdark">
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="flex h-10 w-10 items-center justify-center rounded bg-info/10 text-info">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-medium text-body">Guru PPPK PW</span>
+                            <h4 class="text-lg font-bold text-black dark:text-white" id="sdn_det_g_pppk_pw">0</h4>
+                        </div>
+                    </div>
+                    <div class="w-full bg-gray-2 dark:bg-meta-4 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-info h-full w-full"></div>
                     </div>
                 </div>
-                <div class="col-lg-2 col-6">
-                    <div class="small-box bg-info">
-                        <div class="inner"><h3 id="sds_jml_pty"><i class="fas fa-spinner fa-spin"></i></h3><p>Jumlah PTY</p></div>
-                        <div class="icon"><i class="fas fa-user-cog"></i></div>
+
+                <!-- Guru GTT -->
+                <div class="rounded-sm border border-stroke bg-white p-4 shadow-default dark:border-strokedark dark:bg-boxdark">
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="flex h-10 w-10 items-center justify-center rounded bg-secondary/10 text-secondary">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-medium text-body">Guru GTT</span>
+                            <h4 class="text-lg font-bold text-black dark:text-white" id="sdn_det_g_gtt">0</h4>
+                        </div>
+                    </div>
+                    <div class="w-full bg-gray-2 dark:bg-meta-4 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-secondary h-full w-full"></div>
                     </div>
                 </div>
-                <div class="col-lg-2 col-6">
-                    <div class="small-box bg-secondary">
-                        <div class="inner"><h3 id="sds_jml_gtt"><i class="fas fa-spinner fa-spin"></i></h3><p>Jumlah GTT</p></div>
-                        <div class="icon"><i class="fas fa-user"></i></div>
+
+                <!-- Tendik PPPK -->
+                <div class="rounded-sm border border-stroke bg-white p-4 shadow-default dark:border-strokedark dark:bg-boxdark">
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="flex h-10 w-10 items-center justify-center rounded bg-warning/10 text-warning">
+                            <i class="fas fa-user-cog"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-medium text-body">Tendik PPPK</span>
+                            <h4 class="text-lg font-bold text-black dark:text-white" id="sdn_det_t_pppk">0</h4>
+                        </div>
+                    </div>
+                    <div class="w-full bg-gray-2 dark:bg-meta-4 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-warning h-full w-full"></div>
                     </div>
                 </div>
-                <div class="col-lg-2 col-6">
-                    <div class="small-box bg-gray">
-                        <div class="inner"><h3 id="sds_jml_ptt"><i class="fas fa-spinner fa-spin"></i></h3><p>Jumlah PTT</p></div>
-                        <div class="icon"><i class="fas fa-users"></i></div>
+
+                <!-- Tendik PPPK PW -->
+                <div class="rounded-sm border border-stroke bg-white p-4 shadow-default dark:border-strokedark dark:bg-boxdark">
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="flex h-10 w-10 items-center justify-center rounded bg-info/10 text-info">
+                            <i class="fas fa-user-cog"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-medium text-body">Tendik PPPK PW</span>
+                            <h4 class="text-lg font-bold text-black dark:text-white" id="sdn_det_t_pppk_pw">0</h4>
+                        </div>
+                    </div>
+                    <div class="w-full bg-gray-2 dark:bg-meta-4 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-info h-full w-full"></div>
+                    </div>
+                </div>
+
+                <!-- Tendik PTT -->
+                <div class="rounded-sm border border-stroke bg-white p-4 shadow-default dark:border-strokedark dark:bg-boxdark">
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="flex h-10 w-10 items-center justify-center rounded bg-gray/10 text-gray">
+                            <i class="fas fa-user-cog"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-medium text-body">Tendik PTT</span>
+                            <h4 class="text-lg font-bold text-black dark:text-white" id="sdn_det_t_ptt">0</h4>
+                        </div>
+                    </div>
+                    <div class="w-full bg-gray-2 dark:bg-meta-4 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-gray h-full w-full"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="wrapperPAUD" class="card-sultan" style="display:none;">
-        <div class="card-header bg-white p-2">
-            <ul class="nav nav-pills">
-                <li class="nav-item"><a class="nav-link active font-weight-bold" href="#tab_tk" data-toggle="tab">TK (Taman Kanak-Kanak)</a></li>
-                <li class="nav-item"><a class="nav-link font-weight-bold" href="#tab_kb" data-toggle="tab">KB (Kelompok Bermain)</a></li>
-                <li class="nav-item"><a class="nav-link font-weight-bold" href="#tab_sps" data-toggle="tab">SPS/TPA</a></li>
+    <!-- SDS SECTION -->
+    <div id="wrapperSDS" class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mb-6" style="display:none;" x-data="{ isOpen: true }">
+        <div class="border-b border-stroke py-4 px-6.5 dark:border-strokedark flex justify-between items-center cursor-pointer" @click="isOpen = !isOpen">
+            <h3 class="font-bold text-primary dark:text-white flex items-center">
+              <i class="fas fa-school mr-2"></i> REKAPITULASI SD SWASTA
+            </h3>
+            <button class="text-body dark:text-white transition-transform" :class="{ 'rotate-180': !isOpen }">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+        <div class="p-6.5 pt-0" x-show="isOpen" x-transition x-cloak>
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 mt-4">
+                <!-- Jumlah Sekolah -->
+                <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4 mb-3">
+                        <i class="fas fa-building text-primary"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-black dark:text-white" id="sds_jml_sekolah"><i class="fas fa-spinner fa-spin"></i></h4>
+                    <span class="text-xs font-medium text-body">Jumlah Sekolah</span>
+                </div>
+                <!-- Jumlah PNS/PPPK -->
+                <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4 mb-3">
+                        <i class="fas fa-user-shield text-primary"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-black dark:text-white" id="sds_jml_pns"><i class="fas fa-spinner fa-spin"></i></h4>
+                    <span class="text-xs font-medium text-body">Jumlah PNS/PPPK</span>
+                </div>
+                <!-- Jumlah GTY -->
+                <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4 mb-3">
+                        <i class="fas fa-chalkboard-teacher text-primary"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-black dark:text-white" id="sds_jml_gty"><i class="fas fa-spinner fa-spin"></i></h4>
+                    <span class="text-xs font-medium text-body">Jumlah GTY</span>
+                </div>
+                <!-- Jumlah PTY -->
+                <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4 mb-3">
+                        <i class="fas fa-user-cog text-primary"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-black dark:text-white" id="sds_jml_pty"><i class="fas fa-spinner fa-spin"></i></h4>
+                    <span class="text-xs font-medium text-body">Jumlah PTY</span>
+                </div>
+                <!-- Jumlah GTT -->
+                <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4 mb-3">
+                        <i class="fas fa-user text-primary"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-black dark:text-white" id="sds_jml_gtt"><i class="fas fa-spinner fa-spin"></i></h4>
+                    <span class="text-xs font-medium text-body">Jumlah GTT</span>
+                </div>
+                <!-- Jumlah PTT -->
+                <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4 mb-3">
+                        <i class="fas fa-users text-primary"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-black dark:text-white" id="sds_jml_ptt"><i class="fas fa-spinner fa-spin"></i></h4>
+                    <span class="text-xs font-medium text-body">Jumlah PTT</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAUD SECTION -->
+    <div id="wrapperPAUD" class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark" style="display:none;" x-data="{ activeTab: 'tk' }">
+        <div class="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
+            <ul class="flex flex-wrap gap-4 text-sm font-bold">
+                <li class="cursor-pointer transition-colors" :class="activeTab === 'tk' ? 'text-primary' : 'text-body hover:text-primary'" @click="activeTab = 'tk'">TK (Taman Kanak-Kanak)</li>
+                <li class="cursor-pointer transition-colors" :class="activeTab === 'kb' ? 'text-primary' : 'text-body hover:text-primary'" @click="activeTab = 'kb'">KB (Kelompok Bermain)</li>
+                <li class="cursor-pointer transition-colors" :class="activeTab === 'sps' ? 'text-primary' : 'text-body hover:text-primary'" @click="activeTab = 'sps'">SPS/TPA</li>
             </ul>
         </div>
-        <div class="card-body">
-            <div class="tab-content">
-                <div class="tab-pane active" id="tab_tk">
-                    <h5 class="font-weight-bold text-maroon mb-3">Rekapitulasi Jenjang TK</h5>
-                    <div class="row" id="row_tk">
-                        <div class="col-12 text-center p-3 text-muted"><i class="fas fa-spinner fa-spin mr-2"></i>Memuat data...</div>
-                    </div>
+        <div class="p-6.5">
+            <div x-show="activeTab === 'tk'" x-transition>
+                <h5 class="font-bold text-primary dark:text-white mb-4">Rekapitulasi Jenjang TK</h5>
+                <div class="grid grid-cols-2 gap-4 lg:grid-cols-6 mt-4" id="row_tk">
+                    <div class="col-span-full text-center p-3 text-muted"><i class="fas fa-spinner fa-spin mr-2"></i>Memuat data...</div>
                 </div>
-                <div class="tab-pane" id="tab_kb">
-                    <h5 class="font-weight-bold text-maroon mb-3">Rekapitulasi Jenjang KB</h5>
-                    <div class="row" id="row_kb">
-                        <div class="col-12 text-center p-3 text-muted"><i class="fas fa-spinner fa-spin mr-2"></i>Memuat data...</div>
-                    </div>
+            </div>
+            <div x-show="activeTab === 'kb'" x-transition x-cloak>
+                <h5 class="font-bold text-primary dark:text-white mb-4">Rekapitulasi Jenjang KB</h5>
+                <div class="grid grid-cols-2 gap-4 lg:grid-cols-6 mt-4" id="row_kb">
+                    <div class="col-span-full text-center p-3 text-muted"><i class="fas fa-spinner fa-spin mr-2"></i>Memuat data...</div>
                 </div>
-                <div class="tab-pane" id="tab_sps">
-                    <h5 class="font-weight-bold text-maroon mb-3">Rekapitulasi Jenjang SPS/TPA</h5>
-                    <div class="row" id="row_sps">
-                        <div class="col-12 text-center p-3 text-muted"><i class="fas fa-spinner fa-spin mr-2"></i>Memuat data...</div>
-                    </div>
+            </div>
+            <div x-show="activeTab === 'sps'" x-transition x-cloak>
+                <h5 class="font-bold text-primary dark:text-white mb-4">Rekapitulasi Jenjang SPS/TPA</h5>
+                <div class="grid grid-cols-2 gap-4 lg:grid-cols-6 mt-4" id="row_sps">
+                    <div class="col-span-full text-center p-3 text-muted"><i class="fas fa-spinner fa-spin mr-2"></i>Memuat data...</div>
                 </div>
             </div>
         </div>
@@ -454,12 +493,54 @@ function calculatePAUD(data, isAdmin) {
         }
 
         var html = `
-            <div class="col-lg-2 col-6"><div class="small-box bg-maroon"><div class="inner"><h3>${obj.jml}</h3><p>Jumlah Lembaga</p></div><div class="icon"><i class="fas fa-building"></i></div></div></div>
-            <div class="col-lg-2 col-6"><div class="small-box bg-primary"><div class="inner"><h3>${obj.pns}</h3><p>Jumlah PNS</p></div><div class="icon"><i class="fas fa-id-card"></i></div></div></div>
-            <div class="col-lg-2 col-6"><div class="small-box bg-success"><div class="inner"><h3>${obj.gty}</h3><p>Jumlah GTY</p></div><div class="icon"><i class="fas fa-chalkboard-teacher"></i></div></div></div>
-            <div class="col-lg-2 col-6"><div class="small-box bg-info"><div class="inner"><h3>${obj.pty}</h3><p>Jumlah PTY</p></div><div class="icon"><i class="fas fa-user-cog"></i></div></div></div>
-            <div class="col-lg-2 col-6"><div class="small-box bg-secondary"><div class="inner"><h3>${obj.gtt}</h3><p>Jumlah GTT</p></div><div class="icon"><i class="fas fa-users"></i></div></div></div>
-            <div class="col-lg-2 col-6"><div class="small-box bg-gray"><div class="inner"><h3>${obj.ptt}</h3><p>Jumlah PTT</p></div><div class="icon"><i class="fas fa-user-clock"></i></div></div></div>
+            <!-- Jumlah Lembaga -->
+            <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+                <div class="flex h-10 w-10 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4 mb-3">
+                    <i class="fas fa-building text-primary"></i>
+                </div>
+                <h4 class="text-xl font-bold text-black dark:text-white">${obj.jml}</h4>
+                <span class="text-xs font-medium text-body">Jumlah Lembaga</span>
+            </div>
+            <!-- Jumlah PNS -->
+            <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+                <div class="flex h-10 w-10 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4 mb-3">
+                    <i class="fas fa-id-card text-primary"></i>
+                </div>
+                <h4 class="text-xl font-bold text-black dark:text-white">${obj.pns}</h4>
+                <span class="text-xs font-medium text-body">Jumlah PNS</span>
+            </div>
+            <!-- Jumlah GTY -->
+            <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+                <div class="flex h-10 w-10 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4 mb-3">
+                    <i class="fas fa-chalkboard-teacher text-primary"></i>
+                </div>
+                <h4 class="text-xl font-bold text-black dark:text-white">${obj.gty}</h4>
+                <span class="text-xs font-medium text-body">Jumlah GTY</span>
+            </div>
+            <!-- Jumlah PTY -->
+            <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+                <div class="flex h-10 w-10 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4 mb-3">
+                    <i class="fas fa-user-cog text-primary"></i>
+                </div>
+                <h4 class="text-xl font-bold text-black dark:text-white">${obj.pty}</h4>
+                <span class="text-xs font-medium text-body">Jumlah PTY</span>
+            </div>
+            <!-- Jumlah GTT -->
+            <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+                <div class="flex h-10 w-10 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4 mb-3">
+                    <i class="fas fa-user text-primary"></i>
+                </div>
+                <h4 class="text-xl font-bold text-black dark:text-white">${obj.gtt}</h4>
+                <span class="text-xs font-medium text-body">Jumlah GTT</span>
+            </div>
+            <!-- Jumlah PTT -->
+            <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+                <div class="flex h-10 w-10 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4 mb-3">
+                    <i class="fas fa-users text-primary"></i>
+                </div>
+                <h4 class="text-xl font-bold text-black dark:text-white">${obj.ptt}</h4>
+                <span class="text-xs font-medium text-body">Jumlah PTT</span>
+            </div>
         `;
         $('#' + containerId).html(html);
     }

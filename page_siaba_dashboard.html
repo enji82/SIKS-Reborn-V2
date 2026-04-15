@@ -1,18 +1,5 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 
-<!-- Breadcrumb Header -->
-<div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between animate-reveal">
-  <h2 class="text-title-md2 font-bold text-black dark:text-white flex items-center">
-    <i class="fas fa-tachometer-alt text-primary mr-3"></i> Dashboard SIABA
-  </h2>
-  <nav>
-    <ol class="flex items-center gap-2 text-sm font-medium">
-      <li><a class="hover:text-primary dark:text-bodydark" href="#">Dashboard /</a></li>
-      <li class="text-primary">SIABA</li>
-    </ol>
-  </nav>
-</div>
-
 <!-- Metric Cards (Row 1) -->
 <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 md:gap-6 2xl:gap-7.5 mb-6 animate-reveal">
   
@@ -423,7 +410,17 @@
                 }
 
                 if (!data.rows || data.rows.length === 0) {
-                    tbody.html('<tr><td colspan="2" class="text-center text-success py-5 font-weight-bold"><i class="fas fa-check-circle fa-2x mb-2 d-block"></i>Semua Presensi Lengkap!</td></tr>');
+                    tbody.html(`
+                        <tr>
+                            <td colspan="2" class="text-center py-10">
+                                <div class="flex flex-col items-center justify-center gap-3">
+                                    <div class="flex h-12 w-12 items-center justify-center rounded-full bg-success/10 text-success">
+                                        <i class="fas fa-check-circle text-2xl"></i>
+                                    </div>
+                                    <p class="text-sm font-bold text-success uppercase">Semua Presensi Lengkap!</p>
+                                </div>
+                            </td>
+                        </tr>`);
                     return;
                 }
 
@@ -439,21 +436,24 @@
 
                 var strH = "";
                 sortedUnits.forEach(function(item) {
-                    strH += '<tr class="border-bottom">' +
-                            '<td class="text-dark align-middle text-wrap px-3" style="font-size: 13px;">' + dashsiaba_escapeHtml(item.unit) + '</td>' +
-                            '<td class="text-center align-middle px-2"><span class="badge badge-danger badge-pill px-2 py-1">' + item.count + '</span></td>' +
-                            '</tr>';
+                    strH += `
+                        <tr class="border-b border-stroke dark:border-strokedark last:border-0 hover:bg-gray-2 transition">
+                            <td class="py-3 px-4 font-medium text-black dark:text-white text-xs leading-relaxed">${dashsiaba_escapeHtml(item.unit)}</td>
+                            <td class="py-3 px-4 text-center">
+                                <span class="inline-flex rounded-full bg-danger/10 py-1 px-3 text-xs font-bold text-danger">${item.count}</span>
+                            </td>
+                        </tr>`;
                 });
                 
                 if(strH === "") {
-                     tbody.html('<tr><td colspan="2" class="text-center text-muted py-5">Data Kosong</td></tr>');
+                     tbody.html('<tr><td colspan="2" class="text-center text-body py-10">Data Kosong</td></tr>');
                 } else {
                      tbody.html(strH);
                 }
             })
             .withFailureHandler(function(e) {
                 $('#dashsiaba_btnRefreshBelumLengkap').prop('disabled', false).html('<i class="fas fa-sync-alt mr-1"></i> Refresh Data');
-                tbody.html('<tr><td colspan="2" class="text-center text-danger small">Gagal: ' + dashsiaba_escapeHtml(e.message) + '</td></tr>');
+                tbody.html('<tr><td colspan="2" class="text-center text-danger py-10 font-bold">' + dashsiaba_escapeHtml(e.message) + '</td></tr>');
             })
             .getSiabaTidakData(th, bl, "SEMUA");
     }
@@ -479,14 +479,14 @@
                     labels: ['Diproses', 'Revisi', 'Disetujui', 'Ditolak'],
                     datasets: [{
                         data: [0.1, 0, 0, 0],
-                        backgroundColor: ['#e9ecef', '#17a2b8', '#28a745', '#dc3545'],
-                        borderWidth: 2, borderColor: '#ffffff'
+                        backgroundColor: ['#f1f5f9', '#3C50E0', '#10B981', '#DC3545'],
+                        borderWidth: 0
                     }]
                 },
                 options: {
-                    maintainAspectRatio: false, responsive: true, cutout: '70%', 
+                    maintainAspectRatio: false, responsive: true, cutout: '80%', 
                     plugins: { 
-                        legend: { position: 'right', labels: { boxWidth: 10, font: {size:10} } },
+                        legend: { position: 'bottom', labels: { boxWidth: 10, padding: 15, font: {size:10, family: 'Poppins'} } },
                         tooltip: { enabled: false }
                     }
                 }
@@ -508,7 +508,7 @@
 
         var totalAll = tProses + tRevisi + tSetuju + tTolak;
         var finalData = totalAll === 0 ? [0.1, 0, 0, 0] : [tProses, tRevisi, tSetuju, tTolak];
-        var finalColors = totalAll === 0 ? ['#e9ecef', '#17a2b8', '#28a745', '#dc3545'] : ['#ffc107', '#17a2b8', '#28a745', '#dc3545'];
+        var finalColors = totalAll === 0 ? ['#f1f5f9'] : ['#FFA70B', '#3C50E0', '#10B981', '#DC3545'];
 
         DASHSIABA_PIE_CHART_INSTANCE.data.datasets[0].data = finalData;
         DASHSIABA_PIE_CHART_INSTANCE.data.datasets[0].backgroundColor = finalColors;
@@ -530,17 +530,20 @@
                 data: {
                     labels: data.labels, 
                     datasets: [
-                        { label: 'Terlambat', backgroundColor: '#dc3545', data: data.terlambat },
-                        { label: 'Pulang Awal', backgroundColor: '#6f42c1', data: data.pulangAwal }
+                        { label: 'Terlambat', backgroundColor: '#DC3545', data: data.terlambat, borderRadius: 4 },
+                        { label: 'Pulang Awal', backgroundColor: '#3C50E0', data: data.pulangAwal, borderRadius: 4 }
                     ]
                 },
                 options: {
                     maintainAspectRatio: false, responsive: true,
                     scales: {
-                        y: { beginAtZero: true, ticks: { stepSize: 1 }, grid: { borderDash: [2, 2] } },
-                        x: { grid: { display: false } }
+                        y: { beginAtZero: true, grid: { color: '#f1f5f9' }, ticks: { stepSize: 1, font: {family: 'Poppins'} } },
+                        x: { grid: { display: false }, ticks: { font: {family: 'Poppins'} } }
                     },
-                    plugins: { legend: { position: 'top', labels: { boxWidth: 10, usePointStyle: true } } }
+                    plugins: { 
+                        legend: { position: 'top', labels: { boxWidth: 10, usePointStyle: true, font: {family: 'Poppins'} } },
+                        tooltip: { backgroundColor: '#1c2434', padding: 10 }
+                    }
                 }
             });
         }
@@ -561,21 +564,21 @@
                 data: {
                     labels: ["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Ags","Sep","Okt","Nov","Des"],
                     datasets: [
-                        { label: 'Diproses', backgroundColor: '#ffc107', data: dataset.proses },
-                        { label: 'Revisi', backgroundColor: '#17a2b8', data: dataset.revisi },
-                        { label: 'Disetujui', backgroundColor: '#28a745', data: dataset.setuju },
-                        { label: 'Ditolak', backgroundColor: '#dc3545', data: dataset.tolak }
+                        { label: 'Diproses', backgroundColor: '#FFA70B', data: dataset.proses, borderRadius: 2 },
+                        { label: 'Revisi', backgroundColor: '#3C50E0', data: dataset.revisi, borderRadius: 2 },
+                        { label: 'Disetujui', backgroundColor: '#10B981', data: dataset.setuju, borderRadius: 2 },
+                        { label: 'Ditolak', backgroundColor: '#DC3545', data: dataset.tolak, borderRadius: 2 }
                     ]
                 },
                 options: {
                     maintainAspectRatio: false, responsive: true,
                     plugins: { 
-                        legend: { position: 'top', labels: { boxWidth: 8, font: {size: 9}, usePointStyle: true } },
-                        tooltip: { mode: 'index', intersect: false }
+                        legend: { position: 'top', labels: { boxWidth: 8, font: {size: 9, family: 'Poppins'}, usePointStyle: true } },
+                        tooltip: { backgroundColor: '#1c2434', mode: 'index', intersect: false }
                     },
                     scales: {
-                        x: { stacked: false, grid: { display: false }, ticks: { font: {size: 9} } },
-                        y: { stacked: false, beginAtZero: true, ticks: { font: {size: 9} } }
+                        x: { stacked: false, grid: { display: false }, ticks: { font: {size: 9, family: 'Poppins'} } },
+                        y: { stacked: false, beginAtZero: true, ticks: { font: {size: 9, family: 'Poppins'} } }
                     }
                 }
             });

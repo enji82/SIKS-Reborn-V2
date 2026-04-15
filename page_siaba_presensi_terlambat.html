@@ -1,26 +1,14 @@
-<div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between animate-reveal">
-  <h2 class="text-title-md2 font-bold text-black dark:text-white flex items-center">
-    <i class="fas fa-clock text-primary mr-3"></i> Rekap Terlambat Presensi
-  </h2>
-  <nav>
-    <ol class="flex items-center gap-2 text-sm font-medium">
-      <li><a class="hover:text-primary dark:text-bodydark" href="#">SIABA /</a></li>
-      <li class="text-primary">Terlambat Presensi</li>
-    </ol>
-  </nav>
-</div>
-
 <div class="flex flex-col gap-4 md:gap-6 2xl:gap-7.5 animate-reveal">
 
   <!-- KARTU INFORMASI -->
-  <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark border-l-4 border-l-primary">
-    <div class="border-b border-stroke py-4 px-6.5 dark:border-strokedark cursor-pointer" data-toggle="collapse" data-target="#ta_infoCollapse">
+  <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark border-l-4 border-l-primary" x-data="{ isOpen: false }">
+    <div class="border-b border-stroke py-4 px-6.5 dark:border-strokedark cursor-pointer" @click="isOpen = !isOpen">
       <div class="flex justify-between items-center text-primary font-bold">
         <div class="flex items-center"><i class="fas fa-info-circle mr-2"></i> Informasi</div>
-        <i class="fas fa-chevron-down text-body dark:text-bodydark text-sm"></i>
+        <i class="fas fa-chevron-down text-body dark:text-bodydark text-sm transition-transform" :class="{ 'rotate-180': isOpen }"></i>
       </div>
     </div>
-    <div id="ta_infoCollapse" class="collapse">
+    <div x-show="isOpen" x-transition x-cloak>
       <div class="p-6.5 pt-4">
         <ul class="list-disc pl-5 text-sm text-black dark:text-white space-y-1">
           <li>Data diurutkan berdasarkan <b>Total Menit Terlambat</b> terbanyak.</li>

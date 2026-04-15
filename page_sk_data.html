@@ -1,391 +1,351 @@
-<div class="content-header pb-0">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-12">
-                <h5 class="m-0 font-weight-bold">
-                    <i class="fas fa-file-contract text-maroon mr-2"></i>Data SK Pembagian Tugas
-                </h5>
-                <div class="sultan-title-line"></div>
+<div class="flex flex-col gap-4 md:gap-6 2xl:gap-7.5 animate-reveal">
+
+    <!-- 1. KARTU INFORMASI (TAILADMIN STYLE) -->
+    <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark border-l-4 border-l-maroon" x-data="{ isOpen: false }">
+        <div class="border-b border-stroke py-4 px-6.5 dark:border-strokedark cursor-pointer" @click="isOpen = !isOpen">
+            <div class="flex justify-between items-center text-maroon font-bold">
+                <div class="flex items-center"><i class="fas fa-info-circle mr-2"></i> Informasi</div>
+                <i class="fas fa-chevron-down text-body dark:text-bodydark text-sm transition-transform" :class="{ 'rotate-180': isOpen }"></i>
             </div>
+        </div>
+        <div x-show="isOpen" x-transition x-cloak>
+            <div class="p-6.5 pt-4">
+                <ul class="list-disc pl-5 text-sm text-black dark:text-white space-y-1">
+                    <li>Halaman ini digunakan untuk mengelola data SK Pembagian Tugas.</li>
+                    <li>Klik tombol <b>+ Tambah</b> untuk mengunggah data SK baru.</li>
+                    <li>Unggah SK Pembagian Tugas di setiap awal semester atau setiap membuat SK baru.</li>
+                    <li>Satu sekolah hanya dapat memiliki 1 SK untuk kombinasi Tahun Ajaran, Semester, dan Kriteria yang sama.</li>
+                    <li>File yang diunggah adalah format <b>PDF</b> dengan ukuran maksimal <b>1 MB</b>.</li>
+                    <li>Klik tombol <span class="inline-flex rounded border border-danger p-1 text-xs font-medium text-danger">💬 Baca Catatan</span> untuk melihat alasan admin jika SK direvisi/ditolak.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. KARTU FILTER (TAILADMIN STYLE) -->
+    <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div class="flex flex-wrap items-center gap-3">
+            <!-- RE-STRICT ATTRIBUTE SEALING -->
+            <select id="tugas_filterUnit"
+                class="rounded border border-stroke bg-gray-2 py-2.5 px-4 outline-none focus:border-primary dark:border-form-strokedark dark:bg-meta-4 text-sm text-maroon font-bold min-w-[250px]"
+                disabled>
+                <option value="">- Memvalidasi Akses... -</option>
+            </select>
+
+            <select id="tugas_filterTahun"
+                class="rounded border border-stroke bg-transparent py-2.5 px-4 outline-none focus:border-primary dark:border-form-strokedark dark:bg-form-input text-sm text-black dark:text-white min-w-[100px]"></select>
+
+            <select id="tugas_filterSemester" class="rounded border border-stroke bg-transparent py-2.5 px-4 outline-none focus:border-primary dark:border-form-strokedark dark:bg-form-input text-sm text-black dark:text-white min-w-[140px]">
+                <option value="">- Semua Semester -</option>
+                <option value="Semester 1">Semester 1</option>
+                <option value="Semester 2">Semester 2</option>
+            </select>
+
+            <select id="tugas_filterStatus" class="rounded border border-stroke bg-transparent py-2.5 px-4 outline-none focus:border-primary dark:border-form-strokedark dark:bg-form-input text-sm text-black dark:text-white min-w-[140px]">
+                <option value="">- Semua Status -</option>
+                <option value="Diproses">Diproses</option>
+                <option value="Revisi">Revisi</option>
+                <option value="OK">Disetujui</option>
+                <option value="Ditolak">Ditolak</option>
+            </select>
+
+            <div class="hidden md:block h-8 w-px bg-stroke dark:bg-strokedark mx-1"></div>
+
+            <button type="button" id="tugas_btnCari" class="flex items-center justify-center rounded border border-stroke dark:border-strokedark hover:bg-gray-2 dark:hover:bg-meta-4 py-2.5 px-4 mb-0 transition"
+                title="Segarkan Data dari Server">
+                <i class="fas fa-sync-alt text-maroon"></i>
+            </button>
+
+            <div class="flex-grow"></div>
+
+            <button type="button" id="tugas_btnTambah"
+                class="inline-flex items-center justify-center rounded bg-maroon py-2.5 px-10 text-center font-medium text-white hover:bg-opacity-90 transition disabled:opacity-50" disabled>
+                <i class="fas fa-plus mr-2"></i> Tambah
+            </button>
+        </div>
+    </div>
+
+    <!-- 3. KARTU TABEL (TAILADMIN STYLE) -->
+    <div class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+        <div id="tugas_loadingState">
+            <div class="flex flex-col items-center justify-center py-20">
+                <i class="fas fa-spinner fa-spin fa-3x text-maroon opacity-25"></i>
+                <h6 class="mt-4 text-sm font-medium text-body dark:text-bodydark" id="tugas_loadingText">Mempersiapkan Akses Server...</h6>
+            </div>
+        </div>
+
+        <div id="tugas_tableState" style="display: none;" class="overflow-x-auto w-full custom-scrollbar">
+            <table id="tugas_tabelUtama" class="w-full table-auto text-sm">
+                <thead>
+                    <tr class="bg-gray-2 text-left dark:bg-meta-4">
+                        <th class="py-4 px-4 font-medium text-black dark:text-white text-center w-[120px]">Aksi</th>
+                        <th class="py-4 px-4 font-medium text-black dark:text-white">Nama Sekolah</th>
+                        <th class="py-4 px-4 font-medium text-black dark:text-white">Th. Ajaran</th>
+                        <th class="py-4 px-4 font-medium text-black dark:text-white">Nomor & Tanggal SK</th>
+                        <th class="py-4 px-4 font-medium text-black dark:text-white text-center">Dokumen</th>
+                        <th class="py-4 px-4 font-medium text-black dark:text-white text-center">Status</th>
+                        <th class="py-4 px-4 font-medium text-black dark:text-white">Dikirim</th>
+                        <th class="py-4 px-4 font-medium text-black dark:text-white">Diubah</th>
+                        <th class="py-4 px-4 font-medium text-black dark:text-white">Verifikasi</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-stroke dark:divide-strokedark"></tbody>
+            </table>
         </div>
     </div>
 </div>
 
-<section class="content">
-    <div class="container-fluid">
-        <div class="row justify-content-center">
-            <div class="col-12">
+<!-- 1. MODAL FORM SK (Maroon) -->
+<div id="tugas_modalForm" class="fixed inset-0 z-[999] hidden items-center justify-center bg-black/50 overflow-y-auto py-10 px-4">
+    <div class="relative w-full max-w-203 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div class="flex items-center justify-between border-b border-stroke py-4 px-7 dark:border-strokedark">
+            <h3 class="font-bold text-black dark:text-white" id="tugas_judulModalForm">
+                <i class="fas fa-file-signature mr-2 text-maroon"></i> Form Pengisian SK
+            </h3>
+            <button type="button" class="text-body dark:text-bodydark hover:text-black dark:hover:text-white" onclick="$('#tugas_modalForm').fadeOut().addClass('hidden').removeClass('flex')">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <form id="tugas_formUtama" class="p-7">
+            <input type="hidden" id="tugas_inputRowId">
+            <input type="hidden" id="tugas_editRowId">
 
-                <!-- 1. KARTU INFORMASI (GAYA SULTAN COMPACT) -->
-                <div class="card-sultan card-sultan-info-compact mb-3" id="tugas_cardInfo">
-                    <div class="card-body border-left-dark">
-                        <div class="d-flex-info-header cursor-pointer" data-toggle="collapse"
-                            data-target="#tugas_infoCollapse">
-                            <div class="d-flex align-items-center text-maroon font-weight-bold"><i
-                                    class="fas fa-info-circle mr-2"></i> Informasi</div>
-                            <i class="fas fa-chevron-down text-muted icon-sm" id="tugas_infoIcon"></i>
-                        </div>
-                        <div id="tugas_infoCollapse" class="collapse">
-                            <div class="mt-2 pt-2 border-top small text-muted">
-                                <ul class="mb-0 pl-3 text-dark mt-2" style="font-size:14px;">
-                                    <li>Halaman ini digunakan untuk mengelola data SK Pembagian Tugas.</li>
-                                    <li>Klik tombol <b>+ Tambah</b> untuk mengunggah data SK baru.</li>
-                                    <li>Unggah SK Pembagian Tugas di setiap awal semester atau setiap membuat SK baru.
-                                    </li>
-                                    <li>Satu sekolah hanya dapat memiliki 1 SK untuk kombinasi Tahun Ajaran, Semester,
-                                        dan Kriteria yang sama.</li>
-                                    <li>File yang diunggah adalah format <b>PDF</b> dengan ukuran maksimal <b>1 MB</b>.
-                                    </li>
-                                    <li>Klik tombol <span class="badge badge-outline-danger">💬 Baca Catatan</span>
-                                        untuk melihat alasan admin jika SK direvisi/ditolak.</li>
-                                </ul>
-                            </div>
-                        </div>
+            <div class="mb-6 rounded-sm border-l-4 border-primary bg-primary/5 py-4 px-6" id="tugas_alertInfo">
+                <p class="text-sm font-medium text-primary">
+                    <i class="fas fa-info-circle mr-2"></i> Tentukan Sekolah, Tahun, Semester, dan Kriteria untuk memulai pengisian data SK.
+                </p>
+            </div>
+
+            <div class="mb-4.5">
+                <label class="mb-2.5 block text-black dark:text-white font-medium">
+                    Nama Sekolah <span class="text-danger">*</span>
+                </label>
+                <select id="tugas_inputNamaSd" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" required>
+                    <option value="">- Memuat Data -</option>
+                </select>
+            </div>
+
+            <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+                <div class="w-full xl:w-1/2">
+                    <label class="mb-2.5 block text-black dark:text-white font-medium text-sm">Tahun Ajaran <span class="text-danger">*</span></label>
+                    <select id="tugas_inputTahun" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input" required></select>
+                </div>
+                <div class="w-full xl:w-1/2">
+                    <label class="mb-2.5 block text-black dark:text-white font-medium text-sm">Semester <span class="text-danger">*</span></label>
+                    <select id="tugas_inputSemester" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input" required>
+                        <option value="Semester 1">Semester 1</option>
+                        <option value="Semester 2">Semester 2</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <label class="mb-2.5 block text-black dark:text-white font-medium text-sm">Kriteria SK <span class="text-danger">*</span></label>
+                <select id="tugas_inputKriteria" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input" required>
+                    <option value="">- Pilih Kriteria -</option>
+                    <option value="Awal Semester">Awal Semester</option>
+                    <option value="Perubahan ke 1">Perubahan ke 1</option>
+                    <option value="Perubahan ke 2">Perubahan ke 2</option>
+                    <option value="Perubahan ke 3">Perubahan ke 3</option>
+                    <option value="Perubahan ke 4">Perubahan ke 4</option>
+                    <option value="Perubahan ke 5">Perubahan ke 5</option>
+                </select>
+            </div>
+
+            <div id="tugas_areaTerkunci" class="opacity-50 transition-opacity">
+                <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+                    <div class="w-full xl:w-1/2">
+                        <label class="mb-2.5 block text-black dark:text-white font-medium text-sm">Nomor SK <span class="text-danger">*</span></label>
+                        <input type="text" id="tugas_inputNoSk" placeholder="800/XXX/04.20.XX.SD/2026" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input" required>
+                    </div>
+                    <div class="w-full xl:w-1/2">
+                        <label class="mb-2.5 block text-black dark:text-white font-medium text-sm">Tanggal SK <span class="text-danger">*</span></label>
+                        <input type="date" id="tugas_inputTglSk" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input" required>
                     </div>
                 </div>
 
-                <!-- 2. KARTU FILTER (GAYA SULTAN) -->
-                <div class="card-sultan p-3 mb-3">
-                    <div class="d-flex-gap align-items-center flex-wrap">
-
-                        <!-- RE-STRICT ATTRIBUTE SEALING -->
-                        <select id="tugas_filterUnit"
-                            class="form-control form-control-sultan input-auto-width min-w-250 font-weight-bold text-maroon bg-light"
-                            disabled>
-                            <option value="">- Memvalidasi Akses... -</option>
-                        </select>
-
-                        <select id="tugas_filterTahun"
-                            class="form-control form-control-sultan input-auto-width min-w-80"></select>
-
-                        <select id="tugas_filterSemester" class="form-control form-control-sultan input-auto-width">
-                            <option value="">- Semua Semester -</option>
-                            <option value="Semester 1">Semester 1</option>
-                            <option value="Semester 2">Semester 2</option>
-                        </select>
-
-                        <select id="tugas_filterStatus" class="form-control form-control-sultan input-auto-width">
-                            <option value="">- Semua Status -</option>
-                            <option value="Diproses">Diproses</option>
-                            <option value="Revisi">Revisi</option>
-                            <option value="OK">Disetujui</option>
-                            <option value="Ditolak">Ditolak</option>
-                        </select>
-
-                        <div class="divider-vertical d-none d-md-block"></div>
-
-                        <button type="button" id="tugas_btnCari" class="btn bg-white border shadow-sm text-secondary"
-                            title="Segarkan Data dari Server">
-                            <i class="fas fa-sync-alt text-maroon"></i>
+                <div class="rounded-sm border border-stroke bg-gray-2 py-4 px-6 dark:border-strokedark dark:bg-meta-4 mt-6">
+                    <label class="mb-3 block text-black dark:text-white font-bold text-sm" id="tugas_labelFile">
+                        <i class="fas fa-file-pdf text-danger mr-1"></i> Unggah Dokumen Asli (PDF Max 1MB)
+                    </label>
+                    <div id="tugas_linkFileLama" class="mb-3 hidden">
+                        <button type="button" id="tugas_btnLihatDokumenLama" class="inline-flex items-center gap-2 rounded border border-meta-5 py-1 px-3 text-xs font-medium text-meta-5 hover:bg-meta-5 hover:text-white transition">
+                            <i class="fas fa-eye"></i> Lihat Dokumen Tersimpan
                         </button>
-
-                        <div class="ml-auto d-none d-md-block"></div>
-
-                        <button type="button" id="tugas_btnTambah"
-                            class="btn btn-maroon text-white font-weight-bold shadow-sm px-4" disabled>
-                            <i class="fas fa-plus mr-1"></i> Tambah
-                        </button>
                     </div>
-                </div>
-
-                <!-- 3. KARTU TABEL (GAYA SULTAN) -->
-                <div class="card-sultan">
-                    <div class="card-body p-3">
-
-                        <div id="tugas_loadingState">
-                            <div class="d-flex flex-column justify-content-center align-items-center"
-                                style="min-height: 40vh;">
-                                <div class="sultan-loading-container text-center">
-                                    <i class="fas fa-spinner fa-spin fa-3x text-maroon mb-3"></i>
-                                    <h6 class="text-muted font-weight-bold mt-3" id="tugas_loadingText">Mempersiapkan
-                                        Akses Server...</h6>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="tugas_tableState" style="display: none;">
-                            <table id="tugas_tabelUtama"
-                                class="table table-bordered table-hover table-premium mb-0 w-100">
-                                <thead class="thead-grey-sultan">
-                                    <tr>
-                                        <th class="col-sticky-left border-right text-center"
-                                            style="width: 1%; white-space: nowrap;">Aksi</th>
-                                        <th class="text-left align-middle">Nama Sekolah</th>
-                                        <th class="text-left align-middle">Th. Ajaran</th>
-                                        <th class="text-left align-middle">Nomor & Tanggal SK</th>
-                                        <th class="text-center align-middle">Dokumen</th>
-                                        <th class="text-center align-middle">Status</th>
-                                        <th class="text-left align-middle">Dikirim</th>
-                                        <th class="text-left align-middle">Diubah</th>
-                                        <th class="text-left align-middle">Verifikasi</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
-                        </div>
-
+                    <div class="relative">
+                        <input type="file" id="tugas_inputFile" accept="application/pdf" class="w-full cursor-pointer rounded-sm border border-stroke bg-white px-5 py-3 font-medium outline-none transition focus:border-primary dark:border-strokedark dark:bg-boxdark file:mr-4 file:rounded file:border-[0.5px] file:border-stroke file:bg-gray-2 file:py-1 file:px-2.5 file:text-sm file:font-medium hover:file:bg-primary hover:file:bg-opacity-10 dark:file:border-strokedark dark:file:bg-white/5 dark:file:text-white" />
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
 
-<div class="modal fade" id="tugas_modalForm" tabindex="-1" role="dialog" data-backdrop="static">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content sultan-modal-content">
-            <div class="sultan-modal-header sultan-header-maroon">
-                <h5 class="modal-title font-weight-bold" id="tugas_judulModalForm"><i class="fas fa-file-signature mr-2"></i>Form Pengisian SK</h5>
-                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+            <div class="mt-8 flex justify-between gap-4">
+                <button type="button" class="flex-1 rounded border border-stroke py-3 px-6 text-center font-medium text-black hover:shadow-2 dark:border-strokedark dark:text-white" onclick="$('#tugas_modalForm').fadeOut().addClass('hidden').removeClass('flex')">
+                    Tutup
+                </button>
+                <button type="submit" id="tugas_btnSimpanForm" class="flex-1 rounded bg-maroon py-3 px-6 text-center font-medium text-white hover:bg-opacity-90 disabled:opacity-50 transition">
+                    <i class="fas fa-save mr-2"></i> SIMPAN DATA SK
+                </button>
             </div>
-            <form id="tugas_formUtama" novalidate>
-                <div class="sultan-modal-body bg-light">
-                    <input type="hidden" id="tugas_inputRowId">
-
-                    <div class="alert alert-sultan-info-compact shadow-sm mb-4">
-                        <i class="fas fa-info-circle mr-2"></i>
-                        <span>Tentukan <b>Sekolah, Tahun, Semester,</b> dan <b>Kriteria</b> untuk memulai pengisian data SK.</span>
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Nama Sekolah <span class="text-danger">*</span></label>
-                        <select id="tugas_inputNamaSd" class="form-control form-control-sultan font-weight-bold text-dark" required>
-                            <option value="">- Memuat Data -</option>
-                        </select>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Tahun Ajaran <span class="text-danger">*</span></label>
-                            <select id="tugas_inputTahun" class="form-control form-control-sultan" required></select>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Semester <span class="text-danger">*</span></label>
-                            <select id="tugas_inputSemester" class="form-control form-control-sultan" required>
-                                <option value="Semester 1">Semester 1</option>
-                                <option value="Semester 2">Semester 2</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6 mb-4">
-                            <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Kriteria SK <span class="text-danger">*</span></label>
-                            <select id="tugas_inputKriteria" class="form-control form-control-sultan font-weight-bold text-dark" required>
-                                <option value="">- Pilih Kriteria -</option>
-                                <option value="Awal Semester">Awal Semester</option>
-                                <option value="Perubahan ke 1">Perubahan ke 1</option>
-                                <option value="Perubahan ke 2">Perubahan ke 2</option>
-                                <option value="Perubahan ke 3">Perubahan ke 3</option>
-                                <option value="Perubahan ke 4">Perubahan ke 4</option>
-                                <option value="Perubahan ke 5">Perubahan ke 5</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <fieldset id="tugas_areaTerkunci" disabled style="opacity: 0.5;">
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Nomor SK <span class="text-danger">*</span></label>
-                                <input type="text" id="tugas_inputNoSk" class="form-control form-control-sultan font-weight-bold" required placeholder="800/XXX/04.20.XX.SD/2026">
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Tanggal SK <span class="text-danger">*</span></label>
-                                <input type="date" id="tugas_inputTglSk" class="form-control form-control-sultan" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group border p-3 bg-white rounded shadow-sm mb-0">
-                            <label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-2" id="tugas_labelFile"><i class="fas fa-file-pdf text-danger mr-1"></i> Unggah Dokumen Asli</label>
-                            <div id="tugas_linkFileLama" class="mb-2 d-none">
-                                <a href="#" id="tugas_btnLihatDokumenLama" class="btn btn-sm btn-outline-info font-weight-bold shadow-sm"><i class="fas fa-eye mr-1"></i> Lihat Dokumen Tersimpan</a>
-                            </div>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="tugas_inputFile" accept="application/pdf">
-                                <label class="custom-file-label text-truncate" for="tugas_inputFile">Pilih file PDF...</label>
-                            </div>
-                            <div class="text-muted mt-2 small">
-                                <i class="fas fa-info-circle mr-1"></i> Scan dokumen asli PDF max 1 MB.
-                            </div>
-                        </div>
-                    </fieldset>
-                </div>
-                <div class="sultan-modal-footer d-flex justify-content-between">
-                    <button type="button" class="btn btn-secondary shadow-sm px-4" data-dismiss="modal">Tutup</button>
-                    <button type="submit" id="tugas_btnSimpanForm" class="btn btn-maroon text-white shadow-sm px-5 font-weight-bold"><i class="fas fa-save mr-2"></i> SIMPAN DATA SK</button>
-                </div>
-            </form>
-        </div>
+        </form>
     </div>
 </div>
 
-<!-- 2. MODAL VERIFIKASI (EMERALD) -->
-<div class="modal fade" id="tugas_modalVerif" tabindex="-1" role="dialog" data-backdrop="static">
-                        <div class="col-md-5 d-flex flex-column bg-white h-100">
-                            <div class="p-4 flex-grow-1 overflow-auto">
-                                <input type="hidden" id="tugas_verifRowId">
-                                <h6 class="text-primary font-weight-bold border-bottom pb-2 mb-3"><i
-                                        class="fas fa-school mr-1"></i> Data Identitas SK</h6>
-                                <table class="table table-sm table-borderless small mb-4 text-dark"
-                                    style="font-size: 14px;">
-                                    <tr>
-                                        <td class="text-muted font-weight-bold" width="35%">Unit Kerja</td>
-                                        <td class="font-weight-bold text-dark" id="tugas_vNamaSd">-</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-muted font-weight-bold">Tahun Ajaran</td>
-                                        <td class="font-weight-bold" id="tugas_vTahun">-</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-muted font-weight-bold">Semester</td>
-                                        <td id="tugas_vSemester">-</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-muted font-weight-bold">Jenis SK</td>
-                                        <td><span class="badge badge-sultan badge-sultan-light-info"
-                                                id="tugas_vKriteria">-</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">
-                                            <hr class="my-1 dashed">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-muted font-weight-bold align-middle">Nomor SK</td>
-                                        <td class="font-weight-bold text-primary align-middle text-wrap"
-                                            id="tugas_vNoSk" style="word-break: break-all;">-</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-muted font-weight-bold">Tanggal SK</td>
-                                        <td id="tugas_vTglSk">-</td>
-                                    </tr>
-                                </table>
-
-                                <div class="card bg-light border-0 shadow-sm">
-                                    <div class="card-body p-3">
-                                        <div class="form-group mb-3">
-                                            <label
-                                                class="form-label-sultan small font-weight-bold text-muted text-uppercase"
-                                                style="font-size:12px; letter-spacing: 0.5px;">Keputusan Verifikasi
-                                                <span class="text-danger">*</span></label>
-                                            <select class="form-control form-control-sultan font-weight-bold text-dark"
-                                                id="tugas_verifStatus" required
-                                                style="font-size: 16px; height: auto !important; padding: 10px 15px;">
-                                                <option value="">-- Pilih Status --</option>
-                                                <option value="Disetujui">✅ Disetujui</option>
-                                                <option value="Revisi">🔄 Revisi</option>
-                                                <option value="Ditolak">❌ Ditolak</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group mb-0">
-                                            <label
-                                                class="form-label-sultan small font-weight-bold text-muted text-uppercase"
-                                                style="font-size:12px; letter-spacing: 0.5px;">Catatan Admin</label>
-                                            <textarea class="form-control form-control-sultan"
-                                                id="tugas_verifKeterangan" rows="3" placeholder="Catatan opsional..."
-                                                style="font-size: 15px; padding: 10px 15px;"></textarea>
-                                            <small class="text-danger d-none font-weight-bold mt-1"
-                                                id="tugas_verifWajibCatatan">
-                                                <i class="fas fa-exclamation-circle mr-1"></i> Wajib mengisi alasan
-                                                penolakan/revisi!
-                                            </small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div
-                                class="modal-footer bg-white border-top shadow-sm d-flex justify-content-between flex-shrink-0 z-index-10 p-3">
-                                <button type="button" class="btn btn-sultan-outline btn-sultan-standard px-4"
-                                    data-dismiss="modal">Tutup</button>
-                                <button type="submit" id="tugas_btnSimpanVerif"
-                                    class="btn btn-sultan-emerald btn-sultan-bold btn-sultan-standard px-4 text-white">
-                                    <i class="fas fa-check-double mr-2"></i> Eksekusi</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
+<!-- 2. MODAL VERIFIKASI (Side-by-Side Review) -->
+<div id="tugas_modalVerif" class="fixed inset-0 z-[999] hidden items-center justify-center bg-black/70 py-10 px-4">
+    <div class="relative flex flex-col md:flex-row w-full max-w-[95%] h-full max-h-[90%] rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark overflow-hidden">
+        
+        <!-- Document Area (Left) -->
+        <div class="flex-1 bg-gray-2 dark:bg-meta-4 relative overflow-hidden flex items-center justify-center">
+             <iframe id="tugas_verifFrame" class="w-full h-full border-none hidden" src=""></iframe>
+             <div id="tugas_verifLoader" class="flex flex-col items-center">
+                 <i class="fas fa-spinner fa-spin fa-3x text-primary opacity-25"></i>
+                 <p class="mt-4 font-medium text-body">Sedang Memuat Dokumen...</p>
+             </div>
+             <div id="tugas_verifNoFile" class="hidden flex flex-col items-center">
+                 <i class="fas fa-file-excel fa-3x text-danger opacity-25"></i>
+                 <p class="mt-4 font-medium text-body">Dokumen Tidak Tersedia</p>
+             </div>
         </div>
-    </div>
-</div>
 
-<div class="modal fade" id="tugas_modalPreview" tabindex="-1" role="dialog" data-backdrop="static">
-    <div class="modal-dialog modal-dialog-full" role="document">
-        <div class="modal-content modal-content-full-height border-0 shadow-lg">
+        <!-- Form Area (Right) -->
+        <div class="w-full md:w-[400px] flex flex-col border-l border-stroke dark:border-strokedark bg-white dark:bg-boxdark">
+            <div class="flex items-center justify-between border-b border-stroke py-4 px-6 dark:border-strokedark">
+                <h3 class="font-bold text-black dark:text-white"><i class="fas fa-check-double mr-2 text-primary"></i>Verifikasi Data</h3>
+                <button type="button" class="text-body dark:text-bodydark" onclick="$('#tugas_modalVerif').fadeOut().addClass('hidden').removeClass('flex')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
             
-            <div class="sultan-preview-header">
-                <div class="sultan-preview-title">
-                    <i class="fas fa-file-pdf text-danger mr-2"></i>
-                    <span>Pratinjau Dokumen SK</span>
-                </div>
-                <div class="sultan-preview-actions">
-                    <a href="#" id="tugas_linkDownloadHeader" class="sultan-preview-btn" target="_blank" title="Unduh File">UNDUH</a>
-                    <a href="#" id="tugas_linkTabHeader" class="sultan-preview-btn" target="_blank" title="Buka di Tab Baru">TAB BARU</a>
-                    <div class="sultan-preview-divider"></div>
-                    <button type="button" class="sultan-preview-close" data-dismiss="modal">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            </div>
-
-            <div class="modal-body modal-body-full position-relative p-0" style="height: calc(100vh - 44px);">
-                <iframe id="tugas_framePreviewFull" class="w-100 h-100 border-0 d-none" src=""></iframe>
-                <div id="tugas_loadingPreviewPDF" class="d-flex h-100 align-items-center justify-content-center text-white-50 position-absolute w-100">
-                    <div class="text-center">
-                        <div class="sultan-spinner-compact mb-3">
-                             <div class="spinner-border text-light" role="status"></div>
-                        </div>
-                        <p class="small font-weight-bold opacity-50">MEMUAT DOKUMEN...</p>
+            <form id="tugas_formVerif" class="flex-1 flex flex-col overflow-y-auto p-6">
+                <input type="hidden" id="tugas_verifRowId">
+                
+                <div class="mb-6 space-y-3">
+                    <div class="flex justify-between text-sm">
+                        <span class="text-body">Unit Kerja</span>
+                        <span class="font-semibold text-black dark:text-white" id="tugas_vNamaSd">-</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-body">Tahun/Semester</span>
+                        <span class="font-semibold text-black dark:text-white">
+                             <span id="tugas_vTahun">-</span> / <span id="tugas_vSemester">-</span>
+                        </span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-body">Jenis SK</span>
+                        <span class="inline-flex rounded-full bg-meta-2 py-1 px-3 text-xs font-bold text-primary" id="tugas_vKriteria">-</span>
+                    </div>
+                    <div class="h-px w-full bg-stroke dark:bg-strokedark my-2"></div>
+                    <div>
+                        <span class="text-xs text-body block mb-1">Nomor SK:</span>
+                        <span class="font-bold text-primary break-all" id="tugas_vNoSk">-</span>
+                    </div>
+                    <div>
+                        <span class="text-xs text-body block mb-1">Tanggal SK:</span>
+                        <span class="font-semibold text-black dark:text-white" id="tugas_vTglSk">-</span>
                     </div>
                 </div>
-            </div>
+
+                <div class="mt-auto space-y-4">
+                    <div class="rounded-sm border border-stroke bg-gray-2 p-4 dark:border-strokedark dark:bg-meta-4">
+                        <label class="mb-2 block text-black dark:text-white font-bold text-sm">Keputusan Verifikasi <span class="text-danger">*</span></label>
+                        <select id="tugas_verifStatus" class="w-full rounded border-[1.5px] border-stroke bg-white py-3 px-4 font-bold outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input" required>
+                            <option value="">-- Pilih Status --</option>
+                            <option value="Disetujui">✅ Disetujui</option>
+                            <option value="Revisi">🔄 Revisi</option>
+                            <option value="Ditolak">❌ Ditolak</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="mb-2 block text-black dark:text-white font-bold text-sm">Catatan Admin</label>
+                        <textarea id="tugas_verifKeterangan" rows="4" placeholder="Ketik catatan di sini..." class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"></textarea>
+                        <p id="tugas_verifWajibCatatan" class="mt-1 text-xs font-bold text-danger hidden"><i class="fas fa-exclamation-circle mr-1"></i> Wajib mengisi alasan penolakan/revisi!</p>
+                    </div>
+
+                    <div class="flex gap-3">
+                        <button type="button" class="flex-1 rounded border border-stroke py-3 px-4 text-center font-medium text-black hover:shadow-2 dark:border-strokedark dark:text-white" onclick="$('#tugas_modalVerif').fadeOut().addClass('hidden').removeClass('flex')">
+                            Batal
+                        </button>
+                        <button type="submit" id="tugas_btnSimpanVerif" class="flex-1 rounded bg-meta-3 py-3 px-4 text-center font-bold text-white hover:bg-opacity-90 transition">
+                            <i class="fas fa-check-double mr-2"></i> Eksekusi
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="tugas_modalHapus" tabindex="-1" role="dialog" data-backdrop="static">
-    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 400px;">
-        <div class="modal-content border-0 shadow-lg modal-content-sultan">
-            <div class="modal-header sultan-header-maroon py-2">
-                <h5 class="modal-title font-weight-bold text-white"><i class="fas fa-trash-alt mr-2"></i>Hapus SK
-                    Pembagian Tugas
-                </h5>
-                <button type="button" class="close text-white" data-dismiss="modal"
-                    style="opacity: 0.8;"><span>&times;</span></button>
-            </div>
-            <form id="tugas_formHapus">
-                <div class="modal-body bg-white p-4">
-                    <input type="hidden" id="tugas_hapusRowId">
-                    <div class="sultan-info-box info-maroon">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <div>
-                            <strong>Peringatan!</strong><br>
-                            Anda akan menghapus data SK dan File PDF secara permanen:<br>
-                            <span id="tugas_hapusViewNomor" class="font-weight-bold text-uppercase"
-                                style="font-size: 1.1em; color: #8B0000;">-</span>
-                        </div>
-                    </div>
-                    <div class="form-group mb-0">
-                        <label class="form-label-sultan small font-weight-bold text-uppercase text-muted">Kode Keamanan
-                            <span class="text-danger">*</span></label>
-                        <div class="input-group">
-                            <div class="input-group-prepend"><span class="input-group-text bg-light border-right-0"><i
-                                        class="fas fa-key text-danger"></i></span></div>
-                            <input type="password" id="tugas_inputKodeHapus"
-                                class="form-control form-control-sultan border-left-0 text-center font-weight-bold letter-spacing-1"
-                                placeholder="Ketik kode validasi..." required autocomplete="off">
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer bg-light justify-content-between p-3 border-top">
-                    <button type="button" class="btn btn-sultan-outline btn-sultan-standard px-4"
-                        data-dismiss="modal">Batal</button>
-                    <button type="submit" id="tugas_btnEksekusiHapus"
-                        class="btn btn-sultan-maroon btn-sultan-bold btn-sultan-standard px-4">
-                        <i class="fas fa-trash mr-2"></i> HAPUS PERMANEN</button>
-                </div>
-            </form>
+<!-- 3. MODAL PREVIEW PDF (Full Screen) -->
+<div id="tugas_modalPreview" class="fixed inset-0 z-[1000] hidden flex-col bg-black/95">
+    <div class="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-black/50">
+        <div class="flex items-center gap-3">
+            <i class="fas fa-file-pdf text-danger text-xl"></i>
+            <h3 class="font-bold text-white">Pratinjau Dokumen SK</h3>
         </div>
+        <div class="flex items-center gap-4">
+            <a href="#" id="tugas_linkDownloadHeader" target="_blank" class="rounded bg-white/10 py-1.5 px-4 text-sm font-medium text-white hover:bg-white/20 transition">UNDUH</a>
+            <a href="#" id="tugas_linkTabHeader" target="_blank" class="rounded bg-white/10 py-1.5 px-4 text-sm font-medium text-white hover:bg-white/20 transition">TAB BARU</a>
+            <div class="h-6 w-[1px] bg-white/20"></div>
+            <button type="button" class="text-white opacity-60 hover:opacity-100 transition" onclick="$('#tugas_modalPreview').fadeOut().addClass('hidden').removeClass('flex')">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+        </div>
+    </div>
+    <div class="flex-1 relative">
+        <iframe id="tugas_framePreviewFull" class="w-full h-full border-none hidden" src=""></iframe>
+        <div id="tugas_loadingPreviewPDF" class="absolute inset-0 flex flex-col items-center justify-center">
+            <i class="fas fa-spinner fa-spin fa-3x text-white opacity-25"></i>
+            <p class="mt-4 font-bold text-white/50 text-sm tracking-widest uppercase">Memuat Dokumen...</p>
+        </div>
+    </div>
+</div>
+
+<!-- 4. MODAL HAPUS (Maroon Alert) -->
+<div id="tugas_modalHapus" class="fixed inset-0 z-[999] hidden items-center justify-center bg-black/50 py-10 px-4">
+    <div class="relative w-full max-w-[400px] rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div class="flex items-center justify-between border-b border-stroke py-4 px-6 dark:border-strokedark bg-maroon">
+            <h3 class="font-bold text-white"><i class="fas fa-trash-alt mr-2"></i> Hapus SK</h3>
+            <button type="button" class="text-white/80 hover:text-white" onclick="$('#tugas_modalHapus').fadeOut().addClass('hidden').removeClass('flex')">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <form id="tugas_formHapus" class="p-6">
+            <input type="hidden" id="tugas_hapusRowId">
+            
+            <div class="mb-6 rounded-sm border border-danger/20 bg-danger/5 py-4 px-5">
+                <div class="flex gap-3 text-danger">
+                    <i class="fas fa-exclamation-triangle mt-1"></i>
+                    <p class="text-sm font-medium">
+                        <strong>Peringatan!</strong><br>
+                        Anda akan menghapus data SK dan File PDF secara permanen:<br>
+                        <span id="tugas_hapusViewNomor" class="font-bold block mt-1 break-all uppercase">-</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <label class="mb-2.5 block text-xs font-bold text-body dark:text-bodydark text-uppercase tracking-wider">
+                    Kode Keamanan <span class="text-danger">*</span>
+                </label>
+                <div class="relative">
+                    <span class="absolute left-4 top-1/2 -translate-y-1/2 text-danger">
+                        <i class="fas fa-key"></i>
+                    </span>
+                    <input type="password" id="tugas_inputKodeHapus" placeholder="Ketik HAPUS..." class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 pl-12 pr-5 text-center font-bold tracking-[0.2em] outline-none transition focus:border-danger active:border-danger dark:border-form-strokedark dark:bg-form-input" required autocomplete="off">
+                </div>
+            </div>
+
+            <div class="flex gap-3">
+                <button type="button" class="flex-1 rounded border border-stroke py-3 px-4 text-center font-medium text-black hover:shadow-2 dark:border-strokedark dark:text-white" onclick="$('#tugas_modalHapus').fadeOut().addClass('hidden').removeClass('flex')">
+                    Batal
+                </button>
+                <button type="submit" id="tugas_btnEksekusiHapus" class="flex-1 rounded bg-danger py-3 px-4 text-center font-bold text-white hover:bg-opacity-90 transition">
+                    <i class="fas fa-trash mr-2"></i> HAPUS PERMANEN
+                </button>
+            </div>
+        </form>
     </div>
 </div>
 
@@ -571,25 +531,19 @@
                 }
 
                 // FORCE RE-INIT DataTable (Destroy then Re-create for Auto-width to trigger)
-                if ($.fn.DataTable.isDataTable('#tugas_tabelUtama')) {
-                    $('#tugas_tabelUtama').DataTable().destroy();
-                }
-
                 TUGAS_TABEL_INSTANCE = $('#tugas_tabelUtama').DataTable({
-                    "destroy": true, "ordering": false, "pageLength": 10, "autoWidth": true,
+                    "destroy": true, "ordering": false, "pageLength": 10, "autoWidth": false,
                     "deferRender": true, "responsive": false,
-                    "dom": "<'row mb-2'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
-                        "<'row'<'col-sm-12'<'table-responsive sultan-scroll'tr>>>" +
-                        "<'row mt-2'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    "dom": "<'row'<'col-sm-12'<'table-responsive custom-scrollbar'tr>>>" +
+                        "<'flex flex-col md:flex-row justify-between items-center gap-4 mt-6'<'text-sm text-body'i><'pagination-wrapper'p>>",
                     "columnDefs": [
-                        { "targets": 0, "className": "col-sticky-left align-middle border-right text-center", "width": "50px", "orderable": false },
-                        { "targets": [1, 2, 3, 6, 7, 8], "className": "align-middle text-left" },
-                        { "targets": [4, 5], "className": "align-middle text-center" }
+                        { "targets": 0, "className": "py-5 px-4 text-center", "width": "120px" },
+                        { "targets": [1, 2, 3, 6, 7, 8], "className": "py-5 px-4 text-left" },
+                        { "targets": [4, 5], "className": "py-5 px-4 text-center" }
                     ],
                     "language": { "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", "emptyTable": "Tidak ditemukan data SK." },
                     "drawCallback": function (settings) {
-                        // Trigger Elegant Entrance Animation
-                        $('#tugas_tabelUtama tbody tr').addClass('sultan-entrance');
+                        $('#tugas_tabelUtama tbody tr').addClass('hover:bg-gray-2 dark:hover:bg-meta-4 transition');
                     }
                 });
 
@@ -699,15 +653,15 @@
             var badgeStatus = tugas_buildBadgeStatus(row.status, row.keterangan);
 
             // 1. Tombol Aksi (Individual 3 Buttons sesuai Gambar)
-            var actionButtons = '<div class="d-flex align-items-center justify-content-center">' +
-                '<button type="button" class="btn btn-icon-sultan btn-icon-sultan-primary shadow-sm" onclick="' + (TUGAS_IS_ADMIN ? "tugas_bukaModalVerif('" + id + "')" : "tugas_bukaPreview('" + safeUrlJs + "')") + '" title="' + (TUGAS_IS_ADMIN ? 'Verifikasi' : 'Pratinjau') + '">' +
-                '<i class="fas ' + (TUGAS_IS_ADMIN ? 'fa-check-double' : 'fa-eye') + '"></i>' +
+            var actionButtons = '<div class="flex items-center justify-center gap-2">' +
+                '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-sm border border-primary/20 bg-primary/5 text-primary hover:bg-primary hover:text-white transition shadow-sm" onclick="' + (TUGAS_IS_ADMIN ? "tugas_bukaModalVerif('" + id + "')" : "tugas_bukaPreview('" + safeUrlJs + "')") + '" title="' + (TUGAS_IS_ADMIN ? 'Verifikasi' : 'Pratinjau') + '">' +
+                '<i class="fas ' + (TUGAS_IS_ADMIN ? 'fa-check-double' : 'fa-eye') + ' text-xs"></i>' +
                 '</button>' +
-                '<button type="button" class="btn btn-icon-sultan btn-icon-sultan-warning shadow-sm ' + (isApproved ? 'btn-sultan-locked disabled' : '') + '" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalEdit('" + id + "')") + '" title="Edit Data">' +
-                '<i class="fas fa-pencil-alt"></i>' +
+                '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-sm border border-warning/20 bg-warning/5 text-warning hover:bg-warning hover:text-white transition shadow-sm ' + (isApproved ? 'opacity-30 cursor-not-allowed' : '') + '" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalEdit('" + id + "')") + '" title="Edit Data">' +
+                '<i class="fas fa-pencil-alt text-xs"></i>' +
                 '</button>' +
-                '<button type="button" class="btn btn-icon-sultan btn-icon-sultan-danger shadow-sm ' + (isApproved ? 'btn-sultan-locked disabled' : '') + '" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalHapus('" + id + "')") + '" title="Hapus Data">' +
-                '<i class="fas fa-trash-alt"></i>' +
+                '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-sm border border-danger/20 bg-danger/5 text-danger hover:bg-danger hover:text-white transition shadow-sm ' + (isApproved ? 'opacity-30 cursor-not-allowed' : '') + '" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalHapus('" + id + "')") + '" title="Hapus Data">' +
+                '<i class="fas fa-trash-alt text-xs"></i>' +
                 '</button>' +
                 '</div>';
 
@@ -718,17 +672,17 @@
             }
 
             // 3. Tombol Dokumen
-            var btnDokumen = safeUrl.length > 5 ? '<button type="button" class="btn-sk-pdf shadow-sm" onclick="tugas_bukaPreview(\'' + safeUrlJs + '\')"><i class="fas fa-file-pdf mr-1"></i> SK</button>' : '-';
+            var btnDokumen = safeUrl.length > 5 ? '<button type="button" class="inline-flex rounded-full bg-danger/10 py-1 px-4 text-xs font-bold text-danger transition hover:bg-danger hover:text-white shadow-sm" onclick="tugas_bukaPreview(\'' + safeUrlJs + '\')"><i class="fas fa-file-pdf mr-1"></i> SK</button>' : '-';
 
             // 4. Log Detils
-            var uiDikirim = '<div class="sk-log-box"><span class="sk-log-date">' + (row.tglUnggah || '-') + '</span><span class="sk-log-user">' + (row.userInput || '-') + '</span></div>';
-            var uiDiubah = row.tglUpdate && row.tglUpdate !== '-' ? '<div class="sk-log-box"><span class="sk-log-date">' + row.tglUpdate + '</span><span class="sk-log-user">' + (row.userUpdate || '-') + '</span></div>' : '-';
-            var uiVerif = row.tglVerval && row.tglVerval !== '-' ? '<div class="sk-log-box"><span class="sk-log-date">' + row.tglVerval + '</span><span class="sk-log-user">' + (row.verifikator || '-') + '</span></div>' : '-';
+            var uiDikirim = '<div class="flex flex-col"><span class="text-xs font-bold text-black dark:text-white">' + (row.tglUnggah || '-') + '</span><span class="text-[10px] text-body">' + (row.userInput || '-') + '</span></div>';
+            var uiDiubah = row.tglUpdate && row.tglUpdate !== '-' ? '<div class="flex flex-col"><span class="text-xs font-bold text-black dark:text-white">' + row.tglUpdate + '</span><span class="text-[10px] text-body">' + (row.userUpdate || '-') + '</span></div>' : '-';
+            var uiVerif = row.tglVerval && row.tglVerval !== '-' ? '<div class="flex flex-col"><span class="text-xs font-bold text-primary">' + row.tglVerval + '</span><span class="text-[10px] text-body">' + (row.verifikator || '-') + '</span></div>' : '-';
 
             // KOMBINASI KOLOM (9 KOLOM TOTAL)
-            var uiTahunSem = '<div class="sk-item-main">' + tugas_cleanText(row.tahun) + '</div><div class="sk-item-sub-lg text-maroon">' + tugas_cleanText(row.semester) + '</div>';
-            var uiSkDetail = '<div class="sk-item-main text-nowrap">' + safeNoSk + '</div>' +
-                '<div class="sk-item-sub-lg"><i class="far fa-calendar-alt mr-1"></i> ' + tglSkDisplay + ' &bull; <b class="text-maroon">' + tugas_cleanText(row.kriteria) + '</b></div>';
+            var uiTahunSem = '<div class="font-bold text-black dark:text-white">' + tugas_cleanText(row.tahun) + '</div><div class="text-xs text-maroon font-medium">' + tugas_cleanText(row.semester) + '</div>';
+            var uiSkDetail = '<div class="font-bold text-black dark:text-white text-nowrap">' + safeNoSk + '</div>' +
+                '<div class="text-xs text-body font-medium mt-1"><i class="far fa-calendar-alt mr-1"></i> ' + tglSkDisplay + ' &bull; <b class="text-maroon">' + tugas_cleanText(row.kriteria) + '</b></div>';
 
             dtArray.push([
                 actionButtons,
@@ -775,7 +729,7 @@
         $('#tugas_inputSemester').val(currentSmt);
         if (!TUGAS_IS_ADMIN && TUGAS_UNIT_TERKUNCI) { $('#tugas_inputNamaSd').val(TUGAS_UNIT_TERKUNCI); }
 
-        $('#tugas_modalForm').modal('show');
+        $('#tugas_modalForm').removeClass('hidden').addClass('flex').hide().fadeIn();
     }
 
     function tugas_cekKetersediaanSlot() {
@@ -845,8 +799,8 @@
         $('#tugas_inputNamaSd, #tugas_inputTahun, #tugas_inputSemester, #tugas_inputKriteria').prop('disabled', true).addClass('bg-light');
         $('#tugas_areaTerkunci').prop('disabled', false).css('opacity', '1');
         $('#tugas_btnSimpanForm').show().prop('disabled', false).html('<i class="fas fa-save mr-2"></i> UPDATE DATA SK');
-        $('#tugas_alertInfo').removeClass('alert-info alert-danger').addClass('alert-success border-success').html('<i class="fas fa-check-circle mr-1"></i> Data siap diubah.');
-        $('#tugas_modalForm').modal('show');
+        $('#tugas_alertInfo').removeClass('bg-primary/5 text-primary').addClass('bg-meta-3/5 text-meta-3').html('<p class="text-sm font-medium"><i class="fas fa-check-circle mr-1"></i> Data siap diubah.</p>');
+        $('#tugas_modalForm').removeClass('hidden').addClass('flex').hide().fadeIn();
     }
 
     function tugas_handleSimpan(e) {
@@ -895,7 +849,7 @@
 
         google.script.run.withSuccessHandler(function (res) {
             if (res.success) {
-                $('#tugas_modalForm').modal('hide');
+                $('#tugas_modalForm').fadeOut(function() { $(this).addClass('hidden').removeClass('flex'); });
                 Sultan.alert('success', 'Berhasil', rowId ? 'Data berhasil diperbarui.' : 'Data berhasil disimpan.');
                 tugas_tarikDataServer();
                 if (typeof sk_updateSidebarBadge === 'function') sk_updateSidebarBadge();
@@ -941,13 +895,14 @@
                 $('#tugas_verifLoader').addClass('d-none');
                 $(this).removeClass('d-none');
             });
+            });
         } else {
-            $('#tugas_verifLoader').addClass('d-none');
-            $('#tugas_verifFrame').addClass('d-none');
-            $('#tugas_verifNoFile').removeClass('d-none');
+            $('#tugas_verifLoader').addClass('hidden');
+            $('#tugas_verifFrame').addClass('hidden');
+            $('#tugas_verifNoFile').removeClass('hidden');
         }
 
-        $('#tugas_modalVerif').modal('show');
+        $('#tugas_modalVerif').removeClass('hidden').addClass('flex').hide().fadeIn();
     }
 
     function tugas_cekStatusVerif(val) {
@@ -981,7 +936,7 @@
 
         google.script.run.withSuccessHandler(function (res) {
             if (res.success) {
-                $('#tugas_modalVerif').modal('hide');
+                $('#tugas_modalVerif').fadeOut(function() { $(this).addClass('hidden').removeClass('flex'); });
                 Sultan.alert('success', 'Verifikasi Berhasil', 'Status SK telah diperbarui.');
                 tugas_tarikDataServer();
                 if (typeof sk_updateSidebarBadge === 'function') sk_updateSidebarBadge();
@@ -1010,7 +965,7 @@
         $('#tugas_hapusRowId').val(rowId);
         $('#tugas_hapusViewNomor').text(d.noSk);
         $('#tugas_inputKodeHapus').val('');
-        $('#tugas_modalHapus').modal('show');
+        $('#tugas_modalHapus').removeClass('hidden').addClass('flex').hide().fadeIn();
     }
 
     function tugas_handleSimpanHapus(e) {
@@ -1024,7 +979,7 @@
         google.script.run.withSuccessHandler(function (res) {
             if (res.success) {
                 Sultan.alert('success', 'Dihapus', 'Data telah dihapus dari database dan server.');
-                $('#tugas_modalHapus').modal('hide');
+                $('#tugas_modalHapus').fadeOut(function() { $(this).addClass('hidden').removeClass('flex'); });
                 tugas_tarikDataServer();
                 if (typeof sk_updateSidebarBadge === 'function') sk_updateSidebarBadge();
             } else {
@@ -1051,10 +1006,10 @@
 
         $('#tugas_linkDownloadHeader').attr('href', dlUrl);
         $('#tugas_linkTabHeader').attr('href', url);
-        $('#tugas_loadingPreviewPDF').removeClass('d-none');
+        $('#tugas_loadingPreviewPDF').removeClass('hidden');
 
-        $('#tugas_framePreviewFull').addClass('d-none').attr('src', '');
-        $('#tugas_modalPreview').modal('show');
+        $('#tugas_framePreviewFull').addClass('hidden').attr('src', '');
+        $('#tugas_modalPreview').removeClass('hidden').addClass('flex').hide().fadeIn();
 
         setTimeout(function () {
             $('#tugas_framePreviewFull').attr('src', tugas_convertDriveUrl(url));
@@ -1093,17 +1048,17 @@
         st = String(st || "").toLowerCase(); ket = ket || "";
         var badge = "";
         if (st.includes('setuju') || st.includes('acc') || st.includes('ok') || st.includes('valid'))
-            badge = '<span class="badge badge-sultan badge-sultan-light-success"><i class="fas fa-check-circle mr-1"></i> DISETUJUI</span>';
+            badge = '<span class="inline-flex rounded-full bg-success/10 py-1 px-3 text-[10px] font-bold text-success"><i class="fas fa-check-circle mr-1 mt-0.5"></i> DISETUJUI</span>';
         else if (st.includes('revisi'))
-            badge = '<span class="badge badge-sultan badge-sultan-light-warning"><i class="fas fa-redo-alt mr-1"></i> REVISI</span>';
+            badge = '<span class="inline-flex rounded-full bg-warning/10 py-1 px-3 text-[10px] font-bold text-warning"><i class="fas fa-redo-alt mr-1 mt-0.5"></i> REVISI</span>';
         else if (st.includes('tolak'))
-            badge = '<span class="badge badge-sultan badge-sultan-light-danger"><i class="fas fa-times-circle mr-1"></i> DITOLAK</span>';
+            badge = '<span class="inline-flex rounded-full bg-danger/10 py-1 px-3 text-[10px] font-bold text-danger"><i class="fas fa-times-circle mr-1 mt-0.5"></i> DITOLAK</span>';
         else
-            badge = '<span class="badge badge-sultan badge-sultan-light-info"><i class="fas fa-hourglass-half mr-1"></i> DIPROSES</span>';
+            badge = '<span class="inline-flex rounded-full bg-primary/10 py-1 px-3 text-[10px] font-bold text-primary"><i class="fas fa-hourglass-half mr-1 mt-0.5"></i> DIPROSES</span>';
 
         if (ket && ket.trim().length > 2 && (st.includes('revisi') || st.includes('tolak'))) {
             var safeKet = tugas_escapeHtml(ket);
-            badge += '<div class="mt-1"><button type="button" class="btn btn-xs btn-outline-danger font-weight-bold tugas-btn-catatan" style="font-size:10px;" data-pesan="' + safeKet + '"><i class="fas fa-comment-dots mr-1"></i> Baca Catatan</button></div>';
+            badge += '<div class="mt-1"><button type="button" class="inline-flex rounded border border-danger p-1 text-[9px] font-bold text-danger hover:bg-danger hover:text-white transition tugas-btn-catatan" data-pesan="' + safeKet + '"><i class="fas fa-comment-dots mr-1"></i> Baca Catatan</button></div>';
         }
         return badge;
     }
@@ -1119,35 +1074,17 @@
 
     function tugas_renderSkeleton() {
         var $cont = $('#tugas_loadingState').empty();
-        var $wrapper = $('<div/>', { "class": "table-responsive" });
-        var $table = $('<table/>', { "class": "table table-bordered mb-0" });
-        var $thead = $('<thead/>');
-        var $trHead = $('<tr/>');
-
-        var cols = ["50px", "200px", "100px", "200px", "100px", "100px", "100px", "100px", "100px"];
-        for (var k = 0; k < cols.length; k++) {
-            $trHead.append($('<th/>', {
-                "style": "width:" + cols[k] + "; background:#f1f5f9;",
-                "html": "&nbsp;"
-            }));
+        var $grid = $('<div/>', { "class": "flex flex-col gap-4 py-10" });
+        for (var i = 0; i < 4; i++) {
+            var $row = $('<div/>', { "class": "flex items-center gap-4 animate-pulse" });
+            $row.append($('<div/>', { "class": "h-12 w-12 rounded-sm bg-gray-2 dark:bg-meta-4" }));
+            var $meta = $('<div/>', { "class": "flex-1 space-y-2" });
+            $meta.append($('<div/>', { "class": "h-4 w-1/3 rounded bg-gray-2 dark:bg-meta-4" }));
+            $meta.append($('<div/>', { "class": "h-3 w-1/2 rounded bg-gray-2 dark:bg-meta-4 opacity-50" }));
+            $row.append($meta);
+            $grid.append($row);
         }
-        $thead.append($trHead);
-        $table.append($thead);
-
-        var $tbody = $('<tbody/>');
-        for (var i = 0; i < 5; i++) {
-            var $tr = $('<tr/>');
-            for (var j = 0; j < cols.length; j++) {
-                var $td = $('<td/>');
-                $td.append($('<div/>', { "class": "sultan-skeleton", "style": "width:80%; height:15px;" }));
-                $td.append($('<div/>', { "class": "sultan-skeleton mt-2", "style": "width:50%; height:10px;" }));
-                $tr.append($td);
-            }
-            $tbody.append($tr);
-        }
-        $table.append($tbody);
-        $wrapper.append($table);
-        $cont.append($wrapper);
+        $cont.append($grid);
     }
 
     function tugas_cleanText(t) { return tugas_escapeHtml(String(t || "").trim() || "-"); }

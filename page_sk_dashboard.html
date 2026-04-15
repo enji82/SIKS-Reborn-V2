@@ -1,208 +1,208 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 
-<div class="content-header pb-0">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-12">
-                <h5 class="m-0 font-weight-bold">
-                    <i class="fas fa-chart-bar text-maroon mr-2"></i>Monitoring SK Pembagian Tugas
-                </h5>
-                <div class="sultan-title-line"></div>
+<div class="flex flex-col gap-4 md:gap-6 2xl:gap-7.5 animate-reveal">
+
+
+
+  <!-- 1. FILTER BAR -->
+  <div class="rounded-sm border border-stroke bg-white px-5 py-4 shadow-default dark:border-strokedark dark:bg-boxdark">
+    <div class="flex flex-wrap items-center justify-between gap-4">
+      <div class="flex flex-wrap items-center gap-4">
+        <select id="dashsk_filterTahun" class="rounded border border-stroke bg-transparent py-1.5 px-3 text-sm font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark"></select>
+        <select id="dashsk_filterSemester" class="rounded border border-stroke bg-transparent py-1.5 px-3 text-sm font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark">
+            <option value="">- Semua Semester -</option>
+            <option value="Semester 1">Semester 1</option>
+            <option value="Semester 2">Semester 2</option>
+        </select>
+      </div>
+      <div>
+        <button type="button" id="dashsk_btnRefresh" class="inline-flex items-center justify-center gap-2.5 rounded-md bg-primary py-2 px-6 text-center font-medium text-white hover:bg-opacity-90 lg:px-8">
+            <i class="fas fa-sync-alt"></i> PERBARUI DATA
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. KPI METRICS -->
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <!-- Total Berkas -->
+    <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4 mb-3">
+            <i class="fas fa-file-export text-primary"></i>
+        </div>
+        <div>
+            <h4 class="text-xl font-bold text-black dark:text-white" id="dashsk_valTotal">0</h4>
+            <span class="text-xs font-medium text-body">TOTAL BERKAS</span>
+        </div>
+        <div class="mt-2 text-[10px] text-body italic" id="dashsk_subTotal">—</div>
+    </div>
+
+    <!-- Berkas Valid -->
+    <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4 mb-3">
+            <i class="fas fa-check-double text-success"></i>
+        </div>
+        <div>
+            <h4 class="text-xl font-bold text-black dark:text-white" id="dashsk_valDisetujui">0</h4>
+            <span class="text-xs font-medium text-body">BERKAS VALID</span>
+        </div>
+        <div class="mt-2 text-[10px] text-body italic" id="dashsk_subValid">—</div>
+    </div>
+
+    <!-- Realisasi -->
+    <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4 mb-3">
+            <i class="fas fa-bullseye text-warning"></i>
+        </div>
+        <div>
+            <h4 class="text-xl font-bold text-black dark:text-white"><span id="dashsk_valProgress">0</span>%</h4>
+            <span class="text-xs font-medium text-body">REALISASI KEPATUHAN</span>
+        </div>
+        <div class="mt-2 text-[10px] text-body italic">Target Kepatuhan Awal</div>
+    </div>
+
+    <!-- Belum Lapor -->
+    <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark cursor-pointer hover:bg-gray-50 dark:hover:bg-meta-4 transition-colors" id="dashsk_btnModalBelum">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-danger/10 mb-3">
+            <i class="fas fa-clock text-danger"></i>
+        </div>
+        <div>
+            <h4 class="text-xl font-bold text-black dark:text-white" id="dashsk_valBelum">0</h4>
+            <span class="text-xs font-medium text-body uppercase">Belum Lapor</span>
+        </div>
+        <div class="mt-2 text-[10px] font-bold text-danger">LIHAT DAFTAR &rarr;</div>
+    </div>
+  </div>
+
+  <!-- 3. INFO PILLS (SECONDARY METRICS) -->
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <!-- Sedang Diproses -->
+    <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div class="flex items-center gap-4">
+            <div class="flex h-11 w-11 items-center justify-center rounded-full bg-warning/10 text-warning">
+                <i class="fas fa-hourglass-half"></i>
+            </div>
+            <div>
+                <h4 class="text-xl font-bold text-black dark:text-white dashsk-count-up" id="dashsk_valDiproses">0</h4>
+                <span class="text-xs font-medium text-body">Sedang Diproses</span>
             </div>
         </div>
     </div>
-</div>
+    <!-- Perlu Revisi -->
+    <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div class="flex items-center gap-4">
+            <div class="flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <i class="fas fa-file-signature"></i>
+            </div>
+            <div>
+                <h4 class="text-xl font-bold text-black dark:text-white dashsk-count-up" id="dashsk_valRevisi">0</h4>
+                <span class="text-xs font-medium text-body">Perlu Revisi</span>
+            </div>
+        </div>
+    </div>
+    <!-- Ditolak -->
+    <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div class="flex items-center gap-4">
+            <div class="flex h-11 w-11 items-center justify-center rounded-full bg-danger/10 text-danger">
+                <i class="fas fa-ban"></i>
+            </div>
+            <div>
+                <h4 class="text-xl font-bold text-black dark:text-white dashsk-count-up" id="dashsk_valDitolak">0</h4>
+                <span class="text-xs font-medium text-body">Ditolak / Tidak Valid</span>
+            </div>
+        </div>
+    </div>
+  </div>
 
-<section class="content py-3">
-    <div class="container-fluid">
+  <!-- 4. ANALYTICS (CHARTS) -->
+  <div class="grid grid-cols-1 gap-4 lg:grid-cols-12">
+    <!-- Trend Chart -->
+    <div class="col-span-1 lg:col-span-8 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div class="border-b border-stroke py-4 px-6.5 dark:border-strokedark flex justify-between items-center">
+            <div>
+                <h3 class="font-bold text-black dark:text-white">Tren Pengiriman SK</h3>
+                <p class="text-[10px] text-body">Total pengunggahan berkas bulan berjalan</p>
+            </div>
+            <span class="inline-flex rounded-full bg-primary/10 py-1 px-3 text-xs font-medium text-primary">LIVE</span>
+        </div>
+        <div class="p-6.5" style="height: 350px;">
+            <canvas id="dashsk_chartTrend"></canvas>
+        </div>
+    </div>
 
-        <!-- FILTER BAR (SULTAN STANDARDIZED) -->
-        <div class="sk-dash-filter-bar shadow-none border-0 sk-animate-reveal" style="background: rgba(255,255,255,0.4); backdrop-filter: blur(5px);">
-            <div class="row align-items-center">
-                <div class="col-md-8">
-                    <div class="d-flex-gap align-items-center flex-wrap">
-                        <select id="dashsk_filterTahun" class="form-control form-control-sultan input-auto-width min-w-100 font-weight-bold"></select>
-                        <select id="dashsk_filterSemester" class="form-control form-control-sultan input-auto-width min-w-150 font-weight-bold">
-                            <option value="">- Semua Semester -</option>
-                            <option value="Semester 1">Semester 1</option>
-                            <option value="Semester 2">Semester 2</option>
-                        </select>
-                    </div>
+    <!-- Composition Chart -->
+    <div class="col-span-1 lg:col-span-4 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div class="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
+            <h3 class="font-bold text-black dark:text-white">Komposisi Status</h3>
+        </div>
+        <div class="p-6.5">
+            <div class="relative h-[220px]">
+                <canvas id="dashsk_chartStatus"></canvas>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none">
+                    <span class="block text-[10px] font-bold text-body uppercase tracking-widest">TOTAL</span>
+                    <span class="text-xl font-bold text-black dark:text-white" id="dashsk_chartTotalCenter">0</span>
                 </div>
-                <div class="col-md-4 text-right mt-3 mt-md-0">
-                    <button type="button" id="dashsk_btnRefresh" class="btn btn-sultan-maroon btn-sultan-standard shadow-sm px-4">
-                        <i class="fas fa-sync-alt mr-2"></i> PERBARUI DATA
-                    </button>
+            </div>
+            <div class="mt-6 space-y-3">
+                <div class="flex items-center justify-between text-sm font-medium">
+                    <span class="flex items-center gap-2"><span class="h-3 w-3 rounded-full bg-[#10b981]"></span> Disetujui</span>
+                    <span id="dashsk_txtChartSetuju">0</span>
+                </div>
+                <div class="flex items-center justify-between text-sm font-medium">
+                    <span class="flex items-center gap-2"><span class="h-3 w-3 rounded-full bg-[#fbbf24]"></span> Diproses</span>
+                    <span id="dashsk_txtChartProses">0</span>
+                </div>
+                <div class="flex items-center justify-between text-sm font-medium">
+                    <span class="flex items-center gap-2"><span class="h-3 w-3 rounded-full bg-[#6366f1]"></span> Revisi</span>
+                    <span id="dashsk_txtChartRevisi">0</span>
+                </div>
+                <div class="flex items-center justify-between text-sm font-medium">
+                    <span class="flex items-center gap-2"><span class="h-3 w-3 rounded-full bg-[#ef4444]"></span> Ditolak</span>
+                    <span id="dashsk_txtChartTolak">0</span>
                 </div>
             </div>
         </div>
+    </div>
+  </div>
 
-        <!-- KPI ROW (SULTAN KPI CARDS) -->
-        <div class="row mb-4">
-            <div class="col-lg-3 col-6 mb-3">
-                <div class="sk-kpi-card kpi-main sk-animate-reveal" style="animation-delay: 0.1s;">
-                    <div class="kpi-icon-bg"><i class="fas fa-file-export"></i></div>
-                    <div class="kpi-label">TOTAL BERKAS</div>
-                    <div class="kpi-number dashsk-count-up" id="dashsk_valTotal">0</div>
-                    <div class="kpi-sub" id="dashsk_subTotal">—</div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-6 mb-3">
-                <div class="sk-kpi-card kpi-teal sk-animate-reveal" style="animation-delay: 0.2s;">
-                    <div class="kpi-icon-bg"><i class="fas fa-check-double"></i></div>
-                    <div class="kpi-label">BERKAS VALID</div>
-                    <div class="kpi-number dashsk-count-up" id="dashsk_valDisetujui">0</div>
-                    <div class="kpi-sub" id="dashsk_subValid">—</div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-6 mb-3">
-                <div class="sk-kpi-card kpi-blue sk-animate-reveal" style="animation-delay: 0.3s;">
-                    <div class="kpi-icon-bg"><i class="fas fa-bullseye"></i></div>
-                    <div class="kpi-label">REALISASI</div>
-                    <div class="kpi-number"><span id="dashsk_valProgress" class="dashsk-count-up">0</span>%</div>
-                    <div class="kpi-sub">Target Kepatuhan Awal</div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-6 mb-3">
-                <div class="sk-kpi-card kpi-gold sk-animate-reveal cursor-pointer" id="dashsk_btnModalBelum" style="animation-delay: 0.4s;">
-                    <div class="kpi-icon-bg"><i class="fas fa-clock"></i></div>
-                    <div class="kpi-label">BELUM LAPOR</div>
-                    <div class="kpi-number dashsk-count-up" id="dashsk_valBelum">0</div>
-                    <div class="kpi-sub font-weight-bold">LIHAT DAFTAR &rarr;</div>
-                </div>
+  <!-- 5. LISTS & ACTIVITY -->
+  <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+    <!-- Belum Lapor List -->
+    <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark overflow-hidden">
+        <div class="border-b border-stroke py-4 px-6.5 dark:border-strokedark flex justify-between items-center">
+            <h3 class="font-bold text-danger flex items-center gap-2">
+                <i class="fas fa-exclamation-triangle"></i> Belum Lapor
+            </h3>
+            <div class="flex items-center gap-3">
+                <span class="inline-flex items-center justify-center rounded-full bg-danger py-1 px-3 text-sm font-bold text-white" id="dashsk_badgeBelumCount">0</span>
+                <button type="button" class="text-xs font-bold text-danger hover:underline" id="dashsk_btnSalinDaftar">
+                    <i class="fas fa-copy"></i> SALIN
+                </button>
             </div>
         </div>
-
-        <!-- INFO PILLS ROW -->
-        <div class="row mb-4">
-            <div class="col-md-4 col-12 mb-3">
-                <div class="sk-info-pill sk-animate-reveal" style="animation-delay: 0.5s;">
-                    <div class="pill-icon bg-warning-light text-warning"><i class="fas fa-hourglass-half"></i></div>
-                    <div>
-                        <div class="pill-value dashsk-count-up" id="dashsk_valDiproses">0</div>
-                        <div class="pill-title text-muted font-weight-bold">Sedang Diproses</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-12 mb-3">
-                <div class="sk-info-pill sk-animate-reveal" style="animation-delay: 0.6s;">
-                    <div class="pill-icon bg-maroon-light text-maroon"><i class="fas fa-file-signature"></i></div>
-                    <div>
-                        <div class="pill-value dashsk-count-up" id="dashsk_valRevisi">0</div>
-                        <div class="pill-title text-muted font-weight-bold">Perlu Revisi</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-12 mb-3">
-                <div class="sk-info-pill sk-animate-reveal" style="animation-delay: 0.7s;">
-                    <div class="pill-icon bg-danger-light text-danger"><i class="fas fa-ban"></i></div>
-                    <div>
-                        <div class="pill-value dashsk-count-up" id="dashsk_valDitolak">0</div>
-                        <div class="pill-title text-muted font-weight-bold">Ditolak / Tidak Valid</div>
-                    </div>
-                </div>
+        <div class="p-4 bg-gray-2 dark:bg-strokedark">
+            <div class="relative">
+                <span class="absolute left-4 top-1/2 -translate-y-1/2">
+                    <i class="fas fa-search text-body"></i>
+                </span>
+                <input type="text" id="dashsk_cariBelumLangsung" placeholder="Cari unit sekolah..." class="w-full rounded-full border border-stroke bg-white py-2 pl-12 pr-4 outline-none transition focus:border-primary dark:border-strokedark dark:bg-boxdark shadow-sm">
             </div>
         </div>
-
-        <!-- ANALYTICS ROW -->
-        <div class="row">
-            <div class="col-lg-8 mb-4">
-                <div class="card-sultan h-100 border-0 shadow-sm overflow-hidden">
-                    <div class="p-4 bg-white border-bottom d-flex justify-content-between align-items-center">
-                        <div>
-                            <h6 class="font-weight-bold text-navy mb-0">
-                                <i class="fas fa-chart-line text-maroon mr-2"></i> Tren Pengiriman SK
-                            </h6>
-                            <p class="x-small text-muted mb-0">Total pengunggahan berkas bulan berjalan</p>
-                        </div>
-                        <div class="badge badge-sultan bg-maroon-light text-maroon font-weight-bold px-3 py-1">LIVE</div>
-                    </div>
-                    <div class="p-3" style="height:350px;">
-                        <canvas id="dashsk_chartTrend"></canvas>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 mb-4">
-                <div class="card-sultan h-100 border-0 shadow-sm overflow-hidden">
-                    <div class="p-4 bg-white border-bottom">
-                        <h6 class="font-weight-bold text-navy mb-0">
-                            <i class="fas fa-chart-pie text-maroon mr-2"></i> Komposisi Status
-                        </h6>
-                    </div>
-                    <div class="p-4">
-                        <div style="height:220px; position:relative;">
-                            <canvas id="dashsk_chartStatus"></canvas>
-                            <div class="position-absolute d-flex flex-column align-items-center justify-content-center" style="top:0; left:0; width:100%; height:100%; pointer-events:none;">
-                                <span class="x-small font-weight-bold text-muted letter-spacing-1 opacity-75">TOTAL</span>
-                                <span class="h5 font-weight-bold text-navy" id="dashsk_chartTotalCenter">0</span>
-                            </div>
-                        </div>
-                        <div class="mt-4">
-                            <div class="d-flex justify-content-between mb-2 small font-weight-bold">
-                                <span class="text-emerald"><i class="fas fa-circle mr-2 opacity-50"></i>Disetujui</span>
-                                <span id="dashsk_txtChartSetuju">0</span>
-                            </div>
-                            <div class="d-flex justify-content-between mb-2 small font-weight-bold text-warning">
-                                <span><i class="fas fa-circle mr-2 opacity-50"></i>Diproses</span>
-                                <span id="dashsk_txtChartProses">0</span>
-                            </div>
-                            <div class="d-flex justify-content-between mb-2 small font-weight-bold text-indigo">
-                                <span><i class="fas fa-circle mr-2 opacity-50"></i>Revisi</span>
-                                <span id="dashsk_txtChartRevisi">0</span>
-                            </div>
-                            <div class="d-flex justify-content-between mb-2 small font-weight-bold text-danger">
-                                <span><i class="fas fa-circle mr-2 opacity-50"></i>Ditolak</span>
-                                <span id="dashsk_txtChartTolak">0</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div id="dashsk_containerBelum" style="max-height: 400px; overflow-y: auto;" class="sultan-scroll">
+            <div id="dashsk_listBelumBody" class="p-2"></div>
         </div>
+    </div>
 
-        <!-- LISTS ROW -->
-        <div class="row">
-            <!-- UNIT BELUM LAPOR -->
-            <div class="col-lg-6 mb-4">
-                <div class="card-sultan h-100 border-0 shadow-sm overflow-hidden">
-                    <div class="p-4 bg-white border-bottom d-flex justify-content-between align-items-center">
-                        <h6 class="font-weight-bold text-danger mb-0">
-                            <i class="fas fa-exclamation-triangle mr-2"></i> Belum Lapor
-                        </h6>
-                        <div class="d-flex align-items-center gap-2">
-                             <span class="badge badge-pill badge-danger font-weight-bold px-3 py-1 mr-2" id="dashsk_badgeBelumCount">0</span>
-                             <button type="button" class="btn btn-sm btn-sultan-outline-danger px-3 py-1 font-weight-bold" id="dashsk_btnSalinDaftar">
-                                <i class="fas fa-copy mr-1"></i> SALIN
-                             </button>
-                        </div>
-                    </div>
-                    <div class="p-3 bg-light border-bottom">
-                        <div class="input-group input-group-sm rounded-pill overflow-hidden border shadow-xs">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-white border-0 px-3"><i class="fas fa-search text-muted"></i></span>
-                            </div>
-                            <input type="text" id="dashsk_cariBelumLangsung" class="form-control border-0 font-weight-bold" placeholder="Cari nama sekolah...">
-                        </div>
-                    </div>
-                    <div id="dashsk_containerBelum" style="max-height:400px; overflow-y:auto;" class="sultan-scroll">
-                        <div id="dashsk_listBelumBody" class="p-2"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- AKTIVITAS TIMELINE -->
-            <div class="col-lg-6 mb-4">
-                <div class="card-sultan h-100 border-0 shadow-sm overflow-hidden">
-                    <div class="p-4 bg-white border-bottom">
-                        <h6 class="font-weight-bold text-navy mb-0">
-                            <i class="fas fa-history text-maroon mr-2"></i> Aktivitas Terakhir
-                        </h6>
-                    </div>
-                    <div id="dashsk_timelineContainer" style="max-height:490px; overflow-y:auto;" class="sultan-scroll p-4"></div>
-                </div>
-            </div>
+    <!-- Aktivitas Terakhir -->
+    <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark overflow-hidden">
+        <div class="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
+            <h3 class="font-bold text-black dark:text-white">Aktivitas Terakhir</h3>
         </div>
+        <div id="dashsk_timelineContainer" style="max-height: 480px; overflow-y: auto;" class="sultan-scroll p-6.5">
+            <!-- Timeline injected here -->
+        </div>
+    </div>
+  </div>
 
     </div>
 </section>
@@ -212,40 +212,51 @@
     <i class="fas fa-bolt flash-animate"></i> TURBO ANALYTICS ACTIVE
 </div>
 
-<!-- MODAL BELUM LAPOR (PREMIUM SULTAN) -->
-<div class="modal fade" id="dashsk_modalBelumLapor" tabindex="-1" role="dialog" data-backdrop="static">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content border-0 shadow-xl rounded-20 overflow-hidden">
-            <div class="modal-header sultan-header-maroon py-3">
-                <h5 class="modal-title font-weight-bold"><i class="fas fa-clipboard-list mr-2"></i> Daftar Unit Belum Lapor</h5>
-                <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
-            </div>
-            <div class="modal-body bg-light p-4">
-                <div class="sk-info-pill mb-4 border-warning" style="background: #fffbef;">
-                    <div class="pill-icon bg-warning-light text-warning"><i class="fas fa-info-circle"></i></div>
-                    <div>
-                        <p class="small text-muted mb-0">Menampilkan data Awal Semester periode:</p>
-                        <h6 class="font-weight-bold text-dark mb-0" id="dashsk_lblPeriodeBelum">-</h6>
-                    </div>
-                </div>
-                
-                <div class="input-group mb-3 shadow-sm rounded-xl overflow-hidden border">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text bg-white border-0 px-3"><i class="fas fa-search text-muted"></i></span>
-                    </div>
-                    <input type="text" class="form-control border-0 font-weight-bold" id="dashsk_inputCariBelumModal" placeholder="Cari nama sekolah di sini...">
-                </div>
+<!-- MODAL BELUM LAPOR -->
+<div class="fixed inset-0 z-999999 flex items-center justify-center bg-black/50 overflow-y-auto px-4 py-4" id="dashsk_modalBelumLapor" style="display:none;" x-data="{ }">
+    <div class="w-full max-w-4xl rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark animate-zoom">
+        <!-- Header -->
+        <div class="flex items-center justify-between border-b border-stroke py-4 px-6 dark:border-strokedark">
+            <h3 class="font-bold text-black dark:text-white flex items-center gap-2">
+                <i class="fas fa-clipboard-list text-primary"></i> Daftar Unit Belum Lapor
+            </h3>
+            <button type="button" class="text-body hover:text-primary transition-colors" onclick="$('#dashsk_modalBelumLapor').fadeOut()">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
 
-                <div class="bg-white border rounded-xl shadow-sm sultan-scroll overflow-hidden" style="max-height: 400px; overflow-y: auto;">
-                    <div id="dashsk_listBelumBodyModal"></div>
+        <!-- Body -->
+        <div class="p-6.5">
+            <div class="mb-5 flex items-center gap-4 rounded-sm border-l-4 border-warning bg-warning/10 py-4 px-6">
+                <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-warning text-white">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <div class="w-full">
+                    <p class="text-xs text-body">Menampilkan data Awal Semester periode:</p>
+                    <h5 class="font-bold text-black dark:text-white" id="dashsk_lblPeriodeBelum">-</h5>
                 </div>
             </div>
-            <div class="modal-footer bg-white p-3 justify-content-between border-top">
-                <button type="button" class="btn btn-sultan-outline-maroon btn-sultan-standard px-4" id="dashsk_btnSalinModal">
-                    <i class="fas fa-copy mr-2"></i> SALIN DAFTAR
-                </button>
-                <button type="button" class="btn btn-sultan-maroon btn-sultan-standard px-4" data-dismiss="modal">TUTUP</button>
+
+            <div class="relative mb-4">
+                <span class="absolute left-4 top-1/2 -translate-y-1/2">
+                    <i class="fas fa-search text-body"></i>
+                </span>
+                <input type="text" id="dashsk_inputCariBelumModal" placeholder="Cari unit sekolah di sini..." class="w-full rounded border border-stroke bg-transparent py-2.5 pl-12 pr-4 outline-none transition focus:border-primary dark:border-strokedark dark:bg-boxdark">
             </div>
+
+            <div class="max-h-[400px] overflow-y-auto sultan-scroll border border-stroke dark:border-strokedark rounded-sm bg-gray-2 dark:bg-strokedark p-2">
+                <div id="dashsk_listBelumBodyModal"></div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="flex flex-wrap items-center justify-between border-t border-stroke py-4 px-6.5 dark:border-strokedark gap-4">
+            <button type="button" class="inline-flex items-center justify-center gap-2.5 rounded-md border border-primary py-2 px-6 text-center font-medium text-primary hover:bg-opacity-90 lg:px-8 transition-colors" id="dashsk_btnSalinModal">
+                <i class="fas fa-copy"></i> SALIN DAFTAR
+            </button>
+            <button type="button" class="inline-flex items-center justify-center gap-2.5 rounded-md bg-primary py-2 px-6 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 transition-colors" onclick="$('#dashsk_modalBelumLapor').fadeOut()">
+                TUTUP
+            </button>
         </div>
     </div>
 </div>
@@ -472,7 +483,7 @@
     $('#dashsk_lblPeriodeBelum').text(sm + " - TA " + th);
     $('#dashsk_inputCariBelumModal').val("");
     dashsk_filterBelumModal();
-    $('#dashsk_modalBelumLapor').modal('show');
+    $('#dashsk_modalBelumLapor').fadeIn();
   }
 
   function dashsk_renderTimeline(list) {
