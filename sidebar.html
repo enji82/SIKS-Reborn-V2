@@ -25,14 +25,14 @@
   <!-- MENU AREA -->
   <div class="flex flex-col overflow-y-auto no-scrollbar duration-300 ease-linear flex-grow py-4 px-3">
     <nav class="mt-2 px-2" 
-         x-data="{ selectedMenu: null }"
-         @open-sidebar-menu.window="selectedMenu = $event.detail.menuId">
+         x-data="{ selectedMenu: null, selectedSubMenu: null }"
+         @open-sidebar-menu.window="selectedMenu = $event.detail.menuId; selectedSubMenu = null">
       
       <ul class="mb-6 flex flex-col gap-1.5">
 
         <!-- ===== Beranda ===== -->
         <li>
-          <a href="#" class="nav-link-tail" data-page="home" @click="sidebarToggle = false; selectedMenu = null">
+          <a href="#" class="nav-link-tail" data-page="home" @click="sidebarToggle = false; selectedMenu = null; selectedSubMenu = null">
             <i class="fas fa-th-large"></i>
             Beranda
           </a>
@@ -41,7 +41,7 @@
         <!-- ===== SK Pembagian Tugas ===== -->
         <li>
           <a href="#" class="nav-link-tail justify-between"
-             @click.prevent="selectedMenu = (selectedMenu === 'sk' ? null : 'sk')"
+             @click.prevent="selectedMenu = (selectedMenu === 'sk' ? null : 'sk'); selectedSubMenu = null"
              :class="{ 'active': selectedMenu === 'sk' }">
             <div class="flex items-center gap-2.5 overflow-hidden">
               <i class="fas fa-file-signature flex-shrink-0"></i>
@@ -62,7 +62,7 @@
         <!-- ===== Laporan Bulan ===== -->
         <li>
           <a href="#" class="nav-link-tail justify-between"
-             @click.prevent="selectedMenu = (selectedMenu === 'lapbul' ? null : 'lapbul')"
+             @click.prevent="selectedMenu = (selectedMenu === 'lapbul' ? null : 'lapbul'); selectedSubMenu = null"
              :class="{ 'active': selectedMenu === 'lapbul' }">
             <div class="flex items-center gap-2.5 overflow-hidden">
               <i class="fas fa-file-invoice flex-shrink-0"></i>
@@ -84,7 +84,7 @@
         <!-- ===== SIABA ===== -->
         <li>
           <a href="#" class="nav-link-tail justify-between"
-             @click.prevent="selectedMenu = (selectedMenu === 'siaba' ? null : 'siaba')"
+             @click.prevent="selectedMenu = (selectedMenu === 'siaba' ? null : 'siaba'); selectedSubMenu = null"
              :class="{ 'active': selectedMenu === 'siaba' }">
             <div class="flex items-center gap-2.5 overflow-hidden">
               <i class="fas fa-fingerprint flex-shrink-0"></i>
@@ -96,13 +96,13 @@
             <a href="#" class="submenu-link-tail" data-page="siaba_dashboard" @click="sidebarToggle = false">Dashboard SIABA</a>
 
             <!-- L2: Presensi → L3 -->
-            <div x-data="{ openPresensi: false }">
-              <a href="#" class="submenu-link-tail has-sub" :class="{ 'open': openPresensi }"
-                 @click.prevent="openPresensi = !openPresensi">
+            <div>
+              <a href="#" class="submenu-link-tail has-sub" :class="{ 'open': selectedSubMenu === 'presensi' }"
+                 @click.prevent="selectedSubMenu = (selectedSubMenu === 'presensi' ? null : 'presensi')">
                 <span>Presensi</span>
                 <i class="fas fa-chevron-down sub-chevron"></i>
               </a>
-              <div x-show="openPresensi" x-transition x-cloak class="sub-submenu-tail">
+              <div x-show="selectedSubMenu === 'presensi'" x-transition x-cloak class="sub-submenu-tail">
                 <a href="#" class="sub-submenu-link-tail" data-page="siaba_presensi_harian" @click="sidebarToggle = false">Harian</a>
                 <a href="#" class="sub-submenu-link-tail" data-page="siaba_presensi_apel" @click="sidebarToggle = false">Apel &amp; Upacara</a>
                 <a href="#" class="sub-submenu-link-tail" data-page="siaba_presensi_tidak" @click="sidebarToggle = false">Tidak Presensi</a>
@@ -118,13 +118,13 @@
             <a href="#" class="submenu-link-tail" data-page="siaba_perjalanan_dinas" @click="sidebarToggle = false">Perjalanan Dinas</a>
 
             <!-- L2: Cuti → L3 -->
-            <div x-data="{ openCuti: false }">
-              <a href="#" class="submenu-link-tail has-sub" :class="{ 'open': openCuti }"
-                 @click.prevent="openCuti = !openCuti">
+            <div>
+              <a href="#" class="submenu-link-tail has-sub" :class="{ 'open': selectedSubMenu === 'cuti' }"
+                 @click.prevent="selectedSubMenu = (selectedSubMenu === 'cuti' ? null : 'cuti')">
                 <span>Cuti</span>
                 <i class="fas fa-chevron-down sub-chevron"></i>
               </a>
-              <div x-show="openCuti" x-transition x-cloak class="sub-submenu-tail">
+              <div x-show="selectedSubMenu === 'cuti'" x-transition x-cloak class="sub-submenu-tail">
                 <a href="#" class="sub-submenu-link-tail" data-page="siaba_cuti_pengajuan" @click="sidebarToggle = false">Pengajuan</a>
                 <a href="#" class="sub-submenu-link-tail" data-page="siaba_cuti_sisa" @click="sidebarToggle = false">Sisa Cuti Tahunan</a>
                 <a href="#" class="sub-submenu-link-tail" data-page="siaba_cuti_rekap" @click="sidebarToggle = false">Rekap Cuti</a>
@@ -139,7 +139,7 @@
 
         <!-- ===== Tata Naskah Dinas ===== -->
         <li>
-          <a href="#" class="nav-link-tail" data-page="tata_naskah_dinas" @click="sidebarToggle = false; selectedMenu = null">
+          <a href="#" class="nav-link-tail" data-page="tata_naskah_dinas" @click="sidebarToggle = false; selectedMenu = null; selectedSubMenu = null">
             <i class="fas fa-pen-nib"></i>
             Tata Naskah Dinas
           </a>
@@ -148,7 +148,7 @@
         <!-- ===== Data PTK ===== -->
         <li>
           <a href="#" class="nav-link-tail justify-between"
-             @click.prevent="selectedMenu = (selectedMenu === 'ptk' ? null : 'ptk')"
+             @click.prevent="selectedMenu = (selectedMenu === 'ptk' ? null : 'ptk'); selectedSubMenu = null"
              :class="{ 'active': selectedMenu === 'ptk' }">
             <div class="flex items-center gap-2.5 overflow-hidden">
               <i class="fas fa-users-viewfinder flex-shrink-0"></i>
@@ -160,26 +160,26 @@
             <a href="#" class="submenu-link-tail" data-page="ptk_dashboard" @click="sidebarToggle = false">Dashboard PTK</a>
 
             <!-- L2: PAUD → L3 -->
-            <div x-data="{ openPtkPaud: false }">
-              <a href="#" class="submenu-link-tail has-sub" :class="{ 'open': openPtkPaud }"
-                 @click.prevent="openPtkPaud = !openPtkPaud">
+            <div>
+              <a href="#" class="submenu-link-tail has-sub" :class="{ 'open': selectedSubMenu === 'ptk_paud' }"
+                 @click.prevent="selectedSubMenu = (selectedSubMenu === 'ptk_paud' ? null : 'ptk_paud')">
                 <span>PAUD</span>
                 <i class="fas fa-chevron-down sub-chevron"></i>
               </a>
-              <div x-show="openPtkPaud" x-transition x-cloak class="sub-submenu-tail">
+              <div x-show="selectedSubMenu === 'ptk_paud'" x-transition x-cloak class="sub-submenu-tail">
                 <a href="#" class="sub-submenu-link-tail" data-page="ptk_paud_daftar" @click="sidebarToggle = false">Daftar Nama PTK PAUD</a>
                 <a href="#" class="sub-submenu-link-tail" data-page="ptk_paud_keadaan" @click="sidebarToggle = false">Keadaan PTK PAUD</a>
               </div>
             </div>
 
             <!-- L2: SD Negeri → L3 -->
-            <div x-data="{ openSdn: false }">
-              <a href="#" class="submenu-link-tail has-sub" :class="{ 'open': openSdn }"
-                 @click.prevent="openSdn = !openSdn">
+            <div>
+              <a href="#" class="submenu-link-tail has-sub" :class="{ 'open': selectedSubMenu === 'ptk_sdn' }"
+                 @click.prevent="selectedSubMenu = (selectedSubMenu === 'ptk_sdn' ? null : 'ptk_sdn')">
                 <span>SD Negeri</span>
                 <i class="fas fa-chevron-down sub-chevron"></i>
               </a>
-              <div x-show="openSdn" x-transition x-cloak class="sub-submenu-tail">
+              <div x-show="selectedSubMenu === 'ptk_sdn'" x-transition x-cloak class="sub-submenu-tail">
                 <a href="#" class="sub-submenu-link-tail" data-page="ptk_sdn_daftar" @click="sidebarToggle = false">Daftar Nama PTK SDN</a>
                 <a href="#" class="sub-submenu-link-tail" data-page="ptk_sdn_keadaan" @click="sidebarToggle = false">Keadaan PTK SDN</a>
                 <a href="#" class="sub-submenu-link-tail" data-page="ptk_sdn_kebutuhan" @click="sidebarToggle = false">Kebutuhan Guru SDN</a>
@@ -187,13 +187,13 @@
             </div>
 
             <!-- L2: SD Swasta → L3 -->
-            <div x-data="{ openSds: false }">
-              <a href="#" class="submenu-link-tail has-sub" :class="{ 'open': openSds }"
-                 @click.prevent="openSds = !openSds">
+            <div>
+              <a href="#" class="submenu-link-tail has-sub" :class="{ 'open': selectedSubMenu === 'ptk_sds' }"
+                 @click.prevent="selectedSubMenu = (selectedSubMenu === 'ptk_sds' ? null : 'ptk_sds')">
                 <span>SD Swasta</span>
                 <i class="fas fa-chevron-down sub-chevron"></i>
               </a>
-              <div x-show="openSds" x-transition x-cloak class="sub-submenu-tail">
+              <div x-show="selectedSubMenu === 'ptk_sds'" x-transition x-cloak class="sub-submenu-tail">
                 <a href="#" class="sub-submenu-link-tail" data-page="ptk_sds_daftar" @click="sidebarToggle = false">Daftar Nama PTK SDS</a>
                 <a href="#" class="sub-submenu-link-tail" data-page="ptk_sds_keadaan" @click="sidebarToggle = false">Keadaan PTK SDS</a>
                 <a href="#" class="sub-submenu-link-tail" data-page="ptk_sds_kebutuhan" @click="sidebarToggle = false">Kebutuhan Guru SDS</a>
@@ -206,7 +206,7 @@
         <!-- ===== Data Murid ===== -->
         <li>
           <a href="#" class="nav-link-tail justify-between"
-             @click.prevent="selectedMenu = (selectedMenu === 'murid' ? null : 'murid')"
+             @click.prevent="selectedMenu = (selectedMenu === 'murid' ? null : 'murid'); selectedSubMenu = null"
              :class="{ 'active': selectedMenu === 'murid' }">
             <div class="flex items-center gap-2.5 overflow-hidden">
               <i class="fas fa-user-graduate flex-shrink-0"></i>
@@ -218,26 +218,26 @@
             <a href="#" class="submenu-link-tail" data-page="murid_dashboard" @click="sidebarToggle = false">Dashboard Murid</a>
 
             <!-- L2: PAUD → L3 -->
-            <div x-data="{ openMuridPaud: false }">
-              <a href="#" class="submenu-link-tail has-sub" :class="{ 'open': openMuridPaud }"
-                 @click.prevent="openMuridPaud = !openMuridPaud">
+            <div>
+              <a href="#" class="submenu-link-tail has-sub" :class="{ 'open': selectedSubMenu === 'murid_paud' }"
+                 @click.prevent="selectedSubMenu = (selectedSubMenu === 'murid_paud' ? null : 'murid_paud')">
                 <span>PAUD</span>
                 <i class="fas fa-chevron-down sub-chevron"></i>
               </a>
-              <div x-show="openMuridPaud" x-transition x-cloak class="sub-submenu-tail">
+              <div x-show="selectedSubMenu === 'murid_paud'" x-transition x-cloak class="sub-submenu-tail">
                 <a href="#" class="sub-submenu-link-tail" data-page="murid_paud_rombel" @click="sidebarToggle = false">PAUD Menurut Rombel</a>
                 <a href="#" class="sub-submenu-link-tail" data-page="murid_paud_jk" @click="sidebarToggle = false">PAUD Menurut Jenis Kelamin</a>
               </div>
             </div>
 
             <!-- L2: SD → L3 -->
-            <div x-data="{ openMuridSd: false }">
-              <a href="#" class="submenu-link-tail has-sub" :class="{ 'open': openMuridSd }"
-                 @click.prevent="openMuridSd = !openMuridSd">
+            <div>
+              <a href="#" class="submenu-link-tail has-sub" :class="{ 'open': selectedSubMenu === 'murid_sd' }"
+                 @click.prevent="selectedSubMenu = (selectedSubMenu === 'murid_sd' ? null : 'murid_sd')">
                 <span>SD</span>
                 <i class="fas fa-chevron-down sub-chevron"></i>
               </a>
-              <div x-show="openMuridSd" x-transition x-cloak class="sub-submenu-tail">
+              <div x-show="selectedSubMenu === 'murid_sd'" x-transition x-cloak class="sub-submenu-tail">
                 <a href="#" class="sub-submenu-link-tail" data-page="murid_sd_kelas" @click="sidebarToggle = false">SD Menurut Kelas</a>
                 <a href="#" class="sub-submenu-link-tail" data-page="murid_sd_rombel" @click="sidebarToggle = false">SD Menurut Rombel</a>
                 <a href="#" class="sub-submenu-link-tail" data-page="murid_sd_agama" @click="sidebarToggle = false">SD Menurut Agama</a>
@@ -250,7 +250,7 @@
         <!-- ===== E-File Pegawai ===== -->
         <li>
           <a href="#" class="nav-link-tail justify-between"
-             @click.prevent="selectedMenu = (selectedMenu === 'efile' ? null : 'efile')"
+             @click.prevent="selectedMenu = (selectedMenu === 'efile' ? null : 'efile'); selectedSubMenu = null"
              :class="{ 'active': selectedMenu === 'efile' }">
             <div class="flex items-center gap-2.5 overflow-hidden">
               <i class="fas fa-folder-tree flex-shrink-0"></i>
@@ -267,7 +267,7 @@
 
         <!-- ===== Pengaturan ===== -->
         <li>
-          <a href="#" class="nav-link-tail" data-page="page_setting" id="menu-setting-admin" @click="sidebarToggle = false; selectedMenu = null">
+          <a href="#" class="nav-link-tail" data-page="page_setting" id="menu-setting-admin" @click="sidebarToggle = false; selectedMenu = null; selectedSubMenu = null">
             <i class="fas fa-sliders"></i>
             Pengaturan
           </a>
@@ -275,7 +275,7 @@
 
         <!-- ===== Monitoring Aktivitas ===== -->
         <li>
-          <a href="#" class="nav-link-tail" data-page="page_monitoring" id="menu-monitoring" @click="sidebarToggle = false; selectedMenu = null">
+          <a href="#" class="nav-link-tail" data-page="page_monitoring" id="menu-monitoring" @click="sidebarToggle = false; selectedMenu = null; selectedSubMenu = null">
             <i class="fas fa-laptop-medical"></i>
             Monitoring Aktivitas
           </a>
