@@ -5,8 +5,8 @@
 -->
 
 <aside class="sidebar-drawer no-scrollbar" 
-       :class="sidebarOpened ? 'open' : ''"
-       @click.away="sidebarOpened = false">
+       :class="sidebarToggle ? 'open' : ''"
+       @click.away="sidebarToggle = false">
   
   <!-- SIDEBAR HEADER (LOGO) -->
   <div class="flex items-center justify-between gap-2 px-5" style="height:70px;min-height:70px;border-bottom:1px solid var(--sidebar-border);flex-shrink:0;">
@@ -17,7 +17,7 @@
       <span style="font-size:1.0625rem;font-weight:700;color:var(--sidebar-logo-text);letter-spacing:-0.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">SIKS - REBORN</span>
     </a>
     <!-- Close Button (Mobile only) -->
-    <button @click.prevent="sidebarOpened = false" class="lg:hidden flex-shrink-0 rounded-md p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-800 transition-colors" style="border:none;background:none;cursor:pointer;">
+    <button @click.prevent="sidebarToggle = false" class="lg:hidden flex-shrink-0 rounded-md p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-800 transition-colors" style="border:none;background:none;cursor:pointer;">
       <i class="fas fa-times" style="font-size:1.1rem;"></i>
     </button>
   </div>
@@ -32,7 +32,7 @@
 
         <!-- ===== Beranda ===== -->
         <li>
-          <a href="#" class="nav-link-tail" data-page="home" @click="sidebarOpened = false; selectedMenu = null">
+          <a href="#" class="nav-link-tail" data-page="home" @click="sidebarToggle = false; selectedMenu = null">
             <i class="fas fa-th-large"></i>
             Beranda
           </a>
@@ -50,12 +50,12 @@
             <i class="fas fa-chevron-down text-xs transition-transform flex-shrink-0" :class="{ 'rotate-180': selectedMenu === 'sk' }"></i>
           </a>
           <div x-show="selectedMenu === 'sk'" x-transition x-cloak class="submenu-tail">
-            <a href="#" class="submenu-link-tail" data-page="sk_dashboard" @click="sidebarOpened = false">Dashboard SK</a>
-            <a href="#" class="submenu-link-tail flex justify-between items-center" data-page="sk_data" @click="sidebarOpened = false">
+            <a href="#" class="submenu-link-tail" data-page="sk_dashboard" @click="sidebarToggle = false">Dashboard SK</a>
+            <a href="#" class="submenu-link-tail flex justify-between items-center" data-page="sk_data" @click="sidebarToggle = false">
               <span class="truncate">Data SK</span>
               <span id="sk_data_badge" class="bg-primary text-[10px] px-1.5 rounded-full text-white hidden"></span>
             </a>
-            <a href="#" class="submenu-link-tail" data-page="sk_status" @click="sidebarOpened = false">Status Pengiriman</a>
+            <a href="#" class="submenu-link-tail" data-page="sk_status" @click="sidebarToggle = false">Status Pengiriman</a>
           </div>
         </li>
 
@@ -71,13 +71,13 @@
             <i class="fas fa-chevron-down text-xs transition-transform flex-shrink-0" :class="{ 'rotate-180': selectedMenu === 'lapbul' }"></i>
           </a>
           <div x-show="selectedMenu === 'lapbul'" x-transition x-cloak class="submenu-tail">
-            <a href="#" class="submenu-link-tail" data-page="lapbul_dashboard" @click="sidebarOpened = false">Dashboard Laporan Bulan</a>
-            <a href="#" class="submenu-link-tail flex justify-between items-center" data-page="lapbul_kelola" @click="sidebarOpened = false">
+            <a href="#" class="submenu-link-tail" data-page="lapbul_dashboard" @click="sidebarToggle = false">Dashboard Laporan Bulan</a>
+            <a href="#" class="submenu-link-tail flex justify-between items-center" data-page="lapbul_kelola" @click="sidebarToggle = false">
               <span class="truncate">Kelola Data</span>
               <span id="lapbul_kelola_badge" class="bg-primary text-[10px] px-1.5 rounded-full text-white hidden"></span>
             </a>
-            <a href="#" class="submenu-link-tail" data-page="lapbul_status" @click="sidebarOpened = false">Status Laporan</a>
-            <a href="#" class="submenu-link-tail" data-page="lapbul_format" @click="sidebarOpened = false">Format Laporan</a>
+            <a href="#" class="submenu-link-tail" data-page="lapbul_status" @click="sidebarToggle = false">Status Laporan</a>
+            <a href="#" class="submenu-link-tail" data-page="lapbul_format" @click="sidebarToggle = false">Format Laporan</a>
           </div>
         </li>
 
@@ -93,7 +93,7 @@
             <i class="fas fa-chevron-down text-xs transition-transform flex-shrink-0" :class="{ 'rotate-180': selectedMenu === 'siaba' }"></i>
           </a>
           <div x-show="selectedMenu === 'siaba'" x-transition x-cloak class="submenu-tail">
-            <a href="#" class="submenu-link-tail" data-page="siaba_dashboard" @click="sidebarOpened = false">Dashboard SIABA</a>
+            <a href="#" class="submenu-link-tail" data-page="siaba_dashboard" @click="sidebarToggle = false">Dashboard SIABA</a>
 
             <!-- L2: Presensi → L3 -->
             <div x-data="{ openPresensi: false }">
@@ -103,19 +103,19 @@
                 <i class="fas fa-chevron-down sub-chevron"></i>
               </a>
               <div x-show="openPresensi" x-transition x-cloak class="sub-submenu-tail">
-                <a href="#" class="sub-submenu-link-tail" data-page="siaba_presensi_harian" @click="sidebarOpened = false">Harian</a>
-                <a href="#" class="sub-submenu-link-tail" data-page="siaba_presensi_apel" @click="sidebarOpened = false">Apel &amp; Upacara</a>
-                <a href="#" class="sub-submenu-link-tail" data-page="siaba_presensi_tidak" @click="sidebarOpened = false">Tidak Presensi</a>
-                <a href="#" class="sub-submenu-link-tail" data-page="siaba_presensi_terlambat" @click="sidebarOpened = false">Terlambat</a>
-                <a href="#" class="sub-submenu-link-tail" data-page="siaba_presensi_pulang_awal" @click="sidebarOpened = false">Pulang Awal</a>
-                <a href="#" class="sub-submenu-link-tail" data-page="siaba_presensi_unduh" @click="sidebarOpened = false">Unduh Rekap Bulanan</a>
-                <a href="#" class="sub-submenu-link-tail" data-page="siaba_presensi_arsip" @click="sidebarOpened = false">Arsip SIABA</a>
+                <a href="#" class="sub-submenu-link-tail" data-page="siaba_presensi_harian" @click="sidebarToggle = false">Harian</a>
+                <a href="#" class="sub-submenu-link-tail" data-page="siaba_presensi_apel" @click="sidebarToggle = false">Apel &amp; Upacara</a>
+                <a href="#" class="sub-submenu-link-tail" data-page="siaba_presensi_tidak" @click="sidebarToggle = false">Tidak Presensi</a>
+                <a href="#" class="sub-submenu-link-tail" data-page="siaba_presensi_terlambat" @click="sidebarToggle = false">Terlambat</a>
+                <a href="#" class="sub-submenu-link-tail" data-page="siaba_presensi_pulang_awal" @click="sidebarToggle = false">Pulang Awal</a>
+                <a href="#" class="sub-submenu-link-tail" data-page="siaba_presensi_unduh" @click="sidebarToggle = false">Unduh Rekap Bulanan</a>
+                <a href="#" class="sub-submenu-link-tail" data-page="siaba_presensi_arsip" @click="sidebarToggle = false">Arsip SIABA</a>
               </div>
             </div>
 
-            <a href="#" class="submenu-link-tail" data-page="siaba_lupa_presensi" @click="sidebarOpened = false">Lupa Presensi</a>
-            <a href="#" class="submenu-link-tail" data-page="siaba_salah_presensi" @click="sidebarOpened = false">Salah Presensi</a>
-            <a href="#" class="submenu-link-tail" data-page="siaba_perjalanan_dinas" @click="sidebarOpened = false">Perjalanan Dinas</a>
+            <a href="#" class="submenu-link-tail" data-page="siaba_lupa_presensi" @click="sidebarToggle = false">Lupa Presensi</a>
+            <a href="#" class="submenu-link-tail" data-page="siaba_salah_presensi" @click="sidebarToggle = false">Salah Presensi</a>
+            <a href="#" class="submenu-link-tail" data-page="siaba_perjalanan_dinas" @click="sidebarToggle = false">Perjalanan Dinas</a>
 
             <!-- L2: Cuti → L3 -->
             <div x-data="{ openCuti: false }">
@@ -125,21 +125,21 @@
                 <i class="fas fa-chevron-down sub-chevron"></i>
               </a>
               <div x-show="openCuti" x-transition x-cloak class="sub-submenu-tail">
-                <a href="#" class="sub-submenu-link-tail" data-page="siaba_cuti_pengajuan" @click="sidebarOpened = false">Pengajuan</a>
-                <a href="#" class="sub-submenu-link-tail" data-page="siaba_cuti_sisa" @click="sidebarOpened = false">Sisa Cuti Tahunan</a>
-                <a href="#" class="sub-submenu-link-tail" data-page="siaba_cuti_rekap" @click="sidebarOpened = false">Rekap Cuti</a>
-                <a href="#" class="sub-submenu-link-tail" data-page="siaba_cuti_unggah" @click="sidebarOpened = false">Unggah Surat Cuti</a>
-                <a href="#" class="sub-submenu-link-tail" data-page="siaba_cuti_info" @click="sidebarOpened = false">Informasi</a>
+                <a href="#" class="sub-submenu-link-tail" data-page="siaba_cuti_pengajuan" @click="sidebarToggle = false">Pengajuan</a>
+                <a href="#" class="sub-submenu-link-tail" data-page="siaba_cuti_sisa" @click="sidebarToggle = false">Sisa Cuti Tahunan</a>
+                <a href="#" class="sub-submenu-link-tail" data-page="siaba_cuti_rekap" @click="sidebarToggle = false">Rekap Cuti</a>
+                <a href="#" class="sub-submenu-link-tail" data-page="siaba_cuti_unggah" @click="sidebarToggle = false">Unggah Surat Cuti</a>
+                <a href="#" class="sub-submenu-link-tail" data-page="siaba_cuti_info" @click="sidebarToggle = false">Informasi</a>
               </div>
             </div>
 
-            <a href="#" class="submenu-link-tail" data-page="siaba_format_panduan" @click="sidebarOpened = false">Format &amp; Panduan</a>
+            <a href="#" class="submenu-link-tail" data-page="siaba_format_panduan" @click="sidebarToggle = false">Format &amp; Panduan</a>
           </div>
         </li>
 
         <!-- ===== Tata Naskah Dinas ===== -->
         <li>
-          <a href="#" class="nav-link-tail" data-page="tata_naskah_dinas" @click="sidebarOpened = false; selectedMenu = null">
+          <a href="#" class="nav-link-tail" data-page="tata_naskah_dinas" @click="sidebarToggle = false; selectedMenu = null">
             <i class="fas fa-pen-nib"></i>
             Tata Naskah Dinas
           </a>
@@ -157,7 +157,7 @@
             <i class="fas fa-chevron-down text-xs transition-transform flex-shrink-0" :class="{ 'rotate-180': selectedMenu === 'ptk' }"></i>
           </a>
           <div x-show="selectedMenu === 'ptk'" x-transition x-cloak class="submenu-tail">
-            <a href="#" class="submenu-link-tail" data-page="ptk_dashboard" @click="sidebarOpened = false">Dashboard PTK</a>
+            <a href="#" class="submenu-link-tail" data-page="ptk_dashboard" @click="sidebarToggle = false">Dashboard PTK</a>
 
             <!-- L2: PAUD → L3 -->
             <div x-data="{ openPtkPaud: false }">
@@ -167,8 +167,8 @@
                 <i class="fas fa-chevron-down sub-chevron"></i>
               </a>
               <div x-show="openPtkPaud" x-transition x-cloak class="sub-submenu-tail">
-                <a href="#" class="sub-submenu-link-tail" data-page="ptk_paud_daftar" @click="sidebarOpened = false">Daftar Nama PTK PAUD</a>
-                <a href="#" class="sub-submenu-link-tail" data-page="ptk_paud_keadaan" @click="sidebarOpened = false">Keadaan PTK PAUD</a>
+                <a href="#" class="sub-submenu-link-tail" data-page="ptk_paud_daftar" @click="sidebarToggle = false">Daftar Nama PTK PAUD</a>
+                <a href="#" class="sub-submenu-link-tail" data-page="ptk_paud_keadaan" @click="sidebarToggle = false">Keadaan PTK PAUD</a>
               </div>
             </div>
 
@@ -180,9 +180,9 @@
                 <i class="fas fa-chevron-down sub-chevron"></i>
               </a>
               <div x-show="openSdn" x-transition x-cloak class="sub-submenu-tail">
-                <a href="#" class="sub-submenu-link-tail" data-page="ptk_sdn_daftar" @click="sidebarOpened = false">Daftar Nama PTK SDN</a>
-                <a href="#" class="sub-submenu-link-tail" data-page="ptk_sdn_keadaan" @click="sidebarOpened = false">Keadaan PTK SDN</a>
-                <a href="#" class="sub-submenu-link-tail" data-page="ptk_sdn_kebutuhan" @click="sidebarOpened = false">Kebutuhan Guru SDN</a>
+                <a href="#" class="sub-submenu-link-tail" data-page="ptk_sdn_daftar" @click="sidebarToggle = false">Daftar Nama PTK SDN</a>
+                <a href="#" class="sub-submenu-link-tail" data-page="ptk_sdn_keadaan" @click="sidebarToggle = false">Keadaan PTK SDN</a>
+                <a href="#" class="sub-submenu-link-tail" data-page="ptk_sdn_kebutuhan" @click="sidebarToggle = false">Kebutuhan Guru SDN</a>
               </div>
             </div>
 
@@ -194,9 +194,9 @@
                 <i class="fas fa-chevron-down sub-chevron"></i>
               </a>
               <div x-show="openSds" x-transition x-cloak class="sub-submenu-tail">
-                <a href="#" class="sub-submenu-link-tail" data-page="ptk_sds_daftar" @click="sidebarOpened = false">Daftar Nama PTK SDS</a>
-                <a href="#" class="sub-submenu-link-tail" data-page="ptk_sds_keadaan" @click="sidebarOpened = false">Keadaan PTK SDS</a>
-                <a href="#" class="sub-submenu-link-tail" data-page="ptk_sds_kebutuhan" @click="sidebarOpened = false">Kebutuhan Guru SDS</a>
+                <a href="#" class="sub-submenu-link-tail" data-page="ptk_sds_daftar" @click="sidebarToggle = false">Daftar Nama PTK SDS</a>
+                <a href="#" class="sub-submenu-link-tail" data-page="ptk_sds_keadaan" @click="sidebarToggle = false">Keadaan PTK SDS</a>
+                <a href="#" class="sub-submenu-link-tail" data-page="ptk_sds_kebutuhan" @click="sidebarToggle = false">Kebutuhan Guru SDS</a>
               </div>
             </div>
 
@@ -215,7 +215,7 @@
             <i class="fas fa-chevron-down text-xs transition-transform flex-shrink-0" :class="{ 'rotate-180': selectedMenu === 'murid' }"></i>
           </a>
           <div x-show="selectedMenu === 'murid'" x-transition x-cloak class="submenu-tail">
-            <a href="#" class="submenu-link-tail" data-page="murid_dashboard" @click="sidebarOpened = false">Dashboard Murid</a>
+            <a href="#" class="submenu-link-tail" data-page="murid_dashboard" @click="sidebarToggle = false">Dashboard Murid</a>
 
             <!-- L2: PAUD → L3 -->
             <div x-data="{ openMuridPaud: false }">
@@ -225,8 +225,8 @@
                 <i class="fas fa-chevron-down sub-chevron"></i>
               </a>
               <div x-show="openMuridPaud" x-transition x-cloak class="sub-submenu-tail">
-                <a href="#" class="sub-submenu-link-tail" data-page="murid_paud_rombel" @click="sidebarOpened = false">PAUD Menurut Rombel</a>
-                <a href="#" class="sub-submenu-link-tail" data-page="murid_paud_jk" @click="sidebarOpened = false">PAUD Menurut Jenis Kelamin</a>
+                <a href="#" class="sub-submenu-link-tail" data-page="murid_paud_rombel" @click="sidebarToggle = false">PAUD Menurut Rombel</a>
+                <a href="#" class="sub-submenu-link-tail" data-page="murid_paud_jk" @click="sidebarToggle = false">PAUD Menurut Jenis Kelamin</a>
               </div>
             </div>
 
@@ -238,9 +238,9 @@
                 <i class="fas fa-chevron-down sub-chevron"></i>
               </a>
               <div x-show="openMuridSd" x-transition x-cloak class="sub-submenu-tail">
-                <a href="#" class="sub-submenu-link-tail" data-page="murid_sd_kelas" @click="sidebarOpened = false">SD Menurut Kelas</a>
-                <a href="#" class="sub-submenu-link-tail" data-page="murid_sd_rombel" @click="sidebarOpened = false">SD Menurut Rombel</a>
-                <a href="#" class="sub-submenu-link-tail" data-page="murid_sd_agama" @click="sidebarOpened = false">SD Menurut Agama</a>
+                <a href="#" class="sub-submenu-link-tail" data-page="murid_sd_kelas" @click="sidebarToggle = false">SD Menurut Kelas</a>
+                <a href="#" class="sub-submenu-link-tail" data-page="murid_sd_rombel" @click="sidebarToggle = false">SD Menurut Rombel</a>
+                <a href="#" class="sub-submenu-link-tail" data-page="murid_sd_agama" @click="sidebarToggle = false">SD Menurut Agama</a>
               </div>
             </div>
 
@@ -259,15 +259,15 @@
             <i class="fas fa-chevron-down text-xs transition-transform flex-shrink-0" :class="{ 'rotate-180': selectedMenu === 'efile' }"></i>
           </a>
           <div x-show="selectedMenu === 'efile'" x-transition x-cloak class="submenu-tail">
-            <a href="#" class="submenu-link-tail" data-page="efile_dashboard" @click="sidebarOpened = false">Dashboard E-File</a>
-            <a href="#" class="submenu-link-tail" data-page="efile_kelola" @click="sidebarOpened = false">Kelola &amp; Verifikasi</a>
-            <a href="#" class="submenu-link-tail" data-page="efile_viewer" @click="sidebarOpened = false">Berkas E-File</a>
+            <a href="#" class="submenu-link-tail" data-page="efile_dashboard" @click="sidebarToggle = false">Dashboard E-File</a>
+            <a href="#" class="submenu-link-tail" data-page="efile_kelola" @click="sidebarToggle = false">Kelola &amp; Verifikasi</a>
+            <a href="#" class="submenu-link-tail" data-page="efile_viewer" @click="sidebarToggle = false">Berkas E-File</a>
           </div>
         </li>
 
         <!-- ===== Pengaturan ===== -->
         <li>
-          <a href="#" class="nav-link-tail" data-page="page_setting" id="menu-setting-admin" @click="sidebarOpened = false; selectedMenu = null">
+          <a href="#" class="nav-link-tail" data-page="page_setting" id="menu-setting-admin" @click="sidebarToggle = false; selectedMenu = null">
             <i class="fas fa-sliders"></i>
             Pengaturan
           </a>
@@ -275,7 +275,7 @@
 
         <!-- ===== Monitoring Aktivitas ===== -->
         <li>
-          <a href="#" class="nav-link-tail" data-page="page_monitoring" id="menu-monitoring" @click="sidebarOpened = false; selectedMenu = null">
+          <a href="#" class="nav-link-tail" data-page="page_monitoring" id="menu-monitoring" @click="sidebarToggle = false; selectedMenu = null">
             <i class="fas fa-laptop-medical"></i>
             Monitoring Aktivitas
           </a>
@@ -303,5 +303,5 @@
 
 <!-- MOBILE OVERLAY -->
 <div class="sidebar-overlay"
-     :class="sidebarOpened ? 'show' : ''"
-     @click="sidebarOpened = false"></div>
+     :class="sidebarToggle ? 'show' : ''"
+     @click="sidebarToggle = false"></div>
