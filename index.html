@@ -76,11 +76,11 @@
       
       <!-- HEADER -->
       <header x-data="{menuToggle: false}" class="sticky top-0 z-[999] flex w-full bg-white border-b border-gray-200 dark:bg-boxdark dark:border-gray-800 shadow-none" style="height:70px;">
-        <div class="flex grow flex-col items-center justify-between lg:flex-row lg:px-6">
-          <div class="flex w-full items-center justify-between gap-2 border-b border-gray-200 px-3 sm:gap-4 lg:justify-normal lg:border-b-0 lg:px-0 dark:border-gray-800" style="height:70px;">
+        <div class="flex grow flex-col items-center justify-between lg:flex-row lg:pl-3 lg:pr-6 gap-2 sm:gap-4 h-full">
+          <div class="flex w-full items-center justify-between gap-2 border-b border-gray-200 lg:justify-normal lg:border-b-0 dark:border-gray-800 h-full">
             
             <!-- Hamburger Toggle BTN -->
-            <button :class="sidebarToggle ? 'lg:bg-transparent dark:lg:bg-transparent bg-gray-100 dark:bg-gray-800' : ''" class="z-99999 flex h-10 w-10 items-center justify-center rounded-lg border-gray-200 text-gray-500 lg:h-11 lg:w-11 lg:border dark:border-gray-800 dark:text-gray-400" @click.stop="sidebarToggle = !sidebarToggle">
+            <button :class="sidebarToggle ? 'lg:bg-transparent dark:lg:bg-transparent bg-gray-100 dark:bg-gray-800' : ''" class="z-99999 flex h-11 w-11 items-center justify-center rounded-lg border-gray-200 text-gray-500 lg:border dark:border-gray-800 dark:text-gray-400" @click.stop="sidebarToggle = !sidebarToggle">
               <svg class="hidden fill-current lg:block" width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M0.583252 1C0.583252 0.585788 0.919038 0.25 1.33325 0.25H14.6666C15.0808 0.25 15.4166 0.585786 15.4166 1C15.4166 1.41421 15.0808 1.75 14.6666 1.75L1.33325 1.75C0.919038 1.75 0.583252 1.41422 0.583252 1ZM0.583252 11C0.583252 10.5858 0.919038 10.25 1.33325 10.25L14.6666 10.25C15.0808 10.25 15.4166 10.5858 15.4166 11C15.4166 11.4142 15.0808 11.75 14.6666 11.75L1.33325 11.75C0.919038 11.75 0.583252 11.4142 0.583252 11ZM1.33325 5.25C0.919038 5.25 0.583252 5.58579 0.583252 6C0.583252 6.41421 0.919038 6.75 1.33325 6.75L7.99992 6.75C8.41413 6.75 8.74992 6.41421 8.74992 6C8.74992 5.58579 8.41413 5.25 7.99992 5.25L1.33325 5.25Z" fill=""></path>
               </svg>
@@ -98,7 +98,7 @@
             <span class="font-bold text-black dark:text-white lg:hidden">SIKS</span>
 
             <!-- Application nav menu button -->
-            <button class="z-99999 flex h-10 w-10 items-center justify-center rounded-lg text-gray-700 hover:bg-gray-100 lg:hidden dark:text-gray-400 dark:hover:bg-gray-800" :class="menuToggle ? 'bg-gray-100 dark:bg-gray-800' : ''" @click.stop="menuToggle = !menuToggle">
+            <button class="z-99999 flex h-11 w-11 items-center justify-center rounded-lg text-gray-700 hover:bg-gray-100 lg:hidden dark:text-gray-400 dark:hover:bg-gray-800" :class="menuToggle ? 'bg-gray-100 dark:bg-gray-800' : ''" @click.stop="menuToggle = !menuToggle">
               <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M5.99902 10.4951C6.82745 10.4951 7.49902 11.1667 7.49902 11.9951V12.0051C7.49902 12.8335 6.82745 13.5051 5.99902 13.5051C5.1706 13.5051 4.49902 12.8335 4.49902 12.0051V11.9951C4.49902 11.1667 5.1706 10.4951 5.99902 10.4951ZM17.999 10.4951C18.8275 10.4951 19.499 11.1667 19.499 11.9951V12.0051C19.499 12.8335 18.8275 13.5051 17.999 13.5051C17.1706 13.5051 16.499 12.8335 16.499 12.0051V11.9951C16.499 11.1667 17.1706 10.4951 17.999 10.4951ZM13.499 11.9951C13.499 11.1667 12.8275 10.4951 11.999 10.4951C11.1706 10.4951 10.499 11.1667 10.499 11.9951V12.0051C10.499 12.8335 11.1706 13.5051 11.999 13.5051C12.8275 13.5051 13.499 12.8335 13.499 12.0051V11.9951Z" fill=""></path>
               </svg>
@@ -113,7 +113,7 @@
                       <path fill-rule="evenodd" clip-rule="evenodd" d="M9.16667 3.33335C5.94501 3.33335 3.33334 5.94501 3.33334 9.16668C3.33334 12.3883 5.94501 15 9.16667 15C12.3883 15 15 12.3883 15 9.16668C15 5.94501 12.3883 3.33335 9.16667 3.33335ZM1.66667 9.16668C1.66667 5.02454 5.02454 1.66668 9.16667 1.66668C13.3088 1.66668 16.6667 5.02454 16.6667 9.16668C16.6667 10.9575 16.0366 12.6015 14.9852 13.8864L18.0492 16.9504C18.3421 17.2433 18.3421 17.7181 18.0492 18.011C17.7563 18.3039 17.2814 18.3039 16.9885 18.011L13.9245 14.947C12.6396 15.9984 10.9956 16.6667 9.16667 16.6667C5.02454 16.6667 1.66667 13.3088 1.66667 9.16668Z" fill=""></path>
                     </svg>
                   </span>
-                  <input type="text" placeholder="Type to search..." class="w-full bg-gray-50 dark:bg-gray-800/50 border border-transparent focus:border-primary rounded-lg py-2.5 pl-12 pr-4 text-sm outline-none transition dark:text-white" />
+                  <input type="text" placeholder="Type to search..." class="w-full h-11 bg-gray-50 dark:bg-gray-800/50 border border-transparent focus:border-primary rounded-lg pl-12 pr-4 text-sm outline-none transition dark:text-white" />
                   <span class="absolute right-4 top-1/2 -translate-y-1/2 hidden xl:block text-xs font-medium text-gray-400 border border-gray-200 dark:border-gray-700 px-1.5 py-0.5 rounded-md bg-white dark:bg-gray-800">⌘ K</span>
                 </div>
               </form>
@@ -165,8 +165,8 @@
             <!-- User Area -->
             <div class="relative" x-data="{ dropdownOpen: false }" @click.outside="dropdownOpen = false">
               <a class="flex items-center text-gray-700 dark:text-gray-400" href="#" @click.prevent="dropdownOpen = ! dropdownOpen">
-                <span class="mr-3 h-10 w-10 overflow-hidden rounded-full border border-gray-200 dark:border-gray-700 shadow-sm">
-                  <img id="nav-user-photo" src="https://ui-avatars.com/api/?name=User&background=3C50E0&color=fff" alt="User" />
+                <span class="mr-3 h-11 w-11 overflow-hidden rounded-full border border-gray-200 dark:border-gray-700 shadow-sm transition-transform hover:scale-105">
+                  <img id="nav-user-photo" src="https://ui-avatars.com/api/?name=User&background=3C50E0&color=fff" alt="User" class="h-full w-full object-cover" />
                 </span>
                 <div class="mr-2 hidden lg:block text-right">
                     <span id="nav-user-name" class="text-sm block font-bold text-gray-900 dark:text-white leading-none mb-1">User</span>
