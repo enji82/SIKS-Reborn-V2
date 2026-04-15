@@ -91,10 +91,34 @@
           </a>
           <div x-show="selectedMenu === 'siaba'" x-transition x-cloak class="submenu-tail">
             <a href="#" class="submenu-link-tail" data-page="siaba_dashboard" @click="sidebarOpened = false">Dashboard SIABA</a>
-            <a href="#" class="submenu-link-tail" data-page="siaba_presensi_harian" @click="sidebarOpened = false">Presensi Harian</a>
-            <a href="#" class="submenu-link-tail" data-page="siaba_presensi_apel" @click="sidebarOpened = false">Apel &amp; Upacara</a>
-            <a href="#" class="submenu-link-tail" data-page="siaba_presensi_unduh" @click="sidebarOpened = false">Unduh Rekap</a>
-            <a href="#" class="submenu-link-tail" data-page="siaba_cuti_data" @click="sidebarOpened = false">Pengajuan Cuti</a>
+
+            <!-- L2: Presensi → L3 items -->
+            <div x-data="{ openPresensi: false }">
+              <a href="#" class="submenu-link-tail has-sub" :class="{ 'open': openPresensi }"
+                 @click.prevent="openPresensi = !openPresensi">
+                <span>Presensi</span>
+                <i class="fas fa-chevron-down sub-chevron"></i>
+              </a>
+              <div x-show="openPresensi" x-transition x-cloak class="sub-submenu-tail">
+                <a href="#" class="sub-submenu-link-tail" data-page="siaba_presensi_harian" @click="sidebarOpened = false">Presensi Harian</a>
+                <a href="#" class="sub-submenu-link-tail" data-page="siaba_presensi_apel" @click="sidebarOpened = false">Apel &amp; Upacara</a>
+                <a href="#" class="sub-submenu-link-tail" data-page="siaba_presensi_unduh" @click="sidebarOpened = false">Unduh Rekap</a>
+              </div>
+            </div>
+
+            <!-- L2: Cuti & Izin → L3 items -->
+            <div x-data="{ openCuti: false }">
+              <a href="#" class="submenu-link-tail has-sub" :class="{ 'open': openCuti }"
+                 @click.prevent="openCuti = !openCuti">
+                <span>Cuti &amp; Izin</span>
+                <i class="fas fa-chevron-down sub-chevron"></i>
+              </a>
+              <div x-show="openCuti" x-transition x-cloak class="sub-submenu-tail">
+                <a href="#" class="sub-submenu-link-tail" data-page="siaba_cuti_data" @click="sidebarOpened = false">Pengajuan Cuti</a>
+                <a href="#" class="sub-submenu-link-tail" data-page="siaba_cuti_rekap" @click="sidebarOpened = false">Rekap Cuti</a>
+              </div>
+            </div>
+
           </div>
         </li>
 
@@ -119,8 +143,33 @@
           </a>
           <div x-show="selectedMenu === 'ptk'" x-transition x-cloak class="submenu-tail">
             <a href="#" class="submenu-link-tail" data-page="ptk_dashboard" @click="sidebarOpened = false">Dashboard PTK</a>
-            <a href="#" class="submenu-link-tail" data-page="ptk_kelola_sdn" @click="sidebarOpened = false">Data SD Negeri</a>
-            <a href="#" class="submenu-link-tail" data-page="ptk_kelola_sds" @click="sidebarOpened = false">Data SD Swasta</a>
+
+            <!-- L2: SD Negeri → L3 -->
+            <div x-data="{ openSdn: false }">
+              <a href="#" class="submenu-link-tail has-sub" :class="{ 'open': openSdn }"
+                 @click.prevent="openSdn = !openSdn">
+                <span>SD Negeri</span>
+                <i class="fas fa-chevron-down sub-chevron"></i>
+              </a>
+              <div x-show="openSdn" x-transition x-cloak class="sub-submenu-tail">
+                <a href="#" class="sub-submenu-link-tail" data-page="ptk_kelola_sdn" @click="sidebarOpened = false">Data PTK SDN</a>
+                <a href="#" class="sub-submenu-link-tail" data-page="ptk_sdn_rekap" @click="sidebarOpened = false">Rekap SDN</a>
+              </div>
+            </div>
+
+            <!-- L2: SD Swasta → L3 -->
+            <div x-data="{ openSds: false }">
+              <a href="#" class="submenu-link-tail has-sub" :class="{ 'open': openSds }"
+                 @click.prevent="openSds = !openSds">
+                <span>SD Swasta</span>
+                <i class="fas fa-chevron-down sub-chevron"></i>
+              </a>
+              <div x-show="openSds" x-transition x-cloak class="sub-submenu-tail">
+                <a href="#" class="sub-submenu-link-tail" data-page="ptk_kelola_sds" @click="sidebarOpened = false">Data PTK SDS</a>
+                <a href="#" class="sub-submenu-link-tail" data-page="ptk_sds_rekap" @click="sidebarOpened = false">Rekap SDS</a>
+              </div>
+            </div>
+
           </div>
         </li>
 
@@ -137,7 +186,21 @@
           </a>
           <div x-show="selectedMenu === 'murid'" x-transition x-cloak class="submenu-tail">
             <a href="#" class="submenu-link-tail" data-page="murid_dashboard" @click="sidebarOpened = false">Dashboard Murid</a>
-            <a href="#" class="submenu-link-tail" data-page="murid_sd_kelas" @click="sidebarOpened = false">SD Menurut Kelas</a>
+
+            <!-- L2: SD / MI → L3 -->
+            <div x-data="{ openSd: false }">
+              <a href="#" class="submenu-link-tail has-sub" :class="{ 'open': openSd }"
+                 @click.prevent="openSd = !openSd">
+                <span>SD / MI</span>
+                <i class="fas fa-chevron-down sub-chevron"></i>
+              </a>
+              <div x-show="openSd" x-transition x-cloak class="sub-submenu-tail">
+                <a href="#" class="sub-submenu-link-tail" data-page="murid_sd_kelas" @click="sidebarOpened = false">Menurut Kelas</a>
+                <a href="#" class="sub-submenu-link-tail" data-page="murid_sd_jk" @click="sidebarOpened = false">Jenis Kelamin</a>
+                <a href="#" class="sub-submenu-link-tail" data-page="murid_sd_rekap" @click="sidebarOpened = false">Rekap Umum</a>
+              </div>
+            </div>
+
           </div>
         </li>
 
