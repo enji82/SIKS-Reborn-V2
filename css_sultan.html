@@ -1844,6 +1844,41 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
   background: var(--sidebar-active-bg) !important;
 }
 
+/* 
+   GRANDCHILD MENU (Level 3 - "Cucu")
+   Identical to child but more indented
+*/
+.sub-submenu-link-tail {
+  display: block !important;
+  font-size: 0.9375rem !important;
+  font-weight: 500 !important;
+  color: var(--sidebar-text) !important;
+  text-decoration: none !important;
+  padding: 9px 12px 9px 62px !important;  /* Further indent */
+  border-radius: 6px !important;
+  transition: background 0.15s, color 0.15s !important;
+  line-height: 1.4 !important;
+}
+.dark .sub-submenu-link-tail { color: var(--sidebar-text) !important; }
+
+.sub-submenu-link-tail:hover,
+.sub-submenu-link-tail.active {
+  color: var(--sidebar-active-text) !important;
+  background: var(--sidebar-active-bg) !important;
+  font-weight: 600 !important;
+}
+
+.submenu-link-tail.active {
+  color: var(--sidebar-active-text) !important;
+  background: var(--sidebar-active-bg) !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+.dark .submenu-link-tail.active {
+  color: var(--sidebar-active-text) !important;
+  background: var(--sidebar-active-bg) !important;
+}
+
 /* CUSTOM SCROLLBAR (TAILADMIN) */
 .no-scrollbar::-webkit-scrollbar {
   width: 5px;
