@@ -77,7 +77,7 @@
     <div class="content-area bg-[#F9FAFB] dark:bg-boxdark2 min-h-screen">
       
       <!-- HEADER -->
-      <header x-data="{ menuToggle: false }" class="sticky top-0 z-[99] flex h-[70px] w-full bg-white border-b border-gray-200 dark:bg-boxdark dark:border-gray-800 shadow-none">
+      <header x-data="{ menuToggle: false }" class="sticky top-0 z-[99] flex h-[70px] w-full !bg-white border-b border-gray-200 dark:!bg-boxdark dark:border-gray-800 shadow-none">
         <div class="flex flex-1 items-center justify-between h-full px-4 lg:px-6">
           
           <!-- LEFT: Sidebar Toggle & Breadcrumb -->
@@ -120,7 +120,7 @@
                     <span id="notif-badge" :class="!notifying ? 'hidden' : 'flex'" class="absolute -top-0.5 -right-0.5 z-1 h-3 w-3 rounded-full bg-danger border-2 border-white dark:border-boxdark"></span>
                     <i class="far fa-bell"></i>
                   </button>
-                  <div x-show="dropdownOpen" x-transition class="absolute right-0 mt-4 flex w-[300px] flex-col rounded-2xl border border-gray-100 bg-white p-3 shadow-premium dark:border-gray-800 dark:bg-boxdark">
+                  <div x-show="dropdownOpen" x-transition class="absolute right-0 mt-4 flex w-[300px] flex-col rounded-2xl border border-gray-100 !bg-white p-3 shadow-premium dark:border-gray-800 dark:!bg-boxdark z-[9999]">
                     <div class="mb-3 border-b border-gray-50 pb-2 px-1 dark:border-gray-700">
                       <h5 class="text-sm font-bold text-gray-800 dark:text-white">Pusat Notifikasi</h5>
                     </div>
@@ -144,7 +144,7 @@
                   <i :class="profileOpen ? 'rotate-180' : ''" class="fas fa-chevron-down text-xs text-gray-400 transition-transform"></i>
                 </a>
                 
-                <div x-show="profileOpen" x-transition class="absolute right-0 mt-4 w-[220px] rounded-2xl border border-gray-100 bg-white p-2 shadow-premium dark:border-gray-800 dark:bg-boxdark z-[9999]">
+                <div x-show="profileOpen" x-transition class="absolute right-0 mt-4 w-[220px] rounded-2xl border border-gray-100 !bg-white p-2 shadow-premium dark:border-gray-800 dark:!bg-boxdark z-[9999]">
                    <ul class="space-y-1">
                       <li>
                         <a href="#" class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-gray-600 rounded-lg hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700 transition-colors">
