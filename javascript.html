@@ -495,7 +495,7 @@ function updateBreadcrumb(pageName) {
     breadcrumbs = breadcrumbs.reverse();
     
     // Construct HTML string
-    let bcHtml = '<li><a class="font-medium text-gray-400 hover:text-primary transition-colors" href="#" data-page="home">Dashboard</a></li><li class="text-gray-300">/</li>';
+    let bcHtml = '';
     
     if (pageName !== 'home') {
         breadcrumbs.forEach((crumb, idx) => {

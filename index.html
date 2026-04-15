@@ -104,19 +104,10 @@
           </div>
 
           <!-- RIGHT: Merged Actions & Integrated User Column -->
-          <div class="flex items-center gap-2 lg:gap-3">
-            
-            <!-- Mobile Toggle Button -->
-            <button class="lg:hidden flex h-10 w-10 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800" @click.stop="menuToggle = !menuToggle">
-              <i class="fas fa-ellipsis-v"></i>
-            </button>
-
-            <!-- Action column (integrated static row on desktop, collapsible menu on mobile) -->
-            <div :class="menuToggle ? 'flex shadow-premium' : 'hidden lg:flex'" 
-                 class="absolute right-4 top-[74px] z-50 w-[260px] flex-col gap-4 rounded-2xl border border-gray-100 bg-white p-4 lg:static lg:w-auto lg:flex-row lg:items-center lg:gap-4 lg:border-none lg:bg-transparent lg:p-0 lg:shadow-none dark:border-gray-800 dark:bg-boxdark lg:dark:bg-transparent transition-all">
+          <div class="flex items-center gap-2 sm:gap-4">
               
               <!-- Toggles: Theme & Notif -->
-              <div class="flex items-center gap-3 lg:border-r lg:border-gray-200 lg:dark:border-gray-700 lg:pr-4">
+              <div class="flex items-center gap-2 sm:gap-3 sm:border-r border-gray-200 dark:border-gray-700 sm:pr-4">
                 <!-- Theme Mode (TailAdmin Style) -->
                 <button class="flex h-10 w-10 items-center justify-center rounded-full border border-gray-100 bg-gray-50 text-gray-500 hover:bg-gray-100 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 transition-all shadow-sm"
                         @click.prevent="darkMode = !darkMode; document.documentElement.classList.toggle('dark'); localStorage.setItem('sultan_darkMode', darkMode); Sultan.notif.toast('info', 'Tema Diperbarui')">
@@ -171,7 +162,6 @@
 
             </div>
           </div>
-        </div>
       </header>
       
       <!-- MAIN CONTENT -->
