@@ -1994,36 +1994,86 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
 }
 
 /* 
-   GRANDCHILD MENU (Level 3 - "Cucu")
-   Identical to child but more indented
+   LEVEL 2 → LEVEL 3 TRIGGER (Child item that has grandchildren)
+   Same as submenu-link-tail but with a right-side chevron
 */
+.submenu-link-tail.has-sub {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+.submenu-link-tail.has-sub .sub-chevron {
+  font-size: 0.65rem !important;
+  opacity: 0.6;
+  transition: transform 0.2s ease !important;
+  flex-shrink: 0;
+}
+.submenu-link-tail.has-sub.open .sub-chevron {
+  transform: rotate(180deg);
+}
+
+/* 
+   GRANDCHILD CONTAINER (Level 3 wrapper)
+   Left border accent to show hierarchy depth
+*/
+.sub-submenu-tail {
+  margin: 2px 0 2px 0 !important;
+  padding: 0 0 0 42px !important;
+  list-style: none !important;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  border-left: 2px solid var(--sidebar-active-bg);
+  margin-left: 42px !important;
+  padding-left: 0 !important;
+}
+
+/* GRANDCHILD LINK (Level 3) */
 .sub-submenu-link-tail {
   display: block !important;
-  font-size: 0.9375rem !important;
+  font-size: 0.875rem !important;
   font-weight: 500 !important;
   color: var(--sidebar-text) !important;
   text-decoration: none !important;
-  padding: 9px 12px 9px 62px !important;  /* Further indent */
+  padding: 8px 12px 8px 14px !important;
   border-radius: 6px !important;
   transition: background 0.15s, color 0.15s !important;
   line-height: 1.4 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  position: relative;
+}
+.sub-submenu-link-tail::before {
+  content: '';
+  position: absolute;
+  left: -2px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 1px;
+  background: var(--sidebar-active-bg);
+  opacity: 0.5;
 }
 .dark .sub-submenu-link-tail { color: var(--sidebar-text) !important; }
 
-.sub-submenu-link-tail:hover,
+.sub-submenu-link-tail:hover {
+  color: var(--sidebar-active-text) !important;
+  background: var(--sidebar-hover-bg) !important;
+  text-decoration: none !important;
+}
+.dark .sub-submenu-link-tail:hover {
+  color: #FFFFFF !important;
+  background: var(--sidebar-hover-bg) !important;
+}
+
 .sub-submenu-link-tail.active {
   color: var(--sidebar-active-text) !important;
   background: var(--sidebar-active-bg) !important;
   font-weight: 600 !important;
-}
-
-.submenu-link-tail.active {
-  color: var(--sidebar-active-text) !important;
-  background: var(--sidebar-active-bg) !important;
-  font-weight: 600 !important;
   text-decoration: none !important;
 }
-.dark .submenu-link-tail.active {
+.dark .sub-submenu-link-tail.active {
   color: var(--sidebar-active-text) !important;
   background: var(--sidebar-active-bg) !important;
 }

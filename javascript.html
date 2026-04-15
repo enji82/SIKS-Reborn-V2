@@ -485,20 +485,42 @@ function updateBreadcrumb(pageName) {
     if (pageName === 'home') {
         breadcrumbs = ['BERANDA'];
     } else if ($activeLink.length > 0) {
-        // Find current level name
-        breadcrumbs.push($activeLink.text().trim());
+        // Get current page label (clean text, no child elements)
+        const currentLabel = $activeLink.clone().children().remove().end().text().trim() 
+                          || $activeLink.text().trim();
+        breadcrumbs.push(currentLabel);
         
-        // Traverse up
-        let $parentSubmenu = $activeLink.closest('.submenu-tail');
-        if ($parentSubmenu.length) {
-            let $parentTrigger = $parentSubmenu.prev('.nav-link-tail');
-            if ($parentTrigger.length) {
-                // Get exactly the text node, ignore the chevron icon
-                let textOnly = $parentTrigger.find('span.truncate').text().trim();
-                if (!textOnly) {
-                    textOnly = $parentTrigger.clone().children().remove().end().text().trim();
+        // --- LEVEL 3 CHECK: is this a .sub-submenu-link-tail inside .sub-submenu-tail? ---
+        let $subSubmenuTail = $activeLink.closest('.sub-submenu-tail');
+        if ($subSubmenuTail.length) {
+            // Level 2 trigger: prev sibling .submenu-link-tail.has-sub
+            let $level2Trigger = $subSubmenuTail.prev('.submenu-link-tail.has-sub');
+            if ($level2Trigger.length) {
+                let level2Label = $level2Trigger.find('span').first().text().trim()
+                               || $level2Trigger.clone().children().remove().end().text().trim();
+                breadcrumbs.push(level2Label);
+            }
+            
+            // Now find Level 1: the parent .submenu-tail → prev .nav-link-tail
+            let $submenuTail = $subSubmenuTail.closest('.submenu-tail');
+            if ($submenuTail.length) {
+                let $level1Trigger = $submenuTail.prev('.nav-link-tail');
+                if ($level1Trigger.length) {
+                    let level1Label = $level1Trigger.find('span.truncate').text().trim()
+                                   || $level1Trigger.clone().children().remove().end().text().trim();
+                    breadcrumbs.push(level1Label);
                 }
-                breadcrumbs.push(textOnly);
+            }
+        } else {
+            // --- LEVEL 2 CHECK: inside .submenu-tail → find parent .nav-link-tail ---
+            let $submenuTail = $activeLink.closest('.submenu-tail');
+            if ($submenuTail.length) {
+                let $parentTrigger = $submenuTail.prev('.nav-link-tail');
+                if ($parentTrigger.length) {
+                    let parentLabel = $parentTrigger.find('span.truncate').text().trim()
+                                   || $parentTrigger.clone().children().remove().end().text().trim();
+                    breadcrumbs.push(parentLabel);
+                }
             }
         }
     } else {
@@ -509,7 +531,6 @@ function updateBreadcrumb(pageName) {
     
     // Construct HTML string
     let bcHtml = '';
-    
     if (pageName !== 'home') {
         breadcrumbs.forEach((crumb, idx) => {
             if (idx === breadcrumbs.length - 1) {
@@ -522,24 +543,57 @@ function updateBreadcrumb(pageName) {
         bcHtml += '<li id="page-breadcrumb" class="font-bold text-primary tracking-wide animate-reveal uppercase">BERANDA</li>';
     }
     
-    // Inject and update doc title
     $('#dynamic-breadcrumb-container').html(bcHtml);
-    document.title = "SIKS-REBORN | " + breadcrumbs.join(' - ');
+    document.title = "SIKS-REBORN | " + breadcrumbs.join(' ‣ ');
 }
 
 function highlightSidebar(page) {
-    $('.nav-link-tail, .submenu-link-tail').removeClass('active');
-    const $activeLink = $(`.nav-link-tail[data-page="${page}"], .submenu-link-tail[data-page="${page}"]`);
-    $activeLink.addClass('active');
+    // Clear all active states across all 3 levels
+    $('.nav-link-tail, .submenu-link-tail, .sub-submenu-link-tail').removeClass('active');
     
-    // Auto-expand parent dropdown if it's a child menu
+    // Find the active link across all 3 levels
+    const $activeLink = $(
+        `.nav-link-tail[data-page="${page}"], ` +
+        `.submenu-link-tail[data-page="${page}"], ` +
+        `.sub-submenu-link-tail[data-page="${page}"]`
+    );
+    $activeLink.addClass('active');
+
+    // ---- LEVEL 3: grandchild active → open Level 2 trigger + Level 1 dropdown ----
+    if ($activeLink.hasClass('sub-submenu-link-tail')) {
+        // Open the Level 2 wrapper (Alpine x-data openXxx) — use click on the has-sub trigger
+        const $subSubmenuTail = $activeLink.closest('.sub-submenu-tail');
+        const $level2Trigger = $subSubmenuTail.prev('.submenu-link-tail.has-sub');
+        if ($level2Trigger.length) {
+            $level2Trigger.addClass('open'); // Visual open state via CSS
+            $subSubmenuTail.show(); // Force show in case Alpine hasn't rendered yet
+        }
+        
+        // Also open the Level 1 parent via Alpine custom event
+        const $submenuTail = $subSubmenuTail.closest('.submenu-tail');
+        const $level1Trigger = $submenuTail.prev('.nav-link-tail');
+        if ($level1Trigger.length) {
+            const clickAttr = $level1Trigger.attr('@click.prevent') || '';
+            const match = clickAttr.match(/'([^']+)'/g);
+            if (match && match[1]) {
+                const menuId = match[1].replace(/'/g, '');
+                window.dispatchEvent(new CustomEvent('open-sidebar-menu', { detail: { menuId } }));
+            }
+        }
+        return;
+    }
+    
+    // ---- LEVEL 2: child active → open Level 1 dropdown ----
     if ($activeLink.hasClass('submenu-link-tail')) {
-        const parentId = $activeLink.closest('.submenu-tail').prev('.nav-link-tail').attr('@click.prevent');
-        // Extract the ID from the string "selectedMenu = (selectedMenu === 'id' ? null : 'id')"
-        const match = parentId ? parentId.match(/'([^']+)'/g) : null;
-        if (match && match[1]) {
-            const menuId = match[1].replace(/'/g, '');
-            window.dispatchEvent(new CustomEvent('open-sidebar-menu', { detail: { menuId: menuId } }));
+        const $submenuTail = $activeLink.closest('.submenu-tail');
+        const $level1Trigger = $submenuTail.prev('.nav-link-tail');
+        if ($level1Trigger.length) {
+            const clickAttr = $level1Trigger.attr('@click.prevent') || '';
+            const match = clickAttr.match(/'([^']+)'/g);
+            if (match && match[1]) {
+                const menuId = match[1].replace(/'/g, '');
+                window.dispatchEvent(new CustomEvent('open-sidebar-menu', { detail: { menuId } }));
+            }
         }
     }
 }
