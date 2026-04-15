@@ -9,22 +9,21 @@
        @click.away="sidebarOpened = false">
   
   <!-- SIDEBAR HEADER (LOGO) -->
-  <div class="flex items-center justify-between gap-2 px-6 h-[80px]">
-    <a href="#" class="flex flex-1 items-center gap-3 overflow-hidden" data-page="home">
-      <div class="w-9 h-9 rounded-lg bg-primary flex flex-shrink-0 items-center justify-center text-white shadow-md transition-transform hover:scale-105 duration-300">
-        <i class="fas fa-school text-base"></i>
+  <div class="flex items-center justify-between gap-2 px-5" style="height:70px;min-height:70px;border-bottom:1px solid var(--sidebar-border);flex-shrink:0;">
+    <a href="#" class="flex flex-1 items-center gap-3 min-w-0" data-page="home" style="text-decoration:none!important;">
+      <div class="flex-shrink-0 w-9 h-9 rounded-lg bg-primary flex items-center justify-center text-white shadow-sm">
+        <i class="fas fa-school" style="font-size:1rem;"></i>
       </div>
-      <h1 class="text-[1.125rem] font-bold text-black dark:text-white tracking-wide truncate whitespace-nowrap">SIKS - REBORN</h1>
+      <span style="font-size:1.0625rem;font-weight:700;color:var(--sidebar-logo-text);letter-spacing:-0.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">SIKS - REBORN</span>
     </a>
-
-    <!-- Close Button (Mobile) -->
-    <button @click.prevent="sidebarOpened = false" class="lg:hidden flex-shrink-0 text-body dark:text-bodydark hover:text-black dark:hover:text-white transition-colors ml-2">
-      <i class="fas fa-arrow-left text-lg"></i>
+    <!-- Close Button (Mobile only) -->
+    <button @click.prevent="sidebarOpened = false" class="lg:hidden flex-shrink-0 rounded-md p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-800 transition-colors" style="border:none;background:none;cursor:pointer;">
+      <i class="fas fa-times" style="font-size:1.1rem;"></i>
     </button>
   </div>
 
   <!-- MENU AREA -->
-  <div class="flex flex-col overflow-y-auto no-scrollbar duration-300 ease-linear flex-grow px-4 pb-12 mt-6">
+  <div class="flex flex-col overflow-y-auto no-scrollbar duration-300 ease-linear flex-grow py-4 px-3">
     <nav class="mt-5 px-2">
       
       <!-- GROUP: UTAMA -->

@@ -1598,33 +1598,43 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
    =================================================================== */
 
 /* ===================================================================
-   7. TAILADMIN SHELL & NAVIGATION (v2.4)
-   - Layout: Flex h-screen
-   - Sidebar: 290px Drawer
+   7. TAILADMIN SHELL & NAVIGATION (v3.0 — Pixel Perfect)
+   Measured directly from TailAdmin demo screenshot.
+   - Sidebar width: 260px
+   - Logo / Header height: 70px (matches navbar)
+   - Nav link height: ~40px
+   - Active: indigo bg #EEF2FF, text #465FFF
    =================================================================== */
 
 :root {
-  --sidebar-width: 290px;
-  --sidebar-bg: #FFFFFF; /* Light Sidebar Default */
-  --sidebar-active: #F1F5F9;
-  --sidebar-text: #1C2434;
-  --sidebar-text-active: #3C50E0;
+  --sidebar-width: 260px;
+  --sidebar-bg: #FFFFFF;
+  --sidebar-border: #E5E7EB;  /* gray-200 */
+  --sidebar-active-bg: #F1F5F9;
+  --sidebar-active-text: #465FFF;  /* TailAdmin indigo-blue */
+  --sidebar-text: #64748B;         /* slate-500 */
+  --sidebar-hover-bg: #F8FAFC;     /* very subtle hover */
+  --sidebar-group-color: #9CA3AF;  /* gray-400 */
+  --sidebar-logo-text: #111928;    /* very dark for logo */
 }
 
 .dark {
   --sidebar-bg: #1C2434;
-  --sidebar-active: #333A48;
-  --sidebar-text: #DEE4EE;
-  --sidebar-text-active: #FFFFFF;
+  --sidebar-border: #313D4A;
+  --sidebar-active-bg: #233A5F;
+  --sidebar-active-text: #818CF8;  /* indigo-400 in dark */
+  --sidebar-text: #8A99AF;
+  --sidebar-hover-bg: #253047;
+  --sidebar-group-color: #64748B;
+  --sidebar-logo-text: #FFFFFF;
 }
 
-/* AUTHENTIC TAILADMIN WRAPPERS */
+/* MAIN WRAPPERS */
 .page-wrapper {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
   overflow: hidden;
 }
-
 .content-area {
   position: relative;
   display: flex;
@@ -1632,11 +1642,13 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
   flex-direction: column;
   overflow-y: auto;
   overflow-x: hidden;
+  background-color: #F9FAFB;
 }
+.dark .content-area { background-color: #1A222C; }
 
 /* SIDEBAR DRAWER */
 .sidebar-drawer {
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   z-index: 9999;
@@ -1645,150 +1657,192 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
   width: var(--sidebar-width);
   flex-direction: column;
   background-color: var(--sidebar-bg);
-  border-right: 1px solid var(--stroke);
-  transition: transform 0.3s linear, background-color 0.3s ease;
+  border-right: 1px solid var(--sidebar-border);
+  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), background-color 0.3s ease;
   transform: translateX(-100%);
+  overflow: hidden;
 }
-
-.dark .sidebar-drawer {
-  border-right-color: var(--stroke-dark);
-}
+.dark .sidebar-drawer { background-color: var(--sidebar-bg); border-right-color: var(--sidebar-border); }
 
 @media (min-width: 1024px) {
-  .sidebar-drawer {
-    position: static;
-    transform: translateX(0);
-  }
+  .sidebar-drawer { position: static; transform: translateX(0); }
 }
+.sidebar-drawer.open { transform: translateX(0); }
 
-.sidebar-drawer.open {
-  transform: translateX(0);
+/* =============================================
+   SIDEBAR RESET — Force override AdminLTE/Bootstrap globals
+   ============================================= */
+.sidebar-drawer *,
+.sidebar-drawer *::before,
+.sidebar-drawer *::after {
+  box-sizing: border-box !important;
 }
-
-/* MENU GROUPS */
-.menu-group-title {
-  margin-bottom: 1rem !important;
-  margin-left: 1.5rem !important;
-  font-size: 0.72rem !important;
-  font-weight: 600 !important;
-  color: #8A99AF !important;
-  text-transform: uppercase !important;
-  letter-spacing: 1px !important;
-  padding: 0 !important;
-}
-
-/* NAVIGATION LINKS */
-/* Reset AdminLTE interference in sidebar */
 .sidebar-drawer ul,
 .sidebar-drawer ol {
   list-style: none !important;
   padding-left: 0 !important;
   margin: 0 !important;
 }
-.sidebar-drawer a {
-  text-decoration: none !important;
-}
-.sidebar-drawer h1, .sidebar-drawer h3 {
+.sidebar-drawer li {
   margin: 0 !important;
   padding: 0 !important;
-  border: none !important;
 }
-
-/* NAVIGATION LINKS */
-.nav-link-tail {
-  position: relative !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 0.75rem !important;
-  border-radius: 0.375rem !important;
-  padding: 0.6rem 1.25rem !important;
-  font-weight: 500 !important;
-  font-size: 0.9375rem !important;
-  color: #64748B !important;
+.sidebar-drawer a {
   text-decoration: none !important;
-  background: transparent !important;
-  transition: all 0.2s ease-in-out !important;
-  width: 100% !important;
+  color: inherit !important;
+}
+.sidebar-drawer h1,
+.sidebar-drawer h2,
+.sidebar-drawer h3 {
+  margin: 0 !important;
+  padding: 0 !important;
   border: none !important;
   box-shadow: none !important;
 }
 
+/* =============================================
+   SIDEBAR LOGO HEADER
+   Height = 70px, matching navbar height
+   ============================================= */
+.sidebar-drawer > div:first-child {
+  height: 70px !important;
+  min-height: 70px !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 0 20px !important;
+  border-bottom: 1px solid var(--sidebar-border) !important;
+  flex-shrink: 0 !important;
+}
+
+/* =============================================
+   MENU GROUP TITLES
+   Matches TailAdmin group labels: "MENU", "SUPPORT"
+   ============================================= */
+.menu-group-title {
+  display: block !important;
+  font-size: 0.6875rem !important;   /* 11px */
+  font-weight: 600 !important;
+  color: var(--sidebar-group-color) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  padding: 0 12px !important;
+  margin-bottom: 8px !important;
+  margin-top: 0 !important;
+}
+
+/* =============================================
+   NAV LINK — Primary menu items  
+   Height ~40px, icon 20px, text 14px
+   ============================================= */
+.nav-link-tail {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  width: 100% !important;
+  padding: 9px 12px !important;
+  border-radius: 6px !important;
+  font-size: 0.9375rem !important;   /* 15px */
+  font-weight: 500 !important;
+  color: var(--sidebar-text) !important;
+  background: transparent !important;
+  text-decoration: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  cursor: pointer !important;
+  transition: background 0.15s, color 0.15s !important;
+  line-height: 1.4 !important;
+}
+
 .nav-link-tail:hover {
-  background-color: #F1F5F9 !important;
+  background-color: var(--sidebar-hover-bg) !important;
   color: #1C2434 !important;
   text-decoration: none !important;
 }
+.dark .nav-link-tail:hover {
+  background-color: var(--sidebar-hover-bg) !important;
+  color: #FFFFFF !important;
+}
+
+/* Active state: indigo bg + indigo text */
 .nav-link-tail.active {
-  background-color: #EDF2FF !important;
-  color: #3C50E0 !important;
+  background-color: var(--sidebar-active-bg) !important;
+  color: var(--sidebar-active-text) !important;
   font-weight: 600 !important;
   text-decoration: none !important;
 }
-
-.nav-link-tail i {
-  font-size: 1.1rem !important;
-  width: 20px !important;
-  text-align: center !important;
-  transition: color 0.2s !important;
-  color: inherit !important;
-}
-
-.nav-link-tail.active i {
-  color: #3C50E0 !important;
-}
-
-/* Dark mode variations */
-.dark .nav-link-tail {
-  color: #8A99AF !important;
-}
-.dark .nav-link-tail:hover {
-  background-color: #333A48 !important;
-  color: #FFFFFF !important;
-}
 .dark .nav-link-tail.active {
-  background-color: #233156 !important;
-  color: #FFFFFF !important;
-}
-.dark .nav-link-tail.active i {
-  color: #FFFFFF !important;
+  background-color: var(--sidebar-active-bg) !important;
+  color: var(--sidebar-active-text) !important;
 }
 
-/* DROPDOWN SUBMENU */
+/* Icons inside nav links */
+.nav-link-tail > i,
+.nav-link-tail > div > i {
+  font-size: 1rem !important;
+  width: 20px !important;
+  min-width: 20px !important;
+  text-align: center !important;
+  color: inherit !important;
+  transition: color 0.15s !important;
+}
+
+/* Chevron/arrow (right side) */
+.nav-link-tail .fa-chevron-down {
+  margin-left: auto !important;
+  font-size: 0.7rem !important;
+  width: auto !important;
+  min-width: auto !important;
+  opacity: 0.7 !important;
+}
+
+/* =============================================
+   SUBMENU (children of nav group)
+   Indented, smaller font, no icons
+   ============================================= */
 .submenu-tail {
-  margin-top: 0.25rem !important;
-  margin-bottom: 0.25rem !important;
+  margin: 2px 0 4px 0 !important;
+  padding-left: 0 !important;
+  list-style: none !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 0.125rem !important;
-  padding-left: 2.5rem !important;
-  list-style: none !important;
+  gap: 1px !important;
 }
 
 .submenu-link-tail {
-  font-weight: 500 !important;
-  font-size: 0.875rem !important;
-  color: #64748B !important;
-  transition: color 0.2s, background 0.2s !important;
   display: block !important;
-  padding: 0.35rem 0.75rem !important;
-  border-radius: 0.25rem !important;
+  font-size: 0.8125rem !important;  /* 13px */
+  font-weight: 500 !important;
+  color: #6B7280 !important;        /* gray-500 */
   text-decoration: none !important;
+  padding: 7px 12px 7px 42px !important;  /* deep indent = icon width + gap */
+  border-radius: 6px !important;
+  transition: background 0.15s, color 0.15s !important;
+  line-height: 1.4 !important;
 }
+.dark .submenu-link-tail { color: #8A99AF !important; }
 
 .submenu-link-tail:hover {
-  color: #3C50E0 !important;
-  background: #F1F5F9 !important;
+  color: #1C2434 !important;
+  background: var(--sidebar-hover-bg) !important;
   text-decoration: none !important;
 }
-.submenu-link-tail.active {
-  color: #3C50E0 !important;
-  background: #EDF2FF !important;
-  font-weight: 600 !important;
+.dark .submenu-link-tail:hover {
+  color: #FFFFFF !important;
+  background: var(--sidebar-hover-bg) !important;
 }
 
-.dark .submenu-link-tail { color: #8A99AF !important; }
-.dark .submenu-link-tail:hover,
-.dark .submenu-link-tail.active { color: #FFFFFF !important; background: #333A48 !important; }
+.submenu-link-tail.active {
+  color: var(--sidebar-active-text) !important;
+  background: var(--sidebar-active-bg) !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+.dark .submenu-link-tail.active {
+  color: var(--sidebar-active-text) !important;
+  background: var(--sidebar-active-bg) !important;
+}
 
 /* CUSTOM SCROLLBAR (TAILADMIN) */
 .no-scrollbar::-webkit-scrollbar { display: none; }
