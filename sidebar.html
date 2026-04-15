@@ -9,25 +9,22 @@
        @click.away="sidebarOpened = false">
   
   <!-- SIDEBAR HEADER (LOGO) -->
-  <div class="flex items-center justify-between gap-2 px-6 py-6 lg:py-7">
-    <a href="#" class="flex items-center gap-3" data-page="home">
-      <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white shadow-lg ring-4 ring-primary/10 transition-transform hover:scale-105 duration-300">
-        <i class="fas fa-school text-xl"></i>
+  <div class="flex items-center justify-between gap-2 px-6 h-[80px]">
+    <a href="#" class="flex flex-1 items-center gap-3 overflow-hidden" data-page="home">
+      <div class="w-9 h-9 rounded-lg bg-primary flex flex-shrink-0 items-center justify-center text-white shadow-md transition-transform hover:scale-105 duration-300">
+        <i class="fas fa-school text-base"></i>
       </div>
-      <div class="transition-opacity duration-300">
-        <h1 class="text-xl font-bold text-black dark:text-white tracking-widest leading-none">SIKS</h1>
-        <p class="text-[10px] text-body dark:text-bodydark font-semibold mt-1 uppercase tracking-tighter opacity-70">REBORN v2.6</p>
-      </div>
+      <h1 class="text-[1.125rem] font-bold text-black dark:text-white tracking-wide truncate whitespace-nowrap">SIKS - REBORN</h1>
     </a>
 
     <!-- Close Button (Mobile) -->
-    <button @click.prevent="sidebarOpened = false" class="lg:hidden text-body dark:text-bodydark hover:text-black dark:hover:text-white transition-colors">
-      <i class="fas fa-arrow-left"></i>
+    <button @click.prevent="sidebarOpened = false" class="lg:hidden flex-shrink-0 text-body dark:text-bodydark hover:text-black dark:hover:text-white transition-colors ml-2">
+      <i class="fas fa-arrow-left text-lg"></i>
     </button>
   </div>
 
   <!-- MENU AREA -->
-  <div class="flex flex-col overflow-y-auto no-scrollbar duration-300 ease-linear flex-grow px-4 pb-12">
+  <div class="flex flex-col overflow-y-auto no-scrollbar duration-300 ease-linear flex-grow px-4 pb-12 mt-6">
     <nav class="mt-5 px-2">
       
       <!-- GROUP: UTAMA -->
