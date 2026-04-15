@@ -475,7 +475,19 @@ function updateBreadcrumb(pageName) {
 
 function highlightSidebar(page) {
     $('.nav-link-tail, .submenu-link-tail').removeClass('active');
-    $(`.nav-link-tail[data-page="${page}"], .submenu-link-tail[data-page="${page}"]`).addClass('active');
+    const $activeLink = $(`.nav-link-tail[data-page="${page}"], .submenu-link-tail[data-page="${page}"]`);
+    $activeLink.addClass('active');
+    
+    // Auto-expand parent dropdown if it's a child menu
+    if ($activeLink.hasClass('submenu-link-tail')) {
+        const parentId = $activeLink.closest('.submenu-tail').prev('.nav-link-tail').attr('@click.prevent');
+        // Extract the ID from the string "selectedMenu = (selectedMenu === 'id' ? null : 'id')"
+        const match = parentId ? parentId.match(/'([^']+)'/g) : null;
+        if (match && match[1]) {
+            const menuId = match[1].replace(/'/g, '');
+            window.dispatchEvent(new CustomEvent('open-sidebar-menu', { detail: { menuId: menuId } }));
+        }
+    }
 }
 
 /**

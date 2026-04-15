@@ -24,7 +24,9 @@
 
   <!-- MENU AREA -->
   <div class="flex flex-col overflow-y-auto no-scrollbar duration-300 ease-linear flex-grow py-4 px-3">
-    <nav class="mt-5 px-2" x-data="{ selectedMenu: null }">
+    <nav class="mt-5 px-2" 
+         x-data="{ selectedMenu: null }"
+         @open-sidebar-menu.window="selectedMenu = $event.detail.menuId">
       
       <ul class="mb-6 flex flex-col gap-1.5">
         <!-- Beranda -->
