@@ -1,137 +1,128 @@
-<div class="content-header pb-0">
-  <div class="container-fluid">
-    <div class="row mb-2">
-      <div class="col-sm-12">
-        <h5 class="m-0 font-weight-bold">
-          <i class="fas fa-calendar-check text-maroon mr-2"></i>Rekap Presensi Harian
-        </h5>
-        <div class="sultan-title-line"></div>
-      </div>
-    </div>
-  </div>
+<div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between animate-reveal">
+  <h2 class="text-title-md2 font-bold text-black dark:text-white flex items-center">
+    <i class="fas fa-calendar-check text-primary mr-3"></i> Rekap Presensi Harian
+  </h2>
+  <nav>
+    <ol class="flex items-center gap-2 text-sm font-medium">
+      <li><a class="hover:text-primary dark:text-bodydark" href="#">SIABA /</a></li>
+      <li class="text-primary">Presensi Harian</li>
+    </ol>
+  </nav>
 </div>
 
-<section class="content">
-  <div class="container-fluid">
-    <div class="row justify-content-center">
-      <div class="col-12">
+<div class="flex flex-col gap-4 md:gap-6 2xl:gap-7.5 animate-reveal">
 
-        <!-- 1. KARTU INFORMASI (GAYA SULTAN COMPACT) -->
-        <div class="card-sultan card-sultan-info-compact mb-3">
-          <div class="card-body border-left-dark">
-            <div class="d-flex-info-header cursor-pointer" data-toggle="collapse" data-target="#harian_infoCollapse">
-              <div class="d-flex align-items-center text-maroon font-weight-bold">
-                <i class="fas fa-info-circle mr-2"></i> Informasi
-              </div>
-              <i class="fas fa-chevron-down text-muted icon-sm"></i>
-            </div>
-            <div id="harian_infoCollapse" class="collapse">
-              <div class="mt-2 pt-2 border-top small text-muted">
-                <ul class="mb-2 pl-3 text-dark mt-2" style="font-size:14px; line-height: 1.6;">
-                  <li>Halaman ini menampilkan rekaman presensi harian ASN pada aplikasi Siaba.</li>
-                  <li>Data yang ditampilkan diperbarui pada jangka waktu tertentu (tidak realtime).</li>
-                  <li><strong>Kode:</strong> TP: Tidak Presensi, HK: Hari Kerja, H: Hadir, HA: Hari Apel, APL: Apel, TAp: Tidak Apel, HU: Hari Upacara, U: Upacara, TU: Tidak Upacara, CT: Cuti Tahunan, CAP: Cuti Alasan Penting, CS: Cuti Sakit, CM: Cuti Melahirkan, DD: Dinas Dalam, DL: Dinas Luar, TA: Terlambat, PLA: Pulang Awal.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 2. KARTU FILTER (GAYA SULTAN) -->
-        <div class="card-sultan p-3 mb-3">
-          <div class="d-flex-gap align-items-center flex-wrap">
-              <select id="harian_filterTahun" class="form-control form-control-sultan input-auto-width min-w-80" disabled></select>
-              <select id="harian_filterBulan" class="form-control form-control-sultan input-auto-width" disabled></select>
-              <select id="harian_filterUnit" class="form-control form-control-sultan input-auto-width min-w-250 font-weight-bold text-maroon bg-light" disabled>
-                  <option value="">- Memvalidasi Akses... -</option>
-              </select>
-              <div class="divider-vertical d-none d-md-block"></div>
-              <button type="button" id="harian_btnRefresh" class="btn bg-white border shadow-sm text-secondary" title="Segarkan Data dari Server" disabled>
-                  <i class="fas fa-sync-alt text-maroon"></i>
-              </button>
-              <div class="ml-auto d-none d-md-block"></div>
-          </div>
-        </div>
-
-        <!-- 3. TABEL UTAMA (ULTRA-COMPACT SULTAN MODE) -->
-        <div class="card-sultan border-0 shadow-sm">
-            <div class="card-body p-0">
-              
-              <!-- Skeletal State (Anti-Blink) -->
-              <div id="harian_skeletonState" class="p-3"></div>
-
-              <!-- Table Real State -->
-              <div id="harian_tableState" style="display: none;" class="animate__animated animate__fadeIn">
-                  <table id="harian_tabelUtama" class="table table-hover table-bordered table-premium table-sultan-compact mb-0 w-100 text-nowrap border-0" style="border-collapse: separate !important; border-spacing: 0 !important;">
-                     <thead class="bg-light">
-                        <tr id="harian_rowHeaderUtama">
-                           <th class="col-sticky-left border-right text-left px-3 align-middle font-weight-bold" style="background-color: #dee2e6 !important;">Nama ASN</th>
-                           
-                           <th class="text-center align-middle bg-soft-danger-v2 px-2 border-bottom-0">TP</th>
-                           <th class="text-center align-middle bg-soft-primary-v2 px-2 border-bottom-0">HK</th>
-                           <th class="text-center align-middle bg-soft-primary-v2 px-2 border-bottom-0">H</th>
-                           <th class="text-center align-middle bg-soft-success-v2 px-2 border-bottom-0">HA</th>
-                           <th class="text-center align-middle bg-soft-success-v2 px-2 border-bottom-0">APL</th>
-                           <th class="text-center align-middle bg-soft-success-v2 px-2 border-bottom-0">TAp</th>
-                           <th class="text-center align-middle bg-soft-warning-v2 px-2 border-bottom-0">HU</th>
-                           <th class="text-center align-middle bg-soft-warning-v2 px-2 border-bottom-0">U</th>
-                           <th class="text-center align-middle bg-soft-warning-v2 px-2 border-bottom-0">TU</th>
-                           <th class="text-center align-middle bg-soft-info-v2 px-2 border-bottom-0">CT</th>
-                           <th class="text-center align-middle bg-soft-info-v2 px-2 border-bottom-0">CAP</th>
-                           <th class="text-center align-middle bg-soft-info-v2 px-2 border-bottom-0">CS</th>
-                           <th class="text-center align-middle bg-soft-info-v2 px-2 border-bottom-0">CM</th>
-                           <th class="text-center align-middle bg-soft-purple-v2 px-2 border-bottom-0">DD</th>
-                           <th class="text-center align-middle bg-soft-purple-v2 px-2 border-bottom-0">DL</th>
-                           <th class="text-center align-middle bg-soft-orange-v2 px-2 border-bottom-0">TA</th>
-                           <th class="text-center align-middle bg-soft-orange-v2 px-2 border-bottom-0">W.TA</th>
-                           <th class="text-center align-middle bg-soft-orange-v2 px-2 border-bottom-0">PLA</th>
-                           <th class="text-center align-middle bg-soft-orange-v2 px-2 border-bottom-0">W.PLA</th>
-                           <th class="text-center align-middle bg-soft-danger-v2 px-2 border-bottom-0">LA</th>
-                           
-                           <!-- Tanggal 1-31 (D=Datang, P=Pulang) -->
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="1">1D</th><th class="text-center align-middle harian-col-tgl" data-tgl="1">1P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="2">2D</th><th class="text-center align-middle harian-col-tgl" data-tgl="2">2P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="3">3D</th><th class="text-center align-middle harian-col-tgl" data-tgl="3">3P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="4">4D</th><th class="text-center align-middle harian-col-tgl" data-tgl="4">4P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="5">5D</th><th class="text-center align-middle harian-col-tgl" data-tgl="5">5P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="6">6D</th><th class="text-center align-middle harian-col-tgl" data-tgl="6">6P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="7">7D</th><th class="text-center align-middle harian-col-tgl" data-tgl="7">7P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="8">8D</th><th class="text-center align-middle harian-col-tgl" data-tgl="8">8P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="9">9D</th><th class="text-center align-middle harian-col-tgl" data-tgl="9">9P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="10">10D</th><th class="text-center align-middle harian-col-tgl" data-tgl="10">10P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="11">11D</th><th class="text-center align-middle harian-col-tgl" data-tgl="11">11P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="12">12D</th><th class="text-center align-middle harian-col-tgl" data-tgl="12">12P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="13">13D</th><th class="text-center align-middle harian-col-tgl" data-tgl="13">13P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="14">14D</th><th class="text-center align-middle harian-col-tgl" data-tgl="14">14P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="15">15D</th><th class="text-center align-middle harian-col-tgl" data-tgl="15">15P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="16">16D</th><th class="text-center align-middle harian-col-tgl" data-tgl="16">16P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="17">17D</th><th class="text-center align-middle harian-col-tgl" data-tgl="17">17P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="18">18D</th><th class="text-center align-middle harian-col-tgl" data-tgl="18">18P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="19">19D</th><th class="text-center align-middle harian-col-tgl" data-tgl="19">19P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="20">20D</th><th class="text-center align-middle harian-col-tgl" data-tgl="20">20P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="21">21D</th><th class="text-center align-middle harian-col-tgl" data-tgl="21">21P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="22">22D</th><th class="text-center align-middle harian-col-tgl" data-tgl="22">22P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="23">23D</th><th class="text-center align-middle harian-col-tgl" data-tgl="23">23P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="24">24D</th><th class="text-center align-middle harian-col-tgl" data-tgl="24">24P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="25">25D</th><th class="text-center align-middle harian-col-tgl" data-tgl="25">25P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="26">26D</th><th class="text-center align-middle harian-col-tgl" data-tgl="26">26P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="27">27D</th><th class="text-center align-middle harian-col-tgl" data-tgl="27">27P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="28">28D</th><th class="text-center align-middle harian-col-tgl" data-tgl="28">28P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="29">29D</th><th class="text-center align-middle harian-col-tgl" data-tgl="29">29P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="30">30D</th><th class="text-center align-middle harian-col-tgl" data-tgl="30">30P</th>
-                           <th class="text-center align-middle harian-col-tgl" data-tgl="31">31D</th><th class="text-center align-middle harian-col-tgl" data-tgl="31">31P</th>
-                        </tr>
-                     </thead>
-                     </tbody>
-                  </table>
-              </div>
-            </div>
-        </div>
-
+  <!-- 1. KARTU INFORMASI -->
+  <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark border-l-4 border-l-primary">
+    <div class="border-b border-stroke py-4 px-6.5 dark:border-strokedark cursor-pointer" data-toggle="collapse" data-target="#harian_infoCollapse">
+      <div class="flex justify-between items-center text-primary font-bold">
+        <div class="flex items-center"><i class="fas fa-info-circle mr-2"></i> Informasi</div>
+        <i class="fas fa-chevron-down text-body dark:text-bodydark text-sm"></i>
+      </div>
+    </div>
+    <div id="harian_infoCollapse" class="collapse">
+      <div class="p-6.5 pt-4">
+        <ul class="list-disc pl-5 text-sm text-black dark:text-white space-y-1">
+          <li>Halaman ini menampilkan rekaman presensi harian ASN pada aplikasi Siaba.</li>
+          <li>Data yang ditampilkan diperbarui pada jangka waktu tertentu (tidak realtime).</li>
+          <li><strong>Kode:</strong> TP: Tidak Presensi, HK: Hari Kerja, H: Hadir, HA: Hari Apel, APL: Apel, TAp: Tidak Apel, HU: Hari Upacara, U: Upacara, TU: Tidak Upacara, CT: Cuti Tahunan, CAP: Cuti Alasan Penting, CS: Cuti Sakit, CM: Cuti Melahirkan, DD: Dinas Dalam, DL: Dinas Luar, TA: Terlambat, PLA: Pulang Awal.</li>
+        </ul>
       </div>
     </div>
   </div>
-</section>
+
+  <!-- 2. FILTER CONTROLS -->
+  <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+    <div class="flex flex-wrap items-center gap-3">
+        <select id="harian_filterTahun" class="rounded border border-stroke bg-transparent py-2.5 px-4 outline-none focus:border-primary dark:border-form-strokedark dark:bg-form-input text-sm text-black dark:text-white min-w-[100px]" disabled></select>
+        
+        <select id="harian_filterBulan" class="rounded border border-stroke bg-transparent py-2.5 px-4 outline-none focus:border-primary dark:border-form-strokedark dark:bg-form-input text-sm text-black dark:text-white min-w-[120px]" disabled></select>
+        
+        <select id="harian_filterUnit" class="rounded border border-stroke bg-gray-2 py-2.5 px-4 outline-none focus:border-primary dark:border-form-strokedark dark:bg-meta-4 text-sm text-primary font-bold min-w-[250px]" disabled>
+            <option value="">- Memvalidasi Akses... -</option>
+        </select>
+
+        <div class="hidden sm:block h-8 w-px bg-stroke dark:bg-strokedark mx-1"></div>
+
+        <button type="button" id="harian_btnRefresh" class="flex items-center justify-center rounded border border-stroke dark:border-strokedark hover:bg-gray-2 dark:hover:bg-meta-4 py-2.5 px-4 text-center transition disabled:opacity-50" title="Segarkan Data dari Server" disabled>
+            <i class="fas fa-sync-alt text-primary"></i>
+        </button>
+    </div>
+  </div>
+
+  <!-- 3. TABLE CONTAINER -->
+  <div class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+      <div id="harian_skeletonState">
+          <!-- SKELETON WILL BE RENDERED HERE -->
+      </div>
+
+      <div id="harian_tableState" style="display: none;" class="overflow-x-auto w-full custom-scrollbar pb-4">
+          <table id="harian_tabelUtama" class="w-full table-auto text-sm" style="border-collapse: separate !important; border-spacing: 0 !important;">
+            <thead>
+                <tr id="harian_rowHeaderUtama" class="bg-gray-2 dark:bg-meta-4 text-left">
+                    <th class="col-sticky-left py-2 px-3 font-semibold text-black dark:text-white border-r border-stroke dark:border-strokedark align-middle z-10 w-48">Nama ASN</th>
+                    
+                    <th class="py-2 px-2 text-center font-semibold text-danger align-middle" style="font-size: 0.72rem;">TP</th>
+                    <th class="py-2 px-2 text-center font-semibold text-primary align-middle" style="font-size: 0.72rem;">HK</th>
+                    <th class="py-2 px-2 text-center font-semibold text-primary align-middle" style="font-size: 0.72rem;">H</th>
+                    <th class="py-2 px-2 text-center font-semibold text-meta-3 align-middle" style="font-size: 0.72rem;">HA</th>
+                    <th class="py-2 px-2 text-center font-semibold text-meta-3 align-middle" style="font-size: 0.72rem;">APL</th>
+                    <th class="py-2 px-2 text-center font-semibold text-meta-3 align-middle" style="font-size: 0.72rem;">TAp</th>
+                    <th class="py-2 px-2 text-center font-semibold text-warning align-middle" style="font-size: 0.72rem;">HU</th>
+                    <th class="py-2 px-2 text-center font-semibold text-warning align-middle" style="font-size: 0.72rem;">U</th>
+                    <th class="py-2 px-2 text-center font-semibold text-warning align-middle" style="font-size: 0.72rem;">TU</th>
+                    <th class="py-2 px-2 text-center font-semibold text-meta-5 align-middle" style="font-size: 0.72rem;">CT</th>
+                    <th class="py-2 px-2 text-center font-semibold text-meta-5 align-middle" style="font-size: 0.72rem;">CAP</th>
+                    <th class="py-2 px-2 text-center font-semibold text-meta-5 align-middle" style="font-size: 0.72rem;">CS</th>
+                    <th class="py-2 px-2 text-center font-semibold text-meta-5 align-middle" style="font-size: 0.72rem;">CM</th>
+                    <th class="py-2 px-2 text-center font-semibold text-meta-4 align-middle" style="font-size: 0.72rem;">DD</th>
+                    <th class="py-2 px-2 text-center font-semibold text-meta-4 align-middle" style="font-size: 0.72rem;">DL</th>
+                    <th class="py-2 px-2 text-center font-semibold text-meta-6 align-middle" style="font-size: 0.72rem;">TA</th>
+                    <th class="py-2 px-2 text-center font-semibold text-meta-6 align-middle" style="font-size: 0.72rem;">W.TA</th>
+                    <th class="py-2 px-2 text-center font-semibold text-meta-6 align-middle" style="font-size: 0.72rem;">PLA</th>
+                    <th class="py-2 px-2 text-center font-semibold text-meta-6 align-middle" style="font-size: 0.72rem;">W.PLA</th>
+                    <th class="py-2 px-2 text-center font-semibold text-danger align-middle" style="font-size: 0.72rem;">LA</th>
+                    
+                    <!-- Tanggal 1-31 (D=Datang, P=Pulang) -->
+                    <th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="1">1D</th><th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="1">1P</th>
+                    <th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="2">2D</th><th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="2">2P</th>
+                    <th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="3">3D</th><th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="3">3P</th>
+                    <th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="4">4D</th><th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="4">4P</th>
+                    <th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="5">5D</th><th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="5">5P</th>
+                    <th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="6">6D</th><th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="6">6P</th>
+                    <th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="7">7D</th><th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="7">7P</th>
+                    <th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="8">8D</th><th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="8">8P</th>
+                    <th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="9">9D</th><th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="9">9P</th>
+                    <th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="10">10D</th><th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="10">10P</th>
+                    <th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="11">11D</th><th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="11">11P</th>
+                    <th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="12">12D</th><th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="12">12P</th>
+                    <th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="13">13D</th><th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="13">13P</th>
+                    <th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="14">14D</th><th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="14">14P</th>
+                    <th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="15">15D</th><th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="15">15P</th>
+                    <th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="16">16D</th><th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="16">16P</th>
+                    <th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="17">17D</th><th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="17">17P</th>
+                    <th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="18">18D</th><th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="18">18P</th>
+                    <th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="19">19D</th><th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="19">19P</th>
+                    <th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="20">20D</th><th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="20">20P</th>
+                    <th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="21">21D</th><th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="21">21P</th>
+                    <th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="22">22D</th><th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="22">22P</th>
+                    <th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="23">23D</th><th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="23">23P</th>
+                    <th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="24">24D</th><th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="24">24P</th>
+                    <th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="25">25D</th><th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="25">25P</th>
+                    <th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="26">26D</th><th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="26">26P</th>
+                    <th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="27">27D</th><th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="27">27P</th>
+                    <th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="28">28D</th><th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="28">28P</th>
+                    <th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="29">29D</th><th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="29">29P</th>
+                    <th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="30">30D</th><th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="30">30P</th>
+                    <th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="31">31D</th><th class="text-center align-middle harian-col-tgl text-body dark:text-bodydark" style="font-size: 0.72rem;" data-tgl="31">31P</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+      </div>
+  </div>
+
+</div>
 
 <script>
 // ======================================================================
@@ -289,17 +280,17 @@ function harian_renderSkeleton() {
     var cols = 15; // Just for preview
     var rows = 8;
     var html = `
-        <div class="sultan-skeleton mb-3" style="height: 32px; width: 200px; border-radius: 8px;"></div>
-        <div class="table-responsive sultan-scroll border rounded overflow-hidden">
-            <table class="table mb-0">
-                <thead><tr class="bg-light">
-                    <th class="py-2 px-3 col-sticky-left" style="width: 220px;"><div class="sultan-skeleton" style="height: 14px; width: 80%;"></div></th>
-                    ${Array(cols).fill('<th><div class="sultan-skeleton" style="height: 14px; width: 40px;"></div></th>').join('')}
+        <div class="h-8 w-48 animate-pulse rounded-md bg-stroke dark:bg-strokedark mb-4"></div>
+        <div class="rounded-sm border border-stroke bg-white dark:border-strokedark dark:bg-boxdark overflow-hidden">
+            <table class="w-full table-auto">
+                <thead><tr class="bg-gray-2 dark:bg-meta-4">
+                    <th class="py-3 px-4 col-sticky-left border-r border-stroke dark:border-strokedark text-left" style="width: 220px;"><div class="h-4 w-3/4 animate-pulse rounded bg-stroke dark:bg-strokedark"></div></th>
+                    ${Array(cols).fill('<th><div class="h-4 w-8 animate-pulse rounded bg-stroke dark:bg-strokedark mx-auto"></div></th>').join('')}
                 </tr></thead>
                 <tbody>
-                    ${Array(rows).fill(`<tr>
-                        <td class="col-sticky-left border-right"><div class="sultan-skeleton" style="height: 10px; width: 85%;"></div><div style="height:2px;"></div><div class="sultan-skeleton" style="height: 6px; width: 50%;"></div></td>
-                        ${Array(cols).fill('<td><div class="sultan-skeleton" style="height: 10px; width: 30px;"></div></td>').join('')}
+                    ${Array(rows).fill(`<tr class="border-b border-stroke dark:border-strokedark">
+                        <td class="col-sticky-left border-r border-stroke dark:border-strokedark py-3 px-4 bg-white dark:bg-boxdark"><div class="h-3 w-5/6 animate-pulse rounded bg-stroke dark:bg-strokedark mb-1.5"></div><div class="h-2 w-1/2 animate-pulse rounded bg-stroke dark:bg-strokedark"></div></td>
+                        ${Array(cols).fill('<td class="py-3"><div class="h-3 w-6 animate-pulse rounded bg-stroke dark:bg-strokedark mx-auto"></div></td>').join('')}
                     </tr>`).join('')}
                 </tbody>
             </table>
@@ -332,35 +323,34 @@ function harian_renderTabel(rows) {
             if (visIdx === 0) {
                 var safeNama = harian_escapeHtml(row[0]);
                 var safeNip = harian_escapeHtml(row[1]);
-                display = `<div class="py-0 px-1">
-                    <div class="font-weight-bold text-navy" style="font-size: 0.85rem; line-height: 1.0;">${safeNama}</div>
-                    <div style="height: 2px;"></div>
-                    <div class="text-muted font-weight-bold" style="font-size: 10px; letter-spacing: 0.2px; opacity: 0.7;">${safeNip}</div>
+                display = `<div class="py-0 px-2 text-left">
+                    <div class="font-bold text-black dark:text-white text-sm" style="line-height:1.2;">${safeNama}</div>
+                    <div class="text-body dark:text-bodydark font-medium mt-0.5" style="font-size: 11px;">${safeNip}</div>
                 </div>`;
             } 
             else if (visIdx >= 1 && visIdx <= 20) {
                 if (val == 0 || val == "0" || val === "") display = `<span class="opacity-25">-</span>`;
                 else {
-                    var cls = "text-dark";
+                    var cls = "text-black dark:text-white";
                     if (visIdx === 1) cls = "text-danger";
                     else if (visIdx <= 3) cls = "text-primary";
-                    else if (visIdx <= 6) cls = "text-success";
-                    else if (visIdx <= 9) cls = "text-dark harian-bold text-rekap-sultan"; 
-                    else if (visIdx <= 13) cls = "text-info";
-                    else if (visIdx <= 15) cls = "text-purple-sultan harian-bold";
-                    else if (visIdx <= 19) cls = "text-orange-sultan harian-bold";
-                    else if (visIdx === 20) cls = "text-danger harian-bold";
+                    else if (visIdx <= 6) cls = "text-meta-3";
+                    else if (visIdx <= 9) cls = "text-warning font-bold text-xs"; 
+                    else if (visIdx <= 13) cls = "text-meta-5";
+                    else if (visIdx <= 15) cls = "text-meta-4 dark:text-gray-2 font-bold";
+                    else if (visIdx <= 19) cls = "text-meta-6 font-bold";
+                    else if (visIdx === 20) cls = "text-danger font-bold";
                     display = `<span class="${cls}">${harian_escapeHtml(val)}</span>`;
                 }
             }
             else { 
                 var str = String(val).toUpperCase();
-                if (str === "" || str === "-" || str === "0") display = `<span class="opacity-10">.</span>`;
+                if (str === "" || str === "-" || str === "0") display = `<span class="opacity-10">-</span>`;
                 else {
-                    var sCls = "text-dark";
-                    if (['CT','CS','CAP','CM','CB','CLTN'].includes(str)) sCls = "text-green-sultan font-weight-bold";
-                    else if (['DD','DL'].includes(str)) sCls = "text-blue-sultan font-weight-bold";
-                    else if (['TA','PLA','LA'].includes(str)) sCls = "text-danger font-weight-bold";
+                    var sCls = "text-black dark:text-white";
+                    if (['CT','CS','CAP','CM','CB','CLTN'].includes(str)) sCls = "text-meta-5 font-bold";
+                    else if (['DD','DL'].includes(str)) sCls = "text-meta-4 dark:text-gray-2 font-bold";
+                    else if (['TA','PLA','LA'].includes(str)) sCls = "text-danger font-bold";
                     display = `<span class="${sCls}" style="font-size:0.75rem;">${harian_escapeHtml(str)}</span>`;
                 }
             }
@@ -373,33 +363,42 @@ function harian_renderTabel(rows) {
     if (!$.fn.DataTable.isDataTable('#harian_tabelUtama')) {
         HARIAN_TABEL_INSTANCE = $('#harian_tabelUtama').DataTable({
             "data": dtArray, "ordering": false, "autoWidth": false, "pageLength": 10,
-            "dom": "<'row mb-2'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
-                   "<'row'<'col-sm-12'<'table-responsive sultan-scroll'tr>>>" +
-                   "<'row mt-2'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+            "dom": "<'flex flex-col sm:flex-row justify-between items-center mb-4 gap-4'<'w-full sm:w-auto text-sm'l><'w-full sm:w-auto text-sm'f>>" +
+                   "<'w-full overflow-x-auto dt-scroll-parent custom-scrollbar'tr>" +
+                   "<'flex flex-col sm:flex-row justify-between items-center mt-4 gap-4'<'w-full sm:w-auto text-sm text-body dark:text-bodydark'i><'w-full sm:w-auto mt-2 sm:mt-0 text-sm'p>>",
             "columnDefs": [
-                { "targets": 0, "className": "col-sticky-left bg-white border-right font-weight-bold align-middle" },
-                { "targets": Array.from({length: 82}, function(_, i) { return i + 1; }), "className": "align-middle text-center px-2 py-1" }
+                { "targets": 0, "className": "col-sticky-left align-middle font-bold border-r border-stroke dark:border-strokedark text-black dark:text-white px-3 py-2 bg-white dark:bg-boxdark z-10" },
+                { "targets": Array.from({length: 82}, function(_, i) { return i + 1; }), "className": "align-middle text-center px-1 py-1" }
             ],
-            "language": { "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", "search": "" , "searchPlaceholder": "Cari Nama..."},
+            "language": { "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", "search": "" , "searchPlaceholder": "Cari Nama...",
+                "emptyTable": '<div class="py-10 text-center"><i class="fas fa-clipboard-list text-5xl text-body dark:text-bodydark mb-4 opacity-50"></i><br><h6 class="font-bold text-black dark:text-white mb-2 text-lg">Belum Ada Presensi</h6><p class="text-sm text-body dark:text-bodydark mb-0">Tidak ada data presensi harian untuk filter terpilih.</p></div>' 
+            },
             "createdRow": function(row, data, dataIndex) {
                  var headRow = $('#harian_rowHeaderUtama th');
                  for (var i = 1; i < row.cells.length; i++) {
                      var cell = row.cells[i];
 
-                     // VAKSIN TINT: Minimalistic tinting for high density
-                     if (i === 1) cell.style.setProperty('background-color', '#fff5f5', 'important'); 
-                     else if (i <= 3) cell.style.setProperty('background-color', '#f0f7ff', 'important'); 
-                     else if (i <= 6) cell.style.setProperty('background-color', '#f0fff4', 'important'); 
-                     else if (i <= 9) cell.style.setProperty('background-color', '#fffdf0', 'important'); 
-                     else if (i <= 13) cell.style.setProperty('background-color', '#eefdff', 'important'); 
-                     else if (i <= 15) cell.style.setProperty('background-color', '#f8f4ff', 'important'); 
-                     else if (i <= 19) cell.style.setProperty('background-color', '#fffaf0', 'important'); 
-                     else if (i === 20) cell.style.setProperty('background-color', '#fff5f5', 'important'); 
+                     // VAKSIN TINT: Minimalistic tinting for high density using Tailadmin Colors
+                     if (i === 1) cell.style.setProperty('background-color', 'var(--color-danger-light, rgba(220, 53, 69, 0.05))', 'important'); 
+                     else if (i <= 3) cell.style.setProperty('background-color', 'var(--color-primary-light, rgba(60, 80, 224, 0.05))', 'important'); 
+                     else if (i <= 6) cell.style.setProperty('background-color', 'var(--color-meta-3-light, rgba(16, 185, 129, 0.05))', 'important'); 
+                     else if (i <= 9) cell.style.setProperty('background-color', 'var(--color-warning-light, rgba(249, 193, 7, 0.05))', 'important'); 
+                     else if (i <= 13) cell.style.setProperty('background-color', 'var(--color-meta-5-light, rgba(37, 154, 230, 0.05))', 'important'); 
+                     else if (i <= 15) cell.style.setProperty('background-color', 'var(--color-meta-4-light, rgba(49, 61, 74, 0.05))', 'important'); 
+                     else if (i <= 19) cell.style.setProperty('background-color', 'var(--color-meta-6-light, rgba(255, 167, 11, 0.05))', 'important'); 
+                     else if (i === 20) cell.style.setProperty('background-color', 'var(--color-danger-light, rgba(220, 53, 69, 0.05))', 'important'); 
                      
                      if (i >= 21) {
+                        cell.className += " border-b border-stroke dark:border-strokedark";
                         if (headRow.eq(i).hasClass('bg-weekend')) {
-                            cell.style.setProperty('background-color', '#fff5f5', 'important');
+                            cell.style.setProperty('background-color', 'var(--color-danger-light, rgba(220, 53, 69, 0.05))', 'important');
+                        } else {
+                            if (cell.textContent.trim() === "-" || cell.textContent.trim() === "0" || data[i] === "") {
+                                cell.className += " bg-gray-2 dark:bg-meta-4";
+                            }
                         }
+                     } else {
+                        cell.className += " border-b border-stroke dark:border-strokedark";
                      }
                  }
             }
@@ -430,6 +429,8 @@ function harian_refreshWeekendsHead(year, monthStr) {
         var dDay = dateObj.getDay();
         if(dDay === 0 || dDay === 6) { 
             $(`.harian-col-tgl[data-tgl="${d}"]`).addClass('bg-weekend text-danger');
+        } else {
+            $(`.harian-col-tgl[data-tgl="${d}"]`).removeClass('bg-weekend text-danger');
         }
     }
 }
@@ -442,49 +443,55 @@ function harian_escapeHtml(text) {
 
 <style>
 /* SULTAN ULTRA-COMPACT TABLE OVERRIDES */
-#harian_tabelUtama thead th { font-size: 0.72rem !important; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #edf2f7 !important; padding: 2px 4px !important; letter-spacing: 0.2px; line-height: 1.1 !important; }
-#harian_tabelUtama tbody td { padding: 0px 8px !important; border-bottom: 1px solid #f1f5f9; line-height: 1.0 !important; position: relative !important; }
-#harian_tabelUtama tbody tr:hover td::after { 
-    content: ""; 
-    position: absolute; 
-    top: 0; left: 0; right: 0; bottom: 0; 
-    background-color: rgba(0, 0, 0, 0.05); 
-    pointer-events: none; 
-    z-index: 2; 
-}
-
-.bg-weekend { background-color: #fff5f5 !important; color: #dc3545 !important; }
-.shadow-sm-right { box-shadow: 2px 0 5px rgba(0,0,0,0.02) !important; }
-.text-navy { color: #1e293b !important; }
-.xx-small { font-size: 9px; line-height: 1; }
-.harian-bold { font-weight: 700; }
-.text-rekap-sultan { font-size: 12px; }
-
-/* Official Sultan Header Color Override */
-#harian_tabelUtama thead th {
-    background-color: #dee2e6 !important;
-    color: #1a202c !important;
-    border-bottom: 2px solid #adb5bd !important;
+#harian_tabelUtama thead th { 
+    font-size: 0.72rem !important; 
+    font-weight: 800; 
+    text-transform: uppercase; 
+    border-bottom: 1px solid var(--color-stroke) !important; 
+    padding: 6px 4px !important; 
+    letter-spacing: 0.2px; 
     position: sticky !important;
     top: 0 !important;
     z-index: 10 !important;
-    padding: 2px 4px !important;
-    font-size: 0.72rem !important;
-    line-height: 1.1 !important;
 }
 
 #harian_tabelUtama thead th.col-sticky-left {
     z-index: 11 !important;
 }
 
+#harian_tabelUtama tbody td { 
+    border-bottom: 1px solid var(--color-stroke) !important; 
+    position: relative !important; 
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+}
+
+/* Hover Background Effect */
+#harian_tabelUtama tbody tr:hover td::after { 
+    content: ""; 
+    position: absolute; 
+    top: 0; left: 0; right: 0; bottom: 0; 
+    background-color: var(--color-gray-2); 
+    pointer-events: none; 
+    z-index: 2; 
+}
+.dark #harian_tabelUtama tbody tr:hover td::after { 
+    background-color: var(--color-meta-4); 
+}
+
 /* Sync with Global Sultan Sticky Styles */
-/* Note: col-sticky-left is defined in css_sultan.html, we only add authority here */
 .col-sticky-left {
     position: sticky !important;
     left: 0 !important;
     z-index: 5 !important;
-    background-color: #ffffff !important;
-    border-right: 1px solid #dee2e6 !important;
+    background-color: inherit !important;
     box-shadow: 4px 0 8px rgba(0,0,0,0.05);
 }
+
+/* Fix z-index for hovering sticky left col */
+#harian_tabelUtama tbody tr:hover td.col-sticky-left {
+    z-index: 6 !important;
+}
+
+.bg-weekend { background-color: var(--color-danger-light, rgba(220, 53, 69, 0.05)) !important; color: var(--color-danger) !important; }
 </style>

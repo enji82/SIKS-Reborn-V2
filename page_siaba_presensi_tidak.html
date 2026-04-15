@@ -1,94 +1,87 @@
-<div class="content-header pb-0">
-  <div class="container-fluid">
-    <div class="row mb-2">
-      <div class="col-sm-12">
-        <h5 class="m-0 font-weight-bold">
-          <i class="fas fa-user-times text-maroon mr-2"></i>Rekap Tidak Presensi
-        </h5>
-        <div class="sultan-title-line"></div>
-      </div>
-    </div>
-  </div>
+<div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between animate-reveal">
+  <h2 class="text-title-md2 font-bold text-black dark:text-white flex items-center">
+    <i class="fas fa-user-times text-primary mr-3"></i> Rekap Tidak Presensi
+  </h2>
+  <nav>
+    <ol class="flex items-center gap-2 text-sm font-medium">
+      <li><a class="hover:text-primary dark:text-bodydark" href="#">SIABA /</a></li>
+      <li class="text-primary">Tidak Presensi</li>
+    </ol>
+  </nav>
 </div>
 
-<section class="content">
-  <div class="container-fluid">
-    <div class="row justify-content-center">
-      <div class="col-12">
+<div class="flex flex-col gap-4 md:gap-6 2xl:gap-7.5 animate-reveal">
 
-        <div class="card-sultan card-sultan-info-compact mb-3">
-          <div class="card-body border-left-dark">
-            <div class="d-flex-info-header cursor-pointer" data-toggle="collapse" data-target="#tp_infoCollapse">
-              <div class="d-flex align-items-center text-maroon font-weight-bold">
-                <i class="fas fa-info-circle mr-2"></i> Informasi
-              </div>
-              <i class="fas fa-chevron-down text-muted icon-sm"></i>
-            </div>
-            <div id="tp_infoCollapse" class="collapse">
-              <div class="mt-2 pt-2 border-top small text-muted">
-                  <li>Halaman ini menampilkan rekaman ASN yang tidak melakukan presensi (Alpha/Lupa).</li>
-                  <li>Data yang ditampilkan diperbarui secara berkala (tidak realtime).</li>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card-sultan p-3 mb-3">
-            <div class="d-flex-gap align-items-center flex-wrap">
-                <select id="tp_filterTahun" class="form-control form-control-sultan input-auto-width min-w-100" disabled>
-                    <option value="">- Tahun -</option>
-                </select>
-                <select id="tp_filterBulan" class="form-control form-control-sultan input-auto-width min-w-120" disabled>
-                    <option value="">- Bulan -</option>
-                </select>
-                
-                <select id="tp_filterUnit" class="form-control form-control-sultan input-auto-width min-w-250 font-weight-bold text-maroon bg-light" disabled>
-                    <option value="">- Memvalidasi Akses... -</option>
-                </select>
-
-                <div class="divider-vertical d-none d-md-block"></div>
-
-                <button type="button" id="tp_btnRefresh" class="btn bg-white border shadow-sm text-secondary" title="Segarkan Data dari Server" disabled>
-                    <i class="fas fa-sync-alt text-maroon"></i>
-                </button>
-
-                <div class="ml-auto d-none d-md-block"></div>
-                
-                <button type="button" id="tp_btnCopyWA" class="btn btn-success font-weight-bold shadow-sm px-3" title="Salin Daftar ASN ke WhatsApp">
-                    <i class="fab fa-whatsapp mr-1"></i> Copy to WA
-                </button>
-            </div>
-        </div>
-
-        <div class="card-sultan">
-            <div class="card-body p-3">
-              
-              <div id="tp_skeletonState">
-                  <!-- SKELETON WILL BE RENDERED HERE -->
-              </div>
-
-              <div id="tp_tableState" style="display: none;">
-                  <table id="tp_tabelUtama" class="table table-bordered table-hover table-premium table-sultan-compact mb-0 w-100 text-nowrap" style="border-collapse: separate !important; border-spacing: 0 !important;">
-                    <thead>
-                        <tr>
-                            <th class="col-sticky-left border-right text-left px-3 align-middle">Nama ASN</th>
-                            <th class="text-center align-middle text-dark px-2">Total Alpha</th>
-                            <th class="text-center align-middle text-dark px-2">Tdk Datang</th>
-                            <th class="text-center align-middle text-dark px-2">Tdk Pulang</th>
-                            <th class="text-center align-middle text-dark px-2" style="min-width: 150px;">Detail Tanggal</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                  </table>
-              </div>
-
-            </div>
-        </div>
-
+  <!-- KARTU INFORMASI -->
+  <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark border-l-4 border-l-primary">
+    <div class="border-b border-stroke py-4 px-6.5 dark:border-strokedark cursor-pointer" data-toggle="collapse" data-target="#tp_infoCollapse">
+      <div class="flex justify-between items-center text-primary font-bold">
+        <div class="flex items-center"><i class="fas fa-info-circle mr-2"></i> Informasi</div>
+        <i class="fas fa-chevron-down text-body dark:text-bodydark text-sm"></i>
+      </div>
+    </div>
+    <div id="tp_infoCollapse" class="collapse">
+      <div class="p-6.5 pt-4">
+        <ul class="list-disc pl-5 text-sm text-black dark:text-white space-y-1">
+          <li>Halaman ini menampilkan rekaman ASN yang tidak melakukan presensi (Alpha/Lupa).</li>
+          <li>Data yang ditampilkan diperbarui secara berkala (tidak realtime).</li>
+        </ul>
       </div>
     </div>
   </div>
-</section>
+
+  <!-- FILTER CONTROLS -->
+  <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+    <div class="flex flex-wrap items-center gap-3">
+        <select id="tp_filterTahun" class="rounded border border-stroke bg-transparent py-2.5 px-4 outline-none focus:border-primary dark:border-form-strokedark dark:bg-form-input text-sm text-black dark:text-white min-w-[100px]" disabled>
+            <option value="">- Tahun -</option>
+        </select>
+        
+        <select id="tp_filterBulan" class="rounded border border-stroke bg-transparent py-2.5 px-4 outline-none focus:border-primary dark:border-form-strokedark dark:bg-form-input text-sm text-black dark:text-white min-w-[120px]" disabled>
+            <option value="">- Bulan -</option>
+        </select>
+
+        <select id="tp_filterUnit" class="rounded border border-stroke bg-gray-2 py-2.5 px-4 outline-none focus:border-primary dark:border-form-strokedark dark:bg-meta-4 text-sm text-primary font-bold min-w-[250px]" disabled>
+            <option value="">- Memvalidasi Akses... -</option>
+        </select>
+
+        <div class="hidden sm:block h-8 w-px bg-stroke dark:bg-strokedark mx-1"></div>
+
+        <button type="button" id="tp_btnRefresh" class="flex items-center justify-center rounded border border-stroke dark:border-strokedark hover:bg-gray-2 dark:hover:bg-meta-4 py-2.5 px-4 text-center transition disabled:opacity-50" title="Segarkan Data dari Server" disabled>
+            <i class="fas fa-sync-alt text-primary"></i>
+        </button>
+
+        <div class="ml-auto d-none d-md-block"></div>
+        
+        <button type="button" id="tp_btnCopyWA" class="flex items-center justify-center gap-2 rounded bg-meta-3 py-2.5 px-4 text-sm font-medium text-white hover:bg-opacity-90 transition disabled:opacity-50" title="Salin Daftar ASN ke WhatsApp">
+            <i class="fab fa-whatsapp"></i> Copy to WA
+        </button>
+    </div>
+  </div>
+
+  <!-- TABLE CONTAINER -->
+  <div class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+      <div id="tp_skeletonState">
+          <!-- SKELETON WILL BE RENDERED HERE -->
+      </div>
+
+      <div id="tp_tableState" style="display: none;" class="overflow-x-auto w-full custom-scrollbar pb-4">
+          <table id="tp_tabelUtama" class="w-full table-auto text-sm" style="border-collapse: separate !important; border-spacing: 0 !important;">
+            <thead>
+                <tr class="bg-gray-2 dark:bg-meta-4 text-left">
+                    <th class="col-sticky-left border-r border-stroke dark:border-strokedark text-left py-3 px-4 z-10 w-48 text-black dark:text-white font-semibold">Nama ASN</th>
+                    <th class="text-center py-3 px-4 text-black dark:text-white font-semibold">Total Alpha</th>
+                    <th class="text-center py-3 px-4 text-black dark:text-white font-semibold">Tdk Datang</th>
+                    <th class="text-center py-3 px-4 text-black dark:text-white font-semibold">Tdk Pulang</th>
+                    <th class="text-center py-3 px-4 text-black dark:text-white font-semibold" style="min-width: 150px;">Detail Tanggal</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+      </div>
+  </div>
+
+</div>
 
 <script>
 // ======================================================================
@@ -314,17 +307,17 @@ function tp_renderSkeleton() {
     var cols = 4; // Data columns after Name
     var rows = 8;
     var html = `
-        <div class="sultan-skeleton mb-3" style="height: 32px; width: 220px; border-radius: 8px;"></div>
-        <div class="table-responsive sultan-scroll border rounded overflow-hidden">
-            <table class="table mb-0">
-                <thead><tr class="bg-light">
-                    <th class="py-2 px-3 col-sticky-left" style="width: 200px;"><div class="sultan-skeleton" style="height: 14px; width: 80%;"></div></th>
-                    ${Array(cols).fill('<th><div class="sultan-skeleton" style="height: 14px; width: 100px;"></div></th>').join('')}
+        <div class="h-8 w-48 animate-pulse rounded-md bg-stroke dark:bg-strokedark mb-4"></div>
+        <div class="rounded-sm border border-stroke bg-white dark:border-strokedark dark:bg-boxdark overflow-hidden">
+            <table class="w-full table-auto">
+                <thead><tr class="bg-gray-2 dark:bg-meta-4">
+                    <th class="py-3 px-4 col-sticky-left border-r border-stroke dark:border-strokedark" style="width: 200px;"><div class="h-4 w-3/4 animate-pulse rounded bg-stroke dark:bg-strokedark"></div></th>
+                    ${Array(cols).fill('<th class="py-3 px-4"><div class="h-4 w-20 animate-pulse rounded bg-stroke dark:bg-strokedark mx-auto"></div></th>').join('')}
                 </tr></thead>
                 <tbody>
-                    ${Array(rows).fill(`<tr>
-                        <td class="col-sticky-left border-right"><div class="sultan-skeleton" style="height: 10px; width: 85%;"></div><div style="height:2px;"></div><div class="sultan-skeleton" style="height: 6px; width: 50%;"></div></td>
-                        ${Array(cols).fill('<td><div class="sultan-skeleton" style="height: 10px; width: 80px;"></div></td>').join('')}
+                    ${Array(rows).fill(`<tr class="border-b border-stroke dark:border-strokedark">
+                        <td class="col-sticky-left border-r border-stroke dark:border-strokedark py-3 px-4 bg-white dark:bg-boxdark"><div class="h-3 w-5/6 animate-pulse rounded bg-stroke dark:bg-strokedark mb-1.5"></div><div class="h-2 w-1/2 animate-pulse rounded bg-stroke dark:bg-strokedark"></div></td>
+                        ${Array(cols).fill('<td class="py-3 px-4"><div class="h-3 w-12 animate-pulse rounded bg-stroke dark:bg-strokedark mx-auto"></div></td>').join('')}
                     </tr>`).join('')}
                 </tbody>
             </table>
@@ -342,16 +335,15 @@ function tp_renderTabel(dataRows) {
         var safeNip  = tp_escapeHtml(row[1]);
         
         // PERSONNEL COLUMN (NAVY NAME + MUTED NIP, NO UNIT)
-        arrRow.push(`<div class="py-0 px-1">
-            <div class="font-weight-bold text-navy" style="font-size: 0.85rem; line-height: 1.0;">${safeNama}</div>
-            <div style="height: 2px;"></div>
-            <div class="text-muted font-weight-bold" style="font-size: 10px; letter-spacing: 0.2px; opacity: 0.7;">${safeNip}</div>
+        arrRow.push(`<div class="py-0 px-2 text-left">
+            <div class="font-bold text-black dark:text-white text-sm" style="line-height:1.2;">${safeNama}</div>
+            <div class="text-body dark:text-bodydark font-medium mt-0.5" style="font-size: 11px;">${safeNip}</div>
         </div>`);
         
-        arrRow.push(row[2] == 0 || row[2] === "" ? "-" : `<span class="badge badge-danger px-2" style="font-weight: 800; border-radius: 4px;">${tp_escapeHtml(row[2])}</span>`);
-        arrRow.push(row[3] == 0 || row[3] === "" ? "-" : `<span class="font-weight-bold text-danger">${tp_escapeHtml(row[3])}</span>`);
-        arrRow.push(row[4] == 0 || row[4] === "" ? "-" : `<span class="font-weight-bold text-danger">${tp_escapeHtml(row[4])}</span>`);
-        arrRow.push(row[5] === "" || row[5] === "-" ? "-" : `<span class="text-dark font-weight-bold" style="white-space:normal; font-size: 0.72rem; opacity: 0.9;">${tp_escapeHtml(row[5])}</span>`);
+        arrRow.push(row[2] == 0 || row[2] === "" ? `<span class="opacity-50">-</span>` : `<span class="inline-flex rounded bg-danger px-2 py-1 text-xs font-bold text-white">${tp_escapeHtml(row[2])}</span>`);
+        arrRow.push(row[3] == 0 || row[3] === "" ? `<span class="opacity-50">-</span>` : `<span class="font-bold text-danger">${tp_escapeHtml(row[3])}</span>`);
+        arrRow.push(row[4] == 0 || row[4] === "" ? `<span class="opacity-50">-</span>` : `<span class="font-bold text-danger">${tp_escapeHtml(row[4])}</span>`);
+        arrRow.push(row[5] === "" || row[5] === "-" ? `<span class="opacity-50">-</span>` : `<span class="text-black dark:text-white font-bold" style="white-space:normal; font-size: 0.72rem; opacity: 0.9;">${tp_escapeHtml(row[5])}</span>`);
 
         dtArray.push(arrRow);
     });
@@ -361,17 +353,17 @@ function tp_renderTabel(dataRows) {
             "data": dtArray, 
             "destroy": true, "ordering": false, "pageLength": 10, "autoWidth": false,
             "deferRender": true, 
-            "dom": "<'row mb-2'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
-                   "<'row'<'col-sm-12'<'table-responsive sultan-scroll'tr>>>" +
-                   "<'row mt-3'<'col-sm-12 col-md-5 small text-muted'i><'col-sm-12 col-md-7'p>>",
+            "dom": "<'flex flex-col sm:flex-row justify-between items-center mb-4 gap-4'<'w-full sm:w-auto text-sm'l><'w-full sm:w-auto text-sm'f>>" +
+                   "<'w-full overflow-x-auto dt-scroll-parent custom-scrollbar'tr>" +
+                   "<'flex flex-col sm:flex-row justify-between items-center mt-4 gap-4'<'w-full sm:w-auto text-sm text-body dark:text-bodydark'i><'w-full sm:w-auto mt-2 sm:mt-0 text-sm'p>>",
             "language": { 
                 "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", 
                 "search": "", "searchPlaceholder": "Cari Nama...",
-                "emptyTable": '<div class="py-5 text-center text-muted"><div class="mb-3"><i class="fas fa-clipboard-list fa-3x text-gray-300" style="opacity: 0.6;"></i></div><h6 class="font-weight-bold text-dark mb-1">Tidak Ada Data</h6><p class="small mb-0">Tidak ditemukan rekap data alpha/lupa untuk filter ini.</p></div>' 
+                "emptyTable": '<div class="py-10 text-center"><div class="mb-3"><i class="fas fa-user-check text-5xl text-body dark:text-bodydark opacity-50"></i></div><h6 class="font-bold text-black dark:text-white mb-2 text-lg">Tidak Ada Data</h6><p class="text-sm text-body dark:text-bodydark mb-0">Tidak ditemukan rekap data alpha/lupa untuk filter ini.</p></div>' 
             },
             "columnDefs": [
-                { "targets": 0, "className": "col-sticky-left bg-white align-middle font-weight-bold border-right text-dark text-left px-3 py-1" },
-                { "targets": [1,2,3,4], "className": "text-center align-middle px-2 py-1" }
+                { "targets": 0, "width": "auto", "className": "col-sticky-left align-middle font-bold border-r border-b border-stroke dark:border-strokedark text-black dark:text-white text-left px-3 py-3 bg-white dark:bg-boxdark z-10" },
+                { "targets": [1,2,3,4], "className": "text-center align-middle border-b border-stroke dark:border-strokedark px-2 py-3" }
             ]
         });
 
@@ -459,12 +451,9 @@ function tp_escapeHtml(text) {
     font-size: 0.72rem !important; 
     font-weight: 800; 
     text-transform: uppercase; 
-    border-bottom: 2px solid #adb5bd !important; 
-    padding: 2px 4px !important; 
+    border-bottom: 1px solid var(--color-stroke) !important; 
+    padding: 6px 4px !important; 
     letter-spacing: 0.2px; 
-    line-height: 1.1 !important;
-    background-color: #dee2e6 !important;
-    color: #1a202c !important;
     position: sticky !important;
     top: 0 !important;
     z-index: 10 !important;
@@ -475,19 +464,23 @@ function tp_escapeHtml(text) {
 }
 
 #tp_tabelUtama tbody td { 
-    padding: 0px 8px !important; 
-    border-bottom: 1px solid #f1f5f9; 
-    line-height: 1.0 !important; 
+    border-bottom: 1px solid var(--color-stroke) !important; 
     position: relative !important; 
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
 }
 
+/* Hover Background Effect */
 #tp_tabelUtama tbody tr:hover td::after { 
     content: ""; 
     position: absolute; 
     top: 0; left: 0; right: 0; bottom: 0; 
-    background-color: rgba(0, 0, 0, 0.05); 
+    background-color: var(--color-gray-2); 
     pointer-events: none; 
     z-index: 2; 
+}
+.dark #tp_tabelUtama tbody tr:hover td::after { 
+    background-color: var(--color-meta-4); 
 }
 
 /* Sync with Global Sultan Sticky Styles */
@@ -495,10 +488,12 @@ function tp_escapeHtml(text) {
     position: sticky !important;
     left: 0 !important;
     z-index: 5 !important;
-    background-color: #ffffff !important;
-    border-right: 1px solid #dee2e6 !important;
+    background-color: inherit !important;
     box-shadow: 4px 0 8px rgba(0,0,0,0.05);
 }
 
-.text-navy { color: #1e293b !important; }
+/* Fix z-index for hovering sticky left col */
+#tp_tabelUtama tbody tr:hover td.col-sticky-left {
+    z-index: 6 !important;
+}
 </style>

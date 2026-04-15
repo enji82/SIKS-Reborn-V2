@@ -1,117 +1,104 @@
-<div class="content-header pb-0">
-  <div class="container-fluid">
-    <div class="row mb-2">
-      <div class="col-sm-12">
-        <h5 class="m-0 font-weight-bold">
-          <i class="fas fa-cloud-download-alt text-maroon mr-2"></i>Unduh Rekap Bulanan
-        </h5>
-        <div class="sultan-title-line"></div>
-      </div>
-    </div>
-  </div>
+<div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between animate-reveal">
+  <h2 class="text-title-md2 font-bold text-black dark:text-white flex items-center">
+    <i class="fas fa-cloud-download-alt text-primary mr-3"></i> Unduh Rekap Bulanan
+  </h2>
+  <nav>
+    <ol class="flex items-center gap-2 text-sm font-medium">
+      <li><a class="hover:text-primary dark:text-bodydark" href="#">SIABA /</a></li>
+      <li class="text-primary">Unduh Rekap</li>
+    </ol>
+  </nav>
 </div>
 
-<section class="content">
-  <div class="container-fluid">
-    <div class="row justify-content-center">
-      <div class="col-12">
-        
-        <!-- 1. NAVIGATION & FOLDER BAR (STANDARD SULTAN P-3) -->
-        <div class="card-sultan p-3 mb-3">
-          <div class="d-flex flex-wrap justify-content-between align-items-center">
-            
-            <div class="d-flex align-items-center flex-wrap" style="gap: 10px;">
-              
-              <button type="button" id="unduh_btnHome" class="btn btn-sultan-nav shadow-sm bg-white" title="Folder Utama">
-                <i class="fas fa-home text-maroon"></i>
-              </button>
+<div class="flex flex-col gap-4 md:gap-6 2xl:gap-7.5 animate-reveal">
 
-              <button type="button" id="unduh_btnBack" class="btn btn-sultan-nav shadow-sm bg-white" title="Kembali" style="display:none;">
-                <i class="fas fa-level-up-alt text-dark font-weight-bold"></i>
-              </button>
+  <!-- NAVIGATION & FOLDER BAR -->
+  <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+    <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+      
+      <div class="flex flex-wrap items-center gap-2.5 w-full sm:w-auto">
+        <button type="button" id="unduh_btnHome" class="flex items-center justify-center rounded border border-stroke dark:border-strokedark hover:bg-gray-2 dark:hover:bg-meta-4 py-2 px-3 text-center transition" title="Folder Utama">
+          <i class="fas fa-home text-primary"></i>
+        </button>
 
-              <button type="button" id="unduh_btnRefresh" class="btn btn-sultan-nav shadow-sm bg-white" title="Refresh Folder Ini">
-                <i class="fas fa-sync-alt text-blue-sultan"></i>
-              </button>
+        <button type="button" id="unduh_btnBack" class="flex items-center justify-center rounded border border-stroke dark:border-strokedark hover:bg-gray-2 dark:hover:bg-meta-4 py-2 px-3 text-center transition" title="Kembali" style="display:none;">
+          <i class="fas fa-level-up-alt text-black dark:text-white"></i>
+        </button>
 
-              <div class="divider-vertical d-none d-md-block mx-2"></div>
+        <button type="button" id="unduh_btnRefresh" class="flex items-center justify-center rounded border border-stroke dark:border-strokedark hover:bg-gray-2 dark:hover:bg-meta-4 py-2 px-3 text-center transition" title="Refresh Folder Ini">
+          <i class="fas fa-sync-alt text-primary"></i>
+        </button>
 
-              <div class="d-flex align-items-center bg-light px-3 py-2 rounded border shadow-sm" style="min-width: 280px; border-color: #dee2e6 !important;">
-                  <i class="fas fa-folder-open text-gold-sultan mr-2"></i>
-                  <span id="unduh_folderNameLabel" class="font-weight-bold text-dark small text-uppercase" style="letter-spacing: 0.5px;">MEMUAT...</span>
-              </div>
-            </div>
+        <div class="hidden sm:block h-8 w-px bg-stroke dark:bg-strokedark mx-1"></div>
 
-            <div class="mt-2 mt-xl-0 text-muted small font-weight-bold px-2">
-               TOTAL ITEM: <span id="unduh_totalItemCount" class="text-maroon">0</span>
-            </div>
-          </div>
+        <div class="flex items-center bg-gray-2 dark:bg-meta-4 px-4 py-2 rounded-md border border-stroke dark:border-strokedark flex-grow sm:flex-grow-0" style="min-width: 250px;">
+            <i class="fas fa-folder-open text-[#FFB018] mr-3"></i>
+            <span id="unduh_folderNameLabel" class="font-bold text-black dark:text-white text-sm uppercase tracking-wide">MEMUAT...</span>
         </div>
-
-        <div class="card-sultan">
-          <div class="card-body p-3">
-              
-              <div id="unduh_skeletonState">
-                  <!-- SKELETON RENDERED VIA JS -->
-              </div>
-
-              <div id="unduh_tableState" style="display: none;">
-                  <table id="unduh_tabelUtama" class="table table-bordered table-hover table-premium table-sultan-compact mb-0 w-100" style="border-collapse: separate !important; border-spacing: 0 !important;">
-                    <thead>
-                      <tr>
-                        <th class="text-center align-middle" style="width: 40px;">No</th>
-                        <th class="text-left align-middle px-3">Nama File / Folder</th>
-                        <th class="text-center align-middle" style="width: 100px;">Ukuran</th>
-                        <th class="text-center align-middle" style="width: 150px;">Tanggal</th>
-                        <th class="text-center align-middle" style="width: 120px;">Aksi</th>
-                      </tr>
-                    </thead>
-                    <tbody></tbody>
-                  </table>
-              </div>
-
-          </div>
-        </div>
-
       </div>
+
+      <div class="text-sm font-medium text-body dark:text-bodydark">
+          TOTAL ITEM: <span id="unduh_totalItemCount" class="text-primary font-bold">0</span>
+      </div>
+      
     </div>
   </div>
-</section>
 
+  <!-- TABLE CONTAINER -->
+  <div class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+      <div id="unduh_skeletonState">
+          <!-- SKELETON RENDERED VIA JS -->
+      </div>
+
+      <div id="unduh_tableState" style="display: none;" class="overflow-x-auto w-full custom-scrollbar pb-4">
+          <table id="unduh_tabelUtama" class="w-full table-auto text-sm" style="border-collapse: separate !important; border-spacing: 0 !important;">
+            <thead>
+              <tr class="bg-gray-2 dark:bg-meta-4 text-left">
+                <th class="text-center py-3 px-4 font-semibold text-black dark:text-white border-b border-stroke dark:border-strokedark" style="width: 40px;">No</th>
+                <th class="text-left py-3 px-4 font-semibold text-black dark:text-white border-b border-stroke dark:border-strokedark">Nama File / Folder</th>
+                <th class="text-center py-3 px-4 font-semibold text-black dark:text-white border-b border-stroke dark:border-strokedark" style="width: 100px;">Ukuran</th>
+                <th class="text-center py-3 px-4 font-semibold text-black dark:text-white border-b border-stroke dark:border-strokedark" style="width: 150px;">Tanggal</th>
+                <th class="text-center py-3 px-4 font-semibold text-black dark:text-white border-b border-stroke dark:border-strokedark" style="width: 120px;">Aksi</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+      </div>
+  </div>
+
+</div>
+
+<!-- PREVIEW MODAL -->
 <div class="modal fade" id="unduh_modalPreview" tabindex="-1" role="dialog" data-backdrop="static">
-  <div class="modal-dialog modal-dialog-full" role="document"> 
-    <div class="modal-content sultan-modal-content modal-content-full-height"> 
+  <div class="modal-dialog modal-dialog-centered" style="max-width: 95vw; height: 95vh; margin: 2.5vh auto;" role="document"> 
+    <div class="modal-content border-0 shadow-default dark:bg-boxdark h-full flex flex-col rounded-md overflow-hidden bg-white"> 
       
-      <div class="sultan-preview-header">
-        <div class="sultan-preview-title">
-            <i class="fas fa-file-pdf text-danger mr-2"></i>
-            <span>Pratinjau Dokumen Rekap</span>
+      <!-- Modal Header -->
+      <div class="flex justify-between items-center px-4 py-3 border-b border-stroke dark:border-strokedark bg-gray-2 dark:bg-meta-4 shrink-0">
+        <div class="flex items-center gap-3">
+            <i class="fas fa-file-pdf text-danger text-lg"></i>
+            <h3 class="font-bold text-black dark:text-white text-base">Pratinjau Dokumen Rekap</h3>
         </div>
-        <div class="sultan-preview-actions">
-            <a href="#" id="unduh_linkDownloadHeader" class="sultan-preview-btn" target="_blank" title="Unduh File">UNDUH</a>
-            <a href="#" id="unduh_linkTabHeader" class="sultan-preview-btn" target="_blank" title="Buka di Tab Baru">TAB BARU</a>
-            <div class="sultan-preview-divider"></div>
-            <button type="button" class="sultan-preview-close" data-dismiss="modal">
-                <i class="fas fa-times"></i>
+        <div class="flex items-center gap-2 sm:gap-4">
+            <a href="#" id="unduh_linkDownloadHeader" class="text-sm font-medium text-primary hover:text-opacity-80" target="_blank" title="Unduh File"><i class="fas fa-download mr-1"></i> UNDUH</a>
+            <a href="#" id="unduh_linkTabHeader" class="text-sm font-medium text-meta-5 hover:text-opacity-80 border-l border-stroke dark:border-strokedark pl-2 sm:pl-4" target="_blank" title="Buka di Tab Baru"><i class="fas fa-external-link-alt mr-1"></i> TAB BARU</a>
+            
+            <button type="button" class="text-black dark:text-white hover:text-danger border-l border-stroke dark:border-strokedark pl-2 sm:pl-4 transition" data-dismiss="modal" aria-label="Close">
+                <i class="fas fa-times text-xl"></i>
             </button>
         </div>
       </div>
       
-      <div class="modal-body modal-body-full position-relative p-0" style="height: calc(100vh - 44px);">
-          <iframe id="unduh_framePreview" class="iframe-full w-100 h-100 border-0 d-none" src=""></iframe>
-          <div id="unduh_loadingPreviewPDF" class="d-flex h-100 align-items-center justify-content-center text-white-50 position-absolute w-100">
-              <div class="text-center">
-                  <div class="sultan-spinner-compact mb-3">
-                       <div class="spinner-border text-light" role="status"></div>
-                  </div>
-                  <p class="small font-weight-bold opacity-50">MEMUAT DOKUMEN...</p>
-              </div>
+      <!-- Modal Body -->
+      <div class="relative flex-grow w-full bg-body bg-opacity-5 dark:bg-black p-0 m-0 overflow-hidden">
+          <iframe id="unduh_framePreview" class="w-full h-full border-0 hidden" src=""></iframe>
+          
+          <!-- Loading overlay -->
+          <div id="unduh_loadingPreviewPDF" class="absolute inset-0 flex flex-col items-center justify-center bg-white dark:bg-boxdark z-10 transition-opacity">
+              <div class="h-10 w-10 animate-spin rounded-full border-4 border-solid border-primary border-t-transparent mb-4"></div>
+              <p class="text-sm font-bold text-body dark:text-bodydark tracking-widest uppercase">MEMUAT DOKUMEN...</p>
           </div>
       </div>
-    </div>
-  </div>
-</div>
-
     </div>
   </div>
 </div>
@@ -222,27 +209,27 @@
           var safeName = unduh_escapeHtml(item.name);
 
           if (item.type === 'folder') {
-              iconHtml = '<i class="fas fa-folder text-gold-sultan mr-2 fa-lg"></i>';
-              nameHtml = '<span class="font-weight-bold text-dark text-nowrap">' + safeName + '</span>';
-              btnAction = '<button type="button" class="btn btn-sm btn-outline-primary shadow-sm px-3 font-weight-bold btn-aksi-sultan unduh-btn-folder" data-id="' + item.id + '">Buka Folder</button>';
+              iconHtml = '<i class="fas fa-folder text-[#FFB018] mr-3 text-lg"></i>';
+              nameHtml = '<span class="font-bold text-black dark:text-white text-base truncate block max-w-[200px] sm:max-w-[400px] cursor-pointer hover:text-primary transition unduh-btn-folder" data-id="' + item.id + '">' + safeName + '</span>';
+              btnAction = '<button type="button" class="inline-flex rounded border border-primary px-3 py-1.5 text-xs font-medium text-primary hover:bg-primary hover:text-white transition unduh-btn-folder" data-id="' + item.id + '">Buka Folder</button>';
           } 
           else {
               var mime = item.mimeType;
-              if (mime.indexOf('pdf') !== -1) iconHtml = '<i class="fas fa-file-pdf text-danger mr-2 fa-lg"></i>';
-              else if (mime.indexOf('image') !== -1) iconHtml = '<i class="fas fa-file-image text-purple-sultan mr-2 fa-lg"></i>';
-              else if (mime.indexOf('spreadsheet') !== -1 || mime.indexOf('excel') !== -1) iconHtml = '<i class="fas fa-file-excel text-green-sultan mr-2 fa-lg"></i>';
-              else if (mime.indexOf('document') !== -1 || mime.indexOf('word') !== -1) iconHtml = '<i class="fas fa-file-word text-blue-sultan mr-2 fa-lg"></i>';
-              else iconHtml = '<i class="fas fa-file text-secondary mr-2 fa-lg"></i>';
+              if (mime.indexOf('pdf') !== -1) iconHtml = '<i class="fas fa-file-pdf text-danger mr-3 text-lg"></i>';
+              else if (mime.indexOf('image') !== -1) iconHtml = '<i class="fas fa-file-image text-meta-5 mr-3 text-lg"></i>';
+              else if (mime.indexOf('spreadsheet') !== -1 || mime.indexOf('excel') !== -1) iconHtml = '<i class="fas fa-file-excel text-meta-3 mr-3 text-lg"></i>';
+              else if (mime.indexOf('document') !== -1 || mime.indexOf('word') !== -1) iconHtml = '<i class="fas fa-file-word text-primary mr-3 text-lg"></i>';
+              else iconHtml = '<i class="fas fa-file text-body dark:text-bodydark mr-3 text-lg"></i>';
 
-              nameHtml = '<span class="text-dark font-weight-bold">' + safeName + '</span>';
-              btnAction = '<div class="d-flex flex-nowrap justify-content-center"><button type="button" class="btn btn-sm btn-success shadow-sm px-3 font-weight-bold btn-aksi-sultan unduh-btn-file" data-id="' + item.id + '" data-mime="' + item.mimeType + '"><i class="fas fa-eye mr-1"></i> LIHAT & UNDUH</button></div>';
+              nameHtml = '<span class="font-medium text-black dark:text-white text-sm truncate block max-w-[200px] sm:max-w-[400px]">' + safeName + '</span>';
+              btnAction = '<button type="button" class="inline-flex items-center gap-1.5 rounded bg-meta-3 px-3 py-1.5 text-xs font-medium text-white hover:bg-opacity-90 transition unduh-btn-file" data-id="' + item.id + '" data-mime="' + item.mimeType + '"><i class="fas fa-eye"></i> LIHAT</button>';
           }
 
-          arrRow.push('<span class="text-muted font-weight-bold small">' + (j + 1) + '</span>');
-          arrRow.push('<div class="d-flex align-items-center">' + iconHtml + ' ' + nameHtml + '</div>');
-          arrRow.push('<span class="small font-weight-bold text-muted">' + item.size + '</span>');
-          arrRow.push('<span class="small font-weight-bold text-muted">' + item.date + '</span>');
-          arrRow.push(btnAction);
+          arrRow.push('<span class="text-body dark:text-bodydark font-medium text-sm">' + (j + 1) + '</span>');
+          arrRow.push('<div class="flex items-center">' + iconHtml + nameHtml + '</div>');
+          arrRow.push('<span class="text-sm font-medium text-body dark:text-bodydark">' + item.size + '</span>');
+          arrRow.push('<span class="text-sm font-medium text-body dark:text-bodydark">' + item.date + '</span>');
+          arrRow.push('<div class="flex justify-center">' + btnAction + '</div>');
 
           dtArray.push(arrRow);
       }
@@ -253,17 +240,17 @@
               "destroy": true,
               "ordering": false, "pageLength": 10, "autoWidth": false,
               "deferRender": true, 
-              "dom": "<'row mb-2'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
-                     "<'row'<'col-sm-12'<'table-responsive sultan-scroll'tr>>>" +
-                     "<'row mt-3'<'col-sm-12 col-md-5 small text-muted'i><'col-sm-12 col-md-7'p>>",
+              "dom": "<'flex flex-col sm:flex-row justify-between items-center mb-4 gap-4'<'w-full sm:w-auto text-sm'l><'w-full sm:w-auto text-sm'f>>" +
+                     "<'w-full overflow-x-auto dt-scroll-parent custom-scrollbar'tr>" +
+                     "<'flex flex-col sm:flex-row justify-between items-center mt-4 gap-4'<'w-full sm:w-auto text-sm text-body dark:text-bodydark'i><'w-full sm:w-auto mt-2 sm:mt-0 text-sm'p>>",
               "language": { 
                   "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", 
-                  "search": "", "searchPlaceholder": "Cari File...",
-                  "emptyTable": '<div class="py-5 text-center text-muted"><i class="fas fa-folder-open fa-3x mb-3 opacity-30"></i><br>Folder ini kosong.</div>' 
+                  "search": "", "searchPlaceholder": "Cari File/Folder...",
+                  "emptyTable": '<div class="py-10 text-center"><i class="fas fa-folder-open text-5xl mb-4 text-body dark:text-bodydark opacity-50"></i><br><p class="text-black dark:text-white font-medium text-lg">Folder ini kosong</p></div>' 
               },
               "columnDefs": [
-                  { "targets": [0,2,3,4], "className": "text-center align-middle" },
-                  { "targets": 1, "className": "text-left align-middle px-3" }
+                  { "targets": [0,2,3,4], "className": "text-center align-middle border-b border-stroke dark:border-strokedark px-4 py-3" },
+                  { "targets": 1, "className": "text-left align-middle px-4 py-3 border-b border-stroke dark:border-strokedark" }
               ]
           });
           
@@ -283,23 +270,23 @@
 
   function unduh_renderSkeleton() {
       var rows = 6;
-      var html = '<div class="table-responsive sultan-scroll border rounded overflow-hidden">' +
-                 '<table class="table mb-0">' +
-                 '<thead><tr class="bg-light">';
+      var html = '<div class="rounded-sm border border-stroke bg-white dark:border-strokedark dark:bg-boxdark overflow-hidden w-full">' +
+                 '<table class="w-full table-auto">' +
+                 '<thead><tr class="bg-gray-2 dark:bg-meta-4">';
       
       for(var h=0; h<5; h++) {
-          html += '<th class="py-2 px-3"><div class="sultan-skeleton m-auto" style="height: 14px; width: 60%;"></div></th>';
+          html += '<th class="py-3 px-4"><div class="h-4 bg-stroke dark:bg-strokedark animate-pulse rounded w-2/3 mx-auto"></div></th>';
       }
       
       html += '</tr></thead><tbody>';
       
       for(var i=0; i<rows; i++) {
-          html += '<tr>' +
-                  '<td class="text-center"><div class="sultan-skeleton m-auto" style="height: 12px; width: 20px;"></div></td>' +
-                  '<td><div class="d-flex align-items-center"><div class="sultan-skeleton mr-2" style="height: 20px; width: 20px; border-radius: 4px;"></div><div class="sultan-skeleton" style="height: 12px; width: 70%;"></div></div></td>' +
-                  '<td><div class="sultan-skeleton m-auto" style="height: 12px; width: 50px;"></div></td>' +
-                  '<td><div class="sultan-skeleton m-auto" style="height: 12px; width: 80px;"></div></td>' +
-                  '<td><div class="sultan-skeleton m-auto" style="height: 24px; width: 100px; border-radius: 4px;"></div></td>' +
+          html += '<tr class="border-b border-stroke dark:border-strokedark">' +
+                  '<td class="py-3 px-4 text-center"><div class="h-3 w-6 bg-stroke dark:bg-strokedark animate-pulse rounded mx-auto"></div></td>' +
+                  '<td class="py-3 px-4"><div class="flex items-center gap-3"><div class="h-5 w-5 bg-stroke dark:bg-strokedark animate-pulse rounded"></div><div class="h-3 w-48 bg-stroke dark:bg-strokedark animate-pulse rounded"></div></div></td>' +
+                  '<td class="py-3 px-4"><div class="h-3 w-12 bg-stroke dark:bg-strokedark animate-pulse rounded mx-auto"></div></td>' +
+                  '<td class="py-3 px-4"><div class="h-3 w-20 bg-stroke dark:bg-strokedark animate-pulse rounded mx-auto"></div></td>' +
+                  '<td class="py-3 px-4"><div class="h-6 w-20 bg-stroke dark:bg-strokedark animate-pulse rounded mx-auto"></div></td>' +
                   '</tr>';
       }
       
@@ -353,61 +340,34 @@
     font-size: 0.72rem !important; 
     font-weight: 800; 
     text-transform: uppercase; 
-    border-bottom: 2px solid #adb5bd !important; 
-    padding: 2px 4px !important; 
+    border-bottom: 1px solid var(--color-stroke) !important; 
+    padding: 12px 16px !important; 
     letter-spacing: 0.2px; 
-    line-height: 1.1 !important;
-    background-color: #dee2e6 !important;
-    color: #1a202c !important;
     position: sticky !important;
     top: 0 !important;
     z-index: 10 !important;
 }
 
 #unduh_tabelUtama tbody td { 
-    padding: 0px 8px !important; 
-    border-bottom: 1px solid #f1f5f9; 
-    line-height: 1.0 !important; 
+    border-bottom: 1px solid var(--color-stroke) !important; 
     position: relative !important; 
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
 }
 
+/* Hover Background Effect */
 #unduh_tabelUtama tbody tr:hover td::after { 
     content: ""; 
     position: absolute; 
     top: 0; left: 0; right: 0; bottom: 0; 
-    background-color: rgba(0, 0, 0, 0.05); 
+    background-color: var(--color-gray-2); 
     pointer-events: none; 
     z-index: 2; 
 }
-
-.btn-sultan-nav {
-    border: 1px solid #dee2e6 !important;
-    padding: 0.25rem 0.5rem !important;
-    border-radius: 6px !important;
-    transition: all 0.2s ease;
+.dark #unduh_tabelUtama tbody tr:hover td::after { 
+    background-color: var(--color-meta-4); 
 }
 
-.btn-sultan-nav:hover {
-    background-color: #f8f9fa !important;
-    border-color: #adb5bd !important;
-    transform: translateY(-1px);
-}
-
-.btn-sultan-success {
-    background: linear-gradient(135deg, #28a745 0%, #218838 100%) !important;
-    border: none !important;
-    color: white !important;
-    transition: all 0.3s ease;
-}
-
-.btn-sultan-success:hover {
-    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3) !important;
-    transform: translateY(-2px);
-    background: linear-gradient(135deg, #218838 0%, #1e7e34 100%) !important;
-}
-
-.text-gold-sultan { color: #d4af37 !important; }
-.text-purple-sultan { color: #6b46c1 !important; }
-.text-green-sultan { color: #2f855a !important; }
-.text-blue-sultan { color: #2b6cb0 !important; }
+/* Prevent tooltip hiding */
+.modal-open .modal { overflow-x: hidden; overflow-y: auto; }
 </style>
