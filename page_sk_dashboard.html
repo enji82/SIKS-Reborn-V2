@@ -459,7 +459,7 @@
     var html = "";
     list.forEach(function (nama, i) {
       html += `
-        <div class="flex items-center py-2.5 px-4 mb-2 bg-white dark:bg-boxdark border border-gray-100 dark:border-gray-800 rounded-xl shadow-sm hover:border-primary transition-all group">
+        <div class="flex items-center py-2.5 px-4 mb-2 bg-white dark:bg-gray-800/40 border border-gray-100 dark:border-gray-800 rounded-xl shadow-sm hover:border-primary transition-all group">
             <div class="flex h-6 w-6 items-center justify-center rounded-lg bg-gray-50 dark:bg-black/20 text-[10px] font-black text-gray-400 group-hover:bg-primary group-hover:text-white transition-colors mr-3">
                 ${i + 1}
             </div>
@@ -508,6 +508,8 @@
         'warning': { bg: 'rgba(245,158,11,0.1)', fg: '#f59e0b', icon: 'clock' } 
     };
 
+    const isDark = document.documentElement.classList.contains('dark');
+
     list.forEach(function (item, idx) {
       var colorKey = 'warning';
       var s = String(item.status).toLowerCase();
@@ -516,10 +518,13 @@
       else if (s.indexOf('tolak') !== -1) colorKey = 'danger';
       var c = colorMap[colorKey];
       
+      // Adjusted background for dark mode to prevent "white" circles
+      const iconBg = isDark ? `rgba(${colorKey === 'success' ? '16,185,129' : colorKey === 'info' ? '59,130,246' : colorKey === 'danger' ? '239,68,68' : '245,158,11'}, 0.2)` : c.bg;
+      
       el.append(`
         <div class="flex gap-4 mb-6 last:mb-0 relative">
             ${idx < list.length - 1 ? '<div class="absolute left-[17px] top-8 w-[1px] h-full bg-gray-100 dark:bg-gray-800"></div>' : ''}
-            <div class="z-10 flex h-[34px] w-[34px] items-center justify-center rounded-full bg-white dark:bg-boxdark border-2 border-white dark:border-boxdark shadow-sm" style="background:${c.bg};">
+            <div class="z-10 flex h-[34px] w-[34px] items-center justify-center rounded-full border-2 border-white dark:border-boxdark shadow-sm transition-colors" style="background:${iconBg};">
                 <i class="fas fa-${c.icon} text-xs" style="color:${c.fg};"></i>
             </div>
             <div class="flex-1 pb-2">
