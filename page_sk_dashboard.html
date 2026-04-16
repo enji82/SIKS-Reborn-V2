@@ -5,18 +5,24 @@
 
 
   <!-- 1. FILTER BAR -->
-  <div class="rounded-sm border border-stroke bg-white px-5 py-4 shadow-default dark:border-strokedark dark:bg-boxdark">
+  <div class="sultan-card p-4 md:p-5">
     <div class="flex flex-wrap items-center justify-between gap-4">
-      <div class="flex flex-wrap items-center gap-4">
-        <select id="dashsk_filterTahun" class="rounded border border-stroke bg-transparent py-1.5 px-3 text-sm font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark"></select>
-        <select id="dashsk_filterSemester" class="rounded border border-stroke bg-transparent py-1.5 px-3 text-sm font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark">
-            <option value="">- Semua Semester -</option>
-            <option value="Semester 1">Semester 1</option>
-            <option value="Semester 2">Semester 2</option>
-        </select>
+      <div class="flex flex-wrap items-center gap-3">
+        <div class="relative">
+          <select id="dashsk_filterTahun" class="appearance-none rounded-lg border border-gray-200 bg-gray-50 py-2 pl-4 pr-10 text-sm font-bold text-black outline-none transition focus:border-primary dark:border-gray-700 dark:bg-boxdark dark:text-white dark:focus:border-primary"></select>
+          <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400"><i class="fas fa-chevron-down text-[10px]"></i></div>
+        </div>
+        <div class="relative">
+          <select id="dashsk_filterSemester" class="appearance-none rounded-lg border border-gray-200 bg-gray-50 py-2 pl-4 pr-10 text-sm font-bold text-black outline-none transition focus:border-primary dark:border-gray-700 dark:bg-boxdark dark:text-white dark:focus:border-primary">
+              <option value="">- Semua Semester -</option>
+              <option value="Semester 1">Semester 1</option>
+              <option value="Semester 2">Semester 2</option>
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400"><i class="fas fa-chevron-down text-[10px]"></i></div>
+        </div>
       </div>
       <div>
-        <button type="button" id="dashsk_btnRefresh" class="inline-flex items-center justify-center gap-2.5 rounded-md bg-primary py-2 px-6 text-center font-medium text-white hover:bg-opacity-90 lg:px-8">
+        <button type="button" id="dashsk_btnRefresh" class="sultan-btn sultan-btn-primary shadow-sm">
             <i class="fas fa-sync-alt"></i> PERBARUI DATA
         </button>
       </div>
@@ -24,91 +30,91 @@
   </div>
 
   <!-- 2. KPI METRICS -->
-  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+  <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
     <!-- Total Berkas -->
-    <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
-        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4 mb-3">
-            <i class="fas fa-file-export text-primary"></i>
+    <div class="sultan-card p-4 md:p-6 hover:scale-[1.02] transition-transform">
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary mb-3.5">
+            <i class="fas fa-file-export"></i>
         </div>
-        <div>
-            <h4 class="text-xl font-bold text-black dark:text-white" id="dashsk_valTotal">0</h4>
-            <span class="text-xs font-medium text-body">TOTAL BERKAS</span>
+        <div class="flex flex-col gap-0.5">
+            <h4 class="text-2xl font-black text-black dark:text-white leading-none" id="dashsk_valTotal">0</h4>
+            <span class="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Total Berkas</span>
         </div>
-        <div class="mt-2 text-[10px] text-body italic" id="dashsk_subTotal">—</div>
+        <div class="mt-2 text-[10px] text-gray-400 italic truncate" id="dashsk_subTotal">—</div>
     </div>
 
     <!-- Berkas Valid -->
-    <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
-        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4 mb-3">
-            <i class="fas fa-check-double text-success"></i>
+    <div class="sultan-card p-4 md:p-6 hover:scale-[1.02] transition-transform">
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-success/10 text-success mb-3.5">
+            <i class="fas fa-check-double"></i>
         </div>
-        <div>
-            <h4 class="text-xl font-bold text-black dark:text-white" id="dashsk_valDisetujui">0</h4>
-            <span class="text-xs font-medium text-body">BERKAS VALID</span>
+        <div class="flex flex-col gap-0.5">
+            <h4 class="text-2xl font-black text-black dark:text-white leading-none" id="dashsk_valDisetujui">0</h4>
+            <span class="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Berkas Valid</span>
         </div>
-        <div class="mt-2 text-[10px] text-body italic" id="dashsk_subValid">—</div>
+        <div class="mt-2 text-[10px] text-gray-400 italic truncate" id="dashsk_subValid">—</div>
     </div>
 
     <!-- Realisasi -->
-    <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
-        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4 mb-3">
-            <i class="fas fa-bullseye text-warning"></i>
+    <div class="sultan-card p-4 md:p-6 hover:scale-[1.02] transition-transform">
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-warning/10 text-warning mb-3.5">
+            <i class="fas fa-bullseye"></i>
         </div>
-        <div>
-            <h4 class="text-xl font-bold text-black dark:text-white"><span id="dashsk_valProgress">0</span>%</h4>
-            <span class="text-xs font-medium text-body">REALISASI KEPATUHAN</span>
+        <div class="flex flex-col gap-0.5">
+            <h4 class="text-2xl font-black text-black dark:text-white leading-none"><span id="dashsk_valProgress">0</span>%</h4>
+            <span class="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Realisasi</span>
         </div>
-        <div class="mt-2 text-[10px] text-body italic">Target Kepatuhan Awal</div>
+        <div class="mt-2 text-[10px] text-gray-400 italic">Target Kepatuhan Awal</div>
     </div>
 
     <!-- Belum Lapor -->
-    <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark cursor-pointer hover:bg-gray-50 dark:hover:bg-meta-4 transition-colors" id="dashsk_btnModalBelum">
-        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-danger/10 mb-3">
-            <i class="fas fa-clock text-danger"></i>
+    <div class="sultan-card p-4 md:p-6 hover:scale-[1.02] transition-transform border-l-4 border-l-danger cursor-pointer" id="dashsk_btnModalBelum">
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-danger/10 text-danger mb-3.5">
+            <i class="fas fa-clock"></i>
         </div>
-        <div>
-            <h4 class="text-xl font-bold text-black dark:text-white" id="dashsk_valBelum">0</h4>
-            <span class="text-xs font-medium text-body uppercase">Belum Lapor</span>
+        <div class="flex flex-col gap-0.5">
+            <h4 class="text-2xl font-black text-black dark:text-white leading-none" id="dashsk_valBelum">0</h4>
+            <span class="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Belum Lapor</span>
         </div>
-        <div class="mt-2 text-[10px] font-bold text-danger">LIHAT DAFTAR &rarr;</div>
+        <div class="mt-2 text-[10px] font-black text-danger tracking-tighter uppercase flex items-center gap-1">LIHAT DAFTAR <i class="fas fa-chevron-right text-[8px]"></i></div>
     </div>
   </div>
 
   <!-- 3. INFO PILLS (SECONDARY METRICS) -->
-  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
     <!-- Sedang Diproses -->
-    <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+    <div class="sultan-card p-4 md:p-5">
         <div class="flex items-center gap-4">
             <div class="flex h-11 w-11 items-center justify-center rounded-full bg-warning/10 text-warning">
                 <i class="fas fa-hourglass-half"></i>
             </div>
-            <div>
-                <h4 class="text-xl font-bold text-black dark:text-white dashsk-count-up" id="dashsk_valDiproses">0</h4>
-                <span class="text-xs font-medium text-body">Sedang Diproses</span>
+            <div class="flex flex-col">
+                <h4 class="text-xl font-bold text-black dark:text-white dashsk-count-up leading-tight" id="dashsk_valDiproses">0</h4>
+                <span class="text-[10px] font-bold text-gray-400 uppercase">Diproses</span>
             </div>
         </div>
     </div>
     <!-- Perlu Revisi -->
-    <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+    <div class="sultan-card p-4 md:p-5">
         <div class="flex items-center gap-4">
             <div class="flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 text-primary">
                 <i class="fas fa-file-signature"></i>
             </div>
-            <div>
-                <h4 class="text-xl font-bold text-black dark:text-white dashsk-count-up" id="dashsk_valRevisi">0</h4>
-                <span class="text-xs font-medium text-body">Perlu Revisi</span>
+            <div class="flex flex-col">
+                <h4 class="text-xl font-bold text-black dark:text-white dashsk-count-up leading-tight" id="dashsk_valRevisi">0</h4>
+                <span class="text-[10px] font-bold text-gray-400 uppercase">Revisi</span>
             </div>
         </div>
     </div>
     <!-- Ditolak -->
-    <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+    <div class="sultan-card p-4 md:p-5">
         <div class="flex items-center gap-4">
             <div class="flex h-11 w-11 items-center justify-center rounded-full bg-danger/10 text-danger">
                 <i class="fas fa-ban"></i>
             </div>
-            <div>
-                <h4 class="text-xl font-bold text-black dark:text-white dashsk-count-up" id="dashsk_valDitolak">0</h4>
-                <span class="text-xs font-medium text-body">Ditolak / Tidak Valid</span>
+            <div class="flex flex-col">
+                <h4 class="text-xl font-bold text-black dark:text-white dashsk-count-up leading-tight" id="dashsk_valDitolak">0</h4>
+                <span class="text-[10px] font-bold text-gray-400 uppercase">Ditolak</span>
             </div>
         </div>
     </div>
@@ -117,48 +123,48 @@
   <!-- 4. ANALYTICS (CHARTS) -->
   <div class="grid grid-cols-1 gap-4 lg:grid-cols-12">
     <!-- Trend Chart -->
-    <div class="col-span-1 lg:col-span-8 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-        <div class="border-b border-stroke py-4 px-6.5 dark:border-strokedark flex justify-between items-center">
+    <div class="col-span-1 lg:col-span-8 sultan-card overflow-hidden">
+        <div class="border-b border-gray-100 py-4 px-6 dark:border-gray-800 flex justify-between items-center bg-gray-50/30 dark:bg-black/10">
             <div>
                 <h3 class="font-bold text-black dark:text-white">Tren Pengiriman SK</h3>
-                <p class="text-[10px] text-body">Total pengunggahan berkas bulan berjalan</p>
+                <p class="text-[10px] text-gray-400 font-medium">Total pengunggahan berkas bulan berjalan</p>
             </div>
-            <span class="inline-flex rounded-full bg-primary/10 py-1 px-3 text-xs font-medium text-primary">LIVE</span>
+            <span class="inline-flex rounded-full bg-emerald-500/10 py-1 px-3 text-[10px] font-bold text-emerald-600 animate-pulse">LIVE ANALYTICS</span>
         </div>
-        <div class="p-6.5" style="height: 350px;">
+        <div class="p-6" style="height: 350px;">
             <canvas id="dashsk_chartTrend"></canvas>
         </div>
     </div>
 
     <!-- Composition Chart -->
-    <div class="col-span-1 lg:col-span-4 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-        <div class="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
+    <div class="col-span-1 lg:col-span-4 sultan-card overflow-hidden">
+        <div class="border-b border-gray-100 py-4 px-6 dark:border-gray-800 bg-gray-50/30 dark:bg-black/10">
             <h3 class="font-bold text-black dark:text-white">Komposisi Status</h3>
         </div>
-        <div class="p-6.5">
+        <div class="p-6">
             <div class="relative h-[220px]">
                 <canvas id="dashsk_chartStatus"></canvas>
                 <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none">
-                    <span class="block text-[10px] font-bold text-body uppercase tracking-widest">TOTAL</span>
-                    <span class="text-xl font-bold text-black dark:text-white" id="dashsk_chartTotalCenter">0</span>
+                    <span class="block text-[8px] font-black text-gray-400 uppercase tracking-[0.2em]">TOTAL</span>
+                    <span class="text-2xl font-black text-black dark:text-white leading-none" id="dashsk_chartTotalCenter">0</span>
                 </div>
             </div>
-            <div class="mt-6 space-y-3">
-                <div class="flex items-center justify-between text-sm font-medium">
-                    <span class="flex items-center gap-2"><span class="h-3 w-3 rounded-full bg-[#10b981]"></span> Disetujui</span>
-                    <span id="dashsk_txtChartSetuju">0</span>
+            <div class="mt-6 grid grid-cols-2 gap-3">
+                <div class="flex flex-col p-2.5 rounded-xl bg-gray-50 dark:bg-black/20 border border-gray-100 dark:border-gray-800">
+                    <span class="text-[10px] font-bold text-gray-400 uppercase leading-none mb-1 text-center">Disetujui</span>
+                    <span class="text-sm font-black text-emerald-600 text-center" id="dashsk_txtChartSetuju">0</span>
                 </div>
-                <div class="flex items-center justify-between text-sm font-medium">
-                    <span class="flex items-center gap-2"><span class="h-3 w-3 rounded-full bg-[#fbbf24]"></span> Diproses</span>
-                    <span id="dashsk_txtChartProses">0</span>
+                <div class="flex flex-col p-2.5 rounded-xl bg-gray-50 dark:bg-black/20 border border-gray-100 dark:border-gray-800">
+                    <span class="text-[10px] font-bold text-gray-400 uppercase leading-none mb-1 text-center">Diproses</span>
+                    <span class="text-sm font-black text-amber-500 text-center" id="dashsk_txtChartProses">0</span>
                 </div>
-                <div class="flex items-center justify-between text-sm font-medium">
-                    <span class="flex items-center gap-2"><span class="h-3 w-3 rounded-full bg-[#6366f1]"></span> Revisi</span>
-                    <span id="dashsk_txtChartRevisi">0</span>
+                <div class="flex flex-col p-2.5 rounded-xl bg-gray-50 dark:bg-black/20 border border-gray-100 dark:border-gray-800">
+                    <span class="text-[10px] font-bold text-gray-400 uppercase leading-none mb-1 text-center">Revisi</span>
+                    <span class="text-sm font-black text-indigo-500 text-center" id="dashsk_txtChartRevisi">0</span>
                 </div>
-                <div class="flex items-center justify-between text-sm font-medium">
-                    <span class="flex items-center gap-2"><span class="h-3 w-3 rounded-full bg-[#ef4444]"></span> Ditolak</span>
-                    <span id="dashsk_txtChartTolak">0</span>
+                <div class="flex flex-col p-2.5 rounded-xl bg-gray-50 dark:bg-black/20 border border-gray-100 dark:border-gray-800">
+                    <span class="text-[10px] font-bold text-gray-400 uppercase leading-none mb-1 text-center">Ditolak</span>
+                    <span class="text-sm font-black text-rose-500 text-center" id="dashsk_txtChartTolak">0</span>
                 </div>
             </div>
         </div>
@@ -168,24 +174,24 @@
   <!-- 5. LISTS & ACTIVITY -->
   <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
     <!-- Belum Lapor List -->
-    <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark overflow-hidden">
-        <div class="border-b border-stroke py-4 px-6.5 dark:border-strokedark flex justify-between items-center">
-            <h3 class="font-bold text-danger flex items-center gap-2">
-                <i class="fas fa-exclamation-triangle"></i> Belum Lapor
+    <div class="sultan-card overflow-hidden">
+        <div class="border-b border-gray-100 py-4 px-6 dark:border-gray-800 flex justify-between items-center bg-gray-50/30 dark:bg-black/10">
+            <h3 class="font-bold text-black dark:text-white flex items-center gap-2">
+                <i class="fas fa-exclamation-triangle text-danger"></i> Unit Belum Lapor
             </h3>
             <div class="flex items-center gap-3">
-                <span class="inline-flex items-center justify-center rounded-full bg-danger py-1 px-3 text-sm font-bold text-white" id="dashsk_badgeBelumCount">0</span>
-                <button type="button" class="text-xs font-bold text-danger hover:underline" id="dashsk_btnSalinDaftar">
+                <span class="inline-flex items-center justify-center rounded-full bg-danger py-0.5 px-2.5 text-[10px] font-black text-white" id="dashsk_badgeBelumCount">0</span>
+                <button type="button" class="text-[10px] font-black text-primary hover:text-primary/80 transition-colors bg-primary/10 px-2 py-1 rounded" id="dashsk_btnSalinDaftar">
                     <i class="fas fa-copy"></i> SALIN
                 </button>
             </div>
         </div>
-        <div class="p-4 bg-gray-2 dark:bg-strokedark">
+        <div class="p-4 bg-gray-50/50 dark:bg-black/5">
             <div class="relative">
                 <span class="absolute left-4 top-1/2 -translate-y-1/2">
-                    <i class="fas fa-search text-body"></i>
+                    <i class="fas fa-search text-gray-300"></i>
                 </span>
-                <input type="text" id="dashsk_cariBelumLangsung" placeholder="Cari unit sekolah..." class="w-full rounded-full border border-stroke bg-white py-2 pl-12 pr-4 outline-none transition focus:border-primary dark:border-strokedark dark:bg-boxdark shadow-sm">
+                <input type="text" id="dashsk_cariBelumLangsung" placeholder="Cari unit sekolah..." class="w-full rounded-xl border border-gray-200 bg-white py-2 pl-11 pr-4 text-xs font-medium outline-none transition focus:border-primary dark:border-gray-700 dark:bg-boxdark dark:text-white shadow-sm">
             </div>
         </div>
         <div id="dashsk_containerBelum" style="max-height: 400px; overflow-y: auto;" class="sultan-scroll">
@@ -194,11 +200,13 @@
     </div>
 
     <!-- Aktivitas Terakhir -->
-    <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark overflow-hidden">
-        <div class="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
-            <h3 class="font-bold text-black dark:text-white">Aktivitas Terakhir</h3>
+    <div class="sultan-card overflow-hidden">
+        <div class="border-b border-gray-100 py-4 px-6 dark:border-gray-800 bg-gray-50/30 dark:bg-black/10">
+            <h3 class="font-bold text-black dark:text-white flex items-center gap-2">
+                <i class="fas fa-bolt text-amber-500"></i> Aktivitas Terakhir
+            </h3>
         </div>
-        <div id="dashsk_timelineContainer" style="max-height: 480px; overflow-y: auto;" class="sultan-scroll p-6.5">
+        <div id="dashsk_timelineContainer" style="max-height: 485px; overflow-y: auto;" class="sultan-scroll p-6">
             <!-- Timeline injected here -->
         </div>
     </div>
@@ -208,54 +216,54 @@
 </section>
 
 <!-- TURBO STATUS BADGE -->
-<div id="dashsk_turboBadge" class="sk-turbo-badge shadow-lg border-maroon">
-    <i class="fas fa-bolt flash-animate"></i> TURBO ANALYTICS ACTIVE
+<div id="dashsk_turboBadge" class="fixed bottom-6 right-6 z-[100] hidden items-center gap-2 rounded-full bg-black/80 px-4 py-2 text-[10px] font-black text-white shadow-2xl backdrop-blur-md border border-white/10">
+    <i class="fas fa-bolt text-amber-400 animate-pulse"></i> TURBO ANALYTICS ACTIVE
 </div>
 
 <!-- MODAL BELUM LAPOR -->
-<div class="fixed inset-0 z-999999 flex items-center justify-center bg-black/50 overflow-y-auto px-4 py-4" id="dashsk_modalBelumLapor" style="display:none;" x-data="{ }">
-    <div class="w-full max-w-4xl rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark animate-zoom">
+<div class="fixed inset-0 z-[99999] flex items-center justify-center bg-black/60 backdrop-blur-sm overflow-y-auto px-4 py-4" id="dashsk_modalBelumLapor" style="display:none;">
+    <div class="w-full max-w-2xl rounded-2xl border border-gray-200 bg-white shadow-2xl dark:border-gray-800 dark:bg-boxdark animate-reveal overflow-hidden">
         <!-- Header -->
-        <div class="flex items-center justify-between border-b border-stroke py-4 px-6 dark:border-strokedark">
-            <h3 class="font-bold text-black dark:text-white flex items-center gap-2">
-                <i class="fas fa-clipboard-list text-primary"></i> Daftar Unit Belum Lapor
+        <div class="flex items-center justify-between border-b border-gray-100 py-4 px-6 dark:border-gray-800 bg-gray-50/50 dark:bg-black/10">
+            <h3 class="font-black text-black dark:text-white flex items-center gap-2 text-sm uppercase tracking-wider">
+                <i class="fas fa-clipboard-list text-primary"></i> Daftar Belum Lapor
             </h3>
-            <button type="button" class="text-body hover:text-primary transition-colors" onclick="$('#dashsk_modalBelumLapor').fadeOut()">
-                <i class="fas fa-times text-xl"></i>
+            <button type="button" class="flex h-8 w-8 items-center justify-center rounded-full bg-white dark:bg-black/20 text-gray-400 hover:text-danger hover:bg-danger/10 transition-all" onclick="$('#dashsk_modalBelumLapor').fadeOut()">
+                <i class="fas fa-times"></i>
             </button>
         </div>
 
         <!-- Body -->
-        <div class="p-6.5">
-            <div class="mb-5 flex items-center gap-4 rounded-sm border-l-4 border-warning bg-warning/10 py-4 px-6">
-                <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-warning text-white">
-                    <i class="fas fa-info-circle"></i>
+        <div class="p-6">
+            <div class="mb-5 flex items-center gap-4 rounded-xl border border-amber-200/50 bg-amber-500/5 py-4 px-5 dark:border-amber-500/20">
+                <div class="flex h-10 w-10 min-w-[40px] items-center justify-center rounded-lg bg-amber-500 text-white shadow-lg shadow-amber-500/20">
+                    <i class="fas fa-info-circle text-lg"></i>
                 </div>
                 <div class="w-full">
-                    <p class="text-xs text-body">Menampilkan data Awal Semester periode:</p>
-                    <h5 class="font-bold text-black dark:text-white" id="dashsk_lblPeriodeBelum">-</h5>
+                    <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest leading-none mb-1">Periode Laporan</p>
+                    <h5 class="font-black text-black dark:text-white text-sm" id="dashsk_lblPeriodeBelum">-</h5>
                 </div>
             </div>
 
             <div class="relative mb-4">
                 <span class="absolute left-4 top-1/2 -translate-y-1/2">
-                    <i class="fas fa-search text-body"></i>
+                    <i class="fas fa-search text-gray-300"></i>
                 </span>
-                <input type="text" id="dashsk_inputCariBelumModal" placeholder="Cari unit sekolah di sini..." class="w-full rounded border border-stroke bg-transparent py-2.5 pl-12 pr-4 outline-none transition focus:border-primary dark:border-strokedark dark:bg-boxdark">
+                <input type="text" id="dashsk_inputCariBelumModal" placeholder="Filter sekolah..." class="w-full rounded-xl border border-gray-200 bg-gray-50/50 py-3 pl-11 pr-4 text-xs font-bold outline-none transition focus:border-primary dark:border-gray-800 dark:bg-black/20 dark:text-white">
             </div>
 
-            <div class="max-h-[400px] overflow-y-auto sultan-scroll border border-stroke dark:border-strokedark rounded-sm bg-gray-2 dark:bg-strokedark p-2">
+            <div class="max-h-[350px] overflow-y-auto sultan-scroll pr-1">
                 <div id="dashsk_listBelumBodyModal"></div>
             </div>
         </div>
 
         <!-- Footer -->
-        <div class="flex flex-wrap items-center justify-between border-t border-stroke py-4 px-6.5 dark:border-strokedark gap-4">
-            <button type="button" class="inline-flex items-center justify-center gap-2.5 rounded-md border border-primary py-2 px-6 text-center font-medium text-primary hover:bg-opacity-90 lg:px-8 transition-colors" id="dashsk_btnSalinModal">
+        <div class="flex flex-wrap items-center justify-between border-t border-gray-100 py-4 px-6 dark:border-gray-800 bg-gray-50/50 dark:bg-black/10 gap-4">
+            <button type="button" class="sultan-btn sultan-btn-white !text-[10px] !py-2" id="dashsk_btnSalinModal">
                 <i class="fas fa-copy"></i> SALIN DAFTAR
             </button>
-            <button type="button" class="inline-flex items-center justify-center gap-2.5 rounded-md bg-primary py-2 px-6 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 transition-colors" onclick="$('#dashsk_modalBelumLapor').fadeOut()">
-                TUTUP
+            <button type="button" class="sultan-btn sultan-btn-primary !text-[10px] !py-2" onclick="$('#dashsk_modalBelumLapor').fadeOut()">
+                <i class="fas fa-check"></i> MENGERTI
             </button>
         </div>
     </div>
@@ -436,12 +444,12 @@
 
     if (list.length === 0) {
       var msg = `
-        <div class="text-center py-5">
-            <div class="card-icon-wrapper bg-emerald-light mx-auto mb-3" style="width: 60px; height: 60px;">
-                <i class="fas fa-check fa-lg text-emerald"></i>
+        <div class="text-center py-8">
+            <div class="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-500 mx-auto mb-4">
+                <i class="fas fa-check-double fa-lg"></i>
             </div>
-            <h6 class="font-weight-bold text-dark mb-1">Nihil! Semua Unit Sudah Lapor</h6>
-            <p class="small text-muted mb-0">Tingkat kepatuhan unit 100%.</p>
+            <h6 class="font-bold text-black dark:text-white mb-1">Semua Unit Sudah Lapor</h6>
+            <p class="text-[10px] text-gray-400 font-medium">Tingkat kepatuhan unit saat ini 100%.</p>
         </div>
       `;
       elBody.html(msg); elModal.html(msg);
@@ -451,12 +459,12 @@
     var html = "";
     list.forEach(function (nama, i) {
       html += `
-        <div class="d-flex align-items-center py-2 px-3 mb-1 bg-white rounded-lg border-bottom sk-belum-item transition-all hover-bg-light">
-            <div class="d-flex align-items-center justify-content-center bg-maroon-light rounded-circle mr-3" style="width: 24px; height: 24px; min-width: 24px;">
-                <span class="x-small font-weight-bold text-maroon">${i + 1}</span>
+        <div class="flex items-center py-2.5 px-4 mb-2 bg-white dark:bg-boxdark border border-gray-100 dark:border-gray-800 rounded-xl shadow-sm hover:border-primary transition-all group">
+            <div class="flex h-6 w-6 items-center justify-center rounded-lg bg-gray-50 dark:bg-black/20 text-[10px] font-black text-gray-400 group-hover:bg-primary group-hover:text-white transition-colors mr-3">
+                ${i + 1}
             </div>
-            <span class="font-weight-bold text-dark x-small">${nama}</span>
-            <i class="fas fa-chevron-right ml-auto text-muted opacity-20 x-small"></i>
+            <span class="text-[11px] font-bold text-gray-700 dark:text-gray-300">${nama}</span>
+            <i class="fas fa-chevron-right ml-auto text-gray-200 dark:text-gray-800 text-[8px]"></i>
         </div>
       `;
     });
@@ -489,15 +497,15 @@
   function dashsk_renderTimeline(list) {
     var el = $('#dashsk_timelineContainer'); el.empty();
     if (!list || list.length === 0) {
-      el.html('<div class="text-center p-5 text-muted small"><i class="fas fa-inbox fa-3x mb-3 d-block opacity-20 text-maroon"></i><h6 class="font-weight-bold">Belum Ada Aktivitas</h6><p class="mb-0">Aktivitas sinkronisasi akan muncul di sini.</p></div>');
+      el.html('<div class="text-center py-10"><i class="fas fa-inbox fa-3x mb-4 text-gray-100 dark:text-gray-800"></i><h6 class="font-bold text-gray-300 italic">Belum Ada Aktivitas</h6></div>');
       return;
     }
     
     var colorMap = { 
-        'success': { bg: 'rgba(52,211,153,0.1)', fg: '#059669', icon: 'check-circle' }, 
-        'info': { bg: 'rgba(96,165,250,0.1)', fg: '#2563eb', icon: 'sync-alt' }, 
-        'danger': { bg: 'rgba(248,113,113,0.1)', fg: '#dc2626', icon: 'times-circle' }, 
-        'warning': { bg: 'rgba(251,191,36,0.1)', fg: '#d97706', icon: 'clock' } 
+        'success': { bg: 'rgba(16,185,129,0.1)', fg: '#10b981', icon: 'check-circle' }, 
+        'info': { bg: 'rgba(59,130,246,0.1)', fg: '#3b82f6', icon: 'sync-alt' }, 
+        'danger': { bg: 'rgba(239,68,68,0.1)', fg: '#ef4444', icon: 'times-circle' }, 
+        'warning': { bg: 'rgba(245,158,11,0.1)', fg: '#f59e0b', icon: 'clock' } 
     };
 
     list.forEach(function (item, idx) {
@@ -509,22 +517,19 @@
       var c = colorMap[colorKey];
       
       el.append(`
-        <div class="d-flex mb-3 transition-all" style="gap: 1rem;">
-            <div class="position-relative">
-                <div class="d-flex align-items-center justify-content-center rounded-circle shadow-xs border border-white" style="background:${c.bg}; width: 34px; height: 34px; z-index: 2; position: relative;">
-                    <i class="fas fa-${c.icon} x-small" style="color:${c.fg};"></i>
-                </div>
-                ${idx < list.length - 1 ? '<div style="position: absolute; top: 34px; left: 50%; width: 1px; height: 30px; background: #e2e8f0; transform: translateX(-50%); z-index: 1;"></div>' : ''}
+        <div class="flex gap-4 mb-6 last:mb-0 relative">
+            ${idx < list.length - 1 ? '<div class="absolute left-[17px] top-8 w-[1px] h-full bg-gray-100 dark:bg-gray-800"></div>' : ''}
+            <div class="z-10 flex h-[34px] w-[34px] items-center justify-center rounded-full bg-white dark:bg-boxdark border-2 border-white dark:border-boxdark shadow-sm" style="background:${c.bg};">
+                <i class="fas fa-${c.icon} text-xs" style="color:${c.fg};"></i>
             </div>
-            <div class="flex-grow-1 bg-white py-2 px-3 rounded-lg border-bottom hover-bg-light transition-all overflow-hidden">
-                <div class="d-flex flex-wrap justify-content-between align-items-center gap-1">
-                    <h6 class="x-small font-weight-bold text-dark mb-0 text-truncate-sm" style="max-width: 100%; font-size: 11px;">${item.sekolah}</h6>
-                    <span class="xx-small text-muted font-weight-bold ml-auto"><i class="fas fa-clock mr-1 opacity-50"></i>${item.waktu}</span>
+            <div class="flex-1 pb-2">
+                <div class="flex items-center justify-between mb-1">
+                    <h6 class="text-[11px] font-black text-gray-800 dark:text-gray-200 line-clamp-1">${item.sekolah}</h6>
+                    <span class="text-[9px] font-bold text-gray-400 ml-2 whitespace-nowrap">${item.waktu}</span>
                 </div>
-                <div class="mt-1 d-flex align-items-center">
-                    <span class="badge-sultan bg-light px-2 py-0 font-weight-bold" style="color:${c.fg}; font-size: 10px; line-height: 1.4;">
-                        <i class="fas fa-dot-circle mr-1 opacity-50"></i>${item.status}
-                    </span>
+                <div class="flex items-center gap-1.5">
+                    <span class="inline-block h-1.5 w-1.5 rounded-full" style="background:${c.fg}"></span>
+                    <span class="text-[10px] font-bold text-gray-500 uppercase tracking-wide">${item.status}</span>
                 </div>
             </div>
         </div>
@@ -534,36 +539,61 @@
 
   function dashsk_renderChart(data, isSilent) {
     if (typeof Chart === 'undefined') return;
+    const isDark = document.documentElement.classList.contains('dark');
+    const labelColor = isDark ? '#94a3b8' : '#64748b';
+    const gridColor = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.03)';
 
-    // 1. DOUGHNUT CHART (Status Berkas)
+    // 1. DOUGHNUT CHART
     var ctxStatus = document.getElementById('dashsk_chartStatus').getContext('2d');
     if (DASHSK_CHART_STATUS) DASHSK_CHART_STATUS.destroy();
 
     var totalData = data.disetujui + data.diproses + data.revisi + data.ditolak;
     var finalData = totalData === 0 ? [1, 0, 0, 0] : [data.disetujui, data.diproses, data.revisi, data.ditolak];
-    var finalColors = totalData === 0 ? ['#F1F5F9', '#fbbf24', '#6366f1', '#ef4444'] : ['#10b981', '#fbbf24', '#6366f1', '#ef4444'];
+    var finalColors = totalData === 0 ? [isDark?'#1e293b':'#F1F5F9', '#fbbf24', '#6366f1', '#ef4444'] : ['#10b981', '#fbbf24', '#6366f1', '#ef4444'];
 
     DASHSK_CHART_STATUS = new Chart(ctxStatus, {
       type: 'doughnut',
       data: {
         labels: ['Disetujui', 'Diproses', 'Revisi', 'Ditolak'],
-        datasets: [{ data: finalData, backgroundColor: finalColors, borderWidth: 4, borderColor: '#ffffff', hoverOffset: 12, borderRadius: 5 }]
+        datasets: [{ 
+            data: finalData, 
+            backgroundColor: finalColors, 
+            borderWidth: isDark ? 0 : 4, 
+            borderColor: isDark ? 'transparent' : '#ffffff', 
+            hoverOffset: 12, 
+            borderRadius: 5 
+        }]
       },
       options: {
-        maintainAspectRatio: false, responsive: true, cutout: '85%',
-        plugins: { legend: { display: false }, tooltip: { enabled: (totalData > 0), backgroundColor: '#0f172a', padding: 12, cornerRadius: 10, titleFont: { size: 14, weight: 'bold' }, bodyFont: { size: 13 } } },
+        maintainAspectRatio: false, responsive: true, cutout: '86%',
+        plugins: { 
+            legend: { display: false }, 
+            tooltip: { 
+                enabled: (totalData > 0), 
+                backgroundColor: isDark ? '#1e293b' : '#0f172a', 
+                padding: 12, 
+                cornerRadius: 10,
+                titleFont: { size: 12, weight: 'bold' },
+                bodyFont: { size: 11 }
+            } 
+        },
         animation: isSilent ? false : { animateScale: true, animateRotate: true, duration: 1500, easing: 'easeOutQuart' }
       }
     });
 
-    // 2. LINE CHART (Trend Pengiriman)
+    // 2. LINE CHART
     var ctxTrend = document.getElementById('dashsk_chartTrend').getContext('2d');
     if (DASHSK_CHART_TREND) DASHSK_CHART_TREND.destroy();
 
     var trendData = data.trend || { labels: [], values: [] };
     var gradient = ctxTrend.createLinearGradient(0, 0, 0, 350);
-    gradient.addColorStop(0, 'rgba(123, 0, 0, 0.25)');
-    gradient.addColorStop(1, 'rgba(123, 0, 0, 0)');
+    if (isDark) {
+        gradient.addColorStop(0, 'rgba(59, 130, 246, 0.25)');
+        gradient.addColorStop(1, 'rgba(59, 130, 246, 0)');
+    } else {
+        gradient.addColorStop(0, 'rgba(30, 53, 115, 0.1)');
+        gradient.addColorStop(1, 'rgba(30, 53, 115, 0)');
+    }
 
     DASHSK_CHART_TREND = new Chart(ctxTrend, {
       type: 'line',
@@ -574,15 +604,12 @@
           data: trendData.values,
           fill: true,
           backgroundColor: gradient,
-          borderColor: '#85144b',
+          borderColor: isDark ? '#60a5fa' : '#1D3573',
           borderWidth: 4,
           tension: 0.45,
           pointRadius: 0,
-          pointBackgroundColor: '#fff',
-          pointBorderColor: '#85144b',
-          pointBorderWidth: 2,
           pointHoverRadius: 7,
-          pointHoverBackgroundColor: '#85144b',
+          pointHoverBackgroundColor: isDark ? '#60a5fa' : '#1D3573',
           pointHoverBorderColor: '#fff',
           pointHoverBorderWidth: 3
         }]
@@ -590,16 +617,25 @@
       options: {
         maintainAspectRatio: false,
         responsive: true,
-        plugins: { legend: { display: false }, tooltip: { backgroundColor: '#0f172a', padding: 12, cornerRadius: 10 } },
+        plugins: { 
+            legend: { display: false }, 
+            tooltip: { 
+                backgroundColor: isDark ? '#1e293b' : '#0f172a', 
+                padding: 12, 
+                cornerRadius: 10,
+                titleFont: { size: 12 },
+                bodyFont: { size: 11 }
+            } 
+        },
         scales: {
           y: { 
               beginAtZero: true, 
-              grid: { color: 'rgba(226, 232, 240, 0.5)', borderDash: [5, 5], drawBorder: false }, 
-              ticks: { padding: 10, color: '#64748b', font: { size: 11, weight: '600' } } 
+              grid: { color: gridColor, borderDash: [4, 4], drawBorder: false }, 
+              ticks: { padding: 10, color: labelColor, font: { size: 10, weight: 'bold' } } 
           },
           x: { 
               grid: { display: false, drawBorder: false }, 
-              ticks: { padding: 10, color: '#64748b', font: { size: 11, weight: '600' } } 
+              ticks: { padding: 10, color: labelColor, font: { size: 10, weight: 'bold' } } 
           }
         },
         interaction: { intersect: false, mode: 'index' },
@@ -619,19 +655,13 @@
   }
 
   function dashsk_animateValue(id, endValue, suffixStr) {
+    if (typeof animateSultanCounter !== 'undefined') {
+        animateSultanCounter(id, endValue, suffixStr);
+        return;
+    }
+    // Fallback if global not ready
     var obj = document.getElementById(id); if (!obj) return;
     var end = parseInt(endValue); if (isNaN(end)) end = 0;
-    if (end === 0) { obj.innerHTML = "0" + (suffixStr || ''); return; }
-    var duration = 1500; var range = end; var current = 0;
-    var startTime = null;
-
-    function step(timestamp) {
-      if (!startTime) startTime = timestamp;
-      var progress = Math.min((timestamp - startTime) / duration, 1);
-      var currentVal = Math.floor(progress * range);
-      obj.innerHTML = currentVal + (suffixStr || '');
-      if (progress < 1) { window.requestAnimationFrame(step); }
-    }
-    window.requestAnimationFrame(step);
+    obj.innerHTML = end + (suffixStr || '');
   }
 </script>
