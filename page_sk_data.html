@@ -396,9 +396,9 @@
             </button>
         </div>
     </div>
-    <div class="flex-1 relative bg-gray-100 dark:bg-black/20">
-        <iframe id="tugas_framePreviewFull" class="w-full h-full border-none hidden opacity-0 transition-opacity duration-500" src=""></iframe>
-        <div id="tugas_loadingPreviewPDF" class="absolute inset-0 flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-900">
+    <div class="flex-1 relative bg-white dark:bg-black/20">
+        <iframe id="tugas_framePreviewFull" class="w-full h-full border-none hidden" src=""></iframe>
+        <div id="tugas_loadingPreviewPDF" class="absolute inset-0 flex flex-col items-center justify-center bg-white dark:bg-gray-900">
             <div class="sk-spinner-premium mb-6"></div>
             <p class="text-[10px] font-black text-gray-400 dark:text-white/30 tracking-[0.4em] uppercase">Sinkronisasi Dokumen...</p>
         </div>
@@ -760,15 +760,15 @@
 
             var badgeStatus = tugas_buildBadgeStatus(row.status, row.keterangan);
 
-            // 1. Tombol Aksi (ELEVATED BUTTON STYLE)
-            var actionButtons = '<div class="flex items-center justify-center gap-2">' +
-                '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-xl border border-primary/30 bg-white dark:bg-white/5 text-primary hover:bg-primary hover:text-white transition-all shadow-sm hover:shadow-md hover:shadow-primary/20 group" onclick="' + (TUGAS_IS_ADMIN ? "tugas_bukaModalVerif('" + id + "')" : "tugas_bukaPreview('" + safeUrlJs + "')") + '" title="' + (TUGAS_IS_ADMIN ? 'Verifikasi' : 'Pratinjau') + '">' +
+            // 1. Tombol Aksi (Individual 3 Buttons - SULTAN STYLE - REVERTED)
+            var actionButtons = '<div class="flex items-center justify-center gap-1.5">' +
+                '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg border border-primary/20 bg-primary/5 text-primary hover:bg-primary hover:text-white transition-all shadow-sm group" onclick="' + (TUGAS_IS_ADMIN ? "tugas_bukaModalVerif('" + id + "')" : "tugas_bukaPreview('" + safeUrlJs + "')") + '" title="' + (TUGAS_IS_ADMIN ? 'Verifikasi' : 'Pratinjau') + '">' +
                 '<i class="fas ' + (TUGAS_IS_ADMIN ? 'fa-check-double' : 'fa-eye') + ' text-[11px] group-hover:scale-110"></i>' +
                 '</button>' +
-                '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-xl border border-warning/30 bg-white dark:bg-white/5 text-warning hover:bg-warning hover:text-white transition-all shadow-sm hover:shadow-md hover:shadow-warning/20 group ' + (isApproved ? 'opacity-30 cursor-not-allowed' : '') + '" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalEdit('" + id + "')") + '" title="Edit Data">' +
-                '<i class="fas fa-pencil-alt text-[11px] group-hover:scale-110"></i>' +
+                '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg border border-warning/30 bg-warning/10 text-warning hover:bg-amber-500 hover:text-white hover:shadow-lg hover:shadow-warning/30 hover:scale-110 active:scale-95 transition-all shadow-sm group ' + (isApproved ? 'opacity-30 cursor-not-allowed' : '') + '" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalEdit('" + id + "')") + '" title="Edit Data">' +
+                '<i class="fas fa-pencil-alt text-[11px]"></i>' +
                 '</button>' +
-                '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-xl border border-danger/30 bg-white dark:bg-white/5 text-danger hover:bg-danger hover:text-white transition-all shadow-sm hover:shadow-md hover:shadow-danger/20 group ' + (isApproved ? 'opacity-30 cursor-not-allowed' : '') + '" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalHapus('" + id + "')") + '" title="Hapus Data">' +
+                '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg border border-danger/20 bg-danger/5 text-danger hover:bg-danger hover:text-white transition-all shadow-sm group ' + (isApproved ? 'opacity-30 cursor-not-allowed' : '') + '" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalHapus('" + id + "')") + '" title="Hapus Data">' +
                 '<i class="fas fa-trash-alt text-[11px] group-hover:scale-110"></i>' +
                 '</button>' +
                 '</div>';
@@ -779,8 +779,8 @@
                 var p = tglSkDisplay.split('-'); tglSkDisplay = p[2] + '-' + p[1] + '-' + p[0];
             }
 
-            // 3. Tombol Dokumen (ELEVATED ACTION STYLE)
-            var btnDokumen = safeUrl.length > 5 ? '<button type="button" class="inline-flex items-center rounded-xl bg-white dark:bg-white/5 py-2 px-4 text-[9px] font-black uppercase tracking-wider text-danger border border-danger/40 transition-all hover:bg-danger hover:text-white shadow-sm hover:shadow-lg hover:shadow-danger/20 active:scale-95" onclick="tugas_bukaPreview(\'' + safeUrlJs + '\')"><i class="fas fa-file-pdf mr-2 text-xs"></i> LIHAT PDF</button>' : '-';
+            // 3. Tombol Dokumen (Consistent Button Look)
+            var btnDokumen = safeUrl.length > 5 ? '<button type="button" class="inline-flex items-center rounded-lg bg-danger/10 py-1.5 px-3 text-[9px] font-black uppercase tracking-wider text-danger border border-danger/30 transition-all hover:bg-danger hover:text-white shadow-sm hover:scale-105 active:scale-95" onclick="tugas_bukaPreview(\'' + safeUrlJs + '\')"><i class="fas fa-file-pdf mr-1.5 text-xs"></i> LIHAT PDF</button>' : '-';
 
             // 4. Log Detils
             var uiDikirim = '<div class="flex flex-col"><span class="text-[11px] font-black text-black dark:text-white">' + (row.tglUnggah || '-') + '</span><span class="text-[9px] font-bold text-gray-400 uppercase tracking-tighter">' + (row.userInput || '-') + '</span></div>';
@@ -1116,16 +1116,16 @@
         $('#tugas_linkTabHeader').attr('href', url);
         $('#tugas_loadingPreviewPDF').removeClass('hidden');
 
-        $('#tugas_framePreviewFull').addClass('hidden opacity-0').attr('src', '');
+        $('#tugas_framePreviewFull').addClass('hidden').attr('src', '');
         $('#tugas_modalPreview').removeClass('hidden').addClass('flex').hide().fadeIn();
 
         setTimeout(function () {
             $('#tugas_framePreviewFull').attr('src', tugas_convertDriveUrl(url));
-        }, 300); // Slightly longer delay for stability
+        }, 100);
 
         $('#tugas_framePreviewFull').off('load').on('load', function () {
             $('#tugas_loadingPreviewPDF').addClass('hidden');
-            $(this).removeClass('hidden').animate({ opacity: 1 }, 500);
+            $(this).removeClass('hidden');
         });
     }
 
