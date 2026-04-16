@@ -16,48 +16,50 @@
         border-color: rgba(255, 255, 255, 0.05) !important;
     }
 
-    /* DATATABLES PAGINATION & INFO DARK MODE (AGRESSIVE) */
-    .dark .pagination-wrapper .dataTables_paginate .paginate_button,
+    /* DATATABLES PAGINATION & INFO DARK MODE (ULTIMATE FIX) */
+    .dark #tugas_tabelUtama_wrapper .dataTables_paginate .paginate_button,
+    .dark .pagination-wrapper .paginate_button,
     .dark .dataTables_paginate .paginate_button,
     .dark .paging_simple_numbers .paginate_button {
         background-color: rgba(255, 255, 255, 0.05) !important;
         background: rgba(255, 255, 255, 0.05) !important;
         border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        color: rgba(255, 255, 255, 0.6) !important;
-        border-radius: 10px !important;
-        margin-left: 4px !important;
-        padding: 5px 14px !important;
+        color: rgba(255, 255, 255, 0.7) !important;
+        border-radius: 8px !important;
+        margin-left: 5px !important;
+        padding: 6px 14px !important;
         cursor: pointer !important;
-        transition: all 0.3s ease !important;
+        box-shadow: none !important;
     }
     
     .dark .dataTables_paginate .paginate_button:hover {
-        background: rgba(255, 255, 255, 0.1) !important;
+        background: rgba(255, 255, 255, 0.15) !important;
         color: white !important;
-        border-color: rgba(255, 255, 255, 0.2) !important;
     }
 
     .dark .dataTables_paginate .paginate_button.current, 
     .dark .dataTables_paginate .paginate_button.current:hover {
-        background: #3c50e0 !important; /* Brighter blue for active state in dark mode */
+        background: #3c50e0 !important;
         color: white !important;
         border-color: #3c50e0 !important;
-        font-weight: bold !important;
-        box-shadow: 0 4px 12px rgba(60, 80, 224, 0.3) !important;
+        box-shadow: 0 4px 15px rgba(60, 80, 224, 0.4) !important;
     }
     
-    .dark .dataTables_paginate .paginate_button.disabled,
-    .dark .dataTables_paginate .paginate_button.disabled:hover,
-    .dark .dataTables_paginate .paginate_button.disabled:active {
+    .dark .dataTables_paginate .paginate_button.disabled {
         background: transparent !important;
-        color: rgba(255, 255, 255, 0.2) !important;
-        border-color: rgba(255, 255, 255, 0.05) !important;
+        opacity: 0.3 !important;
+        color: rgba(255, 255, 255, 0.3) !important;
         cursor: not-allowed !important;
+    }
+
+    /* Target specifically the link inside if existing */
+    .dark .dataTables_paginate .paginate_button a {
+        background: transparent !important;
+        color: inherit !important;
     }
 
     .dark .dataTables_wrapper .dataTables_info {
         color: rgba(255, 255, 255, 0.5) !important;
-        font-weight: 500 !important;
     }
     
     .dark .animate-pulse div {
@@ -644,6 +646,12 @@
                     "drawCallback": function (settings) {
                         $('#tugas_tabelUtama tbody tr').addClass('bg-transparent hover:bg-primary/5 dark:hover:bg-white/5 transition-all cursor-default');
                         $('#tugas_tabelUtama tbody td').css('background-color', 'transparent'); // Force remove DataTables white cell inject
+                        
+                        // AGRESSIVE JS FIX FOR PAGINATION
+                        if($('html').hasClass('dark')) {
+                           $('.paginate_button').css({ 'background': 'rgba(255,255,255,0.05)', 'color': '#ccc', 'border': '1px solid rgba(255,255,255,0.1)' });
+                           $('.paginate_button.current').css({ 'background': '#3c50e0', 'color': '#fff', 'border-color': '#3c50e0' });
+                        }
                     }
                 });
 
