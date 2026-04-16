@@ -400,9 +400,11 @@
         $('#tugas_loadingState').show();
 
         try {
-            var user = typeof getSesiUser === 'function' ? getSesiUser() : {};
+            var user = (typeof Sultan !== 'undefined' && Sultan.db) ? Sultan.db.get('siksUser') : {};
+            if (!user) user = {};
             TUGAS_USER_AKTIF = user.nama_lengkap || user.fullname || user.nama || user.username || "User Web";
-            TUGAS_IS_ADMIN = (user.role || "").toLowerCase().includes("admin");
+            var role = (user.role || "").toLowerCase();
+            TUGAS_IS_ADMIN = role.includes("admin") || role.includes("verifikator");
             TUGAS_USER_NPSN = user.npsn || user.username || "";
         } catch (e) { TUGAS_USER_NPSN = ""; TUGAS_IS_ADMIN = false; }
 
