@@ -375,32 +375,40 @@
     </div>
 </div>
 
-<!-- 3. MODAL PREVIEW PDF (Full Screen) -->
-<div id="tugas_modalPreview" class="fixed inset-0 z-[99999] hidden flex-col bg-black/95 backdrop-blur-xl animate-reveal">
-    <div class="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-black/50">
-        <div class="flex items-center gap-3">
-            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-danger/20 text-danger shadow-lg shadow-danger/20">
-                <i class="fas fa-file-pdf text-xl"></i>
+<!-- 3. MODAL PREVIEW PDF (SULTAN PREMIUM FULL SCREEN) -->
+<div id="tugas_modalPreview" class="fixed inset-0 z-[99999] hidden flex-col bg-slate-900/80 backdrop-blur-md animate-reveal">
+    <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 dark:border-white/5 bg-white dark:bg-[#1a222c] transition-colors">
+        <div class="flex items-center gap-4">
+            <div class="relative flex h-11 w-11 items-center justify-center rounded-xl bg-danger/10 text-danger shadow-sm overflow-hidden group">
+                <div class="absolute inset-0 bg-danger/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <i class="fas fa-file-pdf text-xl relative z-10 transition-transform group-hover:scale-110"></i>
             </div>
             <div>
-                <h3 class="font-black text-white text-sm uppercase tracking-wider">Pratinjau Dokumen SK</h3>
-                <p class="text-[9px] text-gray-500 font-bold uppercase tracking-widest">Document Viewer Mode</p>
+                <h3 class="font-black text-black dark:text-white text-sm uppercase tracking-wider">Pratinjau Dokumen SK</h3>
+                <div class="flex items-center gap-2 mt-0.5">
+                    <span class="flex h-1.5 w-1.5 rounded-full bg-success"></span>
+                    <p class="text-[9px] text-gray-400 font-bold uppercase tracking-widest">Sultan Viewer • High Compatibility</p>
+                </div>
             </div>
         </div>
-        <div class="flex items-center gap-4">
-            <a href="#" id="tugas_linkDownloadHeader" target="_blank" class="sultan-btn sultan-btn-white !py-1.5 !px-4 !text-[10px] !bg-white/10 !border-white/20 !text-white hover:!bg-white hover:!text-black transition-all">UNDUH</a>
-            <a href="#" id="tugas_linkTabHeader" target="_blank" class="sultan-btn sultan-btn-white !py-1.5 !px-4 !text-[10px] !bg-white/10 !border-white/20 !text-white hover:!bg-white hover:!text-black transition-all">TAB BARU</a>
-            <div class="h-6 w-[1px] bg-white/20"></div>
-            <button type="button" class="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-white/60 hover:text-danger hover:bg-danger/10 transition-all" onclick="$('#tugas_modalPreview').fadeOut().addClass('hidden').removeClass('flex')">
-                <i class="fas fa-times text-xl"></i>
+        <div class="flex items-center gap-3">
+            <a href="#" id="tugas_linkDownloadHeader" target="_blank" class="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-[10px] font-black uppercase text-black transition-all hover:bg-gray-50 active:scale-95 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 shadow-sm">
+                <i class="fas fa-download"></i> UNDUH
+            </a>
+            <a href="#" id="tugas_linkTabHeader" target="_blank" class="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-[10px] font-black uppercase text-black transition-all hover:bg-gray-50 active:scale-95 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 shadow-sm">
+                <i class="fas fa-external-link-alt"></i> TAB BARU
+            </a>
+            <div class="h-6 w-[1px] bg-gray-200 dark:bg-white/10 mx-2"></div>
+            <button type="button" class="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-500 hover:text-danger hover:bg-danger/10 transition-all dark:bg-white/5 dark:text-white/60 dark:hover:bg-danger/20" onclick="$('#tugas_modalPreview').fadeOut().addClass('hidden').removeClass('flex')">
+                <i class="fas fa-times text-lg"></i>
             </button>
         </div>
     </div>
-    <div class="flex-1 relative bg-white dark:bg-black/20">
+    <div class="flex-1 relative bg-gray-50 dark:bg-[#0f172a]">
         <iframe id="tugas_framePreviewFull" class="w-full h-full border-none hidden" src=""></iframe>
-        <div id="tugas_loadingPreviewPDF" class="absolute inset-0 flex flex-col items-center justify-center bg-white dark:bg-gray-900">
-            <div class="sk-spinner-premium mb-6"></div>
-            <p class="text-[10px] font-black text-gray-400 dark:text-white/30 tracking-[0.4em] uppercase">Sinkronisasi Dokumen...</p>
+        <div id="tugas_loadingPreviewPDF" class="absolute inset-0 flex flex-col items-center justify-center bg-gray-50 dark:bg-[#0f172a]">
+            <div class="sk-spinner-premium !border-primary/20 !border-t-primary mb-6"></div>
+            <p class="text-[10px] font-black text-primary/40 dark:text-white/30 tracking-[0.4em] uppercase">Sinkronisasi Dokumen...</p>
         </div>
     </div>
 </div>
