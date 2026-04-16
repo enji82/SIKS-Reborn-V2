@@ -780,7 +780,7 @@
             }
 
             // 3. Tombol Dokumen (Consistent Button Look)
-            var btnDokumen = safeUrl.length > 5 ? '<button type="button" class="inline-flex items-center rounded-lg bg-danger/10 py-1.5 px-3 text-[9px] font-black uppercase tracking-wider text-danger border border-danger/30 transition-all hover:bg-danger hover:text-white shadow-sm hover:scale-105 active:scale-95" onclick="tugas_bukaPreview(\'' + safeUrlJs + '\')"><i class="fas fa-file-pdf mr-1.5 text-xs"></i> LIHAT PDF</button>' : '-';
+            var btnDokumen = safeUrl.length > 5 ? '<button type="button" class="inline-flex items-center rounded-lg bg-danger/10 py-1.5 px-3 text-[9px] font-black uppercase tracking-wider text-danger border border-danger/30 transition-all hover:bg-danger hover:text-white shadow-sm hover:scale-105 active:scale-95" onclick="tugas_bukaPreview(\'' + safeUrlJs + '\')"><i class="fas fa-file-pdf mr-1.5 text-xs"></i> LIHAT</button>' : '-';
 
             // 4. Log Detils
             var uiDikirim = '<div class="flex flex-col"><span class="text-[11px] font-black text-black dark:text-white">' + (row.tglUnggah || '-') + '</span><span class="text-[9px] font-bold text-gray-400 uppercase tracking-tighter">' + (row.userInput || '-') + '</span></div>';
