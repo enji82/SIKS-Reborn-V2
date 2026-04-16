@@ -1866,11 +1866,17 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
 @media (min-width: 1024px) {
   .sidebar-drawer { 
     position: sticky; top: 0; transform: translateX(0); height: 100vh; 
-    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), margin-left 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 1;
+    visibility: visible;
   }
   .sidebar-toggled .sidebar-drawer {
-    margin-left: calc(var(--sidebar-width) * -1);
+    width: 0 !important;
+    min-width: 0 !important;
     transform: translateX(-100%);
+    opacity: 0;
+    visibility: hidden;
+    border: none;
   }
   .sidebar-toggled .page-wrapper {
     background-image: none !important;
