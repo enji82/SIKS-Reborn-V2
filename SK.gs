@@ -82,7 +82,7 @@ function processManualForm(formData) {
       formData.kriteriaSk,    
       file.getUrl(),          
       formData.userInput,     
-      "Diproses",             
+      formData.isAdmin ? "Disetujui" : "Diproses",             
       "", "", "", "", ""      
     ]);
 
@@ -144,7 +144,8 @@ function simpanPerubahanSK(form) {
        sk_helper_rekamCCTV("UPLOAD", "File baru tersimpan: " + file.getUrl());
     }
 
-    sheet.getRange(rowIdx, KOLOM.STATUS).setValue("Diproses");
+    var finalStatus = form.isAdmin ? "Disetujui" : "Diproses";
+    sheet.getRange(rowIdx, KOLOM.STATUS).setValue(finalStatus);
     sheet.getRange(rowIdx, KOLOM.TGL_UPD).setValue("'" + Utilities.formatDate(new Date(), Session.getScriptTimeZone(), "dd-MM-yyyy HH:mm:ss"));
     sheet.getRange(rowIdx, KOLOM.USER_UPD).setValue(form.userUpdate);
 
