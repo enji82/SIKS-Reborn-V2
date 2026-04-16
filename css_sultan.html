@@ -1855,7 +1855,7 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
 .dark .sidebar-drawer { background-color: var(--sidebar-bg); border-right-color: var(--sidebar-border); }
 
 @media (min-width: 1024px) {
-  .sidebar-drawer { position: static; transform: translateX(0); }
+  .sidebar-drawer { position: sticky; top: 0; transform: translateX(0); height: 100vh; }
 }
 .sidebar-drawer.open { transform: translateX(0); }
 
