@@ -1,3 +1,31 @@
+<style>
+    /* CUSTOM SULTAN PAGINATION DARK MODE */
+    .dark .dataTables_wrapper .dataTables_paginate .paginate_button {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        color: rgba(255, 255, 255, 0.6) !important;
+        border-radius: 10px !important;
+        margin-left: 4px !important;
+    }
+    .dark .dataTables_wrapper .dataTables_paginate .paginate_button.current, 
+    .dark .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+        background: #1D3573 !important;
+        color: white !important;
+        border-color: #1D3573 !important;
+    }
+    .dark .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        background: rgba(255, 255, 255, 0.1) !important;
+        color: white !important;
+    }
+    .dark .dataTables_wrapper .dataTables_info {
+        color: rgba(255, 255, 255, 0.5) !important;
+    }
+    .dark select option {
+        background-color: #1a222c;
+        color: white;
+    }
+</style>
+
 <div class="flex flex-col gap-4 md:gap-6 2xl:gap-7.5 animate-reveal">
 
     <!-- PAGE HEADER -->
@@ -43,21 +71,21 @@
         <div class="flex flex-col md:flex-row items-center gap-4">
             <div class="flex flex-wrap flex-1 items-center gap-3 w-full">
                 <select id="tugas_filterUnit"
-                    class="rounded-xl border border-gray-200 bg-gray-50/50 py-2.5 px-4 outline-none focus:border-primary dark:border-gray-800 dark:bg-black/20 text-xs font-black text-primary min-w-[250px] shadow-sm disabled:opacity-60"
+                    class="rounded-xl border border-gray-200 bg-gray-50/50 py-2.5 px-4 outline-none focus:border-primary dark:border-white/10 dark:bg-white/5 text-xs font-black text-primary min-w-[250px] shadow-sm disabled:opacity-60"
                     disabled>
                     <option value="">- Memvalidasi Akses... -</option>
                 </select>
 
                 <select id="tugas_filterTahun"
-                    class="rounded-xl border border-gray-200 bg-white py-2.5 px-4 outline-none focus:border-primary dark:border-gray-800 dark:bg-boxdark text-xs font-bold text-black dark:text-white min-w-[120px] shadow-sm"></select>
+                    class="rounded-xl border border-gray-200 bg-white py-2.5 px-4 outline-none focus:border-primary dark:border-white/10 dark:bg-white/5 text-xs font-bold text-black dark:text-white min-w-[120px] shadow-sm"></select>
 
-                <select id="tugas_filterSemester" class="rounded-xl border border-gray-200 bg-white py-2.5 px-4 outline-none focus:border-primary dark:border-gray-800 dark:bg-boxdark text-xs font-bold text-black dark:text-white min-w-[140px] shadow-sm">
+                <select id="tugas_filterSemester" class="rounded-xl border border-gray-200 bg-white py-2.5 px-4 outline-none focus:border-primary dark:border-white/10 dark:bg-white/5 text-xs font-bold text-black dark:text-white min-w-[140px] shadow-sm">
                     <option value="">- Semua Semester -</option>
                     <option value="Semester 1">Semester 1</option>
                     <option value="Semester 2">Semester 2</option>
                 </select>
 
-                <select id="tugas_filterStatus" class="rounded-xl border border-gray-200 bg-white py-2.5 px-4 outline-none focus:border-primary dark:border-gray-800 dark:bg-boxdark text-xs font-bold text-black dark:text-white min-w-[140px] shadow-sm">
+                <select id="tugas_filterStatus" class="rounded-xl border border-gray-200 bg-white py-2.5 px-4 outline-none focus:border-primary dark:border-white/10 dark:bg-white/5 text-xs font-bold text-black dark:text-white min-w-[140px] shadow-sm">
                     <option value="">- Semua Status -</option>
                     <option value="Diproses">Diproses</option>
                     <option value="Revisi">Revisi</option>
