@@ -194,8 +194,8 @@
 <div id="tugas_modalForm" class="fixed inset-0 z-[99999] hidden items-center justify-center bg-black/60 backdrop-blur-sm overflow-y-auto px-4 py-8">
     <div class="w-full max-w-fit min-w-[480px] rounded-2xl border border-gray-200 bg-gray-50/50 shadow-2xl dark:border-gray-800 dark:bg-[#1a222c] animate-reveal overflow-hidden">
         <!-- Header -->
-        <div class="flex items-center justify-between border-b border-gray-100 py-4 px-6 dark:border-gray-800 bg-gray-50/50 dark:bg-black/10">
-            <h3 class="font-black text-black dark:text-white flex items-center gap-2 text-sm uppercase tracking-wider">
+        <div class="modal-header flex items-center justify-between border-b border-gray-100 py-4 px-6 dark:border-gray-800 bg-gray-50/50 dark:bg-black/10">
+            <h3 id="tugas_judulModalForm" class="font-black text-black dark:text-white flex items-center gap-2 text-sm uppercase tracking-wider">
                 <i class="fas fa-file-signature text-primary"></i> Form Pengisian SK
             </h3>
             <button type="button" class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-50/50 dark:bg-black/20 text-gray-400 hover:text-danger hover:bg-danger/10 transition-all" onclick="$('#tugas_modalForm').fadeOut().addClass('hidden').removeClass('flex')">
@@ -932,7 +932,10 @@
         $('#tugas_inputNamaSd, #tugas_inputTahun, #tugas_inputSemester, #tugas_inputKriteria').prop('disabled', true).addClass('bg-light');
         $('#tugas_areaTerkunci').prop('disabled', false).css('opacity', '1');
         $('#tugas_btnSimpanForm').show().prop('disabled', false).html('<i class="fas fa-save mr-2"></i> UPDATE DATA SK');
-        $('#tugas_alertInfo').removeClass('bg-primary/5 text-primary').addClass('bg-meta-3/5 text-meta-3').html('<p class="text-sm font-medium"><i class="fas fa-check-circle mr-1"></i> Data siap diubah.</p>');
+        
+        $('#tugas_alertInfo').removeClass('border-primary/20 border-danger border-warning/30').addClass('border-success/30');
+        $('#tugas_alertText').html('<i class="fas fa-check-circle mr-1 text-success"></i> Data siap diubah.');
+        
         $('#tugas_modalForm').removeClass('hidden').addClass('flex').hide().fadeIn();
     }
 
