@@ -563,9 +563,9 @@
                     "dom": '<"row"<"col-sm-12"<"table-responsive custom-scrollbar"tr>>>' +
                            '<"flex flex-col md:flex-row justify-between items-center gap-4 mt-6"<"text-sm text-body"i><"pagination-wrapper"p>>',
                     "columnDefs": [
-                        { "targets": 0, "className": "py-5 px-4 text-center", "width": "120px" },
-                        { "targets": [1, 2, 3, 6, 7, 8], "className": "py-5 px-4 text-left" },
-                        { "targets": [4, 5], "className": "py-5 px-4 text-center" }
+                        { "targets": 0, "className": "py-2.5 px-4 text-center", "width": "110px" },
+                        { "targets": [1, 2, 3, 6, 7, 8], "className": "py-2.5 px-4 text-left" },
+                        { "targets": [4, 5], "className": "py-2.5 px-4 text-center" }
                     ],
                     "language": { "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", "emptyTable": "Tidak ditemukan data SK." },
                     "drawCallback": function (settings) {
@@ -679,15 +679,15 @@
             var badgeStatus = tugas_buildBadgeStatus(row.status, row.keterangan);
 
             // 1. Tombol Aksi (Individual 3 Buttons - SULTAN STYLE)
-            var actionButtons = '<div class="flex items-center justify-center gap-2">' +
-                '<button type="button" class="flex h-9 w-9 items-center justify-center rounded-xl border border-primary/20 bg-primary/5 text-primary hover:bg-primary hover:text-white transition-all shadow-sm group" onclick="' + (TUGAS_IS_ADMIN ? "tugas_bukaModalVerif('" + id + "')" : "tugas_bukaPreview('" + safeUrlJs + "')") + '" title="' + (TUGAS_IS_ADMIN ? 'Verifikasi' : 'Pratinjau') + '">' +
-                '<i class="fas ' + (TUGAS_IS_ADMIN ? 'fa-check-double' : 'fa-eye') + ' text-sm group-hover:scale-110"></i>' +
+            var actionButtons = '<div class="flex items-center justify-center gap-1.5">' +
+                '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg border border-primary/20 bg-primary/5 text-primary hover:bg-primary hover:text-white transition-all shadow-sm group" onclick="' + (TUGAS_IS_ADMIN ? "tugas_bukaModalVerif('" + id + "')" : "tugas_bukaPreview('" + safeUrlJs + "')") + '" title="' + (TUGAS_IS_ADMIN ? 'Verifikasi' : 'Pratinjau') + '">' +
+                '<i class="fas ' + (TUGAS_IS_ADMIN ? 'fa-check-double' : 'fa-eye') + ' text-[11px] group-hover:scale-110"></i>' +
                 '</button>' +
-                '<button type="button" class="flex h-9 w-9 items-center justify-center rounded-xl border border-warning/20 bg-warning/5 text-warning hover:bg-warning hover:text-white transition-all shadow-sm group ' + (isApproved ? 'opacity-30 cursor-not-allowed' : '') + '" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalEdit('" + id + "')") + '" title="Edit Data">' +
-                '<i class="fas fa-pencil-alt text-sm group-hover:scale-110"></i>' +
+                '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg border border-warning/20 bg-warning/5 text-warning hover:bg-warning hover:text-white transition-all shadow-sm group ' + (isApproved ? 'opacity-30 cursor-not-allowed' : '') + '" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalEdit('" + id + "')") + '" title="Edit Data">' +
+                '<i class="fas fa-pencil-alt text-[11px] group-hover:scale-110"></i>' +
                 '</button>' +
-                '<button type="button" class="flex h-9 w-9 items-center justify-center rounded-xl border border-danger/20 bg-danger/5 text-danger hover:bg-danger hover:text-white transition-all shadow-sm group ' + (isApproved ? 'opacity-30 cursor-not-allowed' : '') + '" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalHapus('" + id + "')") + '" title="Hapus Data">' +
-                '<i class="fas fa-trash-alt text-sm group-hover:scale-110"></i>' +
+                '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg border border-danger/20 bg-danger/5 text-danger hover:bg-danger hover:text-white transition-all shadow-sm group ' + (isApproved ? 'opacity-30 cursor-not-allowed' : '') + '" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalHapus('" + id + "')") + '" title="Hapus Data">' +
+                '<i class="fas fa-trash-alt text-[11px] group-hover:scale-110"></i>' +
                 '</button>' +
                 '</div>';
 
@@ -698,7 +698,7 @@
             }
 
             // 3. Tombol Dokumen
-            var btnDokumen = safeUrl.length > 5 ? '<button type="button" class="inline-flex rounded-full bg-danger/10 py-1.5 px-4 text-[10px] font-black uppercase tracking-widest text-danger transition hover:bg-danger hover:text-white shadow-sm" onclick="tugas_bukaPreview(\'' + safeUrlJs + '\')"><i class="fas fa-file-pdf mr-2"></i> LIHAT PDF</button>' : '-';
+            var btnDokumen = safeUrl.length > 5 ? '<button type="button" class="inline-flex rounded-full bg-danger/10 py-1 px-3 text-[9px] font-black uppercase tracking-widest text-danger transition hover:bg-danger hover:text-white shadow-sm" onclick="tugas_bukaPreview(\'' + safeUrlJs + '\')"><i class="fas fa-file-pdf mr-1.5"></i> PDF</button>' : '-';
 
             // 4. Log Detils
             var uiDikirim = '<div class="flex flex-col"><span class="text-[11px] font-black text-black dark:text-white">' + (row.tglUnggah || '-') + '</span><span class="text-[9px] font-bold text-gray-400 uppercase tracking-tighter">' + (row.userInput || '-') + '</span></div>';
