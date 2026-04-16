@@ -4,16 +4,24 @@
     .dark .sultan-card input,
     .dark .modal-container select,
     .dark .modal-container input,
-    .dark .modal-container textarea {
+    .dark .modal-container textarea,
+    .dark #tugas_modalPreview select,
+    .dark #tugas_modalPreview input {
         background-color: rgba(255, 255, 255, 0.05) !important;
         color: white !important;
         border-color: rgba(255, 255, 255, 0.1) !important;
     }
     
     .dark .sultan-card, 
-    .dark .modal-container > div {
+    .dark .modal-container > div,
+    .dark #tugas_modalPreview > div:first-child {
         background-color: #1a222c !important;
         border-color: rgba(255, 255, 255, 0.05) !important;
+    }
+
+    .dark #tugas_modalPreview .flex-1,
+    .dark #tugas_modalPreview #tugas_loadingPreviewPDF {
+        background-color: #0f172a !important;
     }
 
     /* DATATABLES PAGINATION & INFO DARK MODE (ULTIMATE FIX) */
