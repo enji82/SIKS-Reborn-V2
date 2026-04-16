@@ -192,7 +192,7 @@
 
 <!-- 1. MODAL FORM SK (SULTAN STYLE) -->
 <div id="tugas_modalForm" class="fixed inset-0 z-[99999] hidden items-center justify-center bg-black/60 backdrop-blur-sm overflow-y-auto px-4 py-8">
-    <div class="w-full max-w-2xl rounded-2xl border border-gray-200 bg-gray-50/50 shadow-2xl dark:border-gray-800 dark:bg-gray-800 animate-reveal overflow-hidden">
+    <div class="w-full max-w-fit min-w-[480px] rounded-2xl border border-gray-200 bg-gray-50/50 shadow-2xl dark:border-gray-800 dark:bg-[#1a222c] animate-reveal overflow-hidden">
         <!-- Header -->
         <div class="flex items-center justify-between border-b border-gray-100 py-4 px-6 dark:border-gray-800 bg-gray-50/50 dark:bg-black/10">
             <h3 class="font-black text-black dark:text-white flex items-center gap-2 text-sm uppercase tracking-wider">
@@ -207,13 +207,15 @@
             <input type="hidden" id="tugas_inputRowId">
             <input type="hidden" id="tugas_editRowId">
 
-            <div class="mb-5 flex items-center gap-4 rounded-xl border border-primary/10 bg-primary/5 py-4 px-5" id="tugas_alertInfo">
-                <div class="flex h-10 w-10 min-w-[40px] items-center justify-center rounded-lg bg-primary text-white shadow-lg shadow-primary/20">
+            <div class="mb-5 flex items-start gap-4 rounded-xl border border-primary/20 bg-primary/5 py-4 px-5 transition-all" id="tugas_alertInfo">
+                <div class="flex h-10 w-10 min-w-[40px] items-center justify-center rounded-lg bg-primary text-white shadow-lg shadow-primary/20 mt-0.5">
                     <i class="fas fa-info-circle text-lg"></i>
                 </div>
-                <div class="w-full">
-                    <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest leading-none mb-1">Informasi</p>
-                    <h5 class="font-black text-black dark:text-white text-[11px] leading-tight" id="tugas_alertText">Lengkapi Nama Sekolah, Tahun, Semester, dan Kriteria untuk aktifkan form.</h5>
+                <div class="flex-1">
+                    <p class="text-[10px] text-gray-400 font-black uppercase tracking-widest leading-none mb-1.5 opacity-60">Petunjuk Pengisian</p>
+                    <div id="tugas_alertText" class="text-[11px] font-bold text-black dark:text-white leading-relaxed">
+                        Tentukan Sekolah, Tahun, Semester, dan Kriteria untuk memulai pengisian data SK.
+                    </div>
                 </div>
             </div>
 
@@ -838,7 +840,8 @@
         $('#tugas_areaTerkunci').prop('disabled', true).css('opacity', '0.5');
         $('#tugas_inputNamaSd, #tugas_inputTahun, #tugas_inputSemester, #tugas_inputKriteria').prop('disabled', false).removeClass('bg-light');
         $('#tugas_btnSimpanForm').removeClass('btn-sultan-indigo').addClass('btn-sultan-maroon').show().prop('disabled', true);
-        $('#tugas_alertInfo').removeClass('alert-danger alert-success').addClass('alert-info border-info').html('<i class="fas fa-info-circle mr-1"></i> Tentukan <b>Sekolah, Tahun, Semester,</b> dan <b>Kriteria</b> untuk memulai pengisian data SK.');
+        $('#tugas_alertInfo').removeClass('border-danger border-success').addClass('border-primary/20');
+        $('#tugas_alertText').html('Tentukan <b>Sekolah, Tahun, Semester,</b> dan <b>Kriteria</b> untuk memulai pengisian data SK.');
     }
 
     function tugas_bukaModalTambah() {
@@ -866,11 +869,13 @@
         if (!vSd || !vTh || !vSm || !vKr) {
             $('#tugas_areaTerkunci').prop('disabled', true).css('opacity', '0.5');
             $('#tugas_btnSimpanForm').hide().prop('disabled', true);
-            $('#tugas_alertInfo').removeClass('alert-danger alert-success').addClass('alert-info border-info').html('<i class="fas fa-info-circle mr-1"></i> Harap lengkapi semua kolom di atas.');
+            $('#tugas_alertInfo').removeClass('border-success border-danger border-primary/20').addClass('border-warning/30');
+            $('#tugas_alertText').html('Tentukan <b>Sekolah, Tahun, Semester,</b> dan <b>Kriteria</b> untuk memulai pengisian data SK.');
             return;
         }
 
-        $('#tugas_alertInfo').removeClass('alert-danger alert-success').addClass('alert-info border-info').html('<i class="fas fa-spinner fa-spin mr-1"></i> Mengecek data di server.');
+        $('#tugas_alertInfo').removeClass('border-danger border-success border-warning/30').addClass('border-primary/20 text-primary');
+        $('#tugas_alertText').html('<i class="fas fa-spinner fa-spin mr-1"></i> Mengecek data di server...');
 
         var payload = { namaSd: vSd, tahunAjaran: vTh, semester: vSm, kriteria: vKr };
 
@@ -881,16 +886,19 @@
                 if (currentId && String(res.data.rowId) === String(currentId)) {
                     $('#tugas_areaTerkunci').prop('disabled', false).css('opacity', '1');
                     $('#tugas_btnSimpanForm').show().prop('disabled', false).html('<i class="fas fa-save mr-1"></i> UPDATE DATA');
-                    $('#tugas_alertInfo').removeClass('alert-info alert-danger').addClass('alert-success border-success').html('<i class="fas fa-check-circle mr-1"></i> Mode Edit aktif.');
+                    $('#tugas_alertInfo').removeClass('border-danger border-primary/20').addClass('border-success/30');
+                    $('#tugas_alertText').html('<i class="fas fa-check-circle mr-1 text-success"></i> Mode Edit aktif.');
                 } else {
                     $('#tugas_areaTerkunci').prop('disabled', true).css('opacity', '0.5');
                     $('#tugas_btnSimpanForm').hide().prop('disabled', true);
-                    $('#tugas_alertInfo').removeClass('alert-info alert-success').addClass('alert-danger border-danger').html('<i class="fas fa-check-circle mr-1"></i> <b>Data ditemukan:</b> Sekolah ini sudah memiliki SK untuk ' + vKr + ' pada ' + vSm + ' TA ' + vTh + '.');
+                    $('#tugas_alertInfo').removeClass('border-success border-primary/20').addClass('border-danger/40');
+                    $('#tugas_alertText').html('<b>Data ditemukan:</b> Sekolah ini sudah memiliki SK untuk ' + vKr + ' pada ' + vSm + ' TA ' + vTh + '.');
                 }
             } else {
                 $('#tugas_areaTerkunci').prop('disabled', false).css('opacity', '1');
                 $('#tugas_btnSimpanForm').show().prop('disabled', false).html('<i class="fas fa-save mr-1"></i> SIMPAN DOKUMEN');
-                $('#tugas_alertInfo').removeClass('alert-info alert-danger').addClass('alert-success border-success').html('<i class="fas fa-info-circle mr-1"></i> <b>Data belum diinput:</b> Silakan lanjutkan pengisian Nomor SK dan unggah dokumen.');
+                $('#tugas_alertInfo').removeClass('border-danger border-primary/20').addClass('border-success/30');
+                $('#tugas_alertText').html('<b>Data belum diinput:</b> Silakan lanjutkan pengisian Nomor SK dan unggah dokumen.');
                 if (!currentId) $('#tugas_inputNoSk').focus();
             }
         }).cekDuplikatSK(payload);
