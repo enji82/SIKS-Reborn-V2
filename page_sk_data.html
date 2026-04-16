@@ -16,17 +16,31 @@
         border-color: rgba(255, 255, 255, 0.05) !important;
     }
 
+    /* DATATABLES PAGINATION & INFO DARK MODE */
     .dark .dataTables_wrapper .dataTables_paginate .paginate_button {
         background: rgba(255, 255, 255, 0.05) !important;
         border: 1px solid rgba(255, 255, 255, 0.1) !important;
         color: rgba(255, 255, 255, 0.6) !important;
         border-radius: 10px !important;
         margin-left: 4px !important;
+        padding: 5px 12px !important;
     }
-    .dark .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    .dark .dataTables_wrapper .dataTables_paginate .paginate_button.current, 
+    .dark .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
         background: #1D3573 !important;
         color: white !important;
         border-color: #1D3573 !important;
+    }
+    .dark .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        background: rgba(255, 255, 255, 0.1) !important;
+        color: white !important;
+        border-color: rgba(255, 255, 255, 0.2) !important;
+    }
+    .dark .dataTables_wrapper .dataTables_paginate .paginate_button.disabled,
+    .dark .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover {
+        background: transparent !important;
+        color: rgba(255, 255, 255, 0.2) !important;
+        border-color: transparent !important;
     }
     .dark .dataTables_wrapper .dataTables_info {
         color: rgba(255, 255, 255, 0.5) !important;
@@ -36,7 +50,6 @@
         background-color: rgba(255, 255, 255, 0.1) !important;
     }
 
-    /* Fix for white dropdown choices */
     .dark select option {
         background-color: #1a222c !important;
         color: white !important;
@@ -88,21 +101,21 @@
         <div class="flex flex-col md:flex-row items-center gap-4">
             <div class="flex flex-wrap flex-1 items-center gap-3 w-full">
                 <select id="tugas_filterUnit"
-                    class="rounded-xl border border-gray-200 bg-gray-50/50 py-2.5 px-4 outline-none focus:border-primary dark:border-white/10 dark:bg-gray-50/50/5 text-xs font-black text-primary min-w-[250px] shadow-sm disabled:opacity-60"
+                    class="rounded-xl border border-gray-200 bg-gray-50/50 py-2.5 px-4 outline-none focus:border-primary dark:border-white/10 dark:bg-white/5 text-xs font-black text-primary min-w-[250px] shadow-sm disabled:opacity-60"
                     disabled>
                     <option value="">- Memvalidasi Akses... -</option>
                 </select>
 
                 <select id="tugas_filterTahun"
-                    class="rounded-xl border border-gray-200 bg-gray-50/50 py-2.5 px-4 outline-none focus:border-primary dark:border-white/10 dark:bg-gray-50/50/5 text-xs font-bold text-black dark:text-white min-w-[120px] shadow-sm"></select>
+                    class="rounded-xl border border-gray-200 bg-gray-50/50 py-2.5 px-4 outline-none focus:border-primary dark:border-white/10 dark:bg-white/5 text-xs font-bold text-black dark:text-white min-w-[120px] shadow-sm"></select>
 
-                <select id="tugas_filterSemester" class="rounded-xl border border-gray-200 bg-gray-50/50 py-2.5 px-4 outline-none focus:border-primary dark:border-white/10 dark:bg-gray-50/50/5 text-xs font-bold text-black dark:text-white min-w-[140px] shadow-sm">
+                <select id="tugas_filterSemester" class="rounded-xl border border-gray-200 bg-gray-50/50 py-2.5 px-4 outline-none focus:border-primary dark:border-white/10 dark:bg-white/5 text-xs font-bold text-black dark:text-white min-w-[140px] shadow-sm">
                     <option value="">- Semua Semester -</option>
                     <option value="Semester 1">Semester 1</option>
                     <option value="Semester 2">Semester 2</option>
                 </select>
 
-                <select id="tugas_filterStatus" class="rounded-xl border border-gray-200 bg-gray-50/50 py-2.5 px-4 outline-none focus:border-primary dark:border-white/10 dark:bg-gray-50/50/5 text-xs font-bold text-black dark:text-white min-w-[140px] shadow-sm">
+                <select id="tugas_filterStatus" class="rounded-xl border border-gray-200 bg-gray-50/50 py-2.5 px-4 outline-none focus:border-primary dark:border-white/10 dark:bg-white/5 text-xs font-bold text-black dark:text-white min-w-[140px] shadow-sm">
                     <option value="">- Semua Status -</option>
                     <option value="Diproses">Diproses</option>
                     <option value="Revisi">Revisi</option>
@@ -110,7 +123,7 @@
                     <option value="Ditolak">Ditolak</option>
                 </select>
 
-                <button type="button" id="tugas_btnCari" class="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-50 dark:bg-gray-50/50/5 text-gray-500 hover:text-primary transition shadow-sm border border-gray-100 dark:border-gray-800" title="Refresh Data">
+                <button type="button" id="tugas_btnCari" class="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-50 dark:bg-white/5 text-gray-500 hover:text-primary transition shadow-sm border border-gray-100 dark:border-gray-800" title="Refresh Data">
                     <i class="fas fa-sync-alt"></i>
                 </button>
             </div>
@@ -134,7 +147,7 @@
         <div id="tugas_tableState" style="display: none;" class="overflow-x-auto w-full sultan-scroll px-6 py-4">
             <table id="tugas_tabelUtama" class="w-full table-auto text-xs bg-transparent">
                 <thead>
-                    <tr class="bg-primary/10 dark:bg-gray-50/50/5 text-left border-b border-gray-100 dark:border-white/10 transition-colors">
+                    <tr class="bg-primary/10 dark:bg-white/5 text-left border-b border-gray-100 dark:border-white/10 transition-colors">
                         <th class="py-4 px-4 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center w-[110px]">Aksi</th>
                         <th class="py-4 px-4 font-black uppercase tracking-widest text-primary dark:text-white/80">Unit Kerja</th>
                         <th class="py-4 px-4 font-black uppercase tracking-widest text-primary dark:text-white/80">Periode</th>
