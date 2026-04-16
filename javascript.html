@@ -312,24 +312,22 @@ function loadContent(pageName) {
 
     if (window.NProgress) NProgress.start();
     
-    // 1. Persiapkan Buffer dengan Skeleton
-    $buffer.html(Sultan.ui.skeleton()).show().css('opacity', '0.5');
-    
-    // 2. Check Cache (Turbo Mode)
+    // 1. Check Cache (Turbo Mode - Instant Swap)
     let cached = Sultan.db.sessionGet('cache_page_' + pageName);
     if (cached) {
         if (window.NProgress) NProgress.done();
-        setTimeout(function() {
-            $buffer.html('<div class="slide-in-right active">' + cached + '</div>');
-            $active.fadeOut(50, function() {
-                $active.html('').hide();
-                $buffer.css({'opacity':'1','display':'block'}).removeClass('buffer').addClass('active').attr('id','app-content-active');
-                $active.removeClass('active').addClass('buffer').attr('id','app-content-buffer');
-                runCounterUp();
-            });
-        }, 50);
+        $buffer.html('<div class="slide-in-right active">' + cached + '</div>');
+        $active.fadeOut(80, function() {
+            $active.html('').hide();
+            $buffer.css({'opacity':'1','display':'block'}).removeClass('buffer').addClass('active').attr('id','app-content-active');
+            $active.removeClass('active').addClass('buffer').attr('id','app-content-buffer');
+            runCounterUp();
+        });
         return;
     }
+    
+    // 2. No Cache: Show Adaptive Skeleton only for new content
+    $buffer.html(Sultan.ui.skeleton()).show().css('opacity', '0.5');
     
     // 3. Muat Konten Baru di Background (Server Call)
     Sultan.bridge('loadPage', [pageName], function(html) {
