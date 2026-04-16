@@ -5,8 +5,9 @@
     .dark .modal-container select,
     .dark .modal-container input,
     .dark .modal-container textarea,
-    .dark #tugas_modalPreview select,
-    .dark #tugas_modalPreview input {
+    .dark [id^='tugas_modal'] select,
+    .dark [id^='tugas_modal'] input,
+    .dark [id^='tugas_modal'] textarea {
         background-color: rgba(255, 255, 255, 0.05) !important;
         color: white !important;
         border-color: rgba(255, 255, 255, 0.1) !important;
@@ -14,14 +15,23 @@
     
     .dark .sultan-card, 
     .dark .modal-container > div,
-    .dark #tugas_modalPreview > div:first-child {
+    .dark [id^='tugas_modal'] > div,
+    .dark [id^='tugas_modal'] form,
+    .dark [id^='tugas_modal'] .modal-header {
         background-color: #1a222c !important;
         border-color: rgba(255, 255, 255, 0.05) !important;
     }
 
+    /* SPECIFIC MODAL OVERRIDES */
     .dark #tugas_modalPreview .flex-1,
-    .dark #tugas_modalPreview #tugas_loadingPreviewPDF {
+    .dark #tugas_modalPreview #tugas_loadingPreviewPDF,
+    .dark #tugas_modalVerif .flex-1,
+    .dark #tugas_modalForm .rounded-2xl.border-gray-100 {
         background-color: #0f172a !important;
+    }
+
+    .dark #tugas_modalVerif .md\:w-\[400px\] {
+        background-color: #1a222c !important;
     }
 
     /* DATATABLES PAGINATION & INFO DARK MODE (ULTIMATE FIX) */
