@@ -319,7 +319,7 @@
 
 <!-- 2. MODAL VERIFIKASI (Side-by-Side Review) -->
 <div id="tugas_modalVerif" class="fixed inset-0 z-[99999] hidden items-center justify-center bg-black/70 backdrop-blur-md px-4 py-6">
-    <div class="relative flex flex-col md:flex-row w-full max-w-[96%] h-full max-h-[94%] rounded-3xl border border-white/10 bg-white dark:bg-boxdark shadow-2xl animate-reveal overflow-hidden">
+    <div class="relative flex flex-col md:flex-row w-full max-w-[96%] h-full max-h-[94%] rounded-3xl border border-white/10 bg-white dark:bg-[#1A222C] shadow-2xl animate-reveal overflow-hidden">
         
         <!-- Document Area (Left - 65%) -->
         <div class="flex-1 bg-gray-100 dark:bg-black/40 relative overflow-hidden flex items-center justify-center border-r border-gray-100 dark:border-white/5">
@@ -342,9 +342,9 @@
         </div>
 
         <!-- Form Area (Right - 35%) -->
-        <div class="w-full md:w-[450px] flex flex-col bg-white dark:bg-boxdark relative">
+        <div class="w-full md:w-[450px] flex flex-col bg-white dark:bg-[#1A222C] relative">
             <!-- Modal Header -->
-            <div class="flex items-center justify-between border-b border-gray-100 py-5 px-8 dark:border-white/5 bg-gray-50/30 dark:bg-white/5">
+            <div class="flex items-center justify-between border-b border-gray-100 py-5 px-8 dark:border-white/5 bg-gray-50/30 dark:bg-white/[0.03]">
                 <div>
                     <h3 class="font-black text-black dark:text-white flex items-center gap-2 text-sm uppercase tracking-wider">
                         <i class="fas fa-check-double text-primary"></i> Review & Verif
@@ -361,23 +361,23 @@
                 
                 <!-- Metadata Summary -->
                 <div class="mb-8 space-y-5">
-                    <div class="group flex flex-col gap-1.5 p-5 rounded-2xl border border-gray-100 bg-gray-50/50 dark:border-white/5 dark:bg-white/2[0.02] hover:border-primary/20 transition-all">
+                    <div class="group flex flex-col gap-1.5 p-5 rounded-2xl border border-gray-100 bg-gray-50/50 dark:border-white/5 dark:bg-white/[0.02] hover:border-primary/20 transition-all">
                         <span class="text-[9px] text-gray-400 font-black uppercase tracking-widest">Institusi Pelapor</span>
                         <span class="font-black text-black dark:text-white text-[13px] leading-tight uppercase" id="tugas_vNamaSd">-</span>
                     </div>
 
                     <div class="grid grid-cols-2 gap-4">
-                        <div class="flex flex-col gap-1.5 p-4 rounded-2xl border border-gray-100 bg-gray-50/50 dark:border-white/5 dark:bg-white/2[0.02]">
+                        <div class="flex flex-col gap-1.5 p-4 rounded-2xl border border-gray-100 bg-gray-50/50 dark:border-white/5 dark:bg-white/[0.02]">
                             <span class="text-[9px] text-gray-400 font-black uppercase tracking-widest">Tahun Ajaran</span>
                             <span class="font-black text-black dark:text-white text-xs" id="tugas_vTahun">-</span>
                         </div>
-                        <div class="flex flex-col gap-1.5 p-4 rounded-2xl border border-gray-100 bg-gray-50/50 dark:border-white/5 dark:bg-white/2[0.02]">
+                        <div class="flex flex-col gap-1.5 p-4 rounded-2xl border border-gray-100 bg-gray-50/50 dark:border-white/5 dark:bg-white/[0.02]">
                             <span class="text-[9px] text-gray-400 font-black uppercase tracking-widest">Semester</span>
                             <span class="font-black text-black dark:text-white text-xs" id="tugas_vSemester">-</span>
                         </div>
                     </div>
 
-                    <div class="flex flex-col gap-3 p-5 rounded-2xl border border-gray-100 bg-gray-50/50 dark:border-white/5 dark:bg-white/2[0.02]">
+                    <div class="flex flex-col gap-3 p-5 rounded-2xl border border-gray-100 bg-gray-50/50 dark:border-white/5 dark:bg-white/[0.02]">
                         <span class="text-[9px] text-gray-400 font-black uppercase tracking-widest">Detail Identitas Dokumen</span>
                         <div class="space-y-3">
                             <div class="flex justify-between items-center">
@@ -1057,6 +1057,15 @@
     // =================================================================
     // 6. LOGIKA VERIFIKASI (ADMIN ONLY)
     // =================================================================
+    $(document).ready(function() {
+        $('#tugas_modalVerif').on('hidden.bs.modal', function () { 
+            $('#tugas_verifFrame').addClass('hidden').attr('src', ''); 
+            $('#tugas_verifNoFile').removeClass('hidden'); 
+        });
+    });
+
+    // 6. LOGIKA VERIFIKASI (ADMIN ONLY)
+    // =================================================================
     function tugas_bukaModalVerif(rowId) {
         var d = TUGAS_DATA_MASTER[rowId];
         if (!d) return;
@@ -1073,17 +1082,18 @@
 
         $('#tugas_verifStatus').val('');
         $('#tugas_verifKeterangan').val(d.keterangan || '');
-        $('#tugas_verifWajibCatatan').addClass('d-none');
+        $('#tugas_verifWajibCatatan').addClass('hidden');
 
         var url = d.fileUrl || "";
         if (url) {
-            $('#tugas_verifLoader').removeClass('d-none');
-            // Clear src first to force re-load
-            $('#tugas_verifFrame').addClass('d-none').attr('src', '');
+            $('#tugas_verifLoader').removeClass('hidden');
+            $('#tugas_verifFrame').addClass('hidden').attr('src', '');
+            
             setTimeout(function () {
                 $('#tugas_verifFrame').attr('src', tugas_convertDriveUrl(url));
             }, 100);
-            $('#tugas_verifNoFile').addClass('d-none');
+            
+            $('#tugas_verifNoFile').addClass('hidden');
 
             $('#tugas_verifFrame').off('load').on('load', function () {
                 $('#tugas_verifLoader').addClass('hidden');
@@ -1100,9 +1110,9 @@
 
     function tugas_cekStatusVerif(val) {
         if (val === "Revisi" || val === "Ditolak") {
-            $('#tugas_verifWajibCatatan').removeClass('d-none');
+            $('#tugas_verifWajibCatatan').removeClass('hidden');
         } else {
-            $('#tugas_verifWajibCatatan').addClass('d-none');
+            $('#tugas_verifWajibCatatan').addClass('hidden');
         }
     }
 
