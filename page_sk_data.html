@@ -1,11 +1,11 @@
 <div class="flex flex-col gap-4 animate-reveal">
 
     <!-- PAGE HEADER -->
-    <div class="mb-1 flex flex-col gap-1">
-        <h1 class="text-xl md:text-2xl font-black text-black dark:text-white tracking-tight">
+    <div class="mb-0.5 flex flex-col">
+        <h1 class="text-lg md:text-xl font-black text-black dark:text-white tracking-tight leading-none">
             Kelola Data SK
         </h1>
-        <p class="text-[10px] md:text-[11px] font-bold text-gray-400 uppercase tracking-[0.2em] opacity-80">
+        <p class="text-[9px] md:text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] opacity-80 mt-1">
             Pengelolaan & Validasi Dokumen Pembagian Tugas
         </p>
     </div>
@@ -83,15 +83,15 @@
             <table id="tugas_tabelUtama" class="w-full table-auto text-xs bg-transparent">
                 <thead>
                     <tr class="bg-gray-50/50 dark:bg-white/5 text-left border-b border-gray-100 dark:border-white/5 transition-colors">
-                        <th class="py-4 px-6 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center w-[120px]">Aksi</th>
-                        <th class="py-4 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80">Unit Kerja</th>
-                        <th class="py-4 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80">Periode</th>
-                        <th class="py-4 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80">Detail SK</th>
-                        <th class="py-4 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center">Berkas</th>
-                        <th class="py-4 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center">Status</th>
-                        <th class="py-4 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80">Log Input</th>
-                        <th class="py-4 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80">Log Update</th>
-                        <th class="py-4 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center">Verifikasi</th>
+                        <th class="py-2.5 px-6 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center w-[120px] text-[10px]">Aksi</th>
+                        <th class="py-2.5 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80 text-[10px]">Unit Kerja</th>
+                        <th class="py-2.5 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80 text-[10px]">Periode</th>
+                        <th class="py-2.5 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80 text-[10px]">Detail SK</th>
+                        <th class="py-2.5 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center text-[10px]">Berkas</th>
+                        <th class="py-2.5 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center text-[10px]">Status</th>
+                        <th class="py-2.5 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80 text-[10px]">Log Input</th>
+                        <th class="py-2.5 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80 text-[10px]">Log Update</th>
+                        <th class="py-2.5 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center text-[10px]">Verifikasi</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100 dark:divide-white/5 bg-transparent"></tbody>
@@ -582,9 +582,9 @@
                     "dom": '<"row"<"col-sm-12"<"overflow-x-auto sultan-scroll !border-none"tr>>>' +
                            '<"flex flex-col md:flex-row justify-between items-center gap-4 mt-6 px-6 pb-6"<"text-[11px] font-bold text-gray-500"i><"pagination-wrapper"p>>',
                     "columnDefs": [
-                        { "targets": 0, "className": "py-2.5 px-4 text-center", "width": "110px" },
-                        { "targets": [1, 2, 3, 6, 7, 8], "className": "py-2.5 px-4 text-left" },
-                        { "targets": [4, 5], "className": "py-2.5 px-4 text-center" }
+                        { "targets": 0, "className": "py-1 px-4 text-center", "width": "110px" },
+                        { "targets": [1, 2, 3, 6, 7, 8], "className": "py-1 px-4 text-left" },
+                        { "targets": [4, 5], "className": "py-1 px-4 text-center" }
                     ],
                     "language": { "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", "emptyTable": "Tidak ditemukan data SK." },
                     "drawCallback": function (settings) {
