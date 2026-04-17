@@ -343,16 +343,16 @@
 
         <!-- Form Area (Right - Compact 360px) -->
         <div class="w-full md:w-[360px] flex flex-col bg-white dark:bg-[#1A222C] relative border-l border-gray-100 dark:border-white/5">
-            <!-- Modal Header (Compact & Theme-Aware) -->
-            <div class="flex items-center justify-between border-b border-gray-100 py-4 px-6 dark:border-white/10 bg-gray-50 dark:bg-black/20">
+            <!-- Modal Header (Sultan Standard) -->
+            <div class="flex items-center justify-between border-b border-gray-100 dark:border-white/10 py-5 px-6 bg-white dark:bg-[#1A222C]">
                 <div>
                     <h3 class="font-black text-black dark:text-white flex items-center gap-2 text-sm uppercase tracking-wider">
                         <i class="fas fa-check-double text-primary"></i> Review & Verif
                     </h3>
-                    <p class="text-[9px] text-gray-400 font-bold uppercase tracking-widest mt-0.5 opacity-70">Peninjauan Dokumen Digital</p>
+                    <p class="text-[9px] text-gray-400 font-bold uppercase tracking-widest mt-1 opacity-70">Peninjauan Dokumen Digital</p>
                 </div>
-                <button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg bg-gray-200/50 dark:bg-white/5 text-gray-500 dark:text-gray-400 hover:text-danger hover:bg-danger/10 transition-all font-black" onclick="$('#tugas_modalVerif').fadeOut().addClass('hidden').removeClass('flex')">
-                    <i class="fas fa-times text-xs"></i>
+                <button type="button" class="flex h-9 w-9 items-center justify-center rounded-xl bg-gray-100 dark:bg-white/5 text-gray-400 hover:text-danger hover:bg-danger/10 transition-all" onclick="$('#tugas_modalVerif').fadeOut().addClass('hidden').removeClass('flex')">
+                    <i class="fas fa-times"></i>
                 </button>
             </div>
             
@@ -416,12 +416,12 @@
                         </p>
                     </div>
 
-                    <!-- Actions (High-Impact) -->
+                    <!-- Actions (TailAdmin Standard) -->
                     <div class="flex gap-4 pt-1">
-                        <button type="button" class="flex-1 h-13 rounded-xl font-black text-[11px] uppercase tracking-widest border-2 border-gray-200 dark:border-white/10 text-gray-500 hover:bg-gray-100 dark:hover:bg-white/5 transition-all" onclick="$('#tugas_modalVerif').fadeOut().addClass('hidden').removeClass('flex')">
+                        <button type="button" class="flex-1 inline-flex items-center justify-center rounded-lg border border-stroke bg-gray py-3 px-6 text-center font-black uppercase text-[11px] tracking-widest text-black hover:bg-opacity-90 dark:border-strokedark dark:bg-meta-4 dark:text-white transition-all shadow-sm" onclick="$('#tugas_modalVerif').fadeOut().addClass('hidden').removeClass('flex')">
                             BATAL
                         </button>
-                        <button type="submit" id="tugas_btnSimpanVerif" class="flex-1 h-13 rounded-xl font-black text-[11px] uppercase tracking-widest bg-primary text-white hover:bg-primary/90 transition-all shadow-lg shadow-primary/30">
+                        <button type="submit" id="tugas_btnSimpanVerif" class="flex-1 inline-flex items-center justify-center rounded-lg bg-primary py-3 px-6 text-center font-black uppercase text-[11px] tracking-widest text-white hover:bg-opacity-90 transition-all shadow-lg shadow-primary/20">
                             SIMPAN
                         </button>
                     </div>
