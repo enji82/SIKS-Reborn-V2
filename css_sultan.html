@@ -3715,7 +3715,7 @@ body .modal-header-sultan .modal-title i { color: var(--warna-emas) !important; 
 .dark .sk-skeleton { background: rgba(255, 255, 255, 0.05); }
 
 /* 
-   SULTAN ULTIMATE SYSTEM v2.8 (Typography Sync Edition)
+   SULTAN ULTIMATE SYSTEM v2.9 (High-Precision Typography Sync)
    ------------------------------------------------------------ */
 
 /* Total Border Silence (Final Artifact Killer) */
@@ -3726,31 +3726,47 @@ body .modal-header-sultan .modal-title i { color: var(--warna-emas) !important; 
     box-shadow: none !important;
 }
 
+/* Force Satoshi Primary Font */
+*, body, h1, h2, h3, h4, h5, h6, th, td, input, select, textarea, button {
+  font-family: 'Satoshi', ui-sans-serif, system-ui, -apple-system, sans-serif !important;
+}
+
 /* Global Scrollbar Suppression */
 ::-webkit-scrollbar-track { background: transparent !important; }
 ::-webkit-scrollbar-corner { background: transparent !important; }
 
-/* Font Precision Alignment (Sync with Sidebar & Brand) */
-body, .text-sm { font-size: 0.9375rem !important; } /* 15px matches .nav-link-tail */
-.text-xs { font-size: 13px !important; }
-.label-sultan { font-size: 14px !important; }
-
-/* Brandlink Style Match for Page Titles */
-.cb-page-title, h1.text-brand-sync {
-    font-size: 1.25rem !important; /* 20px matches brandlink */
-    font-weight: 900 !important;
-    letter-spacing: -0.03em !important;
+/* BRANDING SYNC: Page Title Matches Brandlink */
+.sultan-title-sync {
+  font-size: 1.25rem !important; /* 20px */
+  font-weight: 900 !important;
+  letter-spacing: -0.03em !important;
+  line-height: 1 !important;
 }
 
-/* Table High-Density Calibration (Balanced for 15px font) */
-#tugas_tabelUtama th { padding-top: 10px !important; padding-bottom: 10px !important; font-size: 11px !important; }
-#tugas_tabelUtama td { padding-top: 8px !important; padding-bottom: 8px !important; vertical-align: middle !important; }
-
-/* Force Card Muting */
-.dark .sk-card { 
-    border-color: rgba(255, 255, 255, 0.04) !important;
-    box-shadow: none !important; 
+/* CONTENT SYNC: Page Content Matches Sidebar Links */
+.sultan-content-sync, 
+#tugas_tabelUtama td,
+#tugas_tabelUtama th {
+  font-size: 0.9375rem !important; /* 15px */
+  font-weight: 500 !important;     /* Sidebar Link Weight */
+  line-height: 1.4 !important;
 }
+
+/* Table Header Specificity Calibration */
+#tugas_tabelUtama th {
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+  text-transform: uppercase !important;
+}
+
+/* Table Row Padding */
+#tugas_tabelUtama td {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
+/* Dark Mode Background Seal */
+.dark html, .dark body { background-color: #1A222C !important; }
 
 </style>
 
