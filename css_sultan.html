@@ -1413,9 +1413,9 @@ table.dataTable {
 
 /* Obat Kuat Anti-Macet Scroll Trackpad (Dipakai di semua halaman) */
 .sultan-scroll { 
-    overflow-x: auto !important; 
-    -webkit-overflow-scrolling: touch !important; 
-    width: 100% !important; 
+    overflow-x: auto; 
+    -webkit-overflow-scrolling: touch; 
+    width: 100%; 
     border-radius: 4px; 
 }
 
@@ -3705,6 +3705,22 @@ body .modal-header-sultan .modal-title i { color: var(--warna-emas) !important; 
 @keyframes sk-shimmer { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
 .sk-skeleton { animation: sk-shimmer 1.5s ease-in-out infinite; background: #F1F5F9; border-radius: 6px; }
 .dark .sk-skeleton { background: rgba(255, 255, 255, 0.05); }
+
+/* 
+   SULTAN ULTIMATE SYSTEM v2.6 (Visual Artifact Fixes)
+   ------------------------------------------------------------ */
+
+/* Global Scrollbar Transparency (Fixes horizontal white lines/ghost tracks) */
+::-webkit-scrollbar-track { background: transparent !important; }
+::-webkit-scrollbar-corner { background: transparent !important; }
+
+/* Muted Dark Mode Borders for Breadcrumb/Header */
+.dark .cb-page-title { border-bottom-color: rgba(255, 255, 255, 0.05) !important; }
+.dark .main-header { border-bottom-color: rgba(255, 255, 255, 0.05) !important; }
+.dark #main-navbar { border-bottom-color: rgba(255, 255, 255, 0.05) !important; }
+
+/* Sultan Scroll - Smarter Overflow */
+.dark .sultan-scroll { border-color: transparent !important; }
 
 </style>
 
