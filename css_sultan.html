@@ -11,7 +11,7 @@
   --bg-dark: #1A222C;
   --panel-dark: #24303F;
   --stroke: #E2E8F0;
-  --stroke-dark: #313D4A;
+  --stroke-dark: rgba(255, 255, 255, 0.05);
   
   /* TailAdmin Meta Colors */
   --meta-1: #FB5454;
@@ -2079,6 +2079,7 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
   align-items: center !important;
   padding: 0 20px !important;
   border-bottom: 1px solid var(--sidebar-border) !important;
+  border-right: 1px solid var(--sidebar-border) !important;
   flex-shrink: 0 !important;
 }
 
@@ -3707,20 +3708,27 @@ body .modal-header-sultan .modal-title i { color: var(--warna-emas) !important; 
 .dark .sk-skeleton { background: rgba(255, 255, 255, 0.05); }
 
 /* 
-   SULTAN ULTIMATE SYSTEM v2.6 (Visual Artifact Fixes)
+   SULTAN ULTIMATE SYSTEM v2.6 (Total Visual Calibration)
    ------------------------------------------------------------ */
 
-/* Global Scrollbar Transparency (Fixes horizontal white lines/ghost tracks) */
+/* Global Scrollbar Track Suppression */
 ::-webkit-scrollbar-track { background: transparent !important; }
 ::-webkit-scrollbar-corner { background: transparent !important; }
 
-/* Muted Dark Mode Borders for Breadcrumb/Header */
+/* Muted Dark Mode Boundaries */
 .dark .cb-page-title { border-bottom-color: rgba(255, 255, 255, 0.05) !important; }
 .dark .main-header { border-bottom-color: rgba(255, 255, 255, 0.05) !important; }
 .dark #main-navbar { border-bottom-color: rgba(255, 255, 255, 0.05) !important; }
+.dark .sidebar-drawer { border-right-color: rgba(255, 255, 255, 0.05) !important; }
 
-/* Sultan Scroll - Smarter Overflow */
-.dark .sultan-scroll { border-color: transparent !important; }
+/* Font Precision Alignment */
+body { font-size: 14px !important; }
+.text-sm { font-size: 14px !important; }
+.text-xs { font-size: 12px !important; }
+.label-sultan { font-size: 13px !important; }
+
+/* Space Optimization: Vertical Economy */
+.sk-card { margin-bottom: 1.25rem !important; }
 
 </style>
 
