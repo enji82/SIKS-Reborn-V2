@@ -473,10 +473,11 @@
     </div>
 </div>
 
-<!-- 4. MODAL HAPUS (SULTAN STYLE SECURE) -->
-<div id="tugas_modalHapus" class="fixed inset-0 z-[99999] hidden items-center justify-center bg-black/60 backdrop-blur-sm overflow-y-auto px-4 py-8 text-black dark:text-white">
-    <div class="w-full max-w-[400px] rounded-2xl border border-gray-200 bg-white shadow-2xl dark:border-gray-800 dark:bg-[#1a222c] animate-reveal overflow-hidden">
-        <!-- Header Hapus -->
+<!-- 4. MODAL HAPUS — Menggunakan template yang sama dengan Modal Tambah/Edit -->
+<div id="tugas_modalHapus" class="fixed inset-0 z-[99999] hidden items-center justify-center bg-black/60 backdrop-blur-sm overflow-y-auto px-4 py-8">
+    <div class="w-full max-w-[480px] rounded-2xl border border-gray-200 bg-gray-50/50 shadow-2xl dark:border-gray-800 dark:bg-[#1a222c] animate-reveal overflow-hidden">
+
+        <!-- Header — Sama persis dengan modalForm -->
         <div class="sk-modal-header header-danger">
             <h3 class="sk-modal-title title-danger">
                 <span class="sk-title-icon"><i class="fas fa-trash-alt"></i></span>
@@ -487,42 +488,37 @@
             </button>
         </div>
 
-        <form id="tugas_formHapus" class="p-6">
+        <!-- Body — Hanya konten yang berbeda -->
+        <form id="tugas_formHapus" class="sk-modal-body">
             <input type="hidden" id="tugas_hapusRowId">
-            
-            <div class="mb-6 flex flex-col items-center text-center">
-                <div class="flex h-16 w-16 items-center justify-center rounded-full bg-danger/10 text-danger mb-4 shadow-inner">
-                    <i class="fas fa-exclamation-triangle text-2xl animate-pulse"></i>
-                </div>
-                <h4 class="text-lg font-black tracking-tight leading-tight mb-2 uppercase text-black dark:text-white">Konfirmasi Penghapusan</h4>
-                <p class="text-xs font-bold text-gray-500 dark:text-gray-400 leading-relaxed px-4">
-                    Anda akan menghapus data SK nomor <br>
-                    <span id="tugas_hapusViewNomor" class="text-danger font-black select-all"></span>. <br>
-                    Tindakan ini permanen dan tidak dapat dibatalkan.
-                </p>
-            </div>
 
-            <div class="space-y-4 rounded-2xl border border-gray-100 bg-gray-50/50 p-5 dark:border-gray-800 dark:bg-black/20">
-                <div class="flex items-center gap-3 text-primary mb-1">
-                    <i class="fas fa-shield-alt text-lg opacity-50"></i>
-                    <p class="text-[10px] font-black uppercase tracking-widest leading-none">Keamanan Data</p>
+            <!-- Ringkasan Data yang Akan Dihapus -->
+            <div class="mb-5 flex items-start gap-4 rounded-xl border border-danger/20 bg-danger/5 py-4 px-5">
+                <div class="flex h-10 w-10 min-w-[40px] items-center justify-center rounded-lg bg-danger text-white shadow-lg shadow-danger/20 mt-0.5">
+                    <i class="fas fa-exclamation-triangle"></i>
                 </div>
-                
-                <div>
-                   <label class="sk-form-label">Input Kode Konfirmasi</label>
-                   <input type="text" id="tugas_inputKodeHapus" placeholder="Masukkan kode..." class="sk-form-input input-danger" required autocomplete="off">
-                   <p class="mt-2 text-[10px] font-bold text-gray-400 italic">
-                       Hubungi admin Korwil untuk mendapatkan kode hapus.
-                   </p>
+                <div class="flex-1">
+                    <p class="text-[10px] text-danger font-black uppercase tracking-widest leading-none mb-1.5 opacity-80">Peringatan Penghapusan Permanen</p>
+                    <div class="text-[11px] font-bold text-black dark:text-white leading-relaxed">
+                        Anda akan menghapus SK nomor <span id="tugas_hapusViewNomor" class="text-danger font-black select-all"></span>. Tindakan ini tidak dapat dibatalkan.
+                    </div>
                 </div>
             </div>
 
-            <div class="sk-modal-footer" style="flex-direction:column; gap:0.5rem">
-                <button type="submit" id="tugas_btnEksekusiHapus" class="sk-btn sk-btn-danger btn-full">
-                    <i class="fas fa-trash-alt"></i> HAPUS DATA PERMANEN
+            <!-- Form Verifikasi Kode -->
+            <div>
+                <label class="sk-form-label">Kode Konfirmasi Hapus <span class="req">*</span></label>
+                <input type="text" id="tugas_inputKodeHapus" placeholder="Masukkan kode dari Admin Korwil..." class="sk-form-input input-danger" required autocomplete="off">
+                <p class="mt-2 text-[10px] font-bold text-gray-400"><i class="fas fa-shield-alt mr-1 opacity-50"></i> Hubungi admin Korwil untuk mendapatkan kode hapus.</p>
+            </div>
+
+            <!-- Footer — Sama persis dengan modalForm -->
+            <div class="sk-modal-footer" style="padding-left:0; padding-right:0; padding-bottom:0; margin-top:1.5rem">
+                <button type="button" class="sk-btn sk-btn-cancel btn-half" onclick="$('#tugas_modalHapus').fadeOut().addClass('hidden').removeClass('flex')">
+                    BATAL
                 </button>
-                <button type="button" class="sk-btn sk-btn-ghost btn-full" onclick="$('#tugas_modalHapus').fadeOut().addClass('hidden').removeClass('flex')">
-                    BATALKAN
+                <button type="submit" id="tugas_btnEksekusiHapus" class="sk-btn sk-btn-danger btn-half">
+                    <i class="fas fa-trash-alt"></i> HAPUS PERMANEN
                 </button>
             </div>
         </form>
