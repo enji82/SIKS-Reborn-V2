@@ -359,21 +359,21 @@
             <form id="tugas_formVerif" class="flex-1 flex flex-col overflow-y-auto p-5 scroll-smooth sultan-scroll">
                 <input type="hidden" id="tugas_verifRowId">
                 
-                <!-- Metadata Summary (High-Density) -->
-                <div class="mb-6 space-y-3.5">
+                <!-- Metadata Summary (High-Density & Larger Text) -->
+                <div class="mb-5 space-y-3">
                     <div class="group flex flex-col gap-1 p-3.5 rounded-xl border border-gray-100 bg-gray-50/50 dark:border-white/5 dark:bg-white/[0.02] hover:border-primary/20 transition-all">
                         <span class="text-[8px] text-gray-400 font-black uppercase tracking-widest">Institusi Pelapor</span>
-                        <span class="font-black text-black dark:text-white text-[12px] leading-tight uppercase" id="tugas_vNamaSd">-</span>
+                        <span class="font-black text-black dark:text-white text-base leading-tight uppercase" id="tugas_vNamaSd">-</span>
                     </div>
 
                     <div class="grid grid-cols-2 gap-3">
                         <div class="flex flex-col gap-1 p-3 rounded-xl border border-gray-100 bg-gray-50/50 dark:border-white/5 dark:bg-white/[0.02]">
                             <span class="text-[8px] text-gray-400 font-black uppercase tracking-widest">Thn Ajaran</span>
-                            <span class="font-black text-black dark:text-white text-[11px]" id="tugas_vTahun">-</span>
+                            <span class="font-black text-black dark:text-white text-[13px]" id="tugas_vTahun">-</span>
                         </div>
                         <div class="flex flex-col gap-1 p-3 rounded-xl border border-gray-100 bg-gray-50/50 dark:border-white/5 dark:bg-white/[0.02]">
                             <span class="text-[8px] text-gray-400 font-black uppercase tracking-widest">Semester</span>
-                            <span class="font-black text-black dark:text-white text-[11px]" id="tugas_vSemester">-</span>
+                            <span class="font-black text-black dark:text-white text-[13px]" id="tugas_vSemester">-</span>
                         </div>
                     </div>
 
@@ -386,21 +386,21 @@
                             </div>
                             <div class="flex justify-between items-start gap-4 border-t border-dashed border-gray-100 dark:border-white/5 pt-2">
                                 <span class="text-[9px] text-gray-500 font-bold uppercase shrink-0">No. SK</span>
-                                <span class="font-black text-black dark:text-white text-[10px] text-right break-all" id="tugas_vNoSk">-</span>
+                                <span class="font-black text-black dark:text-white text-[13px] text-right break-all" id="tugas_vNoSk">-</span>
                             </div>
                             <div class="flex justify-between items-center">
                                 <span class="text-[9px] text-gray-500 font-bold uppercase">Tanggal</span>
-                                <span class="font-black text-black dark:text-white text-[10px]" id="tugas_vTglSk">-</span>
+                                <span class="font-black text-black dark:text-white text-[13px]" id="tugas_vTglSk">-</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Decision Section (Compact) -->
-                <div class="mt-auto pt-6 border-t border-gray-100 dark:border-white/5 space-y-5">
+                <!-- Decision Section (Tightened Gap) -->
+                <div class="pt-5 border-t border-gray-100 dark:border-white/5 space-y-4">
                     <div>
-                        <label class="mb-2.5 block text-[9px] font-black uppercase tracking-widest text-primary">Status Verifikasi <span class="text-danger">*</span></label>
-                        <select id="tugas_verifStatus" class="w-full rounded-xl border border-gray-200 bg-gray-50/50 py-3 px-4 font-black text-[11px] outline-none transition-all focus:border-primary focus:ring-4 focus:ring-primary/5 dark:border-white/10 dark:bg-white/5 dark:text-white appearance-none cursor-pointer" onchange="tugas_cekStatusVerif(this.value)" required>
+                        <label class="mb-2 block text-[9px] font-black uppercase tracking-widest text-primary">Status Verifikasi <span class="text-danger">*</span></label>
+                        <select id="tugas_verifStatus" class="w-full rounded-xl border border-gray-200 bg-gray-50/50 py-3 px-4 font-black text-xs outline-none transition-all focus:border-primary focus:ring-4 focus:ring-primary/5 dark:border-white/10 dark:bg-white/5 dark:text-white appearance-none cursor-pointer" onchange="tugas_cekStatusVerif(this.value)" required>
                             <option value="">- PILIH KEPUTUSAN -</option>
                             <option value="Disetujui">✅ TERIMA & SETUJUI</option>
                             <option value="Revisi">🔄 PERLU REVISI</option>
