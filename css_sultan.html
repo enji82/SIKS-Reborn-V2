@@ -3708,36 +3708,36 @@ body .modal-header-sultan .modal-title i { color: var(--warna-emas) !important; 
 .dark .sk-skeleton { background: rgba(255, 255, 255, 0.05); }
 
 /* 
-   SULTAN ULTIMATE SYSTEM v2.7 (Total High-Density Calibration)
+   SULTAN ULTIMATE SYSTEM v2.8 (Typography Sync Edition)
    ------------------------------------------------------------ */
 
 /* Total Border Silence (Final Artifact Killer) */
-.dark .main-header,
-.dark .main-sidebar,
-.dark .sidebar-drawer,
-.dark .content-wrapper,
-.dark .page-wrapper,
-.dark #main-navbar,
-.dark .cb-breadcrumb,
-.dark .cb-page-title {
+.dark .main-header, .dark .main-sidebar, .dark .sidebar-drawer, .dark .content-wrapper, .dark .page-wrapper, .dark #main-navbar, .dark .cb-breadcrumb, .dark .cb-page-title {
     border: none !important;
     border-bottom: 0 !important;
     border-right: 0 !important;
     box-shadow: none !important;
 }
 
-/* Global Scrollbar Track Suppression (Absolute) */
+/* Global Scrollbar Suppression */
 ::-webkit-scrollbar-track { background: transparent !important; }
 ::-webkit-scrollbar-corner { background: transparent !important; }
 
-/* Font Precision Alignment (Sync with Sidebar) */
-body, .text-sm { font-size: 14px !important; }
-.text-xs { font-size: 12px !important; }
-.label-sultan { font-size: 13px !important; }
+/* Font Precision Alignment (Sync with Sidebar & Brand) */
+body, .text-sm { font-size: 0.9375rem !important; } /* 15px matches .nav-link-tail */
+.text-xs { font-size: 13px !important; }
+.label-sultan { font-size: 14px !important; }
 
-/* Table High-Density Calibration (Total Compact) */
-#tugas_tabelUtama th { padding-top: 8px !important; padding-bottom: 8px !important; }
-#tugas_tabelUtama td { padding-top: 4px !important; padding-bottom: 4px !important; vertical-align: middle !important; }
+/* Brandlink Style Match for Page Titles */
+.cb-page-title, h1.text-brand-sync {
+    font-size: 1.25rem !important; /* 20px matches brandlink */
+    font-weight: 900 !important;
+    letter-spacing: -0.03em !important;
+}
+
+/* Table High-Density Calibration (Balanced for 15px font) */
+#tugas_tabelUtama th { padding-top: 10px !important; padding-bottom: 10px !important; font-size: 11px !important; }
+#tugas_tabelUtama td { padding-top: 8px !important; padding-bottom: 8px !important; vertical-align: middle !important; }
 
 /* Force Card Muting */
 .dark .sk-card { 
