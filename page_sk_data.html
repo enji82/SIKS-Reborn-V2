@@ -1187,6 +1187,14 @@
         var btn = $('#tugas_btnEksekusiHapus');
         btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin mr-1"></i> MENGHAPUS...');
 
+        var idRow = $('#tugas_hapusRowId').val();
+        var payload = {
+            hapusRowId: idRow,
+            hapusKode: kodeInput,
+            userDelete: TUGAS_USER_AKTIF,
+            hapusAlasan: "Penghapusan via Dashboard"
+        };
+
         google.script.run.withSuccessHandler(function (res) {
             if (res.success) {
                 Sultan.alert('success', 'Dihapus', 'Data telah dihapus dari database dan server.');
@@ -1194,10 +1202,10 @@
                 tugas_tarikDataServer();
                 if (typeof sk_updateSidebarBadge === 'function') sk_updateSidebarBadge();
             } else {
-                Sultan.alert('error', 'Gagal Hapus', res.error || 'Terjadi kesalahan.');
-                btn.prop('disabled', false).html('<i class="fas fa-trash mr-1"></i> Hapus Permanen');
+                Sultan.alert('error', 'Gagal Hapus', res.error || res.message || 'Terjadi kesalahan.');
+                btn.prop('disabled', false).html('<i class="fas fa-trash-alt mr-1"></i> Hapus Permanen');
             }
-        }).hapusSK($('#tugas_hapusRowId').val());
+        }).hapusDataSK(payload);
     }
 
     // =================================================================
