@@ -3644,4 +3644,67 @@ body .modal-header-sultan .modal-title i { color: var(--warna-emas) !important; 
 }
 .swal2-close { font-size: 20px !important; color: #64748B !important; outline: none !important; box-shadow: none !important; }
 .dark .swal2-close { color: #AEB7C0 !important; }
+/* 
+   SULTAN ULTIMATE SYSTEM v2.5 (Global Overrides)
+   ------------------------------------------------------------ */
+
+/* 1. COMPONENT: PREMIUM SPINNERS */
+.sk-spinner-premium {
+    width: 44px; height: 44px;
+    border: 3.5px solid rgba(60, 80, 224, 0.1);
+    border-top: 3.5px solid var(--warna-utama);
+    border-radius: 50%;
+    animation: sk-spin 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@keyframes sk-spin { to { transform: rotate(360deg); } }
+
+.sk-loader-wrapper {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 3rem 1rem; gap: 1rem;
+}
+.sk-loading-text {
+    font-size: 0.6875rem; font-weight: 900; color: #64748B;
+    text-transform: uppercase; letter-spacing: 0.2em;
+}
+.dark .sk-loading-text { color: #AEB7C0; }
+
+/* 2. THEME: ULTIMATE DARK MODE COHESION */
+.dark select, .dark input, .dark textarea {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    color: #FFFFFF !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+.dark select option { background-color: #1A222C !important; color: #FFFFFF !important; }
+
+/* 3. DATATABLES: PREMIUM DARK MODE */
+.dark .dataTables_wrapper .dataTables_info { color: #8A99AF !important; font-size: 0.75rem !important; }
+.dark .dataTables_paginate .paginate_button {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #AEB7C0 !important;
+    border-radius: 8px !important;
+    margin-left: 4px !important;
+    font-size: 0.75rem !important;
+    padding: 6px 14px !important;
+    transition: all 0.2s !important;
+}
+.dark .dataTables_paginate .paginate_button:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: #FFFFFF !important;
+}
+.dark .dataTables_paginate .paginate_button.current,
+.dark .dataTables_paginate .paginate_button.current:hover {
+    background: #3C50E0 !important;
+    color: #FFFFFF !important;
+    border-color: #3C50E0 !important;
+    box-shadow: 0 4px 12px rgba(60, 80, 224, 0.4) !important;
+}
+.dark .dataTables_paginate .paginate_button.disabled { opacity: 0.3 !important; cursor: not-allowed !important; }
+
+/* Skeleton Animate */
+@keyframes sk-shimmer { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
+.sk-skeleton { animation: sk-shimmer 1.5s ease-in-out infinite; background: #F1F5F9; border-radius: 6px; }
+.dark .sk-skeleton { background: rgba(255, 255, 255, 0.05); }
+
 </style>
+

@@ -1,114 +1,3 @@
-<style>
-    /* SULTAN ULTIMATE DARK THEME FIX */
-    .dark .sultan-card select, 
-    .dark .sultan-card input,
-    .dark .modal-container select,
-    .dark .modal-container input,
-    .dark .modal-container textarea,
-    .dark [id^='tugas_modal'] select,
-    .dark [id^='tugas_modal'] input,
-    .dark [id^='tugas_modal'] textarea {
-        background-color: rgba(255, 255, 255, 0.05) !important;
-        color: white !important;
-        border-color: rgba(255, 255, 255, 0.1) !important;
-    }
-    
-    .dark .sultan-card, 
-    .dark .modal-container > div,
-    .dark [id^='tugas_modal'] > div,
-    .dark [id^='tugas_modal'] form,
-    .dark [id^='tugas_modal'] .modal-header {
-        background-color: #1a222c !important;
-        border-color: rgba(255, 255, 255, 0.05) !important;
-    }
-
-    /* SPECIFIC MODAL OVERRIDES */
-    .dark #tugas_modalPreview .flex-1,
-    .dark #tugas_modalPreview #tugas_loadingPreviewPDF,
-    .dark #tugas_modalVerif .flex-1,
-    .dark #tugas_modalForm .rounded-2xl.border-gray-100 {
-        background-color: #0f172a !important;
-    }
-
-    .dark #tugas_modalVerif .md\:w-\[400px\] {
-        background-color: #1a222c !important;
-    }
-
-    /* DATATABLES PAGINATION & INFO DARK MODE (ULTIMATE FIX) */
-    .dark #tugas_tabelUtama_wrapper .dataTables_paginate .paginate_button,
-    .dark .pagination-wrapper .paginate_button,
-    .dark .dataTables_paginate .paginate_button,
-    .dark .paging_simple_numbers .paginate_button {
-        background-color: rgba(255, 255, 255, 0.05) !important;
-        background: rgba(255, 255, 255, 0.05) !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        color: rgba(255, 255, 255, 0.7) !important;
-        border-radius: 8px !important;
-        margin-left: 5px !important;
-        padding: 6px 14px !important;
-        cursor: pointer !important;
-        box-shadow: none !important;
-    }
-    
-    .dark .dataTables_paginate .paginate_button:hover {
-        background: rgba(255, 255, 255, 0.15) !important;
-        color: white !important;
-    }
-
-    .dark .dataTables_paginate .paginate_button.current, 
-    .dark .dataTables_paginate .paginate_button.current:hover {
-        background: #3c50e0 !important;
-        color: white !important;
-        border-color: #3c50e0 !important;
-        box-shadow: 0 4px 15px rgba(60, 80, 224, 0.4) !important;
-    }
-    
-    .dark .dataTables_paginate .paginate_button.disabled {
-        background: transparent !important;
-        opacity: 0.3 !important;
-        color: rgba(255, 255, 255, 0.3) !important;
-        cursor: not-allowed !important;
-    }
-
-    /* Target specifically the link inside if existing */
-    .dark .dataTables_paginate .paginate_button a {
-        background: transparent !important;
-        color: inherit !important;
-    }
-
-    .dark .dataTables_wrapper .dataTables_info {
-        color: rgba(255, 255, 255, 0.5) !important;
-    }
-    
-    .dark .animate-pulse div {
-        background-color: rgba(255, 255, 255, 0.1) !important;
-    }
-
-    /* Fix for white dropdown choices & other library leeks */
-    .dark select option {
-        background-color: #1a222c !important;
-        color: white !important;
-    }
-
-    /* SULTAN PREMIUM BUTTONS */
-    .sultan-btn-danger {
-        background-color: #dc2626 !important; /* text-red-600 */
-        color: white !important;
-        font-weight: 900 !important;
-        letter-spacing: 0.1em !important;
-        border: none !important;
-        transition: all 0.3s ease !important;
-    }
-    .sultan-btn-danger:hover {
-        background-color: #b91c1c !important; /* text-red-700 */
-        transform: translateY(-1px);
-        box-shadow: 0 10px 20px rgba(220, 38, 38, 0.3) !important;
-    }
-    .sultan-btn-danger:active {
-        transform: translateY(0);
-    }
-</style>
-
 <div class="flex flex-col gap-4 md:gap-6 2xl:gap-7.5 animate-reveal">
 
     <!-- PAGE HEADER -->
@@ -121,26 +10,26 @@
         </p>
     </div>
 
-    <!-- 1. KARTU INFORMASI (SULTAN STYLE) -->
-    <div class="sultan-card" x-data="{ isOpen: false }">
-        <div class="flex items-center justify-between border-b border-gray-100 py-4 px-6 dark:border-gray-800 bg-gray-50/30 dark:bg-black/10 cursor-pointer" @click="isOpen = !isOpen">
-            <h3 class="font-black text-black dark:text-white flex items-center gap-2 text-sm uppercase tracking-wider">
+    <!-- 1. KARTU INFORMASI (SK STYLE) -->
+    <div class="sk-card !p-0 overflow-hidden" x-data="{ isOpen: false }">
+        <div class="flex items-center justify-between border-b border-gray-100 py-4 px-6 dark:border-white/5 bg-gray-50/30 dark:bg-white/5 cursor-pointer hover:bg-gray-50 dark:hover:bg-white/10 transition-colors" @click="isOpen = !isOpen">
+            <h3 class="font-black text-black dark:text-white flex items-center gap-2 text-[11px] uppercase tracking-[0.1em]">
                 <i class="fas fa-info-circle text-primary"></i> Panduan Pengisian
             </h3>
             <i class="fas fa-chevron-down text-gray-400 text-sm transition-transform" :class="{ 'rotate-180': isOpen }"></i>
         </div>
-        <div x-show="isOpen" x-transition x-cloak class="p-6">
+        <div x-show="isOpen" x-transition x-cloak class="p-6 bg-white dark:bg-[#1a222c]">
             <div class="rounded-2xl border border-primary/10 bg-primary/5 p-5">
                 <ul class="space-y-3">
-                    <li class="flex gap-3 text-xs font-bold text-gray-700 dark:text-gray-300">
+                    <li class="flex gap-3 text-[11px] font-bold text-gray-700 dark:text-gray-300">
                         <span class="flex h-5 w-5 min-w-[20px] items-center justify-center rounded-full bg-primary text-[10px] text-white">1</span>
                         Klik tombol <b class="text-primary">+ Tambah</b> untuk mengunggah data SK baru.
                     </li>
-                    <li class="flex gap-3 text-xs font-bold text-gray-700 dark:text-gray-300">
+                    <li class="flex gap-3 text-[11px] font-bold text-gray-700 dark:text-gray-300">
                         <span class="flex h-5 w-5 min-w-[20px] items-center justify-center rounded-full bg-primary text-[10px] text-white">2</span>
                         Satu sekolah hanya dapat memiliki 1 SK untuk kombinasi Tahun, Semester, dan Kriteria yang sama.
                     </li>
-                    <li class="flex gap-3 text-xs font-bold text-gray-700 dark:text-gray-300">
+                    <li class="flex gap-3 text-[11px] font-bold text-gray-700 dark:text-gray-300">
                         <span class="flex h-5 w-5 min-w-[20px] items-center justify-center rounded-full bg-primary text-[10px] text-white">3</span>
                         Format file wajib <b class="text-danger">PDF</b> dengan ukuran maksimal 1 MB.
                     </li>
@@ -149,67 +38,60 @@
         </div>
     </div>
 
-    <!-- 2. KARTU FILTER (SULTAN STYLE) -->
-    <div class="sultan-card p-4">
+    <!-- 2. KARTU FILTER (SK STYLE) -->
+    <div class="sk-card p-4">
         <div class="flex flex-col md:flex-row items-center gap-4">
             <div class="flex flex-wrap flex-1 items-center gap-3 w-full">
                 <select id="tugas_filterUnit"
-                    class="rounded-xl border border-gray-200 bg-gray-50/50 py-2.5 px-4 outline-none focus:border-primary dark:border-white/10 dark:bg-white/5 text-xs font-black text-primary min-w-[250px] shadow-sm disabled:opacity-60"
+                    class="sk-form-input !py-2.5 !px-4 !text-[11px] !w-auto min-w-[250px] disabled:opacity-60"
                     disabled>
                     <option value="">- Memvalidasi Akses... -</option>
                 </select>
-
-                <select id="tugas_filterTahun"
-                    class="rounded-xl border border-gray-200 bg-gray-50/50 py-2.5 px-4 outline-none focus:border-primary dark:border-white/10 dark:bg-white/5 text-xs font-bold text-black dark:text-white min-w-[120px] shadow-sm"></select>
-
-                <select id="tugas_filterSemester" class="rounded-xl border border-gray-200 bg-gray-50/50 py-2.5 px-4 outline-none focus:border-primary dark:border-white/10 dark:bg-white/5 text-xs font-bold text-black dark:text-white min-w-[140px] shadow-sm">
+                <select id="tugas_filterTahun" class="sk-form-input !py-2.5 !px-4 !text-[11px] !w-auto min-w-[120px]"></select>
+                <select id="tugas_filterSemester" class="sk-form-input !py-2.5 !px-4 !text-[11px] !w-auto min-w-[140px]">
                     <option value="">- Semua Semester -</option>
                     <option value="Semester 1">Semester 1</option>
                     <option value="Semester 2">Semester 2</option>
                 </select>
-
-                <select id="tugas_filterStatus" class="rounded-xl border border-gray-200 bg-gray-50/50 py-2.5 px-4 outline-none focus:border-primary dark:border-white/10 dark:bg-white/5 text-xs font-bold text-black dark:text-white min-w-[140px] shadow-sm">
+                <select id="tugas_filterStatus" class="sk-form-input !py-2.5 !px-4 !text-[11px] !w-auto min-w-[140px]">
                     <option value="">- Semua Status -</option>
                     <option value="Diproses">Diproses</option>
                     <option value="Revisi">Revisi</option>
                     <option value="OK">Disetujui</option>
                     <option value="Ditolak">Ditolak</option>
                 </select>
-
-                <button type="button" id="tugas_btnCari" class="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-50 dark:bg-white/5 text-gray-500 hover:text-primary transition shadow-sm border border-gray-100 dark:border-gray-800" title="Refresh Data">
+                <button type="button" id="tugas_btnCari" class="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-50 dark:bg-white/5 text-gray-500 hover:text-primary transition-all border border-gray-100 dark:border-white/5 shadow-sm active:scale-95" title="Refresh Data">
                     <i class="fas fa-sync-alt"></i>
                 </button>
             </div>
-
-            <button type="button" id="tugas_btnTambah"
-                class="sultan-btn sultan-btn-primary w-full md:w-auto !py-2.5 !px-8 shadow-lg shadow-primary/20 disabled:opacity-50" disabled>
+            <button type="button" id="tugas_btnTambah" class="sk-btn sk-btn-primary w-full md:w-auto !py-2.5 !px-8 disabled:opacity-50" disabled>
                 <i class="fas fa-plus mr-2"></i> TAMBAH SK
             </button>
         </div>
     </div>
 
-    <!-- 3. KARTU TABEL (SULTAN STYLE) -->
-    <div class="sultan-card">
+    <!-- 3. KARTU TABEL (SK STYLE) -->
+    <div class="sk-card !p-0 overflow-hidden">
         <div id="tugas_loadingState" class="py-20">
             <div class="flex flex-col items-center justify-center">
                 <div class="sk-spinner-premium mb-5"></div>
-                <h6 class="text-xs font-black text-gray-400 uppercase tracking-widest" id="tugas_loadingText">Sinkronisasi Data...</h6>
+                <h6 class="sk-loading-text" id="tugas_loadingText">Sinkronisasi Data...</h6>
             </div>
         </div>
 
-        <div id="tugas_tableState" style="display: none;" class="overflow-x-auto w-full sultan-scroll px-6 py-4">
+        <div id="tugas_tableState" style="display: none;" class="overflow-x-auto w-full sultan-scroll px-6 py-6">
             <table id="tugas_tabelUtama" class="w-full table-auto text-xs bg-transparent">
                 <thead>
-                    <tr class="bg-primary/10 dark:bg-white/5 text-left border-b border-gray-100 dark:border-white/10 transition-colors">
-                        <th class="py-2.5 px-4 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center w-[110px]">Aksi</th>
-                        <th class="py-2.5 px-4 font-black uppercase tracking-widest text-primary dark:text-white/80">Unit Kerja</th>
-                        <th class="py-2.5 px-4 font-black uppercase tracking-widest text-primary dark:text-white/80">Periode</th>
-                        <th class="py-2.5 px-4 font-black uppercase tracking-widest text-primary dark:text-white/80">Detail SK</th>
-                        <th class="py-2.5 px-4 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center">Berkas</th>
-                        <th class="py-2.5 px-4 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center">Status</th>
-                        <th class="py-2.5 px-4 font-black uppercase tracking-widest text-primary dark:text-white/80">Input</th>
-                        <th class="py-2.5 px-4 font-black uppercase tracking-widest text-primary dark:text-white/80">Update</th>
-                        <th class="py-2.5 px-4 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center">Verifikasi</th>
+                    <tr class="bg-gray-50/50 dark:bg-white/5 text-left border-b border-gray-100 dark:border-white/5 transition-colors">
+                        <th class="py-3 px-4 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center w-[110px]">Aksi</th>
+                        <th class="py-3 px-4 font-black uppercase tracking-widest text-primary dark:text-white/80">Unit Kerja</th>
+                        <th class="py-3 px-4 font-black uppercase tracking-widest text-primary dark:text-white/80">Periode</th>
+                        <th class="py-3 px-4 font-black uppercase tracking-widest text-primary dark:text-white/80">Detail SK</th>
+                        <th class="py-3 px-4 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center">Berkas</th>
+                        <th class="py-3 px-4 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center">Status</th>
+                        <th class="py-3 px-4 font-black uppercase tracking-widest text-primary dark:text-white/80">Input</th>
+                        <th class="py-3 px-4 font-black uppercase tracking-widest text-primary dark:text-white/80">Update</th>
+                        <th class="py-3 px-4 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center">Verifikasi</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100 dark:divide-white/5 bg-transparent"></tbody>
@@ -241,7 +123,7 @@
                     <i class="fas fa-info-circle text-lg"></i>
                 </div>
                 <div class="flex-1">
-                    <p class="text-[10px] text-gray-400 font-black uppercase tracking-widest leading-none mb-1.5 opacity-60">Petunjuk Pengisian</p>
+                    <p class="text-[11px] text-primary/60 font-black uppercase tracking-widest leading-none mb-1.5">Petunjuk Pengisian</p>
                     <div id="tugas_alertText" class="text-[11px] font-bold text-black dark:text-white leading-relaxed">
                         Tentukan Sekolah, Tahun, Semester, dan Kriteria untuk memulai pengisian data SK.
                     </div>
@@ -292,16 +174,16 @@
                         <input type="date" id="tugas_inputTglSk" class="sk-form-input" required>
                     </div>
 
-                    <div class="md:col-span-2 rounded-2xl border border-gray-100 bg-gray-50/50 p-5 dark:border-gray-800 dark:bg-black/10">
+                    <div class="md:col-span-2 sk-input-card !mt-2">
                         <label class="mb-3 flex items-center gap-2 text-[11px] font-black uppercase tracking-widest text-gray-400 leading-snug" id="tugas_labelFile">
-                            <i class="fas fa-file-pdf text-danger"></i> Unggah Scan Dokumen Asli yang Sudah Ditandatangani dalam Format PDF Ukuran Maksimal 1 MB.
+                            <i class="fas fa-file-pdf text-danger"></i> Unggah Scan Dokumen Asli (PDF Max 1 MB).
                         </label>
                         <div id="tugas_linkFileLama" class="mb-3 hidden">
-                            <button type="button" id="tugas_btnLihatDokumenLama" class="sultan-btn sultan-btn-white !text-[9px] !py-1.5">
-                                <i class="fas fa-eye text-primary"></i> LIHAT DOKUMEN TERSIMPAN
+                            <button type="button" id="tugas_btnLihatDokumenLama" class="inline-flex items-center gap-2 rounded-lg bg-primary/10 px-3 py-1.5 text-[11px] font-black text-primary border border-primary/20 hover:bg-primary hover:text-white transition-all">
+                                <i class="fas fa-eye"></i> LIHAT DOKUMEN TERSIMPAN
                             </button>
                         </div>
-                        <input type="file" id="tugas_inputFile" accept="application/pdf" class="w-full text-sm font-bold text-gray-500 file:mr-4 file:rounded-xl file:border-0 file:bg-primary file:py-2 file:px-4 file:text-xs file:font-black file:text-white hover:file:bg-primary/90 transition shadow-sm" />
+                        <input type="file" id="tugas_inputFile" accept="application/pdf" class="w-full text-[11px] font-bold text-gray-500 file:mr-4 file:rounded-xl file:border-0 file:bg-primary file:py-2 file:px-4 file:text-[11px] file:font-black file:text-white hover:file:bg-primary/90 transition shadow-sm" />
                     </div>
                 </div>
             </div>
@@ -328,9 +210,9 @@
              <iframe id="tugas_verifFrame" class="w-full h-full border-none hidden" src=""></iframe>
              
              <!-- Loader Overlay -->
-             <div id="tugas_verifLoader" class="absolute inset-0 flex flex-col items-center justify-center bg-gray-50 dark:bg-black/20 z-10">
-                  <div class="sultan-orbit mb-4"></div>
-                  <p class="text-[10px] font-black text-primary uppercase tracking-[0.2em] animate-pulse">Menyiapkan Dokumen SK...</p>
+             <div id="tugas_verifLoader" class="absolute inset-0 flex flex-col items-center justify-center bg-gray-50 dark:bg-[#1a222c] z-10">
+                  <div class="sk-spinner-premium mb-4"></div>
+                  <p class="sk-loading-text animate-pulse">Menyiapkan Dokumen SK...</p>
              </div>
 
              <!-- Error State -->
@@ -393,11 +275,10 @@
                     </div>
                 </div>
 
-                <!-- Decision Card area (Target Model) -->
-                <div class="sk-input-card">
+                <div class="sk-input-card !mt-0 !bg-gray-50/50 dark:!bg-white/[0.03]">
                     <div class="mb-4">
                         <label class="sk-form-label">KEPUTUSAN VERIFIKASI <span class="req">*</span></label>
-                        <select id="tugas_verifStatus" class="sk-form-input" onchange="tugas_cekStatusVerif(this.value)" required>
+                        <select id="tugas_verifStatus" class="sk-form-input !text-[11px]" onchange="tugas_cekStatusVerif(this.value)" required>
                             <option value="">-- Pilih Status --</option>
                             <option value="Disetujui">&#x2705; TERIMA & SETUJUI</option>
                             <option value="Revisi">&#x1F504; PERLU REVISI</option>
@@ -407,8 +288,8 @@
 
                     <div>
                         <label class="sk-form-label">CATATAN ADMIN</label>
-                        <textarea id="tugas_verifKeterangan" rows="4" placeholder="Catatan opsional..." class="sk-form-input" style="resize:none"></textarea>
-                        <p id="tugas_verifWajibCatatan" class="mt-2 text-[10px] font-black text-danger uppercase tracking-widest hidden items-center gap-1.5 animate-pulse">
+                        <textarea id="tugas_verifKeterangan" rows="4" placeholder="Catatan opsional..." class="sk-form-input !text-[11px]" style="resize:none"></textarea>
+                        <p id="tugas_verifWajibCatatan" class="mt-2 text-[11px] font-black text-danger uppercase tracking-widest hidden items-center gap-1.5 animate-pulse">
                             <i class="fas fa-exclamation-triangle"></i> Wajib isi alasan!
                         </p>
                     </div>
@@ -437,19 +318,19 @@
                 <i class="fas fa-file-pdf text-xl relative z-10 transition-transform group-hover:scale-110"></i>
             </div>
             <div>
-                <h3 class="font-black text-black dark:text-white text-sm uppercase tracking-wider">Pratinjau Dokumen SK</h3>
+                <h3 class="font-black text-black dark:text-white text-[11px] uppercase tracking-wider">Pratinjau Dokumen SK</h3>
                 <div class="flex items-center gap-2 mt-0.5">
                     <span class="flex h-1.5 w-1.5 rounded-full bg-success"></span>
-                    <p class="text-[9px] text-gray-400 font-bold uppercase tracking-widest">Sultan Viewer • High Compatibility</p>
+                    <p class="text-[11px] text-gray-400 font-bold uppercase tracking-widest">Sultan Viewer • High Compatibility</p>
                 </div>
             </div>
         </div>
         <div class="flex items-center gap-3">
-            <a href="#" id="tugas_linkDownloadHeader" target="_blank" class="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-[10px] font-black uppercase text-black transition-all hover:bg-gray-50 active:scale-95 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 shadow-sm">
-                <i class="fas fa-download"></i> UNDUH
+            <a href="#" id="tugas_linkDownloadHeader" target="_blank" class="inline-flex items-center gap-2 rounded-xl border border-gray-100 bg-white px-4 py-2.5 text-[11px] font-black uppercase text-black transition-all hover:bg-gray-50 active:scale-95 dark:border-white/5 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 shadow-sm">
+                <i class="fas fa-download text-primary"></i> UNDUH
             </a>
-            <a href="#" id="tugas_linkTabHeader" target="_blank" class="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-[10px] font-black uppercase text-black transition-all hover:bg-gray-50 active:scale-95 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 shadow-sm">
-                <i class="fas fa-external-link-alt"></i> TAB BARU
+            <a href="#" id="tugas_linkTabHeader" target="_blank" class="inline-flex items-center gap-2 rounded-xl border border-gray-100 bg-white px-4 py-2.5 text-[11px] font-black uppercase text-black transition-all hover:bg-gray-50 active:scale-95 dark:border-white/5 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 shadow-sm">
+                <i class="fas fa-external-link-alt text-primary"></i> TAB BARU
             </a>
             <div class="h-6 w-[1px] bg-gray-200 dark:bg-white/10 mx-2"></div>
             <button type="button" class="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-500 hover:text-danger hover:bg-danger/10 transition-all dark:bg-white/5 dark:text-white/60 dark:hover:bg-danger/20" onclick="$('#tugas_modalPreview').fadeOut().addClass('hidden').removeClass('flex')">
@@ -459,9 +340,9 @@
     </div>
     <div class="flex-1 relative bg-gray-50 dark:bg-[#0f172a]">
         <iframe id="tugas_framePreviewFull" class="w-full h-full border-none hidden" src=""></iframe>
-        <div id="tugas_loadingPreviewPDF" class="absolute inset-0 flex flex-col items-center justify-center bg-gray-50 dark:bg-[#0f172a]">
-            <div class="sk-spinner-premium !border-primary/20 !border-t-primary mb-6"></div>
-            <p class="text-[10px] font-black text-primary/40 dark:text-white/30 tracking-[0.4em] uppercase">Sinkronisasi Dokumen...</p>
+        <div id="tugas_loadingPreviewPDF" class="absolute inset-0 flex flex-col items-center justify-center bg-gray-50 dark:bg-[#1a222c]">
+            <div class="sk-spinner-premium mb-6"></div>
+            <p class="sk-loading-text animate-pulse">Sinkronisasi Dokumen...</p>
         </div>
     </div>
 </div>
@@ -500,9 +381,9 @@
 
             <!-- Form Verifikasi (Hi-Fi Typography) -->
             <div class="mb-2">
-                <label class="block mb-3 text-[12px] font-black uppercase tracking-widest text-gray-400 dark:text-gray-500">Kode Konfirmasi Hapus <span class="text-danger">*</span></label>
+                <label class="sk-form-label">Kode Konfirmasi Hapus <span class="text-danger">*</span></label>
                 <input type="text" id="tugas_inputKodeHapus" placeholder="Masukkan kode konfirmasi..." class="sk-form-input !text-[15px] !py-4 border-danger/20 focus:border-danger focus:ring-danger/10" required autocomplete="off">
-                <div class="mt-4 flex items-center gap-2 text-[11px] font-bold text-gray-400 opacity-70">
+                <div class="mt-4 flex items-center gap-2 text-[11px] font-bold text-gray-400 dark:text-gray-500 opacity-70">
                     <i class="fas fa-shield-alt text-danger/50"></i>
                     Hubungi admin Korwil untuk mendapatkan kode hapus.
                 </div>
@@ -570,15 +451,6 @@
         $(document).off('submit', '#tugas_formHapus').on('submit', '#tugas_formHapus', tugas_handleSimpanHapus);
         $(document).off('change', '#tugas_verifStatus').on('change', '#tugas_verifStatus', function () { tugas_cekStatusVerif($(this).val()); });
 
-        $(document).off('click', '.tugas-btn-catatan').on('click', '.tugas-btn-catatan', function () {
-            var msg = $(this).data('pesan');
-            statussk_lihatCatatanSultan(msg);
-        });
-
-        function statussk_lihatCatatanSultan(pesan) {
-            Sultan.alert('info', 'Catatan Admin', pesan);
-        }
-
         $(document).off('click', '#tugas_btnLihatDokumenLama').on('click', '#tugas_btnLihatDokumenLama', function (e) {
             e.preventDefault();
             tugas_bukaPreview(TUGAS_CURRENT_FILE_URL);
@@ -619,7 +491,7 @@
     function tugas_validasiAksesUser() {
         if (TUGAS_IS_ADMIN) {
             $('#tugas_loadingText').html('Mempersiapkan Database Admin...');
-            $('#tugas_filterUnit').empty().append('<option value="SEMUA">- Semua Sekolah -</option>').prop('disabled', false).removeClass('bg-light text-maroon font-weight-bold');
+            $('#tugas_filterUnit').empty().append('<option value="SEMUA">- Semua Sekolah -</option>').prop('disabled', false);
 
             // AUTO-SET DEFAULT FILTER UNTUK ADMIN
             var now = new Date(); var curYear = now.getFullYear(); var curMonth = now.getMonth();
@@ -855,15 +727,15 @@
             var btnDokumen = safeUrl.length > 5 ? '<button type="button" class="inline-flex items-center rounded-lg bg-danger/10 py-1.5 px-3 text-[9px] font-black uppercase tracking-wider text-danger border border-danger/30 transition-all hover:bg-danger hover:text-white shadow-sm hover:scale-105 active:scale-95" onclick="tugas_bukaPreview(\'' + safeUrlJs + '\')"><i class="fas fa-file-pdf mr-1.5 text-xs"></i> LIHAT</button>' : '-';
 
             // 4. Log Detils
-            var uiDikirim = '<div class="flex flex-col"><span class="text-[11px] font-black text-black dark:text-white">' + (row.tglUnggah || '-') + '</span><span class="text-[9px] font-bold text-gray-400 uppercase tracking-tighter">' + (row.userInput || '-') + '</span></div>';
-            var uiDiubah = row.tglUpdate && row.tglUpdate !== '-' ? '<div class="flex flex-col"><span class="text-[11px] font-black text-black dark:text-white">' + row.tglUpdate + '</span><span class="text-[9px] font-bold text-gray-400 uppercase tracking-tighter">' + (row.userUpdate || '-') + '</span></div>' : '-';
-            var uiVerif = row.tglVerval && row.tglVerval !== '-' ? '<div class="flex flex-col"><span class="text-[11px] font-black text-primary">' + row.tglVerval + '</span><span class="text-[9px] font-bold text-gray-400 uppercase tracking-tighter">' + (row.verifikator || '-') + '</span></div>' : '-';
+            var uiDikirim = '<div class="flex flex-col"><span class="text-[11px] font-black text-black dark:text-white">' + (row.tglUnggah || '-') + '</span><span class="text-[11px] font-bold text-gray-400 uppercase tracking-tighter">' + (row.userInput || '-') + '</span></div>';
+            var uiDiubah = row.tglUpdate && row.tglUpdate !== '-' ? '<div class="flex flex-col"><span class="text-[11px] font-black text-black dark:text-white">' + row.tglUpdate + '</span><span class="text-[11px] font-bold text-gray-400 uppercase tracking-tighter">' + (row.userUpdate || '-') + '</span></div>' : '-';
+            var uiVerif = row.tglVerval && row.tglVerval !== '-' ? '<div class="flex flex-col"><span class="text-[11px] font-black text-primary">' + row.tglVerval + '</span><span class="text-[11px] font-bold text-gray-400 uppercase tracking-tighter">' + (row.verifikator || '-') + '</span></div>' : '-';
 
             // KOMBINASI KOLOM
-            var uiUnit = '<div class="text-[11px] font-black text-black dark:text-white leading-tight uppercase">' + tugas_cleanText(row.namaSd) + '</div><div class="text-[9px] font-bold text-gray-400">' + tugas_cleanText(row.npsn || '-') + '</div>';
-            var uiTahunSem = '<div class="text-[11px] font-black text-black dark:text-white">' + tugas_cleanText(row.tahun) + '</div><div class="text-[10px] text-primary font-black uppercase tracking-tighter">' + tugas_cleanText(row.semester) + '</div>';
+            var uiUnit = '<div class="text-[11px] font-black text-black dark:text-white leading-tight uppercase">' + tugas_cleanText(row.namaSd) + '</div><div class="text-[11px] font-bold text-gray-400">' + tugas_cleanText(row.npsn || '-') + '</div>';
+            var uiTahunSem = '<div class="text-[11px] font-black text-black dark:text-white">' + tugas_cleanText(row.tahun) + '</div><div class="text-[11px] text-primary font-black uppercase tracking-tighter">' + tugas_cleanText(row.semester) + '</div>';
             var uiSkDetail = '<div class="text-[11px] font-black text-black dark:text-white leading-tight">' + safeNoSk + '</div>' +
-                '<div class="text-[10px] text-gray-400 font-bold mt-1 uppercase tracking-tighter flex items-center gap-1"><i class="far fa-calendar-alt opacity-60"></i> ' + tglSkDisplay + ' &bull; <span class="text-primary">' + tugas_cleanText(row.kriteria) + '</span></div>';
+                '<div class="text-[11px] text-gray-400 font-bold mt-1 uppercase tracking-tighter flex items-center gap-1"><i class="far fa-calendar-alt opacity-60"></i> ' + tglSkDisplay + ' &bull; <span class="text-primary">' + tugas_cleanText(row.kriteria) + '</span></div>';
 
             dtArray.push([
                 actionButtons,
@@ -1054,15 +926,6 @@
     // =================================================================
     // 6. LOGIKA VERIFIKASI (ADMIN ONLY)
     // =================================================================
-    $(document).ready(function() {
-        $('#tugas_modalVerif').on('hidden.bs.modal', function () { 
-            $('#tugas_verifFrame').addClass('hidden').attr('src', ''); 
-            $('#tugas_verifNoFile').removeClass('hidden'); 
-        });
-    });
-
-    // 6. LOGIKA VERIFIKASI (ADMIN ONLY)
-    // =================================================================
     function tugas_bukaModalVerif(rowId) {
         var d = TUGAS_DATA_MASTER[rowId];
         if (!d) return;
@@ -1251,23 +1114,16 @@
                 } else if (driveUrl.includes('id=')) {
                     fileId = driveUrl.split('id=')[1].split('&')[0].split('#')[0];
                 }
-
-                if (fileId) {
-                    return 'https://drive.google.com/file/d/' + fileId + '/preview';
-                }
+                if (fileId) return 'https://drive.google.com/file/d/' + fileId + '/preview';
             }
             return driveUrl;
-        } catch (e) {
-            console.error("URL Conversion Error:", e);
-            return url;
-        }
+        } catch (e) { return url; }
     }
 
     function tugas_buildBadgeStatus(st, ket) {
         st = String(st || "").toLowerCase(); ket = ket || "";
         var badge = "";
-        // SOFT TAG STYLE (Non-clickable look)
-        var baseCls = "inline-flex items-center rounded-full px-3 py-1 text-[9px] font-black tracking-tight shadow-none italic opacity-90";
+        var baseCls = "inline-flex items-center rounded-full px-3 py-1 text-[11px] font-black tracking-tight italic opacity-90 transition-all";
         
         if (st.includes('setuju') || st.includes('acc') || st.includes('ok') || st.includes('valid'))
             badge = '<span class="' + baseCls + ' bg-success/10 text-success"><i class="fas fa-check-circle mr-1.5"></i> DISETUJUI</span>';
@@ -1280,7 +1136,7 @@
 
         if (ket && ket.trim().length > 2 && (st.includes('revisi') || st.includes('tolak'))) {
             var safeKet = tugas_escapeHtml(ket);
-            badge += '<div class="mt-1"><button type="button" class="inline-flex rounded border border-danger p-1 text-[9px] font-bold text-danger hover:bg-danger hover:text-white transition tugas-btn-catatan" data-pesan="' + safeKet + '"><i class="fas fa-comment-dots mr-1"></i> Baca Catatan</button></div>';
+            badge += '<div class="mt-1"><button type="button" class="inline-flex rounded border border-danger p-1 text-[11px] font-black text-danger hover:bg-danger hover:text-white transition-all tugas-btn-catatan" onclick="Sultan.alert(\'info\', \'Catatan Admin\', \'' + safeKet + '\')"><i class="fas fa-comment-dots mr-1"></i> Baca Catatan</button></div>';
         }
         return badge;
     }
@@ -1298,7 +1154,7 @@
         var $cont = $('#tugas_loadingState').empty();
         var $grid = $('<div/>', { "class": "flex flex-col gap-4 py-10" });
         for (var i = 0; i < 4; i++) {
-            var $row = $('<div/>', { "class": "flex items-center gap-4 animate-pulse" });
+            var $row = $('<div/>', { "class": "flex items-center gap-4 sk-skeleton" });
             $row.append($('<div/>', { "class": "h-12 w-12 rounded-lg bg-gray-200 dark:bg-white/10" }));
             var $meta = $('<div/>', { "class": "flex-1 space-y-2" });
             $meta.append($('<div/>', { "class": "h-4 w-1/3 rounded bg-gray-200 dark:bg-white/10" }));
@@ -1308,7 +1164,7 @@
         }
         $cont.append($grid);
         if (!$('#tugas_turboBadge').length) {
-            $cont.append('<div id="tugas_turboBadge" style="display:none;" class="items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-[10px] font-black text-primary uppercase shadow-sm"><i class="fas fa-bolt"></i> Cached Data</div>');
+            $cont.append('<div id="tugas_turboBadge" style="display:none;" class="items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-[11px] font-black text-primary uppercase shadow-sm"><i class="fas fa-bolt"></i> Cached Data</div>');
         }
     }
 
