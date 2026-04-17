@@ -79,19 +79,19 @@
             </div>
         </div>
 
-        <div id="tugas_tableState" style="display: none;" class="overflow-x-auto w-full sultan-scroll px-6 py-6">
+        <div id="tugas_tableState" style="display: none;" class="w-full sultan-scroll overflow-hidden">
             <table id="tugas_tabelUtama" class="w-full table-auto text-xs bg-transparent">
                 <thead>
                     <tr class="bg-gray-50/50 dark:bg-white/5 text-left border-b border-gray-100 dark:border-white/5 transition-colors">
-                        <th class="py-3 px-4 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center w-[110px]">Aksi</th>
-                        <th class="py-3 px-4 font-black uppercase tracking-widest text-primary dark:text-white/80">Unit Kerja</th>
-                        <th class="py-3 px-4 font-black uppercase tracking-widest text-primary dark:text-white/80">Periode</th>
-                        <th class="py-3 px-4 font-black uppercase tracking-widest text-primary dark:text-white/80">Detail SK</th>
-                        <th class="py-3 px-4 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center">Berkas</th>
-                        <th class="py-3 px-4 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center">Status</th>
-                        <th class="py-3 px-4 font-black uppercase tracking-widest text-primary dark:text-white/80">Input</th>
-                        <th class="py-3 px-4 font-black uppercase tracking-widest text-primary dark:text-white/80">Update</th>
-                        <th class="py-3 px-4 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center">Verifikasi</th>
+                        <th class="py-4 px-6 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center w-[120px]">Aksi</th>
+                        <th class="py-4 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80">Unit Kerja</th>
+                        <th class="py-4 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80">Periode</th>
+                        <th class="py-4 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80">Detail SK</th>
+                        <th class="py-4 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center">Berkas</th>
+                        <th class="py-4 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center">Status</th>
+                        <th class="py-4 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80">Log Input</th>
+                        <th class="py-4 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80">Log Update</th>
+                        <th class="py-4 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center">Verifikasi</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100 dark:divide-white/5 bg-transparent"></tbody>
@@ -579,8 +579,8 @@
                 TUGAS_TABEL_INSTANCE = $('#tugas_tabelUtama').DataTable({
                     "destroy": true, "ordering": false, "pageLength": 10, "autoWidth": false,
                     "deferRender": true, "responsive": false,
-                    "dom": '<"row"<"col-sm-12"<"table-responsive custom-scrollbar"tr>>>' +
-                           '<"flex flex-col md:flex-row justify-between items-center gap-4 mt-6"<"text-sm text-body"i><"pagination-wrapper"p>>',
+                    "dom": '<"row"<"col-sm-12"<"overflow-x-auto sultan-scroll !border-none"tr>>>' +
+                           '<"flex flex-col md:flex-row justify-between items-center gap-4 mt-6 px-6 pb-6"<"text-[11px] font-bold text-gray-500"i><"pagination-wrapper"p>>',
                     "columnDefs": [
                         { "targets": 0, "className": "py-2.5 px-4 text-center", "width": "110px" },
                         { "targets": [1, 2, 3, 6, 7, 8], "className": "py-2.5 px-4 text-left" },
@@ -704,17 +704,11 @@
 
             var badgeStatus = tugas_buildBadgeStatus(row.status, row.keterangan);
 
-            // 1. Tombol Aksi (Individual 3 Buttons - SULTAN STYLE - REVERTED)
-            var actionButtons = '<div class="flex items-center justify-center gap-1.5">' +
-                '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg border border-primary/20 bg-primary/5 text-primary hover:bg-primary hover:text-white transition-all shadow-sm group" onclick="' + (TUGAS_IS_ADMIN ? "tugas_bukaModalVerif('" + id + "')" : "tugas_bukaPreview('" + safeUrlJs + "')") + '" title="' + (TUGAS_IS_ADMIN ? 'Verifikasi' : 'Pratinjau') + '">' +
-                '<i class="fas ' + (TUGAS_IS_ADMIN ? 'fa-check-double' : 'fa-eye') + ' text-[11px] group-hover:scale-110"></i>' +
-                '</button>' +
-                '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg border border-warning/30 bg-warning/10 text-warning hover:bg-amber-500 hover:text-white hover:shadow-lg hover:shadow-warning/30 hover:scale-110 active:scale-95 transition-all shadow-sm group ' + (isApproved ? 'opacity-30 cursor-not-allowed' : '') + '" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalEdit('" + id + "')") + '" title="Edit Data">' +
-                '<i class="fas fa-pencil-alt text-[11px]"></i>' +
-                '</button>' +
-                '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg border border-danger/20 bg-danger/5 text-danger hover:bg-danger hover:text-white transition-all shadow-sm group ' + (isApproved ? 'opacity-30 cursor-not-allowed' : '') + '" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalHapus('" + id + "')") + '" title="Hapus Data">' +
-                '<i class="fas fa-trash-alt text-[11px] group-hover:scale-110"></i>' +
-                '</button>' +
+            // 1. Tombol Aksi (Premium Button Group - High Fidelity)
+            var actionButtons = '<div class="flex items-center justify-center gap-1">' +
+                '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/5 text-primary hover:bg-primary hover:text-white transition-all shadow-sm active:scale-90" title="Verifikasi/Review" onclick="tugas_bukaModalVerif(\'' + id + '\')"><i class="fas fa-' + (TUGAS_IS_ADMIN ? 'check-double' : 'eye') + ' text-[11px]"></i></button>' +
+                '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg bg-warning/5 text-warning hover:bg-amber-500 hover:text-white transition-all shadow-sm active:scale-90 ' + (isApproved ? 'opacity-30 cursor-not-allowed' : '') + '" title="Edit Data" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalEdit('" + id + "')") + '"><i class="fas fa-pencil-alt text-[11px]"></i></button>' +
+                '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg bg-danger/5 text-danger hover:bg-danger hover:text-white transition-all shadow-sm active:scale-90 ' + (isApproved ? 'opacity-30 cursor-not-allowed' : '') + '" title="Hapus Data" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalHapus('" + id + "')") + '"><i class="fas fa-trash-alt text-[11px]"></i></button>' +
                 '</div>';
 
             // 2. Format Tanggal SK
@@ -724,18 +718,18 @@
             }
 
             // 3. Tombol Dokumen (Consistent Button Look)
-            var btnDokumen = safeUrl.length > 5 ? '<button type="button" class="inline-flex items-center rounded-lg bg-danger/10 py-1.5 px-3 text-[9px] font-black uppercase tracking-wider text-danger border border-danger/30 transition-all hover:bg-danger hover:text-white shadow-sm hover:scale-105 active:scale-95" onclick="tugas_bukaPreview(\'' + safeUrlJs + '\')"><i class="fas fa-file-pdf mr-1.5 text-xs"></i> LIHAT</button>' : '-';
+            var btnDokumen = safeUrl.length > 5 ? '<button type="button" class="inline-flex items-center rounded-lg bg-danger/10 py-1.5 px-3 text-[10px] font-black uppercase tracking-wider text-danger border border-danger/10 transition-all hover:bg-danger hover:text-white shadow-sm active:scale-95" onclick="tugas_bukaPreview(\'' + safeUrlJs + '\')"><i class="fas fa-file-pdf mr-1.5 text-xs"></i> LIHAT</button>' : '-';
 
-            // 4. Log Detils
-            var uiDikirim = '<div class="flex flex-col"><span class="text-[11px] font-black text-black dark:text-white">' + (row.tglUnggah || '-') + '</span><span class="text-[11px] font-bold text-gray-400 uppercase tracking-tighter">' + (row.userInput || '-') + '</span></div>';
-            var uiDiubah = row.tglUpdate && row.tglUpdate !== '-' ? '<div class="flex flex-col"><span class="text-[11px] font-black text-black dark:text-white">' + row.tglUpdate + '</span><span class="text-[11px] font-bold text-gray-400 uppercase tracking-tighter">' + (row.userUpdate || '-') + '</span></div>' : '-';
-            var uiVerif = row.tglVerval && row.tglVerval !== '-' ? '<div class="flex flex-col"><span class="text-[11px] font-black text-primary">' + row.tglVerval + '</span><span class="text-[11px] font-bold text-gray-400 uppercase tracking-tighter">' + (row.verifikator || '-') + '</span></div>' : '-';
+            // 4. Log Detils (Muted Premium Typography)
+            var uiDikirim = '<div class="flex flex-col"><span class="text-[11px] font-black text-black dark:text-white">' + (row.tglUnggah || '-') + '</span><span class="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-tighter">' + (row.userInput || '-') + '</span></div>';
+            var uiDiubah = row.tglUpdate && row.tglUpdate !== '-' ? '<div class="flex flex-col"><span class="text-[11px] font-black text-black dark:text-white">' + row.tglUpdate + '</span><span class="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-tighter">' + (row.userUpdate || '-') + '</span></div>' : '-';
+            var uiVerif = row.tglVerval && row.tglVerval !== '-' ? '<div class="flex flex-col"><span class="text-[11px] font-black text-primary">' + row.tglVerval + '</span><span class="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-tighter">' + (row.verifikator || '-') + '</span></div>' : '-';
 
             // KOMBINASI KOLOM
-            var uiUnit = '<div class="text-[11px] font-black text-black dark:text-white leading-tight uppercase">' + tugas_cleanText(row.namaSd) + '</div><div class="text-[11px] font-bold text-gray-400">' + tugas_cleanText(row.npsn || '-') + '</div>';
-            var uiTahunSem = '<div class="text-[11px] font-black text-black dark:text-white">' + tugas_cleanText(row.tahun) + '</div><div class="text-[11px] text-primary font-black uppercase tracking-tighter">' + tugas_cleanText(row.semester) + '</div>';
+            var uiUnit = '<div class="text-[11px] font-black text-black dark:text-white leading-tight uppercase">' + tugas_cleanText(row.namaSd) + '</div><div class="text-[10px] font-bold text-gray-400 dark:text-gray-500">' + tugas_cleanText(row.npsn || '-') + '</div>';
+            var uiTahunSem = '<div class="text-[11px] font-black text-black dark:text-white leading-none">' + tugas_cleanText(row.tahun) + '</div><div class="text-[10px] text-primary font-black uppercase tracking-tighter mt-1">' + tugas_cleanText(row.semester) + '</div>';
             var uiSkDetail = '<div class="text-[11px] font-black text-black dark:text-white leading-tight">' + safeNoSk + '</div>' +
-                '<div class="text-[11px] text-gray-400 font-bold mt-1 uppercase tracking-tighter flex items-center gap-1"><i class="far fa-calendar-alt opacity-60"></i> ' + tglSkDisplay + ' &bull; <span class="text-primary">' + tugas_cleanText(row.kriteria) + '</span></div>';
+                '<div class="text-[10px] text-gray-400 dark:text-gray-500 font-bold mt-1 uppercase tracking-tighter flex items-center gap-1"><i class="far fa-calendar-alt opacity-40"></i> ' + tglSkDisplay + ' &bull; <span class="text-primary/70">' + tugas_cleanText(row.kriteria) + '</span></div>';
 
             dtArray.push([
                 actionButtons,
@@ -1126,13 +1120,13 @@
         var baseCls = "inline-flex items-center rounded-full px-3 py-1 text-[11px] font-black tracking-tight italic opacity-90 transition-all";
         
         if (st.includes('setuju') || st.includes('acc') || st.includes('ok') || st.includes('valid'))
-            badge = '<span class="' + baseCls + ' bg-success/10 text-success"><i class="fas fa-check-circle mr-1.5"></i> DISETUJUI</span>';
+            badge = '<span class="' + baseCls + ' bg-success/15 text-success border border-success/20"><i class="fas fa-check-circle mr-1.5"></i> DISETUJUI</span>';
         else if (st.includes('revisi'))
-            badge = '<span class="' + baseCls + ' bg-warning/10 text-warning"><i class="fas fa-history mr-1.5"></i> REVISI</span>';
+            badge = '<span class="' + baseCls + ' bg-warning/15 text-warning border border-warning/20"><i class="fas fa-history mr-1.5"></i> REVISI</span>';
         else if (st.includes('tolak'))
-            badge = '<span class="' + baseCls + ' bg-danger/10 text-danger"><i class="fas fa-ban mr-1.5"></i> DITOLAK</span>';
+            badge = '<span class="' + baseCls + ' bg-danger/15 text-danger border border-danger/20"><i class="fas fa-ban mr-1.5"></i> DITOLAK</span>';
         else
-            badge = '<span class="' + baseCls + ' bg-primary/10 text-primary"><i class="fas fa-circle-notch fa-spin mr-1.5"></i> DIPROSES</span>';
+            badge = '<span class="' + baseCls + ' bg-primary/15 text-primary border border-primary/20"><i class="fas fa-circle-notch fa-spin mr-1.5"></i> DIPROSES</span>';
 
         if (ket && ket.trim().length > 2 && (st.includes('revisi') || st.includes('tolak'))) {
             var safeKet = tugas_escapeHtml(ket);
