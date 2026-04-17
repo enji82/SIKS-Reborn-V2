@@ -179,11 +179,11 @@ body {
 /* --- OVERLAY --- */
 .sk-overlay {
     position: fixed; inset: 0; z-index: 99999;
-    display: none; align-items: center; justify-content: center;
+    display: none; align-items: flex-start; justify-content: center;
     background: rgba(0,0,0,0.65);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    padding: 1rem 0.5rem;
+    padding: 2rem 0.5rem; /* Increased top padding for rata atas */
     overflow-y: auto;
 }
 .sk-overlay.active { display: flex; }
