@@ -3745,10 +3745,17 @@ body, h1, h2, h3, h4, h5, h6, th, td, input, select, textarea, button, p, span:n
 
 /* CONTENT SYNC: Page Content Matches Sidebar Links */
 .sultan-content-sync, 
-#tugas_tabelUtama td,
-#tugas_tabelUtama th {
+#tugas_tabelUtama td {
   font-size: 0.9375rem !important; /* 15px */
   font-weight: 500 !important;     /* Sidebar Link Weight */
+  line-height: 1.4 !important;
+}
+
+/* Table Header Specificity Calibration (Weight Sync) */
+#tugas_tabelUtama th {
+  font-size: 0.9375rem !important; /* 15px */
+  font-weight: 900 !important;     /* Match Row Boldness */
+  letter-spacing: normal !important; /* Remove thinning effect */
   line-height: 1.4 !important;
 }
 
