@@ -173,9 +173,7 @@ body {
 .sultan-subtitle { font-size: 0.85rem; font-weight: 600; color: #64748B; text-transform: uppercase; letter-spacing: 1px; }
 
 /* ============================================================
-   SULTAN MODAL COMPONENT SYSTEM v1.0
-   Single Source of Truth untuk semua elemen modal di aplikasi.
-   Gunakan kelas-kelas ini di semua halaman baru.
+   SULTAN MODAL COMPONENT SYSTEM v2.0 (High-Fidelity Model)
    ============================================================ */
 
 /* --- OVERLAY --- */
@@ -183,9 +181,9 @@ body {
     position: fixed; inset: 0; z-index: 99999;
     display: none; align-items: center; justify-content: center;
     background: rgba(0,0,0,0.65);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    padding: 1.5rem 1rem;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 1rem 0.5rem;
     overflow-y: auto;
 }
 .sk-overlay.active { display: flex; }
@@ -194,210 +192,125 @@ body {
 .sk-modal {
     width: 100%; max-width: 520px;
     background: #fff;
-    border-radius: 1rem; /* rounded-2xl */
+    border-radius: 1rem;
     border: 1px solid #E2E8F0;
-    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.2);
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
     overflow: hidden;
-    animation: sk-reveal 0.2s ease-out;
+    animation: sk-reveal 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
-.dark .sk-modal {
-    background: #1A222C;
-    border-color: rgba(255,255,255,0.07);
-}
+.dark .sk-modal { background: #1A222C; border-color: rgba(255,255,255,0.08); }
 @keyframes sk-reveal {
-    from { opacity: 0; transform: translateY(12px) scale(0.98); }
+    from { opacity: 0; transform: translateY(20px) scale(0.95); }
     to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* --- HEADER MODAL --- */
+/* --- HEADER MODAL (BRAND STYLE) --- */
+.sk-modal-header-brand {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    background: #3C50E0; /* Brand Blue */
+    color: #FFFFFF;
+}
+.sk-modal-header-brand .sk-modal-title { color: #FFFFFF; font-size: 0.875rem; }
+.sk-modal-header-brand .sk-modal-close { 
+    background: rgba(255,255,255,0.15); 
+    color: #FFFFFF;
+    width: 34px; height: 34px;
+}
+.sk-modal-header-brand .sk-modal-close:hover { background: rgba(255,255,255,0.25); }
+
+/* --- HEADER MODAL (STANDARD) --- */
 .sk-modal-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 1.5rem; /* py-4 px-6 — STANDAR BAKU */
+    padding: 1.125rem 1.5rem;
     border-bottom: 1px solid #F1F5F9;
     background: #FAFAFA;
 }
-.dark .sk-modal-header {
-    border-bottom-color: rgba(255,255,255,0.06);
-    background: #1A222C;
-}
+.dark .sk-modal-header { border-bottom-color: rgba(255,255,255,0.06); background: #1A222C; }
 
-/* Variant header berwarna */
-.sk-modal-header.header-primary { background: rgba(60,80,224,0.06); }
-.sk-modal-header.header-indigo  { background: rgba(99,102,241,0.07); }
-.sk-modal-header.header-danger  { background: rgba(229,62,62,0.05); }
-.dark .sk-modal-header.header-primary,
-.dark .sk-modal-header.header-indigo,
-.dark .sk-modal-header.header-danger { background: rgba(255,255,255,0.03); }
-
-/* --- JUDUL MODAL --- */
+/* --- TITLES & LABELS --- */
 .sk-modal-title {
-    display: flex; align-items: center; gap: 0.5rem;
-    font-size: 0.8125rem; /* ~13px, antara text-xs & text-sm */
+    display: flex; align-items: center; gap: 0.75rem;
     font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.05em;
     color: #1A1F36;
 }
 .dark .sk-modal-title { color: #fff; }
-.sk-modal-title.title-danger { color: #E53E3E; }
-.sk-modal-title .sk-title-icon {
-    display: flex; align-items: center; justify-content: center;
-    width: 28px; height: 28px;
-    border-radius: 8px;
-    font-size: 0.75rem;
-    background: rgba(60,80,224,0.1);
+
+/* Section Title (Underlined) */
+.sk-section-title {
+    display: flex; align-items: center; gap: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 800;
     color: #3C50E0;
-    flex-shrink: 0;
-}
-.sk-modal-title.title-danger .sk-title-icon { background: rgba(229,62,62,0.1); color: #E53E3E; }
-
-/* Sub-judul di bawah judul utama (opsional) */
-.sk-modal-subtitle {
-    font-size: 0.625rem; /* 10px */
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: #94A3B8;
-    margin-top: 2px;
-    opacity: 0.8;
-}
-
-/* --- TOMBOL TUTUP (X) --- */
-.sk-modal-close {
-    display: flex; align-items: center; justify-content: center;
-    width: 32px; height: 32px;   /* h-8 w-8 — STANDAR BAKU */
-    border-radius: 50%;
-    border: none;
-    background: rgba(100,116,139,0.08);
-    color: #94A3B8;
-    cursor: pointer;
-    transition: all 0.15s;
-    flex-shrink: 0;
-}
-.dark .sk-modal-close { background: rgba(255,255,255,0.07); color: #CBD5E1; }
-.sk-modal-close:hover { background: rgba(229,62,62,0.1); color: #E53E3E; }
-
-/* --- BODY / FORM AREA --- */
-.sk-modal-body { padding: 1.5rem; }
-
-/* --- FOOTER / AREA TOMBOL AKSI --- */
-.sk-modal-footer {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.25rem 1.5rem;
-    border-top: 1px solid #F1F5F9;
-}
-.dark .sk-modal-footer { border-top-color: rgba(255,255,255,0.06); }
-
-/* ============================================================
-   SK-FORM: STANDAR INPUT / LABEL
-   ============================================================ */
-
-/* Label Form Standar */
-.sk-form-label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-size: 0.6875rem; /* 11px */
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: #64748B;
-}
-.dark .sk-form-label { color: #8A99AF; }
-.sk-form-label.label-primary { color: #3C50E0; }
-.sk-form-label .req { color: #E53E3E; margin-left: 2px; }
-
-/* Input, Select, Textarea Standar */
-.sk-form-input {
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.25rem;
+    border-bottom: 2px solid #3C50E0;
     width: 100%;
-    padding: 0.75rem 1rem; /* py-3 px-4 — STANDAR BAKU */
-    border-radius: 0.75rem; /* rounded-xl */
-    border: 1px solid #E2E8F0;
-    background: rgba(249,250,251,0.6);
-    font-size: 0.875rem; /* text-sm */
-    font-weight: 700;
-    color: #1A1F36;
-    outline: none;
-    transition: border-color 0.15s, box-shadow 0.15s;
-    -webkit-appearance: none; appearance: none;
 }
-.dark .sk-form-input {
-    border-color: rgba(255,255,255,0.1);
-    background: rgba(0,0,0,0.2);
-    color: #E2E8F0;
-}
-.sk-form-input:focus {
-    border-color: #3C50E0;
-    box-shadow: 0 0 0 4px rgba(60,80,224,0.08);
-}
-.dark .sk-form-input:focus { box-shadow: 0 0 0 4px rgba(60,80,224,0.15); }
-.sk-form-input.input-danger { border-color: rgba(229,62,62,0.5); }
-.sk-form-input.input-danger:focus { border-color: #E53E3E; box-shadow: 0 0 0 4px rgba(229,62,62,0.08); }
+.dark .sk-section-title { border-bottom-color: rgba(60, 80, 224, 0.4); }
 
-/* ============================================================
-   SK-BTN: STANDAR TOMBOL AKSI
-   ============================================================ */
+/* --- DATA DISPLAY GRID --- */
+.sk-data-grid { display: flex; flex-direction: column; gap: 0.875rem; margin-bottom: 1.5rem; }
+.sk-data-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+.sk-data-label { font-size: 0.8125rem; font-weight: 500; color: #64748B; flex-shrink: 0; }
+.sk-data-value { font-size: 0.8125rem; font-weight: 800; color: #1A1F36; text-align: right; }
+.dark .sk-data-value { color: #FFFFFF; }
+.sk-data-value.text-brand { color: #3C50E0; }
 
-.sk-btn {
-    display: inline-flex;
-    align-items: center; justify-content: center;
-    gap: 0.4rem;
-    padding: 0.75rem 1.25rem; /* STANDAR BAKU: setara py-3 px-5 */
-    border-radius: 0.625rem; /* antara rounded-lg & rounded-xl */
-    border: 1px solid transparent;
-    font-size: 0.6875rem; /* 11px */
+/* Badge for Data Value */
+.sk-badge-brand {
+    background: rgba(60, 80, 224, 0.1);
+    color: #3C50E0;
+    font-size: 0.625rem;
     font-weight: 900;
+    padding: 0.25rem 0.625rem;
+    border-radius: 6px;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    cursor: pointer;
-    transition: all 0.15s;
-    white-space: nowrap;
+    letter-spacing: 0.05em;
 }
 
-/* Modifier: lebar penuh atau setengah (flex-1) */
-.sk-btn.btn-full { width: 100%; }
-.sk-btn.btn-half { flex: 1; }
+/* --- INPUT SECTION CARD --- */
+.sk-input-card {
+    background: #F8FAFC;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    margin-top: 1.5rem;
+    border: 1px solid #F1F5F9;
+}
+.dark .sk-input-card { background: rgba(255, 255, 255, 0.02); border-color: rgba(255, 255, 255, 0.05); }
 
-/* Variasi Warna */
-.sk-btn-primary {
-    background-color: #3C50E0;
-    color: #fff;
-    box-shadow: 0 4px 14px rgba(60,80,224,0.3);
-}
-.sk-btn-primary:hover { opacity: 0.88; box-shadow: 0 6px 18px rgba(60,80,224,0.35); }
+/* --- FORM ELEMENTS --- */
+.sk-form-label { display: block; margin-bottom: 0.5rem; font-size: 0.6875rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; color: #64748B; }
+.sk-form-input { width: 100%; padding: 0.75rem 1rem; border-radius: 0.625rem; border: 1.5px solid #E2E8F0; background: #FFF; font-size: 0.8125rem; font-weight: 700; color: #1A1F36; outline: none; transition: all 0.2s; }
+.sk-form-input:focus { border-color: #3C50E0; box-shadow: 0 0 0 4px rgba(60, 80, 224, 0.1); }
+.dark .sk-form-input { background: #0F172A; border-color: #334155; color: #F1F5F9; }
 
-.sk-btn-cancel {
-    background-color: #F1F5F9;
-    color: #374151;
-    border-color: #E2E8F0;
+/* --- BUTTONS --- */
+.sk-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.625rem;
+    padding: 0.75rem 1.75rem; border-radius: 0.625rem; font-size: 0.875rem; font-weight: 800;
+    transition: all 0.2s; cursor: pointer; border: none;
 }
-.dark .sk-btn-cancel {
-    background-color: rgba(255,255,255,0.07);
-    color: #E2E8F0;
-    border-color: rgba(255,255,255,0.12);
-}
-.sk-btn-cancel:hover { background-color: #E2E8F0; }
-.dark .sk-btn-cancel:hover { background-color: rgba(255,255,255,0.12); }
+.sk-btn-primary { background: #3C50E0; color: #fff; box-shadow: 0 4px 12px rgba(60, 80, 224, 0.3); }
+.sk-btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(60, 80, 224, 0.4); }
+.sk-btn-primary:active { transform: translateY(0); }
 
-.sk-btn-danger {
-    background-color: #E53E3E;
-    color: #fff;
-    box-shadow: 0 4px 14px rgba(229,62,62,0.3);
-}
-.sk-btn-danger:hover { opacity: 0.88; }
+.sk-btn-secondary { background: #F1F5F9; color: #475569; border: 1.5px solid #E2E8F0; }
+.sk-btn-secondary:hover { background: #E2E8F0; }
+.dark .sk-btn-secondary { background: #1E293B; color: #CBD5E1; border-color: #334155; }
 
-/* Tombol teks transparan (untuk "Batalkan" di modal hapus) */
-.sk-btn-ghost {
-    background: transparent;
-    color: #94A3B8;
-    border-color: transparent;
-    font-size: 0.6875rem;
-}
-.sk-btn-ghost:hover { color: #1A1F36; }
-.dark .sk-btn-ghost:hover { color: #fff; }
+.sk-btn-danger { background: #EF4444; color: #fff; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3); }
+
+.sk-modal-footer { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 1.5rem; border-top: 1px solid #F1F5F9; background: #FFF; }
+.dark .sk-modal-footer { border-top-color: rgba(255, 255, 255, 0.05); background: #1A222C; }
+
+.sk-modal-close { display: flex; align-items: center; justify-content: center; border-radius: 0.5rem; transition: all 0.2s; border: none; cursor: pointer; }
 
 
 
