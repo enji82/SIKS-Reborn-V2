@@ -318,10 +318,10 @@
 </div>
 
 <!-- 2. MODAL VERIFIKASI (Side-by-Side Review) -->
-<div id="tugas_modalVerif" class="fixed inset-0 z-[99999] hidden items-center justify-center bg-black/70 backdrop-blur-md px-4 py-6">
-    <div class="relative flex flex-col md:flex-row w-full max-w-[96%] h-full max-h-[94%] rounded-3xl border border-white/10 bg-white dark:bg-[#1A222C] shadow-2xl animate-reveal overflow-hidden">
+<div id="tugas_modalVerif" class="fixed inset-0 z-[99999] hidden items-center justify-center bg-black/70 backdrop-blur-md px-2 py-4 md:px-4 md:py-6">
+    <div class="relative flex flex-col md:flex-row w-full max-w-[98%] h-full max-h-[96%] rounded-2xl border border-white/10 bg-white dark:bg-[#1A222C] shadow-2xl animate-reveal overflow-hidden">
         
-        <!-- Document Area (Left - 65%) -->
+        <!-- Document Area (Left - Expanded) -->
         <div class="flex-1 bg-gray-100 dark:bg-black/40 relative overflow-hidden flex items-center justify-center border-r border-gray-100 dark:border-white/5">
              <iframe id="tugas_verifFrame" class="w-full h-full border-none hidden" src=""></iframe>
              
@@ -336,72 +336,72 @@
                   <div class="w-20 h-20 rounded-2xl bg-danger/10 flex items-center justify-center mb-6">
                       <i class="fas fa-file-excel fa-2x text-danger opacity-50"></i>
                   </div>
-                  <h4 class="font-black text-black dark:text-white uppercase tracking-wider mb-2">Dokumen Hilang</h4>
-                  <p class="text-xs text-gray-400 font-bold max-w-[200px] leading-relaxed">Gagal memuat pratinjau dokumen. Silakan cek koneksi atau hubungi admin.</p>
+                  <h4 class="font-black text-black dark:text-white uppercase tracking-wider mb-2 text-sm">Dokumen Hilang</h4>
+                  <p class="text-[11px] text-gray-400 font-bold max-w-[200px] leading-relaxed">Gagal memuat pratinjau dokumen. Silakan cek koneksi atau hubungi admin.</p>
              </div>
         </div>
 
-        <!-- Form Area (Right - 35%) -->
-        <div class="w-full md:w-[450px] flex flex-col bg-white dark:bg-[#1A222C] relative">
-            <!-- Modal Header -->
-            <div class="flex items-center justify-between border-b border-gray-100 py-5 px-8 dark:border-white/5 bg-gray-50/30 dark:bg-white/[0.03]">
+        <!-- Form Area (Right - Compact 360px) -->
+        <div class="w-full md:w-[360px] flex flex-col bg-white dark:bg-[#1A222C] relative">
+            <!-- Modal Header (Compact) -->
+            <div class="flex items-center justify-between border-b border-gray-100 py-3.5 px-6 dark:border-white/5 bg-gray-50/30 dark:bg-white/[0.03]">
                 <div>
-                    <h3 class="font-black text-black dark:text-white flex items-center gap-2 text-sm uppercase tracking-wider">
+                    <h3 class="font-black text-black dark:text-white flex items-center gap-2 text-[13px] uppercase tracking-wider">
                         <i class="fas fa-check-double text-primary"></i> Review & Verif
                     </h3>
-                    <p class="text-[9px] text-gray-400 font-bold uppercase tracking-widest mt-0.5">Peninjauan Dokumen Digital</p>
+                    <p class="text-[8px] text-gray-400 font-bold uppercase tracking-widest mt-0.5 opacity-70">Peninjauan Dokumen Digital</p>
                 </div>
-                <button type="button" class="flex h-9 w-9 items-center justify-center rounded-xl bg-gray-100 dark:bg-white/5 text-gray-400 hover:text-danger hover:bg-danger/10 transition-all" onclick="$('#tugas_modalVerif').fadeOut().addClass('hidden').removeClass('flex')">
-                    <i class="fas fa-times"></i>
+                <button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg bg-gray-100 dark:bg-white/5 text-gray-400 hover:text-danger hover:bg-danger/10 transition-all" onclick="$('#tugas_modalVerif').fadeOut().addClass('hidden').removeClass('flex')">
+                    <i class="fas fa-times text-xs"></i>
                 </button>
             </div>
             
-            <form id="tugas_formVerif" class="flex-1 flex flex-col overflow-y-auto p-8 scroll-smooth sultan-scroll">
+            <form id="tugas_formVerif" class="flex-1 flex flex-col overflow-y-auto p-5 scroll-smooth sultan-scroll">
                 <input type="hidden" id="tugas_verifRowId">
                 
-                <!-- Metadata Summary -->
-                <div class="mb-8 space-y-5">
-                    <div class="group flex flex-col gap-1.5 p-5 rounded-2xl border border-gray-100 bg-gray-50/50 dark:border-white/5 dark:bg-white/[0.02] hover:border-primary/20 transition-all">
-                        <span class="text-[9px] text-gray-400 font-black uppercase tracking-widest">Institusi Pelapor</span>
-                        <span class="font-black text-black dark:text-white text-[13px] leading-tight uppercase" id="tugas_vNamaSd">-</span>
+                <!-- Metadata Summary (High-Density) -->
+                <div class="mb-6 space-y-3.5">
+                    <div class="group flex flex-col gap-1 p-3.5 rounded-xl border border-gray-100 bg-gray-50/50 dark:border-white/5 dark:bg-white/[0.02] hover:border-primary/20 transition-all">
+                        <span class="text-[8px] text-gray-400 font-black uppercase tracking-widest">Institusi Pelapor</span>
+                        <span class="font-black text-black dark:text-white text-[12px] leading-tight uppercase" id="tugas_vNamaSd">-</span>
                     </div>
 
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="flex flex-col gap-1.5 p-4 rounded-2xl border border-gray-100 bg-gray-50/50 dark:border-white/5 dark:bg-white/[0.02]">
-                            <span class="text-[9px] text-gray-400 font-black uppercase tracking-widest">Tahun Ajaran</span>
-                            <span class="font-black text-black dark:text-white text-xs" id="tugas_vTahun">-</span>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="flex flex-col gap-1 p-3 rounded-xl border border-gray-100 bg-gray-50/50 dark:border-white/5 dark:bg-white/[0.02]">
+                            <span class="text-[8px] text-gray-400 font-black uppercase tracking-widest">Thn Ajaran</span>
+                            <span class="font-black text-black dark:text-white text-[11px]" id="tugas_vTahun">-</span>
                         </div>
-                        <div class="flex flex-col gap-1.5 p-4 rounded-2xl border border-gray-100 bg-gray-50/50 dark:border-white/5 dark:bg-white/[0.02]">
-                            <span class="text-[9px] text-gray-400 font-black uppercase tracking-widest">Semester</span>
-                            <span class="font-black text-black dark:text-white text-xs" id="tugas_vSemester">-</span>
+                        <div class="flex flex-col gap-1 p-3 rounded-xl border border-gray-100 bg-gray-50/50 dark:border-white/5 dark:bg-white/[0.02]">
+                            <span class="text-[8px] text-gray-400 font-black uppercase tracking-widest">Semester</span>
+                            <span class="font-black text-black dark:text-white text-[11px]" id="tugas_vSemester">-</span>
                         </div>
                     </div>
 
-                    <div class="flex flex-col gap-3 p-5 rounded-2xl border border-gray-100 bg-gray-50/50 dark:border-white/5 dark:bg-white/[0.02]">
-                        <span class="text-[9px] text-gray-400 font-black uppercase tracking-widest">Detail Identitas Dokumen</span>
-                        <div class="space-y-3">
+                    <div class="flex flex-col gap-2.5 p-4 rounded-xl border border-gray-100 bg-gray-50/50 dark:border-white/5 dark:bg-white/[0.02]">
+                        <span class="text-[8px] text-gray-400 font-black uppercase tracking-widest">Detail Dokumen</span>
+                        <div class="space-y-2.5">
                             <div class="flex justify-between items-center">
-                                <span class="text-[10px] text-gray-500 font-bold uppercase">Kriteria</span>
-                                <span class="rounded bg-primary/10 py-1 px-3 text-[10px] font-black text-primary uppercase" id="tugas_vKriteria">-</span>
+                                <span class="text-[9px] text-gray-500 font-bold uppercase">Kriteria</span>
+                                <span class="rounded bg-primary/10 py-0.5 px-2 text-[9px] font-black text-primary uppercase" id="tugas_vKriteria">-</span>
                             </div>
-                            <div class="flex justify-between items-start gap-4">
-                                <span class="text-[10px] text-gray-500 font-bold uppercase shrink-0">No. SK</span>
-                                <span class="font-black text-black dark:text-white text-[11px] text-right break-all" id="tugas_vNoSk">-</span>
+                            <div class="flex justify-between items-start gap-4 border-t border-dashed border-gray-100 dark:border-white/5 pt-2">
+                                <span class="text-[9px] text-gray-500 font-bold uppercase shrink-0">No. SK</span>
+                                <span class="font-black text-black dark:text-white text-[10px] text-right break-all" id="tugas_vNoSk">-</span>
                             </div>
                             <div class="flex justify-between items-center">
-                                <span class="text-[10px] text-gray-500 font-bold uppercase">Tanggal</span>
-                                <span class="font-black text-black dark:text-white text-[11px]" id="tugas_vTglSk">-</span>
+                                <span class="text-[9px] text-gray-500 font-bold uppercase">Tanggal</span>
+                                <span class="font-black text-black dark:text-white text-[10px]" id="tugas_vTglSk">-</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Decision Section -->
-                <div class="mt-auto pt-8 border-t border-gray-100 dark:border-white/5 space-y-6">
+                <!-- Decision Section (Compact) -->
+                <div class="mt-auto pt-6 border-t border-gray-100 dark:border-white/5 space-y-5">
                     <div>
-                        <label class="mb-3 block text-[10px] font-black uppercase tracking-widest text-primary">Keputusan Verifikasi <span class="text-danger">*</span></label>
-                        <select id="tugas_verifStatus" class="w-full rounded-2xl border border-gray-200 bg-gray-50/50 py-4 px-5 font-black text-xs outline-none transition-all focus:border-primary focus:ring-4 focus:ring-primary/5 dark:border-white/10 dark:bg-white/5 dark:text-white appearance-none cursor-pointer" onchange="tugas_cekStatusVerif(this.value)" required>
-                            <option value="">- PILIH STATUS AKHIR -</option>
+                        <label class="mb-2.5 block text-[9px] font-black uppercase tracking-widest text-primary">Status Verifikasi <span class="text-danger">*</span></label>
+                        <select id="tugas_verifStatus" class="w-full rounded-xl border border-gray-200 bg-gray-50/50 py-3 px-4 font-black text-[11px] outline-none transition-all focus:border-primary focus:ring-4 focus:ring-primary/5 dark:border-white/10 dark:bg-white/5 dark:text-white appearance-none cursor-pointer" onchange="tugas_cekStatusVerif(this.value)" required>
+                            <option value="">- PILIH KEPUTUSAN -</option>
                             <option value="Disetujui">✅ TERIMA & SETUJUI</option>
                             <option value="Revisi">🔄 PERLU REVISI</option>
                             <option value="Ditolak">❌ TOLAK PERMANEN</option>
@@ -409,20 +409,20 @@
                     </div>
 
                     <div>
-                        <label class="mb-3 block text-[10px] font-black uppercase tracking-widest text-gray-400">Catatan Perbaikan / Alasan</label>
-                        <textarea id="tugas_verifKeterangan" rows="3" placeholder="Berikan catatan jika diperlukan..." class="w-full rounded-2xl border border-gray-200 bg-transparent py-4 px-5 text-xs font-bold outline-none transition-all focus:border-primary dark:border-white/10 dark:bg-white/5 dark:text-white scroll-smooth"></textarea>
-                        <p id="tugas_verifWajibCatatan" class="mt-3 text-[9px] font-black text-danger uppercase tracking-widest hidden flex items-center gap-1.5 animate-bounce">
-                            <i class="fas fa-exclamation-triangle"></i> Wajib mengisi alasan penolakan/revisi!
+                        <label class="mb-2.5 block text-[9px] font-black uppercase tracking-widest text-gray-400">Catatan Perbaikan</label>
+                        <textarea id="tugas_verifKeterangan" rows="3" placeholder="Alasan penolakan/revisi..." class="w-full rounded-xl border border-gray-200 bg-transparent py-3.5 px-4 text-[11px] font-bold outline-none transition-all focus:border-primary dark:border-white/10 dark:bg-white/5 dark:text-white scroll-smooth"></textarea>
+                        <p id="tugas_verifWajibCatatan" class="mt-2.5 text-[8px] font-black text-danger uppercase tracking-widest hidden flex items-center gap-1.5 animate-pulse">
+                            <i class="fas fa-exclamation-triangle"></i> Wajib isi alasan!
                         </p>
                     </div>
 
-                    <!-- Actions -->
-                    <div class="flex gap-4 pt-2">
-                        <button type="button" class="flex-1 h-14 rounded-2xl font-black text-xs uppercase tracking-widest border border-gray-200 dark:border-white/10 text-gray-500 hover:bg-gray-50 dark:hover:bg-white/5 transition-all shadow-sm" onclick="$('#tugas_modalVerif').fadeOut().addClass('hidden').removeClass('flex')">
+                    <!-- Actions (High-Impact) -->
+                    <div class="flex gap-3 pt-1">
+                        <button type="button" class="flex-1 h-12 rounded-xl font-black text-[10px] uppercase tracking-widest border border-gray-200 dark:border-white/10 text-gray-500 hover:bg-gray-50 dark:hover:bg-white/5 transition-all shadow-sm" onclick="$('#tugas_modalVerif').fadeOut().addClass('hidden').removeClass('flex')">
                             BATAL
                         </button>
-                        <button type="submit" id="tugas_btnSimpanVerif" class="flex-1 h-14 rounded-2xl font-black text-xs uppercase tracking-widest bg-primary text-white hover:bg-primary/90 transition-all shadow-xl shadow-primary/20">
-                            SIMPAN HASIL
+                        <button type="submit" id="tugas_btnSimpanVerif" class="flex-1 h-12 rounded-xl font-black text-[10px] uppercase tracking-widest bg-primary text-white hover:bg-primary/90 transition-all shadow-lg shadow-primary/20">
+                            SIMPAN
                         </button>
                     </div>
                 </div>
