@@ -221,13 +221,16 @@
 <!-- 1. MODAL FORM SK (SULTAN STYLE) -->
 <div id="tugas_modalForm" class="fixed inset-0 z-[99999] hidden items-center justify-center bg-black/60 backdrop-blur-sm overflow-y-auto px-4 py-8">
     <div class="w-full max-w-fit min-w-[480px] rounded-2xl border border-gray-200 bg-gray-50/50 shadow-2xl dark:border-gray-800 dark:bg-[#1a222c] animate-reveal overflow-hidden">
-        <!-- Header -->
-        <div class="modal-header flex items-center justify-between border-b border-gray-100 py-4 px-6 dark:border-gray-800 bg-gray-50/50 dark:bg-black/10">
-            <h3 id="tugas_judulModalForm" class="font-black text-black dark:text-white flex items-center gap-2 text-sm uppercase tracking-wider">
-                <i class="fas fa-file-signature text-primary"></i> Form Pengisian SK
-            </h3>
-            <button type="button" class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-50/50 dark:bg-black/20 text-gray-400 hover:text-danger hover:bg-danger/10 transition-all" onclick="$('#tugas_modalForm').fadeOut().addClass('hidden').removeClass('flex')">
-                <i class="fas fa-times"></i>
+        <!-- Header Tambah/Edit -->
+        <div class="sk-modal-header header-primary" id="tugas_headerModalForm">
+            <div>
+                <h3 id="tugas_judulModalForm" class="sk-modal-title">
+                    <span class="sk-title-icon"><i class="fas fa-file-signature"></i></span>
+                    Form Pengisian SK
+                </h3>
+            </div>
+            <button type="button" class="sk-modal-close" onclick="$('#tugas_modalForm').fadeOut().addClass('hidden').removeClass('flex')">
+                <i class="fas fa-times text-xs"></i>
             </button>
         </div>
 
@@ -249,28 +252,28 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="md:col-span-2">
-                    <label class="mb-2 block text-[11px] font-black uppercase tracking-widest text-gray-400">Nama Sekolah <span class="text-danger">*</span></label>
-                    <select id="tugas_inputNamaSd" class="w-full rounded-xl border border-gray-200 bg-gray-50/50 py-3 px-4 text-sm font-bold outline-none transition focus:border-primary dark:border-gray-800 dark:bg-black/20 dark:text-white" required>
+                    <label class="sk-form-label">Nama Sekolah <span class="req">*</span></label>
+                    <select id="tugas_inputNamaSd" class="sk-form-input" required>
                         <option value="">- Memuat Data -</option>
                     </select>
                 </div>
 
                 <div>
-                    <label class="mb-2 block text-[11px] font-black uppercase tracking-widest text-gray-400">Tahun Ajaran <span class="text-danger">*</span></label>
-                    <select id="tugas_inputTahun" class="w-full rounded-xl border border-gray-200 bg-gray-50/50 py-3 px-4 text-sm font-bold outline-none transition focus:border-primary dark:border-gray-800 dark:bg-gray-800 dark:text-white" required></select>
+                    <label class="sk-form-label">Tahun Ajaran <span class="req">*</span></label>
+                    <select id="tugas_inputTahun" class="sk-form-input" required></select>
                 </div>
 
                 <div>
-                    <label class="mb-2 block text-[11px] font-black uppercase tracking-widest text-gray-400">Semester <span class="text-danger">*</span></label>
-                    <select id="tugas_inputSemester" class="w-full rounded-xl border border-gray-200 bg-gray-50/50 py-3 px-4 text-sm font-bold outline-none transition focus:border-primary dark:border-gray-800 dark:bg-gray-800 dark:text-white" required>
+                    <label class="sk-form-label">Semester <span class="req">*</span></label>
+                    <select id="tugas_inputSemester" class="sk-form-input" required>
                         <option value="Semester 1">Semester 1</option>
                         <option value="Semester 2">Semester 2</option>
                     </select>
                 </div>
 
                 <div class="md:col-span-2">
-                    <label class="mb-2 block text-[11px] font-black uppercase tracking-widest text-gray-400">Kriteria SK <span class="text-danger">*</span></label>
-                    <select id="tugas_inputKriteria" class="w-full rounded-xl border border-gray-200 bg-gray-50/50 py-3 px-4 text-sm font-bold outline-none transition focus:border-primary dark:border-gray-800 dark:bg-gray-800 dark:text-white" required>
+                    <label class="sk-form-label">Kriteria SK <span class="req">*</span></label>
+                    <select id="tugas_inputKriteria" class="sk-form-input" required>
                         <option value="">- Pilih Kriteria -</option>
                         <option value="Awal Semester">Awal Semester</option>
                         <option value="Perubahan ke 1">Perubahan ke 1</option>
@@ -283,12 +286,12 @@
 
                 <div id="tugas_areaTerkunci" class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4 opacity-50 transition-opacity">
                     <div>
-                        <label class="mb-2 block text-[11px] font-black uppercase tracking-widest text-gray-400">Nomor SK <span class="text-danger">*</span></label>
-                        <input type="text" id="tugas_inputNoSk" placeholder="Input nomor SK..." class="w-full rounded-xl border border-gray-200 bg-gray-50/50 py-3 px-4 text-sm font-bold outline-none transition focus:border-primary dark:border-gray-800 dark:bg-gray-800 dark:text-white" required>
+                        <label class="sk-form-label">Nomor SK <span class="req">*</span></label>
+                        <input type="text" id="tugas_inputNoSk" placeholder="Input nomor SK..." class="sk-form-input" required>
                     </div>
                     <div>
-                        <label class="mb-2 block text-[11px] font-black uppercase tracking-widest text-gray-400">Tanggal SK <span class="text-danger">*</span></label>
-                        <input type="date" id="tugas_inputTglSk" class="w-full rounded-xl border border-gray-200 bg-gray-50/50 py-3 px-4 text-sm font-bold outline-none transition focus:border-primary dark:border-gray-800 dark:bg-gray-800 dark:text-white" required>
+                        <label class="sk-form-label">Tanggal SK <span class="req">*</span></label>
+                        <input type="date" id="tugas_inputTglSk" class="sk-form-input" required>
                     </div>
 
                     <div class="md:col-span-2 rounded-2xl border border-gray-100 bg-gray-50/50 p-5 dark:border-gray-800 dark:bg-black/10">
@@ -305,12 +308,12 @@
                 </div>
             </div>
 
-            <div class="mt-8 flex items-center justify-between gap-4">
-                <button type="button" class="sultan-btn sultan-btn-white flex-1" onclick="$('#tugas_modalForm').fadeOut().addClass('hidden').removeClass('flex')">
+            <div class="sk-modal-footer">
+                <button type="button" class="sk-btn sk-btn-cancel btn-half" onclick="$('#tugas_modalForm').fadeOut().addClass('hidden').removeClass('flex')">
                     BATAL
                 </button>
-                <button type="submit" id="tugas_btnSimpanForm" class="sultan-btn sultan-btn-primary flex-1 shadow-lg shadow-primary/20">
-                    <i class="fas fa-save mr-2"></i> SIMPAN DATA
+                <button type="submit" id="tugas_btnSimpanForm" class="sk-btn sk-btn-primary btn-half">
+                    <i class="fas fa-save"></i> SIMPAN DATA
                 </button>
             </div>
         </form>
@@ -344,85 +347,85 @@
         <!-- Form Area (Right - Compact 360px) -->
         <div class="w-full md:w-[360px] flex flex-col bg-white dark:bg-[#1A222C] relative border-l border-gray-100 dark:border-white/5">
             <!-- Modal Header (Sultan Standard Synchronized) -->
-            <div class="flex items-center justify-between border-b border-gray-100 dark:border-white/10 py-4 px-6 bg-gray-50 dark:!bg-[#1A222C]">
+            <div class="sk-modal-header header-primary">
                 <div>
-                    <h3 class="font-black text-black dark:text-white flex items-center gap-2 text-sm uppercase tracking-wider">
-                        <i class="fas fa-check-double text-primary"></i> Review & Verif
+                    <h3 class="sk-modal-title">
+                        <span class="sk-title-icon"><i class="fas fa-check-double"></i></span>
+                        Review & Verif
                     </h3>
-                    <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-1 opacity-70">Peninjauan Dokumen Digital</p>
+                    <p class="sk-modal-subtitle">Peninjauan Dokumen Digital</p>
                 </div>
-                <!-- Matched close button with modalTambah -->
-                <button type="button" class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200/50 dark:bg-white/10 text-gray-500 hover:text-danger hover:bg-danger/10 transition-all font-bold" onclick="$('#tugas_modalVerif').fadeOut().addClass('hidden').removeClass('flex')">
-                    <i class="fas fa-times"></i>
+                <button type="button" class="sk-modal-close" onclick="$('#tugas_modalVerif').fadeOut().addClass('hidden').removeClass('flex')">
+                    <i class="fas fa-times text-xs"></i>
                 </button>
             </div>
             
             <form id="tugas_formVerif" class="flex-1 flex flex-col overflow-y-auto p-5 scroll-smooth sultan-scroll">
                 <input type="hidden" id="tugas_verifRowId">
                 
-                <!-- Metadata Summary (Large Typography) -->
+                <!-- Metadata Summary -->
                 <div class="mb-5 space-y-3">
-                    <div class="group flex flex-col gap-1 p-3.5 rounded-xl border border-gray-100 bg-gray-50/80 dark:border-white/5 dark:bg-white/[0.03] hover:border-primary/30 transition-all">
-                        <span class="text-[10px] text-gray-400 font-black uppercase tracking-widest">Institusi Pelapor</span>
+                    <div class="group flex flex-col gap-1 p-3.5 rounded-xl border border-gray-100 bg-gray-50/80 dark:border-white/5 dark:bg-white/[0.03]">
+                        <span class="sk-form-label" style="margin-bottom:2px">Institusi Pelapor</span>
                         <span class="font-black text-black dark:text-white text-lg leading-tight uppercase" id="tugas_vNamaSd">-</span>
                     </div>
 
                     <div class="grid grid-cols-2 gap-3">
                         <div class="flex flex-col gap-1 p-3 rounded-xl border border-gray-100 bg-gray-50/80 dark:border-white/5 dark:bg-white/[0.03]">
-                            <span class="text-[10px] text-gray-400 font-black uppercase tracking-widest">Thn Ajaran</span>
+                            <span class="sk-form-label" style="margin-bottom:2px">Thn Ajaran</span>
                             <span class="font-black text-black dark:text-white text-base" id="tugas_vTahun">-</span>
                         </div>
                         <div class="flex flex-col gap-1 p-3 rounded-xl border border-gray-100 bg-gray-50/80 dark:border-white/5 dark:bg-white/[0.03]">
-                            <span class="text-[10px] text-gray-400 font-black uppercase tracking-widest">Semester</span>
+                            <span class="sk-form-label" style="margin-bottom:2px">Semester</span>
                             <span class="font-black text-black dark:text-white text-base" id="tugas_vSemester">-</span>
                         </div>
                     </div>
 
                     <div class="flex flex-col gap-3 p-4 rounded-xl border border-gray-100 bg-gray-50/80 dark:border-white/5 dark:bg-white/[0.03]">
-                        <span class="text-[10px] text-gray-400 font-black uppercase tracking-widest">Detail Dokumen</span>
+                        <span class="sk-form-label" style="margin-bottom:0">Detail Dokumen</span>
                         <div class="space-y-3.5">
                             <div class="flex justify-between items-center bg-primary/5 dark:bg-white/5 p-2 rounded tracking-wider">
-                                <span class="text-[10px] text-gray-500 dark:text-gray-400 font-bold uppercase">Kriteria SK</span>
+                                <span class="sk-form-label" style="margin-bottom:0">Kriteria SK</span>
                                 <span class="rounded py-1 px-3 text-[10px] font-black text-primary uppercase" id="tugas_vKriteria">-</span>
                             </div>
                             <div class="flex justify-between items-start gap-4 border-t border-dashed border-gray-200 dark:border-white/10 pt-3">
-                                <span class="text-[10px] text-gray-500 font-bold uppercase shrink-0">No. SK</span>
+                                <span class="sk-form-label" style="margin-bottom:0">No. SK</span>
                                 <span class="font-black text-black dark:text-white text-base text-right break-all" id="tugas_vNoSk">-</span>
                             </div>
                             <div class="flex justify-between items-center">
-                                <span class="text-[10px] text-gray-500 font-bold uppercase">Tanggal</span>
+                                <span class="sk-form-label" style="margin-bottom:0">Tanggal</span>
                                 <span class="font-black text-black dark:text-white text-base" id="tugas_vTglSk">-</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Decision Section (Tightened Gap) -->
-                <div class="pt-5 border-t border-gray-100 dark:border-white/10 space-y-5">
+                <!-- Decision Section -->
+                <div class="pt-5 border-t border-gray-100 dark:border-white/10 space-y-4">
                     <div>
-                        <label class="mb-2 block text-xs font-black uppercase tracking-widest text-primary">Status Verifikasi <span class="text-danger">*</span></label>
-                        <select id="tugas_verifStatus" class="w-full rounded-xl border-2 border-gray-200 bg-gray-50/50 py-3.5 px-4 font-black text-sm outline-none transition-all focus:border-primary focus:ring-4 focus:ring-primary/5 dark:border-white/20 dark:bg-white/5 dark:text-white appearance-none cursor-pointer shadow-sm" onchange="tugas_cekStatusVerif(this.value)" required>
+                        <label class="sk-form-label label-primary">Status Verifikasi <span class="req">*</span></label>
+                        <select id="tugas_verifStatus" class="sk-form-input" onchange="tugas_cekStatusVerif(this.value)" required>
                             <option value="">- PILIH KEPUTUSAN -</option>
-                            <option value="Disetujui">✅ TERIMA & SETUJUI</option>
-                            <option value="Revisi">🔄 PERLU REVISI</option>
-                            <option value="Ditolak">❌ TOLAK PERMANEN</option>
+                            <option value="Disetujui">&#x2705; TERIMA & SETUJUI</option>
+                            <option value="Revisi">&#x1F504; PERLU REVISI</option>
+                            <option value="Ditolak">&#x274C; TOLAK PERMANEN</option>
                         </select>
                     </div>
 
                     <div>
-                        <label class="mb-2 block text-[11px] font-black uppercase tracking-widest text-gray-400">Catatan Perbaikan</label>
-                        <textarea id="tugas_verifKeterangan" rows="3" placeholder="Tuliskan alasan penolakan/revisi..." class="w-full rounded-xl border-2 border-gray-200 bg-white py-4 px-4 text-sm font-bold outline-none transition-all focus:border-primary dark:border-white/10 dark:bg-black/30 dark:focus:border-primary dark:text-white scroll-smooth"></textarea>
-                        <p id="tugas_verifWajibCatatan" class="mt-2.5 text-[10px] font-black text-danger uppercase tracking-widest hidden flex items-center gap-1.5 animate-pulse">
+                        <label class="sk-form-label">Catatan Perbaikan</label>
+                        <textarea id="tugas_verifKeterangan" rows="3" placeholder="Tuliskan alasan penolakan/revisi..." class="sk-form-input" style="resize:vertical"></textarea>
+                        <p id="tugas_verifWajibCatatan" class="mt-2 text-[10px] font-black text-danger uppercase tracking-widest hidden items-center gap-1.5 animate-pulse">
                             <i class="fas fa-exclamation-triangle"></i> Wajib isi alasan!
                         </p>
                     </div>
 
-                    <!-- Actions (Bulletproof Tailwind Standard) -->
-                    <div class="flex gap-4 pt-2">
-                        <button type="button" class="flex-1 inline-flex items-center justify-center rounded-xl border-2 border-gray-300 !bg-gray-100 dark:border-white/20 dark:!bg-[#1A222C] py-4 px-6 text-center font-black uppercase text-xs tracking-widest text-black dark:text-white hover:bg-opacity-90 transition-all shadow-sm" onclick="$('#tugas_modalVerif').fadeOut().addClass('hidden').removeClass('flex')">
+                    <!-- Actions -->
+                    <div class="sk-modal-footer" style="padding-left:0; padding-right:0; padding-top:0.75rem; border-top:none">
+                        <button type="button" class="sk-btn sk-btn-cancel btn-half" onclick="$('#tugas_modalVerif').fadeOut().addClass('hidden').removeClass('flex')">
                             BATAL
                         </button>
-                        <button type="submit" id="tugas_btnSimpanVerif" class="flex-1 inline-flex items-center justify-center rounded-xl !bg-[#3C50E0] dark:!bg-[#3C50E0] py-4 px-6 text-center font-black uppercase text-xs tracking-widest text-white hover:opacity-90 transition-all shadow-lg shadow-primary/30">
+                        <button type="submit" id="tugas_btnSimpanVerif" class="sk-btn sk-btn-primary btn-half">
                             SIMPAN
                         </button>
                     </div>
@@ -473,13 +476,14 @@
 <!-- 4. MODAL HAPUS (SULTAN STYLE SECURE) -->
 <div id="tugas_modalHapus" class="fixed inset-0 z-[99999] hidden items-center justify-center bg-black/60 backdrop-blur-sm overflow-y-auto px-4 py-8 text-black dark:text-white">
     <div class="w-full max-w-[400px] rounded-2xl border border-gray-200 bg-white shadow-2xl dark:border-gray-800 dark:bg-[#1a222c] animate-reveal overflow-hidden">
-        <!-- Header Danger (Synchronized) -->
-        <div class="flex items-center justify-between border-b border-gray-100 py-4 px-6 dark:border-gray-800 bg-danger/5">
-            <h3 class="font-black text-danger flex items-center gap-2 text-sm uppercase tracking-wider">
-                <i class="fas fa-trash-alt"></i> Hapus Data SK
+        <!-- Header Hapus -->
+        <div class="sk-modal-header header-danger">
+            <h3 class="sk-modal-title title-danger">
+                <span class="sk-title-icon"><i class="fas fa-trash-alt"></i></span>
+                Hapus Data SK
             </h3>
-            <button type="button" class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200/50 dark:bg-black/20 text-gray-400 hover:text-danger hover:bg-danger/10 transition-all font-bold" onclick="$('#tugas_modalHapus').fadeOut().addClass('hidden').removeClass('flex')">
-                <i class="fas fa-times"></i>
+            <button type="button" class="sk-modal-close" onclick="$('#tugas_modalHapus').fadeOut().addClass('hidden').removeClass('flex')">
+                <i class="fas fa-times text-xs"></i>
             </button>
         </div>
 
@@ -505,19 +509,19 @@
                 </div>
                 
                 <div>
-                   <label class="mb-2 block text-[10px] font-black uppercase tracking-widest text-gray-400">Input Kode Konfirmasi</label>
-                   <input type="text" id="tugas_inputKodeHapus" placeholder="Masukkan kode..." class="w-full rounded-xl border border-gray-200 bg-white py-3 px-4 text-sm font-black tracking-[0.2em] uppercase outline-none transition focus:border-danger dark:border-gray-800 dark:bg-black/40 dark:text-white" required autocomplete="off">
-                   <p class="mt-2 text-[9px] font-bold text-gray-400 italic">
+                   <label class="sk-form-label">Input Kode Konfirmasi</label>
+                   <input type="text" id="tugas_inputKodeHapus" placeholder="Masukkan kode..." class="sk-form-input input-danger" required autocomplete="off">
+                   <p class="mt-2 text-[10px] font-bold text-gray-400 italic">
                        Hubungi admin Korwil untuk mendapatkan kode hapus.
                    </p>
                 </div>
             </div>
 
-            <div class="mt-8 flex flex-col gap-3">
-                <button type="submit" id="tugas_btnEksekusiHapus" class="sultan-btn sultan-btn-danger w-full !py-3.5 shadow-lg shadow-danger/20">
-                    <i class="fas fa-trash-alt mr-2"></i> HAPUS DATA PERMANEN
+            <div class="sk-modal-footer" style="flex-direction:column; gap:0.5rem">
+                <button type="submit" id="tugas_btnEksekusiHapus" class="sk-btn sk-btn-danger btn-full">
+                    <i class="fas fa-trash-alt"></i> HAPUS DATA PERMANEN
                 </button>
-                <button type="button" class="text-center text-xs font-black text-gray-400 hover:text-black dark:hover:text-white transition-all uppercase tracking-widest py-2" onclick="$('#tugas_modalHapus').fadeOut().addClass('hidden').removeClass('flex')">
+                <button type="button" class="sk-btn sk-btn-ghost btn-full" onclick="$('#tugas_modalHapus').fadeOut().addClass('hidden').removeClass('flex')">
                     BATALKAN
                 </button>
             </div>
@@ -904,9 +908,9 @@
 
     function tugas_bukaModalTambah() {
         tugas_resetForm();
-        $('#tugas_modalForm .modal-header').removeClass('sultan-header-indigo').addClass('sultan-header-navy');
-        $('#tugas_judulModalForm').html('<i class="fas fa-plus-circle mr-2"></i> Tambah SK Pembagian Tugas');
-        $('#tugas_btnSimpanForm').html('<i class="fas fa-save mr-2"></i> SIMPAN DATA SK').removeClass('btn-sultan-indigo').addClass('btn-sultan-maroon');
+        $('#tugas_headerModalForm').removeClass('header-indigo').addClass('header-primary');
+        $('#tugas_judulModalForm').html('<span class="sk-title-icon"><i class="fas fa-plus-circle"></i></span> Tambah SK Pembagian Tugas');
+        $('#tugas_btnSimpanForm').html('<i class="fas fa-save"></i> SIMPAN DATA SK');
 
         var now = new Date(); var curYear = now.getFullYear(); var curMonth = now.getMonth();
         var currentTa = (curMonth >= 6) ? curYear + '/' + (curYear + 1) : (curYear - 1) + '/' + curYear;
@@ -967,8 +971,8 @@
         var rowData = TUGAS_DATA_MASTER[rowId];
         if (!rowData) return;
 
-        $('#tugas_modalForm .modal-header').removeClass('sultan-header-navy').addClass('sultan-header-indigo');
-        $('#tugas_judulModalForm').html('<i class="fas fa-edit mr-2"></i> Edit Data SK Pembagian Tugas');
+        $('#tugas_headerModalForm').removeClass('header-primary').addClass('header-indigo');
+        $('#tugas_judulModalForm').html('<span class="sk-title-icon" style="background:rgba(99,102,241,0.15);color:#6366f1"><i class="fas fa-edit"></i></span> Edit Data SK Pembagian Tugas');
         $('#tugas_editRowId').val(rowId);
 
         $('#tugas_btnSimpanForm').removeClass('btn-sultan-maroon').addClass('btn-sultan-indigo');
