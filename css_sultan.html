@@ -3726,8 +3726,8 @@ body .modal-header-sultan .modal-title i { color: var(--warna-emas) !important; 
     box-shadow: none !important;
 }
 
-/* Force Satoshi Primary Font */
-*, body, h1, h2, h3, h4, h5, h6, th, td, input, select, textarea, button {
+/* Force Satoshi Primary Font (Safely) */
+body, h1, h2, h3, h4, h5, h6, th, td, input, select, textarea, button, p, span:not([class*="fa-"]), div:not([class*="fa-"]) {
   font-family: 'Satoshi', ui-sans-serif, system-ui, -apple-system, sans-serif !important;
 }
 
