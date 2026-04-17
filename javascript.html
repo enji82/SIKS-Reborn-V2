@@ -128,25 +128,24 @@ var Sultan = {
         }
     },
 
-    // 5. NOTIFICATION SYSTEM (TailAdmin Premium Standard)
+    // 5. NOTIFICATION SYSTEM (TailAdmin Pixel-Perfect Standard)
     notif: {
         toast: (type, msg) => {
             const icons = { success:'fa-check-circle', error:'fa-times-circle', warning:'fa-exclamation-triangle', info:'fa-info-circle' };
-            const typeClass = `tail-alert-${type || 'info'}`;
-            const title = String(type || 'info').toUpperCase();
+            const typeClass = `tail-notif-${type || 'info'}`;
             
             Swal.mixin({
-                toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, timerProgressBar: true,
-                background: 'transparent',
-                customClass: { popup: 'p-0 shadow-none bg-transparent overflow-visible' }
+                toast: true, position: 'top-end', showConfirmButton: false, timer: 4000, 
+                showCloseButton: true, timerProgressBar: true, background: 'transparent',
+                customClass: { popup: 'tail-toast-popup' }
             }).fire({
                 html: `
-                <div class="tail-alert ${typeClass} m-0 shadow-xl border border-black/5 dark:border-white/5 backdrop-blur-md">
-                    <div class="tail-alert-icon text-current opacity-80"><i class="fas ${icons[type]||icons.info}"></i></div>
-                    <div class="tail-alert-content text-left">
-                        <h5 class="tail-alert-title text-black dark:text-white">${title}</h5>
-                        <p class="tail-alert-msg text-gray-600 dark:text-gray-400">${msg}</p>
+                <div class="tail-notif ${typeClass}">
+                    <div class="tail-notif-icon-box"><i class="fas ${icons[type]||icons.info}"></i></div>
+                    <div class="tail-notif-content">
+                        <h4 class="tail-notif-title">${msg}</h4>
                     </div>
+                    <div class="tail-notif-border"></div>
                 </div>`
             });
         },
@@ -162,37 +161,44 @@ var Sultan = {
         tutup: () => Swal.close()
     },
 
-    // 6. GLOBAL ALERTS & DIALOGS (TailAdmin Themed)
+    // 6. GLOBAL ALERTS & DIALOGS (TailAdmin Pixel-Perfect)
     alert: (type, title, text) => {
         const icons = { success:'fa-check-circle', error:'fa-times-circle', warning:'fa-exclamation-triangle', info:'fa-info-circle' };
-        const typeClass = `tail-alert-${type || 'info'}`;
+        const typeClass = `tail-notif-${type || 'info'}`;
         
         return Swal.fire({
+            toast: true, position: 'top-end', timer: 6000,
+            showConfirmButton: false, showCloseButton: true,
+            background: 'transparent',
+            customClass: { popup: 'tail-toast-popup' },
             html: `
-            <div class="tail-alert ${typeClass} border-0 rounded-none mb-0">
-                <div class="tail-alert-icon text-current opacity-80 mt-1"><i class="fas ${icons[type]||icons.info} fa-lg"></i></div>
-                <div class="tail-alert-content text-left">
-                    <h5 class="tail-alert-title text-black dark:text-white">${title}</h5>
-                    <p class="tail-alert-msg text-gray-700 dark:text-gray-300">${text}</p>
+            <div class="tail-notif ${typeClass}">
+                <div class="tail-notif-icon-box"><i class="fas ${icons[type]||icons.info}"></i></div>
+                <div class="tail-notif-content">
+                    <h4 class="tail-notif-title">${text || title}</h4>
                 </div>
-            </div>`,
-            showConfirmButton: true, confirmButtonText: 'TUTUP', buttonsStyling: false,
-            customClass: { popup: 'tail-swal-popup', confirmButton: 'tail-swal-confirm w-full' }
+                <div class="tail-notif-border"></div>
+            </div>`
         });
     },
     konfirmasi: function(opsi, callbackYa) {
         return Swal.fire({
-            html: `
-            <div class="tail-alert tail-alert-warning border-0 rounded-none mb-0">
-                <div class="tail-alert-icon text-current opacity-80 mt-1"><i class="fas fa-question-circle fa-lg"></i></div>
-                <div class="tail-alert-content text-left">
-                    <h5 class="tail-alert-title text-black dark:text-white">${opsi.judul || 'Konfirmasi'}</h5>
-                    <p class="tail-alert-msg text-gray-700 dark:text-gray-300">${opsi.teks || 'Apakah Anda yakin?'}</p>
-                </div>
-            </div>`,
+            background: 'transparent',
             showCancelButton: true, confirmButtonText: opsi.btnYa || 'Ya, Lanjutkan', cancelButtonText: opsi.btnBatal || 'Batal',
             buttonsStyling: false,
-            customClass: { popup: 'tail-swal-popup', confirmButton: 'tail-swal-confirm border border-transparent bg-primary text-white', cancelButton: 'tail-swal-confirm !bg-transparent !text-gray-400 !m-0 !font-bold' }
+            customClass: { 
+                popup: 'tail-toast-popup', 
+                confirmButton: 'tail-swal-confirm border border-transparent bg-primary text-white !px-6 !py-2 !m-0 !mr-2', 
+                cancelButton: 'tail-swal-confirm !bg-gray-100 !text-gray-500 !px-6 !py-2 !m-0 border border-gray-200' 
+            },
+            html: `
+            <div class="tail-notif tail-notif-warning mb-4">
+                <div class="tail-notif-icon-box"><i class="fas fa-question-circle"></i></div>
+                <div class="tail-notif-content">
+                    <h4 class="tail-notif-title">${opsi.teks || 'Apakah Anda yakin?'}</h4>
+                </div>
+                <div class="tail-notif-border"></div>
+            </div>`
         }).then((res) => { if (res.isConfirmed && callbackYa) callbackYa(); });
     },
 
