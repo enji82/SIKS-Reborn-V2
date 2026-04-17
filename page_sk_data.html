@@ -468,7 +468,7 @@
 
 <!-- 4. MODAL HAPUS — Menggunakan template yang sama dengan Modal Tambah/Edit -->
 <div id="tugas_modalHapus" class="fixed inset-0 z-[99999] hidden items-start justify-center bg-black/60 backdrop-blur-sm overflow-y-auto px-4 pt-20 pb-8">
-    <div class="w-full max-w-[480px] rounded-2xl border border-gray-200 bg-gray-50/50 shadow-2xl dark:border-gray-800 dark:bg-[#1a222c] animate-reveal overflow-hidden">
+    <div class="w-full max-w-[520px] rounded-3xl border border-gray-200 bg-gray-50/50 shadow-2xl dark:border-white/5 dark:bg-[#1a222c] animate-reveal overflow-hidden">
 
         <!-- Header Hapus (Brand Style) -->
         <div class="sk-modal-header-brand">
@@ -481,36 +481,39 @@
             </button>
         </div>
 
-        <!-- Body — Hanya konten yang berbeda -->
-        <form id="tugas_formHapus" class="sk-modal-body">
+        <!-- Body Optimized Spacing -->
+        <form id="tugas_formHapus" class="p-10">
             <input type="hidden" id="tugas_hapusRowId">
 
-            <!-- Ringkasan Data yang Akan Dihapus -->
-            <div class="mb-5 flex items-start gap-4 rounded-xl border border-danger/20 bg-danger/5 py-4 px-5">
-                <div class="flex h-10 w-10 min-w-[40px] items-center justify-center rounded-lg bg-danger text-white shadow-lg shadow-danger/20 mt-0.5">
-                    <i class="fas fa-exclamation-triangle"></i>
+            <!-- Ringkasan Data (Elegant Warning) -->
+            <div class="mb-8 flex items-start gap-5 rounded-2xl border border-danger/30 bg-danger/5 p-6 shadow-sm">
+                <div class="flex h-12 w-12 min-w-[48px] items-center justify-center rounded-xl bg-danger text-white shadow-lg shadow-danger/20 mt-0.5">
+                    <i class="fas fa-exclamation-triangle text-xl"></i>
                 </div>
                 <div class="flex-1">
-                    <p class="text-[10px] text-danger font-black uppercase tracking-widest leading-none mb-1.5 opacity-80">Peringatan Penghapusan Permanen</p>
-                    <div class="text-[11px] font-bold text-black dark:text-white leading-relaxed">
-                        Anda akan menghapus SK nomor <span id="tugas_hapusViewNomor" class="text-danger font-black select-all"></span>. Tindakan ini tidak dapat dibatalkan.
+                    <p class="text-[11px] text-danger font-black uppercase tracking-[0.15em] leading-none mb-2 opacity-90">Peringatan Penghapusan</p>
+                    <div class="text-[14px] font-bold text-black dark:text-white leading-relaxed">
+                        Anda akan menghapus SK nomor <span id="tugas_hapusViewNomor" class="text-danger font-black select-all underline decoration-danger/30 decoration-2 underline-offset-4"></span>. Tindakan ini <span class="text-danger italic">permanen</span>.
                     </div>
                 </div>
             </div>
 
-            <!-- Form Verifikasi Kode -->
-            <div>
-                <label class="sk-form-label">Kode Konfirmasi Hapus <span class="req">*</span></label>
-                <input type="text" id="tugas_inputKodeHapus" placeholder="Masukkan kode dari Admin Korwil..." class="sk-form-input input-danger" required autocomplete="off">
-                <p class="mt-2 text-[10px] font-bold text-gray-400"><i class="fas fa-shield-alt mr-1 opacity-50"></i> Hubungi admin Korwil untuk mendapatkan kode hapus.</p>
+            <!-- Form Verifikasi (Hi-Fi Typography) -->
+            <div class="mb-2">
+                <label class="block mb-3 text-[12px] font-black uppercase tracking-widest text-gray-400 dark:text-gray-500">Kode Konfirmasi Hapus <span class="text-danger">*</span></label>
+                <input type="text" id="tugas_inputKodeHapus" placeholder="Masukkan kode konfirmasi..." class="sk-form-input !text-[15px] !py-4 border-danger/20 focus:border-danger focus:ring-danger/10" required autocomplete="off">
+                <div class="mt-4 flex items-center gap-2 text-[11px] font-bold text-gray-400 opacity-70">
+                    <i class="fas fa-shield-alt text-danger/50"></i>
+                    Hubungi admin Korwil untuk mendapatkan kode hapus.
+                </div>
             </div>
 
-            <!-- Footer Standardized -->
-            <div class="sk-modal-footer">
-                <button type="button" class="sk-btn sk-btn-secondary" onclick="$('#tugas_modalHapus').fadeOut().addClass('hidden').removeClass('flex')">
+            <!-- Footer (Optimized Alignment) -->
+            <div class="flex items-center justify-end gap-4 mt-10 pt-8 border-t border-gray-100 dark:border-white/5">
+                <button type="button" class="sk-btn sk-btn-secondary !px-8" onclick="$('#tugas_modalHapus').fadeOut().addClass('hidden').removeClass('flex')">
                     Tutup
                 </button>
-                <button type="submit" id="tugas_btnEksekusiHapus" class="sk-btn sk-btn-danger">
+                <button type="submit" id="tugas_btnEksekusiHapus" class="sk-btn sk-btn-danger !px-8">
                     <i class="fas fa-trash-alt"></i> Hapus Permanen
                 </button>
             </div>
