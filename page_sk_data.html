@@ -705,10 +705,10 @@
             var badgeStatus = tugas_buildBadgeStatus(row.status, row.keterangan);
 
             // 1. Tombol Aksi (Premium Button Group - High Fidelity)
-            var actionButtons = '<div class="flex items-center justify-center gap-1">' +
-                '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/5 text-primary hover:bg-primary hover:text-white transition-all shadow-sm active:scale-90" title="Verifikasi/Review" onclick="tugas_bukaModalVerif(\'' + id + '\')"><i class="fas fa-' + (TUGAS_IS_ADMIN ? 'check-double' : 'eye') + ' text-[11px]"></i></button>' +
-                '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg bg-warning/5 text-warning hover:bg-amber-500 hover:text-white transition-all shadow-sm active:scale-90 ' + (isApproved ? 'opacity-30 cursor-not-allowed' : '') + '" title="Edit Data" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalEdit('" + id + "')") + '"><i class="fas fa-pencil-alt text-[11px]"></i></button>' +
-                '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg bg-danger/5 text-danger hover:bg-danger hover:text-white transition-all shadow-sm active:scale-90 ' + (isApproved ? 'opacity-30 cursor-not-allowed' : '') + '" title="Hapus Data" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalHapus('" + id + "')") + '"><i class="fas fa-trash-alt text-[11px]"></i></button>' +
+            var actionButtons = '<div class="flex items-center justify-center gap-1.5">' +
+                '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/5 text-primary border border-primary/20 hover:bg-primary hover:text-white transition-all shadow-sm active:scale-90" title="Verifikasi/Review" onclick="tugas_bukaModalVerif(\'' + id + '\')"><i class="fas fa-' + (TUGAS_IS_ADMIN ? 'check-double' : 'eye') + ' text-[11px]"></i></button>' +
+                '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg bg-warning/5 text-warning border border-warning/20 hover:bg-amber-500 hover:text-white transition-all shadow-sm active:scale-90 ' + (isApproved ? 'opacity-30 cursor-not-allowed' : '') + '" title="Edit Data" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalEdit('" + id + "')") + '"><i class="fas fa-pencil-alt text-[11px]"></i></button>' +
+                '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg bg-danger/5 text-danger border border-danger/20 hover:bg-danger hover:text-white transition-all shadow-sm active:scale-90 ' + (isApproved ? 'opacity-30 cursor-not-allowed' : '') + '" title="Hapus Data" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalHapus('" + id + "')") + '"><i class="fas fa-trash-alt text-[11px]"></i></button>' +
                 '</div>';
 
             // 2. Format Tanggal SK
@@ -1117,16 +1117,16 @@
     function tugas_buildBadgeStatus(st, ket) {
         st = String(st || "").toLowerCase(); ket = ket || "";
         var badge = "";
-        var baseCls = "inline-flex items-center rounded-full px-3 py-1 text-[11px] font-black tracking-tight italic opacity-90 transition-all";
+        var baseCls = "inline-flex items-center rounded-full px-3 py-1 text-[11px] font-black uppercase tracking-widest transition-all";
         
         if (st.includes('setuju') || st.includes('acc') || st.includes('ok') || st.includes('valid'))
-            badge = '<span class="' + baseCls + ' bg-success/15 text-success border border-success/20"><i class="fas fa-check-circle mr-1.5"></i> DISETUJUI</span>';
+            badge = '<span class="' + baseCls + ' bg-success/15 text-success"><i class="fas fa-check-circle mr-1.5"></i> DISETUJUI</span>';
         else if (st.includes('revisi'))
-            badge = '<span class="' + baseCls + ' bg-warning/15 text-warning border border-warning/20"><i class="fas fa-history mr-1.5"></i> REVISI</span>';
+            badge = '<span class="' + baseCls + ' bg-warning/15 text-warning"><i class="fas fa-history mr-1.5"></i> REVISI</span>';
         else if (st.includes('tolak'))
-            badge = '<span class="' + baseCls + ' bg-danger/15 text-danger border border-danger/20"><i class="fas fa-ban mr-1.5"></i> DITOLAK</span>';
+            badge = '<span class="' + baseCls + ' bg-danger/15 text-danger"><i class="fas fa-ban mr-1.5"></i> DITOLAK</span>';
         else
-            badge = '<span class="' + baseCls + ' bg-primary/15 text-primary border border-primary/20"><i class="fas fa-circle-notch fa-spin mr-1.5"></i> DIPROSES</span>';
+            badge = '<span class="' + baseCls + ' bg-primary/15 text-primary"><i class="fas fa-circle-notch fa-spin mr-1.5"></i> DIPROSES</span>';
 
         if (ket && ket.trim().length > 2 && (st.includes('revisi') || st.includes('tolak'))) {
             var safeKet = tugas_escapeHtml(ket);
