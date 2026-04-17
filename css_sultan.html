@@ -52,16 +52,23 @@
 .dark .bg-meta-4 { background-color: #313D4A; }
 
 
-body {
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+html, body {
   background-color: var(--bg-light);
+  overflow: hidden; /* Prevent global scroll for Fixed Layout */
+}
+
+body {
+  font-family: 'Satoshi', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif !important;
   color: #1C2434;
   transition: background-color 0.3s, color 0.3s;
 }
 
 /* Base Dark Mode Overrides */
+.dark html, .dark body {
+  background-color: var(--bg-dark); /* #1A222C - Seals top/right leaks */
+}
+
 .dark body {
-  background-color: var(--bg-dark);
   color: #DEE4EE;
 }
 

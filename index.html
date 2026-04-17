@@ -69,13 +69,13 @@
   </div>
 
   <!-- MAIN APP WRAPPER -->
-  <div class="page-wrapper min-h-screen" id="konten-aplikasi" style="display:none;">
+  <div class="page-wrapper h-screen overflow-hidden" id="konten-aplikasi" style="display:none;">
 
     <!-- SIDEBAR -->
     <?!= include('sidebar'); ?>
 
     <!-- CONTENT AREA -->
-    <div class="content-area bg-[#F9FAFB] dark:bg-boxdark2 min-h-screen">
+    <div class="content-area bg-[#F9FAFB] dark:bg-boxdark2 h-screen overflow-hidden flex flex-col">
       
       <!-- HEADER -->
       <header class="sticky top-0 z-[99] flex h-[70px] w-full !bg-white border-b border-gray-100 dark:!bg-boxdark dark:border-white/5 shadow-none">
@@ -181,7 +181,7 @@
       </header>
       
       <!-- MAIN CONTENT -->
-      <main class="flex-1 overflow-x-hidden bg-[#F9FAFB] dark:bg-boxdark2 p-4 md:p-6 pb-20">
+      <main class="flex-1 overflow-y-auto overflow-x-hidden bg-[#F9FAFB] dark:bg-boxdark2 p-4 md:p-6 pb-20 no-scrollbar">
         <!-- SPA CONTENT TITLE (Optional breadcrumb replica for mobile if needed, but here moved to navbar) -->
         <div id="app-content-active" class="animate-reveal"></div>
         <div id="app-content-buffer" style="display:none;"></div>
