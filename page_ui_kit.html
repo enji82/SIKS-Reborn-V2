@@ -1,191 +1,260 @@
-<div class="content-header pb-0">
-  <div class="container-fluid">
-    <div class="row mb-2">
-      <div class="col-sm-12">
-        <h5 class="m-0 font-weight-bold">
-          <i class="fas fa-swatchbook text-maroon mr-2"></i>UI Kit & Design System (v2.0 Sultan)
-        </h5>
-        <hr class="style-sultan">
-        <p class="text-muted small">Gunakan halaman ini sebagai "Toko Sparepart" untuk membuat halaman baru agar konsisten.</p>
-      </div>
+<div class="flex flex-col gap-4 md:gap-6 2xl:gap-7.5 animate-reveal w-full max-w-7xl mx-auto">
+
+    <!-- PAGE HEADER -->
+    <div class="mb-2 flex flex-col gap-1.5 pt-2">
+        <h1 class="text-2xl md:text-3xl font-black text-black dark:text-white tracking-tight leading-tight flex items-center gap-3">
+            <i class="fas fa-layer-group text-primary"></i> Sultan Design System
+        </h1>
+        <p class="text-xs md:text-sm font-bold text-gray-400 uppercase tracking-[0.2em] opacity-80">
+            Katalog Komponen UI & Panduan Standar Aplikasi (v2.0)
+        </p>
     </div>
-  </div>
+
+    <!-- MAIN GRID -->
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-4 md:gap-6">
+        
+        <!-- ======================= -->
+        <!-- 1. BADGES & STATUS      -->
+        <!-- ======================= -->
+        <div class="rounded-2xl border border-gray-100 bg-white dark:border-white/5 dark:bg-[#1A222C] shadow-premium overflow-hidden">
+            <div class="border-b border-gray-100 py-4 px-6 dark:border-white/10 bg-gray-50/50 dark:bg-black/20">
+                <h3 class="font-black text-black dark:text-white text-sm uppercase tracking-wider flex items-center gap-2">
+                    <i class="fas fa-tags text-primary"></i> 1. Badge & Pill Status
+                </h3>
+            </div>
+            <div class="p-6 space-y-6">
+                
+                <div>
+                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Pill Status Dokumen</p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="inline-flex rounded-full bg-emerald-500/10 py-1.5 px-3 text-[10px] font-black uppercase tracking-wider text-emerald-600 border border-emerald-500/20 shadow-sm">
+                            <i class="fas fa-check-circle mr-1.5 mt-[1px]"></i> DISETUJUI
+                        </span>
+                        <span class="inline-flex rounded-full bg-amber-500/10 py-1.5 px-3 text-[10px] font-black uppercase tracking-wider text-amber-500 border border-amber-500/20 shadow-sm">
+                            <i class="fas fa-clock mr-1.5 mt-[1px]"></i> DIPROSES
+                        </span>
+                        <span class="inline-flex rounded-full bg-indigo-500/10 py-1.5 px-3 text-[10px] font-black uppercase tracking-wider text-indigo-500 border border-indigo-500/20 shadow-sm">
+                            <i class="fas fa-sync-alt mr-1.5 mt-[1px]"></i> REVISI
+                        </span>
+                        <span class="inline-flex rounded-full bg-rose-500/10 py-1.5 px-3 text-[10px] font-black uppercase tracking-wider text-rose-500 border border-rose-500/20 shadow-sm">
+                            <i class="fas fa-times-circle mr-1.5 mt-[1px]"></i> DITOLAK
+                        </span>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Badge Kategori Data</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="rounded bg-primary/10 py-1 px-3 text-[10px] font-black text-primary uppercase border border-primary/20">Awal Semester</span>
+                        <span class="rounded bg-gray-100 dark:bg-white/10 py-1 px-3 text-[10px] font-black text-gray-600 dark:text-gray-300 uppercase border border-gray-200 dark:border-white/10">Reguler</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ======================= -->
+        <!-- 2. TOMBOL AKSI (BUTTON) -->
+        <!-- ======================= -->
+        <div class="rounded-2xl border border-gray-100 bg-white dark:border-white/5 dark:bg-[#1A222C] shadow-premium overflow-hidden">
+            <div class="border-b border-gray-100 py-4 px-6 dark:border-white/10 bg-gray-50/50 dark:bg-black/20">
+                <h3 class="font-black text-black dark:text-white text-sm uppercase tracking-wider flex items-center gap-2">
+                    <i class="fas fa-mouse-pointer text-primary"></i> 2. Standar Tombol
+                </h3>
+            </div>
+            <div class="p-6 space-y-6">
+                
+                <div>
+                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Tombol Eksekusi Utama</p>
+                    <div class="flex flex-wrap gap-3">
+                        <button type="button" class="inline-flex items-center justify-center rounded-lg bg-primary py-3 px-6 text-center font-black uppercase text-[11px] tracking-widest text-white hover:bg-opacity-90 transition-all shadow-lg shadow-primary/20 focus:ring-4 focus:ring-primary/20">
+                            <i class="fas fa-save mr-2"></i> SIMPAN DATA
+                        </button>
+                        
+                        <button type="button" class="inline-flex items-center justify-center rounded-lg border border-stroke bg-gray py-3 px-6 text-center font-black uppercase text-[11px] tracking-widest text-black hover:bg-opacity-90 dark:border-strokedark dark:bg-meta-4 dark:text-white transition-all shadow-sm focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
+                            BATAL
+                        </button>
+
+                        <button type="button" class="inline-flex items-center justify-center rounded-lg bg-danger py-3 px-6 text-center font-black uppercase text-[11px] tracking-widest text-white hover:bg-opacity-90 transition-all shadow-lg shadow-danger/20">
+                            HAPUS PERMANEN
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Tombol Aksi Ikon (Tabel)</p>
+                    <div class="flex flex-wrap items-center gap-3">
+                        <!-- Edit Icon -->
+                        <button type="button" class="flex h-9 w-9 items-center justify-center rounded-lg border border-warning/30 bg-warning/10 text-warning hover:bg-amber-500 hover:text-white hover:shadow-lg hover:shadow-warning/30 transition-all shadow-sm" title="Edit Data">
+                            <i class="fas fa-pencil-alt text-xs"></i>
+                        </button>
+                        
+                        <!-- Delete Icon -->
+                        <button type="button" class="flex h-9 w-9 items-center justify-center rounded-lg border border-danger/20 bg-danger/5 text-danger hover:bg-danger hover:text-white hover:shadow-lg hover:shadow-danger/20 transition-all shadow-sm" title="Hapus Data">
+                            <i class="fas fa-trash-alt text-xs"></i>
+                        </button>
+
+                        <!-- Secondary Icon -->
+                        <button type="button" class="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 bg-gray-50 text-gray-500 hover:text-primary hover:border-primary/50 dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10 transition-all shadow-sm" title="Refresh">
+                            <i class="fas fa-sync-alt text-xs"></i>
+                        </button>
+
+                        <!-- Bulat (Close/Modal) -->
+                        <button type="button" class="flex h-9 w-9 items-center justify-center rounded-xl bg-gray-100 dark:bg-white/5 text-gray-400 hover:text-danger hover:bg-danger/10 transition-all ml-2" title="Tutup">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ======================= -->
+        <!-- 3. ELEMEN FORMULIR      -->
+        <!-- ======================= -->
+        <div class="rounded-2xl border border-gray-100 bg-white dark:border-white/5 dark:bg-[#1A222C] shadow-premium overflow-hidden">
+            <div class="border-b border-gray-100 py-4 px-6 dark:border-white/10 bg-gray-50/50 dark:bg-black/20">
+                <h3 class="font-black text-black dark:text-white text-sm uppercase tracking-wider flex items-center gap-2">
+                    <i class="fas fa-keyboard text-primary"></i> 3. Struktur Form Input
+                </h3>
+            </div>
+            <div class="p-6 space-y-5">
+                
+                <!-- Input Standard -->
+                <div>
+                    <label class="mb-2.5 block text-[10px] font-black uppercase tracking-widest text-primary">
+                        Nama Institusi <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" placeholder="Ketik nama lengkap institusi..." class="w-full rounded-xl border border-gray-200 bg-white py-3.5 px-4 font-bold text-sm outline-none transition-all focus:border-primary focus:ring-4 focus:ring-primary/5 dark:border-white/10 dark:bg-black/20 dark:focus:bg-[#1A222C] dark:text-white shadow-sm" />
+                </div>
+
+                <!-- Select Box -->
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="mb-2.5 block text-[10px] font-black uppercase tracking-widest text-[#64748B] dark:text-gray-400">
+                            Tahun Ajaran
+                        </label>
+                        <select class="w-full rounded-xl border border-gray-200 bg-gray-50/50 py-3.5 px-4 font-bold text-sm outline-none transition-all focus:border-primary focus:ring-4 focus:ring-primary/5 dark:border-white/10 dark:bg-white/5 dark:text-white appearance-none cursor-pointer shadow-sm">
+                            <option>2025/2026</option>
+                            <option>2026/2027</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="mb-2.5 block text-[10px] font-black uppercase tracking-widest text-[#64748B] dark:text-gray-400">
+                            Semester
+                        </label>
+                        <div class="relative">
+                            <select class="w-full rounded-xl border border-gray-200 bg-white py-3.5 pl-4 pr-10 font-bold text-sm outline-none transition-all focus:border-primary focus:ring-4 focus:ring-primary/5 dark:border-white/10 dark:bg-black/20 dark:text-white appearance-none cursor-pointer shadow-sm disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                                <option>Semester 1</option>
+                            </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-4 flex items-center text-gray-400">
+                                <i class="fas fa-lock text-[10px]"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Textarea + Validation Warning -->
+                <div>
+                    <label class="mb-2.5 block text-[10px] font-black uppercase tracking-widest text-[#64748B] dark:text-gray-400">
+                        Catatan
+                    </label>
+                    <textarea rows="3" placeholder="Tambahkan catatan opsional..." class="w-full rounded-xl border border-danger/50 bg-danger/5 py-4 px-4 text-sm font-bold outline-none transition-all focus:border-danger dark:border-danger/30 dark:bg-danger/10 dark:text-white shadow-sm resize-none"></textarea>
+                    <p class="mt-2.5 text-[9px] font-black text-danger uppercase tracking-widest flex items-center gap-1.5 animate-pulse">
+                        <i class="fas fa-exclamation-triangle"></i> Kolom ini wajib diisi!
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ======================= -->
+        <!-- 4. UX & INTERAKTIF      -->
+        <!-- ======================= -->
+        <div class="rounded-2xl border border-gray-100 bg-white dark:border-white/5 dark:bg-[#1A222C] shadow-premium overflow-hidden flex flex-col h-full">
+            <div class="border-b border-gray-100 py-4 px-6 dark:border-white/10 bg-gray-50/50 dark:bg-black/20">
+                <h3 class="font-black text-black dark:text-white text-sm uppercase tracking-wider flex items-center gap-2">
+                    <i class="fas fa-magic text-primary"></i> 4. Interaksi JavaScript
+                </h3>
+            </div>
+            <div class="p-6 space-y-6 flex-1">
+                
+                <div>
+                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Toast Notifications (TailAdmin Standard)</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <button type="button" class="inline-flex justify-center items-center rounded-xl bg-emerald-500/10 border border-emerald-500/20 py-3 px-4 text-[11px] font-black text-emerald-600 hover:bg-emerald-500 hover:text-white transition-all text-center uppercase tracking-widest shadow-sm" onclick="if(typeof Sultan !== 'undefined') Sultan.notif.sukses('Dokumen digital berhasil diverifikasi.')">
+                            <i class="fas fa-check-circle mr-2"></i> Toast Sukses
+                        </button>
+                        <button type="button" class="inline-flex justify-center items-center rounded-xl bg-danger/10 border border-danger/20 py-3 px-4 text-[11px] font-black text-danger hover:bg-danger hover:text-white transition-all text-center uppercase tracking-widest shadow-sm" onclick="if(typeof Sultan !== 'undefined') Sultan.notif.gagal('Gagal menyimpan ke database server.')">
+                            <i class="fas fa-times-circle mr-2"></i> Toast Gagal
+                        </button>
+                        <button type="button" class="inline-flex justify-center items-center rounded-xl bg-primary/10 border border-primary/20 py-3 px-4 text-[11px] font-black text-primary hover:bg-primary hover:text-white transition-all text-center uppercase tracking-widest shadow-sm" onclick="if(typeof Sultan !== 'undefined') Sultan.notif.info('Ada fitur laporan baru yang tersedia!')">
+                            <i class="fas fa-info-circle mr-2"></i> Toast Info
+                        </button>
+                        <button type="button" class="inline-flex justify-center items-center rounded-xl bg-amber-500/10 border border-amber-500/20 py-3 px-4 text-[11px] font-black text-amber-500 hover:bg-amber-500 hover:text-white transition-all text-center uppercase tracking-widest shadow-sm" onclick="if(typeof Sultan !== 'undefined') Sultan.notif.warning('Server sedang mengalami latensi tinggi.')">
+                            <i class="fas fa-exclamation-triangle mr-2"></i> Toast Peringatan
+                        </button>
+                    </div>
+                </div>
+
+                <div class="pt-4 border-t border-gray-100 dark:border-white/5">
+                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Sultan Modal Overlay</p>
+                    <button type="button" class="w-full inline-flex items-center justify-center rounded-lg bg-gray-800 dark:bg-white text-white dark:text-black py-4 px-6 text-center font-black uppercase text-xs tracking-widest hover:bg-black dark:hover:bg-gray-200 transition-all shadow-lg" onclick="$('#uikit_modalStandard').fadeIn().css('display', 'flex').removeClass('hidden')">
+                        <i class="far fa-window-maximize mr-2 text-lg"></i> BUKA STANDAR MODAL
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
 </div>
 
-<section class="content">
-  <div class="container-fluid">
-    
-    <div class="card-sultan p-4 mb-4">
-      <h6 class="font-weight-bold text-maroon mb-3">1. Badge & Status (Hierarki Visual)</h6>
-      <div class="row">
-        <div class="col-md-6">
-            <p class="small text-muted mb-1">Badge Status (Proses/Hasil) - <b class="text-dark">Bentuk: Bulat Lonjong (Pill)</b></p>
-            <div class="mb-3">
-                <span class="badge badge-success badge-sultan-status"><i class="fas fa-check mr-1"></i>Disetujui</span>
-                <span class="badge badge-warning text-white badge-sultan-status"><i class="fas fa-clock mr-1"></i>Diproses</span>
-                <span class="badge badge-info badge-sultan-status"><i class="fas fa-sync-alt mr-1"></i>Revisi</span>
-                <span class="badge badge-danger badge-sultan-status"><i class="fas fa-times mr-1"></i>Ditolak</span>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <p class="small text-muted mb-1">Badge Jenis (Kategori) - <b class="text-dark">Bentuk: Kotak Tumpul</b></p>
+<!-- ============================================== -->
+<!-- TEMPLATE MODAL STANDAR (HIDDEN BY DEFAULT)     -->
+<!-- ============================================== -->
+<div class="fixed inset-0 z-[99999] bg-black/60 backdrop-blur-sm overflow-y-auto px-4 py-6 hidden items-center justify-center" id="uikit_modalStandard">
+    <!-- Modal Container -->
+    <div class="w-full max-w-xl flex flex-col bg-white dark:bg-[#1A222C] rounded-2xl shadow-2xl relative overflow-hidden animate-reveal border border-gray-100 dark:border-white/10">
+        
+        <!-- Modal Header -->
+        <div class="flex items-center justify-between border-b border-gray-100 dark:border-white/10 py-5 px-6 bg-white dark:bg-[#1A222C]">
             <div>
-                <span class="badge badge-primary badge-sultan-jenis"><i class="fas fa-sign-in-alt mr-1"></i>DATANG</span>
-                <span class="badge badge-dark badge-sultan-jenis"><i class="fas fa-sign-out-alt mr-1"></i>PULANG</span>
+                <h3 class="font-black text-black dark:text-white flex items-center gap-2 text-sm uppercase tracking-wider">
+                    <i class="fas fa-cube text-primary"></i> Standar Form Modal
+                </h3>
+                <p class="text-[9px] text-gray-400 font-bold uppercase tracking-widest mt-1 opacity-70">Gunakan struktur ini untuk popup form</p>
             </div>
+            <!-- Close Button -->
+            <button type="button" class="flex h-9 w-9 items-center justify-center rounded-xl bg-gray-100 dark:bg-white/5 text-gray-400 hover:text-danger hover:bg-danger/10 transition-all focus:outline-none" onclick="$('#uikit_modalStandard').fadeOut().addClass('hidden').removeClass('flex')">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
-      </div>
-    </div>
+        
+        <!-- Modal Body (Form/Info) -->
+        <div class="p-6">
+            <p class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-6">
+                Ini adalah kerangka dasar untuk membuat modal di aplikasi versi 2.0. Area <code class="text-xs bg-gray-100 dark:bg-black/30 px-1 py-0.5 rounded text-pink-500">.p-6</code> ini ideal untuk form input atau informasi statis ringan. Modal responsif lebar maksimum <b>max-w-xl</b>.
+            </p>
 
-    <div class="mb-2">
-        <h6 class="font-weight-bold text-maroon">2. Control Bar (Filter Responsif)</h6>
-        <p class="small text-muted">Gunakan struktur Flexbox ini agar filter rapi satu baris di Laptop, dan turun otomatis di HP.</p>
-    </div>
-
-    <div class="card-sultan p-3 mb-4">
-        <div class="d-flex flex-wrap align-items-center" style="gap: 8px;">
-            
-            <button type="button" class="btn border-tegas shadow-sm bg-white" title="Refresh">
-               <i class="fas fa-sync-alt text-maroon"></i>
-            </button>
-
-            <select class="form-control form-control-sultan w-auto" style="min-width: 100px;">
-                <option>2026</option>
-                <option>2025</option>
-            </select>
-
-            <select class="form-control form-control-sultan w-auto">
-                <option>- Semua Bulan -</option>
-                <option>Januari</option>
-            </select>
-
-            <select class="form-control form-control-sultan w-auto">
-                <option>- Status -</option>
-                <option>Diproses</option>
-            </select>
-
-            <button type="button" class="btn btn-maroon btn-square-sultan shadow-sm" title="Cari">
-                <i class="fas fa-search text-white"></i>
-            </button>
-
-            <div class="ml-auto d-none d-md-block"></div>
-
-            <button type="button" class="btn btn-primary font-weight-bold shadow-sm">
-                <i class="fas fa-plus mr-1"></i> Tambah
-            </button>
-
-            <button type="button" class="btn btn-secondary font-weight-bold shadow-sm">
-                <i class="fas fa-trash-restore"></i>
-            </button>
-
-        </div>
-    </div>
-
-    <div class="mb-2">
-        <h6 class="font-weight-bold text-maroon">3. Tabel Premium (Sticky & Animated)</h6>
-        <p class="small text-muted">Perhatikan class <code>col-sticky-left</code> pada kolom pertama dan <code>tr-animasi</code> pada baris.</p>
-    </div>
-
-    <div class="card-sultan mb-4">
-      <div class="card-body p-0">
-        <div class="table-responsive" style="max-height: 400px;">
-          <table class="table table-premium mb-0" style="width:100%;">
-            <thead>
-              <tr>
-                <th class="col-sticky-left" style="min-width: 200px;">Nama ASN (Sticky)</th>
-                <th style="white-space: nowrap;">NIP</th>
-                <th style="white-space: nowrap;">Tanggal</th>
-                <th class="text-center">Jenis</th>
-                <th class="text-center">Status</th>
-                <th class="text-center">Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="tr-animasi" style="animation-delay: 0s;">
-                <td class="col-sticky-left font-weight-bold text-dark">Budi Santoso</td>
-                <td>19800101...</td>
-                <td>15-01-2026</td>
-                <td class="text-center"><span class="badge badge-primary badge-sultan-jenis">DATANG</span></td>
-                <td class="text-center"><span class="badge badge-success badge-sultan-status"><i class="fas fa-check mr-1"></i>OK</span></td>
-                <td class="text-center">
-                   <button class="btn btn-sm btn-default border-warning text-warning mx-1"><i class="fas fa-pencil-alt"></i></button>
-                   <button class="btn btn-sm btn-default border-danger text-danger mx-1"><i class="fas fa-trash-alt"></i></button>
-                </td>
-              </tr>
-              <tr class="tr-animasi" style="animation-delay: 0.1s;">
-                <td class="col-sticky-left font-weight-bold text-dark">Siti Aminah</td>
-                <td>19850505...</td>
-                <td>15-01-2026</td>
-                <td class="text-center"><span class="badge badge-dark badge-sultan-jenis">PULANG</span></td>
-                <td class="text-center"><span class="badge badge-warning text-white badge-sultan-status"><i class="fas fa-clock mr-1"></i>Diproses</span></td>
-                <td class="text-center">
-                   <button class="btn btn-sm btn-default border-warning text-warning mx-1"><i class="fas fa-pencil-alt"></i></button>
-                   <button class="btn btn-sm btn-default border-danger text-danger mx-1"><i class="fas fa-trash-alt"></i></button>
-                </td>
-              </tr>
-              <tr class="tr-animasi" style="animation-delay: 0.2s;">
-                <td class="col-sticky-left font-weight-bold text-dark">Agus Setiawan</td>
-                <td>19901212...</td>
-                <td>15-01-2026</td>
-                <td class="text-center"><span class="badge badge-primary badge-sultan-jenis">DATANG</span></td>
-                <td class="text-center"><span class="badge badge-danger badge-sultan-status"><i class="fas fa-times mr-1"></i>Ditolak</span></td>
-                <td class="text-center">
-                   <button class="btn btn-sm btn-default border-warning text-warning mx-1"><i class="fas fa-pencil-alt"></i></button>
-                   <button class="btn btn-sm btn-default border-danger text-danger mx-1"><i class="fas fa-trash-alt"></i></button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6">
-            <h6 class="font-weight-bold text-maroon">4. Elemen Form</h6>
-            <div class="card-sultan p-3">
-                <div class="form-group">
-                    <label class="form-label-sultan">Input Teks</label>
-                    <input type="text" class="form-control form-control-sultan" placeholder="Ketik sesuatu...">
+            <div class="space-y-4">
+                <div>
+                     <label class="mb-2 block text-[10px] font-black uppercase tracking-widest text-primary">Contoh Input</label>
+                     <input type="text" placeholder="Interaksi input di dalam modal..." class="w-full rounded-xl border border-gray-200 dark:border-white/10 bg-gray-50/50 dark:bg-black/20 py-3.5 px-4 font-bold text-sm outline-none transition-all focus:border-primary dark:text-white" />
                 </div>
-                <div class="form-group">
-                    <label class="form-label-sultan">Pilihan (Select)</label>
-                    <select class="form-control form-control-sultan">
-                        <option>- Pilih -</option>
-                    </select>
-                </div>
-                <button class="btn btn-maroon btn-block font-weight-bold shadow-sm">
-                    <i class="fas fa-save mr-1"></i> Simpan Data
-                </button>
             </div>
         </div>
-        <div class="col-md-6">
-            <h6 class="font-weight-bold text-maroon">5. Modal Trigger</h6>
-            <div class="card-sultan p-3 d-flex align-items-center justify-content-center" style="height: 200px;">
-                <button class="btn btn-primary font-weight-bold shadow" data-toggle="modal" data-target="#modalContoh">
-                    <i class="fas fa-window-maximize mr-2"></i> Buka Modal Sultan
-                </button>
-            </div>
+
+        <!-- Modal Footer (Actions) -->
+        <div class="flex items-center justify-end gap-4 border-t border-gray-100 dark:border-white/10 py-4 px-6 bg-gray-50 dark:bg-[#1A222C]/50">
+            <button type="button" class="inline-flex items-center justify-center rounded-lg border border-stroke bg-gray py-2.5 px-5 text-center font-black uppercase text-[10px] tracking-widest text-black hover:bg-opacity-90 dark:border-strokedark dark:bg-meta-4 dark:text-white transition-all shadow-sm" onclick="$('#uikit_modalStandard').fadeOut().addClass('hidden').removeClass('flex')">
+                TUTUP JENDELA
+            </button>
+            <button type="button" class="inline-flex items-center justify-center rounded-lg bg-primary py-2.5 px-6 text-center font-black uppercase text-[10px] tracking-widest text-white hover:bg-opacity-90 transition-all shadow-lg shadow-primary/20">
+                PROSES AKSI
+            </button>
         </div>
-    </div>
 
-  </div>
-</section>
-
-<div class="modal fade" id="modalContoh" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content border-0 shadow-lg modal-content-sultan">
-      <div class="modal-header bg-maroon">
-        <h5 class="modal-title text-white font-weight-bold"><i class="fas fa-info-circle mr-2"></i>Judul Modal</h5>
-        <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
-      </div>
-      <div class="modal-body bg-light">
-        <p>Ini adalah standar modal terbaru. Header berwarna Maroon, sudut tumpul (rounded), dan bayangan lembut.</p>
-      </div>
-      <div class="modal-footer justify-content-between bg-white">
-          <button type="button" class="btn btn-default shadow-sm" data-dismiss="modal">Tutup</button>
-          <button type="button" class="btn btn-maroon shadow-sm px-4 font-weight-bold">Aksi Utama</button>
-      </div>
     </div>
-  </div>
 </div>
