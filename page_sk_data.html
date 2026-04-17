@@ -43,17 +43,17 @@
         <div class="flex flex-col md:flex-row items-center gap-4">
             <div class="flex flex-wrap flex-1 items-center gap-3 w-full">
                 <select id="tugas_filterUnit"
-                    class="sk-form-input !py-2.5 !px-4 !text-[11px] !w-auto min-w-[250px] disabled:opacity-60"
+                    class="sk-form-input !py-2.5 !px-4 !text-sm !w-auto min-w-[250px] disabled:opacity-60"
                     disabled>
                     <option value="">- Memvalidasi Akses... -</option>
                 </select>
-                <select id="tugas_filterTahun" class="sk-form-input !py-2.5 !px-4 !text-[11px] !w-auto min-w-[120px]"></select>
-                <select id="tugas_filterSemester" class="sk-form-input !py-2.5 !px-4 !text-[11px] !w-auto min-w-[140px]">
+                <select id="tugas_filterTahun" class="sk-form-input !py-2.5 !px-4 !text-sm !w-auto min-w-[120px]"></select>
+                <select id="tugas_filterSemester" class="sk-form-input !py-2.5 !px-4 !text-sm !w-auto min-w-[140px]">
                     <option value="">- Semua Semester -</option>
                     <option value="Semester 1">Semester 1</option>
                     <option value="Semester 2">Semester 2</option>
                 </select>
-                <select id="tugas_filterStatus" class="sk-form-input !py-2.5 !px-4 !text-[11px] !w-auto min-w-[140px]">
+                <select id="tugas_filterStatus" class="sk-form-input !py-2.5 !px-4 !text-sm !w-auto min-w-[140px]">
                     <option value="">- Semua Status -</option>
                     <option value="Diproses">Diproses</option>
                     <option value="Revisi">Revisi</option>
@@ -83,15 +83,15 @@
             <table id="tugas_tabelUtama" class="w-full table-auto text-xs bg-transparent">
                 <thead>
                     <tr class="bg-gray-50/50 dark:bg-white/5 text-left border-b border-gray-100 dark:border-white/5 transition-colors">
-                        <th class="py-2.5 px-6 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center w-[120px] text-[10px]">Aksi</th>
-                        <th class="py-2.5 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80 text-[10px]">Unit Kerja</th>
-                        <th class="py-2.5 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80 text-[10px]">Periode</th>
-                        <th class="py-2.5 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80 text-[10px]">Detail SK</th>
-                        <th class="py-2.5 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center text-[10px]">Berkas</th>
-                        <th class="py-2.5 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center text-[10px]">Status</th>
-                        <th class="py-2.5 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80 text-[10px]">Log Input</th>
-                        <th class="py-2.5 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80 text-[10px]">Log Update</th>
-                        <th class="py-2.5 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center text-[10px]">Verifikasi</th>
+                        <th class="py-2.5 px-6 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center w-[120px] text-xs">Aksi</th>
+                        <th class="py-2.5 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80 text-xs">Unit Kerja</th>
+                        <th class="py-2.5 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80 text-xs">Periode</th>
+                        <th class="py-2.5 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80 text-xs">Detail SK</th>
+                        <th class="py-2.5 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center text-xs">Berkas</th>
+                        <th class="py-2.5 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center text-xs">Status</th>
+                        <th class="py-2.5 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80 text-xs">Log Input</th>
+                        <th class="py-2.5 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80 text-xs">Log Update</th>
+                        <th class="py-2.5 px-3 font-black uppercase tracking-widest text-primary dark:text-white/80 text-center text-xs">Verifikasi</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100 dark:divide-white/5 bg-transparent"></tbody>
@@ -721,15 +721,15 @@
             var btnDokumen = safeUrl.length > 5 ? '<button type="button" class="inline-flex items-center rounded-lg bg-danger/10 py-1.5 px-3 text-[10px] font-black uppercase tracking-wider text-danger border border-danger/10 transition-all hover:bg-danger hover:text-white shadow-sm active:scale-95" onclick="tugas_bukaPreview(\'' + safeUrlJs + '\')"><i class="fas fa-file-pdf mr-1.5 text-xs"></i> LIHAT</button>' : '-';
 
             // 4. Log Detils (Muted Premium Typography)
-            var uiDikirim = '<div class="flex flex-col"><span class="text-[11px] font-black text-black dark:text-white">' + (row.tglUnggah || '-') + '</span><span class="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-tighter">' + (row.userInput || '-') + '</span></div>';
-            var uiDiubah = row.tglUpdate && row.tglUpdate !== '-' ? '<div class="flex flex-col"><span class="text-[11px] font-black text-black dark:text-white">' + row.tglUpdate + '</span><span class="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-tighter">' + (row.userUpdate || '-') + '</span></div>' : '-';
-            var uiVerif = row.tglVerval && row.tglVerval !== '-' ? '<div class="flex flex-col"><span class="text-[11px] font-black text-primary">' + row.tglVerval + '</span><span class="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-tighter">' + (row.verifikator || '-') + '</span></div>' : '-';
+            var uiDikirim = '<div class="flex flex-col"><span class="text-[13px] font-black text-black dark:text-white">' + (row.tglUnggah || '-') + '</span><span class="text-[12px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-tighter">' + (row.userInput || '-') + '</span></div>';
+            var uiDiubah = row.tglUpdate && row.tglUpdate !== '-' ? '<div class="flex flex-col"><span class="text-[13px] font-black text-black dark:text-white">' + row.tglUpdate + '</span><span class="text-[12px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-tighter">' + (row.userUpdate || '-') + '</span></div>' : '-';
+            var uiVerif = row.tglVerval && row.tglVerval !== '-' ? '<div class="flex flex-col"><span class="text-[13px] font-black text-primary">' + row.tglVerval + '</span><span class="text-[12px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-tighter">' + (row.verifikator || '-') + '</span></div>' : '-';
 
             // KOMBINASI KOLOM
-            var uiUnit = '<div class="text-[11px] font-black text-black dark:text-white leading-tight uppercase">' + tugas_cleanText(row.namaSd) + '</div><div class="text-[10px] font-bold text-gray-400 dark:text-gray-500">' + tugas_cleanText(row.npsn || '-') + '</div>';
-            var uiTahunSem = '<div class="text-[11px] font-black text-black dark:text-white leading-none">' + tugas_cleanText(row.tahun) + '</div><div class="text-[10px] text-primary font-black uppercase tracking-tighter mt-1">' + tugas_cleanText(row.semester) + '</div>';
-            var uiSkDetail = '<div class="text-[11px] font-black text-black dark:text-white leading-tight">' + safeNoSk + '</div>' +
-                '<div class="text-[10px] text-gray-400 dark:text-gray-500 font-bold mt-1 uppercase tracking-tighter flex items-center gap-1"><i class="far fa-calendar-alt opacity-40"></i> ' + tglSkDisplay + ' &bull; <span class="text-primary/70">' + tugas_cleanText(row.kriteria) + '</span></div>';
+            var uiUnit = '<div class="text-[14px] font-black text-black dark:text-white leading-tight uppercase">' + tugas_cleanText(row.namaSd) + '</div><div class="text-[12px] font-bold text-gray-400 dark:text-gray-500">' + tugas_cleanText(row.npsn || '-') + '</div>';
+            var uiTahunSem = '<div class="text-[14px] font-black text-black dark:text-white leading-none">' + tugas_cleanText(row.tahun) + '</div><div class="text-[12px] text-primary font-black uppercase tracking-tighter mt-1">' + tugas_cleanText(row.semester) + '</div>';
+            var uiSkDetail = '<div class="text-[14px] font-black text-black dark:text-white leading-tight">' + safeNoSk + '</div>' +
+                '<div class="text-[12px] text-gray-400 dark:text-gray-500 font-bold mt-1 uppercase tracking-tighter flex items-center gap-1"><i class="far fa-calendar-alt opacity-40"></i> ' + tglSkDisplay + ' &bull; <span class="text-primary/70">' + tugas_cleanText(row.kriteria) + '</span></div>';
 
             dtArray.push([
                 actionButtons,
