@@ -206,27 +206,27 @@
     <div class="relative flex flex-col md:flex-row w-full max-w-[98%] h-[92vh] rounded-2xl border border-white/10 bg-white dark:bg-[#1A222C] shadow-2xl animate-reveal overflow-hidden">
         
         <!-- Document Area (Left - Expanded) -->
-        <div class="flex-1 bg-gray-100 dark:bg-black/40 relative overflow-hidden flex items-center justify-center border-r border-gray-100 dark:border-white/5">
+        <div class="flex-1 bg-gray-100 dark:bg-boxdark relative overflow-hidden flex items-center justify-center border-r border-gray-100 dark:border-white/5">
              <iframe id="tugas_verifFrame" class="w-full h-full border-none hidden" src=""></iframe>
              
              <!-- Loader Overlay -->
-             <div id="tugas_verifLoader" class="absolute inset-0 flex flex-col items-center justify-center bg-gray-50 dark:bg-[#1a222c] z-10">
+             <div id="tugas_verifLoader" class="absolute inset-0 flex flex-col items-center justify-center bg-gray-50 dark:bg-boxdark2 z-10">
                   <div class="sk-spinner-premium mb-4"></div>
                   <p class="sk-loading-text animate-pulse">Menyiapkan Dokumen SK...</p>
              </div>
 
              <!-- Error State -->
              <div id="tugas_verifNoFile" class="hidden flex flex-col items-center text-center px-10">
-                  <div class="w-20 h-20 rounded-2xl bg-danger/10 flex items-center justify-center mb-6">
+                  <div class="w-16 h-16 rounded-2xl bg-danger/10 flex items-center justify-center mb-4">
                       <i class="fas fa-file-excel fa-2x text-danger opacity-50"></i>
                   </div>
                   <h4 class="font-black text-black dark:text-white uppercase tracking-wider mb-2 text-sm">Dokumen Hilang</h4>
-                  <p class="text-[11px] text-gray-400 font-bold max-w-[200px] leading-relaxed">Gagal memuat pratinjau dokumen. Silakan cek koneksi atau hubungi admin.</p>
+                  <p class="text-[13px] text-gray-400 font-bold max-w-[200px] leading-relaxed">Gagal memuat pratinjau dokumen. Silakan cek koneksi atau hubungi admin.</p>
              </div>
         </div>
 
         <!-- Form Area (Right - Compact 360px) -->
-        <div class="w-full md:w-[360px] flex flex-col bg-white dark:bg-[#1A222C] relative border-l border-gray-100 dark:border-white/5">
+        <div class="w-full md:w-[360px] flex flex-col bg-white dark:bg-boxdark2 relative border-l border-gray-100 dark:border-white/5">
             <!-- Modal Header (Standardized Green for Verification) -->
             <div class="sk-modal-header-brand sk-modal-header-success">
                 <h3 class="sk-modal-title">
