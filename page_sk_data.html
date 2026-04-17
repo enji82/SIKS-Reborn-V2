@@ -103,7 +103,7 @@
 <!-- 1. MODAL FORM SK (SULTAN STYLE) -->
 <div id="tugas_modalForm" class="fixed inset-0 z-[99999] hidden items-start justify-center bg-black/60 backdrop-blur-sm overflow-y-auto px-4 pt-12 pb-8">
     <div class="w-full max-w-fit min-w-[480px] rounded-2xl border border-gray-200 bg-gray-50/50 shadow-2xl dark:border-gray-800 dark:bg-[#1a222c] animate-reveal overflow-hidden">
-        <!-- Header Tambah/Edit (Brand Style) -->
+        <!-- Header Tambah/Edit (Dynamic Class Injection) -->
         <div class="sk-modal-header-brand" id="tugas_headerModalForm">
             <h3 id="tugas_judulModalForm" class="sk-modal-title">
                 <i class="fas fa-file-signature"></i>
@@ -118,13 +118,13 @@
             <input type="hidden" id="tugas_inputRowId">
             <input type="hidden" id="tugas_editRowId">
 
-            <div class="mb-5 flex items-start gap-4 rounded-xl border border-primary/20 bg-primary/5 py-4 px-5 transition-all" id="tugas_alertInfo">
+            <div class="mb-5 flex items-start gap-4 rounded-xl border border-primary/20 bg-primary/5 py-3 px-5 transition-all" id="tugas_alertInfo">
                 <div class="flex h-10 w-10 min-w-[40px] items-center justify-center rounded-lg bg-primary text-white shadow-lg shadow-primary/20 mt-0.5">
                     <i class="fas fa-info-circle text-lg"></i>
                 </div>
                 <div class="flex-1">
-                    <p class="text-[11px] text-primary/60 font-black uppercase tracking-widest leading-none mb-1.5">Petunjuk Pengisian</p>
-                    <div id="tugas_alertText" class="text-[11px] font-bold text-black dark:text-white leading-relaxed">
+                    <p class="text-[12px] text-primary/60 font-black uppercase tracking-widest leading-none mb-1.5">Petunjuk Pengisian</p>
+                    <div id="tugas_alertText" class="text-[14px] font-bold text-black dark:text-white leading-relaxed">
                         Tentukan Sekolah, Tahun, Semester, dan Kriteria untuk memulai pengisian data SK.
                     </div>
                 </div>
@@ -139,13 +139,13 @@
                 </div>
 
                 <div>
-                    <label class="sk-form-label">Tahun Ajaran <span class="req">*</span></label>
-                    <select id="tugas_inputTahun" class="sk-form-input" required></select>
+                    <label class="sk-form-label !text-[13px]">Tahun Ajaran <span class="req">*</span></label>
+                    <select id="tugas_inputTahun" class="sk-form-input !text-sm" required></select>
                 </div>
 
                 <div>
-                    <label class="sk-form-label">Semester <span class="req">*</span></label>
-                    <select id="tugas_inputSemester" class="sk-form-input" required>
+                    <label class="sk-form-label !text-[13px]">Semester <span class="req">*</span></label>
+                    <select id="tugas_inputSemester" class="sk-form-input !text-sm" required>
                         <option value="Semester 1">Semester 1</option>
                         <option value="Semester 2">Semester 2</option>
                     </select>
@@ -227,11 +227,11 @@
 
         <!-- Form Area (Right - Compact 360px) -->
         <div class="w-full md:w-[360px] flex flex-col bg-white dark:bg-[#1A222C] relative border-l border-gray-100 dark:border-white/5">
-            <!-- Modal Header (High-Fidelity Brand Style) -->
-            <div class="sk-modal-header-brand">
+            <!-- Modal Header (Standardized Green for Verification) -->
+            <div class="sk-modal-header-brand sk-modal-header-success">
                 <h3 class="sk-modal-title">
                     <i class="fas fa-check-double"></i>
-                    Verifikasi SK Pembagian Tugas
+                    Verifikasi SK Tugas
                 </h3>
                 <button type="button" class="sk-modal-close" onclick="$('#tugas_modalVerif').fadeOut().addClass('hidden').removeClass('flex')">
                     <i class="fas fa-times"></i>
@@ -277,8 +277,8 @@
 
                 <div class="sk-input-card !mt-0 !bg-gray-50/50 dark:!bg-white/[0.03]">
                     <div class="mb-4">
-                        <label class="sk-form-label">KEPUTUSAN VERIFIKASI <span class="req">*</span></label>
-                        <select id="tugas_verifStatus" class="sk-form-input !text-[11px]" onchange="tugas_cekStatusVerif(this.value)" required>
+                        <label class="sk-form-label !text-[13px]">KEPUTUSAN VERIFIKASI <span class="req">*</span></label>
+                        <select id="tugas_verifStatus" class="sk-form-input !text-sm" onchange="tugas_cekStatusVerif(this.value)" required>
                             <option value="">-- Pilih Status --</option>
                             <option value="Disetujui">&#x2705; TERIMA & SETUJUI</option>
                             <option value="Revisi">&#x1F504; PERLU REVISI</option>
@@ -287,9 +287,9 @@
                     </div>
 
                     <div>
-                        <label class="sk-form-label">CATATAN ADMIN</label>
-                        <textarea id="tugas_verifKeterangan" rows="4" placeholder="Catatan opsional..." class="sk-form-input !text-[11px]" style="resize:none"></textarea>
-                        <p id="tugas_verifWajibCatatan" class="mt-2 text-[11px] font-black text-danger uppercase tracking-widest hidden items-center gap-1.5 animate-pulse">
+                        <label class="sk-form-label !text-[13px]">CATATAN ADMIN</label>
+                        <textarea id="tugas_verifKeterangan" rows="4" placeholder="Catatan opsional..." class="sk-form-input !text-sm" style="resize:none"></textarea>
+                        <p id="tugas_verifWajibCatatan" class="mt-2 text-[12px] font-black text-danger uppercase tracking-widest hidden items-center gap-1.5 animate-pulse">
                             <i class="fas fa-exclamation-triangle"></i> Wajib isi alasan!
                         </p>
                     </div>
@@ -351,8 +351,8 @@
 <div id="tugas_modalHapus" class="fixed inset-0 z-[99999] hidden items-start justify-center bg-black/60 backdrop-blur-sm overflow-y-auto px-4 pt-20 pb-8">
     <div class="w-full max-w-[520px] rounded-3xl border border-gray-200 bg-gray-50/50 shadow-2xl dark:border-white/5 dark:bg-[#1a222c] animate-reveal overflow-hidden">
 
-        <!-- Header Hapus (Brand Style) -->
-        <div class="sk-modal-header-brand">
+        <!-- Header Hapus (Standardized Red for Danger) -->
+        <div class="sk-modal-header-brand sk-modal-header-danger">
             <h3 class="sk-modal-title">
                 <i class="fas fa-trash-alt"></i>
                 Hapus Data SK
@@ -367,13 +367,13 @@
             <input type="hidden" id="tugas_hapusRowId">
 
             <!-- Ringkasan Data (Elegant Warning) -->
-            <div class="mb-8 flex items-start gap-5 rounded-2xl border border-danger/30 bg-danger/5 p-6 shadow-sm">
-                <div class="flex h-12 w-12 min-w-[48px] items-center justify-center rounded-xl bg-danger text-white shadow-lg shadow-danger/20 mt-0.5">
-                    <i class="fas fa-exclamation-triangle text-xl"></i>
+            <div class="mb-8 flex items-start gap-4 rounded-2xl border border-danger/30 bg-danger/5 p-5 shadow-sm">
+                <div class="flex h-10 w-10 min-w-[40px] items-center justify-center rounded-xl bg-danger text-white shadow-lg shadow-danger/20 mt-0.5">
+                    <i class="fas fa-exclamation-triangle"></i>
                 </div>
                 <div class="flex-1">
-                    <p class="text-[11px] text-danger font-black uppercase tracking-[0.15em] leading-none mb-2 opacity-90">Peringatan Penghapusan</p>
-                    <div class="text-[14px] font-bold text-black dark:text-white leading-relaxed">
+                    <p class="text-[12px] text-danger font-black uppercase tracking-[0.1em] leading-none mb-2 opacity-90">Peringatan Penghapusan</p>
+                    <div class="text-[15px] font-bold text-black dark:text-white leading-relaxed">
                         Anda akan menghapus SK nomor <span id="tugas_hapusViewNomor" class="text-danger font-black select-all underline decoration-danger/30 decoration-2 underline-offset-4"></span>. Tindakan ini <span class="text-danger italic">permanen</span>.
                     </div>
                 </div>
@@ -766,9 +766,9 @@
 
     function tugas_bukaModalTambah() {
         tugas_resetForm();
-        $('#tugas_headerModalForm').removeClass('header-indigo').addClass('header-primary');
-        $('#tugas_judulModalForm').html('<span class="sk-title-icon"><i class="fas fa-plus-circle"></i></span> Tambah SK Pembagian Tugas');
-        $('#tugas_btnSimpanForm').html('<i class="fas fa-save"></i> SIMPAN DATA SK');
+        $('#tugas_headerModalForm').removeClass('sk-modal-header-warning sk-modal-header-success sk-modal-header-danger').addClass('sk-modal-header-primary');
+        $('#tugas_judulModalForm').html('<i class="fas fa-plus-circle"></i> Tambah SK Pembagian Tugas');
+        $('#tugas_btnSimpanForm').html('<i class="fas fa-save mr-2"></i> SIMPAN DATA SK');
 
         var now = new Date(); var curYear = now.getFullYear(); var curMonth = now.getMonth();
         var currentTa = (curMonth >= 6) ? curYear + '/' + (curYear + 1) : (curYear - 1) + '/' + curYear;
@@ -829,8 +829,8 @@
         var rowData = TUGAS_DATA_MASTER[rowId];
         if (!rowData) return;
 
-        $('#tugas_headerModalForm').removeClass('header-primary').addClass('header-indigo');
-        $('#tugas_judulModalForm').html('<span class="sk-title-icon" style="background:rgba(99,102,241,0.15);color:#6366f1"><i class="fas fa-edit"></i></span> Edit Data SK Pembagian Tugas');
+        $('#tugas_headerModalForm').removeClass('sk-modal-header-primary sk-modal-header-success sk-modal-header-danger').addClass('sk-modal-header-warning');
+        $('#tugas_judulModalForm').html('<i class="fas fa-edit"></i> Edit Data SK Pembagian Tugas');
         $('#tugas_editRowId').val(rowId);
 
         $('#tugas_btnSimpanForm').removeClass('btn-sultan-maroon').addClass('btn-sultan-indigo');

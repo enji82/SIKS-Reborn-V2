@@ -3775,5 +3775,44 @@ body, h1, h2, h3, h4, h5, h6, th, td, input, select, textarea, button, p, span:n
 /* Dark Mode Background Seal */
 .dark html, .dark body { background-color: #1A222C !important; }
 
+/* 8. MODAL REFINEMENT SYSTEM (Sultan v3.3) */
+.sk-modal-header-brand {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.625rem 1.5rem; border-bottom: 1px solid rgba(0,0,0,0.05);
+    background: #FFFFFF; color: #1C2434;
+}
+.dark .sk-modal-header-brand { background: #24303F; border-bottom-color: rgba(255,255,255,0.05); color: #FFFFFF; }
+
+/* High-Impact Color Variants */
+.sk-modal-header-primary { background: #3C50E0 !important; color: #FFFFFF !important; border: none !important; }
+.sk-modal-header-warning { background: #FFA70B !important; color: #1C2434 !important; border: none !important; }
+.sk-modal-header-success { background: #10B981 !important; color: #FFFFFF !important; border: none !important; }
+.sk-modal-header-danger  { background: #E53E3E !important; color: #FFFFFF !important; border: none !important; }
+
+.sk-modal-title {
+    display: flex; align-items: center; gap: 0.75rem;
+    font-size: 0.9375rem !important; /* 15px */
+    font-weight: 900 !important;
+    text-transform: uppercase; letter-spacing: 0.05em; margin: 0;
+}
+.sk-modal-header-primary .sk-modal-title, .sk-modal-header-success .sk-modal-title, .sk-modal-header-danger .sk-modal-title { color: #FFFFFF !important; }
+.sk-modal-header-warning .sk-modal-title { color: #1C2434 !important; }
+
+.sk-modal-close {
+    display: flex; align-items: center; justify-content: center;
+    width: 2.25rem; height: 2.25rem; border-radius: 9999px;
+    transition: all 0.2s; background: rgba(0,0,0,0.05);
+}
+.sk-modal-header-primary .sk-modal-close, .sk-modal-header-success .sk-modal-close, .sk-modal-header-danger .sk-modal-close { color: #FFFFFF !important; background: rgba(255,255,255,0.15); }
+.sk-modal-header-warning .sk-modal-close { color: #1C2434 !important; background: rgba(0,0,0,0.08); }
+.sk-modal-close:hover { transform: rotate(90deg); scale: 1.1; }
+
+.sk-modal-footer {
+    display: flex; align-items: center; justify-content: flex-end; gap: 1rem;
+    padding: 1.25rem 1.5rem; border-top: 1px solid rgba(0,0,0,0.05);
+    background: #F9FAFB;
+}
+.dark .sk-modal-footer { border-top-color: rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); }
+
 </style>
 
