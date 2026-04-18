@@ -206,7 +206,7 @@
     <div class="relative flex flex-col md:flex-row w-full max-w-[98%] h-[92vh] rounded-2xl border border-white/10 bg-white dark:bg-[#1A222C] shadow-2xl animate-reveal overflow-hidden">
         
         <!-- Document Area (Left - Expanded) -->
-        <div class="flex-1 bg-gray-100 dark:bg-boxdark relative overflow-hidden flex items-center justify-center border-r border-gray-100 dark:border-white/5">
+        <div class="flex-1 sk-modal-panel-left relative overflow-hidden flex items-center justify-center">
              <iframe id="tugas_verifFrame" class="w-full h-full border-none hidden" src=""></iframe>
              
              <!-- Loader Overlay -->
@@ -226,7 +226,7 @@
         </div>
 
         <!-- Form Area (Right - Compact 360px) -->
-        <div class="w-full md:w-[360px] flex flex-col bg-white dark:bg-boxdark2 relative border-l border-gray-100 dark:border-white/5">
+        <div class="w-full md:w-[360px] flex flex-col sk-modal-panel-right relative">
             <!-- Modal Header (Standardized Green for Verification) -->
             <div class="sk-modal-header-brand sk-modal-header-success">
                 <h3 class="sk-modal-title">
@@ -277,8 +277,8 @@
 
                 <div class="sk-input-card !mt-0 !bg-gray-50/50 dark:!bg-white/[0.03]">
                     <div class="mb-4">
-                        <label class="sk-form-label !text-[13px]">KEPUTUSAN VERIFIKASI <span class="req">*</span></label>
-                        <select id="tugas_verifStatus" class="sk-form-input !text-sm" onchange="tugas_cekStatusVerif(this.value)" required>
+                        <label class="sk-form-label">KEPUTUSAN VERIFIKASI <span class="req">*</span></label>
+                        <select id="tugas_verifStatus" class="sk-form-input" onchange="tugas_cekStatusVerif(this.value)" required>
                             <option value="">-- Pilih Status --</option>
                             <option value="Disetujui">&#x2705; TERIMA & SETUJUI</option>
                             <option value="Revisi">&#x1F504; PERLU REVISI</option>
@@ -287,8 +287,8 @@
                     </div>
 
                     <div>
-                        <label class="sk-form-label !text-[13px]">CATATAN ADMIN</label>
-                        <textarea id="tugas_verifKeterangan" rows="4" placeholder="Catatan opsional..." class="sk-form-input !text-sm" style="resize:none"></textarea>
+                        <label class="sk-form-label">CATATAN ADMIN</label>
+                        <textarea id="tugas_verifKeterangan" rows="4" placeholder="Catatan opsional..." class="sk-form-input" style="resize:none"></textarea>
                         <p id="tugas_verifWajibCatatan" class="mt-2 text-[12px] font-black text-danger uppercase tracking-widest hidden items-center gap-1.5 animate-pulse">
                             <i class="fas fa-exclamation-triangle"></i> Wajib isi alasan!
                         </p>
