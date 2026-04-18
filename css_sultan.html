@@ -252,7 +252,14 @@ body {
     border-bottom: 1px solid #F1F5F9;
     background: #FAFAFA;
 }
-.dark .sk-modal-header { border-bottom-color: rgba(255,255,255,0.06); background: #1A222C; }
+.dark .sk-modal-header { border-bottom-color: rgba(255,255,255,0.06); background: var(--sk-surface); }
+
+/* --- MODAL BOX CONTAINER --- */
+.sk-modal-box {
+    background-color: var(--sk-surface) !important;
+    color: var(--sk-text) !important;
+    border-color: var(--sk-border) !important;
+}
 
 /* --- TITLES & LABELS --- */
 .sk-modal-title {
