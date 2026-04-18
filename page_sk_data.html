@@ -102,7 +102,7 @@
 
 <!-- 1. MODAL FORM SK (SULTAN STYLE) -->
 <div id="tugas_modalForm" class="fixed inset-0 z-[99999] hidden items-start justify-center bg-black/85 overflow-y-auto px-4 pt-12 pb-8">
-    <div class="w-full max-w-fit min-w-[480px] rounded-2xl border border-gray-200 bg-gray-50/50 shadow-2xl dark:border-gray-800 dark:bg-[#1a222c] animate-reveal overflow-hidden">
+    <div class="w-full max-w-fit min-w-[480px] rounded-2xl border border-gray-200 bg-white shadow-2xl dark:border-gray-800 dark:bg-boxdark2 animate-reveal overflow-hidden">
         <!-- Header Tambah/Edit (Dynamic Class Injection) -->
         <div class="sk-modal-header-brand" id="tugas_headerModalForm">
             <h3 id="tugas_judulModalForm" class="sk-modal-title">
@@ -118,7 +118,7 @@
             <input type="hidden" id="tugas_inputRowId">
             <input type="hidden" id="tugas_editRowId">
 
-            <div class="mb-5 flex items-start gap-4 rounded-xl border border-primary/20 bg-primary/5 py-3 px-5 transition-all" id="tugas_alertInfo">
+            <div class="mb-5 flex items-start gap-4 rounded-xl border border-primary/20 bg-blue-50/80 py-3 px-5 transition-all dark:bg-white/5" id="tugas_alertInfo">
                 <div class="flex h-10 w-10 min-w-[40px] items-center justify-center rounded-lg bg-primary text-white shadow-lg shadow-primary/20 mt-0.5">
                     <i class="fas fa-info-circle text-lg"></i>
                 </div>
@@ -275,7 +275,7 @@
                     </div>
                 </div>
 
-                <div class="sk-input-card !mt-0 !bg-gray-50/50 dark:!bg-white/[0.03]">
+                <div class="sk-input-card !mt-0 !bg-gray-50 dark:!bg-white/[0.03]">
                     <div class="mb-4">
                         <label class="sk-form-label">KEPUTUSAN VERIFIKASI <span class="req">*</span></label>
                         <select id="tugas_verifStatus" class="sk-form-input" onchange="tugas_cekStatusVerif(this.value)" required>
@@ -349,7 +349,7 @@
 
 <!-- 4. MODAL HAPUS — Menggunakan template yang sama dengan Modal Tambah/Edit -->
 <div id="tugas_modalHapus" class="fixed inset-0 z-[99999] hidden items-start justify-center bg-black/85 overflow-y-auto px-4 pt-20 pb-8">
-    <div class="w-full max-w-[520px] rounded-3xl border border-gray-200 bg-gray-50/50 shadow-2xl dark:border-white/5 dark:bg-[#1a222c] animate-reveal overflow-hidden">
+    <div class="w-full max-w-[520px] rounded-3xl border border-gray-200 bg-white shadow-2xl dark:border-white/5 dark:bg-boxdark2 animate-reveal overflow-hidden">
 
         <!-- Header Hapus (Standardized Red for Danger) -->
         <div class="sk-modal-header-brand sk-modal-header-danger">
@@ -367,7 +367,7 @@
             <input type="hidden" id="tugas_hapusRowId">
 
             <!-- Ringkasan Data (Elegant Warning) -->
-            <div class="mb-8 flex items-start gap-4 rounded-2xl border border-danger/30 bg-danger/5 p-5 shadow-sm">
+            <div class="mb-8 flex items-start gap-4 rounded-2xl border border-danger/30 bg-rose-50 py-5 px-6 shadow-sm dark:bg-danger/10">
                 <div class="flex h-10 w-10 min-w-[40px] items-center justify-center rounded-xl bg-danger text-white shadow-lg shadow-danger/20 mt-0.5">
                     <i class="fas fa-exclamation-triangle"></i>
                 </div>
