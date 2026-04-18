@@ -21,6 +21,21 @@
   --meta-5: #259AE6;
   --meta-6: #FFBA00;
   --meta-7: #FF6766;
+
+  /* SULTAN semantic tokens */
+  --sk-surface: #FFFFFF;
+  --sk-section: #F8FAFC;
+  --sk-text: #1C2434;
+  --sk-text-muted: #64748B;
+  --sk-border: #E2E8F0;
+}
+
+.dark {
+  --sk-surface: #1A222C;
+  --sk-section: #0F172A;
+  --sk-text: #FFFFFF;
+  --sk-text-muted: #AEB7C0;
+  --sk-border: rgba(255, 255, 255, 0.05);
 }
 
 .bg-meta-1 { background-color: var(--meta-1); }
@@ -261,17 +276,17 @@ body {
     width: 100%;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    font-family: 'Satoshi', sans-serif !important;
 }
-.dark .sk-section-title { border-bottom-color: rgba(60, 80, 224, 0.4); }
+.dark .sk-section-title { color: #818CF8; border-bottom-color: rgba(129, 140, 248, 0.4); }
 
 /* --- DATA DISPLAY GRID --- */
 .sk-data-grid { display: flex; flex-direction: column; gap: 0.875rem; margin-bottom: 1.5rem; }
 .sk-data-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
-.sk-data-label { font-family: 'Satoshi', sans-serif !important; font-size: 0.875rem !important; font-weight: 500; color: #64748B; flex-shrink: 0; }
-.dark .sk-data-label { color: #8A99AF !important; }
-.sk-data-value { font-family: 'Satoshi', sans-serif !important; font-size: 0.875rem !important; font-weight: 900; color: #1A1F36; text-align: right; }
-.dark .sk-data-value { color: #FFFFFF !important; }
+.sk-data-label { font-family: 'Satoshi', sans-serif !important; font-size: 0.875rem !important; font-weight: 600; color: var(--sk-text-muted); flex-shrink: 0; }
+.sk-data-value { font-family: 'Satoshi', sans-serif !important; font-size: 0.875rem !important; font-weight: 900; color: var(--sk-text); text-align: right; }
 .sk-data-value.text-brand { color: #3C50E0 !important; font-weight: 900; }
+.dark .sk-data-value.text-brand { color: #818CF8 !important; }
 
 /* Badge for Data Value */
 .sk-badge-brand {
@@ -283,10 +298,9 @@ body {
     border-radius: 8px;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    font-family: 'Satoshi', sans-serif !important;
 }
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
+.dark .sk-badge-brand { background: rgba(129, 140, 248, 0.1); color: #818CF8; }
 
 /* --- INPUT SECTION CARD --- */
 .sk-input-card {
@@ -299,11 +313,11 @@ body {
 .dark .sk-input-card { background: rgba(255, 255, 255, 0.02); border-color: rgba(255, 255, 255, 0.05); }
 
 /* --- FORM ELEMENTS --- */
-.sk-form-label { display: block; margin-bottom: 0.5rem; font-size: 0.8125rem !important; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; color: #64748B; font-family: 'Satoshi', sans-serif !important; }
-.dark .sk-form-label { color: #8A99AF !important; }
-.sk-form-input { width: 100%; padding: 0.75rem 1rem; border-radius: 0.625rem; border: 1.5px solid #E2E8F0; background: #FFF; font-size: 0.875rem !important; font-weight: 700; color: #1A1F36; outline: none; transition: all 0.2s; font-family: 'Satoshi', sans-serif !important; }
+.sk-form-label { display: block; margin-bottom: 0.5rem; font-size: 0.8125rem !important; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; color: var(--sk-text-muted); font-family: 'Satoshi', sans-serif !important; }
+.sk-form-input { width: 100%; padding: 0.75rem 1rem; border-radius: 0.625rem; border: 1.5px solid var(--sk-border); background: var(--sk-surface); font-size: 0.875rem !important; font-weight: 700; color: var(--sk-text); outline: none; transition: all 0.2s; font-family: 'Satoshi', sans-serif !important; }
 .sk-form-input:focus { border-color: #3C50E0; box-shadow: 0 0 0 4px rgba(60, 80, 224, 0.1); }
-.dark .sk-form-input { background: #0F172A !important; border-color: rgba(255,255,255,0.1) !important; color: #F1F5F9 !important; }
+.dark .sk-form-input { background: var(--sk-section) !important; color: #F1F5F9 !important; }
+
 
 /* --- BUTTONS --- */
 .sk-btn {
@@ -325,10 +339,9 @@ body {
 .dark .sk-modal-footer { border-top-color: rgba(255, 255, 255, 0.05) !important; background: #1A222C !important; }
 
 /* 9. SPECIALIZED COMPONENTS FOR VERIFICATION MODAL */
-.sk-modal-panel-left { background: #F8FAFC; border-right: 1px solid #F1F5F9; }
-.dark .sk-modal-panel-left { background: #0F172A !important; border-right-color: rgba(255,255,255,0.05) !important; }
-.sk-modal-panel-right { background: #FFFFFF; border-left: 1px solid #F1F5F9; }
-.dark .sk-modal-panel-right { background: #1A222C !important; border-left-color: rgba(255,255,255,0.05) !important; }
+.sk-modal-panel-left { background: var(--sk-section); border-right: 1px solid var(--sk-border); }
+.sk-modal-panel-right { background: var(--sk-surface); border-left: 1px solid var(--sk-border); }
+
 
 .sk-modal-close { display: flex; align-items: center; justify-content: center; border-radius: 0.5rem; transition: all 0.2s; border: none; cursor: pointer; }
 
