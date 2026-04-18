@@ -28,6 +28,7 @@
   --sk-text: #1C2434;
   --sk-text-muted: #64748B;
   --sk-border: #E2E8F0;
+  --sk-overlay: rgba(15, 23, 42, 0.5); /* Soft dim for light mode */
 }
 
 .dark {
@@ -36,6 +37,7 @@
   --sk-text: #FFFFFF;
   --sk-text-muted: #AEB7C0;
   --sk-border: rgba(255, 255, 255, 0.05);
+  --sk-overlay: rgba(0, 0, 0, 0.85); /* Deep focus for dark mode */
 }
 
 .bg-meta-1 { background-color: var(--meta-1); }
@@ -253,6 +255,11 @@ body {
     background: #FAFAFA;
 }
 .dark .sk-modal-header { border-bottom-color: rgba(255,255,255,0.06); background: var(--sk-surface); }
+
+/* --- MODAL OVERLAY --- */
+.sk-modal-overlay {
+    background: var(--sk-overlay) !important;
+}
 
 /* --- MODAL BOX CONTAINER --- */
 .sk-modal-box {
