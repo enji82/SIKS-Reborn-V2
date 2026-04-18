@@ -354,23 +354,25 @@ function loadContent(pageName) {
     updateBreadcrumb(pageName);
 
     if (window.NProgress) NProgress.start();
+
+    // 0. Immediate Cleanup: Hide current content to prevent layout overlap/leaks
+    if ($active.children().length > 0) {
+        $active.fadeOut(80, function() { $(this).html('').hide(); });
+    }
     
     // 1. Check Cache (Turbo Mode - Instant Swap)
     let cached = Sultan.db.sessionGet('cache_page_' + pageName);
     if (cached) {
         if (window.NProgress) NProgress.done();
         $buffer.html('<div class="slide-in-right active">' + cached + '</div>');
-        $active.fadeOut(80, function() {
-            $active.html('').hide();
-            $buffer.css({'opacity':'1','display':'block'}).removeClass('buffer').addClass('active').attr('id','app-content-active');
-            $active.removeClass('active').addClass('buffer').attr('id','app-content-buffer');
-            runCounterUp();
-        });
+        $buffer.stop().css({'opacity':'1','display':'block'}).removeClass('buffer').addClass('active').attr('id','app-content-active');
+        $active.removeClass('active').addClass('buffer').attr('id','app-content-buffer');
+        runCounterUp();
         return;
     }
     
     // 2. No Cache: Show Adaptive Skeleton only for new content
-    $buffer.html(Sultan.ui.skeleton()).show().css('opacity', '0.5');
+    $buffer.html(Sultan.ui.skeleton()).stop().show().css('opacity', '1');
     
     // 3. Muat Konten Baru di Background (Server Call)
     Sultan.bridge('loadPage', [pageName], function(html) {
