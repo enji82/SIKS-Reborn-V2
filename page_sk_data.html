@@ -960,6 +960,9 @@
         }
 
         $('#tugas_modalVerif').removeClass('hidden').addClass('flex').hide().fadeIn();
+        
+        // Reset Button State (Spinner Fix)
+        $('#tugas_btnSimpanVerif').prop('disabled', false).html('<i class="fas fa-check-circle"></i> Eksekusi');
     }
 
     function tugas_cekStatusVerif(val) {
@@ -1023,6 +1026,9 @@
         $('#tugas_hapusViewNomor').text(d.noSk);
         $('#tugas_inputKodeHapus').val('');
         $('#tugas_modalHapus').removeClass('hidden').addClass('flex').hide().fadeIn();
+        
+        // Reset Button State (Spinner Fix)
+        $('#tugas_btnEksekusiHapus').prop('disabled', false).html('<i class="fas fa-trash-alt"></i> Hapus Permanen');
     }
 
     function tugas_handleSimpanHapus(e) {
