@@ -275,7 +275,7 @@
                     </div>
                 </div>
 
-                <div class="sk-input-card !mt-0 !bg-gray-50 dark:!bg-white/[0.03]">
+                <div class="sk-input-card !mt-0 !bg-gray-50/50 dark:!bg-white/5">
                     <div class="mb-4">
                         <label class="sk-form-label">KEPUTUSAN VERIFIKASI <span class="req">*</span></label>
                         <select id="tugas_verifStatus" class="sk-form-input" onchange="tugas_cekStatusVerif(this.value)" required>
@@ -311,7 +311,7 @@
 
 <!-- 3. MODAL PREVIEW PDF (SULTAN PREMIUM FULL SCREEN) -->
 <div id="tugas_modalPreview" class="fixed inset-0 z-[99999] hidden flex-col sk-modal-overlay animate-reveal">
-    <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 dark:border-white/5 bg-white dark:bg-boxdark2 transition-colors">
+    <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 dark:border-white/5 bg-white dark:bg-section transition-colors">
         <div class="flex items-center gap-4">
             <div class="relative flex h-11 w-11 items-center justify-center rounded-xl bg-danger/10 text-danger shadow-sm overflow-hidden group">
                 <div class="absolute inset-0 bg-danger/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -326,10 +326,10 @@
             </div>
         </div>
         <div class="flex items-center gap-3">
-            <a href="#" id="tugas_linkDownloadHeader" target="_blank" class="inline-flex items-center gap-2 rounded-xl border border-gray-100 bg-white px-4 py-2.5 text-[11px] font-black uppercase text-black transition-all hover:bg-gray-50 active:scale-95 dark:border-white/5 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 shadow-sm">
+            <a href="#" id="tugas_linkDownloadHeader" target="_blank" class="inline-flex items-center gap-2 rounded-xl border border-gray-100 bg-gray-50/50 px-4 py-2.5 text-[11px] font-black uppercase text-black transition-all hover:bg-gray-100 active:scale-95 dark:border-white/5 dark:bg-white/5 dark:text-white shadow-sm">
                 <i class="fas fa-download text-primary"></i> UNDUH
             </a>
-            <a href="#" id="tugas_linkTabHeader" target="_blank" class="inline-flex items-center gap-2 rounded-xl border border-gray-100 bg-white px-4 py-2.5 text-[11px] font-black uppercase text-black transition-all hover:bg-gray-50 active:scale-95 dark:border-white/5 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 shadow-sm">
+            <a href="#" id="tugas_linkTabHeader" target="_blank" class="inline-flex items-center gap-2 rounded-xl border border-gray-100 bg-gray-50/50 px-4 py-2.5 text-[11px] font-black uppercase text-black transition-all hover:bg-gray-100 active:scale-95 dark:border-white/5 dark:bg-white/5 dark:text-white shadow-sm">
                 <i class="fas fa-external-link-alt text-primary"></i> TAB BARU
             </a>
             <div class="h-6 w-[1px] bg-gray-200 dark:bg-white/10 mx-2"></div>
@@ -758,7 +758,7 @@
         $('#tugas_labelFile').html('<i class="fas fa-file-pdf text-danger mr-1"></i> Unggah Dokumen Asli <span class="text-danger">*</span>');
         $('.custom-file-label').removeClass("selected text-success font-weight-bold").html('Pilih file PDF...');
         $('#tugas_areaTerkunci').prop('disabled', true).css('opacity', '0.5');
-        $('#tugas_inputNamaSd, #tugas_inputTahun, #tugas_inputSemester, #tugas_inputKriteria').prop('disabled', false).removeClass('bg-light');
+        $('#tugas_inputNamaSd, #tugas_inputTahun, #tugas_inputSemester, #tugas_inputKriteria').prop('disabled', false);
         $('#tugas_btnSimpanForm').removeClass('btn-sultan-indigo').addClass('btn-sultan-maroon').show().prop('disabled', true);
         $('#tugas_alertInfo').removeClass('border-danger border-success').addClass('border-primary/20');
         $('#tugas_alertText').html('Tentukan <b>Sekolah, Tahun, Semester,</b> dan <b>Kriteria</b> untuk memulai pengisian data SK.');
@@ -849,7 +849,7 @@
             $('#tugas_labelFile').html('<i class="fas fa-file-pdf text-danger mr-1"></i> Lewati Bagian ini Apabila Tidak Mengganti Scan Dokumen.');
         }
 
-        $('#tugas_inputNamaSd, #tugas_inputTahun, #tugas_inputSemester, #tugas_inputKriteria').prop('disabled', true).addClass('bg-light');
+        $('#tugas_inputNamaSd, #tugas_inputTahun, #tugas_inputSemester, #tugas_inputKriteria').prop('disabled', true);
         $('#tugas_areaTerkunci').prop('disabled', false).css('opacity', '1');
         $('#tugas_btnSimpanForm').show().prop('disabled', false).html('<i class="fas fa-save mr-2"></i> UPDATE DATA SK');
         

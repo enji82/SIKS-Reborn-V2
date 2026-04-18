@@ -29,6 +29,8 @@
   --sk-text-muted: #64748B;
   --sk-border: #E2E8F0;
   --sk-overlay: rgba(15, 23, 42, 0.5); /* Soft dim for light mode */
+  --sk-input-bg: #FFFFFF;
+  --sk-input-border: #E2E8F0;
 }
 
 .dark {
@@ -38,6 +40,8 @@
   --sk-text-muted: #AEB7C0;
   --sk-border: rgba(255, 255, 255, 0.05);
   --sk-overlay: rgba(0, 0, 0, 0.85); /* Deep focus for dark mode */
+  --sk-input-bg: #0F172A;
+  --sk-input-border: rgba(255, 255, 255, 0.1);
 }
 
 .bg-meta-1 { background-color: var(--meta-1); }
@@ -338,9 +342,16 @@ body {
 
 /* --- FORM ELEMENTS --- */
 .sk-form-label { display: block; margin-bottom: 0.5rem; font-size: 0.8125rem !important; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; color: var(--sk-text-muted); font-family: 'Satoshi', sans-serif !important; }
-.sk-form-input { width: 100%; padding: 0.75rem 1rem; border-radius: 0.625rem; border: 1.5px solid var(--sk-border); background: var(--sk-surface); font-size: 0.875rem !important; font-weight: 700; color: var(--sk-text); outline: none; transition: all 0.2s; font-family: 'Satoshi', sans-serif !important; }
-.sk-form-input:focus { border-color: #3C50E0; box-shadow: 0 0 0 4px rgba(60, 80, 224, 0.1); }
-.dark .sk-form-input { background: var(--sk-section) !important; color: #F1F5F9 !important; }
+
+.sk-form-input { 
+    width: 100%; padding: 0.75rem 1rem; border-radius: 0.625rem; 
+    border: 1.5px solid var(--sk-input-border) !important; 
+    background: var(--sk-input-bg) !important; 
+    font-size: 0.875rem !important; font-weight: 700; color: var(--sk-text) !important; 
+    outline: none; transition: all 0.2s; font-family: 'Satoshi', sans-serif !important; 
+}
+.sk-form-input:focus { border-color: #3C50E0 !important; box-shadow: 0 0 0 4px rgba(60, 80, 224, 0.1); }
+.sk-form-input:disabled { opacity: 0.6; cursor: not-allowed; background: var(--sk-section) !important; }
 
 
 /* --- BUTTONS --- */
