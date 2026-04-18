@@ -353,6 +353,64 @@ body {
 .sk-form-input:focus { border-color: #3C50E0 !important; box-shadow: 0 0 0 4px rgba(60, 80, 224, 0.1); }
 .sk-form-input:disabled { opacity: 0.6; cursor: not-allowed; background: var(--sk-section) !important; }
 
+/* Browser Autofill Fix (Force theme background) */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px var(--sk-input-bg) inset !important;
+    -webkit-text-fill-color: var(--sk-text) !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/* --- DATATABLES PAGINATION OVERRIDES (Library Force-Sync) --- */
+.pagination-wrapper .paginate_button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 32px !important;
+    height: 32px !important;
+    padding: 0 8px !important;
+    margin: 0 4px !important;
+    border-radius: 6px !important;
+    background: var(--sk-surface) !important;
+    color: var(--sk-text) !important;
+    border: 1px solid var(--sk-border) !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    transition: all 0.2s !important;
+}
+
+.pagination-wrapper .paginate_button:hover {
+    background: var(--warna-utama) !important;
+    color: #FFFFFF !important;
+    border-color: var(--warna-utama) !important;
+}
+
+.pagination-wrapper .paginate_button.current {
+    background: var(--warna-utama) !important;
+    color: #FFFFFF !important;
+    border-color: var(--warna-utama) !important;
+}
+
+.pagination-wrapper .paginate_button.disabled {
+    opacity: 0.4 !important;
+    cursor: not-allowed !important;
+    background: var(--sk-section) !important;
+}
+
+.pagination-wrapper .paginate_button.previous,
+.pagination-wrapper .paginate_button.next {
+    background: var(--sk-section) !important;
+    padding: 0 12px !important;
+}
+
+.dark .pagination-wrapper .paginate_button {
+    background: #24303F !important;
+    border-color: rgba(255,255,255,0.05) !important;
+}
+
 
 /* --- BUTTONS --- */
 .sk-btn {
