@@ -207,7 +207,9 @@
         
         var sampleRow = rows[0] || [];
         var headerHtml = '<tr class="sk-bg-section text-center border-b border-gray-100 dark:border-white/5">';
-        headerHtml += '<th class="py-3 px-6 font-black uppercase text-primary dark:text-[#818CF8] text-left sticky left-0 z-[30] sk-bg-section shadow-[2px_0_5px_rgba(0,0,0,0.05)] border-r border-gray-100 dark:border-white/10 text-xs">Nama Sekolah</th>';
+        
+        // Kolom UNIT KERJA (Warna Biru sesuai gambar)
+        headerHtml += '<th class="py-4 px-6 font-black uppercase text-primary text-left sticky left-0 z-[30] sk-bg-section shadow-[2px_0_5px_rgba(0,0,0,0.05)] border-r border-gray-100 dark:border-white/10 text-xs tracking-wider">UNIT KERJA</th>';
         
         if (STATUSSK_RAW_HEADER && STATUSSK_RAW_HEADER.length >= 2) {
             var hRow1 = STATUSSK_RAW_HEADER[0];
@@ -220,18 +222,22 @@
                     if(hRow1[k] && hRow1[k] !== "") { year = hRow1[k]; break; }
                 }
                 
-                // Format tahun biar pendek (2024/2025 -> 24/25)
-                var shortYear = year.replace(/20/g, "");
-                var smtLabel = hRow2[i] || (i % 2 !== 0 ? "S1" : "S2");
-                var cleanSmt = smtLabel.replace("Semester ", "S").replace("Smt ", "S");
+                var smtLabel = hRow2[i] || (i % 2 !== 0 ? "SEM 1" : "SEM 2");
+                var cleanSmt = smtLabel.toUpperCase().replace("SEMESTER ", "SEM ").replace("SMT ", "SEM ");
+                if (!cleanSmt.includes("SEM")) cleanSmt = "SEM " + cleanSmt;
                 
-                headerHtml += '<th class="py-3 px-3 font-black uppercase text-xs text-primary dark:text-[#818CF8] border-l border-gray-100 dark:border-white/5 whitespace-nowrap">' + shortYear + ' ' + cleanSmt + '</th>';
+                // Header 2 Baris dalam 1 Cell
+                headerHtml += `
+                    <th class="py-3 px-3 font-black uppercase text-xs text-primary dark:text-[#818CF8] border-l border-gray-100 dark:border-white/5 whitespace-nowrap leading-tight">
+                        <span class="text-[10px] opacity-70">${year}</span><br>
+                        <span class="text-xs text-black dark:text-white">${cleanSmt}</span>
+                    </th>`;
             }
         } else {
             // Fallback
             for (var i = 1; i < sampleRow.length; i++) {
-                var label = i % 2 !== 0 ? "S1" : "S2";
-                headerHtml += '<th class="py-3 px-3 font-black uppercase text-primary dark:text-[#818CF8] min-w-[80px] border-l border-gray-100 dark:border-white/5 text-xs">S' + i + '</th>';
+                var label = i % 2 !== 0 ? "SEM 1" : "SEM 2";
+                headerHtml += '<th class="py-3 px-3 font-black uppercase text-primary dark:text-[#818CF8] min-w-[80px] border-l border-gray-100 dark:border-white/5 text-xs whitespace-nowrap">' + label + '</th>';
             }
         }
         headerHtml += '</tr>';
@@ -240,15 +246,15 @@
         rows.forEach(function(row) {
             var rowData = [];
             
-            // Kolom 1: Nama Unit (Sticky) + NPSN
+            // Kolom 1: Nama Unit (Sticky) + NPSN - SESUAI GAMBAR
             var schoolParts = String(row[0] || "").split('|');
             var schName = statussk_escapeHtml(schoolParts[0]);
             var schNpsn = statussk_escapeHtml(schoolParts[1] || "-");
             
             rowData.push(`
-                <div class="flex flex-col text-left">
-                    <span class="font-bold text-black dark:text-white uppercase tracking-tight text-xs">${schName}</span>
-                    <span class="text-[10px] text-gray-400 dark:text-gray-500 font-medium tracking-wide">NPSN: ${schNpsn}</span>
+                <div class="flex flex-col text-left py-1">
+                    <span class="font-black text-black dark:text-white uppercase tracking-tight text-sm leading-snug">${schName}</span>
+                    <span class="text-[11px] text-gray-400 dark:text-gray-500 font-bold tracking-widest">${schNpsn}</span>
                 </div>
             `);
             
