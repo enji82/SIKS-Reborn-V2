@@ -2,30 +2,85 @@
 
 <div class="flex flex-col gap-4 md:gap-6 2xl:gap-7.5 animate-reveal">
     
-  <!-- 1. FILTER PERIODE -->
-  <div class="rounded-sm border border-stroke bg-white px-5 py-4 shadow-default dark:border-strokedark dark:bg-boxdark">
-    <div class="flex flex-wrap items-center justify-center gap-4">
-        <label class="text-sm font-bold text-primary flex items-center gap-2">
-            <i class="fas fa-calendar-alt"></i> PERIODE DATA:
-        </label>
-        <div class="flex items-center gap-2">
-            <select id="dashlapbul_dashTahun" class="rounded border border-stroke bg-transparent py-1.5 px-3 text-sm font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark" disabled></select>
-            <select id="dashlapbul_dashBulan" class="rounded border border-stroke bg-transparent py-1.5 px-3 text-sm font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark">
+  <!-- PAGE HEADER (SULTAN SYNC) -->
+  <div class="mb-2 flex flex-col">
+    <h1 class="sultan-title-sync text-black dark:text-white">
+      Dashboard Laporan Bulan
+    </h1>
+    <p class="sk-section-title mt-1">
+      Visualisasi Kepatuhan & Status Pengiriman Laporan Bulanan Satuan Pendidikan
+    </p>
+  </div>
+
+  <!-- CUSTOM EXECUTIVE STYLES (SULTAN v4.1) -->
+  <style>
+    .sk-glass-card {
+        position: relative; overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(8px);
+    }
+    .sk-glass-card::before {
+        content: ''; position: absolute; top: 0; right: 0;
+        width: 80px; height: 80px;
+        background: radial-gradient(circle, currentColor 0%, transparent 70%);
+        opacity: 0.1; transform: translate(30%, -30%); transition: all 0.5s;
+    }
+    .sk-glass-card:hover::before { transform: translate(10%, -10%) scale(1.5); opacity: 0.15; }
+    
+    .sk-glass-sd  { background: rgba(59, 130, 246, 0.05); color: #3b82f6; border-left: 4px solid #3b82f6 !important; }
+    .sk-glass-tk  { background: rgba(16, 185, 129, 0.05); color: #10b981; border-left: 4px solid #10b981 !important; }
+    .sk-glass-kb  { background: rgba(245, 158, 11, 0.08); color: #f59e0b; border-left: 4px solid #f59e0b !important; }
+    .sk-glass-sps { background: rgba(239, 68, 68, 0.08); color: #ef4444; border-left: 4px solid #ef4444 !important; }
+
+    .dark .sk-glass-card { background: rgba(255, 255, 255, 0.03); }
+    .dark .sk-glass-sd  { background: rgba(59, 130, 246, 0.1); }
+    .dark .sk-glass-tk  { background: rgba(16, 185, 129, 0.1); }
+    .dark .sk-glass-kb  { background: rgba(245, 158, 11, 0.1); }
+    .dark .sk-glass-sps { background: rgba(239, 68, 68, 0.12); }
+
+    .sk-dash-input {
+        height: 38px !important;
+        font-size: 14px !important;
+        font-weight: 700 !important;
+        border-radius: 10px !important;
+        font-family: 'Satoshi', sans-serif !important;
+    }
+    .sk-status-pill {
+        display: inline-flex; items-center gap-1.5 px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest border border-black/5 dark:border-white/5;
+    }
+  </style>
+
+  <!-- 1. FILTER BAR (SULTAN BLUEPRINT MODEL) -->
+  <div class="sultan-card p-4 shadow-sm">
+    <div class="flex flex-wrap items-center gap-3">
+        <!-- Filter Tahun -->
+        <div class="relative w-full sm:w-auto">
+            <select id="dashlapbul_dashTahun" class="sk-dash-input appearance-none border border-gray-200 bg-white py-1.5 pl-4 pr-10 text-black outline-none transition focus:border-primary dark:border-white/10 dark:bg-boxdark dark:text-white shadow-sm min-w-[140px]" disabled></select>
+            <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400"><i class="fas fa-calendar-alt text-xs"></i></div>
+        </div>
+        <!-- Filter Bulan -->
+        <div class="relative w-full sm:w-auto">
+            <select id="dashlapbul_dashBulan" class="sk-dash-input appearance-none border border-gray-200 bg-white py-1.5 pl-4 pr-10 text-black outline-none transition focus:border-primary dark:border-gray-700 dark:bg-boxdark dark:text-white shadow-sm min-w-[180px]">
                 <option value="1">Januari</option><option value="2">Februari</option><option value="3">Maret</option>
                 <option value="4">April</option><option value="5">Mei</option><option value="6">Juni</option>
                 <option value="7">Juli</option><option value="8">Agustus</option><option value="9">September</option>
                 <option value="10">Oktober</option><option value="11">November</option><option value="12">Desember</option>
             </select>
+            <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400"><i class="fas fa-clock text-xs"></i></div>
         </div>
-        <button type="button" id="dashlapbul_btnTampilkan" class="inline-flex items-center justify-center gap-2.5 rounded-md bg-primary py-2 px-6 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 transition-colors" disabled>
-            <i class="fas fa-sync-alt"></i> TAMPILKAN
-        </button>
+        <!-- Action Button -->
+        <div class="ml-auto flex items-center">
+            <button type="button" id="dashlapbul_btnTampilkan" class="sultan-btn sultan-btn-primary shadow-md !h-[38px] !px-8 !text-sm !font-black !tracking-tighter" disabled>
+                <i class="fas fa-sync-alt mr-2"></i> TAMPILKAN DATA
+            </button>
+        </div>
     </div>
   </div>
 
   <div id="dashlapbul_contentDash" class="flex flex-col gap-4 md:gap-6 2xl:gap-7.5">
     <!-- 2. KPI METRICS (Jenjang) -->
-    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
         <div class="col-span-1 dashlapbul-stat-col" data-jenjang="sd"></div>
         <div class="col-span-1 dashlapbul-stat-col" data-jenjang="tk"></div>
         <div class="col-span-1 dashlapbul-stat-col" data-jenjang="kb"></div>
@@ -35,14 +90,14 @@
     <!-- 3. BELUM LAPOR LISTS -->
     <div class="flex flex-col gap-4">
         <div class="flex items-center justify-between">
-            <h3 class="font-bold text-danger flex items-center gap-2">
-                <i class="fas fa-exclamation-circle text-danger"></i> Daftar Sekolah Belum Lapor
+            <h3 class="font-black text-black dark:text-white flex items-center gap-2 text-sm uppercase tracking-widest">
+                <i class="fas fa-exclamation-triangle text-danger"></i> Daftar Sekolah Belum Lapor
             </h3>
-            <button id="dashlapbul_btnCopyUtama" class="text-xs font-bold text-danger hover:underline">
-                <i class="fas fa-copy"></i> SALIN SEMUA (WA)
+            <button id="dashlapbul_btnCopyUtama" class="text-[10px] font-black text-danger hover:text-danger/80 transition-colors bg-danger/10 px-3 py-1.5 rounded-lg uppercase tracking-wider">
+                <i class="fas fa-copy mr-1"></i> SALIN SEMUA
             </button>
         </div>
-        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
             <div class="dashlapbul-list-col" data-jenjang="sd"></div>
             <div class="dashlapbul-list-col" data-jenjang="tk"></div>
             <div class="dashlapbul-list-col" data-jenjang="kb"></div>
@@ -52,23 +107,29 @@
 
     <!-- 4. ANALYTICS (Charts) -->
     <div class="grid grid-cols-1 gap-4 lg:grid-cols-12">
-        <div class="col-span-1 lg:col-span-8 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark overflow-hidden">
-            <div class="border-b border-stroke py-4 px-6.5 dark:border-strokedark text-black dark:text-white font-bold flex items-center gap-2">
-                <i class="fas fa-chart-bar text-primary"></i> Komparasi Status Antar Jenjang
+        <!-- Comparative Chart -->
+        <div class="col-span-1 lg:col-span-8 sultan-card overflow-hidden h-full">
+            <div class="border-b border-gray-100 py-4 px-6 dark:border-gray-800 bg-gray-50/30 dark:bg-black/10 flex justify-between items-center">
+                <div>
+                    <h3 class="font-bold text-sm text-black dark:text-white uppercase tracking-widest">Komparasi Status Antar Jenjang</h3>
+                    <p class="text-[11px] text-gray-400 font-bold uppercase tracking-tight">Perbandingan Data per Jenjang Pendidikan</p>
+                </div>
+                <span class="inline-flex rounded-full bg-primary/10 py-1 px-3 text-[10px] font-bold text-primary animate-pulse">LIVE SINKRONISASI</span>
             </div>
-            <div class="p-6.5">
+            <div class="p-6">
                 <div id="dashlapbul_chartBarWrapper" style="height: 320px; width: 100%;">
                     <canvas id="dashlapbul_chartLapbul"></canvas>
                 </div>
             </div>
         </div>
 
-        <div class="col-span-1 lg:col-span-4 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark overflow-hidden">
-            <div class="border-b border-stroke py-4 px-6.5 dark:border-strokedark text-black dark:text-white font-bold flex items-center gap-2">
-                <i class="fas fa-chart-pie text-meta-3"></i> Proporsi Total
+        <!-- Proportion Chart -->
+        <div class="col-span-1 lg:col-span-4 sultan-card overflow-hidden h-full">
+            <div class="border-b border-gray-100 py-4 px-6 dark:border-gray-800 bg-gray-50/30 dark:bg-black/10">
+                <h3 class="font-bold text-sm text-black dark:text-white uppercase tracking-widest">Proporsi Total Status</h3>
             </div>
-            <div class="p-6.5">
-                <div id="dashlapbul_chartPieWrapper" class="relative mb-4 h-[180px]">
+            <div class="p-6">
+                <div id="dashlapbul_chartPieWrapper" class="relative mb-6 h-[180px]">
                     <canvas id="dashlapbul_chartTotalStatus"></canvas>
                 </div>
                 <div id="dashlapbul_legendWrapper">
@@ -84,38 +145,42 @@
 </div>
 
 
-<!-- MODAL BELUM LAPOR -->
-<div class="fixed inset-0 z-999999 flex items-center justify-center bg-black/50 overflow-y-auto px-4 py-4" id="dashlapbul_modalBelumLapor" style="display:none;">
-    <div class="w-full max-w-4xl rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark animate-zoom">
-        <!-- Header -->
-        <div class="flex items-center justify-between border-b border-stroke py-4 px-6 dark:border-strokedark">
-            <h3 class="font-bold text-black dark:text-white flex items-center gap-2">
-                <i class="fas fa-clipboard-list text-primary"></i> Daftar Sekolah Belum Lapor
+<!-- MODAL BELUM LAPOR (SULTAN v4.1 EXECUTIVE SYNC) -->
+<div id="dashlapbul_modalBelumLapor" class="sk-overlay">
+    <div class="sk-modal !max-w-4xl bg-white dark:!bg-boxdark">
+        <!-- Header: Sultan Structural Layout + Primary Blue Theme -->
+        <div class="sk-modal-header-brand sk-modal-header-primary">
+            <h3 class="sk-modal-title">
+                <i class="fas fa-clipboard-list mr-2"></i> Daftar Sekolah Belum Lapor
             </h3>
-            <button type="button" class="text-body hover:text-primary transition-colors" onclick="$('#dashlapbul_modalBelumLapor').fadeOut()">
+            <button type="button" class="sk-modal-close" onclick="dashlapbul_closeModal()">
                 <i class="fas fa-times text-xl"></i>
             </button>
         </div>
 
         <!-- Body -->
-        <div class="p-6.5">
-            <div class="mb-5 flex items-center gap-4 rounded-sm border-l-4 border-warning bg-warning/10 py-4 px-6">
-                <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-warning text-white">
-                    <i class="fas fa-info-circle"></i>
+        <div class="p-6">
+            <!-- Info Alert: Adaptive -->
+            <div class="mb-5 flex items-center gap-4 rounded-xl border border-amber-200/50 bg-amber-500/5 py-4 px-5 dark:border-amber-500/20">
+                <div class="flex h-11 w-11 min-w-[44px] items-center justify-center rounded-xl bg-amber-500 text-white shadow-lg shadow-amber-500/20">
+                    <i class="fas fa-info-circle text-xl"></i>
                 </div>
                 <div class="w-full">
-                    <p class="text-xs text-body font-bold">Menampilkan data periode terpilih.</p>
+                    <p class="text-[11px] text-gray-400 font-bold uppercase tracking-widest leading-none mb-1.5">Informasi Periode</p>
+                    <h5 class="font-black text-black dark:text-white text-[15px]">Menampilkan data periode yang dipilih pada filter utama.</h5>
                 </div>
             </div>
 
-            <div class="relative mb-4">
-                <span class="absolute left-4 top-1/2 -translate-y-1/2">
-                    <i class="fas fa-search text-body"></i>
+            <!-- Search Area -->
+            <div class="relative mb-5">
+                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 opacity-60">
+                    <i class="fas fa-search"></i>
                 </span>
-                <input type="text" id="dashlapbul_cariBelumModal" placeholder="Ketik nama sekolah untuk mencari cepat..." class="w-full rounded border border-stroke bg-transparent py-2.5 pl-12 pr-4 outline-none transition focus:border-primary dark:border-strokedark dark:bg-boxdark">
+                <input type="text" id="dashlapbul_cariBelumModal" placeholder="Ketik nama sekolah untuk mencari cepat..." class="sk-dash-input w-full border border-gray-100 dark:border-white/10 bg-gray-50/50 dark:!bg-white/5 py-3 pl-11 pr-4 outline-none transition focus:border-primary dark:focus:border-primary dark:text-white">
             </div>
 
-            <div class="max-h-[400px] overflow-y-auto sultan-scroll border border-stroke dark:border-strokedark rounded-sm bg-gray-2 dark:bg-strokedark p-2">
+            <!-- Dynamic List Area -->
+            <div class="max-h-[400px] overflow-y-auto sultan-scroll pr-2 -mr-2">
                 <table class="w-full text-sm">
                     <tbody id="dashlapbul_listBelumBodyModal"></tbody>
                 </table>
@@ -123,12 +188,12 @@
         </div>
 
         <!-- Footer -->
-        <div class="flex flex-wrap items-center justify-between border-t border-stroke py-4 px-6.5 dark:border-strokedark gap-4">
-            <button type="button" class="inline-flex items-center justify-center gap-2.5 rounded-md border border-stroke py-2 px-6 text-center font-medium hover:text-primary lg:px-8 transition-colors" onclick="$('#dashlapbul_modalBelumLapor').fadeOut()">
-                Tutup
+        <div class="sk-modal-footer px-6 py-4 flex flex-wrap items-center justify-between gap-4">
+            <button type="button" class="sultan-btn sultan-btn-white !h-[38px] !px-6 !text-[11px] !font-black" id="dashlapbul_btnCopyModal">
+                <i class="fas fa-copy mr-2"></i> SALIN DAFTAR
             </button>
-            <button type="button" class="inline-flex items-center justify-center gap-2.5 rounded-md bg-primary py-2 px-6 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 transition-colors" id="dashlapbul_btnCopyModal">
-                <i class="fas fa-copy"></i> Salin Daftar
+            <button type="button" class="sultan-btn sultan-btn-primary !h-[38px] !px-8 !text-[11px] !font-black" onclick="dashlapbul_closeModal()">
+                <i class="fas fa-check-double mr-2"></i> SELESAI
             </button>
         </div>
     </div>
@@ -253,30 +318,27 @@ function dashlapbul_processResponse(res) {
 // 3. UI RENDERING (SKELETON & REAL COMPONENTS)
 // ======================================================================
 function dashlapbul_renderSkeleton() {
-    var statTitles = { sd: 'JENJANG SD', tk: 'JENJANG TK', kb: 'JENJANG KB', sps: 'JENJANG SPS' };
-    $('.dashlapbul_stat-col').each(function() {
-        var j = $(this).data('jenjang');
+    $('.dashlapbul-stat-col').each(function() {
         $(this).html(`
-            <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default animate-pulse">
-                <div class="flex h-11 w-11 items-center justify-center rounded-full bg-gray-2 mb-3"></div>
-                <div class="h-4 w-20 bg-gray-2 mb-2"></div>
-                <div class="h-8 w-16 bg-gray-2"></div>
+            <div class="sultan-card p-6 shadow-sm animate-pulse">
+                <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-gray-100 dark:bg-gray-800 mb-4 scale-95 opacity-50"></div>
+                <div class="h-6 w-20 bg-gray-100 dark:bg-gray-800 mb-2 rounded-lg opacity-40"></div>
+                <div class="h-4 w-32 bg-gray-100 dark:bg-gray-800 rounded-lg opacity-30"></div>
             </div>
         `);
     });
 
     $('.dashlapbul-list-col').each(function() {
-        var j = $(this).data('jenjang').toUpperCase();
         $(this).html(`
-            <div class="rounded-sm border border-stroke bg-white shadow-default animate-pulse">
-                <div class="border-b border-stroke py-3 px-4 flex justify-between">
-                    <div class="h-4 w-24 bg-gray-2"></div>
-                    <div class="h-4 w-6 bg-gray-2"></div>
+            <div class="sultan-card overflow-hidden animate-pulse">
+                <div class="border-b border-gray-100 py-3 px-4 dark:border-gray-800 bg-gray-50/50 dark:bg-black/10 flex justify-between items-center opacity-50">
+                    <div class="h-3 w-24 bg-gray-200 dark:bg-gray-800 rounded"></div>
+                    <div class="h-4 w-6 bg-gray-200 dark:bg-gray-800 rounded-full"></div>
                 </div>
-                <div class="p-4 flex flex-col gap-2">
-                    <div class="h-3 w-full bg-gray-2"></div>
-                    <div class="h-3 w-3/4 bg-gray-2"></div>
-                    <div class="h-3 w-5/6 bg-gray-2"></div>
+                <div class="p-4 flex flex-col gap-2.5">
+                    <div class="h-3.5 w-full bg-gray-100 dark:bg-gray-800 rounded opacity-60"></div>
+                    <div class="h-3.5 w-3/4 bg-gray-100 dark:bg-gray-800 rounded opacity-50"></div>
+                    <div class="h-3.5 w-5/6 bg-gray-100 dark:bg-gray-800 rounded opacity-40"></div>
                 </div>
             </div>
         `);
@@ -286,30 +348,30 @@ function dashlapbul_renderSkeleton() {
 function dashlapbul_renderStatsCards() {
     var statTitles = { sd: 'JENJANG SD', tk: 'JENJANG TK', kb: 'JENJANG KB', sps: 'JENJANG SPS' };
     var statIcons = { sd: 'fa-school', tk: 'fa-child', kb: 'fa-shapes', sps: 'fa-home' };
-    var iconColors = { sd: 'text-primary bg-primary/10', tk: 'text-warning bg-warning/10', kb: 'text-meta-3 bg-meta-3/10', sps: 'text-meta-5 bg-meta-5/10' };
+    var glassTypes = { sd: 'sk-glass-sd', tk: 'sk-glass-tk', kb: 'sk-glass-kb', sps: 'sk-glass-sps' };
+    var iconColors = { sd: 'bg-primary/10 text-primary', tk: 'bg-success/10 text-success', kb: 'bg-warning/10 text-warning', sps: 'bg-danger/10 text-danger' };
 
     $('.dashlapbul-stat-col').each(function() {
         var j = $(this).data('jenjang');
         var d = DASHLAPBUL_DASH_DATA[j];
         
         var html = `
-            <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark cursor-pointer hover:shadow-lg transition-all" onclick="dashlapbul_bukaModalList('${j}')">
-                <div class="flex h-11 w-11 items-center justify-center rounded-full ${iconColors[j]} mb-3">
-                    <i class="fas ${statIcons[j]} text-xl"></i>
+            <div class="sultan-card sk-glass-card ${glassTypes[j]} p-4 md:p-6 hover:translate-y-[-4px] cursor-pointer" onclick="dashlapbul_bukaModalList('${j}')">
+                <div class="flex h-11 w-11 items-center justify-center rounded-xl ${iconColors[j]} mb-3.5 shadow-sm border border-black/5 dark:border-white/5">
+                    <i class="fas ${statIcons[j]} text-lg"></i>
                 </div>
-                <div class="flex items-end justify-between">
-                    <div>
-                        <h4 class="text-2xl font-bold text-black dark:text-white" id="dashlapbul_count_${j}">${d.persen}%</h4>
-                        <span class="text-xs font-medium text-body uppercase tracking-wider">${statTitles[j]}</span>
-                    </div>
+                <div class="flex flex-col gap-0.5">
+                    <h4 class="text-2xl font-black text-black dark:text-white leading-none" id="dashlapbul_count_${j}">${d.persen}%</h4>
+                    <span class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mt-1">${statTitles[j]}</span>
                 </div>
-                <div class="mt-4 flex flex-col gap-1">
-                    <div class="h-1.5 w-full rounded-full bg-stroke dark:bg-strokedark overflow-hidden">
-                        <div class="h-full bg-primary" style="width: ${d.persen}%"></div>
+                
+                <div class="mt-4 flex flex-col gap-1.5">
+                    <div class="h-1.5 w-full rounded-full bg-gray-200/50 dark:bg-black/20 overflow-hidden">
+                        <div class="h-full bg-current opacity-80" style="width: ${d.persen}%"></div>
                     </div>
-                    <div class="flex justify-between text-[10px] font-bold text-body">
-                        <span>Lapor: ${d.sudah}</span>
-                        <span>Total: ${d.total}</span>
+                    <div class="flex justify-between text-[10px] font-black uppercase tracking-tighter opacity-70">
+                        <span>SUDAH: ${d.sudah}</span>
+                        <span>TARGET: ${d.total}</span>
                     </div>
                 </div>
             </div>`;
@@ -319,8 +381,7 @@ function dashlapbul_renderStatsCards() {
 }
 
 function dashlapbul_renderAllLists() {
-    var borderColors = { sd: 'border-l-primary', tk: 'border-l-warning', kb: 'border-l-meta-3', sps: 'border-l-meta-5' };
-    var bgColors = { sd: 'bg-primary/5', tk: 'bg-warning/5', kb: 'bg-meta-3/5', sps: 'bg-meta-5/5' };
+    var accentColors = { sd: 'text-primary bg-primary/10', tk: 'text-success bg-success/10', kb: 'text-warning bg-warning/10', sps: 'text-danger bg-danger/10' };
 
     $('.dashlapbul-list-col').each(function() {
         var j = $(this).data('jenjang');
@@ -330,24 +391,37 @@ function dashlapbul_renderAllLists() {
         var ulHtml = "";
         if (list.length === 0) {
             ulHtml = `
-                <div class="flex flex-col items-center justify-center py-10 text-success opacity-80 gap-2">
-                    <i class="fas fa-check-circle text-3xl"></i>
-                    <p class="text-xs font-bold uppercase">Selesai</p>
+                <div class="flex flex-col items-center justify-center py-10 text-success gap-3">
+                    <div class="h-12 w-12 rounded-full bg-success/10 flex items-center justify-center">
+                        <i class="fas fa-check-double fa-lg"></i>
+                    </div>
+                    <p class="text-[10px] font-black uppercase tracking-widest opacity-80">SELESAI LAPOR</p>
                 </div>`;
         } else {
-            ulHtml = `<ul class="flex flex-col sultan-scroll" style="max-height: 200px; overflow-y: auto;">`;
+            ulHtml = `<div class="flex flex-col sultan-scroll p-2 pr-1" style="max-height: 240px; overflow-y: auto;">`;
             list.forEach(function(nama, i) {
-                if(i < 5) ulHtml += `<li class="border-b border-stroke py-2 px-4 text-xs font-medium text-black dark:text-white dark:border-strokedark hover:bg-gray-2 transition"><i class="fas fa-angle-right text-gray-300 mr-1"></i> ${nama}</li>`;
+                if(i < 5) {
+                    ulHtml += `
+                        <div class="flex items-center py-2 px-3 mb-1.5 bg-gray-50/50 dark:bg-white/5 border border-gray-100 dark:border-white/5 rounded-lg hover:border-primary/30 transition-all group">
+                            <div class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-700 mr-2.5 group-hover:bg-primary transition-colors"></div>
+                            <span class="text-[12px] font-bold text-gray-700 dark:text-gray-300 break-words leading-tight">${nama}</span>
+                        </div>`;
+                }
             });
-            if (list.length > 5) ulHtml += `<li class="py-2 px-4 text-center"><button type="button" class="text-xs font-bold text-primary hover:underline" onclick="dashlapbul_bukaModalList('${j}')">+ ${list.length - 5} lainnya...</button></li>`;
-            ulHtml += `</ul>`;
+            if (list.length > 5) {
+                ulHtml += `
+                    <button type="button" class="mt-2 w-full py-2.5 text-[10px] font-black text-primary uppercase tracking-widest bg-primary/5 hover:bg-primary/10 rounded-lg transition-all" onclick="dashlapbul_bukaModalList('${j}')">
+                        <i class="fas fa-chevron-circle-down mr-1.5"></i> + ${list.length - 5} Unit Lainnya
+                    </button>`;
+            }
+            ulHtml += `</div>`;
         }
 
         var html = `
-            <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark overflow-hidden border-t-2 ${borderColors[j].replace('border-l', 'border-t')}">
-                <div class="border-b border-stroke py-3 px-4 dark:border-strokedark flex items-center justify-between ${bgColors[j]}">
-                    <span class="text-xs font-bold text-black dark:text-white">${jUpper} Belum Lapor</span>
-                    <span class="inline-flex rounded-full bg-meta-1/10 py-0.5 px-2.5 text-xs font-medium text-meta-1">${list.length}</span>
+            <div class="sultan-card overflow-hidden">
+                <div class="border-b border-gray-100 py-3.5 px-5 dark:border-gray-800 bg-gray-50/30 dark:bg-black/10 flex items-center justify-between">
+                    <span class="text-[11px] font-black text-black dark:text-white uppercase tracking-widest">${jUpper} BELUM LAPOR</span>
+                    <span class="inline-flex rounded-full px-2.5 py-0.5 text-[10px] font-black ${accentColors[j]} border border-black/5 dark:border-white/5">${list.length}</span>
                 </div>
                 ${ulHtml}
             </div>`;
@@ -365,22 +439,22 @@ function dashlapbul_initChart() {
         data: {
             labels: ['SD', 'TK', 'KB', 'SPS'],
             datasets: [
-                { label: 'Disetujui', backgroundColor: '#059669', data: [0,0,0,0], borderRadius: 4 },
-                { label: 'Diproses', backgroundColor: '#00AFEF', data: [0,0,0,0], borderRadius: 4 },
-                { label: 'Revisi', backgroundColor: '#EAC947', data: [0,0,0,0], borderRadius: 4 },
-                { label: 'Ditolak', backgroundColor: '#D0412E', data: [0,0,0,0], borderRadius: 4 },
-                { label: 'Belum Lapor', backgroundColor: '#94A3B8', data: [0,0,0,0], borderRadius: 4 }
+                { label: 'Disetujui', backgroundColor: '#10b981', data: [0,0,0,0], borderRadius: 6 },
+                { label: 'Diproses', backgroundColor: '#3b82f6', data: [0,0,0,0], borderRadius: 6 },
+                { label: 'Revisi', backgroundColor: '#f59e0b', data: [0,0,0,0], borderRadius: 6 },
+                { label: 'Ditolak', backgroundColor: '#ef4444', data: [0,0,0,0], borderRadius: 6 },
+                { label: 'Belum Lapor', backgroundColor: '#64748b', data: [0,0,0,0], borderRadius: 6 }
             ]
         },
         options: {
             responsive: true, maintainAspectRatio: false,
             plugins: { 
-                legend: { position: 'bottom', labels: { usePointStyle: true, font: { size: 11, family: 'Poppins' } } },
-                tooltip: { backgroundColor: 'rgba(15, 23, 42, 0.9)', padding: 12, cornerRadius: 10 }
+                legend: { position: 'bottom', labels: { usePointStyle: true, font: { size: 11, family: 'Satoshi', weight: 'bold' } } },
+                tooltip: { backgroundColor: 'rgba(15, 23, 42, 0.9)', padding: 12, cornerRadius: 10, titleFont: { family: 'Satoshi' }, bodyFont: { family: 'Satoshi' } }
             },
             scales: {
-                x: { grid: { display: false }, ticks: { font: { family: 'Poppins', weight: '600' } } },
-                y: { beginAtZero: true, grid: { color: '#f1f5f9' }, ticks: { stepSize: 10 } }
+                x: { grid: { display: false }, ticks: { font: { family: 'Satoshi', weight: 'bold' } } },
+                y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.03)' }, ticks: { font: { family: 'Satoshi' }, stepSize: 10 } }
             }
         }
     });
@@ -392,13 +466,13 @@ function dashlapbul_initChart() {
             labels: ['Disetujui', 'Diproses', 'Revisi', 'Ditolak', 'Belum Lapor'],
             datasets: [{
                 data: [1, 0, 0, 0, 0], 
-                backgroundColor: ['#f1f5f9', '#00AFEF', '#EAC947', '#D0412E', '#94A3B8'],
-                borderWidth: 0, hoverOffset: 12, cutout: '75%'
+                backgroundColor: ['#f8fafc', '#3b82f6', '#f59e0b', '#ef4444', '#64748b'],
+                borderWidth: 0, hoverOffset: 15, cutout: '78%'
             }]
         },
         options: {
             maintainAspectRatio: false, responsive: true,
-            plugins: { legend: { display: false }, tooltip: { enabled: true } },
+            plugins: { legend: { display: false }, tooltip: { enabled: true, titleFont: { family: 'Satoshi' }, bodyFont: { family: 'Satoshi' } } },
             animation: { animateScale: true, animateRotate: true }
         }
     });
@@ -424,18 +498,18 @@ function dashlapbul_updateChartsData() {
 
     var totalSum = tot.ok + tot.pro + tot.rev + tot.no + tot.blm;
     var pieData = totalSum === 0 ? [1,0,0,0,0] : [tot.ok, tot.pro, tot.rev, tot.no, tot.blm];
-    var pieColors = totalSum === 0 ? ['#f1f5f9'] : ['#059669', '#00AFEF', '#EAC947', '#D0412E', '#94A3B8'];
+    var pieColors = totalSum === 0 ? ['#f8fafc'] : ['#10b981', '#3b82f6', '#f59e0b', '#ef4444', '#64748b'];
     
     DASHLAPBUL_CHART_TOTAL_INSTANCE.data.datasets[0].data = pieData;
     DASHLAPBUL_CHART_TOTAL_INSTANCE.data.datasets[0].backgroundColor = pieColors;
     DASHLAPBUL_CHART_TOTAL_INSTANCE.update();
 
     $('#dashlapbul_tableSummary').html(`
-        <tr class="border-b border-stroke dark:border-strokedark"><td class="py-2 flex items-center gap-2"><div class="h-3 w-3 rounded-full bg-[#059669]"></div> Disetujui</td><td class="text-right font-bold text-black dark:text-white">${tot.ok}</td></tr>
-        <tr class="border-b border-stroke dark:border-strokedark"><td class="py-2 flex items-center gap-2"><div class="h-3 w-3 rounded-full bg-[#00AFEF]"></div> Diproses</td><td class="text-right font-bold text-black dark:text-white">${tot.pro}</td></tr>
-        <tr class="border-b border-stroke dark:border-strokedark"><td class="py-2 flex items-center gap-2"><div class="h-3 w-3 rounded-full bg-[#EAC947]"></div> Revisi</td><td class="text-right font-bold text-black dark:text-white">${tot.rev}</td></tr>
-        <tr class="border-b border-stroke dark:border-strokedark"><td class="py-2 flex items-center gap-2"><div class="h-3 w-3 rounded-full bg-[#D0412E]"></div> Ditolak</td><td class="text-right font-bold text-black dark:text-white">${tot.no}</td></tr>
-        <tr><td class="py-2 flex items-center gap-2"><div class="h-3 w-3 rounded-full bg-[#94A3B8]"></div> Belum Lapor</td><td class="text-right font-bold text-body">${tot.blm}</td></tr>
+        <tr class="border-b border-gray-100 dark:border-gray-800"><td class="py-3 flex items-center gap-3 text-[12px] font-bold"><div class="h-2.5 w-2.5 rounded-full bg-[#10b981] shadow-sm shadow-success/30"></div> Disetujui</td><td class="text-right font-black text-black dark:text-white px-2">${tot.ok}</td></tr>
+        <tr class="border-b border-gray-100 dark:border-gray-800"><td class="py-3 flex items-center gap-3 text-[12px] font-bold"><div class="h-2.5 w-2.5 rounded-full bg-[#3b82f6] shadow-sm shadow-primary/30"></div> Diproses</td><td class="text-right font-black text-black dark:text-white px-2">${tot.pro}</td></tr>
+        <tr class="border-b border-gray-100 dark:border-gray-800"><td class="py-3 flex items-center gap-3 text-[12px] font-bold"><div class="h-2.5 w-2.5 rounded-full bg-[#f59e0b] shadow-sm shadow-warning/30"></div> Revisi</td><td class="text-right font-black text-black dark:text-white px-2">${tot.rev}</td></tr>
+        <tr class="border-b border-gray-100 dark:border-gray-800"><td class="py-3 flex items-center gap-3 text-[12px] font-bold"><div class="h-2.5 w-2.5 rounded-full bg-[#ef4444] shadow-sm shadow-danger/30"></div> Ditolak</td><td class="text-right font-black text-black dark:text-white px-2">${tot.no}</td></tr>
+        <tr><td class="py-3 flex items-center gap-3 text-[12px] font-bold"><div class="h-2.5 w-2.5 rounded-full bg-[#64748b] opacity-50"></div> Belum Lapor</td><td class="text-right font-black text-gray-400 px-2">${tot.blm}</td></tr>
     `);
 }
 
@@ -446,20 +520,29 @@ function dashlapbul_bukaModalList(j) {
     var list = DASHLAPBUL_GLOBAL_BELUM_LAPOR[j];
     var tbody = $('#dashlapbul_listBelumBodyModal').empty();
     if(list.length === 0) {
-        tbody.append('<tr><td class="text-center py-10 text-success font-bold uppercase">Semua sekolah sudah lapor!</td></tr>');
+        tbody.append('<tr><td class="text-center py-12 text-success font-black uppercase tracking-widest bg-success/5 rounded-2xl border border-success/10"><i class="fas fa-check-double fa-2x mb-3 block"></i> Semua sekolah sudah lapor!</td></tr>');
     } else {
         list.forEach(function(nama, i) {
-            tbody.append(`<tr class="border-b border-stroke dark:border-strokedark last:border-0 hover:bg-gray-2 transition"><td class="px-4 py-3 font-bold text-black dark:text-white"><span class="inline-flex items-center justify-center w-6 h-6 rounded bg-gray-2 mr-2 text-xs">${i+1}</span> ${nama}</td></tr>`);
+            tbody.append(`
+                <tr class="group border-b border-gray-50 dark:border-white/5 last:border-0 hover:bg-gray-50/80 dark:hover:bg-white/5 transition-all">
+                    <td class="px-5 py-3.5 font-bold text-gray-700 dark:text-gray-200 flex items-center gap-4">
+                        <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-gray-100 dark:bg-white/10 text-[11px] font-black group-hover:bg-primary group-hover:text-white transition-all shadow-sm">${i+1}</span> 
+                        <span class="text-[13px] leading-tight">${nama}</span>
+                    </td>
+                </tr>`);
         });
     }
-    $('#dashlapbul_modalBelumLapor').fadeIn();
+    $('#dashlapbul_modalBelumLapor').addClass('active');
+}
+
+function dashlapbul_closeModal() {
+    $('#dashlapbul_modalBelumLapor').removeClass('active');
 }
 
 function dashlapbul_animateCounter(id, start, end, suffix) {
     var obj = document.getElementById(id);
     if(!obj) return;
     
-    // VAKSIN: Jika start == end, langsung set dan keluar
     if (start == end) {
         obj.innerText = end + (suffix || "");
         return;
@@ -473,8 +556,6 @@ function dashlapbul_animateCounter(id, start, end, suffix) {
     
     var timer = setInterval(function() {
         current += increment;
-        
-        // VAKSIN: Cek apakah sudah terlampaui (mencegah loop tak hingga)
         if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
             current = end;
             obj.innerText = current + (suffix || "");
@@ -511,12 +592,8 @@ function dashlapbul_filterBelumModal() {
 </script>
 
 <style>
-.sultan-skeleton { background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%); background-size: 200% 100%; animation: sultan-p-loading 1.5s infinite; border-radius: 4px; }
-.sultan-skeleton-pulse { background: #e2e8f0; animation: sultan-pulse-lite 1.5s infinite; }
-@keyframes sultan-p-loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-@keyframes sultan-pulse-lite { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }
-.premium-hover { transition: transform 0.2s ease, box-shadow 0.2s ease; }
-.premium-hover:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important; }
-.transition-all { transition: all 0.3s ease; }
-.text-navy { color: #1D3573 !important; }
+.sultan-scroll::-webkit-scrollbar { width: 4px; }
+.sultan-scroll::-webkit-scrollbar-track { background: transparent; }
+.sultan-scroll::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 10px; }
+.dark .sultan-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
 </style>
