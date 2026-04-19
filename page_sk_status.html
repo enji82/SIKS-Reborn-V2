@@ -82,6 +82,50 @@
 
     <!-- 3. KARTU TABEL (SK STYLE) -->
     <div class="sk-card !p-0 overflow-hidden">
+        <!-- CUSTOM DATATABLES UTILITIES STYLING -->
+        <style>
+            #statussk_tableState .dataTables_wrapper .dataTables_length,
+            #statussk_tableState .dataTables_wrapper .dataTables_filter {
+                padding: 1.5rem 1.5rem 1rem 1.5rem;
+                font-size: 11px;
+                font-weight: 800;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                color: #64748b;
+            }
+            .dark #statussk_tableState .dataTables_wrapper .dataTables_length,
+            .dark #statussk_tableState .dataTables_wrapper .dataTables_filter {
+                color: #94a3b8;
+            }
+            #statussk_tableState .dataTables_wrapper .dataTables_length select,
+            #statussk_tableState .dataTables_wrapper .dataTables_filter input {
+                background: #f8fafc;
+                border: 1px solid #e2e8f0;
+                border-radius: 10px;
+                padding: 6px 12px;
+                margin: 0 8px;
+                font-weight: 700;
+                transition: all 0.2s;
+                outline: none;
+            }
+            .dark #statussk_tableState .dataTables_wrapper .dataTables_length select,
+            .dark #statussk_tableState .dataTables_wrapper .dataTables_filter input {
+                background: rgba(255,255,255,0.03);
+                border-color: rgba(255,255,255,0.08);
+                color: white;
+            }
+            #statussk_tableState .dataTables_wrapper .dataTables_length select:focus,
+            #statussk_tableState .dataTables_wrapper .dataTables_filter input:focus {
+                border-color: #3C50E0;
+                box-shadow: 0 0 0 3px rgba(60, 80, 224, 0.1);
+                background: white;
+            }
+            .dark #statussk_tableState .dataTables_wrapper .dataTables_length select:focus,
+            .dark #statussk_tableState .dataTables_wrapper .dataTables_filter input:focus {
+                background: rgba(255,255,255,0.05);
+            }
+        </style>
+
         <div id="statussk_loadingState" class="py-20">
             <div class="flex flex-col items-center justify-center">
                 <div class="sk-spinner-premium mb-5"></div>
@@ -304,7 +348,8 @@
         STATUSSK_TABEL_INSTANCE = $('#statussk_tabelUtama').DataTable({
             "data": dtArray,
             "ordering": false, "pageLength": 15, "autoWidth": false, "deferRender": true,
-            "dom": "<'row'<'col-sm-12'<'overflow-x-auto sultan-scroll !border-none'tr>>>" +
+            "dom": "<'flex flex-col md:flex-row justify-between items-center bg-gray-50/30 dark:bg-white/2'lf>" + 
+                "<'row'<'col-sm-12'<'overflow-x-auto sultan-scroll !border-none'tr>>>" +
                 "<'flex flex-col md:flex-row justify-between items-center gap-4 mt-6 px-6 pb-6'<'text-[11px] font-bold text-gray-500'i><'pagination-wrapper'p>>",
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json",
