@@ -584,23 +584,39 @@
       else if (s.indexOf('tolak') !== -1) colorKey = 'danger';
       var c = colorMap[colorKey];
       
-      // Adjusted background for dark mode to prevent "white" circles
       const iconBg = isDark ? `rgba(${colorKey === 'success' ? '16,185,129' : colorKey === 'info' ? '59,130,246' : colorKey === 'danger' ? '239,68,68' : '245,158,11'}, 0.2)` : c.bg;
       
       el.append(`
-        <div class="flex gap-4 mb-6 last:mb-0 relative">
-            ${idx < list.length - 1 ? '<div class="absolute left-[17px] top-8 w-[1px] h-full bg-gray-100 dark:bg-gray-800"></div>' : ''}
-            <div class="z-10 flex h-[34px] w-[34px] items-center justify-center rounded-full border-2 border-white dark:border-boxdark shadow-sm transition-colors" style="background:${iconBg};">
-                <i class="fas fa-${c.icon} text-xs" style="color:${c.fg};"></i>
+        <div class="group relative flex gap-5 mb-8 last:mb-0 hover:bg-gray-50/50 dark:hover:bg-white/5 p-2 -m-2 rounded-2xl transition-all duration-300">
+            <!-- Timeline Line -->
+            ${idx < list.length - 1 ? '<div class="absolute left-[17px] top-10 w-[2px] h-[calc(100%-8px)] bg-gray-100 dark:bg-gray-800 transition-colors group-hover:bg-primary/20"></div>' : ''}
+            
+            <!-- Icon Circle -->
+            <div class="relative z-10 flex h-9 w-9 min-w-[36px] items-center justify-center rounded-full border border-white dark:border-boxdark shadow-premium transition-all duration-300 group-hover:scale-110 group-hover:rotate-12" style="background:${iconBg};">
+                <i class="fas fa-${c.icon} text-sm" style="color:${c.fg};"></i>
             </div>
-            <div class="flex-1 pb-2">
-                <div class="flex items-center justify-between mb-1">
-                    <h6 class="text-sm font-black text-gray-800 dark:text-gray-200 line-clamp-1">${item.sekolah}</h6>
-                    <span class="text-[11px] font-bold text-gray-400 ml-2 whitespace-nowrap">${item.waktu}</span>
-                </div>
-                <div class="flex items-center gap-1.5">
-                    <span class="inline-block h-2 w-2 rounded-full" style="background:${c.fg}"></span>
-                    <span class="text-xs font-bold text-gray-500 uppercase tracking-widest">${item.status}</span>
+            
+            <!-- Content Area -->
+            <div class="flex-1 min-w-0">
+                <div class="flex flex-col gap-1.5">
+                    <h6 class="text-sm font-black text-gray-800 dark:text-gray-200 leading-tight">
+                        ${item.sekolah}
+                    </h6>
+                    
+                    <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
+                        <!-- Status Pill -->
+                        <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest border border-black/5 dark:border-white/5 transition-all" 
+                             style="background:${iconBg}; color:${c.fg};">
+                            <i class="fas fa-circle text-[6px]"></i>
+                            ${item.status}
+                        </div>
+                        
+                        <!-- Time Label -->
+                        <div class="flex items-center gap-1 text-[11px] font-bold text-gray-400">
+                            <i class="far fa-clock opacity-60"></i>
+                            ${item.waktu}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
