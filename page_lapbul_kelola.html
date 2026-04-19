@@ -2,12 +2,8 @@
     
   <!-- PAGE HEADER (SULTAN SYNC) -->
   <div class="mb-2 flex flex-col">
-    <h1 class="sultan-title-sync text-black dark:text-white">
-      Kelola Data Laporan Bulan
-    </h1>
-    <p class="sk-section-title mt-1">
-      Manajemen, Validasi & Pengarsipan Laporan Bulanan Satuan Pendidikan
-    </p>
+        <h1 class="text-2xl font-black text-black dark:text-white tracking-tight">Kelola Data Laporan Bulan</h1>
+        <p class="text-[11px] font-bold text-primary/60 uppercase tracking-[0.2em] mt-1">Pengelolaan & Validasi Laporan Bulanan Satuan Pendidikan</p>
   </div>
 
   <!-- CUSTOM EXECUTIVE STYLES (SULTAN v4.1) -->
@@ -218,8 +214,11 @@
               </button>
           </div>
 
-          <button type="button" id="lapbulkelola_btnTambah" class="sk-btn sk-btn-primary w-full lg:w-auto !h-10 !bg-[#85144b] hover:!bg-[#6b103d] disabled:opacity-50" disabled>
-              <i class="fas fa-plus mr-2"></i> TAMBAH DATA
+          <button type="button" id="lapbulkelola_btnTambah" class="sultan-btn bg-[#4e73df] hover:bg-[#2e59d9] !text-white !p-0 h-[45px] w-[180px] flex items-center justify-center gap-2 group shadow-lg shadow-blue-500/20 disabled:opacity-50" disabled>
+              <div class="h-8 w-8 rounded-lg bg-white/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <i class="fas fa-plus text-sm"></i>
+              </div>
+              <span class="text-[11px] font-black uppercase tracking-widest">TAMBAH DATA</span>
           </button>
       </div>
   </div>
@@ -1204,7 +1203,7 @@ function lapbulkelola_renderTabel(data) {
                    "<'row'<'col-sm-12'<'overflow-x-auto sultan-scroll !border-none'tr>>>" +
                    "<'flex flex-col md:flex-row justify-between items-center gap-4 px-6 py-4'<'text-sm font-bold text-gray-500 sultan-dt-info'i><'pagination-wrapper'p>>",
             "columnDefs": [ 
-                { "targets": 0, "className": "bg-white dark:bg-boxdark align-middle text-center", "style": "width: 120px; min-width: 120px;" }, 
+                { "targets": 0, "className": "align-middle text-center", "style": "width: 120px; min-width: 120px;" }, 
                 { "targets": 1, "className": "text-left align-middle" },
                 { "targets": [2,3,4,5,6], "className": "text-center align-middle" }
             ],
@@ -1262,7 +1261,8 @@ function lapbulkelola_buildBadgeStatus(status, ket) {
         bgColor = 'bg-rose-500/10'; textColor = 'text-rose-600'; icon = 'times-circle'; label = "DITOLAK"; 
     } 
     
-    var badgeHtml = '<div class="inline-flex items-center gap-1.5 ' + bgColor + ' ' + textColor + ' px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-wider shadow-sm border border-transparent"><i class="fas fa-' + icon + '"></i> ' + label + '</div>';
+    var baseCls = "inline-flex items-center rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-widest transition-all";
+    var badgeHtml = '<span class="' + baseCls + ' ' + bgColor + ' ' + textColor + ' shadow-sm border border-transparent"><i class="fas fa-' + icon + ' mr-1.5"></i> ' + label + '</span>';
 
     if (ket && ket.trim().length > 2 && (s.includes('revisi') || s.includes('tolak'))) {
         var safeKet = lapbulkelola_escapeJs(ket);
