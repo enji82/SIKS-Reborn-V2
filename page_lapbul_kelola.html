@@ -350,59 +350,8 @@
     </div>
 </div>
 
-<!-- 3. MODAL VERIFIKASI (ADMIN SUITE) -->
+<!-- 3. MODAL VERIFIKASI (SULTAN SIDE-BY-SIDE REVIEW) -->
 <div class="modal fade sk-overlay" id="lapbulkelola_modalVerifikasi" tabindex="-1" role="dialog" data-backdrop="static">
-    <div class="modal-dialog modal-xl sk-modal-top" role="document">
-        <div class="modal-content sk-modal h-[90vh]">
-            <div class="sk-modal-header !bg-emerald px-6 py-4 flex items-center justify-between flex-shrink-0">
-                <div class="flex items-center gap-3">
-                    <div class="h-10 w-10 flex items-center justify-center rounded-xl bg-white/20 text-white">
-                        <i class="fas fa-clipboard-check text-xl"></i>
-                    </div>
-                    <div class="flex flex-col">
-                        <h5 class="text-sm font-black text-white uppercase tracking-widest">Verifikasi Laporan</h5>
-                        <p class="text-[10px] text-white/70 font-bold uppercase">Panel Keputusan & Validasi Dokumen Digital</p>
-                    </div>
-                </div>
-                <button type="button" class="h-10 w-10 flex items-center justify-center rounded-xl hover:bg-white/10 text-white transition-colors" data-dismiss="modal">
-                    <i class="fas fa-times text-lg"></i>
-                </button>
-            </div>
-            <form id="lapbulkelola_formVerifLapbul" class="h-full flex flex-col p-0 m-0">
-                <div class="modal-body p-0 flex-grow grid grid-cols-1 lg:grid-cols-12 overflow-hidden">
-                    <!-- Left: PDF Preview -->
-                    <div class="lg:col-span-7 bg-boxdark relative flex items-center justify-center border-r border-gray-100 dark:border-gray-800">
-                        <iframe id="lapbulkelola_frameFileVerif" class="d-none w-full h-full border-0" src=""></iframe>
-                        <div id="lapbulkelola_loaderPreview" class="flex flex-col items-center">
-                            <div class="h-12 w-12 border-4 border-white/10 border-t-white animate-spin rounded-full"></div>
-                            <p class="text-[10px] font-black text-white/50 uppercase tracking-widest mt-4">Memuat Dokumen...</p>
-                        </div>
-                        <div id="lapbulkelola_noFileVerif" class="d-none text-center">
-                            <i class="far fa-file-pdf text-4xl text-white/20 mb-4"></i>
-                            <p class="text-xs text-white/40 font-bold uppercase">Dokumen Tidak Tersedia</p>
-                        </div>
-                    </div>
-                    <!-- Right: Decision Form -->
-                    <div class="lg:col-span-5 bg-white dark:bg-boxdark flex flex-col overflow-y-auto">
-                        <div class="p-6 flex-grow">
-                            <div class="flex items-center gap-2 mb-6">
-                                <div class="h-8 w-8 flex items-center justify-center rounded-lg bg-emerald/10 text-emerald">
-                                    <i class="fas fa-info-circle"></i>
-                                </div>
-                                <h6 class="text-xs font-black text-black dark:text-white uppercase tracking-wider">Identitas Laporan</h6>
-                            </div>
-                            
-                            <div class="space-y-4 mb-8">
-                                <div class="flex flex-col gap-1">
-                                    <label class="text-[10px] font-black text-gray-400 uppercase">Unit Kerja</label>
-                                    <p class="text-xs font-black text-black dark:text-white" id="lapbulkelola_vNamaSekolah">-</p>
-                                </div>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div class="flex flex-col gap-1">
-                                        <label class="text-[10px] font-black text-gray-400 uppercase">NPSN</label>
-                                        <p class="text-xs font-bold text-gray-600 dark:text-gray-400" id="lapbulkelola_vNpsn">-</p>
-                                    </div>
-                                    <div class="flex flex-col gap-1">
     <div class="modal-dialog modal-dialog-full overflow-hidden p-2 md:p-4" role="document">
         <div class="modal-content sk-modal h-full flex flex-col md:flex-row overflow-hidden border border-white/10 shadow-2xl">
             
@@ -906,11 +855,15 @@ $(document).ready(function() {
     $(document).off('click', '.btn-aksi-preview').on('click', '.btn-aksi-preview', function(){ lapbulkelola_previewPDF(lapbulkelola_URL_FILE_LAMA); });
     $(document).off('click', '.btn-preview-dokumen').on('click', '.btn-preview-dokumen', function(){ lapbulkelola_previewPDF($(this).data('url')); });
     $(document).off('click', '.btn-aksi-edit').on('click', '.btn-aksi-edit', function(){ lapbulkelola_editLapbul($(this).data('source'), String($(this).data('id'))); });
-    $(document).off('click', '.btn-aksi-hapus').on('click', '.btn-aksi-hapus', function(){ lapbulkelola_hapusLapbul($(this).data('source'), String($(this).data('id')), $(this).data('nama')); });
+    $(document).off('click', '.btn-aksi-hapus').on('click', '.btn-aksi-hapus', function(){ lapbulkelola_hapusLapbul($(this).data('source'), String($(this).data('id')), $(this).data('nama'), $(this).data('bulan'), $(this).data('tahun')); });
     $(document).off('click', '.btn-aksi-verif').on('click', '.btn-aksi-verif', function(){ lapbulkelola_verifikasiLapbul($(this).data('source'), String($(this).data('id')), $(this).data('nama'), $(this).data('bulan'), $(this).data('tahun'), $(this).data('file'), $(this).data('npsn'), $(this).data('status')); });
-    $(document).off('change', '#lapbulkelola_selStatusVerif').on('change', '#lapbulkelola_selStatusVerif', function() {
+    $(document).off('change', '#lapbulkelola_selectVerifStatus').on('change', '#lapbulkelola_selectVerifStatus', function() {
         var v = $(this).val();
-        if (v === "Revisi" || v === "Ditolak") { $('#lapbulkelola_verifWajibCatatan').removeClass('d-none'); } else { $('#lapbulkelola_verifWajibCatatan').addClass('d-none'); }
+        if (v === "Revisi" || v === "Ditolak") { 
+            $('#lapbulkelola_inputVerifCatatan').addClass('!border-rose-500').attr('placeholder', 'WAJIB ISI ALASAN REVISI/PENOLAKAN...');
+        } else { 
+            $('#lapbulkelola_inputVerifCatatan').removeClass('!border-rose-500').attr('placeholder', 'Berikan alasan atau instruksi revisi...');
+        }
     });
     $(document).off('click', '.btn-baca-catatan').on('click', '.btn-baca-catatan', function() { lapbulkelola_lihatCatatanSultan($(this).data('pesan')); });
     
@@ -920,7 +873,7 @@ $(document).ready(function() {
 
     $(document).off('submit', '#lapbulkelola_formSD').on('submit', '#lapbulkelola_formSD', lapbulkelola_submitFormSD);
     $(document).off('submit', '#lapbulkelola_formPAUD').on('submit', '#lapbulkelola_formPAUD', lapbulkelola_submitFormPAUD);
-    $(document).off('submit', '#lapbulkelola_formVerifLapbul').on('submit', '#lapbulkelola_formVerifLapbul', lapbulkelola_submitVerifikasi);
+    $(document).off('submit', '#lapbulkelola_formVerif').on('submit', '#lapbulkelola_formVerif', lapbulkelola_submitVerifikasi);
     $(document).off('click', '#lapbulkelola_btnEksekusiHapus').on('click', '#lapbulkelola_btnEksekusiHapus', lapbulkelola_submitHapus);
 
     // RESET MODAL
@@ -2131,9 +2084,11 @@ function lapbulkelola_populateFormPAUD(data) {
 // =================================================================
 // 8. HAPUS & VERIFIKASI
 // =================================================================
-function lapbulkelola_hapusLapbul(source, rowId, namaSekolah) {
+function lapbulkelola_hapusLapbul(source, rowId, namaSekolah, bulan, tahun) {
     LAPBULKELOLA_V_TARGET_ID = rowId; LAPBULKELOLA_V_TARGET_SOURCE = source;
-    $('#lapbulkelola_lblHapusSekolah').text(namaSekolah); $('#lapbulkelola_inputKodeHapus').val(""); 
+    $('#lapbulkelola_lblHapusUnit').text(namaSekolah); 
+    $('#lapbulkelola_lblHapusPeriode').text(bulan + " " + tahun);
+    $('#lapbulkelola_inputKodeHapus').val(""); 
     $('#lapbulkelola_modalHapus').modal('show');
     setTimeout(function() { $('#lapbulkelola_inputKodeHapus').focus(); }, 500);
 }
@@ -2155,51 +2110,53 @@ function lapbulkelola_submitHapus() {
         } else { Sultan.notif.gagal(res.message); $('#lapbulkelola_inputKodeHapus').addClass('is-invalid');}
     }).withFailureHandler(function(err) {
         btn.prop('disabled', false).html(txt); Sultan.notif.gagal("Koneksi gagal: " + err.message);
-    }).processDeleteData(LAPBULKELOLA_V_TARGET_SOURCE, LAPBULKELOLA_V_TARGET_ID, inputUser, LAPBULKELOLA_USER_AKTIF);
+    }).processDeleteData(LAPBULKELOLA_V_TARGET_SOURCE, LAPBULKELOLA_V_TARGET_ID, inputUser, Sultan.user.getNama());
 }
 
 function lapbulkelola_verifikasiLapbul(source, rowId, namaSekolah, bulan, tahun, fileUrl, npsn, statusAwal) {
     LAPBULKELOLA_V_TARGET_ID = rowId; LAPBULKELOLA_V_TARGET_SOURCE = source;
-    $('#lapbulkelola_vNamaSekolah').text(namaSekolah); $('#lapbulkelola_vBulan').text(bulan); $('#lapbulkelola_vTahun').text(tahun);
-    $('#lapbulkelola_vNpsn').text(npsn || '-'); $('#lapbulkelola_vStatusAwal').text(statusAwal || 'Diproses');
-    $('#lapbulkelola_selStatusVerif, #lapbulkelola_txtKetVerif').val("");
-    $('#lapbulkelola_verifWajibCatatan').addClass('d-none');
+    $('#lapbulkelola_lblVerifUnit').text(namaSekolah); 
+    $('#lapbulkelola_lblVerifPeriode').text(bulan + " " + tahun);
+    $('#lapbulkelola_lblVerifStatus').text(statusAwal || 'Diproses');
     
-    $('#lapbulkelola_loaderPreview').removeClass('d-none'); $('#lapbulkelola_frameFileVerif, #lapbulkelola_noFileVerif').addClass('d-none');
+    $('#lapbulkelola_selectVerifStatus, #lapbulkelola_inputVerifCatatan').val("");
+    $('#lapbulkelola_loadingVerifPDF').removeClass('d-none'); 
+    $('#lapbulkelola_framePreviewVerif').addClass('d-none');
 
     if (fileUrl && fileUrl.length > 5 && fileUrl.includes('http')) {
-        var previewLink = fileUrl.replace('/view', '/preview');
-        $('#lapbulkelola_frameFileVerif').attr('src', previewLink);
-        $('#lapbulkelola_frameFileVerif').off('load').on('load', function() { $('#lapbulkelola_loaderPreview').addClass('d-none'); $(this).removeClass('d-none'); });
-        setTimeout(function(){ $('#lapbulkelola_loaderPreview').addClass('d-none'); $('#lapbulkelola_frameFileVerif').removeClass('d-none'); }, 3500); // BAB V Fallback
+        var previewLink = lapbulkelola_convertDriveUrl(fileUrl);
+        $('#lapbulkelola_framePreviewVerif').attr('src', previewLink);
+        $('#lapbulkelola_framePreviewVerif').off('load').on('load', function() { 
+            $('#lapbulkelola_loadingVerifPDF').addClass('d-none'); 
+            $(this).removeClass('d-none'); 
+        });
+        setTimeout(function(){ $('#lapbulkelola_loadingVerifPDF').addClass('d-none'); $('#lapbulkelola_framePreviewVerif').removeClass('d-none'); }, 5000);
     } else {
-        $('#lapbulkelola_loaderPreview').addClass('d-none'); $('#lapbulkelola_noFileVerif').removeClass('d-none');
+        $('#lapbulkelola_loadingVerifPDF').addClass('d-none');
     }
     $('#lapbulkelola_modalVerifikasi').modal('show');
 }
 
 function lapbulkelola_submitVerifikasi(e) {
-    e.preventDefault();
-    var status = $('#lapbulkelola_selStatusVerif').val(); var ket = $('#lapbulkelola_txtKetVerif').val();
-    if (!status) { Sultan.notif.gagal("Harap pilih Status Keputusan!"); return; }
+    if (e) e.preventDefault();
+    var status = $('#lapbulkelola_selectVerifStatus').val(); 
+    var ket = $('#lapbulkelola_inputVerifCatatan').val();
+    
+    if (!status) { Sultan.notif.warning("Harap pilih Status Keputusan!"); return; }
     if ((status === 'Revisi' || status === 'Ditolak') && ket.length < 5) { Sultan.notif.warning("Keterangan wajib diisi minimal 5 karakter."); return; }
 
     var btn = $('#lapbulkelola_btnSimpanVerif'); var txt = btn.html();
-    btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin mr-1"></i> Menyimpan...');
+    btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin mr-1"></i> Memproses...');
 
     google.script.run.withSuccessHandler(function(res) {
         btn.prop('disabled', false).html(txt);
         if (res.success) {
             $('#lapbulkelola_modalVerifikasi').modal('hide'); Sultan.notif.sukses(res.message);
-            if(res.newData) {
-                var c = LAPBULKELOLA_CACHE_DATA.find(r => r.rowId == LAPBULKELOLA_V_TARGET_ID && r.source == LAPBULKELOLA_V_TARGET_SOURCE);
-                if(c) { c.statusData = res.newData.status; c.keterangan = res.newData.ket; c.tglVerif = res.newData.tgl; c.verifikator = res.newData.user; }
-            } else { LAPBULKELOLA_CACHE_DATA = []; }
             lapbulkelola_prosesCariData(false); 
         } else { Sultan.notif.gagal(res.message); }
     }).withFailureHandler(function(err) {
         btn.prop('disabled', false).html(txt); Sultan.notif.gagal("Koneksi gagal: " + err.message);
-    }).processVerifikasiLapbul(LAPBULKELOLA_V_TARGET_SOURCE, LAPBULKELOLA_V_TARGET_ID, status, ket, LAPBULKELOLA_USER_AKTIF);
+    }).processVerifikasiLapbul(LAPBULKELOLA_V_TARGET_SOURCE, LAPBULKELOLA_V_TARGET_ID, status, ket, Sultan.user.getNama());
 }
 
 function lapbulkelola_renderSkeleton() {
