@@ -84,17 +84,21 @@
     <div class="sk-card !p-0 overflow-hidden">
         <!-- CUSTOM DATATABLES UTILITIES STYLING (SULTAN SYNC) -->
         <style>
+            #statussk_tableState .dataTables_wrapper label,
             #statussk_tableState .dataTables_wrapper .dataTables_length,
-            #statussk_tableState .dataTables_wrapper .dataTables_filter {
+            #statussk_tableState .dataTables_wrapper .dataTables_filter,
+            #statussk_tableState .dataTables_wrapper .dataTables_info {
                 padding: 1.25rem 1.5rem 0.5rem 1.5rem;
-                font-size: 14px; 
-                font-weight: 700;
-                letter-spacing: normal;
-                color: #64748b; /* Muted Grey Sync */
+                font-size: 14px !important; 
+                font-weight: 700 !important;
+                letter-spacing: normal !important;
+                color: #64748b !important; /* Muted Grey Sync */
             }
+            .dark #statussk_tableState .dataTables_wrapper label,
             .dark #statussk_tableState .dataTables_wrapper .dataTables_length,
-            .dark #statussk_tableState .dataTables_wrapper .dataTables_filter {
-                color: #94A3B8;
+            .dark #statussk_tableState .dataTables_wrapper .dataTables_filter,
+            .dark #statussk_tableState .dataTables_wrapper .dataTables_info {
+                color: #94A3B8 !important;
             }
             #statussk_tableState .dataTables_wrapper .dataTables_length select,
             #statussk_tableState .dataTables_wrapper .dataTables_filter input {
@@ -129,7 +133,8 @@
                 box-shadow: 0 0 0 3px rgba(60, 80, 224, 0.1);
             }
             /* Memastikan tombol paginasi juga sinkron 14px */
-            #statussk_tableState .dataTables_wrapper .pagination-wrapper .paginate_button {
+            #statussk_tableState .dataTables_wrapper .pagination-wrapper .paginate_button,
+            #statussk_tableState .dataTables_wrapper .sultan-dt-info {
                 font-size: 14px !important;
                 font-weight: 700 !important;
                 height: 38px !important;
@@ -304,7 +309,7 @@
         var headerHtml = '<tr class="sk-bg-section text-center border-b border-gray-100 dark:border-white/5">';
 
         // Kolom UNIT KERJA (Warna Biru sesuai gambar)
-        headerHtml += '<th class="py-3.5 px-6 font-black uppercase text-primary text-left sticky left-0 z-[30] sk-bg-section shadow-[2px_0_5px_rgba(0,0,0,0.05)] border-r border-gray-100 dark:border-white/10 text-xs tracking-wider">UNIT KERJA</th>';
+        headerHtml += '<th class="py-3.5 px-6 font-black uppercase text-primary text-left sticky left-0 z-[30] sk-bg-section shadow-[2px_0_5px_rgba(0,0,0,0.05)] border-r border-gray-100 dark:border-white/10 text-sm tracking-wider">UNIT KERJA</th>';
 
         if (STATUSSK_RAW_HEADER && STATUSSK_RAW_HEADER.length >= 2) {
             var hRow1 = STATUSSK_RAW_HEADER[0];
@@ -332,7 +337,7 @@
             // Fallback
             for (var i = 1; i < sampleRow.length; i++) {
                 var label = i % 2 !== 0 ? "SEM 1" : "SEM 2";
-                headerHtml += '<th class="py-3.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] min-w-[80px] border-l border-gray-100 dark:border-white/5 text-xs whitespace-nowrap">' + label + '</th>';
+                headerHtml += '<th class="py-3.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] min-w-[80px] border-l border-gray-100 dark:border-white/5 text-sm whitespace-nowrap">' + label + '</th>';
             }
         }
         headerHtml += '</tr>';
@@ -370,7 +375,7 @@
             "lengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
             "dom": "<'flex flex-col md:flex-row justify-between items-center bg-transparent border-b border-gray-100 dark:border-white/5'lf>" + 
                 "<'row'<'col-sm-12'<'overflow-x-auto sultan-scroll !border-none'tr>>>" +
-                "<'flex flex-col md:flex-row justify-between items-center gap-4 mt-6 px-6 pb-6'<'text-sm font-bold text-gray-500'i><'pagination-wrapper'p>>",
+                "<'flex flex-col md:flex-row justify-between items-center gap-4 mt-6 px-6 pb-6'<'text-sm font-bold text-gray-500 sultan-dt-info'i><'pagination-wrapper'p>>",
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json",
                 "emptyTable": "Belum ada data progres pengiriman.",
