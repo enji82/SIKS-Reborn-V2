@@ -539,6 +539,9 @@
     var val = $('#dashsk_inputCariBelumModal').val().toLowerCase();
     $('#dashsk_listBelumBodyModal .sk-belum-item').each(function () {
       $(this).toggle($(this).text().toLowerCase().indexOf(val) > -1);
+    });
+  }
+
   function dashsk_showModalBelum() {
     var th = $('#dashsk_filterTahun').val() || "Semua Tahun";
     var sm = $('#dashsk_filterSemester').val() || "Semua Semester";
