@@ -420,11 +420,24 @@ function getSiabaStatusData() {
     // Potong 2 baris pertama, ambil dari indeks 2 (baris ke-3) sampai habis
     var rows = rawData.slice(2); 
 
+    // FETCH MASTER NPSN (Optimized Lookup)
+    var npsnMap = {};
+    try {
+      var dbSs = SpreadsheetApp.openById("1wiDKez4rL5UYnpP2-OZjYowvmt1nRx-fIMy9trJlhBA");
+      var dbSheet = dbSs.getSheetByName("Data_Sekolah");
+      var dbData = dbSheet.getRange(2, 1, dbSheet.getLastRow() - 1, 3).getDisplayValues();
+      dbData.forEach(function(r) { npsnMap[String(r[2]).trim().toUpperCase()] = r[0]; });
+    } catch (eMaster) { Logger.log("Gagal ambil Master NPSN: " + eMaster); }
+
     // Ambil list nama sekolah dari Kolom 1 (Index 0) untuk dropdown filter
     var listSekolah = [];
     rows.forEach(r => {
       if(r[0] && r[0] !== "") {
-         listSekolah.push(r[0]);
+         var rawName = r[0];
+         listSekolah.push(rawName);
+         // Injeksi NPSN ke dalam string Nama Sekolah (dengan pemisah pipe)
+         var npsn = npsnMap[String(rawName).trim().toUpperCase()] || "-";
+         r[0] = rawName + "|" + npsn;
       }
     });
     
