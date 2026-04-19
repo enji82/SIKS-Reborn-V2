@@ -6,7 +6,7 @@
       </div>
       <div class="col-sm-4 text-right">
         <button type="button" id="monitoring_btnRefresh" class="btn btn-sm btn-white border shadow-sm text-secondary font-weight-bold px-3 rounded-pill" title="Segarkan Dasbor">
-            <i class="fas fa-sync-alt text-maroon mr-1"></i> Refresh
+            <i class="fab fa-gg text-maroon mr-1"></i> Refresh
         </button>
       </div>
       <div class="col-sm-12"><hr class="style-sultan-solid mt-2"></div>
@@ -227,7 +227,7 @@ function monitoring_checkDone() {
     MONITORING_PENDING_REQ--;
     if (MONITORING_PENDING_REQ <= 0) {
         MONITORING_PENDING_REQ = 0;
-        $('#monitoring_btnRefresh').prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon mr-1"></i> Refresh');
+        $('#monitoring_btnRefresh').prop('disabled', false).html('<i class="fab fa-gg text-maroon mr-1"></i> Refresh');
     }
 }
 

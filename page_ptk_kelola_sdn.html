@@ -60,7 +60,7 @@
                 <div class="divider-vertical d-none d-md-block"></div>
 
                 <button type="button" id="ptksdn_btnSync" class="btn bg-white border shadow-sm text-secondary" title="Segarkan Data Server" disabled>
-                    <i class="fas fa-sync-alt text-maroon"></i>
+                    <i class="fab fa-gg text-maroon"></i>
                 </button>
 
                 <div class="ml-auto d-none d-md-block"></div>
@@ -405,7 +405,7 @@ function ptksdn_updateTabelKosong(htmlContent) {
 }
 
 function ptksdn_initDataTables(isEmpty = false) {
-    var msg = isEmpty ? '<div class="p-4 text-center text-muted font-weight-bold"><i class="fas fa-spinner fa-spin mr-2 text-maroon"></i>Mempersiapkan Akses...</div>' : '<div class="p-4 text-center text-muted"><i class="fas fa-inbox fa-3x mb-3 opacity-50"></i><br>Silakan klik tombol <i class="fas fa-sync-alt"></i> untuk memuat data.</div>';
+    var msg = isEmpty ? '<div class="p-4 text-center text-muted font-weight-bold"><i class="fas fa-spinner fa-spin mr-2 text-maroon"></i>Mempersiapkan Akses...</div>' : '<div class="p-4 text-center text-muted"><i class="fas fa-inbox fa-3x mb-3 opacity-50"></i><br>Silakan klik tombol <i class="fab fa-gg"></i> untuk memuat data.</div>';
     
     if ($.fn.DataTable.isDataTable('#ptksdn_tabelUtama')) { $('#ptksdn_tabelUtama').DataTable().clear().destroy(); }
 
@@ -467,7 +467,7 @@ function ptksdn_tarikDataServer() {
     $('#ptksdn_loadingState').show();
 
     google.script.run.withSuccessHandler(function(jsonStr) {
-        btn.prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon"></i>');
+        btn.prop('disabled', false).html('<i class="fab fa-gg text-maroon"></i>');
         try {
             var res = JSON.parse(jsonStr);
             if (res.error) { ptksdn_updateTabelKosong('<div class="text-danger font-weight-bold py-3"><i class="fas fa-exclamation-triangle fa-2x mb-3"></i><br>' + ptksdn_escapeHtml(res.error) + '</div>'); return; }
@@ -479,7 +479,7 @@ function ptksdn_tarikDataServer() {
             $('#ptksdn_tableState').show();
         } catch(e) { ptksdn_updateTabelKosong('<div class="text-danger">Format JSON gagal diparsing.</div>'); }
     }).withFailureHandler(function(e){
-        btn.prop('disabled', false).html('<i class="fas fa-sync-alt text-danger"></i>');
+        btn.prop('disabled', false).html('<i class="fab fa-gg text-danger"></i>');
         ptksdn_updateTabelKosong('<div class="p-4 text-center text-danger font-weight-bold"><i class="fas fa-exclamation-triangle mr-2"></i>Koneksi Server Terputus.</div>');
     }).getDataPTKSD("", ""); 
 }

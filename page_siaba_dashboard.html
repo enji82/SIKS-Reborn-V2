@@ -120,7 +120,7 @@
     </div>
     <div class="border-t border-stroke dark:border-strokedark pt-4 mt-2 mb-2">
          <button type="button" id="dashsiaba_btnRefreshBelumLengkap" class="flex w-full justify-center rounded border border-danger text-danger hover:bg-danger hover:text-white p-2 font-medium transition cursor-pointer">
-            <i class="fas fa-sync-alt mr-2 mt-1"></i> Refresh Data
+            <i class="fab fa-gg mr-2 mt-1"></i> Refresh Data
          </button>
     </div>
   </div>
@@ -401,7 +401,7 @@
 
         google.script.run
             .withSuccessHandler(function(res) {
-                $('#dashsiaba_btnRefreshBelumLengkap').prop('disabled', false).html('<i class="fas fa-sync-alt mr-1"></i> Refresh Data');
+                $('#dashsiaba_btnRefreshBelumLengkap').prop('disabled', false).html('<i class="fab fa-gg mr-1"></i> Refresh Data');
                 var data = JSON.parse(res);
                 
                 if (data.error) {
@@ -452,7 +452,7 @@
                 }
             })
             .withFailureHandler(function(e) {
-                $('#dashsiaba_btnRefreshBelumLengkap').prop('disabled', false).html('<i class="fas fa-sync-alt mr-1"></i> Refresh Data');
+                $('#dashsiaba_btnRefreshBelumLengkap').prop('disabled', false).html('<i class="fab fa-gg mr-1"></i> Refresh Data');
                 tbody.html('<tr><td colspan="2" class="text-center text-danger py-10 font-bold">' + dashsiaba_escapeHtml(e.message) + '</td></tr>');
             })
             .getSiabaTidakData(th, bl, "SEMUA");

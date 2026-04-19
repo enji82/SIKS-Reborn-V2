@@ -63,7 +63,7 @@
                 <div class="divider-vertical d-none d-md-block"></div>
 
                 <button type="button" id="sdagama_btnRefresh" class="btn bg-white border shadow-sm text-secondary" title="Segarkan Data dari Server">
-                    <i class="fas fa-sync-alt text-maroon"></i>
+                    <i class="fab fa-gg text-maroon"></i>
                 </button>
 
                 <div class="ml-auto d-none d-md-block"></div>
@@ -245,7 +245,7 @@ function sdagama_tarikDataServer() {
     }
 
     google.script.run.withSuccessHandler(function(dataArray) {
-        btn.prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon"></i>');
+        btn.prop('disabled', false).html('<i class="fab fa-gg text-maroon"></i>');
         if (!Array.isArray(dataArray)) {
             $('#sdagama_loadingText').html('<span class="text-danger"><i class="fas fa-times-circle mb-2"></i><br>Gagal memproses struktur JSON Server.</span>');
             return;
@@ -274,7 +274,7 @@ function sdagama_tarikDataServer() {
 
         } catch (e) { $('#sdagama_loadingText').html('<span class="text-danger"><i class="fas fa-exclamation-triangle mb-2"></i><br>Gagal merakit tabel: ' + sdagama_escapeHtml(e.message) + '</span>'); }
     }).withFailureHandler(function(e) {
-        btn.prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon"></i>');
+        btn.prop('disabled', false).html('<i class="fab fa-gg text-maroon"></i>');
         $('#sdagama_loadingText').html('<span class="text-danger"><i class="fas fa-wifi mb-2"></i><br>Koneksi Server Terputus.</span>');
     }).getDataMuridSDAgama(); 
 }

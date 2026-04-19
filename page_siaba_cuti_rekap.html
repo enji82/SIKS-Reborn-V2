@@ -28,7 +28,7 @@
               <div class="mt-2 pt-2 border-top small text-muted">
                 <ul class="mb-2 pl-3 text-justify">
                   <li>Halaman ini menampilkan rekapitulasi jumlah cuti yang sudah diambil.</li>
-                  <li>Pilih <b>Tahun</b> lalu klik tombol Ikon <b><i class="fas fa-sync-alt"></i></b> untuk memuat ulang data dari server.</li>
+                  <li>Pilih <b>Tahun</b> lalu klik tombol Ikon <b><i class="fab fa-gg"></i></b> untuk memuat ulang data dari server.</li>
                   <li><b>Ajuan</b> merupakan frekuensi pengajuan dan <b>Hari</b> merupakan total jumlah hari yang diambil.</li>
                   <li>Singkatan: <b>CT</b> (Tahunan), <b>CS</b> (Sakit), <b>CAP</b> (Alasan Penting), <b>CM</b> (Melahirkan), <b>CB</b> (Besar), <b>CLTN</b> (Di Luar Tanggungan Negara).</li>
                 </ul>
@@ -53,7 +53,7 @@
                 <div class="divider-vertical d-none d-md-block"></div>
 
                 <button type="button" id="rekapcuti_btnRefresh" class="btn bg-white border shadow-sm text-secondary" title="Segarkan Data dari Server">
-                    <i class="fas fa-sync-alt text-maroon"></i>
+                    <i class="fab fa-gg text-maroon"></i>
                 </button>
 
             </div>
@@ -233,7 +233,7 @@ function rekapcuti_tarikDataServer() {
     }
 
     google.script.run.withSuccessHandler(function(jsonStr) {
-        btn.prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon"></i>');
+        btn.prop('disabled', false).html('<i class="fab fa-gg text-maroon"></i>');
         
         var res;
         try {
@@ -261,7 +261,7 @@ function rekapcuti_tarikDataServer() {
         }
 
     }).withFailureHandler(function(e) {
-        btn.prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon"></i>');
+        btn.prop('disabled', false).html('<i class="fab fa-gg text-maroon"></i>');
         $('#rekapcuti_loadingText').html('<span class="text-danger"><i class="fas fa-wifi mb-2"></i><br>Koneksi Terputus.</span>');
     }).getRekapData(sheetId);
 }

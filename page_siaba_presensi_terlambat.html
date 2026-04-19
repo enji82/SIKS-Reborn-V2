@@ -32,7 +32,7 @@
         <div class="hidden sm:block h-8 w-px bg-stroke dark:bg-strokedark mx-1"></div>
 
         <button type="button" id="ta_btnRefresh" class="flex items-center justify-center rounded border border-stroke dark:border-strokedark hover:bg-gray-2 dark:hover:bg-meta-4 py-2.5 px-4 text-center transition disabled:opacity-50" title="Segarkan Data dari Server" disabled>
-            <i class="fas fa-sync-alt text-primary"></i>
+            <i class="fab fa-gg text-primary"></i>
         </button>
     </div>
   </div>
@@ -199,7 +199,7 @@ function ta_tarikDataServer() {
 
     google.script.run
         .withSuccessHandler(function(res) {
-            btn.prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon"></i>');
+            btn.prop('disabled', false).html('<i class="fab fa-gg text-maroon"></i>');
             if(TA_IS_ADMIN) $('#ta_filterUnit').prop('disabled', false);
             
             var data;
@@ -237,7 +237,7 @@ function ta_tarikDataServer() {
             }
         })
         .withFailureHandler(function(err) {
-            btn.prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon"></i>');
+            btn.prop('disabled', false).html('<i class="fab fa-gg text-maroon"></i>');
             $('#ta_tableState').hide();
             $('#ta_skeletonState').html('<div class="text-center py-5 text-danger"><i class="fas fa-wifi fa-3x mb-3"></i><br><h6>Koneksi Terputus: ' + ta_escapeHtml(err.message) + '</h6></div>');
             $('#ta_skeletonState').show();

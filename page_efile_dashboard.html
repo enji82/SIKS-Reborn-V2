@@ -21,7 +21,7 @@
       </div>
       <div>
         <button type="button" id="efiledash_btnRefresh" class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-stroke bg-white text-body hover:text-primary dark:border-strokedark dark:bg-boxdark shadow-sm">
-            <i class="fas fa-sync-alt"></i>
+            <i class="fab fa-gg"></i>
         </button>
       </div>
     </div>
@@ -248,7 +248,7 @@ function efiledash_loadDataKategori(indexMap) {
 
     google.script.run.withSuccessHandler(function(jsonStr) {
         EFILEDASH_PENDING_REQ = 0;
-        btn.prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon"></i>');
+        btn.prop('disabled', false).html('<i class="fab fa-gg text-maroon"></i>');
         $('#efiledash_filterKategori, #efiledash_filterTahun').prop('disabled', false);
         if(EFILEDASH_IS_ADMIN) $('#efiledash_filterUnit').prop('disabled', false);
         
@@ -284,7 +284,7 @@ function efiledash_loadDataKategori(indexMap) {
         if(EFILEDASH_TABEL_INSTANCE) { setTimeout(function() { EFILEDASH_TABEL_INSTANCE.columns.adjust(); }, 150); }
 
     }).withFailureHandler(function(err) {
-        EFILEDASH_PENDING_REQ = 0; btn.prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon"></i>');
+        EFILEDASH_PENDING_REQ = 0; btn.prop('disabled', false).html('<i class="fab fa-gg text-maroon"></i>');
         $('#efiledash_filterKategori').prop('disabled', false);
         $('#efiledash_loadingText').html('<span class="text-danger"><i class="fas fa-wifi mb-2"></i><br>Koneksi Terputus: ' + efiledash_escapeHtml(err.message) + '</span>');
     }).getEfileDashboardData(mapData.sheetRekap, mapData.sheetLapor); 

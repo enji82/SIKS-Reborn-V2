@@ -64,7 +64,7 @@
                 <div class="divider-vertical d-none d-md-block"></div>
 
                 <button type="button" id="perdin_btnRefresh" class="btn bg-white border shadow-sm text-secondary" title="Segarkan Data dari Server">
-                    <i class="fas fa-sync-alt text-maroon"></i>
+                    <i class="fab fa-gg text-maroon"></i>
                 </button>
 
                 <div class="ml-auto d-none d-md-block"></div>
@@ -493,7 +493,7 @@ function perdin_tarikDataServer() {
 
     google.script.run
         .withSuccessHandler(function(jsonString) {
-            btn.prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon"></i>');
+            btn.prop('disabled', false).html('<i class="fab fa-gg text-maroon"></i>');
             
             var responseData;
             try { responseData = typeof jsonString === 'string' ? JSON.parse(jsonString) : jsonString; } 
@@ -536,7 +536,7 @@ function perdin_tarikDataServer() {
             }
         })
         .withFailureHandler(function(err){ 
-            btn.prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon"></i>');
+            btn.prop('disabled', false).html('<i class="fab fa-gg text-maroon"></i>');
             $('#perdin_loadingText').html('<span class="text-danger"><i class="fas fa-wifi mb-2"></i><br>Koneksi Server Terputus.</span>');
         }).getDaftarDinas(th, "", ""); 
 }
@@ -740,7 +740,7 @@ window.perdin_cekNoSptUnified = function() {
                                 $('#perdin_inputJenisDok').prop('disabled', false).removeClass('bg-light'); 
                                 $('#perdin_inputFile').prop('disabled', false).prop('required', true);     
                                 $('#perdin_reqFileAsterisk').show();
-                                $('#perdin_btnSimpanForm').show().html('<i class="fas fa-sync mr-2"></i> UPDATE DOKUMEN');
+                                $('#perdin_btnSimpanForm').show().html('<i class="fab fa-gg mr-2"></i> UPDATE DOKUMEN');
                                 msgEl.removeClass('text-maroon text-muted text-danger text-success text-info').addClass('text-warning font-weight-bold').html('<i class="fas fa-exclamation-triangle mr-1"></i> SPT Disetujui: Menunggu Dokumen Final PDF.');
                             } else {
                                 perdin_lockFormControls(true, res.data.status); 

@@ -61,7 +61,7 @@
                     <option value="Ditolak">Ditolak</option>
                 </select>
                 <button type="button" id="tugas_btnCari" class="flex h-10 w-10 items-center justify-center rounded-xl sk-bg-section text-gray-500 hover:text-primary transition-all border border-gray-100 dark:border-white/5 shadow-sm active:scale-95" title="Refresh Data">
-                    <i class="fas fa-sync-alt"></i>
+                    <i class="fab fa-gg"></i>
                 </button>
             </div>
             <button type="button" id="tugas_btnTambah" class="sk-btn sk-btn-primary w-full md:w-auto !py-2.5 !px-8 disabled:opacity-50" disabled>
@@ -606,7 +606,7 @@
         var btn = $('#tugas_btnCari');
         var cacheKey = 'tugas_cache_full';
 
-        btn.prop('disabled', true).html('<i class="fas fa-bolt fa-spin text-maroon"></i>');
+        btn.prop('disabled', true).html('<i class="fab fa-gg fa-spin text-maroon"></i>');
 
         // TURBO LOGIC: Load from cache first
         var cachedData = sessionStorage.getItem(cacheKey);
@@ -627,7 +627,7 @@
         }
 
         google.script.run.withSuccessHandler(function (dataRes) {
-            btn.prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon"></i>');
+            btn.prop('disabled', false).html('<i class="fab fa-gg text-maroon"></i>');
 
             if (dataRes && !dataRes.error) {
                 var freshDataJSON = JSON.stringify(dataRes);
@@ -679,7 +679,7 @@
                 if (TUGAS_TABEL_INSTANCE) { setTimeout(function () { TUGAS_TABEL_INSTANCE.columns.adjust(); }, 50); }
             }
         }).withFailureHandler(function (e) {
-            btn.prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon"></i>');
+            btn.prop('disabled', false).html('<i class="fab fa-gg text-maroon"></i>');
             if (!TUGAS_CACHE_DATA.length) {
                 $('#tugas_tableState').hide();
                 $('#tugas_loadingState').show();

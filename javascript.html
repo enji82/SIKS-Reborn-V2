@@ -247,7 +247,7 @@ var Sultan = {
         badge: function(status) {
             if (!status || status === "-") return '<i class="fas fa-minus text-black-50 small opacity-25"></i>';
             let s = String(status).trim(), sl = s.toLowerCase();
-            if (sl.includes('revisi') || sl.includes('perbaiki')) return `<div class="btn-icon-sultan btn-icon-sultan-warning badge-pulse-warning" title="${s}"><i class="fas fa-sync-alt"></i></div>`;
+            if (sl.includes('revisi') || sl.includes('perbaiki')) return `<div class="btn-icon-sultan btn-icon-sultan-warning badge-pulse-warning" title="${s}"><i class="fab fa-gg"></i></div>`;
             if (sl.includes('tolak') || sl.includes('salah')) return `<div class="btn-icon-sultan btn-icon-sultan-danger" title="${s}"><i class="fas fa-times"></i></div>`;
             if (sl.includes('verif') || sl.includes('setuju') || sl.includes('valid')) return `<div class="btn-icon-sultan btn-icon-sultan-success" title="${s}"><i class="fas fa-check"></i></div>`;
             if (sl.includes('proses') || sl.includes('tunggu')) return `<div class="btn-icon-sultan btn-icon-sultan-info badge-pulse-warning" title="${s}"><i class="fas fa-spinner fa-spin"></i></div>`;

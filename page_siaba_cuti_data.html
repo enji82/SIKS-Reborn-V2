@@ -64,7 +64,7 @@
                 <div class="divider-vertical d-none d-md-block"></div>
                 
                 <button type="button" id="cuti_btnRefresh" class="btn bg-white border shadow-sm text-secondary" title="Segarkan Data dari Server" disabled>
-                    <i class="fas fa-sync-alt text-maroon"></i>
+                    <i class="fab fa-gg text-maroon"></i>
                 </button>
 
                 <div class="ml-auto d-none d-md-block"></div>
@@ -523,7 +523,7 @@ function cuti_loadDataServer() {
 
     google.script.run
         .withSuccessHandler(function(response) {
-            btn.prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon"></i>');
+            btn.prop('disabled', false).html('<i class="fab fa-gg text-maroon"></i>');
             var resData;
             try { resData = (typeof response === 'string') ? JSON.parse(response) : response; } 
             catch(e) { $('#cuti_loadingText').html('<span class="text-danger"><i class="fas fa-times-circle mb-2"></i><br>Gagal memproses JSON.</span>'); return; }
@@ -565,7 +565,7 @@ function cuti_loadDataServer() {
             }
         })
         .withFailureHandler(function(err) {
-            btn.prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon"></i>');
+            btn.prop('disabled', false).html('<i class="fab fa-gg text-maroon"></i>');
             $('#cuti_loadingText').html('<span class="text-danger"><i class="fas fa-wifi mb-2"></i><br>Koneksi Terputus.</span>');
         }).getDataCuti(thn, "", ""); 
 }

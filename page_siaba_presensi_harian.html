@@ -33,7 +33,7 @@
         <div class="hidden sm:block h-8 w-px bg-stroke dark:bg-strokedark mx-1"></div>
 
         <button type="button" id="harian_btnRefresh" class="flex items-center justify-center rounded border border-stroke dark:border-strokedark hover:bg-gray-2 dark:hover:bg-meta-4 py-2.5 px-4 text-center transition disabled:opacity-50" title="Segarkan Data dari Server" disabled>
-            <i class="fas fa-sync-alt text-primary"></i>
+            <i class="fab fa-gg text-primary"></i>
         </button>
     </div>
   </div>
@@ -217,7 +217,7 @@ function harian_tarikDataServer() {
     var bl = $('#harian_filterBulan').val();
     if(!th || !bl) return;
 
-    $('#harian_btnRefresh').prop('disabled', true).html('<i class="fas fa-sync-alt fa-spin text-maroon"></i>');
+    $('#harian_btnRefresh').prop('disabled', true).html('<i class="fab fa-gg fa-spin text-maroon"></i>');
     
     // Anti-Blink: Show Skeleton on loading
     $('#harian_tableState').hide();
@@ -226,7 +226,7 @@ function harian_tarikDataServer() {
     google.script.run
         .withSuccessHandler(function(res) {
             HARIAN_IS_FETCHING = false;
-            $('#harian_btnRefresh').prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon"></i>');
+            $('#harian_btnRefresh').prop('disabled', false).html('<i class="fab fa-gg text-maroon"></i>');
             
             var data = JSON.parse(res);
             if (data.error) { Sultan.alert('error', 'Gagal', data.error); return; }
@@ -244,7 +244,7 @@ function harian_tarikDataServer() {
         })
         .withFailureHandler(function(err) {
             HARIAN_IS_FETCHING = false;
-            $('#harian_btnRefresh').prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon"></i>');
+            $('#harian_btnRefresh').prop('disabled', false).html('<i class="fab fa-gg text-maroon"></i>');
             Sultan.alert('error', 'Koneksi Error', err.message);
         })
         .getSiabaPresensiHarian(th, bl, "SEMUA");

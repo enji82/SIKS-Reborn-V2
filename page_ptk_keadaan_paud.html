@@ -51,7 +51,7 @@
                 <div class="divider-vertical d-none d-md-block"></div>
 
                 <button type="button" id="keadaanptkpaud_btnSync" class="btn bg-white border shadow-sm text-secondary" title="Segarkan Data dari Server" disabled>
-                    <i class="fas fa-sync-alt text-maroon"></i>
+                    <i class="fab fa-gg text-maroon"></i>
                 </button>
             </div>
         </div>
@@ -170,14 +170,14 @@ function keadaanptkpaud_tarikDataServer() {
 
     google.script.run
         .withSuccessHandler(function(data) {
-            btn.prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon"></i>');
+            btn.prop('disabled', false).html('<i class="fab fa-gg text-maroon"></i>');
             KEADAANPTKPAUD_CACHE_DATA = data || [];
             
             keadaanptkpaud_populateFilterAwal();
             keadaanptkpaud_terapkanFilterLokal();
         })
         .withFailureHandler(function(err) {
-            btn.prop('disabled', false).html('<i class="fas fa-sync-alt text-danger"></i>');
+            btn.prop('disabled', false).html('<i class="fab fa-gg text-danger"></i>');
             $('#keadaanptkpaud_loadingText').html('<span class="text-danger"><i class="fas fa-wifi mb-2"></i><br>Koneksi Terputus: ' + keadaanptkpaud_escapeHtml(err.message) + '</span>');
             Sultan.alert('error', 'Koneksi Terputus', err.message);
         })

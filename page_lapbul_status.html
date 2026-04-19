@@ -30,7 +30,7 @@
                 <ul class="mb-0 pl-3 text-dark mt-2" style="font-size: 14px; line-height: 1.6;">
                     <li>Halaman ini menampilkan rekapitulasi progres pengiriman laporan bulan setiap sekolah.</li>
                     <li>Gunakan filter **Tahun** untuk melihat riwayat laporan tahun sebelumnya.</li>
-                    <li>Klik ikon <span class="badge badge-danger"><i class="fas fa-times"></i></span> atau <span class="badge badge-warning"><i class="fas fa-sync-alt"></i></span> jika tersedia untuk melihat catatan revisi dari admin.</li>
+                    <li>Klik ikon <span class="badge badge-danger"><i class="fas fa-times"></i></span> atau <span class="badge badge-warning"><i class="fab fa-gg"></i></span> jika tersedia untuk melihat catatan revisi dari admin.</li>
                 </ul>
               </div>
             </div>
@@ -59,7 +59,7 @@
                 <div class="divider-vertical d-none d-md-block"></div>
 
                 <button type="button" id="lapbulstatus_btnCari" class="btn bg-white border shadow-sm text-secondary" title="Segarkan Data dari Server" disabled>
-                    <i class="fas fa-sync-alt text-maroon"></i>
+                    <i class="fab fa-gg text-maroon"></i>
                 </button>
             </div>
         </div>
@@ -206,7 +206,7 @@ function lapbulstatus_tarikDataServer() {
     if(!valTahun) return;
 
     var btn = $('#lapbulstatus_btnCari');
-    btn.prop('disabled', true).html('<i class="fas fa-sync-alt fa-spin text-maroon"></i>');
+    btn.prop('disabled', true).html('<i class="fab fa-gg fa-spin text-maroon"></i>');
     
     if (!$.fn.DataTable.isDataTable('#lapbulstatus_tabelUtama')) {
         $('#lapbulstatus_tableState').hide();
@@ -216,7 +216,7 @@ function lapbulstatus_tarikDataServer() {
 
     google.script.run
         .withSuccessHandler(function(res) {
-            btn.prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon"></i>');
+            btn.prop('disabled', false).html('<i class="fab fa-gg text-maroon"></i>');
             
             if (res.error) {
                 $('#lapbulstatus_tableState').hide();
@@ -238,7 +238,7 @@ function lapbulstatus_tarikDataServer() {
             }
         })
         .withFailureHandler(function(err) {
-            btn.prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon"></i>');
+            btn.prop('disabled', false).html('<i class="fab fa-gg text-maroon"></i>');
             $('#lapbulstatus_tableState').hide();
             $('#lapbulstatus_loadingState').html('<div class="text-center py-5 text-danger"><i class="fas fa-wifi fa-3x mb-3"></i><br><h6>Koneksi Terputus: ' + lapbulstatus_escapeHtml(err.message) + '</h6></div>');
             $('#lapbulstatus_loadingState').show();
@@ -438,9 +438,9 @@ function lapbulstatus_buildBadgeSultan(statusString) {
     if (stLower.includes('revisi') || stLower.includes('perbaiki')) {
         if (ket.length > 2) {
             var safeKet = lapbulstatus_escapeJs(ket);
-            iconHtml = `<button type="button" class="${baseClass} btn-warning text-dark" onclick="lapbulstatus_lihatCatatanSultan('${safeKet}')"><i class="fas fa-sync-alt"></i></button>`;
+            iconHtml = `<button type="button" class="${baseClass} btn-warning text-dark" onclick="lapbulstatus_lihatCatatanSultan('${safeKet}')"><i class="fab fa-gg"></i></button>`;
         } else {
-            iconHtml = `<span class="badge badge-sultan badge-sultan-light-warning p-2" title="Revisi"><i class="fas fa-sync-alt"></i></span>`;
+            iconHtml = `<span class="badge badge-sultan badge-sultan-light-warning p-2" title="Revisi"><i class="fab fa-gg"></i></span>`;
         }
     }
     else if (stLower.includes('tolak') || stLower.includes('x') || stLower.includes('salah')) {

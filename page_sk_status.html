@@ -49,7 +49,7 @@
                                 <span class="text-xs uppercase tracking-tighter">Disetujui</span>
                             </span>
                             <span class="flex items-center gap-2">
-                                <span class="flex h-6 w-6 items-center justify-center rounded-lg bg-warning/10 text-warning border border-warning/20"><i class="fas fa-sync-alt text-[10px]"></i></span>
+                                <span class="flex h-6 w-6 items-center justify-center rounded-lg bg-warning/10 text-warning border border-warning/20"><i class="fab fa-gg text-[10px]"></i></span>
                                 <span class="text-xs uppercase tracking-tighter">Revisi</span>
                             </span>
                             <span class="flex items-center gap-2">
@@ -74,7 +74,7 @@
                 <button type="button" id="statussk_btnCari"
                     class="flex h-10 w-10 items-center justify-center rounded-xl sk-bg-section text-gray-500 hover:text-primary transition-all border border-gray-100 dark:border-white/5 shadow-sm active:scale-95"
                     title="Refresh Data">
-                    <i class="fas fa-sync-alt"></i>
+                    <i class="fab fa-gg"></i>
                 </button>
             </div>
         </div>
@@ -243,7 +243,7 @@
     // =================================================================
     function statussk_tarikDataServer() {
         var btn = $('#statussk_btnCari');
-        btn.prop('disabled', true).html('<i class="fas fa-sync-alt fa-spin text-primary"></i>');
+        btn.prop('disabled', true).html('<i class="fab fa-gg fa-spin text-primary"></i>');
 
         if (!STATUSSK_TABEL_INSTANCE) {
             $('#statussk_tableState').hide();
@@ -253,7 +253,7 @@
 
         google.script.run
             .withSuccessHandler(function (res) {
-                btn.prop('disabled', false).html('<i class="fas fa-sync-alt"></i>');
+                btn.prop('disabled', false).html('<i class="fab fa-gg"></i>');
                 if (res.error) {
                     $('#statussk_loadingState').html('<div class="flex flex-col items-center py-10 text-danger"><i class="fas fa-exclamation-triangle text-4xl mb-3 opacity-50"></i><h6 class="font-black text-xs uppercase tracking-widest">' + statussk_escapeHtml(res.error) + '</h6></div>');
                     return;
@@ -265,7 +265,7 @@
                 statussk_terapkanFilterLokal();
             })
             .withFailureHandler(function (err) {
-                btn.prop('disabled', false).html('<i class="fas fa-sync-alt"></i>');
+                btn.prop('disabled', false).html('<i class="fab fa-gg"></i>');
                 $('#statussk_loadingState').html('<div class="flex flex-col items-center py-10 text-danger"><i class="fas fa-wifi text-4xl mb-3 opacity-50"></i><h6 class="font-black text-xs uppercase tracking-widest">Server Error</h6></div>');
             })
             .getSiabaStatusData();
@@ -433,7 +433,7 @@
         if (stLower.includes('revisi') || stLower.includes('perbaiki')) {
             var safeKet = statussk_escapeJs(ket);
             var cls = "bg-warning/10 text-warning border-warning/20 hover:bg-warning hover:text-white";
-            iconHtml = `<button type="button" class="${baseCls} ${cls}" onclick="Sultan.catatan('Catatan Revisi', '${safeKet}')" title="Klik Lihat Catatan"><i class="fas fa-sync-alt text-[11px]"></i></button>`;
+            iconHtml = `<button type="button" class="${baseCls} ${cls}" onclick="Sultan.catatan('Catatan Revisi', '${safeKet}')" title="Klik Lihat Catatan"><i class="fab fa-gg text-[11px]"></i></button>`;
         }
         else if (stLower.includes('tolak') || stLower.includes('x') || stLower.includes('salah')) {
             var safeKet = statussk_escapeJs(ket);

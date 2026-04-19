@@ -66,7 +66,7 @@
                 <div class="divider-vertical d-none d-md-block"></div>
 
                 <button type="button" id="lupa_btnRefresh" class="btn bg-white border shadow-sm text-secondary" title="Segarkan Data dari Server" disabled>
-                    <i class="fas fa-sync-alt text-maroon"></i>
+                    <i class="fab fa-gg text-maroon"></i>
                 </button>
 
                 <div class="ml-auto d-none d-md-block"></div>
@@ -508,7 +508,7 @@ function lupa_tarikDataServer() {
 
     google.script.run
         .withSuccessHandler(function(jsonString) {
-            btn.prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon"></i>');
+            btn.prop('disabled', false).html('<i class="fab fa-gg text-maroon"></i>');
             try { 
                 var responseData = JSON.parse(jsonString); 
                 if (responseData.error) {
@@ -529,7 +529,7 @@ function lupa_tarikDataServer() {
             }
         })
         .withFailureHandler(function(e){
-            btn.prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon"></i>');
+            btn.prop('disabled', false).html('<i class="fab fa-gg text-maroon"></i>');
             $('#lupa_loadingText').html('<span class="text-danger"><i class="fas fa-wifi mb-2"></i><br>Koneksi Server Terputus.</span>');
         }).getDaftarLupaPresensi(th, bl); 
 }
