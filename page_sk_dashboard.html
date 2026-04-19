@@ -55,44 +55,30 @@
 
 
 
-  <!-- 1. FILTER BAR (EXECUTIVE CONTROL GROUP) -->
-  <div class="sultan-card !p-0 overflow-hidden shadow-sm">
-      <div class="border-b border-gray-100 py-3 px-6 dark:border-gray-800 bg-gray-50/50 dark:bg-black/10">
-          <h3 class="font-black text-black dark:text-white flex items-center gap-2 text-sm uppercase tracking-widest">
-              <i class="fas fa-filter text-primary"></i> Limitasi Monitoring
-          </h3>
-      </div>
-      <div class="p-6">
-          <div class="flex flex-wrap items-end justify-between gap-6">
-              <div class="flex flex-wrap items-center gap-6">
-                  <!-- Filter Tahun -->
-                  <div class="flex flex-col gap-1.5 min-w-[160px]">
-                      <label class="text-sm font-bold text-gray-500 dark:text-gray-400">Tahun Ajaran</label>
-                      <div class="relative">
-                          <select id="dashsk_filterTahun" class="sk-dash-input w-full appearance-none border border-gray-200 bg-white py-2 pl-4 pr-10 text-black outline-none transition focus:border-primary dark:border-white/10 dark:bg-boxdark dark:text-white shadow-sm"></select>
-                          <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400"><i class="fas fa-calendar-alt text-xs"></i></div>
-                      </div>
-                  </div>
-                  <!-- Filter Semester -->
-                  <div class="flex flex-col gap-1.5 min-w-[160px]">
-                      <label class="text-sm font-bold text-gray-500 dark:text-gray-400">Semester</label>
-                      <div class="relative">
-                          <select id="dashsk_filterSemester" class="sk-dash-input w-full appearance-none border border-gray-200 bg-white py-2 pl-4 pr-10 text-black outline-none transition focus:border-primary dark:border-gray-700 dark:bg-boxdark dark:text-white shadow-sm">
-                              <option value="">- Semua Semester -</option>
-                              <option value="Semester 1">Semester 1</option>
-                              <option value="Semester 2">Semester 2</option>
-                          </select>
-                          <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400"><i class="fas fa-clock text-xs"></i></div>
-                      </div>
-                  </div>
-              </div>
-              <div class="flex-shrink-0">
-                  <button type="button" id="dashsk_btnRefresh" class="sultan-btn sultan-btn-primary shadow-md !h-[38px] !px-8 !text-sm !font-black !tracking-tight">
-                      <i class="fas fa-sync-alt mr-2"></i> PERBARUI DATA
-                  </button>
-              </div>
-          </div>
-      </div>
+  <!-- 1. FILTER BAR (SULTAN BLUEPRINT MODEL) -->
+  <div class="sultan-card p-4 shadow-sm">
+    <div class="flex flex-wrap items-center gap-3">
+        <!-- Filter Tahun -->
+        <div class="relative w-full sm:w-auto">
+            <select id="dashsk_filterTahun" class="sk-dash-input appearance-none border border-gray-200 bg-white py-2 pl-4 pr-10 text-black outline-none transition focus:border-primary dark:border-white/10 dark:bg-boxdark dark:text-white shadow-sm min-w-[180px]"></select>
+            <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400"><i class="fas fa-calendar-alt text-xs"></i></div>
+        </div>
+        <!-- Filter Semester -->
+        <div class="relative w-full sm:w-auto">
+            <select id="dashsk_filterSemester" class="sk-dash-input appearance-none border border-gray-200 bg-white py-2 pl-4 pr-10 text-black outline-none transition focus:border-primary dark:border-gray-700 dark:bg-boxdark dark:text-white shadow-sm min-w-[200px]">
+                <option value="">- Semua Semester -</option>
+                <option value="Semester 1">Semester 1</option>
+                <option value="Semester 2">Semester 2</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400"><i class="fas fa-clock text-xs"></i></div>
+        </div>
+        <!-- Action Button -->
+        <div class="ml-auto flex items-center">
+            <button type="button" id="dashsk_btnRefresh" class="sultan-btn sultan-btn-primary shadow-md !h-[38px] !px-8 !text-sm !font-black !tracking-tighter">
+                <i class="fas fa-sync-alt mr-2"></i> PERBARUI DATA
+            </button>
+        </div>
+    </div>
   </div>
 
   <!-- 2. KPI METRICS (SULTAN v4.1 UPGRADE) -->
