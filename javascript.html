@@ -181,6 +181,29 @@ var Sultan = {
             </div>`
         });
     },
+
+    // New: Intentional Info Modal for Admin Notes
+    catatan: (title, text) => {
+        return Swal.fire({
+            background: 'transparent',
+            showConfirmButton: true,
+            confirmButtonText: 'Baik, Saya Mengerti',
+            buttonsStyling: false,
+            customClass: { 
+                popup: 'tail-toast-popup', 
+                confirmButton: 'tail-swal-confirm border border-transparent bg-primary text-white !px-8 !py-2.5 !m-0 hover:bg-opacity-90 transition-all font-bold rounded-lg shadow-lg' 
+            },
+            html: `
+            <div class="tail-notif tail-notif-info mb-5">
+                <div class="tail-notif-icon-box"><i class="fas fa-comment-dots"></i></div>
+                <div class="tail-notif-content text-left">
+                    <h4 class="tail-notif-title mb-1">${title || 'Catatan Admin'}</h4>
+                    <p class="text-sm opacity-90 leading-relaxed">${text}</p>
+                </div>
+                <div class="tail-notif-border"></div>
+            </div>`
+        });
+    },
     konfirmasi: function(opsi, callbackYa) {
         return Swal.fire({
             background: 'transparent',

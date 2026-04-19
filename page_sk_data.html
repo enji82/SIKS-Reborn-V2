@@ -313,7 +313,7 @@
 
 <!-- 3. MODAL PREVIEW PDF (SULTAN PREMIUM FULL SCREEN) -->
 <div id="tugas_modalPreview" class="fixed inset-0 z-[99999] hidden flex-col sk-modal-overlay animate-reveal">
-    <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 dark:border-white/5 bg-white dark:bg-section transition-colors">
+    <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 dark:border-white/5 sk-bg-section transition-colors">
         <div class="flex items-center gap-4">
             <div class="relative flex h-11 w-11 items-center justify-center rounded-xl bg-danger/10 text-danger shadow-sm overflow-hidden group">
                 <div class="absolute inset-0 bg-danger/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -340,9 +340,9 @@
             </button>
         </div>
     </div>
-    <div class="flex-1 relative bg-gray-50 dark:bg-boxdark">
+    <div class="flex-1 relative sk-bg-surface">
         <iframe id="tugas_framePreviewFull" class="w-full h-full border-none hidden" src=""></iframe>
-        <div id="tugas_loadingPreviewPDF" class="absolute inset-0 flex flex-col items-center justify-center bg-gray-50 dark:bg-boxdark2">
+        <div id="tugas_loadingPreviewPDF" class="absolute inset-0 flex flex-col items-center justify-center sk-bg-surface">
             <div class="sk-spinner-premium mb-6"></div>
             <p class="sk-loading-text animate-pulse">Sinkronisasi Dokumen...</p>
         </div>
@@ -1131,8 +1131,8 @@
             badge = '<span class="' + baseCls + ' bg-primary/15 text-primary"><i class="fas fa-circle-notch fa-spin mr-1.5"></i> DIPROSES</span>';
 
         if (ket && ket.trim().length > 2 && (st.includes('revisi') || st.includes('tolak'))) {
-            var safeKet = tugas_escapeHtml(ket);
-            badge += '<div class="mt-1"><button type="button" class="inline-flex rounded border border-danger p-1 text-[11px] font-black text-danger hover:bg-danger hover:text-white transition-all tugas-btn-catatan" onclick="Sultan.alert(\'info\', \'Catatan Admin\', \'' + safeKet + '\')"><i class="fas fa-comment-dots mr-1"></i> Baca Catatan</button></div>';
+            var safeKet = tugas_escapeJs(ket);
+            badge += '<div class="mt-1"><button type="button" class="inline-flex rounded border border-danger p-1 text-[11px] font-black text-danger hover:bg-danger hover:text-white transition-all tugas-btn-catatan" onclick="Sultan.catatan(\'Catatan Admin\', \'' + safeKet + '\')"><i class="fas fa-comment-dots mr-1"></i> Baca Catatan</button></div>';
         }
         return badge;
     }
