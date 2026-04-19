@@ -248,10 +248,19 @@ $(document).ready(function() {
 
     // Anti-Blink: Render Skeletons first
     dashlapbul_renderSkeleton();
-    dashlapbul_initChart(); 
     
-    $('#dashlapbul_btnTampilkan').prop('disabled', false);
-    setTimeout(function() { dashlapbul_loadDashboard(); }, 100);
+    // ENSURE CHART.JS LOADED BEFORE INIT
+    function dashlapbul_waitForChart() {
+        if (typeof Chart !== 'undefined') {
+            dashlapbul_initChart(); 
+            $('#dashlapbul_btnTampilkan').prop('disabled', false);
+            setTimeout(function() { dashlapbul_loadDashboard(); }, 100);
+        } else {
+            console.log('Lapbul: Chart.js not ready, retrying...');
+            setTimeout(dashlapbul_waitForChart, 100);
+        }
+    }
+    dashlapbul_waitForChart();
 });
 
 // ======================================================================
