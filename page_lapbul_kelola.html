@@ -765,12 +765,23 @@ $(document).ready(function() {
     $('#lapbulkelola_loadingState').show();
 
     try {
-        var user = typeof getSesiUser === 'function' ? getSesiUser() : {};
+        // MODERN SESSION HANDLER (SULTAN v4.1)
+        var user = (typeof Sultan !== 'undefined' && Sultan.db) ? Sultan.db.get('siksUser') : (typeof getSesiUser === 'function' ? getSesiUser() : {});
+        if (!user || Object.keys(user).length === 0) {
+            // Fallback to window globals if available
+            user = window.userSession || {};
+        }
+
         LAPBULKELOLA_USER_AKTIF = user.nama_lengkap || user.fullname || user.nama || user.username || "User Web";
         var role = (user.role || "").toLowerCase();
         LAPBULKELOLA_IS_ADMIN = role.includes("admin") || role.includes("verifikator") || role.includes("super");
         LAPBULKELOLA_USER_NPSN = user.npsn || user.username || ""; 
-    } catch(e) { LAPBULKELOLA_USER_NPSN = ""; LAPBULKELOLA_IS_ADMIN = false; }
+        
+        console.log("Session Initialized:", { user: LAPBULKELOLA_USER_AKTIF, isAdmin: LAPBULKELOLA_IS_ADMIN, npsn: LAPBULKELOLA_USER_NPSN });
+    } catch(e) { 
+        console.error("Session Error:", e);
+        LAPBULKELOLA_USER_NPSN = ""; LAPBULKELOLA_IS_ADMIN = false; 
+    }
     
     // VAKSINASI SPA: EVENT DELEGATION JQUERY (PENGGANTI ONCLICK)
     $(document).off('change', '#lapbulkelola_filterJenjang').on('change', '#lapbulkelola_filterJenjang', function() { lapbulkelola_updateDropdownSekolah(); lapbulkelola_terapkanFilterLokal(); });
@@ -880,9 +891,19 @@ function lapbulkelola_validasiAksesUser() {
         $('#lapbulkelola_boxJenjang').addClass('hidden').removeClass('block');
         
         // Fallback: Jika bukan admin tapi punya NPSN, coba akses sebagai unit
-        if (!LAPBULKELOLA_USER_NPSN) {
-            $('#lapbulkelola_filterUnit').empty().append('<option value="">AKSES DITOLAK (SESI KOSONG)</option>');
-            $('#lapbulkelola_loadingText').html('<span class="text-danger"><i class="fas fa-ban mb-2"></i><br>Akses ditolak: Sesi login tidak valid. Silakan muat ulang halaman.</span>');
+        if (!LAPBULKELOLA_USER_NPSN || LAPBULKELOLA_USER_NPSN === "") {
+            $('#lapbulkelola_filterUnit').empty().append('<option value="">SESI TIDAK VALID</option>');
+            $('#lapbulkelola_loadingText').html(`
+                <div class="flex flex-col items-center">
+                    <div class="h-12 w-12 flex items-center justify-center rounded-full bg-danger/10 text-danger mb-4">
+                        <i class="fas fa-user-lock text-xl"></i>
+                    </div>
+                    <h6 class="text-xs font-black text-danger uppercase tracking-widest">Akses Ditolak</h6>
+                    <p class="text-[11px] text-gray-500 font-bold uppercase mt-2 text-center leading-relaxed">
+                        Sesi login tidak terdeteksi. Silakan muat ulang halaman<br>atau periksa koneksi portal Anda.
+                    </p>
+                </div>
+            `);
             return;
         }
 
