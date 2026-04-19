@@ -84,19 +84,21 @@
     <div class="sk-card !p-0 overflow-hidden">
         <!-- CUSTOM DATATABLES UTILITIES STYLING (SULTAN SYNC) -->
         <style>
+            /* Container Padding Sync */
+            #statussk_tableState .dataTables_wrapper .flex {
+                padding-top: 0.75rem;
+                padding-bottom: 0.75rem;
+            }
             #statussk_tableState .dataTables_wrapper label,
-            #statussk_tableState .dataTables_wrapper .dataTables_length,
-            #statussk_tableState .dataTables_wrapper .dataTables_filter,
             #statussk_tableState .dataTables_wrapper .dataTables_info {
-                padding: 1.25rem 1.5rem 0.5rem 1.5rem;
+                padding: 0 !important;
+                margin: 0 !important;
                 font-size: 14px !important; 
                 font-weight: 700 !important;
                 letter-spacing: normal !important;
-                color: #64748b !important; /* Muted Grey Sync */
+                color: #64748b !important;
             }
             .dark #statussk_tableState .dataTables_wrapper label,
-            .dark #statussk_tableState .dataTables_wrapper .dataTables_length,
-            .dark #statussk_tableState .dataTables_wrapper .dataTables_filter,
             .dark #statussk_tableState .dataTables_wrapper .dataTables_info {
                 color: #94A3B8 !important;
             }
@@ -107,7 +109,7 @@
                 border-radius: 10px;
                 padding: 0 16px;
                 margin: 0 8px;
-                height: 38px; /* Locked Height for Sync */
+                height: 38px;
                 font-size: 14px;
                 font-weight: 700;
                 color: var(--sk-text) !important;
@@ -373,9 +375,9 @@
             "data": dtArray,
             "ordering": false, "pageLength": 10, "autoWidth": false, "deferRender": true,
             "lengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
-            "dom": "<'flex flex-col md:flex-row justify-between items-center bg-transparent border-b border-gray-100 dark:border-white/5'lf>" + 
+            "dom": "<'flex flex-col md:flex-row justify-between items-center bg-transparent border-b border-gray-100 dark:border-white/5 px-6'lf>" + 
                 "<'row'<'col-sm-12'<'overflow-x-auto sultan-scroll !border-none'tr>>>" +
-                "<'flex flex-col md:flex-row justify-between items-center gap-4 mt-6 px-6 pb-6'<'text-sm font-bold text-gray-500 sultan-dt-info'i><'pagination-wrapper'p>>",
+                "<'flex flex-col md:flex-row justify-between items-center gap-4 px-6 py-4'<'text-sm font-bold text-gray-500 sultan-dt-info'i><'pagination-wrapper'p>>",
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json",
                 "emptyTable": "Belum ada data progres pengiriman.",
