@@ -12,80 +12,66 @@
 
   <!-- CUSTOM EXECUTIVE STYLES (SULTAN v4.1) -->
   <style>
-    .sk-dash-input {
-        height: 38px !important;
-        font-size: 14px !important;
-        font-weight: 700 !important;
-        border-radius: 10px !important;
-        font-family: 'Satoshi', sans-serif !important;
+    /* BLUEPRINT CARD ARCHITECTURE */
+    .sk-card {
+        background: var(--sk-surface, #ffffff) !important;
+        border: 1px solid var(--sk-border, #e2e8f0) !important;
+        border-radius: 16px !important;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.04) !important;
     }
-    .sk-status-pill {
-        display: inline-flex; align-items: center; gap: 1.5; px: 2.5; py: 1; border-radius: 0.5rem; font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; border: 1px solid rgba(0,0,0,0.05);
-    }
-    .dark .sk-status-pill { border-color: rgba(255,255,255,0.05); }
-
-    .sk-btn-compact {
-        height: 38px !important;
-        padding-left: 1.5rem !important;
-        padding-right: 1.5rem !important;
-        font-size: 11px !important;
-        font-weight: 900 !important;
-        letter-spacing: -0.025em !important;
-    }
-
-    /* BLUEPRINT MODAL OVERLAY (TOP-ALIGNED) */
-    .sk-overlay {
-        background: rgba(15, 23, 42, 0.6) !important;
-        backdrop-filter: blur(8px) !important;
-        -webkit-backdrop-filter: blur(8px) !important;
-    }
-    .sk-overlay .modal-dialog {
-        margin-top: 2rem;
-        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
-    }
-    .sk-overlay.show .modal-dialog {
-        transform: translateY(0) scale(1) !important;
-    }
-    .sk-overlay:not(.show) .modal-dialog {
-        transform: translateY(-20px) scale(0.95) !important;
-    }
-
-    /* BLUEPRINT MODAL CONTAINER */
-    .sk-modal {
-        border: none !important;
-        border-radius: 24px !important;
-        background: #ffffff !important;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
-        overflow: hidden;
-    }
-    .dark .sk-modal {
+    .dark .sk-card {
         background: #1a222c !important;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+        border-color: rgba(255,255,255,0.05) !important;
+    }
+    .sk-card-header {
+        padding: 1rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 
-    /* GLASS BOX FOR GROUPS */
-    .sk-group-box {
-        background: rgba(248, 250, 252, 0.8);
-        border: 1px solid #e2e8f0;
-        border-radius: 16px;
-        padding: 1.25rem;
-        transition: all 0.2s ease;
+    /* BLUEPRINT BUTTON ENGINE */
+    .sk-btn {
+        display: inline-flex; align-items: center; justify-content: center; 
+        font-family: 'Satoshi', sans-serif; font-weight: 900; text-transform: uppercase;
+        border-radius: 10px; transition: all 0.2s; cursor: pointer; height: 38px;
+        padding: 0 1.5rem; font-size: 11px; letter-spacing: 0.025em;
     }
-    .dark .sk-group-box {
-        background: rgba(15, 23, 42, 0.3);
-        border-color: rgba(255, 255, 255, 0.05);
+    .sk-btn-primary {
+        background: #85144b !important; color: #fff !important;
+        box-shadow: 0 4px 6px -1px rgba(133, 20, 75, 0.2) !important;
     }
-    .sk-group-box:hover {
-        border-color: #85144b;
-        background: #ffffff;
+    .sk-btn-primary:hover { background: #6b103d !important; transform: translateY(-1px); }
+    .sk-btn-secondary {
+        background: #f1f5f9 !important; color: #475569 !important;
     }
-    .dark .sk-group-box:hover {
-        background: rgba(15, 23, 42, 0.5);
-    }
+    .dark .sk-btn-secondary { background: #1e293b !important; color: #cbd5e1 !important; }
 
-    .dashed { border-style: dashed !important; }
-    
-    /* CUSTOM SCROLLBAR FOR PREMIUM FEEL */
+    /* BLUEPRINT FORM INPUTS */
+    .sk-form-input {
+        height: 38px !important;
+        background: #ffffff !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 10px !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        font-family: 'Satoshi', sans-serif !important;
+        font-size: 13px !important;
+        font-weight: 700 !important;
+        color: #1c2434 !important;
+        transition: all 0.2s;
+        outline: none !important;
+    }
+    .dark .sk-form-input {
+        background: #1a222c !important;
+        border-color: rgba(255,255,255,0.1) !important;
+        color: #ffffff !important;
+    }
+    .sk-form-input:focus { border-color: #85144b !important; box-shadow: 0 0 0 3px rgba(133, 20, 75, 0.1) !important; }
+
+    .sk-bg-section { background: #f8fafc !important; }
+    .dark .sk-bg-section { background: #0f172a !important; }
+
     .sultan-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
     .sultan-scroll::-webkit-scrollbar-track { background: transparent; }
     .sultan-scroll::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
@@ -93,95 +79,91 @@
     .sultan-scroll::-webkit-scrollbar-thumb:hover { background: #85144b; }
   </style>
 
-  <!-- 1. INFORMATION CARD (EXECUTIVE TONE) -->
-  <div class="sultan-card p-4 shadow-sm">
-    <div class="flex items-center gap-3 cursor-pointer group" data-toggle="collapse" data-target="#lapbulkelola_infoCollapse">
-        <div class="h-10 w-10 flex items-center justify-center rounded-xl bg-primary/10 text-primary group-hover:scale-110 transition-transform">
-            <i class="fas fa-info-circle text-lg"></i>
-        </div>
-        <div class="flex flex-col">
-            <span class="text-xs font-black text-black dark:text-white uppercase tracking-widest">Informasi & Panduan</span>
-            <span class="text-[11px] text-gray-500 font-bold uppercase">Panduan operasional manajemen laporan bulanan</span>
-        </div>
-        <i class="fas fa-chevron-down ml-auto text-gray-300 group-hover:text-primary transition-colors"></i>
+  <!-- 1. KARTU INFORMASI (SK STYLE) -->
+  <div class="sk-card !p-0 overflow-hidden" x-data="{ isOpen: false }">
+    <div class="sk-card-header cursor-pointer hover:bg-gray-100 dark:hover:bg-white/10 transition-colors" @click="isOpen = !isOpen">
+        <h3 class="font-black text-black dark:text-white flex items-center gap-2 text-sm uppercase tracking-[0.1em]">
+            <i class="fas fa-info-circle text-primary"></i> Panduan Operasional
+        </h3>
+        <i class="fas fa-chevron-down text-gray-400 text-sm transition-transform" :class="{ 'rotate-180': isOpen }"></i>
     </div>
-    <div id="lapbulkelola_infoCollapse" class="collapse">
-        <div class="mt-4 pt-4 border-t border-gray-100 dark:border-gray-800">
-            <ul class="grid grid-cols-1 md:grid-cols-2 gap-3 text-[12px] font-bold text-gray-600 dark:text-gray-400">
-                <li class="flex gap-2"><div class="h-1.5 w-1.5 rounded-full bg-primary mt-1.5 shrink-0"></div> Laporan wajib diunggah sebelum tanggal 10 setiap bulannya.</li>
-                <li class="flex gap-2"><div class="h-1.5 w-1.5 rounded-full bg-primary mt-1.5 shrink-0"></div> Format dokumen adalah PDF dengan ukuran maksimal 1 MB.</li>
-                <li class="flex gap-2"><div class="h-1.5 w-1.5 rounded-full bg-primary mt-1.5 shrink-0"></div> Pencarian data dilakukan secara tahunan (Year-Based Engine).</li>
-                <li class="flex gap-2"><div class="h-1.5 w-1.5 rounded-full bg-primary mt-1.5 shrink-0"></div> Gunakan tombol <span class="text-danger">💬 BACA CATATAN</span> untuk revisi admin.</li>
+    <div x-show="isOpen" x-transition x-cloak class="p-4 border-t border-gray-100 dark:border-white/5 bg-gray-50/50 dark:bg-boxdark">
+        <div class="rounded-xl border border-primary/20 bg-blue-50/80 dark:bg-white/5 p-5">
+            <ul class="space-y-4">
+                <li class="flex gap-4 text-[14px] font-bold text-gray-900 dark:text-gray-100 items-start">
+                    <span class="flex h-6 w-6 min-w-[24px] items-center justify-center rounded-full bg-primary text-[12px] font-black text-white shadow-sm">1</span>
+                    <span>Laporan wajib diunggah sebelum <b class="text-primary dark:text-[#818CF8]">tanggal 10</b> setiap bulannya untuk tertib administrasi.</span>
+                </li>
+                <li class="flex gap-4 text-[14px] font-bold text-gray-900 dark:text-gray-100 items-start">
+                    <span class="flex h-6 w-6 min-w-[24px] items-center justify-center rounded-full bg-primary text-[12px] font-black text-white shadow-sm">2</span>
+                    <span>Format dokumen wajib <b class="text-danger">PDF</b> dengan kapasitas maksimal <b class="text-danger">1 MB</b> per berkas.</span>
+                </li>
+                <li class="flex gap-4 text-[14px] font-bold text-gray-900 dark:text-gray-100 items-start">
+                    <span class="flex h-6 w-6 min-w-[24px] items-center justify-center rounded-full bg-primary text-[12px] font-black text-white shadow-sm">3</span>
+                    <span>Gunakan fitur <b class="text-primary">Auto-Filter</b> untuk mempercepat pencarian data berdasarkan Bulan dan Status.</span>
+                </li>
+                <li class="flex gap-4 text-[14px] font-bold text-gray-900 dark:text-gray-100 items-start">
+                    <span class="flex h-6 w-6 min-w-[24px] items-center justify-center rounded-full bg-primary text-[12px] font-black text-white shadow-sm">4</span>
+                    <span>Gunakan tombol <span class="text-danger font-black">💬 BACA CATATAN</span> pada kolom status untuk melihat umpan balik revisi dari Admin.</span>
+                </li>
             </ul>
         </div>
     </div>
   </div>
 
-  <!-- 2. COMPACT FILTER BAR (SULTAN BLUEPRINT MODEL) -->
-  <div class="sultan-card p-4 shadow-sm">
-      <div class="flex flex-wrap items-center gap-3">
-          <!-- Filter Jenjang (Admin Only) -->
-          <div class="relative w-full sm:w-auto d-none" id="lapbulkelola_boxJenjang">
-              <select id="lapbulkelola_filterJenjang" class="sk-dash-input appearance-none border border-gray-200 bg-white py-1.5 pl-4 pr-10 text-black outline-none transition focus:border-primary dark:border-white/10 dark:bg-boxdark dark:text-white shadow-sm min-w-[140px]">
-                  <option value="">- SEMUA JENJANG -</option>
-                  <option value="SD">SD</option>
-                  <option value="TK">TK</option>
-                  <option value="KB">KB</option>
-              </select>
-              <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400"><i class="fas fa-shapes text-xs"></i></div>
-          </div>
+  <!-- 2. KARTU FILTER (SK STYLE) -->
+  <div class="sk-card p-4">
+      <div class="flex flex-col md:flex-row items-center gap-4">
+          <div class="flex flex-wrap flex-1 items-center gap-3 w-full">
+              <!-- Filter Jenjang (Admin Only) -->
+              <div id="lapbulkelola_boxJenjang" class="hidden">
+                  <select id="lapbulkelola_filterJenjang" class="sk-form-input !w-auto min-w-[140px]">
+                      <option value="">- SEMUA JENJANG -</option>
+                      <option value="SD">SD</option>
+                      <option value="TK">TK</option>
+                      <option value="KB">KB</option>
+                  </select>
+              </div>
 
-          <!-- Filter Unit -->
-          <div class="relative w-full sm:w-auto flex-grow max-w-md">
-              <select id="lapbulkelola_filterUnit" class="sk-dash-input appearance-none border border-gray-200 bg-white py-1.5 pl-4 pr-10 text-black outline-none transition focus:border-primary dark:border-white/10 dark:bg-boxdark dark:text-white shadow-sm w-100" disabled>
+              <!-- Filter Unit -->
+              <select id="lapbulkelola_filterUnit" class="sk-form-input flex-1 min-w-[250px] disabled:opacity-60" disabled>
                   <option value="">- Memvalidasi Akses... -</option>
               </select>
-              <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400"><i class="fas fa-school text-xs"></i></div>
-          </div>
 
-          <!-- Filter Tahun -->
-          <div class="relative w-full sm:w-auto">
-              <select id="lapbulkelola_filterTahun" class="sk-dash-input appearance-none border border-gray-200 bg-white py-1.5 pl-4 pr-10 text-black outline-none transition focus:border-primary dark:border-white/10 dark:bg-boxdark dark:text-white shadow-sm min-w-[110px]"></select>
-              <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400"><i class="fas fa-calendar-alt text-xs"></i></div>
-          </div>
+              <!-- Filter Tahun -->
+              <select id="lapbulkelola_filterTahun" class="sk-form-input !w-auto min-w-[110px]"></select>
 
-          <!-- Filter Bulan -->
-          <div class="relative w-full sm:w-auto">
-              <select id="lapbulkelola_filterBulan" class="sk-dash-input appearance-none border border-gray-200 bg-white py-1.5 pl-4 pr-10 text-black outline-none transition focus:border-primary dark:border-white/10 dark:bg-boxdark dark:text-white shadow-sm min-w-[160px]">
+              <!-- Filter Bulan -->
+              <select id="lapbulkelola_filterBulan" class="sk-form-input !w-auto min-w-[160px]">
                   <option value="">- SEMUA BULAN -</option>
                   <option value="Januari">JANUARI</option><option value="Februari">FEBRUARI</option><option value="Maret">MARET</option>
                   <option value="April">APRIL</option><option value="Mei">MEI</option><option value="Juni">JUNI</option>
                   <option value="Juli">JULI</option><option value="Agustus">AGUSTUS</option><option value="September">SEPTEMBER</option>
                   <option value="Oktober">OKTOBER</option><option value="November">NOVEMBER</option><option value="Desember">DESEMBER</option>
               </select>
-              <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400"><i class="fas fa-clock text-xs"></i></div>
-          </div>
 
-          <!-- Filter Status -->
-          <div class="relative w-full sm:w-auto">
-              <select id="lapbulkelola_filterStatus" class="sk-dash-input appearance-none border border-gray-200 bg-white py-1.5 pl-4 pr-10 text-black outline-none transition focus:border-primary dark:border-white/10 dark:bg-boxdark dark:text-white shadow-sm min-w-[160px]">
+              <!-- Filter Status -->
+              <select id="lapbulkelola_filterStatus" class="sk-form-input !w-auto min-w-[160px]">
                   <option value="">- SEMUA STATUS -</option>
                   <option value="Diproses">DIPROSES</option>
                   <option value="Disetujui">DISETUJUI</option>
                   <option value="Revisi">REVISI</option>
                   <option value="Ditolak">DITOLAK</option>
               </select>
-              <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400"><i class="fas fa-check-circle text-xs"></i></div>
-          </div>
 
-          <div class="flex items-center gap-2 ml-auto">
-              <button type="button" id="lapbulkelola_btnCari" class="sultan-btn sultan-btn-white sk-btn-compact !px-4" title="Segarkan Data" disabled>
+              <button type="button" id="lapbulkelola_btnCari" class="flex h-10 w-10 items-center justify-center rounded-xl sk-bg-section text-gray-500 hover:text-primary transition-all border border-gray-100 dark:border-white/5 shadow-sm active:scale-95" title="Segarkan Data" disabled>
                   <i class="fas fa-sync-alt"></i>
               </button>
-              <button type="button" id="lapbulkelola_btnTambah" class="sultan-btn sultan-btn-primary sk-btn-compact" disabled>
-                  <i class="fas fa-plus mr-2"></i> TAMBAH DATA
-              </button>
           </div>
+
+          <button type="button" id="lapbulkelola_btnTambah" class="sk-btn sk-btn-primary w-full md:w-auto !py-2.5 !px-8 disabled:opacity-50" disabled>
+              <i class="fas fa-plus mr-2"></i> TAMBAH DATA
+          </button>
       </div>
   </div>
 
   <!-- 3. DATATABLE AREA -->
-  <div class="sultan-card p-2 md:p-4 shadow-sm">
+  <div class="sk-card p-2 md:p-4 shadow-sm">
       <div id="lapbulkelola_loadingState">
           <div class="flex flex-col items-center justify-center py-20">
               <div class="h-16 w-16 relative">
@@ -280,7 +262,7 @@
                         <p class="text-[12px] text-gray-500 font-bold uppercase mt-1">Silakan tentukan jenis formulir laporan yang akan diproses</p>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl">
-                        <div class="sultan-card group cursor-pointer hover:scale-[1.02] transition-all border border-transparent hover:border-primary/50 shadow-md btn-pilih-jenjang" data-jenjang="PAUD">
+                        <div class="sk-card group cursor-pointer hover:scale-[1.02] transition-all border border-transparent hover:border-primary/50 shadow-md btn-pilih-jenjang" data-jenjang="PAUD">
                             <div class="p-8 flex flex-col items-center text-center">
                                 <div class="h-20 w-20 flex items-center justify-center rounded-2xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors mb-6 shadow-sm">
                                     <i class="fas fa-cubes text-3xl"></i>
@@ -289,7 +271,7 @@
                                 <p class="text-[11px] text-gray-500 font-bold leading-relaxed px-4">Formulir terpadu untuk jenjang TK, KB, SPS, dan TPA</p>
                             </div>
                         </div>
-                        <div class="sultan-card group cursor-pointer hover:scale-[1.02] transition-all border border-transparent hover:border-primary/50 shadow-md btn-pilih-jenjang" data-jenjang="SD">
+                        <div class="sk-card group cursor-pointer hover:scale-[1.02] transition-all border border-transparent hover:border-primary/50 shadow-md btn-pilih-jenjang" data-jenjang="SD">
                             <div class="p-8 flex flex-col items-center text-center">
                                 <div class="h-20 w-20 flex items-center justify-center rounded-2xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors mb-6 shadow-sm">
                                     <i class="fas fa-school text-3xl"></i>
@@ -378,7 +360,7 @@
                                 </div>
                             </div>
 
-                            <div class="sultan-card p-4 !bg-gray-50/50 dark:!bg-black/20 border border-dashed border-gray-200 dark:border-gray-800">
+                            <div class="sk-card p-4 !bg-gray-50/50 dark:!bg-black/20 border border-dashed border-gray-200 dark:border-gray-800">
                                 <div class="space-y-4">
                                     <div class="flex flex-col gap-2">
                                         <label class="text-[11px] font-black text-gray-600 dark:text-gray-300 uppercase tracking-wider">Keputusan Operasional <span class="text-danger">*</span></label>
@@ -429,9 +411,9 @@
                     Tindakan ini bersifat permanen. Data sekolah <span id="lapbulkelola_lblHapusSekolah" class="text-danger font-black">-</span> akan dihapus dari sistem.
                 </p>
                 
-                <div class="sultan-card p-4 !bg-gray-50 dark:!bg-black/40 border border-danger/20 mb-6">
+                <div class="sk-card p-4 !bg-gray-50 dark:!bg-black/40 border border-danger/20 mb-6">
                     <label class="text-[11px] font-black text-gray-500 uppercase tracking-widest mb-2 block">Otorisasi Keamanan</label>
-                    <input type="password" id="lapbulkelola_inputKodeHapus" class="sk-dash-input w-full text-center tracking-[0.5em] border-danger/30 focus:border-danger" placeholder="••••••">
+                    <input type="password" id="lapbulkelola_inputKodeHapus" class="sk-form-input w-full text-center tracking-[0.5em] border-danger/30 focus:border-danger" placeholder="••••••">
                 </div>
 
                 <div class="grid grid-cols-2 gap-3">
@@ -471,7 +453,7 @@
         <div class="tab-content flex-grow sultan-scroll bg-gray-50/50 dark:bg-black/10 overflow-y-auto min-h-[500px]">
             <!-- Tab 1: Sekolah -->
             <div class="tab-pane fade show active p-6" id="lapbulkelola_ts1">
-                <div class="sultan-card p-6 shadow-sm">
+                <div class="sk-card p-6 shadow-sm">
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-8 pb-8 border-b border-gray-100 dark:border-gray-800">
                         <div class="md:col-span-8 flex flex-col gap-2">
                             <label class="text-[11px] font-black text-gray-500 uppercase tracking-widest">Cari Sekolah (Ketik NPSN/Nama)</label>
@@ -508,7 +490,7 @@
             
             <!-- Tab 2: Murid (Kelas 1-6) -->
             <div class="tab-pane fade p-6" id="lapbulkelola_ts2">
-                <div class="sultan-card border-0 shadow-sm overflow-hidden">
+                <div class="sk-card border-0 shadow-sm overflow-hidden">
                     <div class="bg-gray-50 dark:bg-black/20 border-b border-gray-100 dark:border-gray-800 px-4">
                         <ul class="nav nav-pills flex items-center gap-1" id="lapbulkelola_subTabKelas"></ul>
                     </div>
@@ -521,7 +503,7 @@
             
             <!-- Tab 4: Unggah -->
             <div class="tab-pane fade p-6" id="lapbulkelola_ts4">
-                <div class="sultan-card p-10 shadow-sm flex flex-col items-center">
+                <div class="sk-card p-10 shadow-sm flex flex-col items-center">
                     <div id="lapbulkelola_boxFilePreviewSD" class="w-full max-w-lg mb-8 d-none">
                         <div class="p-4 rounded-xl border border-primary/20 bg-primary/5 flex items-center justify-between">
                             <div class="flex items-center gap-3">
@@ -584,7 +566,7 @@
         <div class="tab-content flex-grow sultan-scroll bg-gray-50/50 dark:bg-black/10 overflow-y-auto min-h-[500px]">
             <!-- Tab 1: Sekolah -->
             <div class="tab-pane fade show active p-6" id="lapbulkelola_tp1">
-                <div class="sultan-card p-6 shadow-sm">
+                <div class="sk-card p-6 shadow-sm">
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-8 pb-8 border-b border-gray-100 dark:border-gray-800">
                         <div class="md:col-span-8 flex flex-col gap-2">
                             <label class="text-[11px] font-black text-gray-500 uppercase tracking-widest">Cari Sekolah (Ketik NPSN/Nama)</label>
@@ -619,7 +601,7 @@
             
             <!-- Tab 2: Murid -->
             <div class="tab-pane fade p-6" id="lapbulkelola_tp2">
-                <div class="sultan-card p-6 shadow-sm">
+                <div class="sk-card p-6 shadow-sm">
                     <div class="flex flex-wrap items-center gap-6 mb-8 pb-8 border-b border-gray-100 dark:border-gray-800">
                         <div class="flex flex-col gap-2">
                             <label class="text-[11px] font-black text-gray-500 uppercase tracking-widest">Jumlah Rombel Keseluruhan</label>
@@ -668,14 +650,14 @@
             
             <!-- Tab 3: PTK -->
             <div class="tab-pane fade p-6" id="lapbulkelola_tp3">
-                <div class="sultan-card p-6 shadow-sm">
+                <div class="sk-card p-6 shadow-sm">
                     <!-- PTK Forms injected via JS logic -->
                 </div>
             </div>
             
             <!-- Tab 4: Unggah -->
             <div class="tab-pane fade p-6" id="lapbulkelola_tp4">
-               <div class="sultan-card p-10 shadow-sm flex flex-col items-center">
+               <div class="sk-card p-10 shadow-sm flex flex-col items-center">
                     <div id="lapbulkelola_boxFilePreviewPAUD" class="w-full max-w-lg mb-8 d-none">
                         <div class="p-4 rounded-xl border border-emerald/20 bg-emerald/5 flex items-center justify-between">
                             <div class="flex items-center gap-3">
@@ -888,12 +870,13 @@ function lapbulkelola_validasiAksesUser() {
     $('#lapbulkelola_loadingText').html('Mempersiapkan Akses...');
 
     if (LAPBULKELOLA_IS_ADMIN) {
-        $('#lapbulkelola_filterJenjang').removeClass('d-none');
-        $('#lapbulkelola_filterUnit').empty().append('<option value="SEMUA">- Semua Unit Kerja -</option>').prop('disabled', false).removeClass('bg-light text-maroon font-weight-bold');
+        $('#lapbulkelola_boxJenjang').removeClass('hidden').addClass('block');
+        $('#lapbulkelola_filterJenjang').prop('disabled', false);
+        $('#lapbulkelola_filterUnit').empty().append('<option value="SEMUA">- SEMUA SEKOLAH -</option>').prop('disabled', false);
         $('#lapbulkelola_btnCari, #lapbulkelola_btnTambah').prop('disabled', false);
         lapbulkelola_prosesCariData(false); 
     } else {
-        $('#lapbulkelola_filterJenjang').addClass('d-none');
+        $('#lapbulkelola_boxJenjang').addClass('hidden').removeClass('block');
         if (!LAPBULKELOLA_USER_NPSN) {
             $('#lapbulkelola_filterUnit').empty().append('<option value="">AKSES DITOLAK (NPSN KOSONG)</option>');
             $('#lapbulkelola_loadingText').html('<span class="text-danger"><i class="fas fa-ban mb-2"></i><br>Akses ditolak: Sesi login tidak valid.</span>');
@@ -909,7 +892,7 @@ function lapbulkelola_validasiAksesUser() {
                     return;
                 }
 
-                LAPBULKELOLA_UNIT_TERKUNCI = dataUnit.unitKerja;
+                LAPBULKELOLA_UNIT_TERKUNCI = dataUnit.unitKerja || dataUnit.namaSekolah || "";
                 $('#lapbulkelola_filterUnit').empty().append($('<option>', {value: LAPBULKELOLA_UNIT_TERKUNCI, text: LAPBULKELOLA_UNIT_TERKUNCI})).prop('disabled', true);
                 $('#lapbulkelola_btnCari, #lapbulkelola_btnTambah').prop('disabled', false);
                 
