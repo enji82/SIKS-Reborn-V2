@@ -12,71 +12,127 @@
 
   <!-- CUSTOM EXECUTIVE STYLES (SULTAN v4.1) -->
   <style>
-    /* BLUEPRINT CARD ARCHITECTURE */
+    /* 1. BLUEPRINT CORE TOKENS */
+    :root {
+        --sk-primary: #85144b;
+        --sk-primary-hover: #6b103d;
+        --sk-surface: #ffffff;
+        --sk-border: #e2e8f0;
+        --sk-text: #1c2434;
+        --sk-bg-section: #f8fafc;
+        --sk-input-bg: #ffffff;
+        --sk-input-border: #e2e8f0;
+    }
+    .dark {
+        --sk-surface: #1a222c;
+        --sk-border: rgba(255,255,255,0.05);
+        --sk-text: #ffffff;
+        --sk-bg-section: #0f172a;
+        --sk-input-bg: #1a222c;
+        --sk-input-border: rgba(255,255,255,0.1);
+    }
+
+    /* 2. CARD ARCHITECTURE */
     .sk-card {
-        background: var(--sk-surface, #ffffff) !important;
-        border: 1px solid var(--sk-border, #e2e8f0) !important;
+        background: var(--sk-surface) !important;
+        border: 1px solid var(--sk-border) !important;
         border-radius: 16px !important;
         box-shadow: 0 1px 3px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.04) !important;
-    }
-    .dark .sk-card {
-        background: #1a222c !important;
-        border-color: rgba(255,255,255,0.05) !important;
+        transition: all 0.3s ease;
     }
     .sk-card-header {
-        padding: 1rem 1.5rem;
+        padding: 1.25rem 1.5rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
     }
 
-    /* BLUEPRINT BUTTON ENGINE */
+    /* 3. BUTTON ENGINE */
     .sk-btn {
         display: inline-flex; align-items: center; justify-content: center; 
         font-family: 'Satoshi', sans-serif; font-weight: 900; text-transform: uppercase;
         border-radius: 10px; transition: all 0.2s; cursor: pointer; height: 38px;
-        padding: 0 1.5rem; font-size: 11px; letter-spacing: 0.025em;
+        padding: 0 1.5rem; font-size: 11px; letter-spacing: 0.05em;
     }
     .sk-btn-primary {
-        background: #85144b !important; color: #fff !important;
+        background: var(--sk-primary) !important; color: #fff !important;
         box-shadow: 0 4px 6px -1px rgba(133, 20, 75, 0.2) !important;
     }
-    .sk-btn-primary:hover { background: #6b103d !important; transform: translateY(-1px); }
+    .sk-btn-primary:hover { background: var(--sk-primary-hover) !important; transform: translateY(-1px); }
     .sk-btn-secondary {
         background: #f1f5f9 !important; color: #475569 !important;
     }
     .dark .sk-btn-secondary { background: #1e293b !important; color: #cbd5e1 !important; }
 
-    /* BLUEPRINT FORM INPUTS */
+    /* 4. FORM & INPUTS */
     .sk-form-input {
         height: 38px !important;
-        background: #ffffff !important;
-        border: 1px solid #e2e8f0 !important;
+        background: var(--sk-input-bg) !important;
+        border: 1px solid var(--sk-input-border) !important;
         border-radius: 10px !important;
         padding-left: 1rem !important;
         padding-right: 1rem !important;
         font-family: 'Satoshi', sans-serif !important;
         font-size: 13px !important;
         font-weight: 700 !important;
-        color: #1c2434 !important;
+        color: var(--sk-text) !important;
         transition: all 0.2s;
         outline: none !important;
     }
-    .dark .sk-form-input {
-        background: #1a222c !important;
-        border-color: rgba(255,255,255,0.1) !important;
-        color: #ffffff !important;
-    }
-    .sk-form-input:focus { border-color: #85144b !important; box-shadow: 0 0 0 3px rgba(133, 20, 75, 0.1) !important; }
+    .sk-form-input:focus { border-color: var(--sk-primary) !important; box-shadow: 0 0 0 3px rgba(133, 20, 75, 0.1) !important; }
 
-    .sk-bg-section { background: #f8fafc !important; }
-    .dark .sk-bg-section { background: #0f172a !important; }
+    .sk-bg-section { background: var(--sk-bg-section) !important; }
+
+    /* 5. DATATABLE UTILITIES SYNC */
+    .dataTables_wrapper .flex { padding-top: 1rem; padding-bottom: 1rem; }
+    .dataTables_wrapper .dataTables_info, .dataTables_wrapper .sultan-dt-info {
+        font-size: 14px !important; font-weight: 700 !important; color: #64748b !important;
+    }
+    .dark .dataTables_wrapper .dataTables_info { color: #94A3B8 !important; }
+    
+    .dataTables_wrapper .dataTables_length select,
+    .dataTables_wrapper .dataTables_filter input {
+        background: var(--sk-input-bg) !important;
+        border: 1.2px solid var(--sk-input-border) !important;
+        border-radius: 10px !important;
+        height: 38px !important;
+        font-size: 14px !important;
+        font-weight: 700 !important;
+        color: var(--sk-text) !important;
+        font-family: 'Satoshi', sans-serif !important;
+    }
+
+    /* 6. MODAL & OVERLAY ARCHITECTURE */
+    .sk-overlay {
+        background: rgba(15, 23, 42, 0.6) !important;
+        backdrop-filter: blur(8px) !important;
+        -webkit-backdrop-filter: blur(8px) !important;
+    }
+    .sk-modal {
+        border-radius: 24px !important;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+        background: var(--sk-surface) !important;
+        border: none !important;
+    }
+    .sk-modal-header {
+        border-radius: 24px 24px 0 0 !important;
+    }
+
+    /* 7. CUSTOM COMPONENTS */
+    .sk-spinner-premium {
+        width: 40px; height: 40px;
+        border: 4px solid rgba(133, 20, 75, 0.1);
+        border-top-color: var(--sk-primary);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
     .sultan-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
     .sultan-scroll::-webkit-scrollbar-track { background: transparent; }
     .sultan-scroll::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
     .dark .sultan-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
-    .sultan-scroll::-webkit-scrollbar-thumb:hover { background: #85144b; }
+    .sultan-scroll::-webkit-scrollbar-thumb:hover { background: var(--sk-primary); }
   </style>
 
   <!-- 1. KARTU INFORMASI (SK STYLE) -->
@@ -163,32 +219,29 @@
   </div>
 
   <!-- 3. DATATABLE AREA -->
-  <div class="sk-card p-2 md:p-4 shadow-sm">
-      <div id="lapbulkelola_loadingState">
-          <div class="flex flex-col items-center justify-center py-20">
-              <div class="h-16 w-16 relative">
-                  <div class="absolute inset-0 rounded-full border-4 border-primary/10 border-t-primary animate-spin"></div>
-                  <div class="absolute inset-2 rounded-full border-4 border-primary/5 border-b-primary animate-spin-slow"></div>
-              </div>
-              <h6 class="text-[12px] font-black text-gray-400 uppercase tracking-[0.2em] mt-6 animate-pulse" id="lapbulkelola_loadingText">Sinkronisasi Server...</h6>
+  <div class="sk-card !p-0 overflow-hidden">
+      <div id="lapbulkelola_loadingState" class="py-20">
+          <div class="flex flex-col items-center justify-center">
+              <div class="sk-spinner-premium mb-5"></div>
+              <h6 class="text-[12px] font-black text-gray-400 uppercase tracking-[0.2em] animate-pulse" id="lapbulkelola_loadingText">Sinkronisasi Data...</h6>
           </div>
       </div>
 
-      <div id="lapbulkelola_tableState" style="display: none;">
-          <div class="table-responsive sultan-scroll">
-              <table id="lapbulkelola_tabelUtama" class="table table-hover w-100 text-[13px] font-bold">
+      <div id="lapbulkelola_tableState" style="display: none;" class="w-full">
+          <div class="overflow-x-auto sultan-scroll">
+              <table id="lapbulkelola_tabelUtama" class="w-full table-auto text-xs bg-transparent">
                   <thead>
-                      <tr class="bg-gray-50/50 dark:bg-black/20 border-b border-gray-100 dark:border-gray-800">
-                          <th class="py-4 px-4 text-[11px] font-black uppercase tracking-widest text-gray-500">Aksi</th>
-                          <th class="py-4 px-4 text-[11px] font-black uppercase tracking-widest text-gray-500">Unit Kerja</th>
-                          <th class="py-4 px-4 text-[11px] font-black uppercase tracking-widest text-gray-500">Periode</th>
-                          <th class="py-4 px-4 text-[11px] font-black uppercase tracking-widest text-gray-500 text-center">Rombel</th>
-                          <th class="py-4 px-4 text-[11px] font-black uppercase tracking-widest text-gray-500 text-center">Dokumen</th>
-                          <th class="py-4 px-4 text-[11px] font-black uppercase tracking-widest text-gray-500">Status</th>
-                          <th class="py-4 px-4 text-[11px] font-black uppercase tracking-widest text-gray-500">Linimasa</th>
+                      <tr class="sk-bg-section text-left border-b border-gray-100 dark:border-white/5 transition-colors">
+                          <th class="py-2.5 px-6 font-black uppercase text-primary dark:text-[#818CF8] text-center w-[120px] text-sm whitespace-nowrap">Aksi</th>
+                          <th class="py-2.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] text-sm whitespace-nowrap">Unit Kerja</th>
+                          <th class="py-2.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] text-sm whitespace-nowrap">Periode</th>
+                          <th class="py-2.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] text-center text-sm whitespace-nowrap">Rombel</th>
+                          <th class="py-2.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] text-center text-sm whitespace-nowrap">Dokumen</th>
+                          <th class="py-2.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] text-sm whitespace-nowrap">Status</th>
+                          <th class="py-2.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] text-sm whitespace-nowrap">Linimasa</th>
                       </tr>
                   </thead>
-                  <tbody class="divide-y divide-gray-50 dark:divide-gray-800"></tbody>
+                  <tbody class="divide-y divide-gray-100 dark:divide-white/5 bg-transparent"></tbody>
               </table>
           </div>
       </div>
@@ -199,35 +252,35 @@
 <!-- MODAL SUITE: ADMINISTRATIVE MODULES (SULTAN v4.1) -->
 <!-- ================================================================= -->
 
-<!-- 1. MODAL PREVIEW (DOCUMENT VIEWER) -->
+<!-- 1. MODAL PREVIEW (SULTAN STYLE) -->
 <div class="modal fade sk-overlay" id="lapbulkelola_modalPreview" tabindex="-1" role="dialog" data-backdrop="static">
-    <div class="modal-dialog modal-dialog-full sk-modal-top" role="document">
-        <div class="modal-content sk-modal h-[95vh] border-0 bg-boxdark overflow-hidden">
-            <div class="sk-modal-header bg-black/40 border-b border-white/10 px-6 py-4 flex items-center justify-between">
+    <div class="modal-dialog modal-dialog-full overflow-hidden" role="document">
+        <div class="modal-content sk-modal h-[95vh] flex flex-col overflow-hidden">
+            <div class="sk-modal-header bg-gray-900 border-b border-white/10 px-6 py-4 flex items-center justify-between">
                 <div class="flex items-center gap-3">
-                    <div class="h-10 w-10 flex items-center justify-center rounded-xl bg-danger/20 text-danger">
+                    <div class="h-10 w-10 flex items-center justify-center rounded-xl bg-danger/20 text-danger shadow-lg shadow-danger/10">
                         <i class="fas fa-file-pdf text-xl"></i>
                     </div>
                     <div class="flex flex-col">
                         <h5 class="text-sm font-black text-white uppercase tracking-widest">Pratinjau Dokumen</h5>
-                        <p class="text-[10px] text-gray-400 font-bold uppercase">Dokumen Laporan Bulanan Terverifikasi</p>
+                        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest leading-none mt-1">Sertifikat & Laporan Terverifikasi</p>
                     </div>
                 </div>
                 <div class="flex items-center gap-2">
-                    <a href="#" id="lapbulkelola_linkDownloadHeader" class="sultan-btn sultan-btn-white sk-btn-compact !px-4 !text-[10px]" target="_blank"><i class="fas fa-download mr-1.5"></i> UNDUH</a>
-                    <a href="#" id="lapbulkelola_linkTabHeader" class="sultan-btn sultan-btn-white sk-btn-compact !px-4 !text-[10px]" target="_blank"><i class="fas fa-external-link-alt mr-1.5"></i> TAB BARU</a>
+                    <a href="#" id="lapbulkelola_linkDownloadHeader" class="sk-btn bg-white/10 text-white hover:bg-white/20 !px-4 !text-[10px]" target="_blank"><i class="fas fa-download mr-1.5"></i> UNDUH</a>
+                    <a href="#" id="lapbulkelola_linkTabHeader" class="sk-btn bg-white/10 text-white hover:bg-white/20 !px-4 !text-[10px]" target="_blank"><i class="fas fa-external-link-alt mr-1.5"></i> TAB BARU</a>
                     <div class="w-px h-6 bg-white/10 mx-2"></div>
                     <button type="button" class="h-10 w-10 flex items-center justify-center rounded-xl hover:bg-white/10 text-white transition-colors" data-dismiss="modal">
                         <i class="fas fa-times text-lg"></i>
                     </button>
                 </div>
             </div>
-            <div class="modal-body p-0 flex-grow relative">
-                <iframe id="lapbulkelola_framePreview" class="w-100 h-100 border-0 d-none" src=""></iframe>
-                <div id="lapbulkelola_loadingPreviewPDF" class="absolute inset-0 flex items-center justify-center bg-boxdark/80">
+            <div class="modal-body p-0 flex-grow relative bg-[#1c2434]">
+                <iframe id="lapbulkelola_framePreview" class="w-full h-full border-0 d-none" src=""></iframe>
+                <div id="lapbulkelola_loadingPreviewPDF" class="absolute inset-0 flex items-center justify-center">
                     <div class="flex flex-col items-center">
-                        <div class="h-12 w-12 border-4 border-white/10 border-t-white animate-spin rounded-full"></div>
-                        <p class="text-[10px] font-black text-white/50 uppercase tracking-[0.2em] mt-4">Sinkronisasi Dokumen...</p>
+                        <div class="sk-spinner-premium !border-white/10 !border-t-white mb-4"></div>
+                        <p class="text-[10px] font-black text-white/50 uppercase tracking-[0.2em]">Sinkronisasi Dokumen...</p>
                     </div>
                 </div>
             </div>
@@ -235,22 +288,22 @@
     </div>
 </div>
 
-<!-- 2. MODAL TAMBAH/EDIT DATA (WIZARD ENGINE) -->
+<!-- 2. MODAL TAMBAH/EDIT DATA (SULTAN STYLE) -->
 <div class="modal fade sk-overlay" id="lapbulkelola_modalTambahData" tabindex="-1" role="dialog" data-backdrop="static">
-    <div class="modal-dialog modal-xl sk-modal-top" role="document">
-        <div class="modal-content sk-modal min-h-[85vh]">
-            <div class="sk-modal-header !bg-primary px-6 py-4 flex items-center justify-between" id="lapbulkelola_headerModalForm">
-                <div class="flex items-center gap-3">
-                    <div class="h-10 w-10 flex items-center justify-center rounded-xl bg-white/20 text-white">
-                        <i class="fas fa-plus-circle text-xl"></i>
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content sk-modal min-h-[85vh] flex flex-col">
+            <div class="sk-modal-header bg-primary px-6 py-5 flex items-center justify-between" id="lapbulkelola_headerModalForm">
+                <div class="flex items-center gap-4">
+                    <div class="h-12 w-12 flex items-center justify-center rounded-2xl bg-white/20 text-white shadow-lg shadow-black/10">
+                        <i class="fas fa-file-export text-2xl"></i>
                     </div>
                     <div class="flex flex-col">
-                        <h5 class="text-sm font-black text-white uppercase tracking-widest" id="lapbulkelola_judulModalForm">Manajemen Laporan</h5>
-                        <p class="text-[10px] text-white/70 font-bold uppercase">Formulir Input Laporan Bulanan Satuan Pendidikan</p>
+                        <h5 class="text-sm font-black text-white uppercase tracking-[0.1em]" id="lapbulkelola_judulModalForm">Manajemen Dokumen</h5>
+                        <p class="text-[11px] text-white/70 font-bold uppercase tracking-wider mt-1">Formulir Input Laporan Bulanan Edukasi</p>
                     </div>
                 </div>
-                <button type="button" class="h-10 w-10 flex items-center justify-center rounded-xl hover:bg-white/10 text-white transition-colors" data-dismiss="modal">
-                    <i class="fas fa-times text-lg"></i>
+                <button type="button" class="h-10 w-10 flex items-center justify-center rounded-xl bg-white/10 text-white hover:bg-white/20 transition-all" data-dismiss="modal">
+                    <i class="fas fa-times text-xl"></i>
                 </button>
             </div>
             
@@ -350,77 +403,109 @@
                                         <p class="text-xs font-bold text-gray-600 dark:text-gray-400" id="lapbulkelola_vNpsn">-</p>
                                     </div>
                                     <div class="flex flex-col gap-1">
-                                        <label class="text-[10px] font-black text-gray-400 uppercase">Periode</label>
-                                        <p class="text-xs font-black text-emerald" id="lapbulkelola_vPeriodeVerif">-</p>
-                                    </div>
-                                </div>
-                                <div class="flex flex-col gap-1">
-                                    <label class="text-[10px] font-black text-gray-400 uppercase">Status Awal</label>
-                                    <span class="inline-flex w-fit px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-[10px] font-black text-gray-500 uppercase" id="lapbulkelola_vStatusAwal">-</span>
-                                </div>
-                            </div>
+    <div class="modal-dialog modal-dialog-full overflow-hidden p-2 md:p-4" role="document">
+        <div class="modal-content sk-modal h-full flex flex-col md:flex-row overflow-hidden border border-white/10 shadow-2xl">
+            
+            <!-- Area Dokumen (Kiri) -->
+            <div class="flex-1 relative bg-gray-900 border-b md:border-b-0 md:border-r border-white/5">
+                <iframe id="lapbulkelola_framePreviewVerif" class="w-full h-full border-0 d-none" src=""></iframe>
+                <div id="lapbulkelola_loadingVerifPDF" class="absolute inset-0 flex flex-col items-center justify-center">
+                    <div class="sk-spinner-premium !border-white/10 !border-t-white mb-4"></div>
+                    <p class="text-[10px] font-black text-white/50 uppercase tracking-[0.2em] animate-pulse">Menyiapkan Berkas...</p>
+                </div>
+            </div>
 
-                            <div class="sk-card p-4 !bg-gray-50/50 dark:!bg-black/20 border border-dashed border-gray-200 dark:border-gray-800">
-                                <div class="space-y-4">
-                                    <div class="flex flex-col gap-2">
-                                        <label class="text-[11px] font-black text-gray-600 dark:text-gray-300 uppercase tracking-wider">Keputusan Operasional <span class="text-danger">*</span></label>
-                                        <div class="relative">
-                                            <select class="sk-dash-input w-full appearance-none pr-10 border-gray-200 dark:border-gray-800" id="lapbulkelola_selStatusVerif" required>
-                                                <option value="">-- PILIH STATUS --</option>
-                                                <option value="Disetujui">✅ DISETUJUI</option>
-                                                <option value="Revisi">🔄 REVISI</option>
-                                                <option value="Ditolak">❌ DITOLAK</option>
-                                            </select>
-                                            <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400"><i class="fas fa-chevron-down text-xs"></i></div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col gap-2">
-                                        <label class="text-[11px] font-black text-gray-600 dark:text-gray-300 uppercase tracking-wider">Catatan & Umpan Balik</label>
-                                        <textarea class="sk-dash-input !h-auto w-full py-3 px-4 border-gray-200 dark:border-gray-800 bg-white dark:bg-boxdark min-h-[100px]" id="lapbulkelola_txtKetVerif" rows="3" placeholder="Tulis catatan atau alasan revisi/penolakan..."></textarea>
-                                        <div id="lapbulkelola_verifWajibCatatan" class="d-none flex items-center gap-1.5 text-danger mt-1">
-                                            <i class="fas fa-exclamation-circle text-xs"></i>
-                                            <span class="text-[10px] font-black uppercase">Wajib mengisi alasan!</span>
-                                        </div>
-                                    </div>
-                                </div>
+            <!-- Area Keputusan (Kanan) -->
+            <div class="w-full md:w-[380px] flex flex-col bg-white dark:bg-boxdark h-full">
+                <div class="sk-modal-header-brand sk-modal-header-success flex items-center justify-between px-6 py-4">
+                    <h3 class="sk-modal-title flex items-center gap-2">
+                        <i class="fas fa-check-double"></i> Verifikasi Data
+                    </h3>
+                    <button type="button" class="text-white hover:bg-white/20 h-8 w-8 rounded-lg flex items-center justify-center transition-all" data-dismiss="modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <form id="lapbulkelola_formVerif" class="flex-1 flex flex-col overflow-y-auto p-6 sultan-scroll">
+                    <input type="hidden" id="lapbulkelola_targetVerifId">
+                    
+                    <div class="mb-6">
+                        <h4 class="text-[11px] font-black text-primary uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
+                            <i class="fas fa-id-card"></i> Detail Identitas
+                        </h4>
+                        <div class="space-y-3 bg-gray-50 dark:bg-white/5 p-4 rounded-xl border border-gray-100 dark:border-white/5">
+                            <div class="flex justify-between items-center text-[13px]">
+                                <span class="text-gray-400 font-bold uppercase tracking-widest text-[10px]">Unit Kerja</span>
+                                <span class="text-black dark:text-white font-black truncate max-w-[200px]" id="lapbulkelola_lblVerifUnit">-</span>
                             </div>
-                        </div>
-                        <div class="px-6 py-4 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between bg-gray-50/30 dark:bg-black/10">
-                            <button type="button" class="sultan-btn sultan-btn-white sk-btn-compact" data-dismiss="modal">BATAL</button>
-                            <button type="submit" id="lapbulkelola_btnSimpanVerif" class="sultan-btn sultan-btn-primary sk-btn-compact !bg-emerald hover:!bg-emerald-600 shadow-emerald/20 shadow-lg">
-                                <i class="fas fa-check-double mr-2"></i> EKSEKUSI DATA
-                            </button>
+                            <div class="flex justify-between items-center text-[13px]">
+                                <span class="text-gray-400 font-bold uppercase tracking-widest text-[10px]">Periode</span>
+                                <span class="text-black dark:text-white font-black" id="lapbulkelola_lblVerifPeriode">-</span>
+                            </div>
+                            <div class="flex justify-between items-center pt-3 border-t border-gray-200 dark:border-white/5">
+                                <span class="text-gray-400 font-bold uppercase tracking-widest text-[10px]">Status Saat Ini</span>
+                                <span class="sk-status-pill bg-primary/10 text-primary px-2 py-0.5 rounded-lg" id="lapbulkelola_lblVerifStatus">-</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </form>
+
+                    <div class="space-y-5 bg-emerald-50/30 dark:bg-emerald-500/5 p-5 rounded-2xl border border-emerald-500/20">
+                        <div>
+                            <label class="text-[11px] font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-3 block">Keputusan Verifikasi <span class="text-danger">*</span></label>
+                            <select id="lapbulkelola_selectVerifStatus" class="sk-form-input w-full !border-emerald-500/30 focus:!border-emerald-500" required>
+                                <option value="">-- PILIH STATUS --</option>
+                                <option value="Disetujui">✅ TERIMA & SETUJUI</option>
+                                <option value="Revisi">🔄 PERLU REVISI</option>
+                                <option value="Ditolak">❌ TOLAK LAPORAN</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-[11px] font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-3 block">Umpan Balik / Catatan</label>
+                            <textarea id="lapbulkelola_inputVerifCatatan" rows="4" class="sk-form-input w-full !h-auto p-4 !border-emerald-500/30 focus:!border-emerald-500" placeholder="Berikan alasan atau instruksi revisi..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="mt-auto pt-8 flex flex-col gap-3">
+                        <button type="submit" id="lapbulkelola_btnSimpanVerif" class="sk-btn sk-btn-primary !w-full !h-12 !text-[12px] !bg-emerald-600 border-0">
+                            <i class="fas fa-check-circle mr-2"></i> EKSEKUSI VERIFIKASI
+                        </button>
+                        <button type="button" class="sk-btn sk-btn-secondary !w-full !h-10 border-0" data-dismiss="modal">BATAL</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
 
-<!-- 4. MODAL HAPUS DATA (CENTERED SAFEGUARD) -->
+<!-- 4. MODAL HAPUS (SULTAN SECURITY SAFEGUARD) -->
 <div class="modal fade sk-overlay" id="lapbulkelola_modalHapus" tabindex="-1" role="dialog" data-backdrop="static">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content sk-modal max-w-md mx-auto">
-            <div class="p-6 text-center">
-                <div class="h-20 w-20 flex items-center justify-center rounded-full bg-danger/10 text-danger mx-auto mb-6">
+        <div class="modal-content sk-modal max-w-[450px] overflow-hidden">
+            <div class="sk-modal-header !bg-danger px-6 py-4 flex items-center justify-between">
+                <h5 class="text-sm font-black text-white uppercase tracking-widest">Hapus Data Laporan</h5>
+                <button type="button" class="text-white hover:bg-white/10 h-8 w-8 rounded-lg flex items-center justify-center transition-all" data-dismiss="modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body p-8 text-center">
+                <div class="h-20 w-20 flex items-center justify-center rounded-2xl bg-danger/10 text-danger mx-auto mb-6 shadow-lg shadow-danger/10">
                     <i class="fas fa-trash-alt text-3xl"></i>
                 </div>
-                <h5 class="text-lg font-black text-black dark:text-white uppercase tracking-tight mb-2">Hapus Laporan?</h5>
-                <p class="text-xs text-gray-500 font-bold uppercase leading-relaxed mb-6">
-                    Tindakan ini bersifat permanen. Data sekolah <span id="lapbulkelola_lblHapusSekolah" class="text-danger font-black">-</span> akan dihapus dari sistem.
+                <h4 class="text-lg font-black text-black dark:text-white uppercase tracking-tight mb-2">Konfirmasi Penghapusan</h4>
+                <p class="text-[13px] text-gray-500 font-bold leading-relaxed mb-8 px-4">
+                    Data laporan untuk unit <b id="lapbulkelola_lblHapusUnit" class="text-danger">-</b> periode <b id="lapbulkelola_lblHapusPeriode">-</b> akan dihapus secara permanen. Tindakan ini tidak dapat dibatalkan.
                 </p>
                 
-                <div class="sk-card p-4 !bg-gray-50 dark:!bg-black/40 border border-danger/20 mb-6">
-                    <label class="text-[11px] font-black text-gray-500 uppercase tracking-widest mb-2 block">Otorisasi Keamanan</label>
-                    <input type="password" id="lapbulkelola_inputKodeHapus" class="sk-form-input w-full text-center tracking-[0.5em] border-danger/30 focus:border-danger" placeholder="••••••">
+                <div class="bg-gray-50 dark:bg-white/5 p-4 rounded-xl border border-danger/20 mb-8">
+                    <label class="text-[10px] font-black text-danger uppercase tracking-widest mb-2 block">Otorisasi Keamanan (yyyyMMdd)</label>
+                    <input type="password" id="lapbulkelola_inputKodeHapus" class="sk-form-input w-full text-center tracking-[1em] font-black !border-danger/30 focus:!border-danger" placeholder="••••••••">
                 </div>
 
-                <div class="grid grid-cols-2 gap-3">
-                    <button type="button" class="sultan-btn sultan-btn-white sk-btn-compact" data-dismiss="modal">BATAL</button>
-                    <button type="button" id="lapbulkelola_btnEksekusiHapus" class="sultan-btn sultan-btn-primary !bg-danger hover:!bg-danger-600 shadow-danger/20 shadow-lg sk-btn-compact">
-                        YA, HAPUS
+                <div class="flex flex-col gap-3">
+                    <button type="button" id="lapbulkelola_btnEksekusiHapus" class="sk-btn !bg-danger !text-white !w-full !h-12 !text-[12px] border-0">
+                        <i class="fas fa-trash-alt mr-2"></i> HAPUS PERMANEN
                     </button>
+                    <button type="button" class="sk-btn sk-btn-secondary !w-full border-0" data-dismiss="modal">BATAL</button>
                 </div>
             </div>
         </div>
@@ -1107,24 +1192,24 @@ function lapbulkelola_renderTabel(data) {
 
         var safeNama = lapbulkelola_escapeJs(row.namaSekolah);        // VAKSIN DYNAMIC UI: Membedakan Aksi Admin dan User
         
-        // BAB III: Tombol Aksi (Side-by-Side Modern Style)
-        var btnVerif = LAPBULKELOLA_IS_ADMIN ? `<button type="button" class="btn btn-icon-sultan btn-icon-sultan-primary shadow-sm btn-aksi-verif" data-id="${row.rowId}" data-source="${row.source}" data-nama="${safeNama}" data-bulan="${row.bulan}" data-tahun="${row.tahun}" data-file="${(row.fileUrl || "")}" data-npsn="${(row.npsn || "-")}" data-status="${(row.statusData || "Diproses")}" title="Verifikasi Admin"><i class="fas fa-check-double"></i></button>` : '';
-        var btnEdit  = `<button type="button" class="btn btn-icon-sultan btn-icon-sultan-warning shadow-sm btn-aksi-edit ${isApproved ? 'btn-sultan-locked disabled' : ''}" data-id="${row.rowId}" data-source="${row.source}" title="Ubah Laporan" ${isApproved ? 'disabled' : ''}><i class="fas fa-pencil-alt"></i></button>`;
-        var btnHapus = `<button type="button" class="btn btn-icon-sultan btn-icon-sultan-danger shadow-sm btn-aksi-hapus ${isApproved ? 'btn-sultan-locked disabled' : ''}" data-id="${row.rowId}" data-source="${row.source}" data-nama="${safeNama}" title="Hapus Permanen" ${isApproved ? 'disabled' : ''}><i class="fas fa-trash-alt"></i></button>`;
-        var btnAksi = `<div class="d-flex flex-nowrap justify-content-center" style="gap:5px;">${btnVerif}${btnEdit}${btnHapus}</div>`;
+        // BAB III: Tombol Aksi (Side-by-Side Blueprint Style)
+        var btnVerif = LAPBULKELOLA_IS_ADMIN ? `<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-600 hover:bg-emerald-600 hover:text-white transition-all shadow-sm btn-aksi-verif" data-id="${row.rowId}" data-source="${row.source}" data-nama="${safeNama}" data-bulan="${row.bulan}" data-tahun="${row.tahun}" data-file="${(row.fileUrl || "")}" data-npsn="${(row.npsn || "-")}" data-status="${(row.statusData || "Diproses")}" title="Verifikasi Laporan"><i class="fas fa-check-double text-[12px]"></i></button>` : '';
+        var btnEdit  = `<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-500/10 text-amber-600 hover:bg-amber-600 hover:text-white transition-all shadow-sm btn-aksi-edit ${isApproved ? 'opacity-30 cursor-not-allowed' : ''}" data-id="${row.rowId}" data-source="${row.source}" title="Ubah Laporan" ${isApproved ? 'disabled' : ''}><i class="fas fa-pencil-alt text-[12px]"></i></button>`;
+        var btnHapus = `<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg bg-rose-500/10 text-rose-600 hover:bg-rose-600 hover:text-white transition-all shadow-sm btn-aksi-hapus ${isApproved ? 'opacity-30 cursor-not-allowed' : ''}" data-id="${row.rowId}" data-source="${row.source}" data-nama="${safeNama}" data-bulan="${row.bulan}" data-tahun="${row.tahun}" title="Hapus Permanen" ${isApproved ? 'disabled' : ''}><i class="fas fa-trash-alt text-[12px]"></i></button>`;
+        var btnAksi = `<div class="flex items-center justify-center gap-2">${btnVerif}${btnEdit}${btnHapus}</div>`;
 
-        var btnFile = '<span class="text-muted small">-</span>';
+        var btnFile = '<span class="text-gray-300 font-bold uppercase tracking-widest text-[10px]">- KOSONG -</span>';
         if (row.fileUrl && row.fileUrl.length > 5) {
             var safeFile2 = lapbulkelola_escapeJs(row.fileUrl);
-            btnFile = `<button class="btn btn-xs btn-outline-danger font-weight-bold shadow-sm btn-preview-dokumen px-2 py-1" data-url="${safeFile2}" title="Lihat Laporan PDF"><i class="fas fa-file-pdf mr-1"></i> LIHAT</button>`;
+            btnFile = `<button class="inline-flex items-center gap-2 rounded-lg bg-rose-500 px-3 py-1 text-[10px] font-black text-white hover:bg-rose-600 transition-all shadow-sm btn-preview-dokumen" data-url="${safeFile2}"><i class="fas fa-file-pdf"></i> LIHAT</button>`;
         }
 
-        var metaKirim = `<div style="line-height:1.2;font-size:11px;"><span class="d-block font-weight-bold text-dark text-nowrap">${row.tglKirim || '-'}</span><span class="d-block text-muted text-nowrap">${lapbulkelola_escapeHtml(row.userKirim)}</span></div>`;
-        var metaEdit  = `<div style="line-height:1.2;font-size:11px;"><span class="d-block font-weight-bold text-dark text-nowrap">${row.tglEdit || '-'}</span><span class="d-block text-muted text-nowrap">${lapbulkelola_escapeHtml(row.userEdit)}</span></div>`;
-        var metaVerif = `<div style="line-height:1.2;font-size:11px;"><span class="d-block font-weight-bold text-dark text-nowrap">${row.tglVerif || '-'}</span><span class="d-block text-muted text-nowrap">${lapbulkelola_escapeHtml(row.verifikator)}</span></div>`;
+        var metaKirim = `<div class="flex flex-col"><span class="text-[12px] font-black text-black dark:text-white">${row.tglKirim || '-'}</span><span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-0.5">${lapbulkelola_escapeHtml(row.userKirim)}</span></div>`;
+        var metaEdit  = `<div class="flex flex-col"><span class="text-[12px] font-black text-black dark:text-white">${row.tglEdit || '-'}</span><span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-0.5">${lapbulkelola_escapeHtml(row.userEdit)}</span></div>`;
+        var metaVerif = `<div class="flex flex-col"><span class="text-[12px] font-black text-black dark:text-white">${row.tglVerif || '-'}</span><span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-0.5">${lapbulkelola_escapeHtml(row.verifikator)}</span></div>`;
 
         // VAKSIN LEBAR KOLOM: Menggunakan text-nowrap agar membentang 100%
-        var uiUnit = `<div class="sk-item-main text-maroon">${lapbulkelola_escapeHtml(row.namaSekolah)}</div><div class="sk-item-sub">${lapbulkelola_escapeHtml(row.npsn || '-')}</div>`;
+        var uiUnit = `<div class="flex flex-col"><span class="text-[13px] font-black text-primary uppercase tracking-tight">${lapbulkelola_escapeHtml(row.namaSekolah)}</span><span class="text-[10px] font-bold text-gray-400 tracking-widest uppercase mt-0.5">${lapbulkelola_escapeHtml(row.npsn || '-')}</span></div>`;
 
         dtArray.push([ 
             btnAksi, 
@@ -1190,26 +1275,27 @@ function lapbulkelola_lihatCatatanSultan(pesan) {
 
 function lapbulkelola_buildBadgeStatus(status, ket) { 
     var s = String(status || "Diproses").toLowerCase(); 
-    var style = 'badge-sultan-light-warning'; 
+    var bgColor = 'bg-amber-500/10'; 
+    var textColor = 'text-amber-600';
     var icon = 'clock'; 
     var label = "DIPROSES";
     
     if (s.includes('ok') || s.includes('setuju') || s.includes('terima') || s.includes('valid')) { 
-        style = 'badge-sultan-light-success'; icon = 'check-circle'; label = "DISETUJUI"; 
+        bgColor = 'bg-emerald-500/10'; textColor = 'text-emerald-600'; icon = 'check-double'; label = "DISETUJUI"; 
     } 
     else if (s.includes('revisi') || s.includes('perbaiki')) { 
-        style = 'badge-sultan-light-info'; icon = 'sync-alt'; label = "REVISI"; 
+        bgColor = 'bg-blue-500/10'; textColor = 'text-blue-600'; icon = 'sync'; label = "REVISI"; 
     } 
     else if (s.includes('tolak') || s.includes('salah')) { 
-        style = 'badge-sultan-light-danger'; icon = 'times-circle'; label = "DITOLAK"; 
+        bgColor = 'bg-rose-500/10'; textColor = 'text-rose-600'; icon = 'times-circle'; label = "DITOLAK"; 
     } 
     
-    var badgeHtml = `<span class="badge badge-sultan ${style}"><i class="fas fa-${icon} mr-1"></i>${label}</span>`;
+    var badgeHtml = `<div class="inline-flex items-center gap-1.5 ${bgColor} ${textColor} px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-wider shadow-sm border border-transparent"><i class="fas fa-${icon}"></i> ${label}</div>`;
 
     if (ket && ket.trim().length > 2 && (s.includes('revisi') || s.includes('tolak'))) {
         var safeKet = lapbulkelola_escapeJs(ket);
-        var btnCatatan = `<div class="mt-2 text-center"><button type="button" class="btn btn-xs btn-outline-danger font-weight-bold shadow-sm btn-baca-catatan px-2" style="font-size:10px; border-radius:4px;" data-pesan="${safeKet}"><i class="fas fa-comment-dots mr-1"></i> Baca Catatan</button></div>`;
-        return `<div class="d-flex flex-column align-items-center">${badgeHtml}${btnCatatan}</div>`;
+        var btnCatatan = `<button type="button" class="mt-2 flex items-center gap-1.5 text-[9px] font-black text-rose-500 uppercase tracking-[0.15em] hover:text-rose-600 transition-all btn-baca-catatan" data-pesan="${safeKet}"><i class="fas fa-comment-dots"></i> Baca Catatan</button>`;
+        return `<div class="flex flex-col items-center">${badgeHtml}${btnCatatan}</div>`;
     }
 
     return badgeHtml; 
