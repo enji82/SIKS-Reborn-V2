@@ -432,7 +432,8 @@ function getSiabaStatusData() {
 
     return {
        rows: rows,
-       schools: listSekolah
+       schools: listSekolah,
+       headers: [rawData[0], rawData[1]]
     };
 
   } catch (e) {
