@@ -767,7 +767,8 @@ $(document).ready(function() {
     try {
         var user = typeof getSesiUser === 'function' ? getSesiUser() : {};
         LAPBULKELOLA_USER_AKTIF = user.nama_lengkap || user.fullname || user.nama || user.username || "User Web";
-        LAPBULKELOLA_IS_ADMIN = (user.role || "").toLowerCase().includes("admin");
+        var role = (user.role || "").toLowerCase();
+        LAPBULKELOLA_IS_ADMIN = role.includes("admin") || role.includes("verifikator") || role.includes("super");
         LAPBULKELOLA_USER_NPSN = user.npsn || user.username || ""; 
     } catch(e) { LAPBULKELOLA_USER_NPSN = ""; LAPBULKELOLA_IS_ADMIN = false; }
     
@@ -877,9 +878,11 @@ function lapbulkelola_validasiAksesUser() {
         lapbulkelola_prosesCariData(false); 
     } else {
         $('#lapbulkelola_boxJenjang').addClass('hidden').removeClass('block');
+        
+        // Fallback: Jika bukan admin tapi punya NPSN, coba akses sebagai unit
         if (!LAPBULKELOLA_USER_NPSN) {
-            $('#lapbulkelola_filterUnit').empty().append('<option value="">AKSES DITOLAK (NPSN KOSONG)</option>');
-            $('#lapbulkelola_loadingText').html('<span class="text-danger"><i class="fas fa-ban mb-2"></i><br>Akses ditolak: Sesi login tidak valid.</span>');
+            $('#lapbulkelola_filterUnit').empty().append('<option value="">AKSES DITOLAK (SESI KOSONG)</option>');
+            $('#lapbulkelola_loadingText').html('<span class="text-danger"><i class="fas fa-ban mb-2"></i><br>Akses ditolak: Sesi login tidak valid. Silakan muat ulang halaman.</span>');
             return;
         }
 
@@ -900,7 +903,7 @@ function lapbulkelola_validasiAksesUser() {
             })
             .withFailureHandler(function(err) {
                 $('#lapbulkelola_filterUnit').empty().append('<option value="">ERROR SERVER</option>');
-                $('#lapbulkelola_loadingText').html(`<span class="text-danger"><i class="fas fa-wifi mb-2"></i><br>Koneksi Database Induk Terputus: ${lapbulkelola_escapeHtml(err.message)}</span>`);
+                $('#lapbulkelola_loadingText').html(`<span class="text-danger"><i class="fas fa-wifi mb-2"></i><br>Koneksi Terputus: ${lapbulkelola_escapeHtml(err.message)}</span>`);
             })
             .getUnitKerjaByNpsnPTK(LAPBULKELOLA_USER_NPSN); 
     }
