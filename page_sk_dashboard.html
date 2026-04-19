@@ -274,50 +274,53 @@
     <i class="fas fa-bolt text-amber-400 animate-pulse"></i> TURBO ANALYTICS ACTIVE
 </div>
 
-<!-- MODAL BELUM LAPOR (SULTAN v4.1 SYNC) -->
-<div class="fixed inset-0 z-[99999] flex items-center justify-center bg-black/60 backdrop-blur-sm overflow-y-auto px-4 py-4" id="dashsk_modalBelumLapor" style="display:none;">
-    <div class="w-full max-w-2xl rounded-2xl border border-gray-200 bg-white shadow-2xl dark:border-gray-800 dark:bg-boxdark animate-reveal overflow-hidden">
-        <!-- Header -->
-        <div class="flex items-center justify-between border-b border-gray-100 py-4 px-6 dark:border-gray-800 bg-gray-50/50 dark:bg-black/10">
-            <h3 class="font-black text-black dark:text-white flex items-center gap-2 text-sm uppercase tracking-widest">
-                <i class="fas fa-clipboard-list text-primary"></i> Daftar Belum Lapor
+<!-- MODAL BELUM LAPOR (SULTAN v4.1 EXECUTIVE SYNC) -->
+<div id="dashsk_modalBelumLapor" class="sk-overlay">
+    <div class="sk-modal !max-w-2xl bg-white dark:!bg-boxdark">
+        <!-- Header: Standard Brand Blue -->
+        <div class="sk-modal-header-brand">
+            <h3 class="sk-modal-title">
+                <i class="fas fa-clipboard-list mr-2"></i> Daftar Belum Lapor
             </h3>
-            <button type="button" class="flex h-8 w-8 items-center justify-center rounded-full bg-white dark:bg-black/20 text-gray-400 hover:text-danger hover:bg-danger/10 transition-all" onclick="$('#dashsk_modalBelumLapor').fadeOut()">
+            <button type="button" class="sk-modal-close" onclick="dashsk_closeModal()">
                 <i class="fas fa-times"></i>
             </button>
         </div>
 
         <!-- Body -->
         <div class="p-6">
+            <!-- Info Alert: Adaptive -->
             <div class="mb-5 flex items-center gap-4 rounded-xl border border-amber-200/50 bg-amber-500/5 py-4 px-5 dark:border-amber-500/20">
-                <div class="flex h-10 w-10 min-w-[40px] items-center justify-center rounded-lg bg-amber-500 text-white shadow-lg shadow-amber-500/20">
-                    <i class="fas fa-info-circle text-lg"></i>
+                <div class="flex h-11 w-11 min-w-[44px] items-center justify-center rounded-xl bg-amber-500 text-white shadow-lg shadow-amber-500/20">
+                    <i class="fas fa-info-circle text-xl"></i>
                 </div>
                 <div class="w-full">
-                    <p class="text-[11px] text-gray-400 font-bold uppercase tracking-widest leading-none mb-1">Periode Laporan</p>
-                    <h5 class="font-black text-black dark:text-white text-sm" id="dashsk_lblPeriodeBelum">-</h5>
+                    <p class="text-[11px] text-gray-400 font-bold uppercase tracking-widest leading-none mb-1.5">Periode Laporan Aktif</p>
+                    <h5 class="font-black text-black dark:text-white text-[15px]" id="dashsk_lblPeriodeBelum">-</h5>
                 </div>
             </div>
 
-            <div class="relative mb-4">
-                <span class="absolute left-4 top-1/2 -translate-y-1/2">
-                    <i class="fas fa-search text-gray-400"></i>
+            <!-- Search Area -->
+            <div class="relative mb-5">
+                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 opacity-60">
+                    <i class="fas fa-search"></i>
                 </span>
-                <input type="text" id="dashsk_inputCariBelumModal" placeholder="Ketik untuk mencari unit sekolah..." class="sk-dash-input w-full border border-gray-200 dark:border-white/10 bg-gray-50/50 dark:!bg-white/5 py-3 pl-11 pr-4 outline-none transition focus:border-primary dark:focus:border-primary dark:text-white">
+                <input type="text" id="dashsk_inputCariBelumModal" placeholder="Ketik untuk mencari unit sekolah..." class="sk-dash-input w-full border border-gray-100 dark:border-white/10 bg-gray-50/50 dark:!bg-white/5 py-3 pl-11 pr-4 outline-none transition focus:border-primary dark:focus:border-primary dark:text-white">
             </div>
 
-            <div class="max-h-[350px] overflow-y-auto sultan-scroll pr-1">
-                <div id="dashsk_listBelumBodyModal"></div>
+            <!-- Dynamic List Area -->
+            <div class="max-h-[400px] overflow-y-auto sultan-scroll pr-2 -mr-2">
+                <div id="dashsk_listBelumBodyModal" class="space-y-2"></div>
             </div>
         </div>
 
         <!-- Footer -->
-        <div class="flex flex-wrap items-center justify-between border-t border-gray-100 py-4 px-6 dark:border-gray-800 bg-gray-50/50 dark:bg-black/10 gap-4">
-            <button type="button" class="sultan-btn sultan-btn-white !h-[38px] !px-6 !text-[11px]" id="dashsk_btnSalinModal">
-                <i class="fas fa-copy mr-1.5"></i> SALIN DAFTAR
+        <div class="sk-modal-footer px-6 py-4 flex flex-wrap items-center justify-between gap-4">
+            <button type="button" class="sultan-btn sultan-btn-white !h-[38px] !px-6 !text-[11px] !font-black" id="dashsk_btnSalinModal">
+                <i class="fas fa-copy mr-2"></i> SALIN DAFTAR
             </button>
-            <button type="button" class="sultan-btn sultan-btn-primary !h-[38px] !px-6 !text-[11px]" onclick="$('#dashsk_modalBelumLapor').fadeOut()">
-                <i class="fas fa-check mr-1.5"></i> MENGERTI
+            <button type="button" class="sultan-btn sultan-btn-primary !h-[38px] !px-8 !text-[11px] !font-black" onclick="dashsk_closeModal()">
+                <i class="fas fa-check-double mr-2"></i> SELESAI
             </button>
         </div>
     </div>
@@ -536,16 +539,22 @@
     var val = $('#dashsk_inputCariBelumModal').val().toLowerCase();
     $('#dashsk_listBelumBodyModal .sk-belum-item').each(function () {
       $(this).toggle($(this).text().toLowerCase().indexOf(val) > -1);
-    });
-  }
-
   function dashsk_showModalBelum() {
     var th = $('#dashsk_filterTahun').val() || "Semua Tahun";
     var sm = $('#dashsk_filterSemester').val() || "Semua Semester";
-    $('#dashsk_lblPeriodeBelum').text(sm + " - TA " + th);
-    $('#dashsk_inputCariBelumModal').val("");
-    dashsk_filterBelumModal();
-    $('#dashsk_modalBelumLapor').fadeIn();
+    var periode = sm + " - TA " + th;
+    var list = DASHSK_LIST_BELUM_CACHE;
+    
+    // Populate Modal
+    $('#dashsk_lblPeriodeBelum').text(periode);
+    dashsk_renderBelumList(list, '#dashsk_listBelumBodyModal');
+    
+    // Show Modal (Sultan Standard)
+    $('#dashsk_modalBelumLapor').addClass('active');
+  }
+
+  function dashsk_closeModal() {
+    $('#dashsk_modalBelumLapor').removeClass('active');
   }
 
   function dashsk_renderTimeline(list) {
