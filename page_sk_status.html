@@ -209,7 +209,7 @@
         var headerHtml = '<tr class="sk-bg-section text-center border-b border-gray-100 dark:border-white/5">';
         
         // Kolom UNIT KERJA (Warna Biru sesuai gambar)
-        headerHtml += '<th class="py-4 px-6 font-black uppercase text-primary text-left sticky left-0 z-[30] sk-bg-section shadow-[2px_0_5px_rgba(0,0,0,0.05)] border-r border-gray-100 dark:border-white/10 text-xs tracking-wider">UNIT KERJA</th>';
+        headerHtml += '<th class="py-3.5 px-6 font-black uppercase text-primary text-left sticky left-0 z-[30] sk-bg-section shadow-[2px_0_5px_rgba(0,0,0,0.05)] border-r border-gray-100 dark:border-white/10 text-xs tracking-wider">UNIT KERJA</th>';
         
         if (STATUSSK_RAW_HEADER && STATUSSK_RAW_HEADER.length >= 2) {
             var hRow1 = STATUSSK_RAW_HEADER[0];
@@ -226,18 +226,18 @@
                 var cleanSmt = smtLabel.toUpperCase().replace("SEMESTER ", "SEM ").replace("SMT ", "SEM ");
                 if (!cleanSmt.includes("SEM")) cleanSmt = "SEM " + cleanSmt;
                 
-                // Header 2 Baris dalam 1 Cell
+                // Header 2 Baris dalam 1 Cell - Unified Blue Style
                 headerHtml += `
-                    <th class="py-3 px-3 font-black uppercase text-xs text-primary dark:text-[#818CF8] border-l border-gray-100 dark:border-white/5 whitespace-nowrap leading-tight">
-                        <span class="text-xs opacity-70">${year}</span><br>
-                        <span class="text-xs text-black dark:text-white">${cleanSmt}</span>
+                    <th class="py-3.5 px-3 font-black uppercase text-xs text-primary dark:text-[#818CF8] border-l border-gray-100 dark:border-white/5 whitespace-nowrap leading-tight">
+                        <span class="text-xs opacity-60 font-medium">${year}</span><br>
+                        <span class="text-xs">${cleanSmt}</span>
                     </th>`;
             }
         } else {
             // Fallback
             for (var i = 1; i < sampleRow.length; i++) {
                 var label = i % 2 !== 0 ? "SEM 1" : "SEM 2";
-                headerHtml += '<th class="py-3 px-3 font-black uppercase text-primary dark:text-[#818CF8] min-w-[80px] border-l border-gray-100 dark:border-white/5 text-xs whitespace-nowrap">' + label + '</th>';
+                headerHtml += '<th class="py-3.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] min-w-[80px] border-l border-gray-100 dark:border-white/5 text-xs whitespace-nowrap">' + label + '</th>';
             }
         }
         headerHtml += '</tr>';
