@@ -11,22 +11,30 @@
 
     <!-- 1. KARTU INFORMASI (SK STYLE) -->
     <div class="sk-card !p-0 overflow-hidden" x-data="{ isOpen: false }">
-        <div class="sk-card-header cursor-pointer hover:bg-gray-100 dark:hover:bg-white/10 transition-colors" @click="isOpen = !isOpen">
-            <h3 class="font-black text-black dark:text-white flex items-center gap-2 text-sm uppercase tracking-[0.1em]">
+        <div class="sk-card-header cursor-pointer hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
+            @click="isOpen = !isOpen">
+            <h3
+                class="font-black text-black dark:text-white flex items-center gap-2 text-sm uppercase tracking-[0.1em]">
                 <i class="fas fa-info-circle text-primary"></i> Panduan Matriks
             </h3>
-            <i class="fas fa-chevron-down text-gray-400 text-sm transition-transform" :class="{ 'rotate-180': isOpen }"></i>
+            <i class="fas fa-chevron-down text-gray-400 text-sm transition-transform"
+                :class="{ 'rotate-180': isOpen }"></i>
         </div>
-        <div x-show="isOpen" x-transition x-cloak class="p-4 border-t border-gray-100 dark:border-white/5 sk-bg-surface">
+        <div x-show="isOpen" x-transition x-cloak
+            class="p-4 border-t border-gray-100 dark:border-white/5 sk-bg-surface">
             <div class="rounded-xl border border-primary/20 bg-blue-50/80 dark:bg-white/5 p-5">
                 <ul class="space-y-3">
                     <li class="flex gap-4 text-[14px] font-bold text-gray-900 dark:text-gray-100 items-start">
-                        <span class="flex h-5 w-5 min-w-[20px] items-center justify-center rounded-full bg-primary text-[10px] font-black text-white shadow-sm">1</span>
-                        <span>Matriks ini menampilkan progres per Semester untuk setiap Tahun Ajaran.</span>
+                        <span
+                            class="flex h-5 w-5 min-w-[20px] items-center justify-center rounded-full bg-primary text-[10px] font-black text-white shadow-sm">1</span>
+                        <span>Matriks ini menampilkan progres per Semester untuk setiap Tahun Ajaran kategori awal
+                            semester.</span>
                     </li>
                     <li class="flex gap-4 text-[14px] font-bold text-gray-900 dark:text-gray-100 items-start">
-                        <span class="flex h-5 w-5 min-w-[20px] items-center justify-center rounded-full bg-primary text-[10px] font-black text-white shadow-sm">2</span>
-                        <span>Klik ikon <b class="text-warning">🔄</b> atau <b class="text-danger">❌</b> untuk membaca catatan revisi/penolakan dari admin pelaksana.</span>
+                        <span
+                            class="flex h-5 w-5 min-w-[20px] items-center justify-center rounded-full bg-primary text-[10px] font-black text-white shadow-sm">2</span>
+                        <span>Klik ikon <b class="text-warning">🔄</b> atau <b class="text-danger">❌</b> untuk membaca
+                            catatan revisi/penolakan dari admin pelaksana.</span>
                     </li>
                 </ul>
             </div>
@@ -37,11 +45,13 @@
     <div id="statussk_wadahFilter" class="sk-card p-4">
         <div class="flex flex-col md:flex-row items-center gap-4">
             <div class="flex flex-wrap flex-1 items-center gap-3 w-full">
-                <select id="statussk_filterSekolah" 
+                <select id="statussk_filterSekolah"
                     class="sk-form-input !py-2.5 !px-4 !text-sm !w-auto min-w-[300px] disabled:opacity-60">
                     <option value="SEMUA">- Memuat Database... -</option>
                 </select>
-                <button type="button" id="statussk_btnCari" class="flex h-10 w-10 items-center justify-center rounded-xl sk-bg-section text-gray-500 hover:text-primary transition-all border border-gray-100 dark:border-white/5 shadow-sm active:scale-95" title="Refresh Data">
+                <button type="button" id="statussk_btnCari"
+                    class="flex h-10 w-10 items-center justify-center rounded-xl sk-bg-section text-gray-500 hover:text-primary transition-all border border-gray-100 dark:border-white/5 shadow-sm active:scale-95"
+                    title="Refresh Data">
                     <i class="fas fa-sync-alt"></i>
                 </button>
             </div>
@@ -60,10 +70,10 @@
         <div id="statussk_tableState" style="display: none;" class="w-full overflow-hidden">
             <div class="overflow-x-auto sultan-scroll">
                 <table id="statussk_tabelUtama" class="w-full table-auto text-xs bg-transparent">
-                <thead id="statussk_headerTabel">
-                    <!-- Dinamis via JS -->
-                </thead>
-                <tbody class="divide-y divide-gray-100 dark:divide-white/5 bg-transparent"></tbody>
+                    <thead id="statussk_headerTabel">
+                        <!-- Dinamis via JS -->
+                    </thead>
+                    <tbody class="divide-y divide-gray-100 dark:divide-white/5 bg-transparent"></tbody>
                 </table>
             </div>
         </div>
@@ -74,7 +84,7 @@
     // ======================================================================
     // ISOLASI VARIABEL GLOBAL (MASTER BLUEPRINT V4.0 - PREMIUM SYNC)
     // ======================================================================
-    var STATUSSK_CACHE_DATA = []; 
+    var STATUSSK_CACHE_DATA = [];
     var STATUSSK_TABEL_INSTANCE = null;
     var STATUSSK_RAW_HEADER = []; // Untuk manipulasi header bertingkat
 
@@ -86,7 +96,7 @@
     // =================================================================
     // 1. INITIALIZATION & SPA VACCINE
     // =================================================================
-    $(document).ready(function() {
+    $(document).ready(function () {
         STATUSSK_TABEL_INSTANCE = null;
         $('#statussk_tableState').hide();
         statussk_renderSkeleton();
@@ -98,14 +108,14 @@
             STATUSSK_USER_AKTIF = user.nama_lengkap || user.fullname || user.nama || user.username || "User Web";
             var role = (user.role || "").toLowerCase();
             STATUSSK_IS_ADMIN = role.includes("admin") || role.includes("verifikator");
-            STATUSSK_USER_NPSN = user.npsn || user.username || ""; 
-        } catch(e) { STATUSSK_USER_NPSN = ""; STATUSSK_IS_ADMIN = false; }
+            STATUSSK_USER_NPSN = user.npsn || user.username || "";
+        } catch (e) { STATUSSK_USER_NPSN = ""; STATUSSK_IS_ADMIN = false; }
 
         // VAKSIN EVENT: Pemusnahan event inline & Re-binding
         $(document).off('click', '#statussk_btnCari').on('click', '#statussk_btnCari', statussk_tarikDataServer);
         $(document).off('change', '#statussk_filterSekolah').on('change', '#statussk_filterSekolah', statussk_terapkanFilterLokal);
-        
-        statussk_validasiAksesUser(); 
+
+        statussk_validasiAksesUser();
     });
 
     // =================================================================
@@ -114,15 +124,15 @@
     function statussk_validasiAksesUser() {
         if (STATUSSK_IS_ADMIN) {
             $('#statussk_wadahFilter').show();
-            statussk_tarikDataServer(); 
+            statussk_tarikDataServer();
         } else {
-            $('#statussk_wadahFilter').hide(); 
+            $('#statussk_wadahFilter').hide();
             if (!STATUSSK_USER_NPSN) {
                 $('#statussk_loadingState').html('<div class="flex flex-col items-center py-10 text-danger"><i class="fas fa-ban text-4xl mb-3 opacity-50"></i><h6 class="font-black text-xs uppercase tracking-widest">Akses Ditolak: Sesi Invalid</h6></div>');
                 return;
             }
-            
-            google.script.run.withSuccessHandler(function(resUnit) {
+
+            google.script.run.withSuccessHandler(function (resUnit) {
                 var dataUnit = JSON.parse(resUnit);
                 if (dataUnit.error) {
                     $('#statussk_loadingState').html('<div class="flex flex-col items-center py-10 text-danger"><i class="fas fa-exclamation-triangle text-4xl mb-3 opacity-50"></i><h6 class="font-black text-xs uppercase tracking-widest">' + statussk_escapeHtml(dataUnit.error) + '</h6></div>');
@@ -130,9 +140,9 @@
                 }
                 STATUSSK_UNIT_TERKUNCI = dataUnit.unitKerja;
                 statussk_tarikDataServer();
-            }).withFailureHandler(function(err) {
+            }).withFailureHandler(function (err) {
                 $('#statussk_loadingState').html('<div class="flex flex-col items-center py-10 text-danger"><i class="fas fa-wifi text-4xl mb-3 opacity-50"></i><h6 class="font-black text-xs uppercase tracking-widest">Koneksi Terputus</h6></div>');
-            }).getUnitKerjaByNpsnPTK(STATUSSK_USER_NPSN); 
+            }).getUnitKerjaByNpsnPTK(STATUSSK_USER_NPSN);
         }
     }
 
@@ -142,7 +152,7 @@
     function statussk_tarikDataServer() {
         var btn = $('#statussk_btnCari');
         btn.prop('disabled', true).html('<i class="fas fa-sync-alt fa-spin text-primary"></i>');
-        
+
         if (!STATUSSK_TABEL_INSTANCE) {
             $('#statussk_tableState').hide();
             statussk_renderSkeleton();
@@ -150,7 +160,7 @@
         }
 
         google.script.run
-            .withSuccessHandler(function(res) {
+            .withSuccessHandler(function (res) {
                 btn.prop('disabled', false).html('<i class="fas fa-sync-alt"></i>');
                 if (res.error) {
                     $('#statussk_loadingState').html('<div class="flex flex-col items-center py-10 text-danger"><i class="fas fa-exclamation-triangle text-4xl mb-3 opacity-50"></i><h6 class="font-black text-xs uppercase tracking-widest">' + statussk_escapeHtml(res.error) + '</h6></div>');
@@ -162,7 +172,7 @@
                 statussk_populateDropdown(res.schools || []);
                 statussk_terapkanFilterLokal();
             })
-            .withFailureHandler(function(err) {
+            .withFailureHandler(function (err) {
                 btn.prop('disabled', false).html('<i class="fas fa-sync-alt"></i>');
                 $('#statussk_loadingState').html('<div class="flex flex-col items-center py-10 text-danger"><i class="fas fa-wifi text-4xl mb-3 opacity-50"></i><h6 class="font-black text-xs uppercase tracking-widest">Server Error</h6></div>');
             })
@@ -174,12 +184,12 @@
             var el = $('#statussk_filterSekolah');
             var currentVal = el.val();
             var h = '<option value="SEMUA">- Filter Semua Instansi -</option>';
-            schools.forEach(function(s) { 
+            schools.forEach(function (s) {
                 var safeS = statussk_escapeHtml(s);
-                h += '<option value="' + safeS + '">' + safeS + '</option>'; 
+                h += '<option value="' + safeS + '">' + safeS + '</option>';
             });
             el.html(h);
-            if(currentVal && schools.includes(currentVal)) el.val(currentVal);
+            if (currentVal && schools.includes(currentVal)) el.val(currentVal);
         }
     }
 
@@ -188,44 +198,44 @@
     // =================================================================
     function statussk_terapkanFilterLokal() {
         var tAdminUnit = STATUSSK_IS_ADMIN ? String($('#statussk_filterSekolah').val() || "").toUpperCase() : "";
-        var tUnitUser  = String(STATUSSK_UNIT_TERKUNCI || "").trim().toUpperCase();
+        var tUnitUser = String(STATUSSK_UNIT_TERKUNCI || "").trim().toUpperCase();
 
-        var rowsToShow = STATUSSK_CACHE_DATA.filter(function(r) {
+        var rowsToShow = STATUSSK_CACHE_DATA.filter(function (r) {
             var rUnit = String(r[0] || "").trim().toUpperCase();
             if (STATUSSK_IS_ADMIN) {
                 return (tAdminUnit === "SEMUA" || tAdminUnit === "" || rUnit === tAdminUnit);
             } else {
-                return (rUnit === tUnitUser); 
+                return (rUnit === tUnitUser);
             }
         });
-        
+
         statussk_renderTabel(rowsToShow);
     }
 
     function statussk_renderTabel(rows) {
         var dtArray = [];
-        
+
         var sampleRow = rows[0] || [];
         var headerHtml = '<tr class="sk-bg-section text-center border-b border-gray-100 dark:border-white/5">';
-        
+
         // Kolom UNIT KERJA (Warna Biru sesuai gambar)
         headerHtml += '<th class="py-3.5 px-6 font-black uppercase text-primary text-left sticky left-0 z-[30] sk-bg-section shadow-[2px_0_5px_rgba(0,0,0,0.05)] border-r border-gray-100 dark:border-white/10 text-xs tracking-wider">UNIT KERJA</th>';
-        
+
         if (STATUSSK_RAW_HEADER && STATUSSK_RAW_HEADER.length >= 2) {
             var hRow1 = STATUSSK_RAW_HEADER[0];
             var hRow2 = STATUSSK_RAW_HEADER[1];
-            
+
             for (var i = 1; i < hRow2.length; i++) {
                 // Ambil Tahun (Bisa kosong jika merged di sheet, cari ke belakang)
                 var year = "";
-                for(var k = i; k >= 1; k--) {
-                    if(hRow1[k] && hRow1[k] !== "") { year = hRow1[k]; break; }
+                for (var k = i; k >= 1; k--) {
+                    if (hRow1[k] && hRow1[k] !== "") { year = hRow1[k]; break; }
                 }
-                
+
                 var smtLabel = hRow2[i] || (i % 2 !== 0 ? "SEM 1" : "SEM 2");
                 var cleanSmt = smtLabel.toUpperCase().replace("SEMESTER ", "SEM ").replace("SMT ", "SEM ");
                 if (!cleanSmt.includes("SEM")) cleanSmt = "SEM " + cleanSmt;
-                
+
                 // Header 2 Baris dalam 1 Cell - Unified Blue Style
                 headerHtml += `
                     <th class="py-3.5 px-3 font-black uppercase text-xs text-primary dark:text-[#818CF8] border-l border-gray-100 dark:border-white/5 whitespace-nowrap leading-tight">
@@ -243,23 +253,23 @@
         headerHtml += '</tr>';
         $('#statussk_headerTabel').html(headerHtml);
 
-        rows.forEach(function(row) {
+        rows.forEach(function (row) {
             var rowData = [];
-            
+
             // Kolom 1: Nama Unit (Sticky) + NPSN - SESUAI GAMBAR
             var schoolParts = String(row[0] || "").split('|');
             var schName = statussk_escapeHtml(schoolParts[0]);
             var schNpsn = statussk_escapeHtml(schoolParts[1] || "-");
-            
+
             rowData.push(`
                 <div class="flex flex-col text-left py-1">
                     <span class="font-black text-black dark:text-white uppercase tracking-tight text-sm leading-snug">${schName}</span>
                     <span class="text-[11px] text-gray-400 dark:text-gray-500 font-bold tracking-widest">${schNpsn}</span>
                 </div>
             `);
-            
-            for (var i = 1; i < row.length; i++) { 
-                rowData.push(statussk_buildBadgeSultan(row[i])); 
+
+            for (var i = 1; i < row.length; i++) {
+                rowData.push(statussk_buildBadgeSultan(row[i]));
             }
             dtArray.push(rowData);
         });
@@ -270,27 +280,27 @@
         }
 
         STATUSSK_TABEL_INSTANCE = $('#statussk_tabelUtama').DataTable({
-            "data": dtArray, 
-            "ordering": false, "pageLength": 15, "autoWidth": false, "deferRender": true, 
+            "data": dtArray,
+            "ordering": false, "pageLength": 15, "autoWidth": false, "deferRender": true,
             "dom": "<'row'<'col-sm-12'<'overflow-x-auto sultan-scroll !border-none'tr>>>" +
-                   "<'flex flex-col md:flex-row justify-between items-center gap-4 mt-6 px-6 pb-6'<'text-[11px] font-bold text-gray-500'i><'pagination-wrapper'p>>",
+                "<'flex flex-col md:flex-row justify-between items-center gap-4 mt-6 px-6 pb-6'<'text-[11px] font-bold text-gray-500'i><'pagination-wrapper'p>>",
             "language": {
-                "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", 
-                "emptyTable": "Belum ada data progres pengiriman." 
-            }, 
-            "columnDefs": [ 
+                "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json",
+                "emptyTable": "Belum ada data progres pengiriman."
+            },
+            "columnDefs": [
                 { "targets": 0, "className": "py-2.5 px-6 sticky left-0 z-[10] sk-bg-section shadow-[2px_0_5px_rgba(0,0,0,0.05)] border-r border-gray-100 dark:border-white/10" },
                 { "targets": "_all", "className": "text-center py-2.5 px-2 border-l border-gray-50 dark:border-white/5" }
             ],
             "drawCallback": function (settings) {
                 $('#statussk_tabelUtama tbody tr').addClass('bg-transparent hover:bg-primary/5 dark:hover:bg-white/5 transition-all');
-                $('#statussk_tabelUtama tbody td').css('background-color', 'transparent'); 
+                $('#statussk_tabelUtama tbody td').css('background-color', 'transparent');
             }
-        }); 
+        });
 
         $('#statussk_loadingState').hide();
         $('#statussk_tableState').show();
-        setTimeout(function(){ STATUSSK_TABEL_INSTANCE.columns.adjust(); }, 150);
+        setTimeout(function () { STATUSSK_TABEL_INSTANCE.columns.adjust(); }, 150);
     }
 
     // =================================================================
@@ -318,7 +328,7 @@
         var rawStatus = String(parts[0]).trim();
         var ket = parts.length > 1 ? String(parts[1]).trim() : "";
         var stLower = rawStatus.toLowerCase();
-        
+
         var iconHtml = "";
         var baseCls = "inline-flex h-8 w-8 items-center justify-center rounded-xl transition-all shadow-sm active:scale-90 border";
 
