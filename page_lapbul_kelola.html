@@ -160,7 +160,7 @@
                 </li>
                 <li class="flex gap-4 text-[14px] font-bold text-gray-900 dark:text-gray-100 items-start">
                     <span class="flex h-6 w-6 min-w-[24px] items-center justify-center rounded-full bg-primary text-[12px] font-black text-white shadow-sm">4</span>
-                    <span>Gunakan tombol <span class="text-danger font-black">💬 BACA CATATAN</span> pada kolom status untuk melihat umpan balik revisi dari Admin.</span>
+                    <span>Gunakan tombol <span class="text-danger font-black"><i class="fas fa-comment-dots"></i> BACA CATATAN</span> pada kolom status untuk melihat umpan balik revisi dari Admin.</span>
                 </li>
             </ul>
         </div>
@@ -416,9 +416,9 @@
                             <label class="text-[11px] font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-3 block">Keputusan Verifikasi <span class="text-danger">*</span></label>
                             <select id="lapbulkelola_selectVerifStatus" class="sk-form-input w-full !border-emerald-500/30 focus:!border-emerald-500" required>
                                 <option value="">-- PILIH STATUS --</option>
-                                <option value="Disetujui">✅ TERIMA & SETUJUI</option>
-                                <option value="Revisi">🔄 PERLU REVISI</option>
-                                <option value="Ditolak">❌ TOLAK LAPORAN</option>
+                                <option value="Disetujui">TERIMA & SETUJUI</option>
+                                <option value="Revisi">PERLU REVISI</option>
+                                <option value="Ditolak">TOLAK LAPORAN</option>
                             </select>
                         </div>
                         <div>
@@ -460,7 +460,7 @@
                 
                 <div class="bg-gray-50 dark:bg-white/5 p-4 rounded-xl border border-danger/20 mb-8">
                     <label class="text-[10px] font-black text-danger uppercase tracking-widest mb-2 block">Otorisasi Keamanan (yyyyMMdd)</label>
-                    <input type="password" id="lapbulkelola_inputKodeHapus" class="sk-form-input w-full text-center tracking-[1em] font-black !border-danger/30 focus:!border-danger" placeholder="••••••••">
+                    <input type="password" id="lapbulkelola_inputKodeHapus" class="sk-form-input w-full text-center tracking-[1em] font-black !border-danger/30 focus:!border-danger" placeholder="********">
                 </div>
 
                 <div class="flex flex-col gap-3">
@@ -921,7 +921,7 @@ function lapbulkelola_initFilters() {
     var htmlTahun = '<option value="">- Tahun -</option>';
     for(var y = 2022; y <= curYear + 1; y++) {
         var sel = (y === curYear) ? 'selected' : '';
-        htmlTahun += `<option value="${y}" ${sel}>${y}</option>`;
+        htmlTahun += '<option value="' + y + '" ' + sel + '>' + y + '</option>';
     }
     $('#lapbulkelola_filterTahun').html(htmlTahun);
     $('#lapbulkelola_filterBulan').val("");
@@ -964,7 +964,7 @@ function lapbulkelola_validasiAksesUser() {
                 var dataUnit = JSON.parse(resUnit);
                 if (dataUnit.error) {
                     $('#lapbulkelola_filterUnit').empty().append('<option value="">AKSES DITOLAK</option>');
-                    $('#lapbulkelola_loadingText').html(`<span class="text-danger"><i class="fas fa-exclamation-triangle mb-2"></i><br>${lapbulkelola_escapeHtml(dataUnit.error)}</span>`);
+                    $('#lapbulkelola_loadingState').html('<div id="lapbulkelola_loadingText" class="text-center p-10"><span class="text-danger"><i class="fas fa-exclamation-triangle mb-2"></i><br>' + lapbulkelola_escapeHtml(dataUnit.error) + '</span></div>');
                     return;
                 }
 
@@ -976,7 +976,7 @@ function lapbulkelola_validasiAksesUser() {
             })
             .withFailureHandler(function(err) {
                 $('#lapbulkelola_filterUnit').empty().append('<option value="">ERROR SERVER</option>');
-                $('#lapbulkelola_loadingText').html(`<span class="text-danger"><i class="fas fa-wifi mb-2"></i><br>Koneksi Terputus: ${lapbulkelola_escapeHtml(err.message)}</span>`);
+                $('#lapbulkelola_loadingState').html('<div id="lapbulkelola_loadingText" class="text-center p-10"><span class="text-danger"><i class="fas fa-wifi mb-2"></i><br>Koneksi Terputus: ' + lapbulkelola_escapeHtml(err.message) + '</span></div>');
             })
             .getUnitKerjaByNpsnPTK(LAPBULKELOLA_USER_NPSN); 
     }
@@ -1004,7 +1004,7 @@ function lapbulkelola_updateDropdownSekolah() {
     var currentVal = select.val();
     
     select.empty().append('<option value="SEMUA">- Semua Sekolah -</option>');
-    sortedUnits.forEach(function(u) { select.append(`<option value="${lapbulkelola_escapeHtml(u)}">${lapbulkelola_escapeHtml(u)}</option>`); });
+    sortedUnits.forEach(function(u) { select.append('<option value="' + lapbulkelola_escapeHtml(u) + '">' + lapbulkelola_escapeHtml(u) + '</option>'); });
     
     select.prop('disabled', false).removeClass('bg-light text-maroon font-weight-bold');
     
@@ -1160,28 +1160,28 @@ function lapbulkelola_renderTabel(data) {
         var safeNama = lapbulkelola_escapeJs(row.namaSekolah);        // VAKSIN DYNAMIC UI: Membedakan Aksi Admin dan User
         
         // BAB III: Tombol Aksi (Side-by-Side Blueprint Style)
-        var btnVerif = LAPBULKELOLA_IS_ADMIN ? `<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-600 hover:bg-emerald-600 hover:text-white transition-all shadow-sm btn-aksi-verif" data-id="${row.rowId}" data-source="${row.source}" data-nama="${safeNama}" data-bulan="${row.bulan}" data-tahun="${row.tahun}" data-file="${(row.fileUrl || "")}" data-npsn="${(row.npsn || "-")}" data-status="${(row.statusData || "Diproses")}" title="Verifikasi Laporan"><i class="fas fa-check-double text-[12px]"></i></button>` : '';
-        var btnEdit  = `<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-500/10 text-amber-600 hover:bg-amber-600 hover:text-white transition-all shadow-sm btn-aksi-edit ${isApproved ? 'opacity-30 cursor-not-allowed' : ''}" data-id="${row.rowId}" data-source="${row.source}" title="Ubah Laporan" ${isApproved ? 'disabled' : ''}><i class="fas fa-pencil-alt text-[12px]"></i></button>`;
-        var btnHapus = `<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg bg-rose-500/10 text-rose-600 hover:bg-rose-600 hover:text-white transition-all shadow-sm btn-aksi-hapus ${isApproved ? 'opacity-30 cursor-not-allowed' : ''}" data-id="${row.rowId}" data-source="${row.source}" data-nama="${safeNama}" data-bulan="${row.bulan}" data-tahun="${row.tahun}" title="Hapus Permanen" ${isApproved ? 'disabled' : ''}><i class="fas fa-trash-alt text-[12px]"></i></button>`;
-        var btnAksi = `<div class="flex items-center justify-center gap-2">${btnVerif}${btnEdit}${btnHapus}</div>`;
+        var btnVerif = LAPBULKELOLA_IS_ADMIN ? '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-600 hover:bg-emerald-600 hover:text-white transition-all shadow-sm btn-aksi-verif" data-id="' + row.rowId + '" data-source="' + row.source + '" data-nama="' + safeNama + '" data-bulan="' + row.bulan + '" data-tahun="' + row.tahun + '" data-file="' + (row.fileUrl || "") + '" data-npsn="' + (row.npsn || "-") + '" data-status="' + (row.statusData || "Diproses") + '" title="Verifikasi Laporan"><i class="fas fa-check-double text-[12px]"></i></button>' : '';
+        var btnEdit  = '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-500/10 text-amber-600 hover:bg-amber-600 hover:text-white transition-all shadow-sm btn-aksi-edit ' + (isApproved ? 'opacity-30 cursor-not-allowed' : '') + '" data-id="' + row.rowId + '" data-source="' + row.source + '" title="Ubah Laporan" ' + (isApproved ? 'disabled' : '') + '><i class="fas fa-pencil-alt text-[12px]"></i></button>';
+        var btnHapus = '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg bg-rose-500/10 text-rose-600 hover:bg-rose-600 hover:text-white transition-all shadow-sm btn-aksi-hapus ' + (isApproved ? 'opacity-30 cursor-not-allowed' : '') + '" data-id="' + row.rowId + '" data-source="' + row.source + '" data-nama="' + safeNama + '" data-bulan="' + row.bulan + '" data-tahun="' + row.tahun + '" title="Hapus Permanen" ' + (isApproved ? 'disabled' : '') + '><i class="fas fa-trash-alt text-[12px]"></i></button>';
+        var btnAksi = '<div class="flex items-center justify-center gap-2">' + btnVerif + btnEdit + btnHapus + '</div>';
 
         var btnFile = '<span class="text-gray-300 font-bold uppercase tracking-widest text-[10px]">- KOSONG -</span>';
         if (row.fileUrl && row.fileUrl.length > 5) {
             var safeFile2 = lapbulkelola_escapeJs(row.fileUrl);
-            btnFile = `<button class="inline-flex items-center gap-2 rounded-lg bg-rose-500 px-3 py-1 text-[10px] font-black text-white hover:bg-rose-600 transition-all shadow-sm btn-preview-dokumen" data-url="${safeFile2}"><i class="fas fa-file-pdf"></i> LIHAT</button>`;
+            btnFile = '<button class="inline-flex items-center gap-2 rounded-lg bg-rose-500 px-3 py-1 text-[10px] font-black text-white hover:bg-rose-600 transition-all shadow-sm btn-preview-dokumen" data-url="' + safeFile2 + '"><i class="fas fa-file-pdf"></i> LIHAT</button>';
         }
 
-        var metaKirim = `<div class="flex flex-col"><span class="text-[12px] font-black text-black dark:text-white">${row.tglKirim || '-'}</span><span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-0.5">${lapbulkelola_escapeHtml(row.userKirim)}</span></div>`;
-        var metaEdit  = `<div class="flex flex-col"><span class="text-[12px] font-black text-black dark:text-white">${row.tglEdit || '-'}</span><span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-0.5">${lapbulkelola_escapeHtml(row.userEdit)}</span></div>`;
-        var metaVerif = `<div class="flex flex-col"><span class="text-[12px] font-black text-black dark:text-white">${row.tglVerif || '-'}</span><span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-0.5">${lapbulkelola_escapeHtml(row.verifikator)}</span></div>`;
+        var metaKirim = '<div class="flex flex-col"><span class="text-[12px] font-black text-black dark:text-white">' + (row.tglKirim || '-') + '</span><span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-0.5">' + lapbulkelola_escapeHtml(row.userKirim) + '</span></div>';
+        var metaEdit  = '<div class="flex flex-col"><span class="text-[12px] font-black text-black dark:text-white">' + (row.tglEdit || '-') + '</span><span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-0.5">' + lapbulkelola_escapeHtml(row.userEdit) + '</span></div>';
+        var metaVerif = '<div class="flex flex-col"><span class="text-[12px] font-black text-black dark:text-white">' + (row.tglVerif || '-') + '</span><span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-0.5">' + lapbulkelola_escapeHtml(row.verifikator) + '</span></div>';
 
         // VAKSIN LEBAR KOLOM: Menggunakan text-nowrap agar membentang 100%
-        var uiUnit = `<div class="flex flex-col"><span class="text-[13px] font-black text-primary uppercase tracking-tight">${lapbulkelola_escapeHtml(row.namaSekolah)}</span><span class="text-[10px] font-bold text-gray-400 tracking-widest uppercase mt-0.5">${lapbulkelola_escapeHtml(row.npsn || '-')}</span></div>`;
+        var uiUnit = '<div class="flex flex-col"><span class="text-[13px] font-black text-primary uppercase tracking-tight">' + lapbulkelola_escapeHtml(row.namaSekolah) + '</span><span class="text-[10px] font-bold text-gray-400 tracking-widest uppercase mt-0.5">' + lapbulkelola_escapeHtml(row.npsn || '-') + '</span></div>';
 
         dtArray.push([ 
             btnAksi, 
             uiUnit,
-            `<div class="font-weight-bold text-dark">${lapbulkelola_escapeHtml(row.bulan)}</div>`,
+            '<div class="font-weight-bold text-dark">' + lapbulkelola_escapeHtml(row.bulan) + '</div>',
             lapbulkelola_escapeHtml(row.tahun),
             lapbulkelola_escapeHtml(row.rombel || row.totalRombel || '0'),
             btnFile,
@@ -1262,12 +1262,12 @@ function lapbulkelola_buildBadgeStatus(status, ket) {
         bgColor = 'bg-rose-500/10'; textColor = 'text-rose-600'; icon = 'times-circle'; label = "DITOLAK"; 
     } 
     
-    var badgeHtml = `<div class="inline-flex items-center gap-1.5 ${bgColor} ${textColor} px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-wider shadow-sm border border-transparent"><i class="fas fa-${icon}"></i> ${label}</div>`;
+    var badgeHtml = '<div class="inline-flex items-center gap-1.5 ' + bgColor + ' ' + textColor + ' px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-wider shadow-sm border border-transparent"><i class="fas fa-' + icon + '"></i> ' + label + '</div>';
 
     if (ket && ket.trim().length > 2 && (s.includes('revisi') || s.includes('tolak'))) {
         var safeKet = lapbulkelola_escapeJs(ket);
-        var btnCatatan = `<button type="button" class="mt-2 flex items-center gap-1.5 text-[9px] font-black text-rose-500 uppercase tracking-[0.15em] hover:text-rose-600 transition-all btn-baca-catatan" data-pesan="${safeKet}"><i class="fas fa-comment-dots"></i> Baca Catatan</button>`;
-        return `<div class="flex flex-col items-center">${badgeHtml}${btnCatatan}</div>`;
+        var btnCatatan = '<button type="button" class="mt-2 flex items-center gap-1.5 text-[9px] font-black text-rose-500 uppercase tracking-[0.15em] hover:text-rose-600 transition-all btn-baca-catatan" data-pesan="' + safeKet + '"><i class="fas fa-comment-dots"></i> Baca Catatan</button>';
+        return '<div class="flex flex-col items-center">' + badgeHtml + btnCatatan + '</div>';
     }
 
     return badgeHtml; 
@@ -1379,9 +1379,9 @@ function lapbulkelola_pilihJenjang(jenis) {
 }
 
 function lapbulkelola_handleTabClick(targetId) {
-    if ($(`#lapbulkelola_link-${targetId}`).hasClass('disabled-tab')) return false;
-    $('#lapbulkelola_tabSD .nav-link').removeClass('active'); $(`#lapbulkelola_link-${targetId}`).addClass('active');
-    $('#lapbulkelola_ts1, #lapbulkelola_ts2, #lapbulkelola_ts3, #lapbulkelola_ts4').removeClass('show active'); $(`#${targetId}`).addClass('show active');
+    if ($('#lapbulkelola_link-' + targetId).hasClass('disabled-tab')) return false;
+    $('#lapbulkelola_tabSD .nav-link').removeClass('active'); $('#lapbulkelola_link-' + targetId).addClass('active');
+    $('#lapbulkelola_ts1, #lapbulkelola_ts2, #lapbulkelola_ts3, #lapbulkelola_ts4').removeClass('show active'); $('#' + targetId).addClass('show active');
     if (targetId === 'lapbulkelola_ts2' && !$('#lapbulkelola_subTabKelas .nav-link.active').length) { $('#lapbulkelola_subTabKelas a[href="#lapbulkelola_tk1"]').tab('show'); }
     if (targetId === 'lapbulkelola_ts3' && !$('#lapbulkelola_subTabPTK .nav-link.active').length) { $('#lapbulkelola_subTabPTK a[href="#lapbulkelola_ptk1"]').tab('show'); }
 }
@@ -1392,8 +1392,8 @@ function lapbulkelola_handleTabClickPAUD(targetId) {
     $('#lapbulkelola_tp1, #lapbulkelola_tp2, #lapbulkelola_tp3, #lapbulkelola_tp4').removeClass('show active'); $(`#${targetId}`).addClass('show active');
 }
 
-function lapbulkelola_nextTab(targetId) { $(`#lapbulkelola_link-${targetId}`).removeClass('disabled-tab'); lapbulkelola_handleTabClick(targetId); }
-function lapbulkelola_nextTabPAUD(targetId) { $(`#lapbulkelola_link-${targetId}`).removeClass('disabled-tab'); lapbulkelola_handleTabClickPAUD(targetId); }
+function lapbulkelola_nextTab(targetId) { $('#lapbulkelola_link-' + targetId).removeClass('disabled-tab'); lapbulkelola_handleTabClick(targetId); }
+function lapbulkelola_nextTabPAUD(targetId) { $('#lapbulkelola_link-' + targetId).removeClass('disabled-tab'); lapbulkelola_handleTabClickPAUD(targetId); }
 
 function lapbulkelola_isiOtomatisSekolahUser(tipe) {
     if (LAPBULKELOLA_IS_EDIT_MODE) return; 
@@ -1429,12 +1429,13 @@ function lapbulkelola_initFormSD() {
     var targetYear = (curMonth === 0) ? (curYear - 1) : curYear;
     var htmlTahun = "";
     for(var y = 2022; y <= curYear + 1; y++) { var sel = (y === targetYear) ? 'selected' : ''; htmlTahun += `<option value="${y}" ${sel}>${y}</option>`; }
+    for(var y = 2022; y <= curYear + 1; y++) { var sel = (y === targetYear) ? 'selected' : ''; htmlTahun += '<option value="' + y + '" ' + sel + '>' + y + '</option>'; }
     $('#lapbulkelola_sel_tahun').html(htmlTahun);
     var months = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
     
     if($('#lapbulkelola_sel_bulan option').length <= 1) {
         var htmlBulan = '<option value="">- Bulan -</option>';
-        months.forEach(function(m){ htmlBulan += `<option value="${m}">${m}</option>`; });
+        months.forEach(function(m){ htmlBulan += '<option value="' + m + '">' + m + '</option>'; });
         $('#lapbulkelola_sel_bulan').html(htmlBulan);
     }
     $('#lapbulkelola_sel_bulan').val(months[targetMonthIdx]);
@@ -1443,35 +1444,35 @@ function lapbulkelola_initFormSD() {
     for (var i = 1; i <= 6; i++) {
         var activeClass = (i === 1) ? "show active" : "";
         var navActive = (i === 1) ? "active" : "";
-        navHtml += `<li class="nav-item"><a class="nav-link ${navActive} py-2 rounded-0" data-toggle="pill" href="#lapbulkelola_tk${i}">Kelas ${i}</a></li>`;
+        navHtml += '<li class="nav-item"><a class="nav-link ' + navActive + ' py-2 rounded-0" data-toggle="pill" href="#lapbulkelola_tk' + i + '">Kelas ' + i + '</a></li>';
         var footerBtn = "";
-        if (i === 1) { footerBtn = `<div class="d-flex justify-content-between mt-4 border-top pt-3"><button type="button" class="btn btn-default font-weight-bold shadow-sm btn-tab-sd" data-target="lapbulkelola_ts1"><i class="fas fa-arrow-left mr-1"></i> Data Sekolah</button><button type="button" class="btn btn-outline-primary btn-sm font-weight-bold btn-nav-tk" data-target="#lapbulkelola_tk2">Kelas 2 <i class="fas fa-chevron-right ml-1"></i></button></div>`; } 
-        else if (i === 6) { footerBtn = `<div class="d-flex justify-content-between mt-4 border-top pt-3"><button type="button" class="btn btn-outline-secondary btn-sm font-weight-bold btn-nav-tk" data-target="#lapbulkelola_tk5"><i class="fas fa-chevron-left mr-1"></i> Kelas 5</button><button type="button" class="btn btn-primary px-4 font-weight-bold shadow-sm btn-val-murid-sd">DATA PTK <i class="fas fa-arrow-right ml-1"></i></button></div>`; } 
-        else { var p = i - 1; var n = i + 1; footerBtn = `<div class="d-flex justify-content-between mt-4 border-top pt-3"><button type="button" class="btn btn-outline-secondary btn-sm font-weight-bold btn-nav-tk" data-target="#lapbulkelola_tk${p}"><i class="fas fa-chevron-left mr-1"></i> Kelas ${p}</button><button type="button" class="btn btn-outline-primary btn-sm font-weight-bold btn-nav-tk" data-target="#lapbulkelola_tk${n}">Kelas ${n} <i class="fas fa-chevron-right ml-1"></i></button></div>`; }
+        if (i === 1) { footerBtn = '<div class="d-flex justify-content-between mt-4 border-top pt-3"><button type="button" class="btn btn-default font-weight-bold shadow-sm btn-tab-sd" data-target="lapbulkelola_ts1"><i class="fas fa-arrow-left mr-1"></i> Data Sekolah</button><button type="button" class="btn btn-outline-primary btn-sm font-weight-bold btn-nav-tk" data-target="#lapbulkelola_tk2">Kelas 2 <i class="fas fa-chevron-right ml-1"></i></button></div>'; } 
+        else if (i === 6) { footerBtn = '<div class="d-flex justify-content-between mt-4 border-top pt-3"><button type="button" class="btn btn-outline-secondary btn-sm font-weight-bold btn-nav-tk" data-target="#lapbulkelola_tk5"><i class="fas fa-chevron-left mr-1"></i> Kelas 5</button><button type="button" class="btn btn-primary px-4 font-weight-bold shadow-sm btn-val-murid-sd">DATA PTK <i class="fas fa-arrow-right ml-1"></i></button></div>'; } 
+        else { var p = i - 1; var n = i + 1; footerBtn = '<div class="d-flex justify-content-between mt-4 border-top pt-3"><button type="button" class="btn btn-outline-secondary btn-sm font-weight-bold btn-nav-tk" data-target="#lapbulkelola_tk' + p + '"><i class="fas fa-chevron-left mr-1"></i> Kelas ' + p + '</button><button type="button" class="btn btn-outline-primary btn-sm font-weight-bold btn-nav-tk" data-target="#lapbulkelola_tk' + n + '">Kelas ' + n + ' <i class="fas fa-chevron-right ml-1"></i></button></div>'; }
 
-        contentHtml += `<div class="tab-pane fade ${activeClass}" id="lapbulkelola_tk${i}"><div class="card card-sultan shadow-sm p-4 border-top-0 rounded-0"><div class="group-box"><span class="group-title text-maroon font-weight-bold"><i class="fas fa-layer-group mr-2"></i>A. Menurut Rombel</span><div class="row align-items-center mb-2"><div class="col-md-3"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Jumlah Rombel</label><select class="form-control form-control-sultan form-control-sm sel-rombel border-maroon" data-kelas="${i}" name="rombel_${i}"><option value="0">0 (Tidak Ada)</option><option value="1" selected>1 Rombel</option><option value="2">2 Rombel</option><option value="3">3 Rombel</option></select></div><div class="col-md-9"><div id="lapbulkelola_containerRombel${i}" class="mt-1"></div></div></div></div><div class="group-box"><span class="group-title text-maroon font-weight-bold"><i class="fas fa-praying-hands mr-2"></i>B. Menurut Agama</span><div class="row">${lapbulkelola_renderAgamaInput(i,'Islam','islam',true)}${lapbulkelola_renderAgamaInput(i,'Kristen','kristen')}${lapbulkelola_renderAgamaInput(i,'Katolik','katolik')}${lapbulkelola_renderAgamaInput(i,'Hindu','hindu')}${lapbulkelola_renderAgamaInput(i,'Buddha','buddha')}${lapbulkelola_renderAgamaInput(i,'Konghucu','konghucu')}</div></div><div class="alert alert-secondary border d-flex justify-content-between align-items-center py-2 px-3 m-0"><div class="small text-dark" style="line-height:1.2;"><div>Total Rombel: <strong><span id="lapbulkelola_totalRombel${i}" class="text-maroon" style="font-size:14px;">0</span></strong> <span class="text-muted small">(L:<span id="lapbulkelola_sumRL${i}">0</span> P:<span id="lapbulkelola_sumRP${i}">0</span>)</span></div><div>Total Agama: <strong><span id="lapbulkelola_totalAgama${i}" class="text-maroon" style="font-size:14px;">0</span></strong> <span class="text-muted small">(L:<span id="lapbulkelola_sumAL${i}">0</span> P:<span id="lapbulkelola_sumAP${i}">0</span>)</span></div></div><span class="badge badge-warning p-2 px-3 shadow-sm" id="lapbulkelola_statusVal${i}">Belum Sesuai</span></div>${footerBtn}</div></div>`;
+        contentHtml += '<div class="tab-pane fade ' + activeClass + '" id="lapbulkelola_tk' + i + '"><div class="card card-sultan shadow-sm p-4 border-top-0 rounded-0"><div class="group-box"><span class="group-title text-maroon font-weight-bold"><i class="fas fa-layer-group mr-2"></i>A. Menurut Rombel</span><div class="row align-items-center mb-2"><div class="col-md-3"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Jumlah Rombel</label><select class="form-control form-control-sultan form-control-sm sel-rombel border-maroon" data-kelas="' + i + '" name="rombel_' + i + '"><option value="0">0 (Tidak Ada)</option><option value="1" selected>1 Rombel</option><option value="2">2 Rombel</option><option value="3">3 Rombel</option></select></div><div class="col-md-9"><div id="lapbulkelola_containerRombel' + i + '" class="mt-1"></div></div></div></div><div class="group-box"><span class="group-title text-maroon font-weight-bold"><i class="fas fa-praying-hands mr-2"></i>B. Menurut Agama</span><div class="row">' + lapbulkelola_renderAgamaInput(i,'Islam','islam',true) + lapbulkelola_renderAgamaInput(i,'Kristen','kristen') + lapbulkelola_renderAgamaInput(i,'Katolik','katolik') + lapbulkelola_renderAgamaInput(i,'Hindu','hindu') + lapbulkelola_renderAgamaInput(i,'Buddha','buddha') + lapbulkelola_renderAgamaInput(i,'Konghucu','konghucu') + '</div></div><div class="alert alert-secondary border d-flex justify-content-between align-items-center py-2 px-3 m-0"><div class="small text-dark" style="line-height:1.2;"><div>Total Rombel: <strong><span id="lapbulkelola_totalRombel' + i + '" class="text-maroon" style="font-size:14px;">0</span></strong> <span class="text-muted small">(L:<span id="lapbulkelola_sumRL' + i + '">0</span> P:<span id="lapbulkelola_sumRP' + i + '">0</span>)</span></div><div>Total Agama: <strong><span id="lapbulkelola_totalAgama' + i + '" class="text-maroon" style="font-size:14px;">0</span></strong> <span class="text-muted small">(L:<span id="lapbulkelola_sumAL' + i + '">0</span> P:<span id="lapbulkelola_sumAP' + i + '">0</span>)</span></div></div><span class="badge badge-warning p-2 px-3 shadow-sm" id="lapbulkelola_statusVal' + i + '">Belum Sesuai</span></div>' + footerBtn + '</div></div>';
     }
     $('#lapbulkelola_subTabKelas').html(navHtml); $('#lapbulkelola_kelasContainer').html(contentHtml);
     for(var k=1; k<=6; k++) lapbulkelola_renderInputRombel(k);
 
-    var ptkHtml = `<div class="card card-sultan shadow-sm border-0"><div class="card-header bg-light p-0 border-bottom"><ul class="nav nav-pills nav-fill small font-weight-bold" id="lapbulkelola_subTabPTK"><li class="nav-item"><a class="nav-link active py-2" data-toggle="pill" href="#lapbulkelola_ptk1">1. Kepala Sekolah</a></li><li class="nav-item"><a class="nav-link py-2" data-toggle="pill" href="#lapbulkelola_ptk2">2. Pendidik (Guru)</a></li><li class="nav-item"><a class="nav-link py-2" data-toggle="pill" href="#lapbulkelola_ptk3">3. Tenaga Kependidikan</a></li></ul></div><div class="card-body p-3 tab-content"><div class="tab-pane fade show active" id="lapbulkelola_ptk1"><div class="alert alert-light border small mb-4"><i class="fas fa-info-circle mr-1"></i> Isikan jumlah Kepala Sekolah (Maksimal 1).</div><div class="row justify-content-center"><div class="col-md-3 text-center"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">PNS</label><input type="number" name="ks_pns" class="form-control form-control-sm form-control-sultan text-center val-ks mx-auto border-maroon" style="max-width:100px;" min="0"></div><div class="col-md-3 text-center"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">PPPK</label><input type="number" name="ks_pppk" class="form-control form-control-sm form-control-sultan text-center val-ks mx-auto border-maroon" style="max-width:100px;" min="0"></div><div class="col-md-3 text-center"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Non ASN</label><input type="number" name="ks_nonasn" class="form-control form-control-sm form-control-sultan text-center val-ks mx-auto border-maroon" style="max-width:100px;" min="0"></div></div><div class="text-center mt-2"><small id="lapbulkelola_errKS" class="text-danger font-weight-bold d-none"><i class="fas fa-exclamation-circle mr-1"></i> Jumlah KS tidak boleh lebih dari 1!</small></div><div class="d-flex justify-content-between mt-4 pt-3 border-top"><button type="button" class="btn btn-default btn-sm font-weight-bold shadow-sm btn-tab-sd" data-target="lapbulkelola_ts2"><i class="fas fa-arrow-left mr-1"></i> Data Murid</button><button type="button" class="btn btn-primary btn-sm px-4 font-weight-bold shadow-sm btn-nav-ptk" data-target="#lapbulkelola_ptk2">Pendidik <i class="fas fa-arrow-right ml-1"></i></button></div></div><div class="tab-pane fade" id="lapbulkelola_ptk2"><div class="table-responsive"><table class="table table-sm table-bordered table-striped table-matrix small mb-0"><thead class="bg-dark text-white text-center"><tr><th class="col-jabatan align-middle">Jabatan Guru</th><th class="align-middle">PNS</th><th class="align-middle">PPPK</th><th class="align-middle">PPPK PW</th><th class="align-middle">GTY</th><th class="align-middle">GTT</th></tr></thead><tbody id="lapbulkelola_bodyGuru"></tbody></table></div><div class="d-flex justify-content-between mt-3 pt-3 border-top"><button type="button" class="btn btn-outline-secondary btn-sm font-weight-bold btn-nav-ptk" data-target="#lapbulkelola_ptk1"><i class="fas fa-arrow-left mr-1"></i> Kepsek</button><button type="button" class="btn btn-primary btn-sm px-4 font-weight-bold shadow-sm btn-nav-ptk" data-target="#lapbulkelola_ptk3">Tendik <i class="fas fa-arrow-right ml-1"></i></button></div></div><div class="tab-pane fade" id="lapbulkelola_ptk3"><div class="table-responsive"><table class="table table-sm table-bordered table-striped table-matrix small mb-0"><thead class="bg-secondary text-white text-center"><tr><th class="col-jabatan align-middle">Jabatan Tendik</th><th class="align-middle">PNS</th><th class="align-middle">PPPK</th><th class="align-middle">PPPK PW</th><th class="align-middle">PTY</th><th class="align-middle">PTT</th></tr></thead><tbody id="lapbulkelola_bodyTendik"></tbody></table></div><div class="d-flex justify-content-between mt-3 pt-3 border-top"><button type="button" class="btn btn-outline-secondary btn-sm font-weight-bold btn-nav-ptk" data-target="#lapbulkelola_ptk2"><i class="fas fa-arrow-left mr-1"></i> Pendidik</button><button type="button" class="btn btn-maroon btn-sm text-white px-4 font-weight-bold shadow-sm btn-val-ptk-sd">UNGGAH FILE <i class="fas fa-arrow-right ml-1"></i></button></div></div></div></div>`;
+    var ptkHtml = '<div class="card card-sultan shadow-sm border-0"><div class="card-header bg-light p-0 border-bottom"><ul class="nav nav-pills nav-fill small font-weight-bold" id="lapbulkelola_subTabPTK"><li class="nav-item"><a class="nav-link active py-2" data-toggle="pill" href="#lapbulkelola_ptk1">1. Kepala Sekolah</a></li><li class="nav-item"><a class="nav-link py-2" data-toggle="pill" href="#lapbulkelola_ptk2">2. Pendidik (Guru)</a></li><li class="nav-item"><a class="nav-link py-2" data-toggle="pill" href="#lapbulkelola_ptk3">3. Tenaga Kependidikan</a></li></ul></div><div class="card-body p-3 tab-content"><div class="tab-pane fade show active" id="lapbulkelola_ptk1"><div class="alert alert-light border small mb-4"><i class="fas fa-info-circle mr-1"></i> Isikan jumlah Kepala Sekolah (Maksimal 1).</div><div class="row justify-content-center"><div class="col-md-3 text-center"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">PNS</label><input type="number" name="ks_pns" class="form-control form-control-sm form-control-sultan text-center val-ks mx-auto border-maroon" style="max-width:100px;" min="0"></div><div class="col-md-3 text-center"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">PPPK</label><input type="number" name="ks_pppk" class="form-control form-control-sm form-control-sultan text-center val-ks mx-auto border-maroon" style="max-width:100px;" min="0"></div><div class="col-md-3 text-center"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Non ASN</label><input type="number" name="ks_nonasn" class="form-control form-control-sm form-control-sultan text-center val-ks mx-auto border-maroon" style="max-width:100px;" min="0"></div></div><div class="text-center mt-2"><small id="lapbulkelola_errKS" class="text-danger font-weight-bold d-none"><i class="fas fa-exclamation-circle mr-1"></i> Jumlah KS tidak boleh lebih dari 1!</small></div><div class="d-flex justify-content-between mt-4 pt-3 border-top"><button type="button" class="btn btn-default btn-sm font-weight-bold shadow-sm btn-tab-sd" data-target="lapbulkelola_ts2"><i class="fas fa-arrow-left mr-1"></i> Data Murid</button><button type="button" class="btn btn-primary btn-sm px-4 font-weight-bold shadow-sm btn-nav-ptk" data-target="#lapbulkelola_ptk2">Pendidik <i class="fas fa-arrow-right ml-1"></i></button></div></div><div class="tab-pane fade" id="lapbulkelola_ptk2"><div class="table-responsive"><table class="table table-sm table-bordered table-striped table-matrix small mb-0"><thead class="bg-dark text-white text-center"><tr><th class="col-jabatan align-middle">Jabatan Guru</th><th class="align-middle">PNS</th><th class="align-middle">PPPK</th><th class="align-middle">PPPK PW</th><th class="align-middle">GTY</th><th class="align-middle">GTT</th></tr></thead><tbody id="lapbulkelola_bodyGuru"></tbody></table></div><div class="d-flex justify-content-between mt-3 pt-3 border-top"><button type="button" class="btn btn-outline-secondary btn-sm font-weight-bold btn-nav-ptk" data-target="#lapbulkelola_ptk1"><i class="fas fa-arrow-left mr-1"></i> Kepsek</button><button type="button" class="btn btn-primary btn-sm px-4 font-weight-bold shadow-sm btn-nav-ptk" data-target="#lapbulkelola_ptk3">Tendik <i class="fas fa-arrow-right ml-1"></i></button></div></div><div class="tab-pane fade" id="lapbulkelola_ptk3"><div class="table-responsive"><table class="table table-sm table-bordered table-striped table-matrix small mb-0"><thead class="bg-secondary text-white text-center"><tr><th class="col-jabatan align-middle">Jabatan Tendik</th><th class="align-middle">PNS</th><th class="align-middle">PPPK</th><th class="align-middle">PPPK PW</th><th class="align-middle">PTY</th><th class="align-middle">PTT</th></tr></thead><tbody id="lapbulkelola_bodyTendik"></tbody></table></div><div class="d-flex justify-content-between mt-3 pt-3 border-top"><button type="button" class="btn btn-outline-secondary btn-sm font-weight-bold btn-nav-ptk" data-target="#lapbulkelola_ptk2"><i class="fas fa-arrow-left mr-1"></i> Pendidik</button><button type="button" class="btn btn-maroon btn-sm text-white px-4 font-weight-bold shadow-sm btn-val-ptk-sd">UNGGAH FILE <i class="fas fa-arrow-right ml-1"></i></button></div></div></div></div>';
     $('#lapbulkelola_ts3').html(ptkHtml);
 
     var guruMapel = [['Guru Kelas','gk'],['Guru PAI','gpai'],['Guru PJOK','gpjok'],['Guru PA Kristen','gkris'],['Guru PA Katolik','gkat'],['Guru Bhs. Inggris','gbing',true],['Guru Mapel Lainnya','gmap',true]];
     var htmlG = "";
-    guruMapel.forEach(g => { var dis=g[2]?'readonly style="background:#eee;"':''; htmlG += `<tr><td class="font-weight-bold pl-3 text-left align-middle">${g[0]}</td><td><input type="number" name="${g[1]}_pns" class="form-control form-control-sm form-control-sultan val-ptk" min="0" ${dis}></td><td><input type="number" name="${g[1]}_pppk" class="form-control form-control-sm form-control-sultan val-ptk" min="0" ${dis}></td><td><input type="number" name="${g[1]}_pppk_pw" class="form-control form-control-sm form-control-sultan val-ptk" min="0" ${dis}></td><td><input type="number" name="${g[1]}_gty" class="form-control form-control-sm form-control-sultan val-ptk" min="0"></td><td><input type="number" name="${g[1]}_gtt" class="form-control form-control-sm form-control-sultan val-ptk" min="0"></td></tr>`; });
+    guruMapel.forEach(g => { var dis=g[2]?'readonly style="background:#eee;"':''; htmlG += '<tr><td class="font-weight-bold pl-3 text-left align-middle">' + g[0] + '</td><td><input type="number" name="' + g[1] + '_pns" class="form-control form-control-sm form-control-sultan val-ptk" min="0" ' + dis + '></td><td><input type="number" name="' + g[1] + '_pppk" class="form-control form-control-sm form-control-sultan val-ptk" min="0" ' + dis + '></td><td><input type="number" name="' + g[1] + '_pppk_pw" class="form-control form-control-sm form-control-sultan val-ptk" min="0" ' + dis + '></td><td><input type="number" name="' + g[1] + '_gty" class="form-control form-control-sm form-control-sultan val-ptk" min="0"></td><td><input type="number" name="' + g[1] + '_gtt" class="form-control form-control-sm form-control-sultan val-ptk" min="0"></td></tr>'; });
     $('#lapbulkelola_bodyGuru').html(htmlG);
 
     var tendik = [['Pengelola Umum Operasional','puo'],['Operator Layanan Operasional','olo'],['Pengelola Layanan Operasional','plo'],['Penata Layanan Operasional','ptlo'],['Administrasi Perkantoran','adm'],['Penjaga','pjg',true],['Tenaga Administrasi','tas',true],['Tenaga Perpustakaan','pust',true],['Tendik Lainnya','lain',true]];
     var htmlT = "";
-    tendik.forEach(t => { var dis=t[2]?'readonly style="background:#eee;"':''; htmlT += `<tr><td class="font-weight-bold pl-3 text-left align-middle">${t[0]}</td><td><input type="number" name="${t[1]}_pns" class="form-control form-control-sm form-control-sultan val-ptk" min="0" ${dis}></td><td><input type="number" name="${t[1]}_pppk" class="form-control form-control-sm form-control-sultan val-ptk" min="0" ${dis}></td><td><input type="number" name="${t[1]}_pppk_pw" class="form-control form-control-sm form-control-sultan val-ptk" min="0" ${dis}></td><td><input type="number" name="${t[1]}_pty" class="form-control form-control-sm form-control-sultan val-ptk" min="0"></td><td><input type="number" name="${t[1]}_ptt" class="form-control form-control-sm form-control-sultan val-ptk" min="0"></td></tr>`; });
+    tendik.forEach(t => { var dis=t[2]?'readonly style="background:#eee;"':''; htmlT += '<tr><td class="font-weight-bold pl-3 text-left align-middle">' + t[0] + '</td><td><input type="number" name="' + t[1] + '_pns" class="form-control form-control-sm form-control-sultan val-ptk" min="0" ' + dis + '></td><td><input type="number" name="' + t[1] + '_pppk" class="form-control form-control-sm form-control-sultan val-ptk" min="0" ' + dis + '></td><td><input type="number" name="' + t[1] + '_pppk_pw" class="form-control form-control-sm form-control-sultan val-ptk" min="0" ' + dis + '></td><td><input type="number" name="' + t[1] + '_pty" class="form-control form-control-sm form-control-sultan val-ptk" min="0"></td><td><input type="number" name="' + t[1] + '_ptt" class="form-control form-control-sm form-control-sultan val-ptk" min="0"></td></tr>'; });
     $('#lapbulkelola_bodyTendik').html(htmlT);
 
     lapbulkelola_isiOtomatisSekolahUser('SD');
 }
 
 function lapbulkelola_renderInputRombel(k) {
-    var n = parseInt($(`.sel-rombel[data-kelas="${k}"]`).val());
+    var n = parseInt($('.sel-rombel[data-kelas="' + k + '"]').val());
     var h = '<div class="row">';
     if (n === 0) { h = '<span class="text-muted ml-3 small"><i>Tidak ada rombel</i></span>'; } 
     else if (n === 1) { h += lapbulkelola_colInput(k, '', 'k'+k); } 
@@ -1483,41 +1484,18 @@ function lapbulkelola_renderInputRombel(k) {
 }
 
 function lapbulkelola_colInput(k, suf, name) {
-    return `<div class="col-md-4 col-sm-6 mb-3"><div class="border rounded p-2 bg-white h-100 shadow-sm"><span class="d-block small font-weight-bold text-dark mb-2 border-bottom pb-1">Kelas ${k}${suf}</span><div class="d-flex align-items-center"><div class="input-group input-group-sm mr-2"><div class="input-group-prepend"><span class="input-group-text input-group-text-sm bg-light-maroon text-maroon">L</span></div><input type="number" name="${name}_l" data-kelas="${k}" class="form-control form-control-sultan hitung-siswa rombel-l-${k}" min="0"></div><div class="input-group input-group-sm"><div class="input-group-prepend"><span class="input-group-text input-group-text-sm bg-light-maroon text-maroon">P</span></div><input type="number" name="${name}_p" data-kelas="${k}" class="form-control form-control-sultan hitung-siswa rombel-p-${k}" min="0"></div></div></div></div>`;
+    return '<div class="col-md-4 col-sm-6 mb-3"><div class="border rounded p-2 bg-white h-100 shadow-sm"><span class="d-block small font-weight-bold text-dark mb-2 border-bottom pb-1">Kelas ' + k + suf + '</span><div class="d-flex align-items-center"><div class="input-group input-group-sm mr-2"><div class="input-group-prepend"><span class="input-group-text input-group-text-sm bg-light-maroon text-maroon">L</span></div><input type="number" name="' + name + '_l" data-kelas="' + k + '" class="form-control form-control-sultan hitung-siswa rombel-l-' + k + '" min="0"></div><div class="input-group input-group-sm"><div class="input-group-prepend"><span class="input-group-text input-group-text-sm bg-light-maroon text-maroon">P</span></div><input type="number" name="' + name + '_p" data-kelas="' + k + '" class="form-control form-control-sultan hitung-siswa rombel-p-' + k + '" min="0"></div></div></div></div>';
 }
 
 function lapbulkelola_renderAgamaInput(k, label, prefix, isDefault) {
     var show = isDefault ? '' : 'style="display:none;"';
     var sel = isDefault ? 'selected' : '';
-    return `
-    <div class="col-md-4 col-sm-6 mb-3">
-        <div class="card shadow-sm-inset border rounded p-2 h-100" style="background: #ffffff;">
-            <div class="d-flex justify-content-between mb-2 pb-1 border-bottom align-items-center">
-                <span class="small font-weight-bold text-dark text-uppercase" style="letter-spacing:0.5px; font-size:10px;">${label}</span>
-                <select class="form-control form-control-sm w-50 py-0 sel-toggle-agama font-weight-bold" data-prefix="${prefix}" data-kelas="${k}" style="height:24px; font-size:10px; border-radius:4px;">
-                    <option value="0">Tidak Ada</option>
-                    <option value="1" ${sel}>Ada</option>
-                </select>
-            </div>
-            <div id="lapbulkelola_box_${prefix}${k}" ${show}>
-                <div class="d-flex align-items-center">
-                    <div class="input-group input-group-sm mr-2 shadow-sm">
-                        <div class="input-group-prepend"><span class="input-group-text bg-light text-muted font-weight-bold" style="font-size:9px;">L</span></div>
-                        <input type="number" name="k${k}_${prefix}_l" data-kelas="${k}" class="form-control form-control-sultan hitung-siswa agama-l-${k} text-center font-weight-bold" min="0" placeholder="0">
-                    </div>
-                    <div class="input-group input-group-sm shadow-sm">
-                        <div class="input-group-prepend"><span class="input-group-text bg-light text-muted font-weight-bold" style="font-size:9px;">P</span></div>
-                        <input type="number" name="k${k}_${prefix}_p" data-kelas="${k}" class="form-control form-control-sultan hitung-siswa agama-p-${k} text-center font-weight-bold" min="0" placeholder="0">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>`;
+    return '<div class="col-md-4 col-sm-6 mb-3"><div class="card shadow-sm-inset border rounded p-2 h-100" style="background: #ffffff;"><div class="d-flex justify-content-between mb-2 pb-1 border-bottom align-items-center"><span class="small font-weight-bold text-dark text-uppercase" style="letter-spacing:0.5px; font-size:10px;">' + label + '</span><select class="form-control form-control-sm w-50 py-0 sel-toggle-agama font-weight-bold" data-prefix="' + prefix + '" data-kelas="' + k + '" style="height:24px; font-size:10px; border-radius:4px;"><option value="0">Tidak Ada</option><option value="1" ' + sel + '>Ada</option></select></div><div id="lapbulkelola_box_' + prefix + k + '" ' + show + '><div class="d-flex align-items-center"><div class="input-group input-group-sm mr-2 shadow-sm"><div class="input-group-prepend"><span class="input-group-text bg-light text-muted font-weight-bold" style="font-size:9px;">L</span></div><input type="number" name="k' + k + '_' + prefix + '_l" data-kelas="' + k + '" class="form-control form-control-sultan hitung-siswa agama-l-' + k + ' text-center font-weight-bold" min="0" placeholder="0"></div><div class="input-group input-group-sm shadow-sm"><div class="input-group-prepend"><span class="input-group-text bg-light text-muted font-weight-bold" style="font-size:9px;">P</span></div><input type="number" name="k' + k + '_' + prefix + '_p" data-kelas="' + k + '" class="form-control form-control-sultan hitung-siswa agama-p-' + k + ' text-center font-weight-bold" min="0" placeholder="0"></div></div></div></div></div>';
 }
 
 function lapbulkelola_toggleAgama(el, prefix, k) {
     var id = prefix + k;
-    if(el.value == "1") $(`#lapbulkelola_box_${id}`).show(); else { $(`#lapbulkelola_box_${id}`).hide().find('input').val(""); lapbulkelola_hitungValidasiKelas(k); }
+    if(el.value == "1") $('#lapbulkelola_box_' + id).show(); else { $('#lapbulkelola_box_' + id).hide().find('input').val(""); lapbulkelola_hitungValidasiKelas(k); }
 }
 
 function lapbulkelola_filterSekolah(input, tipe) {
@@ -1530,7 +1508,7 @@ function lapbulkelola_filterSekolah(input, tipe) {
         var html = '';
         matches.forEach(function(s) {
             var dataStr = encodeURIComponent(JSON.stringify(s));
-            html += `<div class="suggestion-item p-2 border-bottom cursor-pointer hover-bg-light item-sekolah-sugesti" data-sekolah="${dataStr}" data-tipe="${tipe}"><strong>${s.npsn}</strong> - ${s.nama}</div>`;
+            html += '<div class="suggestion-item p-2 border-bottom cursor-pointer hover-bg-light item-sekolah-sugesti" data-sekolah="' + dataStr + '" data-tipe="' + tipe + '"><strong>' + s.npsn + '</strong> - ' + s.nama + '</div>';
         });
         box.html(html).show();
     } else {
@@ -1601,13 +1579,13 @@ function lapbulkelola_validateSekolahAndNext(tipe) {
 
 function lapbulkelola_hitungValidasiKelas(k) {
     var rL=0, rP=0, aL=0, aP=0;
-    $(`.rombel-l-${k}`).each(function(){ rL += Number($(this).val()) }); $(`.rombel-p-${k}`).each(function(){ rP += Number($(this).val()) });
-    $(`.agama-l-${k}`).each(function(){ aL += Number($(this).val()) }); $(`.agama-p-${k}`).each(function(){ aP += Number($(this).val()) });
+    $('.rombel-l-' + k).each(function(){ rL += Number($(this).val()) }); $('.rombel-p-' + k).each(function(){ rP += Number($(this).val()) });
+    $('.agama-l-' + k).each(function(){ aL += Number($(this).val()) }); $('.agama-p-' + k).each(function(){ aP += Number($(this).val()) });
     
-    $(`#lapbulkelola_sumRL${k}`).text(rL); $(`#lapbulkelola_sumRP${k}`).text(rP); $(`#lapbulkelola_sumAL${k}`).text(aL); $(`#lapbulkelola_sumAP${k}`).text(aP);
-    $(`#lapbulkelola_totalRombel${k}`).text(rL+rP); $(`#lapbulkelola_totalAgama${k}`).text(aL+aP);
+    $('#lapbulkelola_sumRL' + k).text(rL); $('#lapbulkelola_sumRP' + k).text(rP); $('#lapbulkelola_sumAL' + k).text(aL); $('#lapbulkelola_sumAP' + k).text(aP);
+    $('#lapbulkelola_totalRombel' + k).text(rL + rP); $('#lapbulkelola_totalAgama' + k).text(aL + aP);
     
-    var elSt = $(`#lapbulkelola_statusVal${k}`);
+    var elSt = $('#lapbulkelola_statusVal' + k);
     if((rL+rP)>0 && (rL+rP)===(aL+aP)) { elSt.removeClass('badge-warning badge-danger badge-secondary').addClass('badge-success').html('<i class="fas fa-check-circle mr-1"></i> Sesuai'); return true; } 
     else if((rL+rP)===0 && (aL+aP)===0) { elSt.removeClass('badge-warning badge-danger badge-success').addClass('badge-secondary').text('Kosong'); return true; } 
     else { elSt.removeClass('badge-success badge-secondary').addClass('badge-danger').html('<i class="fas fa-times-circle mr-1"></i> Tidak Sama'); return false; }
@@ -1616,14 +1594,14 @@ function lapbulkelola_hitungValidasiKelas(k) {
 function lapbulkelola_validateMuridAndNext() {
     var valid = true; 
     for(var i=1; i<=6; i++) { 
-        if(!lapbulkelola_hitungValidasiKelas(i)) { valid = false; $(`#lapbulkelola_subTabKelas a[href="#lapbulkelola_tk${i}"]`).tab('show'); Sultan.notif.gagal(`Data Kelas ${i} tidak sesuai!`); break; } 
+        if(!lapbulkelola_hitungValidasiKelas(i)) { valid = false; $('#lapbulkelola_subTabKelas a[href="#lapbulkelola_tk' + i + '"]').tab('show'); Sultan.notif.gagal('Data Kelas ' + i + ' tidak sesuai!'); break; } 
     }
     if(valid) lapbulkelola_nextTab('lapbulkelola_ts3');
 }
 
 function lapbulkelola_validatePTKAndNext() {
     var ks=0; $('.val-ks').each(function(){ ks += Number($(this).val()) });
-    if(ks > 1) { $('#lapbulkelola_errKS').removeClass('d-none'); $(`#lapbulkelola_subTabPTK a[href="#lapbulkelola_ptk1"]`).tab('show'); return; } else { $('#lapbulkelola_errKS').addClass('d-none'); }
+    if(ks > 1) { $('#lapbulkelola_errKS').removeClass('d-none'); $('#lapbulkelola_subTabPTK a[href="#lapbulkelola_ptk1"]').tab('show'); return; } else { $('#lapbulkelola_errKS').addClass('d-none'); }
     
     var guru=0; $('#lapbulkelola_bodyGuru input').each(function(){ guru += Number($(this).val()) });
     if(guru === 0) { $('#lapbulkelola_modalKonfirmasiGuru').modal('show'); return; }
@@ -1676,16 +1654,15 @@ function lapbulkelola_submitUpdateSD() {
     if(!bln || !thn) { lapbulkelola_handleTabClick('lapbulkelola_ts1'); Sultan.notif.gagal("Periode Laporan kosong."); return; }
 
     for (var i = 1; i < 7; i++) {
-        var rombel = parseInt($(`[name="rombel_${i}"]`).val()) || 0;
+        var rombel = parseInt($('[name="rombel_' + i + '"]').val()) || 0;
         var totalMurid = 0;
-        var religions = ['islam', 'kristen', 'katolik', 'hindu', 'buddha', 'konghucu', 'penghayat'];
-        religions.forEach(function(ag) {
-            totalMurid += parseInt($(`[name="k${i}_${ag}_l"]`).val()) || 0;
-            totalMurid += parseInt($(`[name="k${i}_${ag}_p"]`).val()) || 0;
+        ['islam','kristen','katolik','hindu','buddha','konghucu'].forEach(function(ag){
+            totalMurid += parseInt($('[name="k' + i + '_' + ag + '_l"]').val()) || 0;
+            totalMurid += parseInt($('[name="k' + i + '_' + ag + '_p"]').val()) || 0;
         });
-
-        if (rombel > 0 && totalMurid === 0) { lapbulkelola_handleTabClick('lapbulkelola_ts2'); Sultan.notif.gagal(`Kelas ${i}: Ada Rombel tapi data Murid kosong!`); return; }
-        if (totalMurid > 0 && rombel === 0) { lapbulkelola_handleTabClick('lapbulkelola_ts2'); Sultan.notif.gagal(`Kelas ${i}: Ada Siswa terisi, tapi Jumlah Rombel 0.`); return; }
+        
+        if (rombel > 0 && totalMurid === 0) { lapbulkelola_handleTabClick('lapbulkelola_ts2'); Sultan.notif.gagal('Kelas ' + i + ': Ada Rombel tapi data Murid kosong!'); return; }
+        if (totalMurid > 0 && rombel === 0) { lapbulkelola_handleTabClick('lapbulkelola_ts2'); Sultan.notif.gagal('Kelas ' + i + ': Ada Siswa terisi, tapi Jumlah Rombel 0.'); return; }
     }
 
     var f = document.getElementById('lapbulkelola_fileSD');
@@ -1729,12 +1706,12 @@ function lapbulkelola_initFormPAUD() {
     var curYear = now.getFullYear(); var targetYear = (curMonth === 0) ? (curYear - 1) : curYear;
 
     var htmlTahun = '<option value="">- Tahun -</option>';
-    for(var y = 2022; y <= curYear + 1; y++) { var sel = (y === targetYear) ? 'selected' : ''; htmlTahun += `<option value="${y}" ${sel}>${y}</option>`; }
+    for(var y = 2022; y <= curYear + 1; y++) { var sel = (y === targetYear) ? 'selected' : ''; htmlTahun += '<option value="' + y + '" ' + sel + '>' + y + '</option>'; }
     $('#lapbulkelola_sel_tahun_paud').html(htmlTahun);
     
     var arrBulan = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
     var htmlBulan = '<option value="">- Bulan -</option>';
-    arrBulan.forEach(function(b){ htmlBulan += `<option value="${b}">${b}</option>`; });
+    arrBulan.forEach(function(b){ htmlBulan += '<option value="' + b + '">' + b + '</option>'; });
     $('#lapbulkelola_sel_bulan_paud').html(htmlBulan);
     $('#lapbulkelola_sel_bulan_paud').val(arrBulan[targetMonthIdx]);
 
@@ -1745,12 +1722,7 @@ function lapbulkelola_initFormPAUD() {
 }
 
 function lapbulkelola_generateDynamicFieldsPAUD() {
-    var h = `
-    <div class="row">
-    <div class="col-lg-4 col-md-12 mb-3"><div class="group-box h-100"><span class="group-title text-maroon" style="font-size: 13px;"><i class="fas fa-building mr-2"></i>Legalitas</span><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Yayasan</label><input type="text" name="yayasan" id="lapbulkelola_in_yayasan_paud" class="form-control form-control-sultan form-control-sm"></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">No SK Pendirian</label><input type="text" name="no_sk_pendirian" id="lapbulkelola_in_no_sk_pendirian_paud" class="form-control form-control-sultan form-control-sm"></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Tgl Pendirian</label><input type="date" name="tgl_pendirian" id="lapbulkelola_in_tgl_pendirian_paud" class="form-control form-control-sultan form-control-sm"></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">No Ijin Ops</label><input type="text" name="no_sk_ijin" id="lapbulkelola_in_no_sk_ijin_paud" class="form-control form-control-sultan form-control-sm"></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Tgl Ijin Ops</label><input type="date" name="tgl_ijin" id="lapbulkelola_in_tgl_ijin_paud" class="form-control form-control-sultan form-control-sm"></div></div></div>
-    <div class="col-lg-4 col-md-12 mb-3"><div class="group-box h-100"><span class="group-title text-maroon" style="font-size: 13px;"><i class="fas fa-star mr-2"></i>Akreditasi</span><div class="row"><div class="col-6 mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Akreditasi</label><select name="akreditasi" id="lapbulkelola_in_akreditasi_paud" class="form-control form-control-sultan form-control-sm"><option value="-">-</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="Belum">Belum</option></select></div><div class="col-6 mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">No Sertifikat</label><input type="text" name="no_sertifikat" id="lapbulkelola_in_no_sertifikat_paud" class="form-control form-control-sultan form-control-sm"></div></div></div></div>
-    <div class="col-lg-4 col-md-12 mb-3"><div class="group-box h-100"><span class="group-title text-maroon" style="font-size: 13px;"><i class="fas fa-address-book mr-2"></i>Kontak</span><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Alamat</label><textarea name="alamat" id="lapbulkelola_in_alamat_paud" class="form-control form-control-sultan form-control-sm" rows="3" style="resize:none;"></textarea></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Telepon</label><input type="text" name="telepon" id="lapbulkelola_in_telepon_paud" class="form-control form-control-sultan form-control-sm"></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Email</label><input type="email" name="email" id="lapbulkelola_in_email_paud" class="form-control form-control-sultan form-control-sm"></div></div></div>
-    </div>`;
+    var h = '<div class="row"><div class="col-lg-4 col-md-12 mb-3"><div class="group-box h-100"><span class="group-title text-maroon" style="font-size: 13px;"><i class="fas fa-building mr-2"></i>Legalitas</span><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Yayasan</label><input type="text" name="yayasan" id="lapbulkelola_in_yayasan_paud" class="form-control form-control-sultan form-control-sm"></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">No SK Pendirian</label><input type="text" name="no_sk_pendirian" id="lapbulkelola_in_no_sk_pendirian_paud" class="form-control form-control-sultan form-control-sm"></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Tgl Pendirian</label><input type="date" name="tgl_pendirian" id="lapbulkelola_in_tgl_pendirian_paud" class="form-control form-control-sultan form-control-sm"></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">No Ijin Ops</label><input type="text" name="no_sk_ijin" id="lapbulkelola_in_no_sk_ijin_paud" class="form-control form-control-sultan form-control-sm"></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Tgl Ijin Ops</label><input type="date" name="tgl_ijin" id="lapbulkelola_in_tgl_ijin_paud" class="form-control form-control-sultan form-control-sm"></div></div></div><div class="col-lg-4 col-md-12 mb-3"><div class="group-box h-100"><span class="group-title text-maroon" style="font-size: 13px;"><i class="fas fa-star mr-2"></i>Akreditasi</span><div class="row"><div class="col-6 mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Akreditasi</label><select name="akreditasi" id="lapbulkelola_in_akreditasi_paud" class="form-control form-control-sultan form-control-sm"><option value="-">-</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="Belum">Belum</option></select></div><div class="col-6 mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">No Sertifikat</label><input type="text" name="no_sertifikat" id="lapbulkelola_in_no_sertifikat_paud" class="form-control form-control-sultan form-control-sm"></div></div></div></div><div class="col-lg-4 col-md-12 mb-3"><div class="group-box h-100"><span class="group-title text-maroon" style="font-size: 13px;"><i class="fas fa-address-book mr-2"></i>Kontak</span><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Alamat</label><textarea name="alamat" id="lapbulkelola_in_alamat_paud" class="form-control form-control-sultan form-control-sm" rows="3" style="resize:none;"></textarea></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Telepon</label><input type="text" name="telepon" id="lapbulkelola_in_telepon_paud" class="form-control form-control-sultan form-control-sm"></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Email</label><input type="email" name="email" id="lapbulkelola_in_email_paud" class="form-control form-control-sultan form-control-sm"></div></div></div></div>';
     $('#lapbulkelola_dynamicFieldsPAUD').html(h);
 }
 
@@ -1762,7 +1734,7 @@ function lapbulkelola_generateGridMuridPAUD() {
 }
 
 function lapbulkelola_rowInputPaud(label, prefix) {
-    return `<div class="d-flex justify-content-between align-items-center mb-2 border-bottom pb-1"><span class="small font-weight-bold text-dark w-50">${label}</span><div class="d-flex w-50"><div class="input-group input-group-sm mr-1"><div class="input-group-prepend"><span class="input-group-text px-2 font-weight-bold text-dark bg-light-maroon text-maroon">L</span></div><input type="number" name="${prefix}_l" class="form-control form-control-sm form-control-sultan hitung-paud paud-usia-l" min="0"></div><div class="input-group input-group-sm"><div class="input-group-prepend"><span class="input-group-text px-2 font-weight-bold text-dark bg-light-maroon text-maroon">P</span></div><input type="number" name="${prefix}_p" class="form-control form-control-sm form-control-sultan hitung-paud paud-usia-p" min="0"></div></div></div>`;
+    return '<div class="d-flex justify-content-between align-items-center mb-2 border-bottom pb-1"><span class="small font-weight-bold text-dark w-50">' + label + '</span><div class="d-flex w-50"><div class="input-group input-group-sm mr-1"><div class="input-group-prepend"><span class="input-group-text px-2 font-weight-bold text-dark bg-light-maroon text-maroon">L</span></div><input type="number" name="' + prefix + '_l" class="form-control form-control-sm form-control-sultan hitung-paud paud-usia-l" min="0"></div><div class="input-group input-group-sm"><div class="input-group-prepend"><span class="input-group-text px-2 font-weight-bold text-dark bg-light-maroon text-maroon">P</span></div><input type="number" name="' + prefix + '_p" class="form-control form-control-sm form-control-sultan hitung-paud paud-usia-p" min="0"></div></div></div>';
 }
 
 function lapbulkelola_lanjutKeTabMuridPAUD() {
@@ -1783,8 +1755,8 @@ function lapbulkelola_hitungValidasiPAUD() {
     var listUsia = ['u01', 'u12', 'u23', 'u34', 'u45', 'u56', 'u6'];
     var uL = 0, uP = 0;
     listUsia.forEach(function(kode) {
-        uL += parseInt($(`#lapbulkelola_formPAUD [name="${kode}_l"]`).val()) || 0;
-        uP += parseInt($(`#lapbulkelola_formPAUD [name="${kode}_p"]`).val()) || 0;
+        uL += parseInt($('#lapbulkelola_formPAUD [name="' + kode + '_l"]').val()) || 0;
+        uP += parseInt($('#lapbulkelola_formPAUD [name="' + kode + '_p"]').val()) || 0;
     });
     var totUsia = uL + uP;
 
@@ -1794,7 +1766,7 @@ function lapbulkelola_hitungValidasiPAUD() {
     var totKel = kL + kP;
 
     $('#lapbulkelola_totUsia').text(totUsia); $('#lapbulkelola_totUsiaL').text(uL); $('#lapbulkelola_totUsiaP').text(uP);
-    $('#lapbulkelola_txtTotRombel').html(` | Total Kelompok: <span id="lapbulkelola_totRom" class="font-weight-bold text-maroon" style="font-size:16px;">${totKel}</span> <span class="text-muted small">(L:${kL} P:${kP})</span>`);
+    $('#lapbulkelola_txtTotRombel').html(' | Total Kelompok: <span id="lapbulkelola_totRom" class="font-weight-bold text-maroon" style="font-size:16px;">' + totKel + '</span> <span class="text-muted small">(L:' + kL + ' P:' + kP + ')</span>');
 
     var badge = $('#lapbulkelola_statusValPAUD');
     var isTK = $('#lapbulkelola_boxRombelTK').is(':visible');
@@ -1808,7 +1780,7 @@ function lapbulkelola_hitungValidasiPAUD() {
 }
 
 function lapbulkelola_validateMuridPAUD() {
-    if(lapbulkelola_hitungValidasiPAUD()) { $(`#lapbulkelola_link-lapbulkelola_tp3`).removeClass('disabled-tab'); lapbulkelola_handleTabClickPAUD('lapbulkelola_tp3'); } 
+    if(lapbulkelola_hitungValidasiPAUD()) { $('#lapbulkelola_link-lapbulkelola_tp3').removeClass('disabled-tab'); lapbulkelola_handleTabClickPAUD('lapbulkelola_tp3'); } 
     else { Sultan.notif.gagal("Data Murid Belum Sesuai/Kosong!"); }
 }
 
@@ -1822,7 +1794,7 @@ function lapbulkelola_validatePTKPAUD() {
     lapbulkelola_lanjutKeTabUploadPAUD();
 }
 
-function lapbulkelola_lanjutKeTabUploadPAUD() { $('#lapbulkelola_modalKonfirmasiGuru').modal('hide'); $(`#lapbulkelola_link-lapbulkelola_tp4`).removeClass('disabled-tab'); lapbulkelola_handleTabClickPAUD('lapbulkelola_tp4'); }
+function lapbulkelola_lanjutKeTabUploadPAUD() { $('#lapbulkelola_modalKonfirmasiGuru').modal('hide'); $('#lapbulkelola_link-lapbulkelola_tp4').removeClass('disabled-tab'); lapbulkelola_handleTabClickPAUD('lapbulkelola_tp4'); }
 
 function lapbulkelola_submitFormPAUD(e) {
     e.preventDefault();
@@ -1935,10 +1907,10 @@ function lapbulkelola_editLapbul(source, rowId) {
             $('#lapbulkelola_sel_bulan, #lapbulkelola_sel_tahun, #lapbulkelola_sel_bulan_paud, #lapbulkelola_sel_tahun_paud').prop('disabled', true);
             
             var formId = (source === 'SD') ? '#lapbulkelola_formSD' : '#lapbulkelola_formPAUD';
-            $(formId).append(`<input type="hidden" name="EDIT_ROW_ID" value="${rowId}">`);
-            $(formId).append(`<input type="hidden" name="file_url_lama" value="${lapbulkelola_URL_FILE_LAMA}">`);
-            $(formId).append(`<input type="hidden" name="bulan" value="${data.Bulan || data.bulan}">`);
-            $(formId).append(`<input type="hidden" name="tahun" value="${data.Tahun || data.tahun}">`);
+            $(formId).append('<input type="hidden" name="EDIT_ROW_ID" value="' + rowId + '">');
+            $(formId).append('<input type="hidden" name="file_url_lama" value="' + lapbulkelola_URL_FILE_LAMA + '">');
+            $(formId).append('<input type="hidden" name="bulan" value="' + (data.Bulan || data.bulan) + '">');
+            $(formId).append('<input type="hidden" name="tahun" value="' + (data.Tahun || data.tahun) + '">');
 
             var tabId = (source === 'SD') ? '#lapbulkelola_tabSD' : '#lapbulkelola_tabPAUD';
             $(tabId + ' .nav-link').removeClass('disabled-tab');
@@ -1963,11 +1935,11 @@ function lapbulkelola_populateFormSD(data) {
 
     $.each(data, function(rawKey, value) {
         var cleanKey = String(rawKey).trim().toLowerCase().replace(/\s+/g, '_');
-        var input = $(`#lapbulkelola_formSD [name="${cleanKey}"], #lapbulkelola_formSD [name="${rawKey}"]`);
+        var input = $('#lapbulkelola_formSD [name="' + cleanKey + '"], #lapbulkelola_formSD [name="' + rawKey + '"]');
         if (input.length > 0) {
             var type = input.attr('type');
             if ((type === 'date' || type === 'number') && (value === "-" || value === "")) { input.val(""); } 
-            else if (type === 'radio') { input.filter(`[value="${value}"]`).prop('checked', true); } 
+            else if (type === 'radio') { input.filter('[value="' + value + '"]').prop('checked', true); } 
             else { input.val(value); }
         }
     });
@@ -2003,22 +1975,22 @@ function lapbulkelola_populateFormSD(data) {
 
     for(var i=1; i<=6; i++) {
         var valRom = cariData(["rombel " + i, "rombel_" + i]);
-        if(valRom !== "") { $(`[name="rombel_${i}"]`).val(valRom).trigger('change'); }
+        if(valRom !== "") { $('[name="rombel_' + i + '"]').val(valRom).trigger('change'); }
         var suffixes = ['', 'a', 'b', 'c']; 
         suffixes.forEach(function(suf) {
-            var valL = cariData([`k${i}${suf} l`, `k${i}${suf}_l`]); if(valL !== "") $(`input[name="k${i}${suf}_l"]`).val(valL);
-            var valP = cariData([`k${i}${suf} p`, `k${i}${suf}_p`]); if(valP !== "") $(`input[name="k${i}${suf}_p"]`).val(valP);
+            var valL = cariData(['k' + i + suf + ' l', 'k' + i + suf + '_l']); if(valL !== "") $('input[name="k' + i + suf + '_l"]').val(valL);
+            var valP = cariData(['k' + i + suf + ' p', 'k' + i + suf + '_p']); if(valP !== "") $('input[name="k' + i + suf + '_p"]').val(valP);
         });
         var agamas = ['islam', 'kristen', 'katolik', 'hindu', 'buddha', 'konghucu'];
         agamas.forEach(function(agm) {
-            var valAgmL = cariData([`k${i} ${agm} l`, `k${i}_${agm}_l`]);
-            if(valAgmL !== "") { $(`select[data-prefix="${agm}"][data-kelas="${i}"]`).val("1").trigger('change'); $(`input[name="k${i}_${agm}_l"]`).val(valAgmL); }
-            var valAgmP = cariData([`k${i} ${agm} p`, `k${i}_${agm}_p`]); if(valAgmP !== "") { $(`input[name="k${i}_${agm}_p"]`).val(valAgmP); }
+            var valAgmL = cariData(['k' + i + ' ' + agm + ' l', 'k' + i + '_' + agm + '_l']);
+            if(valAgmL !== "") { $('select[data-prefix="' + agm + '"][data-kelas="' + i + '"]').val("1").trigger('change'); $('input[name="k' + i + '_' + agm + '_l"]').val(valAgmL); }
+            var valAgmP = cariData(['k' + i + ' ' + agm + ' p', 'k' + i + '_' + agm + '_p']); if(valAgmP !== "") { $('input[name="k' + i + '_' + agm + '_p"]').val(valAgmP); }
         });
     }
 
     var mapPTK = [{id:'ks_nonasn',keys:['ks non asn']},{id:'gkris_pns',keys:['gpa kris pns']},{id:'gkris_pppk',keys:['gpa kris pppk']},{id:'gkris_pppk_pw',keys:['gpa kris pppk pw']},{id:'gkris_gty',keys:['gpa kris gty']},{id:'gkris_gtt',keys:['gpa kris gtt']},{id:'gkat_pns',keys:['gpa kat pns']},{id:'gkat_pppk',keys:['gpa kat pppk']},{id:'gkat_pppk_pw',keys:['gpa kat pppk pw']},{id:'gkat_gty',keys:['gpa kat gty']},{id:'gkat_gtt',keys:['gpa kat gtt']},{id:'adm_pns',keys:['adm kan pns']},{id:'adm_pppk',keys:['adm kan pppk']},{id:'adm_pppk_pw',keys:['adm kan pppk pw']},{id:'adm_pty',keys:['adm kan pty']},{id:'adm_ptt',keys:['adm kan ptt']},{id:'lain_pns',keys:['tdklain pns']},{id:'lain_pppk',keys:['tdklain pppk']},{id:'lain_pppk_pw',keys:['tdklain pppk pw']},{id:'lain_pty',keys:['tdklain pty']},{id:'lain_ptt',keys:['tdklain ptt']}];
-    mapPTK.forEach(function(m) { var hasil = cariData(m.keys); if (hasil !== "") $(`#lapbulkelola_formSD input[name="${m.id}"]`).val(hasil); });
+    mapPTK.forEach(function(m) { var hasil = cariData(m.keys); if (hasil !== "") $('#lapbulkelola_formSD input[name="' + m.id + '"]').val(hasil); });
 
     lapbulkelola_URL_FILE_LAMA = cariData(["dokumen", "file"]);
     if (lapbulkelola_URL_FILE_LAMA && lapbulkelola_URL_FILE_LAMA.length > 5) {
