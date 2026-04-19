@@ -2,17 +2,17 @@
 
     <!-- PAGE HEADER -->
     <div class="mb-2 flex flex-col">
-        <h1 class="sultan-title-sync text-black dark:text-white leading-tight">
+        <h1 class="sultan-title-sync text-black dark:text-white">
             Kelola Data SK
         </h1>
-        <p class="text-[10px] md:text-[11px] font-bold text-gray-400 uppercase tracking-[0.2em] opacity-80 mt-1">
+        <p class="sk-section-title mt-1">
             Pengelolaan & Validasi Dokumen Pembagian Tugas
         </p>
     </div>
 
     <!-- 1. KARTU INFORMASI (SK STYLE) -->
     <div class="sk-card !p-0 overflow-hidden" x-data="{ isOpen: false }">
-        <div class="flex items-center justify-between border-b border-gray-100 py-2 px-6 dark:border-white/5 bg-gray-50 dark:bg-white/5 cursor-pointer hover:bg-gray-100 dark:hover:bg-white/10 transition-colors" @click="isOpen = !isOpen">
+        <div class="sk-card-header cursor-pointer hover:bg-gray-100 dark:hover:bg-white/10 transition-colors" @click="isOpen = !isOpen">
             <h3 class="font-black text-black dark:text-white flex items-center gap-2 text-sm uppercase tracking-[0.1em]">
                 <i class="fas fa-info-circle text-primary"></i> Panduan Pengisian
             </h3>
@@ -60,7 +60,7 @@
                     <option value="OK">Disetujui</option>
                     <option value="Ditolak">Ditolak</option>
                 </select>
-                <button type="button" id="tugas_btnCari" class="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-50 dark:bg-white/5 text-gray-500 hover:text-primary transition-all border border-gray-100 dark:border-white/5 shadow-sm active:scale-95" title="Refresh Data">
+                <button type="button" id="tugas_btnCari" class="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-50 dark:bg-section text-gray-500 hover:text-primary transition-all border border-gray-100 dark:border-white/5 shadow-sm active:scale-95" title="Refresh Data">
                     <i class="fas fa-sync-alt"></i>
                 </button>
             </div>
@@ -80,9 +80,10 @@
         </div>
 
         <div id="tugas_tableState" style="display: none;" class="w-full overflow-hidden">
-            <table id="tugas_tabelUtama" class="w-full table-auto text-xs bg-transparent">
+            <div class="overflow-x-auto sultan-scroll">
+                <table id="tugas_tabelUtama" class="w-full table-auto text-xs bg-transparent">
                 <thead>
-                    <tr class="bg-gray-50 dark:bg-white/5 text-left border-b border-gray-100 dark:border-white/5 transition-colors">
+                    <tr class="bg-gray-50 dark:bg-section text-left border-b border-gray-100 dark:border-white/5 transition-colors">
                         <th class="py-2.5 px-6 font-black uppercase text-primary dark:text-[#818CF8] text-center w-[120px] text-xs whitespace-nowrap">Aksi</th>
                         <th class="py-2.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] text-xs whitespace-nowrap">Unit Kerja</th>
                         <th class="py-2.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] text-xs whitespace-nowrap">Periode</th>
@@ -95,7 +96,8 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100 dark:divide-white/5 bg-transparent"></tbody>
-            </table>
+                </table>
+            </div>
         </div>
     </div>
 </div>

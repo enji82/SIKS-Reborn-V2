@@ -249,6 +249,32 @@ body {
 }
 .sk-modal-header-brand .sk-modal-close:hover { background: rgba(255,255,255,0.25); }
 
+/* --- ADAPTIVE SCROLLBAR SYSTEM (SULTAN-SCROLL) --- */
+.sultan-scroll::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+.sultan-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+.sultan-scroll::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+.dark .sultan-scroll::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.1);
+}
+.sultan-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(0,0,0,0.2);
+}
+.dark .sultan-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+/* --- TYPOGRAPHY & HEADER SYNC --- */
+.sultan-title-sync { font-size: 1.5rem; font-weight: 800; tracking: -0.02em; }
+.sk-section-title { font-size: 0.6875rem !important; font-weight: 900; text-transform: uppercase; letter-spacing: 0.15em; color: var(--sk-text-muted); opacity: 0.8; }
+
 /* --- HEADER MODAL (STANDARD) --- */
 .sk-modal-header {
     display: flex;
@@ -328,6 +354,15 @@ body {
     border: 1px solid var(--sk-border);
     margin-bottom: 1.25rem;
     box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.05);
+}
+
+.sk-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.5rem;
+    border-bottom: 1px solid var(--sk-border);
+    background-color: var(--sk-section);
 }
 
 /* --- INPUT SECTION CARD --- */
