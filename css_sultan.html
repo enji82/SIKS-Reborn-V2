@@ -411,6 +411,44 @@ input:-webkit-autofill:active{
     border-color: rgba(255,255,255,0.05) !important;
 }
 
+/* AGGRESSIVE BOOTSTRAP PAGINATION OVERRIDE */
+.page-item .page-link {
+    background-color: var(--sk-surface) !important;
+    border-color: var(--sk-border) !important;
+    color: var(--sk-text) !important;
+    font-weight: 700 !important;
+    font-size: 11px !important;
+    padding: 0.5rem 0.85rem !important;
+    transition: all 0.2s !important;
+}
+
+.page-item.active .page-link {
+    background-color: var(--warna-utama) !important;
+    border-color: var(--warna-utama) !important;
+    color: #FFFFFF !important;
+}
+
+.page-item.disabled .page-link {
+    background-color: var(--sk-section) !important;
+    color: var(--sk-text-muted) !important;
+    opacity: 0.5 !important;
+}
+
+.page-link:hover {
+    background-color: var(--warna-utama) !important;
+    color: #FFFFFF !important;
+}
+
+.dark .page-link {
+    background-color: #24303F !important;
+    border-color: rgba(255,255,255,0.05) !important;
+}
+
+.dark .page-item.active .page-link {
+    background-color: var(--warna-utama) !important;
+    border-color: var(--warna-utama) !important;
+}
+
 
 /* --- BUTTONS --- */
 .sk-btn {
