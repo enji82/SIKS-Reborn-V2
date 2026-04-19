@@ -1,298 +1,313 @@
-<div class="flex flex-col gap-4 md:gap-6 2xl:gap-7.5 animate-reveal">
+<div class="flex flex-col gap-4 animate-reveal">
+    <!-- PAGE HEADER -->
+    <div class="mb-2 flex flex-col">
+        <h1 class="sultan-title-sync text-black dark:text-white">
+            Status Data SK
+        </h1>
+        <p class="sk-section-title mt-1">
+            Matriks Progres Pengiriman Dokumen Pembagian Tugas
+        </p>
+    </div>
 
-    <!-- 1. KARTU INFORMASI (TAILADMIN STYLE) -->
-    <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark border-l-4 border-l-maroon" x-data="{ isOpen: false }">
-        <div class="border-b border-stroke py-4 px-6.5 dark:border-strokedark cursor-pointer" @click="isOpen = !isOpen">
-            <div class="flex justify-between items-center text-maroon font-bold">
-                <div class="flex items-center"><i class="fas fa-info-circle mr-2"></i> Informasi Progres SK</div>
-                <i class="fas fa-chevron-down text-body dark:text-bodydark text-sm transition-transform" :class="{ 'rotate-180': isOpen }"></i>
+    <!-- 1. KARTU INFORMASI (SK STYLE) -->
+    <div class="sk-card !p-0 overflow-hidden" x-data="{ isOpen: false }">
+        <div class="sk-card-header cursor-pointer hover:bg-gray-100 dark:hover:bg-white/10 transition-colors" @click="isOpen = !isOpen">
+            <h3 class="font-black text-black dark:text-white flex items-center gap-2 text-sm uppercase tracking-[0.1em]">
+                <i class="fas fa-info-circle text-primary"></i> Panduan Matriks
+            </h3>
+            <i class="fas fa-chevron-down text-gray-400 text-sm transition-transform" :class="{ 'rotate-180': isOpen }"></i>
+        </div>
+        <div x-show="isOpen" x-transition x-cloak class="p-4 border-t border-gray-100 dark:border-white/5 sk-bg-surface">
+            <div class="rounded-xl border border-primary/20 bg-blue-50/80 dark:bg-white/5 p-5">
+                <ul class="space-y-3">
+                    <li class="flex gap-4 text-[14px] font-bold text-gray-900 dark:text-gray-100 items-start">
+                        <span class="flex h-5 w-5 min-w-[20px] items-center justify-center rounded-full bg-primary text-[10px] font-black text-white shadow-sm">1</span>
+                        <span>Matriks ini menampilkan progres per Semester untuk setiap Tahun Ajaran.</span>
+                    </li>
+                    <li class="flex gap-4 text-[14px] font-bold text-gray-900 dark:text-gray-100 items-start">
+                        <span class="flex h-5 w-5 min-w-[20px] items-center justify-center rounded-full bg-primary text-[10px] font-black text-white shadow-sm">2</span>
+                        <span>Klik ikon <b class="text-warning">🔄</b> atau <b class="text-danger">❌</b> untuk membaca catatan revisi/penolakan dari admin pelaksana.</span>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div x-show="isOpen" x-transition x-cloak>
-            <div class="p-6.5 pt-4">
-                <ul class="list-disc pl-5 text-sm text-black dark:text-white space-y-1">
-                    <li>Halaman ini menampilkan matriks progres pengiriman SK Pembagian Tugas.</li>
-                    <li>Status ditampilkan per Semester untuk setiap Tahun Ajaran.</li>
-                    <li>Gunakan filter untuk mempersempit tampilan sekolah atau instansi tertentu.</li>
-                    <li>Ikon <span class="inline-flex rounded-full bg-warning/10 px-2 py-0.5 text-warning font-bold">🔄</span> atau <span class="inline-flex rounded-full bg-danger/10 px-2 py-0.5 text-danger font-bold">❌</span> yang dapat diklik menunjukkan adanya catatan revisi dari admin.</li>
-                </ul>
     </div>
-  </div>
-</section>
+
+    <!-- 2. KARTU FILTER (SK STYLE) -->
+    <div id="statussk_wadahFilter" class="sk-card p-4">
+        <div class="flex flex-col md:flex-row items-center gap-4">
+            <div class="flex flex-wrap flex-1 items-center gap-3 w-full">
+                <select id="statussk_filterSekolah" 
+                    class="sk-form-input !py-2.5 !px-4 !text-sm !w-auto min-w-[300px] disabled:opacity-60">
+                    <option value="SEMUA">- Memuat Database... -</option>
+                </select>
+                <button type="button" id="statussk_btnCari" class="flex h-10 w-10 items-center justify-center rounded-xl sk-bg-section text-gray-500 hover:text-primary transition-all border border-gray-100 dark:border-white/5 shadow-sm active:scale-95" title="Refresh Data">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. KARTU TABEL (SK STYLE) -->
+    <div class="sk-card !p-0 overflow-hidden">
+        <div id="statussk_loadingState" class="py-20">
+            <div class="flex flex-col items-center justify-center">
+                <div class="sk-spinner-premium mb-5"></div>
+                <h6 class="sk-loading-text">Menyusun Matriks Data...</h6>
+            </div>
+        </div>
+
+        <div id="statussk_tableState" style="display: none;" class="w-full overflow-hidden">
+            <div class="overflow-x-auto sultan-scroll">
+                <table id="statussk_tabelUtama" class="w-full table-auto text-xs bg-transparent">
+                <thead id="statussk_headerTabel">
+                    <!-- Dinamis via JS -->
+                </thead>
+                <tbody class="divide-y divide-gray-100 dark:divide-white/5 bg-transparent"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
-// ======================================================================
-// ISOLASI VARIABEL GLOBAL (MASTER BLUEPRINT V8 - DYNAMIC READ ONLY)
-// BAB I: Prefix Mutlak statussk_
-// ======================================================================
-var STATUSSK_CACHE_DATA = []; 
-var STATUSSK_TABEL_INSTANCE = null;
+    // ======================================================================
+    // ISOLASI VARIABEL GLOBAL (MASTER BLUEPRINT V4.0 - PREMIUM SYNC)
+    // ======================================================================
+    var STATUSSK_CACHE_DATA = []; 
+    var STATUSSK_TABEL_INSTANCE = null;
+    var STATUSSK_RAW_HEADER = []; // Untuk manipulasi header bertingkat
 
-var STATUSSK_USER_AKTIF = "";
-var STATUSSK_IS_ADMIN = false;
-var STATUSSK_USER_NPSN = "";
-var STATUSSK_UNIT_TERKUNCI = "";
+    var STATUSSK_USER_AKTIF = "";
+    var STATUSSK_IS_ADMIN = false;
+    var STATUSSK_USER_NPSN = "";
+    var STATUSSK_UNIT_TERKUNCI = "";
 
-// =================================================================
-// 1. INITIALIZATION & SPA VACCINE
-// =================================================================
-$(document).ready(function() {
-    STATUSSK_TABEL_INSTANCE = null;
-    $('#statussk_tableState').hide();
-    statussk_renderSkeleton(); // Tampilkan Skeleton Segera
-    $('#statussk_loadingState').show();
-
-    // VAKSIN EVENT: Pemusnahan event inline
-    $(document).off('click', '#statussk_btnCari').on('click', '#statussk_btnCari', statussk_prosesCariData);
-    $(document).off('change', '#statussk_filterSekolah').on('change', '#statussk_filterSekolah', statussk_terapkanFilterLokal);
-
-    // Cek Sesi Login
-    try {
-        var user = (typeof getSesiUser === 'function') ? getSesiUser() : {};
-        STATUSSK_USER_AKTIF = user.nama_lengkap || user.fullname || user.nama || user.username || "User Web";
-        STATUSSK_IS_ADMIN = (user.role || "").toLowerCase().includes("admin");
-        STATUSSK_USER_NPSN = user.npsn || user.username || ""; 
-    } catch(e) { STATUSSK_USER_NPSN = ""; STATUSSK_IS_ADMIN = false; }
-    
-    statussk_validasiAksesUser(); 
-});
-
-// =================================================================
-// 2. GATEKEEPER MUTLAK
-// =================================================================
-function statussk_validasiAksesUser() {
-    if (STATUSSK_IS_ADMIN) {
-        $('#statussk_wadahFilter').show(); // Admin butuh filter
-        statussk_renderSkeleton();
-        $('#statussk_filterSekolah').empty().append('<option value="SEMUA">- Memuat Database... -</option>').prop('disabled', true).removeClass('bg-light text-maroon font-weight-bold');
-        statussk_tarikDataServer(); 
-    } else {
-        // VAKSIN UX: Sembunyikan blok filter untuk User (Space Saver)
-        $('#statussk_wadahFilter').hide(); 
-
-        if (!STATUSSK_USER_NPSN) {
-            $('#statussk_loadingState').html('<div class="text-center py-5 text-danger"><i class="fas fa-ban fa-3x mb-3"></i><br><h6>Akses ditolak: Sesi login tidak valid.</h6></div>');
-            return;
-        }
-        
-        google.script.run.withSuccessHandler(function(resUnit) {
-            var dataUnit = JSON.parse(resUnit);
-            if (dataUnit.error) {
-                $('#statussk_loadingState').html('<div class="text-center py-5 text-danger"><i class="fas fa-exclamation-triangle fa-3x mb-3"></i><br><h6>' + statussk_escapeHtml(dataUnit.error) + '</h6></div>');
-                return;
-            }
-            STATUSSK_UNIT_TERKUNCI = dataUnit.unitKerja;
-            statussk_tarikDataServer();
-        }).withFailureHandler(function(err) {
-            $('#statussk_loadingState').html('<div class="text-center py-5 text-danger"><i class="fas fa-wifi fa-3x mb-3"></i><br><h6>Koneksi Terputus: ' + statussk_escapeHtml(err.message) + '</h6></div>');
-        }).getUnitKerjaByNpsnPTK(STATUSSK_USER_NPSN); 
-    }
-}
-
-// =================================================================
-// 3. FETCH DATA & FILTER MANUAL TRIGGER
-// =================================================================
-function statussk_prosesCariData() {
-    statussk_tarikDataServer();
-}
-
-function statussk_tarikDataServer() {
-    var btn = $('#statussk_btnCari');
-    btn.prop('disabled', true).html('<i class="fas fa-sync-alt fa-spin text-maroon"></i>');
-    
-    if (!$.fn.DataTable.isDataTable('#statussk_tabelUtama')) {
+    // =================================================================
+    // 1. INITIALIZATION & SPA VACCINE
+    // =================================================================
+    $(document).ready(function() {
+        STATUSSK_TABEL_INSTANCE = null;
         $('#statussk_tableState').hide();
         statussk_renderSkeleton();
         $('#statussk_loadingState').show();
-    }
 
-    google.script.run
-        .withSuccessHandler(function(res) {
-            btn.prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon"></i>');
-            
-            if (res.error) {
-                $('#statussk_tableState').hide();
-                $('#statussk_loadingState').html('<div class="text-center py-5 text-danger"><i class="fas fa-exclamation-triangle fa-3x mb-3"></i><br><h6>' + statussk_escapeHtml(res.error) + '</h6></div>');
-                $('#statussk_loadingState').show();
+        // Sync Sesi via Sultan.db (Master Standard)
+        try {
+            var user = (typeof Sultan !== 'undefined' && Sultan.db) ? Sultan.db.get('siksUser') : {};
+            STATUSSK_USER_AKTIF = user.nama_lengkap || user.fullname || user.nama || user.username || "User Web";
+            var role = (user.role || "").toLowerCase();
+            STATUSSK_IS_ADMIN = role.includes("admin") || role.includes("verifikator");
+            STATUSSK_USER_NPSN = user.npsn || user.username || ""; 
+        } catch(e) { STATUSSK_USER_NPSN = ""; STATUSSK_IS_ADMIN = false; }
+
+        // VAKSIN EVENT: Pemusnahan event inline & Re-binding
+        $(document).off('click', '#statussk_btnCari').on('click', '#statussk_btnCari', statussk_tarikDataServer);
+        $(document).off('change', '#statussk_filterSekolah').on('change', '#statussk_filterSekolah', statussk_terapkanFilterLokal);
+        
+        statussk_validasiAksesUser(); 
+    });
+
+    // =================================================================
+    // 2. GATEKEEPER & AUTO-FILTER LOGIC
+    // =================================================================
+    function statussk_validasiAksesUser() {
+        if (STATUSSK_IS_ADMIN) {
+            $('#statussk_wadahFilter').show();
+            statussk_tarikDataServer(); 
+        } else {
+            $('#statussk_wadahFilter').hide(); 
+            if (!STATUSSK_USER_NPSN) {
+                $('#statussk_loadingState').html('<div class="flex flex-col items-center py-10 text-danger"><i class="fas fa-ban text-4xl mb-3 opacity-50"></i><h6 class="font-black text-xs uppercase tracking-widest">Akses Ditolak: Sesi Invalid</h6></div>');
                 return;
             }
+            
+            google.script.run.withSuccessHandler(function(resUnit) {
+                var dataUnit = JSON.parse(resUnit);
+                if (dataUnit.error) {
+                    $('#statussk_loadingState').html('<div class="flex flex-col items-center py-10 text-danger"><i class="fas fa-exclamation-triangle text-4xl mb-3 opacity-50"></i><h6 class="font-black text-xs uppercase tracking-widest">' + statussk_escapeHtml(dataUnit.error) + '</h6></div>');
+                    return;
+                }
+                STATUSSK_UNIT_TERKUNCI = dataUnit.unitKerja;
+                statussk_tarikDataServer();
+            }).withFailureHandler(function(err) {
+                $('#statussk_loadingState').html('<div class="flex flex-col items-center py-10 text-danger"><i class="fas fa-wifi text-4xl mb-3 opacity-50"></i><h6 class="font-black text-xs uppercase tracking-widest">Koneksi Terputus</h6></div>');
+            }).getUnitKerjaByNpsnPTK(STATUSSK_USER_NPSN); 
+        }
+    }
 
-            try {
+    // =================================================================
+    // 3. FETCH DATA SERVER (BAB VII - Turbo Mode)
+    // =================================================================
+    function statussk_tarikDataServer() {
+        var btn = $('#statussk_btnCari');
+        btn.prop('disabled', true).html('<i class="fas fa-sync-alt fa-spin text-primary"></i>');
+        
+        if (!STATUSSK_TABEL_INSTANCE) {
+            $('#statussk_tableState').hide();
+            statussk_renderSkeleton();
+            $('#statussk_loadingState').show();
+        }
+
+        google.script.run
+            .withSuccessHandler(function(res) {
+                btn.prop('disabled', false).html('<i class="fas fa-sync-alt"></i>');
+                if (res.error) {
+                    $('#statussk_loadingState').html('<div class="flex flex-col items-center py-10 text-danger"><i class="fas fa-exclamation-triangle text-4xl mb-3 opacity-50"></i><h6 class="font-black text-xs uppercase tracking-widest">' + statussk_escapeHtml(res.error) + '</h6></div>');
+                    return;
+                }
+
                 STATUSSK_CACHE_DATA = res.rows || [];
                 statussk_populateDropdown(res.schools || []);
                 statussk_terapkanFilterLokal();
-            } catch (e) {
-                console.error("Table Error:", e);
-                $('#statussk_tableState').hide();
-                $('#statussk_loadingState').html('<div class="text-center py-5 text-danger"><i class="fas fa-exclamation-triangle fa-3x mb-3"></i><br><h6>Gagal merakit tabel: ' + statussk_escapeHtml(e.message) + '</h6></div>');
-                $('#statussk_loadingState').show();
-            }
-        })
-        .withFailureHandler(function(err) {
-            btn.prop('disabled', false).html('<i class="fas fa-sync-alt text-maroon"></i>');
-            $('#statussk_tableState').hide();
-            $('#statussk_loadingState').html('<div class="text-center py-5 text-danger"><i class="fas fa-wifi fa-3x mb-3"></i><br><h6>Koneksi Terputus: ' + statussk_escapeHtml(err.message) + '</h6></div>');
-            $('#statussk_loadingState').show();
-        })
-        .getSiabaStatusData();
-}
-
-function statussk_populateDropdown(schools) {
-    if (STATUSSK_IS_ADMIN) {
-        var el = $('#statussk_filterSekolah');
-        var currentVal = el.val();
-        
-        var h = '<option value="SEMUA">- Semua Instansi -</option>';
-        for(var i=0; i<schools.length; i++) { 
-            var safeS = statussk_escapeHtml(schools[i]);
-            h += '<option value="' + safeS + '">' + safeS + '</option>'; 
-        }
-        
-        el.html(h).prop('disabled', false).removeClass('bg-light text-maroon font-weight-bold');
-        $('#statussk_btnCari').prop('disabled', false);
-        if(currentVal && schools.includes(currentVal)) el.val(currentVal);
+            })
+            .withFailureHandler(function(err) {
+                btn.prop('disabled', false).html('<i class="fas fa-sync-alt"></i>');
+                $('#statussk_loadingState').html('<div class="flex flex-col items-center py-10 text-danger"><i class="fas fa-wifi text-4xl mb-3 opacity-50"></i><h6 class="font-black text-xs uppercase tracking-widest">Server Error</h6></div>');
+            })
+            .getSiabaStatusData();
     }
-}
 
-// =================================================================
-// 4. INJEKSI ZERO BLINK (BAB VII)
-// =================================================================
-function statussk_terapkanFilterLokal() {
-    var tAdminUnit = STATUSSK_IS_ADMIN ? String($('#statussk_filterSekolah').val() || "").toUpperCase() : "";
-    var tUnitUser  = String(STATUSSK_UNIT_TERKUNCI || "").trim().toUpperCase();
-
-    var rowsToShow = STATUSSK_CACHE_DATA.filter(function(r) {
-        var rUnit = String(r[0] || "").trim().toUpperCase();
+    function statussk_populateDropdown(schools) {
         if (STATUSSK_IS_ADMIN) {
-            return (tAdminUnit === "SEMUA" || tAdminUnit === "" || rUnit === tAdminUnit);
-        } else {
-            return (rUnit === tUnitUser); 
+            var el = $('#statussk_filterSekolah');
+            var currentVal = el.val();
+            var h = '<option value="SEMUA">- Filter Semua Instansi -</option>';
+            schools.forEach(function(s) { 
+                var safeS = statussk_escapeHtml(s);
+                h += '<option value="' + safeS + '">' + safeS + '</option>'; 
+            });
+            el.html(h);
+            if(currentVal && schools.includes(currentVal)) el.val(currentVal);
         }
-    });
-    
-    statussk_renderTabel(rowsToShow);
-}
-
-function statussk_renderTabel(rows) {
-    var isFirstLoad = !$.fn.DataTable.isDataTable('#statussk_tabelUtama');
-    var dtArray = [];
-
-    for(var j=0; j<rows.length; j++) {
-        var row = rows[j];
-        var rowData = [];
-        rowData.push(`<div class="font-weight-bold text-dark text-nowrap text-left px-2">${statussk_escapeHtml(row[0])}</div>`); 
-        for (var i = 1; i < row.length; i++) { 
-            var val = (row[i] !== undefined) ? row[i] : "";
-            rowData.push(statussk_buildBadgeSultan(val)); 
-        }
-        dtArray.push(rowData);
     }
 
-    if (isFirstLoad) {
+    // =================================================================
+    // 4. MATRIX RENDERING (ZERO BLINK STICKY MODE)
+    // =================================================================
+    function statussk_terapkanFilterLokal() {
+        var tAdminUnit = STATUSSK_IS_ADMIN ? String($('#statussk_filterSekolah').val() || "").toUpperCase() : "";
+        var tUnitUser  = String(STATUSSK_UNIT_TERKUNCI || "").trim().toUpperCase();
+
+        var rowsToShow = STATUSSK_CACHE_DATA.filter(function(r) {
+            var rUnit = String(r[0] || "").trim().toUpperCase();
+            if (STATUSSK_IS_ADMIN) {
+                return (tAdminUnit === "SEMUA" || tAdminUnit === "" || rUnit === tAdminUnit);
+            } else {
+                return (rUnit === tUnitUser); 
+            }
+        });
+        
+        statussk_renderTabel(rowsToShow);
+    }
+
+    function statussk_renderTabel(rows) {
+        var dtArray = [];
+        
+        // Rakit Header Manual (Matrix Style)
+        var headerHtml = '<tr class="sk-bg-section text-center border-b border-gray-100 dark:border-white/5">';
+        headerHtml += '<th class="py-3 px-6 font-black uppercase text-primary dark:text-[#818CF8] text-left sticky left-0 z-[20] sk-bg-section shadow-[2px_0_5px_rgba(0,0,0,0.05)]">Nama Instansi / Sekolah</th>';
+        
+        var sampleRow = rows[0] || [];
+        for (var i = 1; i < sampleRow.length; i++) {
+            var label = i % 2 !== 0 ? "SMT 1" : "SMT 2";
+            headerHtml += '<th class="py-3 px-3 font-black uppercase text-primary dark:text-[#818CF8] min-w-[100px] border-l border-gray-100 dark:border-white/5">' + label + '</th>';
+        }
+        headerHtml += '</tr>';
+        $('#statussk_headerTabel').html(headerHtml);
+
+        rows.forEach(function(row) {
+            var rowData = [];
+            rowData.push('<div class="font-black text-black dark:text-white uppercase tracking-tight text-left">' + statussk_escapeHtml(row[0]) + '</div>');
+            for (var i = 1; i < row.length; i++) { 
+                rowData.push(statussk_buildBadgeSultan(row[i])); 
+            }
+            dtArray.push(rowData);
+        });
+
+        if (STATUSSK_TABEL_INSTANCE) {
+            STATUSSK_TABEL_INSTANCE.destroy();
+            $('#statussk_tabelUtama tbody').empty();
+        }
+
         STATUSSK_TABEL_INSTANCE = $('#statussk_tabelUtama').DataTable({
             "data": dtArray, 
-            "destroy": true, 
-            "ordering": false, 
-            "pageLength": 10, 
-            "autoWidth": false, 
-            "deferRender": true, 
-             "dom": "<'row'<'col-sm-12'<'table-responsive custom-scrollbar'tr>>>" +
-                   "<'flex flex-col md:flex-row justify-between items-center gap-4 mt-6'<'text-sm text-body'i><'pagination-wrapper'p>>",
+            "ordering": false, "pageLength": 15, "autoWidth": false, "deferRender": true, 
+            "dom": "<'row'<'col-sm-12'<'overflow-x-auto sultan-scroll !border-none'tr>>>" +
+                   "<'flex flex-col md:flex-row justify-between items-center gap-4 mt-6 px-6 pb-6'<'text-[11px] font-bold text-gray-500'i><'pagination-wrapper'p>>",
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", 
-                "search": "", "searchPlaceholder": "Cari Instansi...",
-                "emptyTable": '<div class="py-10 text-center text-body opacity-50"><i class="fas fa-clipboard-list fa-3x mb-3"></i><br><p class="text-sm font-medium">Belum Ada Data Pengiriman SK</p></div>' 
+                "emptyTable": "Belum ada data progres pengiriman." 
             }, 
             "columnDefs": [ 
-                { "targets": 0, "className": "sticky left-0 z-10 bg-white dark:bg-meta-4 border border-stroke dark:border-strokedark font-bold text-black dark:text-white px-2" },
-                { "targets": "_all", "className": "text-center border border-stroke dark:border-strokedark py-3" }
+                { "targets": 0, "className": "py-2.5 px-6 sticky left-0 z-[10] sk-bg-section shadow-[2px_0_5px_rgba(0,0,0,0.05)] border-r border-gray-100 dark:border-white/10" },
+                { "targets": "_all", "className": "text-center py-2.5 px-2 border-l border-gray-50 dark:border-white/5" }
             ],
             "drawCallback": function (settings) {
-                $('#statussk_tabelUtama tbody tr').addClass('hover:bg-gray-2 dark:hover:bg-meta-4 transition');
+                $('#statussk_tabelUtama tbody tr').addClass('bg-transparent hover:bg-primary/5 dark:hover:bg-white/5 transition-all');
+                $('#statussk_tabelUtama tbody td').css('background-color', 'transparent'); 
             }
         }); 
 
         $('#statussk_loadingState').hide();
         $('#statussk_tableState').show();
-        setTimeout(function(){ STATUSSK_TABEL_INSTANCE.columns.adjust(); }, 100);
+        setTimeout(function(){ STATUSSK_TABEL_INSTANCE.columns.adjust(); }, 150);
+    }
+
+    // =================================================================
+    // 5. HELPER UTILITIES (BAB VIII COMPLIANT)
+    // =================================================================
+    function statussk_renderSkeleton() {
+        var $cont = $('#statussk_loadingState').empty();
+        var $grid = $('<div/>', { "class": "flex flex-col gap-4 py-10" });
+        for (var i = 0; i < 5; i++) {
+            var $row = $('<div/>', { "class": "flex items-center gap-4 sk-skeleton" });
+            $row.append($('<div/>', { "class": "h-10 w-1/4 rounded bg-gray-200 dark:bg-white/10" }));
+            for (var j = 0; j < 5; j++) {
+                $row.append($('<div/>', { "class": "h-8 w-16 rounded bg-gray-200 dark:bg-white/10 opacity-30" }));
+            }
+            $grid.append($row);
+        }
+        $cont.append($grid);
+    }
+
+    function statussk_buildBadgeSultan(statusString) {
+        if (!statusString || statusString === "-" || statusString === "") {
+            return '<i class="fas fa-minus text-gray-300 dark:text-white/10 text-[10px]"></i>';
+        }
+        var parts = String(statusString).split('|');
+        var rawStatus = String(parts[0]).trim();
+        var ket = parts.length > 1 ? String(parts[1]).trim() : "";
+        var stLower = rawStatus.toLowerCase();
         
-    } else {
-        STATUSSK_TABEL_INSTANCE.clear().rows.add(dtArray).draw(false);
-        if ($('#statussk_tableState').is(':hidden')) {
-            $('#statussk_loadingState').hide();
-            $('#statussk_tableState').show();
-        }
-        setTimeout(function(){ STATUSSK_TABEL_INSTANCE.columns.adjust(); }, 50);
-    }
-}
+        var iconHtml = "";
+        var baseCls = "inline-flex h-8 w-8 items-center justify-center rounded-xl transition-all shadow-sm active:scale-90 border";
 
-// =================================================================
-// 5. HELPER UTILITIES: SKELETON, XSS & SWEET ALERT
-// =================================================================
-function statussk_renderSkeleton() {
-    var $cont = $('#statussk_loadingState').empty();
-    var $grid = $('<div/>', { "class": "flex flex-col gap-4 py-10" });
-    for (var i = 0; i < 5; i++) {
-        var $row = $('<div/>', { "class": "flex items-center gap-4 animate-pulse" });
-        $row.append($('<div/>', { "class": "h-10 w-1/4 rounded bg-gray-2 dark:bg-meta-4" }));
-        for (var j = 0; j < 6; j++) {
-            $row.append($('<div/>', { "class": "h-8 w-12 rounded bg-gray-2 dark:bg-meta-4 opacity-50" }));
-        }
-        $grid.append($row);
-    }
-    $cont.append($grid);
-}
-
-function statussk_escapeHtml(text) { 
-    if (!text) return ""; 
-    return String(text).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"); 
-}
-
-function statussk_escapeJs(str) {
-    if (!str) return "";
-    return String(str).replace(/\\/g, "\\\\").replace(/'/g, "\\'").replace(/"/g, "&quot;").replace(/(\r\n|\n|\r)/gm, "<br>");
-}
-
-function statussk_lihatCatatanSultan(pesan) {
-    Sultan.alert('info', 'Catatan Admin', pesan);
-}
-
-function statussk_buildBadgeSultan(statusString) {
-    if (!statusString || statusString === "-" || statusString === "") {
-        return '<i class="fas fa-minus text-black-50 small" style="opacity:0.2"></i>';
-    }
-    var parts = String(statusString).split('|');
-    var rawStatus = String(parts[0]).trim();
-    var ket = parts.length > 1 ? String(parts[1]).trim() : "";
-    var stLower = rawStatus.toLowerCase();
-    var baseClass = "btn btn-sm shadow-sm font-weight-bold"; 
-    var iconHtml = "";
-
-    if (stLower.includes('revisi') || stLower.includes('perbaiki')) {
-        if (ket.length > 2) {
+        if (stLower.includes('revisi') || stLower.includes('perbaiki')) {
             var safeKet = statussk_escapeJs(ket);
-            iconHtml = `<button type="button" class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-warning/10 text-warning hover:bg-warning hover:text-white shadow-sm transition" onclick="statussk_lihatCatatanSultan('${safeKet}')" title="Klik Lihat Catatan"><i class="fas fa-sync-alt text-xs"></i></button>`;
-        } else {
-            iconHtml = `<span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-warning/10 text-warning" title="Revisi"><i class="fas fa-sync-alt text-xs"></i></span>`;
+            var cls = "bg-warning/10 text-warning border-warning/20 hover:bg-warning hover:text-white";
+            iconHtml = `<button type="button" class="${baseCls} ${cls}" onclick="Sultan.catatan('Catatan Revisi', '${safeKet}')" title="Klik Lihat Catatan"><i class="fas fa-sync-alt text-[11px]"></i></button>`;
         }
-    }
-    else if (stLower.includes('tolak') || stLower.includes('x') || stLower.includes('salah')) {
-        if (ket.length > 2) {
+        else if (stLower.includes('tolak') || stLower.includes('x') || stLower.includes('salah')) {
             var safeKet = statussk_escapeJs(ket);
-            iconHtml = `<button type="button" class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-danger/10 text-danger hover:bg-danger hover:text-white shadow-sm transition" onclick="statussk_lihatCatatanSultan('${safeKet}')" title="Klik Lihat Catatan"><i class="fas fa-times text-xs"></i></button>`;
-        } else {
-            iconHtml = `<span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-danger/10 text-danger" title="Ditolak"><i class="fas fa-times text-xs"></i></span>`;
+            var cls = "bg-danger/10 text-danger border-danger/20 hover:bg-danger hover:text-white";
+            iconHtml = `<button type="button" class="${baseCls} ${cls}" onclick="Sultan.catatan('Catatan Penolakan', '${safeKet}')" title="Klik Lihat Catatan"><i class="fas fa-times text-[11px]"></i></button>`;
         }
+        else if (stLower.includes('verif') || stLower.includes('setuju') || stLower.includes('ok') || stLower.includes('valid')) {
+            var cls = "bg-success/10 text-success border-success/20";
+            iconHtml = `<span class="${baseCls} ${cls}" title="Disetujui"><i class="fas fa-check text-[11px]"></i></span>`;
+        }
+        else if (stLower.includes('proses') || stLower.includes('tunggu') || rawStatus.length > 3) {
+            var cls = "bg-primary/10 text-primary border-primary/20";
+            iconHtml = `<span class="${baseCls} ${cls}" title="Diproses"><i class="fas fa-clock text-[11px]"></i></span>`;
+        }
+        else {
+            return `<span class="text-black dark:text-white font-black text-[11px] uppercase">${statussk_escapeHtml(rawStatus)}</span>`;
+        }
+        return iconHtml;
     }
-    else if (stLower.includes('verif') || stLower.includes('setuju') || stLower.includes('ok') || stLower.includes('valid')) {
-        iconHtml = `<span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-success/10 text-success" title="Disetujui"><i class="fas fa-check text-xs"></i></span>`;
-    }
-    else if (stLower.includes('proses') || stLower.includes('tunggu') || rawStatus.length > 5) {
-        iconHtml = `<span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-primary" title="Diproses"><i class="fas fa-clock text-xs"></i></span>`;
-    }
-    else {
-        return `<span class="text-black dark:text-white font-bold text-xs capitalize">${statussk_escapeHtml(rawStatus)}</span>`;
-    }
-    return iconHtml;
-}
+
+    function statussk_escapeHtml(t) { return String(t || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"); }
+    function statussk_escapeJs(t) { return String(t || "").replace(/'/g, "\\'").replace(/"/g, "\\\""); }
+
 </script>
