@@ -80,19 +80,86 @@
         </div>
 
         <div id="tugas_tableState" style="display: none;" class="w-full overflow-hidden">
+            <!-- CUSTOM DATATABLES UTILITIES STYLING (SULTAN SYNC) -->
+            <style>
+                /* Container Padding Sync */
+                #tugas_tableState .dataTables_wrapper .flex {
+                    padding-top: 0.75rem;
+                    padding-bottom: 0.75rem;
+                }
+                #tugas_tableState .dataTables_wrapper label,
+                #tugas_tableState .dataTables_wrapper .dataTables_info,
+                #tugas_tableState .dataTables_wrapper .sultan-dt-info {
+                    padding: 0 !important;
+                    margin: 0 !important;
+                    font-size: 14px !important; 
+                    font-weight: 700 !important;
+                    letter-spacing: normal !important;
+                    color: #64748b !important;
+                }
+                .dark #tugas_tableState .dataTables_wrapper label,
+                .dark #tugas_tableState .dataTables_wrapper .dataTables_info,
+                .dark #tugas_tableState .dataTables_wrapper .sultan-dt-info {
+                    color: #94A3B8 !important;
+                }
+                #tugas_tableState .dataTables_wrapper .dataTables_length select,
+                #tugas_tableState .dataTables_wrapper .dataTables_filter input {
+                    background: var(--sk-input-bg) !important;
+                    border: 1.2px solid var(--sk-input-border) !important;
+                    border-radius: 10px;
+                    padding: 0 16px;
+                    margin: 0 8px;
+                    height: 38px;
+                    font-size: 14px;
+                    font-weight: 700;
+                    color: var(--sk-text) !important;
+                    appearance: auto;
+                    transition: all 0.2s;
+                    outline: none;
+                    font-family: 'Satoshi', sans-serif !important;
+                    box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+                }
+                /* Placeholder Styling */
+                #tugas_tableState .dataTables_wrapper .dataTables_filter input::placeholder {
+                    color: #94A3B8;
+                    opacity: 0.5;
+                    font-weight: 500;
+                }
+                .dark #tugas_tableState .dataTables_wrapper .dataTables_length select option {
+                    background: #1A222C;
+                    color: white;
+                }
+                #tugas_tableState .dataTables_wrapper .dataTables_length select:focus,
+                #tugas_tableState .dataTables_wrapper .dataTables_filter input:focus {
+                    border-color: #3C50E0 !important;
+                    box-shadow: 0 0 0 3px rgba(60, 80, 224, 0.1);
+                }
+                /* Memastikan tombol paginasi juga sinkron 14px */
+                #tugas_tableState .dataTables_wrapper .pagination-wrapper .paginate_button {
+                    font-size: 14px !important;
+                    font-weight: 700 !important;
+                    height: 38px !important;
+                    min-width: 38px !important;
+                    padding: 0 16px !important;
+                    display: inline-flex !important;
+                    align-items: center !important;
+                    justify-content: center !important;
+                    border-radius: 10px !important;
+                }
+            </style>
             <div class="overflow-x-auto sultan-scroll">
                 <table id="tugas_tabelUtama" class="w-full table-auto text-xs bg-transparent">
                 <thead>
                     <tr class="sk-bg-section text-left border-b border-gray-100 dark:border-white/5 transition-colors">
-                        <th class="py-2.5 px-6 font-black uppercase text-primary dark:text-[#818CF8] text-center w-[120px] text-xs whitespace-nowrap">Aksi</th>
-                        <th class="py-2.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] text-xs whitespace-nowrap">Unit Kerja</th>
-                        <th class="py-2.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] text-xs whitespace-nowrap">Periode</th>
-                        <th class="py-2.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] text-xs whitespace-nowrap">Detail SK</th>
-                        <th class="py-2.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] text-center text-xs whitespace-nowrap">Berkas</th>
-                        <th class="py-2.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] text-center text-xs whitespace-nowrap">Status</th>
-                        <th class="py-2.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] text-xs whitespace-nowrap">Log Input</th>
-                        <th class="py-2.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] text-xs whitespace-nowrap">Log Update</th>
-                        <th class="py-2.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] text-center text-xs whitespace-nowrap">Verifikasi</th>
+                        <th class="py-2.5 px-6 font-black uppercase text-primary dark:text-[#818CF8] text-center w-[120px] text-sm whitespace-nowrap">Aksi</th>
+                        <th class="py-2.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] text-sm whitespace-nowrap">Unit Kerja</th>
+                        <th class="py-2.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] text-sm whitespace-nowrap">Periode</th>
+                        <th class="py-2.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] text-sm whitespace-nowrap">Detail SK</th>
+                        <th class="py-2.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] text-center text-sm whitespace-nowrap">Berkas</th>
+                        <th class="py-2.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] text-center text-sm whitespace-nowrap">Status</th>
+                        <th class="py-2.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] text-sm whitespace-nowrap">Log Input</th>
+                        <th class="py-2.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] text-sm whitespace-nowrap">Log Update</th>
+                        <th class="py-2.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] text-center text-sm whitespace-nowrap">Verifikasi</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100 dark:divide-white/5 bg-transparent"></tbody>
@@ -581,14 +648,23 @@
                 TUGAS_TABEL_INSTANCE = $('#tugas_tabelUtama').DataTable({
                     "destroy": true, "ordering": false, "pageLength": 10, "autoWidth": false,
                     "deferRender": true, "responsive": false,
-                    "dom": '<"row"<"col-sm-12"<"overflow-x-auto sultan-scroll !border-none"tr>>>' +
-                           '<"flex flex-col md:flex-row justify-between items-center gap-4 mt-6 px-6 pb-6"<"text-[11px] font-bold text-gray-500"i><"pagination-wrapper"p>>',
+                    "lengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+                    "dom": "<'flex flex-col md:flex-row justify-between items-center bg-transparent border-b border-gray-100 dark:border-white/5 px-6'lf>" + 
+                           "<'row'<'col-sm-12'<'overflow-x-auto sultan-scroll !border-none'tr>>>" +
+                           "<'flex flex-col md:flex-row justify-between items-center gap-4 px-6 py-4'<'text-sm font-bold text-gray-500 sultan-dt-info'i><'pagination-wrapper'p>>",
                     "columnDefs": [
                         { "targets": 0, "className": "sultan-content-sync py-2 px-4 text-center", "width": "110px" },
                         { "targets": [1, 2, 3, 6, 7, 8], "className": "sultan-content-sync py-2 px-4 text-left" },
                         { "targets": [4, 5], "className": "sultan-content-sync py-2 px-4 text-center" }
                     ],
-                    "language": { "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", "emptyTable": "Tidak ditemukan data SK." },
+                    "language": { 
+                        "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", 
+                        "emptyTable": "Tidak ditemukan data SK.",
+                        "lengthMenu": "Tampilkan _MENU_ entri",
+                        "search": "Cari:",
+                        "searchPlaceholder": "Ketik untuk mencari...",
+                        "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri"
+                    },
                     "drawCallback": function (settings) {
                         $('#tugas_tabelUtama tbody tr').addClass('bg-transparent hover:bg-primary/5 dark:hover:bg-white/5 transition-all cursor-default');
                         $('#tugas_tabelUtama tbody td').css('background-color', 'transparent'); // Force remove DataTables white cell inject
