@@ -206,47 +206,35 @@
         var dtArray = [];
         
         var sampleRow = rows[0] || [];
-        var headerHtml = "";
+        var headerHtml = '<tr class="sk-bg-section text-center border-b border-gray-100 dark:border-white/5">';
+        headerHtml += '<th class="py-3 px-6 font-black uppercase text-primary dark:text-[#818CF8] text-left sticky left-0 z-[30] sk-bg-section shadow-[2px_0_5px_rgba(0,0,0,0.05)] border-r border-gray-100 dark:border-white/10 text-xs">Nama Sekolah</th>';
         
         if (STATUSSK_RAW_HEADER && STATUSSK_RAW_HEADER.length >= 2) {
-            // BARIS 1: TAHUN AJARAN (Level 1)
-            headerHtml += '<tr class="sk-bg-section text-center border-b border-gray-100 dark:border-white/5">';
-            headerHtml += '<th rowspan="2" class="py-3 px-6 font-black uppercase text-primary dark:text-[#818CF8] text-left sticky left-0 z-[30] sk-bg-section shadow-[2px_0_5px_rgba(0,0,0,0.05)] border-r border-gray-100 dark:border-white/10">Nama Sekolah</th>';
-            
             var hRow1 = STATUSSK_RAW_HEADER[0];
-            for (var i = 1; i < hRow1.length; i++) {
-                var yearLabel = hRow1[i];
-                if (yearLabel && yearLabel !== "") {
-                    // Hitung colspan: Berapa semester di bawah tahun ini?
-                    var span = 0;
-                    for (var k = i; k < hRow1.length; k++) {
-                        if (k === i || hRow1[k] === "" || hRow1[k] === yearLabel) span++;
-                        else break;
-                    }
-                    headerHtml += '<th colspan="' + span + '" class="py-2.5 px-3 font-black uppercase text-xs text-primary dark:text-[#818CF8] border-l border-gray-100 dark:border-white/5 bg-primary/5">' + yearLabel + '</th>';
-                    i += (span - 1);
-                }
-            }
-            headerHtml += '</tr>';
-
-            // BARIS 2: SEMESTER (Level 2)
-            headerHtml += '<tr class="sk-bg-section text-center border-b border-gray-100 dark:border-white/5">';
             var hRow2 = STATUSSK_RAW_HEADER[1];
-            for (var j = 1; j < hRow2.length; j++) {
-                var smtLabel = hRow2[j] || (j % 2 !== 0 ? "SMT 1" : "SMT 2");
-                headerHtml += '<th class="py-2 px-3 font-black uppercase text-xs text-gray-500 dark:text-gray-400 border-l border-gray-100 dark:border-white/5">' + smtLabel + '</th>';
+            
+            for (var i = 1; i < hRow2.length; i++) {
+                // Ambil Tahun (Bisa kosong jika merged di sheet, cari ke belakang)
+                var year = "";
+                for(var k = i; k >= 1; k--) {
+                    if(hRow1[k] && hRow1[k] !== "") { year = hRow1[k]; break; }
+                }
+                
+                // Format tahun biar pendek (2024/2025 -> 24/25)
+                var shortYear = year.replace(/20/g, "");
+                var smtLabel = hRow2[i] || (i % 2 !== 0 ? "S1" : "S2");
+                var cleanSmt = smtLabel.replace("Semester ", "S").replace("Smt ", "S");
+                
+                headerHtml += '<th class="py-3 px-3 font-black uppercase text-xs text-primary dark:text-[#818CF8] border-l border-gray-100 dark:border-white/5 whitespace-nowrap">' + shortYear + ' ' + cleanSmt + '</th>';
             }
-            headerHtml += '</tr>';
         } else {
-            // Fallback: Header Sederhana jika data header gagal dimuat
-            headerHtml = '<tr class="sk-bg-section text-center border-b border-gray-100 dark:border-white/5">';
-            headerHtml += '<th class="py-3 px-6 font-black uppercase text-primary dark:text-[#818CF8] text-left sticky left-0 z-[20] sk-bg-section shadow-[2px_0_5px_rgba(0,0,0,0.05)]">Nama Sekolah</th>';
+            // Fallback
             for (var i = 1; i < sampleRow.length; i++) {
-                var label = i % 2 !== 0 ? "SMT 1" : "SMT 2";
-                headerHtml += '<th class="py-3 px-3 font-black uppercase text-primary dark:text-[#818CF8] min-w-[100px] border-l border-gray-100 dark:border-white/5 text-xs">' + label + '</th>';
+                var label = i % 2 !== 0 ? "S1" : "S2";
+                headerHtml += '<th class="py-3 px-3 font-black uppercase text-primary dark:text-[#818CF8] min-w-[80px] border-l border-gray-100 dark:border-white/5 text-xs">S' + i + '</th>';
             }
-            headerHtml += '</tr>';
         }
+        headerHtml += '</tr>';
         $('#statussk_headerTabel').html(headerHtml);
 
         rows.forEach(function(row) {
@@ -259,8 +247,8 @@
             
             rowData.push(`
                 <div class="flex flex-col text-left">
-                    <span class="font-black text-black dark:text-white uppercase tracking-tight text-[11px] leading-tight">${schName}</span>
-                    <span class="text-[9px] font-bold text-gray-400 dark:text-gray-500 tracking-wider">${schNpsn}</span>
+                    <span class="font-bold text-black dark:text-white uppercase tracking-tight text-xs">${schName}</span>
+                    <span class="text-[10px] text-gray-400 dark:text-gray-500 font-medium tracking-wide">NPSN: ${schNpsn}</span>
                 </div>
             `);
             
