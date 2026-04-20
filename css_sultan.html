@@ -276,13 +276,13 @@
 
 /* Pure Tailwind Dark Theme (Sultan Edition) */
 .dark {
-  --sidebar-bg: #121926;           /* Deeper Dark Blue for higher contrast */
+  --sidebar-bg: #111827;           /* Absolute Deep Black for maximum contrast */
   --sidebar-border: rgba(255, 255, 255, 0.05);
   --sidebar-active-bg: #1E293B;
   --sidebar-active-text: #818CF8;
-  --sidebar-text: #CBD5E1;         /* Brightened from #94A3B8 for better visibility */
-  --sidebar-hover-bg: #1A2234;
-  --sidebar-group-color: #64748B;
+  --sidebar-text: #FFFFFF;         /* Absolute White for maximum readability */
+  --sidebar-hover-bg: #1F2937;
+  --sidebar-group-color: #94A3B8;
   --sidebar-logo-text: #FFFFFF;
 }
 
@@ -437,6 +437,19 @@
   white-space: nowrap !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
+}
+
+/* ABSOLUTE TARGETING - Prevent span/i from inheriting legacy dim colors */
+.nav-link-tail,
+.nav-link-tail span,
+.nav-link-tail i {
+  color: var(--sidebar-text) !important;
+}
+
+.nav-link-tail.active,
+.nav-link-tail.active span,
+.nav-link-tail.active i {
+  color: var(--sidebar-active-text) !important;
 }
 
 .nav-link-tail:hover {
