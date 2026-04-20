@@ -97,15 +97,16 @@
           <div class="overflow-x-auto sultan-scroll">
               <table id="lapbulkelola_tabelUtama" class="w-full table-auto text-xs bg-transparent border-collapse">
                   <thead>
-                      <tr class="sk-bg-section text-left border-b border-gray-100 dark:border-white/5">
-                          <th class="py-3 px-6 font-bold uppercase text-primary text-center w-[120px] text-sm tracking-widest whitespace-nowrap">Aksi</th>
-                          <th class="py-3 px-4 font-bold uppercase text-primary text-sm tracking-widest whitespace-nowrap">Unit Kerja</th>
-                          <th class="py-3 px-4 font-bold uppercase text-primary text-sm tracking-widest whitespace-nowrap">Periode</th>
-                          <th class="py-3 px-4 font-bold uppercase text-primary text-center text-sm tracking-widest whitespace-nowrap">Rombel</th>
-                          <th class="py-3 px-4 font-bold uppercase text-primary text-center text-sm tracking-widest whitespace-nowrap">Dokumen</th>
-                          <th class="py-3 px-4 font-bold uppercase text-primary text-sm tracking-widest whitespace-nowrap">Status</th>
-                          <th class="py-3 px-4 font-bold uppercase text-primary text-sm tracking-widest whitespace-nowrap">Linimasa</th>
-                      </tr>
+                       <tr class="sk-bg-section border-b border-gray-100 dark:border-white/5">
+                           <th class="sk-table-th text-center w-[110px] whitespace-nowrap">Aksi</th>
+                           <th class="sk-table-th whitespace-nowrap text-left">Unit Kerja</th>
+                           <th class="sk-table-th whitespace-nowrap text-left">Periode</th>
+                           <th class="sk-table-th whitespace-nowrap text-center">Rombel</th>
+                           <th class="sk-table-th whitespace-nowrap text-center">Dokumen</th>
+                           <th class="sk-table-th whitespace-nowrap text-left">Status</th>
+                           <th class="sk-table-th whitespace-nowrap text-left">Linimasa</th>
+                       </tr>
+
                   </thead>
                   <tbody class="divide-y divide-gray-100 dark:divide-white/5"></tbody>
               </table>
@@ -1001,30 +1002,28 @@ function lapbulkelola_renderTabel(data) {
         var btnHapus = '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg bg-rose-500/5 text-rose-600 border border-rose-500/20 hover:bg-rose-600 hover:text-white transition-all shadow-sm active:scale-90 btn-aksi-hapus ' + (isApproved ? 'opacity-30 cursor-not-allowed' : '') + '" data-id="' + row.rowId + '" data-source="' + row.source + '" data-nama="' + safeNama + '" data-bulan="' + row.bulan + '" data-tahun="' + row.tahun + '" title="Hapus Permanen" ' + (isApproved ? 'disabled' : '') + '><i class="fas fa-trash-alt text-[11px]"></i></button>';
         var btnAksi = '<div class="flex items-center justify-center gap-1.5">' + btnVerif + btnEdit + btnHapus + '</div>';
 
-        var btnFile = '<span class="text-gray-300 font-bold uppercase tracking-widest text-[10px]">- KOSONG -</span>';
-        if (row.fileUrl && row.fileUrl.length > 5) {
-            var safeFile2 = lapbulkelola_escapeJs(row.fileUrl);
-            btnFile = '<button class="inline-flex items-center rounded-lg bg-danger/5 py-1.5 px-3 text-[10px] font-black uppercase tracking-wider text-danger border border-danger/10 transition-all hover:bg-danger hover:text-white shadow-sm active:scale-95 btn-preview-dokumen" data-url="' + safeFile2 + '"><i class="fas fa-file-pdf mr-1.5 text-xs"></i> LIHAT</button>';
-        }
+        // 4. Log Details (High-Fidelity Metadate Sync)
+        var uiLinimasa = '<div class="flex flex-col">' +
+            '<div class="sk-table-secondary-text !text-[10px] flex items-center gap-1 mb-1"><i class="fas fa-paper-plane opacity-50"></i> KIRIM: ' + (row.tglKirim || '-') + '</div>' +
+            '<div class="sk-table-secondary-text !text-[10px] flex items-center gap-1 mb-1"><i class="fas fa-edit opacity-50"></i> EDIT: ' + (row.tglEdit || '-') + '</div>' +
+            '<div class="sk-table-secondary-text !text-[10px] flex items-center gap-1"><i class="fas fa-check-circle opacity-50"></i> VERIF: ' + (row.tglVerif || '-') + '</div>' +
+            '</div>';
 
-        var metaKirim = '<div class="flex flex-col"><span class="text-[12px] font-black text-black dark:text-white">' + (row.tglKirim || '-') + '</span><span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-0.5">' + lapbulkelola_escapeHtml(row.userKirim) + '</span></div>';
-        var metaEdit  = '<div class="flex flex-col"><span class="text-[12px] font-black text-black dark:text-white">' + (row.tglEdit || '-') + '</span><span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-0.5">' + lapbulkelola_escapeHtml(row.userEdit) + '</span></div>';
-        var metaVerif = '<div class="flex flex-col"><span class="text-[12px] font-black text-black dark:text-white">' + (row.tglVerif || '-') + '</span><span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-0.5">' + lapbulkelola_escapeHtml(row.verifikator) + '</span></div>';
+        // 5. Unit & Periode Stack (Premium Blueprint Logic)
+        var uiUnit = '<div class="sk-table-primary-text uppercase">' + lapbulkelola_escapeHtml(row.namaSekolah) + '</div>' +
+                     '<div class="sk-table-secondary-text mt-0.5">' + lapbulkelola_escapeHtml(row.npsn || '-') + '</div>';
 
-        // VAKSIN LEBAR KOLOM: Menggunakan text-nowrap agar membentang 100%
-        var uiUnit = '<div class="flex flex-col"><span class="text-[13px] font-black text-primary uppercase tracking-tight">' + lapbulkelola_escapeHtml(row.namaSekolah) + '</span><span class="text-[10px] font-bold text-gray-400 tracking-widest uppercase mt-0.5">' + lapbulkelola_escapeHtml(row.npsn || '-') + '</span></div>';
+        var uiPeriode = '<div class="sk-table-primary-text uppercase tracking-tighter">' + lapbulkelola_escapeHtml(row.tahun) + '</div>' +
+                        '<div class="sk-table-highlight text-[12px] uppercase mt-0.5">' + lapbulkelola_escapeHtml(row.bulan) + '</div>';
 
         dtArray.push([ 
             btnAksi, 
             uiUnit,
-            '<div class="font-weight-bold text-dark">' + lapbulkelola_escapeHtml(row.bulan) + '</div>',
-            lapbulkelola_escapeHtml(row.tahun),
-            lapbulkelola_escapeHtml(row.rombel || row.totalRombel || '0'),
+            uiPeriode,
+            '<div class="sk-table-primary-text text-center">' + lapbulkelola_escapeHtml(row.rombel || row.totalRombel || '0') + '</div>',
             btnFile,
             badgeStatusData,
-            metaKirim,
-            metaEdit,
-            metaVerif
+            uiLinimasa
         ]);
     });
 
@@ -1099,8 +1098,8 @@ function lapbulkelola_buildBadgeStatus(status, ket) {
         bgColor = 'bg-rose-500/10'; textColor = 'text-rose-600'; icon = 'times-circle'; label = "DITOLAK"; 
     } 
     
-    var baseCls = "inline-flex items-center rounded-lg px-2.5 py-1 text-[10px] font-black uppercase tracking-widest shadow-sm border border-transparent transition-all";
-    var badgeHtml = '<span class="' + baseCls + ' ' + bgColor + ' ' + textColor + '"><i class="fas fa-' + icon + ' mr-1.5"></i> ' + label + '</span>';
+    var baseCls = "inline-flex items-center rounded-lg px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.1em] shadow-sm border border-current/10 transition-all";
+    var badgeHtml = '<span class="' + baseCls + ' ' + bgColor + ' ' + textColor + '"><i class="fas fa-' + icon + ' mr-1.5 text-[11px]"></i> ' + label + '</span>';
 
     if (ket && ket.trim().length > 2 && (s.includes('revisi') || s.includes('tolak'))) {
         var safeKet = lapbulkelola_escapeJs(ket);

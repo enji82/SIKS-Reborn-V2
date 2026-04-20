@@ -4113,8 +4113,42 @@ body, h1, h2, h3, h4, h5, h6, th, td, input, select, textarea, button, p, span:n
 }
 .sk-form-input:focus { border-color: var(--sk-primary) !important; box-shadow: 0 0 0 3px rgba(60, 80, 224, 0.1) !important; }
 
-/* 5. DATATABLE UTILITIES SYNC */
+/* 5. DATATABLE UTILITIES SYNC (v4.6 High-Fidelity) */
 .dataTables_wrapper .flex { padding-top: 1rem; padding-bottom: 1rem; }
+
+/* Universal Table Header Sync */
+.sk-table-th {
+    font-size: 0.9375rem !important; /* 15px */
+    font-weight: 900 !important;
+    color: var(--sk-primary) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+}
+
+/* Universal Table Content Hierarchy */
+.sk-table-primary-text {
+    font-size: 0.9375rem !important; /* 15px */
+    font-weight: 900 !important;
+    color: var(--sk-text) !important;
+    line-height: 1.2 !important;
+}
+
+.sk-table-secondary-text {
+    font-size: 0.75rem !important; /* 12px */
+    font-weight: 700 !important;
+    color: #64748B !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+}
+.dark .sk-table-secondary-text { color: #94A3B8 !important; }
+
+.sk-table-highlight {
+    color: var(--sk-primary) !important;
+    font-weight: 900 !important;
+}
+
 .dataTables_wrapper .dataTables_info, .dataTables_wrapper .sultan-dt-info {
     font-size: 14px !important; font-weight: 700 !important; color: #64748b !important;
 }
