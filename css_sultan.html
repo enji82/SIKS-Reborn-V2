@@ -274,14 +274,14 @@
   --sidebar-logo-text: #111928;    /* very dark for logo */
 }
 
-/* Unified Dark Theme Support */
-.dark, .dark-mode {
-  --sidebar-bg: #1C2434;
-  --sidebar-border: rgba(255, 255, 255, 0.08);
-  --sidebar-active-bg: #233A5F;
+/* Pure Tailwind Dark Theme (Sultan Edition) */
+.dark {
+  --sidebar-bg: #121926;           /* Deeper Dark Blue for higher contrast */
+  --sidebar-border: rgba(255, 255, 255, 0.05);
+  --sidebar-active-bg: #1E293B;
   --sidebar-active-text: #818CF8;
-  --sidebar-text: #8A99AF;
-  --sidebar-hover-bg: #253047;
+  --sidebar-text: #94A3B8;
+  --sidebar-hover-bg: #1A2234;
   --sidebar-group-color: #64748B;
   --sidebar-logo-text: #FFFFFF;
 }
@@ -321,9 +321,11 @@
   overflow: hidden;
 }
 
-.dark .sidebar-drawer, .dark-mode .sidebar-drawer { 
-  background-color: var(--sidebar-bg); 
-  border-right-color: var(--sidebar-border); 
+.dark .sidebar-drawer { 
+  background-color: var(--sidebar-bg) !important; 
+  border-right-color: var(--sidebar-border) !important; 
+  visibility: visible !important;
+  display: flex !important;
 }
 
 @media (min-width: 1024px) {

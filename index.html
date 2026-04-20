@@ -48,7 +48,7 @@
 </head>
 
 <body x-data="{ page: 'home', 'loaded': true, 'darkMode': localStorage.getItem('sultan_darkMode') === 'true', 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
-      :class="{ 'sidebar-toggled': sidebarToggle }">
+      :class="{ 'sidebar-toggled': sidebarToggle, 'dark': darkMode }">
 
   <!-- PRELOADER -->
   <div id="loading-awal" class="fixed inset-0 z-[10000] flex items-center justify-center bg-whiten dark:bg-boxdark">
