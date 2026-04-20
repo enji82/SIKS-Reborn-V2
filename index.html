@@ -32,42 +32,18 @@
           colors: {
             primary: '#3C50E0',
             stroke: '#E2E8F0',
-            body: '#64748B',
-            bodydark: '#8A99AF',
-            bodydark1: '#DEE4EE',
             boxdark: '#24303F',
             boxdark2: '#1A222C',
+            body: '#64748B',
+            bodydark: '#AEB7C0',
+            bodydark1: '#DEE4EE',
             whiten: '#F1F5F9',
-            'meta-3': '#10B981', // Success
-            'meta-5': '#259AE6', // Blue
-            'meta-6': '#FFA70B', // Warning
-            danger: '#E53E3E',
+            whiter: '#F5F7FF',
           },
-          fontFamily: {
-            satoshi: ['Satoshi', 'sans-serif'],
-          },
-          boxShadow: {
-            'premium': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-          }
         }
       }
     }
   </script>
-    /* ABSOLUTE VISIBILITY GUARD (v13.0) */
-    body[data-user-state="active"] #gerbang-login {
-       display: none !important;
-    }
-    body[data-user-state="active"] #konten-aplikasi {
-       display: flex !important;
-    }
-    
-    /* Ensure the marrow background from page_login doesn't leak */
-    body[data-user-state="active"] .login-screen-wrapper {
-       display: none !important;
-       visibility: hidden !important;
-       z-index: -1 !important;
-    }
-  </style>
   <?!= include('css_sultan'); ?>
 </head>
 
