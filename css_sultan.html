@@ -287,9 +287,21 @@ body {
 */
 
 /* 1. ROOT LAYOUT & ANIMATION */
+/* 1. LAYOUT ROOT & GLOBAL FONT LOCK (V7.2) */
+.sms-layout-root, 
+.sms-layout-root *,
+[class^="sms-"], 
+[class*=" sms-"] {
+    font-family: 'Satoshi', 'Inter', -apple-system, sans-serif !important;
+    box-sizing: border-box !important;
+}
+
 .sms-layout-root {
-    display: flex; flex-direction: column; gap: 1.5rem !important;
-    animation: sms-reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    display: flex !important; 
+    flex-direction: column !important; 
+    gap: 32px !important; /* Increased for breathing room */
+    animation: sms-reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+    padding: 12px !important;
 }
 
 @keyframes sms-reveal {
@@ -297,30 +309,35 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* 2. HEADER COMPONENT (V7.0 FINAL - PRECISION) */
-.sms-header-group { 
-    display: flex; 
-    flex-direction: column; 
-    padding-left: 0.25rem; 
-    margin-bottom: 24px !important; /* Fixed 24px Law */
-    gap: 4px !important; 
+/* 2. HEADER COMPONENT (ULTRASONIC SPECIFICITY) */
+header.sms-header-group { 
+    display: flex !important; 
+    flex-direction: column !important; 
+    padding-left: 0 !important; 
+    margin-bottom: 32px !important; 
+    gap: 8px !important; 
+    align-items: flex-start !important;
 }
+
 .sms-header-title {
-    font-size: 20px !important; /* Fixed Brand Link Mirror */
+    font-size: 20px !important; 
     font-weight: 900 !important;
     color: #1C2434 !important;
-    letter-spacing: -0.03em !important;
-    line-height: 1.2 !important;
+    letter-spacing: -0.04em !important;
+    line-height: 1 !important;
     text-transform: uppercase !important;
+    margin: 0 !important;
+    display: block !important;
 }
-.dark .sms-header-title { color: #FFFFFF !important; }
+.dark .sms-header-title { color: #FFFFFF !important; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
 
 .sms-header-underline {
-    width: 30px;
-    height: 3px;
-    background-color: #3C50E0;
-    border-radius: 2px;
-    margin-top: 0px !important; /* Precision gap: 4px from text */
+    width: 30px !important;
+    height: 4px !important;
+    background-color: #3C50E0 !important;
+    border-radius: 99px !important;
+    display: block !important;
+    margin-top: 0 !important;
 }
 
 /* Breadcrumb - Sultan Executive Standard (14px) */
@@ -339,43 +356,44 @@ body {
 /* Legacy - Deprecated in v7.0 */
 .sms-header-subtitle { display: none !important; }
 
-/* 3. TABLE COMPONENT (SEAMLESS EXECUTIVE) */
+/* 3. TABLE & LIST REFINEMENT (V7.2) */
 .sms-table-card {
-    background-color: var(--sk-surface);
-    border-radius: 1rem;
-    border: 1px solid var(--sk-border);
-    overflow: hidden;
-    box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.05);
-    margin-bottom: 1.5rem;
+    background-color: var(--sk-surface) !important;
+    border-radius: 18px !important;
+    border: 1px solid var(--sk-border) !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.1) !important;
+    margin-bottom: 24px !important;
 }
 
-.sms-thead-executive {
-    background-color: #F7F9FC !important; /* bg-gray-2 */
-    border-bottom: 1px solid var(--sk-border) !important;
+.sms-thead-executive tr {
+    background-color: #F7F9FC !important;
 }
-.dark .sms-thead-executive {
-    background-color: rgba(255, 255, 255, 0.05) !important;
-    border-bottom-color: rgba(255, 255, 255, 0.05) !important;
-}
+.dark .sms-thead-executive tr { background-color: #24303F !important; }
 
 .sms-th-executive {
-    padding: 1rem 1rem !important;
+    padding: 14px 16px !important;
     font-weight: 900 !important;
     color: #1C2434 !important;
     text-transform: uppercase !important;
     letter-spacing: 0.1em !important;
-    font-size: 15px !important; /* Fixed Sidebar Mirror */
-    text-align: left;
-    background-color: #F7F9FC !important;
+    font-size: 13px !important; /* Slightly smaller for executive density */
+    text-align: left !important;
 }
-.dark .sms-th-executive { color: #FFFFFF !important; background-color: rgba(255,255,255,0.02) !important; }
+.dark .sms-th-executive { color: #FFFFFF !important; }
 
-.sms-table-executive {
-    font-size: 15px !important; /* Fixed Sidebar Mirror */
+.sms-table-executive td {
+    font-size: 15px !important; /* Locked Sidebar Mirror */
     font-weight: 500 !important;
     color: #1C2434 !important;
+    padding: 16px !important;
+    vertical-align: middle !important;
+    border-bottom: 1px solid #F1F5F9 !important;
 }
-.dark .sms-table-executive { color: #DEE4EE !important; }
+.dark .sms-table-executive td { 
+    color: #DEE4EE !important; 
+    border-bottom-color: rgba(255,255,255,0.05) !important; 
+}
 
 /* 4. BUTTON COMPONENTS (SMS PREMIUM) */
 .sms-btn {
@@ -428,32 +446,37 @@ body {
 .sms-badge-info { background: #DBEAFE !important; color: #1E40AF !important; border-color: #BFDBFE !important; }
 .dark .sms-badge-info { background: rgba(30, 64, 175, 0.2) !important; color: #60A5FA !important; border-color: rgba(96, 165, 250, 0.2) !important; }
 
-/* 6. INPUT COMPONENTS (V7.0 FINAL - PRECISION) */
-.sms-input-premium {
+/* 6. INPUT COMPONENTS (ABSOLUTE 38px DIMENSION LOCK) */
+select.sms-input-premium {
     height: 38px !important;
-    padding: 0 12px !important;
+    min-height: 38px !important;
+    max-height: 38px !important;
+    padding: 0 40px 0 16px !important;
     border-radius: 12px !important;
-    background-color: #F1F5F9 !important;
+    background-color: #F8FAFC !important;
     border: 1px solid #E2E8F0 !important;
-    font-size: 15px !important;
+    font-family: 'Satoshi' !important;
+    font-size: 14px !important;
     font-weight: 900 !important;
     color: #1C2434 !important;
     outline: none !important;
-    transition: all 0.2s;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748B'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    background-size: 16px;
-    padding-right: 36px !important;
+    cursor: pointer !important;
+    appearance: none !important;
+    line-height: normal !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%233C50E0'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 14px center !important;
+    background-size: 14px !important;
 }
-.dark .sms-input-premium { 
-    background-color: rgba(255, 255, 255, 0.05) !important; 
+
+.dark select.sms-input-premium { 
+    background-color: #24303F !important;
     border-color: rgba(255, 255, 255, 0.1) !important; 
     color: #FFFFFF !important; 
 }
-.sms-input-premium:focus { border-color: #3C50E0 !important; background-color: #FFFFFF !important; }
-.dark .sms-input-premium:focus { background-color: rgba(255, 255, 255, 0.08) !important; }
+.sms-input-premium:focus { border-color: #3C50E0 !important; background-color: #FFFFFF !important; box-shadow: 0 0 0 4px rgba(60,80,224,0.1) !important; }
 
 /* Section Title (Unified) */
 .sk-section-title { 
@@ -4470,5 +4493,48 @@ body, h1, h2, h3, h4, h5, h6, th, td, input, select, textarea, button, p, span:n
     border-radius: 10px !important;
 }
 
-</style>
+/* 4. BUTTON COMPONENTS (ABSOLUTE 38px DIMENSION LOCK) */
+.sms-btn, 
+button.sms-btn-primary, 
+button.sms-btn-ghost, 
+button.sms-btn-icon,
+.sms-layout-root button {
+    height: 38px !important;
+    min-height: 38px !important;
+    max-height: 38px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 24px !important;
+    border-radius: 10px !important;
+    font-family: 'Satoshi' !important;
+    font-size: 13px !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    border: none !important;
+    cursor: pointer !important;
+}
 
+.sms-btn-primary { 
+    background: #3C50E0 !important; 
+    color: #FFFFFF !important; 
+    box-shadow: 0 4px 12px rgba(60, 80, 224, 0.3) !important; 
+}
+.sms-btn-primary:hover { transform: translateY(-1px) !important; box-shadow: 0 6px 16px rgba(60, 80, 224, 0.4) !important; }
+
+.sms-btn-ghost { 
+    background: rgba(60, 80, 224, 0.05) !important; 
+    color: #3C50E0 !important;
+    border: 1px solid rgba(60, 80, 224, 0.2) !important;
+}
+
+.sms-btn-icon {
+    width: 38px !important;
+    min-width: 38px !important;
+    padding: 0 !important;
+    background: #F1F5F9 !important; 
+    color: #64748B !important; 
+    border: 1px solid #E2E8F0 !important;
+}
+.dark .sms-btn-icon { background: rgba(255,255,255,0.05) !important; color: #AEB7C0 !important; border-color: rgba(255,255,255,0.1) !important; }
