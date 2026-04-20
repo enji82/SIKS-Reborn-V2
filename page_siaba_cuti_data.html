@@ -1,214 +1,236 @@
-<div class="content-header pb-0">
-  <div class="container-fluid">
-    <div class="row mb-2">
-      <div class="col-sm-12">
-        <h5 class="m-0 font-weight-bold">
-          <i class="fas fa-calendar-alt text-maroon mr-2"></i>Data Pengajuan Cuti
-        </h5>
-        <hr class="style-sultan-solid">
-      </div>
+<div class="animate-reveal flex flex-col gap-1">
+  <!-- Content Header -->
+  <div class="flex items-center justify-between px-1">
+    <div class="flex items-center gap-2">
+      <i class="fas fa-calendar-alt text-primary"></i>
+      <h1 class="text-sm font-bold text-black dark:text-white uppercase tracking-wider">Data Pengajuan Cuti</h1>
     </div>
   </div>
-</div>
 
-<section class="content">
-  <div class="container-fluid">
-    <div class="row justify-content-center">
-      <div class="col-12">
+  <!-- Main Section -->
+  <div class="flex flex-col gap-1 px-1">
 
-        <div class="card-sultan mb-3">
-          <div class="card-body py-2 px-3 border-left-dark">
-            <div class="d-flex align-items-center justify-content-between cursor-pointer" data-toggle="collapse" data-target="#cuti_infoCollapse" aria-expanded="false">
-              <div class="d-flex align-items-center text-maroon font-weight-bold">
-                <i class="fas fa-info-circle mr-2"></i> Informasi
-              </div>
-              <i class="fas fa-chevron-down text-muted icon-sm"></i>
-            </div>
-            <div id="cuti_infoCollapse" class="collapse">
-              <div class="mt-2 pt-2 border-top small text-muted">
-                <ul class="mb-0 pl-3">
-                  <li class="mb-1">Untuk mengajukan cuti silakan klik tombol <b><i class="fas fa-plus mr-1"></i>Ajukan Cuti</b>.</li>
-                  <li class="mb-1">Formulir Permintaan dan Pemberian Cuti dapat diunduh apabila status sudah <span class="badge badge-sultan badge-sultan-light-success">Disetujui</span>.</li>
-                  <li>Klik tombol <span class="badge badge-outline-danger">💬 Baca Catatan</span> untuk melihat alasan dari admin jika status ditolak/revisi.</li>
-                </ul>
-              </div>
-            </div>
+    <!-- Info Card -->
+    <div class="sultan-card mb-0" x-data="{ isOpen: false }">
+      <div class="py-2 px-3 border-l-4 border-l-primary/50">
+        <div class="flex items-center justify-between cursor-pointer" @click="isOpen = !isOpen">
+          <div class="flex items-center text-primary font-bold text-[10px] uppercase tracking-tighter">
+            <i class="fas fa-info-circle mr-2"></i> Informasi Penting
           </div>
+          <i class="fas text-muted transition-transform" :class="isOpen ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
         </div>
-
-        <div class="card-sultan p-3 mb-3">
-            <div class="d-flex-gap align-items-center flex-wrap">
-                
-                <select id="cuti_filterUnit" class="form-control form-control-sultan input-auto-width min-w-250 font-weight-bold text-maroon bg-light" disabled>
-                    <option value="">- Memvalidasi Akses... -</option>
-                </select>
-                
-                <select id="cuti_filterTahun" class="form-control form-control-sultan input-auto-width min-w-80"></select>
-                
-                <select id="cuti_filterBulan" class="form-control form-control-sultan input-auto-width">
-                    <option value="">- Semua Bulan -</option>
-                    <option value="Januari">Januari</option><option value="Februari">Februari</option><option value="Maret">Maret</option>
-                    <option value="April">April</option><option value="Mei">Mei</option><option value="Juni">Juni</option>
-                    <option value="Juli">Juli</option><option value="Agustus">Agustus</option><option value="September">September</option>
-                    <option value="Oktober">Oktober</option><option value="November">November</option><option value="Desember">Desember</option>
-                </select>
-                
-                <select id="cuti_filterStatus" class="form-control form-control-sultan input-auto-width">
-                    <option value="">- Semua Status -</option>
-                    <option value="Diproses">Diproses</option>
-                    <option value="Disetujui">Disetujui</option>
-                    <option value="Revisi">Revisi</option>
-                    <option value="Ditolak">Ditolak</option>
-                </select>
-
-                <div class="divider-vertical d-none d-md-block"></div>
-                
-                <button type="button" id="cuti_btnRefresh" class="btn bg-white border shadow-sm text-secondary" title="Segarkan Data dari Server" disabled>
-                    <i class="fab fa-gg text-maroon"></i>
-                </button>
-
-                <div class="ml-auto d-none d-md-block"></div>
-                
-                <button type="button" class="btn btn-maroon text-white font-weight-bold shadow-sm" id="cuti_btnTambahModal" disabled>
-                    <i class="fas fa-plus mr-1"></i> Ajukan Cuti
-                </button>
-            </div>
+        <div x-show="isOpen" x-transition class="mt-2 pt-2 border-top border-stroke dark:border-white/5 small text-body">
+          <ul class="mb-0 pl-3 list-disc space-y-1">
+            <li>Untuk mengajukan cuti silakan klik tombol <b>+ Ajukan Cuti</b>.</li>
+            <li>Formulir Permintaan dan Pemberian Cuti dapat diunduh apabila status sudah <span class="badge-sultan badge-sultan-light-success px-2 py-0.5 rounded text-[10px]">Disetujui</span>.</li>
+            <li>Klik tombol <span class="text-danger font-bold">💬 Baca Catatan</span> untuk melihat alasan dari admin jika status ditolak/revisi.</li>
+          </ul>
         </div>
-
-        <div class="card-sultan">
-            <div class="card-body p-3">
-              
-              <div id="cuti_loadingState">
-                  <div class="d-flex flex-column justify-content-center align-items-center" style="min-height: 50vh;">
-                      <div class="sultan-loading-container text-center">
-                          <i class="fas fa-spinner fa-spin fa-3x text-maroon mb-3"></i>
-                          <h6 class="text-muted font-weight-bold mt-3" id="cuti_loadingText">Mempersiapkan Akses Server...</h6>
-                      </div>
-                  </div>
-              </div>
-
-              <div id="cuti_tableState" style="display: none;">
-                  <table id="cuti_tabelUtama" class="table table-bordered table-hover table-premium table-sultan-compact mb-0 w-100">
-                    <thead class="bg-light">
-                      <tr>
-                        <th class="col-sticky-left border-right text-center align-middle" style="z-index: 5;">Aksi</th>
-                        <th class="text-left align-middle">Nama ASN</th>
-                        <th class="text-center align-middle">Jenis</th>
-                        <th class="text-center align-middle">Tgl Mulai</th>
-                        <th class="text-center align-middle">Tgl Selesai</th>
-                        <th class="text-center align-middle">Hari</th>
-                        <th class="text-center align-middle">Unduh Form</th>
-                        <th class="text-left align-middle">Status</th>
-                        <th class="text-left align-middle">Dikirim</th>
-                        <th class="text-left align-middle">Diubah</th>
-                        <th class="text-left align-middle">Verifikasi</th>
-                      </tr>
-                    </thead>
-                    <tbody></tbody>
-                  </table>
-              </div>
-
-            </div>
-        </div>
-
       </div>
     </div>
-  </div>
-</section>
 
+    <!-- Filter Card -->
+    <div class="sultan-card p-2 md:p-3 shadow-sm border-l-4 border-l-primary/30">
+        <div class="flex flex-wrap items-center gap-2 md:gap-3">
+            <select id="cuti_filterUnit" class="rounded-xl border border-stroke bg-gray-2 dark:bg-strokedark py-1.5 px-3 text-xs font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark min-w-[200px]" disabled>
+                <option value="">- Memvalidasi Akses... -</option>
+            </select>
+
+            <select id="cuti_filterTahun" class="rounded-xl border border-stroke bg-transparent py-1.5 px-3 text-xs font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark dark:bg-boxdark min-w-[100px]"></select>
+            
+            <select id="cuti_filterBulan" class="rounded-xl border border-stroke bg-transparent py-1.5 px-3 text-xs font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark dark:bg-boxdark min-w-[120px]">
+                <option value="">- Semua Bulan -</option>
+                <option value="Januari">Januari</option><option value="Februari">Februari</option><option value="Maret">Maret</option>
+                <option value="April">April</option><option value="Mei">Mei</option><option value="Juni">Juni</option>
+                <option value="Juli">Juli</option><option value="Agustus">Agustus</option><option value="September">September</option>
+                <option value="Oktober">Oktober</option><option value="November">November</option><option value="Desember">Desember</option>
+            </select>
+
+            <select id="cuti_filterStatus" class="rounded-xl border border-stroke bg-transparent py-1.5 px-3 text-xs font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark dark:bg-boxdark min-w-[120px]">
+                <option value="">- Semua Status -</option>
+                <option value="Diproses">Diproses</option>
+                <option value="Disetujui">Disetujui</option>
+                <option value="Revisi">Revisi</option>
+                <option value="Ditolak">Ditolak</option>
+            </select>
+
+            <div class="h-6 w-[1px] bg-stroke dark:bg-white/10 hidden md:block mx-1"></div>
+
+            <button type="button" id="cuti_btnRefresh" class="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-stroke bg-white text-body hover:text-primary dark:border-strokedark dark:bg-boxdark shadow-sm transition-all" title="Segarkan Data dari Server" disabled>
+                <i class="fab fa-gg text-primary text-lg"></i>
+            </button>
+
+            <div class="hidden md:block flex-grow"></div>
+
+            <button type="button" class="inline-flex items-center gap-2 rounded-xl bg-primary py-2 px-4 text-xs font-bold text-white hover:bg-opacity-90 shadow-lg shadow-primary/20 transition-all active:scale-95" id="cuti_btnTambahModal" disabled>
+                <i class="fas fa-plus"></i> Ajukan Cuti
+            </button>
+        </div>
+    </div>
+
+    <!-- Table Section -->
+    <div class="sultan-card p-1 shadow-sm overflow-hidden">
+        <div class="bg-white dark:bg-boxdark rounded-xl overflow-hidden">
+            
+            <!-- Loading State -->
+            <div id="cuti_loadingState" class="py-20">
+                <div class="flex flex-col items-center justify-center gap-4">
+                    <div class="relative flex h-16 w-16">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-20"></span>
+                        <div class="relative flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+                            <i class="fas fa-calendar-alt text-primary text-2xl animate-pulse"></i>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-xs font-black text-black dark:text-white uppercase tracking-widest" id="cuti_loadingText">Mempersiapkan Akses Server...</h3>
+                        <p class="text-[10px] text-body mt-1">Mohon tunggu sebentar...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table State -->
+            <div id="cuti_tableState" class="hidden animate-reveal">
+                <table id="cuti_tabelUtama" class="w-full table-auto border-collapse text-[11px] font-medium">
+                    <thead>
+                        <tr class="bg-slate-50 dark:bg-meta-4 border-b border-stroke dark:border-white/5">
+                            <th class="col-sticky-left bg-slate-50 z-10 py-3 px-4 text-center font-black text-black dark:text-white uppercase tracking-tighter border-r border-stroke dark:border-white/5" style="width: 80px;">Aksi</th>
+                            <th class="py-3 px-4 text-left font-black text-black dark:text-white uppercase tracking-tighter min-w-[200px]">Nama ASN</th>
+                            <th class="py-3 px-4 text-center font-black text-black dark:text-white uppercase tracking-tighter" style="width: 50px;">Jenis</th>
+                            <th class="py-3 px-4 text-center font-black text-black dark:text-white uppercase tracking-tighter" style="width: 90px;">Tgl Mulai</th>
+                            <th class="py-3 px-4 text-center font-black text-black dark:text-white uppercase tracking-tighter" style="width: 90px;">Tgl Selesai</th>
+                            <th class="py-3 px-4 text-center font-black text-black dark:text-white uppercase tracking-tighter" style="width: 50px;">Hari</th>
+                            <th class="py-3 px-4 text-center font-black text-black dark:text-white uppercase tracking-tighter" style="width: 100px;">Unduh Form</th>
+                            <th class="py-3 px-4 text-left font-black text-black dark:text-white uppercase tracking-tighter" style="width: 120px;">Status</th>
+                            <th class="py-3 px-4 text-left font-black text-black dark:text-white uppercase tracking-tighter" style="width: 140px;">Dikirim</th>
+                            <th class="py-3 px-4 text-left font-black text-black dark:text-white uppercase tracking-tighter" style="width: 140px;">Diubah</th>
+                            <th class="py-3 px-4 text-left font-black text-black dark:text-white uppercase tracking-tighter" style="width: 140px;">Verifikasi</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-stroke dark:divide-white/5"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+  </div> <!-- End Main Section -->
+</div> <!-- End Animate Reveal -->
+
+<!-- 1. MODAL FORM (TAMBAH/EDIT) -->
 <div class="modal fade" id="cuti_modalForm" tabindex="-1" role="dialog" data-backdrop="static">
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-    <div class="modal-content sultan-modal-content">
-      <div class="sultan-modal-header sultan-header-maroon" id="cuti_headerModalForm">
-        <h5 class="modal-title font-weight-bold" id="cuti_judulModalForm">
-          <i class="fas fa-plus-circle mr-2"></i>Form Pengajuan Cuti
-        </h5>
-        <button type="button" class="close" data-dismiss="modal" id="cuti_closeModalForm"><span>&times;</span></button>
+    <div class="modal-content rounded-2xl border-0 shadow-2xl overflow-hidden">
+      <!-- Gradient Header -->
+      <div class="bg-gradient-to-r from-teal-600 to-emerald-600 py-4 px-6 relative" id="cuti_headerModalForm">
+        <div class="flex items-center gap-3">
+            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/20 text-white backdrop-blur-sm">
+                <i class="fas fa-calendar-plus text-lg"></i>
+            </div>
+            <div>
+                <h5 class="text-sm font-black text-white uppercase tracking-widest mb-0" id="cuti_judulModalForm">Form Pengajuan Cuti</h5>
+                <p class="text-[10px] text-teal-50 font-medium opacity-80">Pastikan data yang Anda masukkan sudah benar</p>
+            </div>
+        </div>
+        <button type="button" class="absolute top-4 right-4 h-8 w-8 flex items-center justify-center rounded-lg text-white hover:bg-white/10 transition-colors" data-dismiss="modal" id="cuti_closeModalForm">
+            <i class="fas fa-times"></i>
+        </button>
       </div>
 
-      <form id="cuti_formUtama" novalidate>
-        <div class="sultan-modal-body bg-light">
+      <form id="cuti_formUtama" novalidate class="flex flex-col">
+        <div class="p-6 bg-slate-50 dark:bg-boxdark max-h-[70vh] overflow-y-auto custom-scrollbar">
           <input type="hidden" id="cuti_editRowId" value="">
           
-          <div class="form-row">
-            <div class="form-group col-md-6 mb-3">
-              <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Unit Kerja <span class="text-danger">*</span></label>
-              <select id="cuti_inputUnit" class="form-control form-control-sultan font-weight-bold" disabled>
+          <!-- Section: Identitas -->
+          <div class="flex items-center gap-2 mb-4">
+              <span class="h-px flex-grow bg-stroke dark:bg-white/10"></span>
+              <span class="text-[10px] font-black text-body dark:text-bodydark uppercase tracking-widest">Identitas ASN</span>
+              <span class="h-px flex-grow bg-stroke dark:bg-white/10"></span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div class="flex flex-col gap-1.5">
+              <label class="text-[10px] font-black text-body dark:text-bodydark uppercase tracking-tighter ml-1">Unit Kerja <span class="text-danger">*</span></label>
+              <select id="cuti_inputUnit" class="rounded-xl border border-stroke bg-gray-2 dark:bg-strokedark py-2 px-4 text-xs font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark" disabled>
                 <option value="">- Pilih Unit -</option>
               </select>
             </div>
-            <div class="form-group col-md-6 mb-3">
-              <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Nama ASN <span class="text-danger">*</span></label>
-              <select id="cuti_inputNama" class="form-control form-control-sultan" disabled required>
+            <div class="flex flex-col gap-1.5">
+              <label class="text-[10px] font-black text-body dark:text-bodydark uppercase tracking-tighter ml-1">Nama ASN <span class="text-danger">*</span></label>
+              <select id="cuti_inputNama" class="rounded-xl border border-stroke bg-white dark:bg-form-input py-2 px-4 text-xs font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark" disabled required>
                 <option value="">- Pilih Unit Dulu -</option>
               </select>
             </div>
           </div>
 
-          <div class="form-row">
-            <div class="form-group col-md-6 mb-3">
-              <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">NIP</label>
-              <select id="cuti_inputNIP" class="form-control form-control-sultan" disabled required>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div class="flex flex-col gap-1.5">
+              <label class="text-[10px] font-black text-body dark:text-bodydark uppercase tracking-tighter ml-1">NIP</label>
+              <select id="cuti_inputNIP" class="rounded-xl border border-stroke bg-gray-2 dark:bg-strokedark py-2 px-4 text-xs font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark" disabled required>
                 <option value="">- Otomatis -</option>
               </select>
             </div>
-            <div class="form-group col-md-6 mb-3">
-              <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Status Kepegawaian</label>
-              <input type="text" id="cuti_inputStatusPegawai" class="form-control form-control-sultan bg-white font-weight-bold" readonly placeholder="-">
+            <div class="flex flex-col gap-1.5">
+              <label class="text-[10px] font-black text-body dark:text-bodydark uppercase tracking-tighter ml-1">Status Kepegawaian</label>
+              <input type="text" id="cuti_inputStatusPegawai" class="rounded-xl border border-stroke bg-gray-2 dark:bg-strokedark py-2 px-4 text-xs font-black text-primary outline-none" readonly placeholder="-">
             </div>
           </div>
 
-          <hr class="style-sultan-solid my-3">
+          <!-- Section: Detail Cuti -->
+          <div class="flex items-center gap-2 mb-4">
+              <span class="h-px flex-grow bg-stroke dark:bg-white/10"></span>
+              <span class="text-[10px] font-black text-body dark:text-bodydark uppercase tracking-widest">Detail Pengajuan Cuti</span>
+              <span class="h-px flex-grow bg-stroke dark:bg-white/10"></span>
+          </div>
 
-          <div class="form-row">
-            <div class="form-group col-md-6 mb-3">
-                <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Jenis Cuti <span class="text-danger">*</span></label>
-                <select id="cuti_inputJenisCuti" class="form-control form-control-sultan" required>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div class="flex flex-col gap-1.5">
+                <label class="text-[10px] font-black text-body dark:text-bodydark uppercase tracking-tighter ml-1">Jenis Cuti <span class="text-danger">*</span></label>
+                <select id="cuti_inputJenisCuti" class="rounded-xl border border-stroke bg-white dark:bg-form-input py-2 px-4 text-xs font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark" required>
                    <option value="">- Pilih Jenis Cuti -</option>
                 </select>
             </div>
-            <div class="form-group col-md-6 mb-3">
-                <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Tgl Pengajuan <span class="text-danger">*</span></label>
-                <input type="date" id="cuti_inputTglPengajuan" class="form-control form-control-sultan" required>
+            <div class="flex flex-col gap-1.5">
+                <label class="text-[10px] font-black text-body dark:text-bodydark uppercase tracking-tighter ml-1">Tgl Pengajuan <span class="text-danger">*</span></label>
+                <input type="date" id="cuti_inputTglPengajuan" class="rounded-xl border border-stroke bg-white dark:bg-form-input py-2 px-4 text-xs font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark" required>
             </div>
           </div>
 
-          <div class="form-row">
-            <div class="form-group col-md-4 mb-3">
-              <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Tgl Mulai <span class="text-danger">*</span></label>
-              <input type="date" id="cuti_inputTglMulai" class="form-control form-control-sultan" required>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div class="flex flex-col gap-1.5">
+              <label class="text-[10px] font-black text-body dark:text-bodydark uppercase tracking-tighter ml-1">Tgl Mulai <span class="text-danger">*</span></label>
+              <input type="date" id="cuti_inputTglMulai" class="rounded-xl border border-stroke bg-white dark:bg-form-input py-2 px-4 text-xs font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark" required>
             </div>
-            <div class="form-group col-md-4 mb-3">
-              <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Tgl Selesai <span class="text-danger">*</span></label>
-              <input type="date" id="cuti_inputTglSelesai" class="form-control form-control-sultan" required>
+            <div class="flex flex-col gap-1.5">
+              <label class="text-[10px] font-black text-body dark:text-bodydark uppercase tracking-tighter ml-1">Tgl Selesai <span class="text-danger">*</span></label>
+              <input type="date" id="cuti_inputTglSelesai" class="rounded-xl border border-stroke bg-white dark:bg-form-input py-2 px-4 text-xs font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark" required>
             </div>
-            <div class="form-group col-md-4 mb-3">
-              <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Jumlah Hari</label>
-              <input type="number" id="cuti_inputJumlahHari" class="form-control form-control-sultan bg-light font-weight-bold" readonly required>
+            <div class="flex flex-col gap-1.5">
+              <label class="text-[10px] font-black text-body dark:text-bodydark uppercase tracking-tighter ml-1">Jumlah Hari</label>
+              <input type="number" id="cuti_inputJumlahHari" class="rounded-xl border border-stroke bg-gray-2 dark:bg-strokedark py-2 px-4 text-xs font-black text-primary outline-none" readonly required>
             </div>
           </div>
 
-          <div class="form-group mb-3">
-            <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Alasan Cuti <span class="text-danger">*</span></label>
-            <textarea id="cuti_inputAlasan" class="form-control form-control-sultan" rows="2" placeholder="Tulis alasan lengkap..." required></textarea>
+          <div class="flex flex-col gap-1.5 mb-4">
+            <label class="text-[10px] font-black text-body dark:text-bodydark uppercase tracking-tighter ml-1">Alasan Cuti <span class="text-danger">*</span></label>
+            <textarea id="cuti_inputAlasan" class="rounded-xl border border-stroke bg-white dark:bg-form-input py-2 px-4 text-xs font-medium outline-none transition focus:border-primary active:border-primary dark:border-strokedark" rows="2" placeholder="Tulis alasan lengkap..." required></textarea>
           </div>
 
-          <div class="form-row">
-            <div class="form-group col-md-6 mb-0">
-              <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Alamat Selama Cuti</label>
-              <textarea id="cuti_inputAlamat" class="form-control form-control-sultan" rows="3" placeholder="Isikan alamat lengkap..."></textarea>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="flex flex-col gap-1.5">
+              <label class="text-[10px] font-black text-body dark:text-bodydark uppercase tracking-tighter ml-1">Alamat Selama Cuti</label>
+              <textarea id="cuti_inputAlamat" class="rounded-xl border border-stroke bg-white dark:bg-form-input py-2 px-4 text-xs font-medium outline-none transition focus:border-primary active:border-primary dark:border-strokedark" rows="3" placeholder="Isikan alamat lengkap..."></textarea>
             </div>
-            <div class="form-group col-md-6 mb-0">
-              <label class="form-label-sultan small font-weight-bold text-muted text-uppercase">Nomor HP / WhatsApp <span class="text-danger">*</span></label>
-              <input type="text" id="cuti_inputHP" class="form-control form-control-sultan" placeholder="08xxx" required>
+            <div class="flex flex-col gap-1.5">
+              <label class="text-[10px] font-black text-body dark:text-bodydark uppercase tracking-tighter ml-1">Nomor HP / WhatsApp <span class="text-danger">*</span></label>
+              <input type="text" id="cuti_inputHP" class="rounded-xl border border-stroke bg-white dark:bg-form-input py-2 px-4 text-xs font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark" placeholder="08xxx" required>
+              <p class="text-[9px] text-muted ml-1 mt-1 font-medium italic">*Pastikan nomor aktif untuk koordinasi</p>
             </div>
           </div>
         </div>
 
-        <div class="sultan-modal-footer d-flex justify-content-between">
-          <button type="button" class="btn btn-secondary shadow-sm px-4" data-dismiss="modal">Batal</button>
-          <button type="submit" class="btn btn-maroon text-white font-weight-bold shadow-sm px-4" id="cuti_btnSimpanForm">
-            <i class="fas fa-paper-plane mr-2"></i>Kirim Pengajuan
+        <div class="p-4 bg-white dark:bg-boxdark border-t border-stroke dark:border-white/5 flex items-center justify-between">
+          <button type="button" class="rounded-xl border border-stroke py-2 px-6 text-xs font-bold text-body hover:bg-gray-2 transition-all" data-dismiss="modal">Batal</button>
+          <button type="submit" class="rounded-xl bg-teal-600 py-2 px-8 text-xs font-bold text-white hover:bg-teal-700 shadow-lg shadow-teal-600/20 transition-all active:scale-95" id="cuti_btnSimpanForm">
+            <i class="fas fa-paper-plane mr-2"></i> Kirim Pengajuan
           </button>
         </div>
       </form>
@@ -216,100 +238,167 @@
   </div>
 </div>
 
-<!-- 2. MODAL HAPUS -->
+<!-- 2. MODAL HAPUS (DANGER GRADIENT) -->
 <div class="modal fade" id="cuti_modalHapus" tabindex="-1" role="dialog" data-backdrop="static">
-                        <input type="password" id="cuti_inputKodeHapus" class="form-control form-control-sultan border-left-0 text-center font-weight-bold letter-spacing-2" placeholder="Ketik kode hapus..." required autocomplete="off">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 400px;">
+        <div class="modal-content rounded-2xl border-0 shadow-2xl overflow-hidden">
+            <div class="bg-gradient-to-r from-red-600 to-rose-700 py-4 px-6 relative">
+                <div class="flex items-center gap-3">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/20 text-white backdrop-blur-sm">
+                        <i class="fas fa-trash-alt text-lg"></i>
+                    </div>
+                    <div>
+                        <h5 class="text-sm font-black text-white uppercase tracking-widest mb-0">Konfirmasi Hapus</h5>
+                        <p class="text-[10px] text-red-50 font-medium opacity-80">Tindakan ini tidak dapat dibatalkan</p>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer justify-content-between bg-light p-3">
-                <button type="button" class="btn btn-default border shadow-sm px-4 font-weight-bold" data-dismiss="modal">Batal</button>
-                <button type="submit" id="cuti_btnEksekusiHapus" class="btn btn-danger shadow-sm font-weight-bold px-4">
-                    <i class="fas fa-trash mr-1"></i> Hapus Permanen
+                <button type="button" class="absolute top-4 right-4 h-8 w-8 flex items-center justify-center rounded-lg text-white hover:bg-white/10 transition-colors" data-dismiss="modal">
+                    <i class="fas fa-times"></i>
                 </button>
             </div>
+
+            <form id="cuti_formHapus" novalidate>
+                <div class="p-6 bg-white dark:bg-boxdark text-center">
+                    <input type="hidden" id="cuti_hapusRowId">
+                    <div class="mb-4">
+                        <div class="inline-flex h-16 w-16 items-center justify-center rounded-full bg-red-100 text-red-600 mb-3">
+                            <i class="fas fa-exclamation-triangle text-2xl"></i>
+                        </div>
+                        <h4 class="text-xs font-bold text-black dark:text-white mb-1">Hapus Pengajuan Cuti?</h4>
+                        <p class="text-[11px] text-body">Anda akan menghapus data milik:</p>
+                        <p class="text-xs font-black text-red-600 uppercase mt-1" id="cuti_hapusViewNama">-</p>
+                    </div>
+
+                    <div class="relative">
+                        <input type="password" id="cuti_inputKodeHapus" class="w-full rounded-xl border border-stroke bg-gray-2 py-3 px-4 text-center text-sm font-black tracking-[0.5em] outline-none transition focus:border-red-500" placeholder="KODE HAPUS" required autocomplete="off">
+                        <p class="text-[9px] text-muted mt-2 italic">Format: YYYYMMDD (Tgl Hari Ini)</p>
+                    </div>
+                </div>
+
+                <div class="p-4 bg-gray-50 dark:bg-meta-4 flex items-center justify-between gap-3">
+                    <button type="button" class="flex-grow rounded-xl border border-stroke py-2.5 text-xs font-bold text-body hover:bg-gray-2 transition-all" data-dismiss="modal">Batal</button>
+                    <button type="submit" id="cuti_btnEksekusiHapus" class="flex-grow rounded-xl bg-red-600 py-2.5 text-xs font-bold text-white hover:bg-red-700 shadow-lg shadow-red-600/20 transition-all">
+                        <i class="fas fa-trash-alt mr-2"></i> Hapus
+                    </button>
+                </div>
             </form>
         </div>
     </div>
 </div>
 
+<!-- 3. MODAL VERIFIKASI (SPLIT 7:5) -->
 <div class="modal fade" id="cuti_modalVerifikasi" tabindex="-1" role="dialog" data-backdrop="static">
-    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-sultan-verif" role="document">
-        <div class="modal-content border-0 shadow-lg modal-content-sultan-verif" style="height: 90vh;">
-            <div class="modal-header bg-primary text-white py-2 flex-shrink-0">
-                <h5 class="modal-title font-weight-bold h6 mb-0">
-                    <i class="fas fa-clipboard-check mr-2"></i>Panel Verifikasi Cuti
-                </h5>
-                <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+        <div class="modal-content rounded-2xl border-0 shadow-2xl overflow-hidden h-[90vh]">
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-blue-700 to-indigo-800 py-3 px-6 relative shrink-0">
+                <div class="flex items-center gap-3">
+                    <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-white/20 text-white backdrop-blur-sm">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <div>
+                        <h5 class="text-xs font-black text-white uppercase tracking-widest mb-0">Panel Verifikasi Cuti</h5>
+                        <p class="text-[9px] text-blue-50 font-medium opacity-80 uppercase tracking-tighter">Peninjauan Dokumen & Keputusan Admin</p>
+                    </div>
+                </div>
+                <button type="button" class="absolute top-3 right-4 h-7 w-7 flex items-center justify-center rounded-lg text-white hover:bg-white/10 transition-colors" data-dismiss="modal">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
 
-            <form id="cuti_formVerifikasi" class="d-flex flex-column flex-grow-1 overflow-hidden m-0 p-0" novalidate>
-            <div class="modal-body p-0 bg-light flex-grow-1 overflow-hidden">
-                <div class="row no-gutters h-100">
-                    <div class="col-md-7 border-right d-flex flex-column bg-dark position-relative h-100">
-                        <iframe id="cuti_iframePreviewVerif" class="iframe-sultan-verif d-none w-100 h-100 border-0" src=""></iframe>
+            <form id="cuti_formVerifikasi" class="flex flex-col grow overflow-hidden" novalidate>
+                <div class="flex grow overflow-hidden bg-slate-50 dark:bg-boxdark">
+                    <!-- Left Side: Preview -->
+                    <div class="w-full md:w-7/12 border-r border-stroke dark:border-white/5 relative bg-dark">
+                        <iframe id="cuti_iframePreviewVerif" class="w-full h-full border-0 hidden" src=""></iframe>
                         
-                        <div id="cuti_loadingPreviewVerif" class="d-none h-100 flex-column justify-content-center align-items-center text-white-50 w-100 position-absolute" style="top:0; left:0; z-index: 10; pointer-events: none;">
-                            <div class="text-center"><i class="fas fa-circle-notch fa-spin fa-4x mb-3"></i><p>Memuat Dokumen...</p></div>
+                        <div id="cuti_loadingPreviewVerif" class="absolute inset-0 flex flex-col items-center justify-center text-white/50 hidden">
+                            <i class="fas fa-circle-notch fa-spin fa-3x mb-3"></i>
+                            <p class="text-xs font-bold uppercase tracking-widest">Memuat Dokumen...</p>
                         </div>
 
-                        <div id="cuti_noFilePreviewVerif" class="d-flex h-100 flex-column justify-content-center align-items-center text-white-50 w-100 position-absolute" style="top:0; left:0; z-index: 10;">
-                            <i class="fas fa-file-pdf fa-4x mb-3 text-white-50"></i>
-                            <p class="mb-0 text-center">Dokumen PDF belum digenerate.<br>Sistem akan membuat PDF saat data disetujui.</p>
+                        <div id="cuti_noFilePreviewVerif" class="absolute inset-0 flex flex-col items-center justify-center text-white/30 p-8 text-center">
+                            <i class="fas fa-file-pdf fa-4x mb-4 opacity-50"></i>
+                            <p class="text-sm font-bold">Dokumen belum tersedia</p>
+                            <p class="text-xs max-w-xs mt-1">Sistem akan men-generate formulir PDF secara otomatis setelah data disetujui (OK).</p>
                         </div>
                         
-                        <a href="#" id="cuti_btnUnduhVerif" class="btn btn-sm btn-success shadow-sm position-absolute font-weight-bold px-3" style="bottom: 15px; left: 15px; z-index: 20; display: none;" target="_blank">
-                            <i class="fas fa-download mr-1"></i> Unduh PDF
+                        <a href="#" id="cuti_btnUnduhVerif" class="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-xl bg-success py-2 px-6 text-xs font-black text-white shadow-xl hover:bg-opacity-90 transition-all hidden" target="_blank">
+                            <i class="fas fa-download"></i> UNDUH PDF
                         </a>
                     </div>
 
-                    <div class="col-md-5 d-flex flex-column bg-white h-100">
-                        <div class="p-4 flex-grow-1 overflow-auto">
+                    <!-- Right Side: Decision -->
+                    <div class="w-full md:w-5/12 flex flex-col bg-white dark:bg-boxdark overflow-y-auto">
+                        <div class="p-6 grow">
                             <input type="hidden" id="cuti_verifRowId">
                             
-                            <h5 class="font-weight-bold text-primary border-bottom pb-2 mb-3">
-                                <i class="fas fa-user-circle mr-2"></i> Detail Pengajuan
-                            </h5>
+                            <div class="flex items-center gap-2 mb-6">
+                                <i class="fas fa-user-circle text-primary text-lg"></i>
+                                <h5 class="text-xs font-black text-black dark:text-white uppercase tracking-widest">Identitas Pengaju</h5>
+                            </div>
                             
-                            <table class="table table-borderless text-sm mb-4">
-                                <tr><td class="text-muted font-weight-bold align-middle py-1" style="width: 35%;">Nama ASN</td><td class="font-weight-bold text-dark py-1" id="cuti_verifNama" style="font-size: 16px; text-transform: uppercase;">-</td></tr>
-                                <tr><td class="text-muted font-weight-bold align-middle py-1">Jenis Cuti</td><td class="font-weight-bold text-primary py-1" id="cuti_verifJenis">-</td></tr>
-                                <tr><td colspan="2" class="py-1"><hr class="my-0 dashed"></td></tr>
-                                <tr><td class="text-muted font-weight-bold align-middle py-1">Tgl Ajuan</td><td class="py-1" id="cuti_verifTglAjuan">-</td></tr>
-                                <tr><td class="text-muted font-weight-bold align-middle py-1">Pelaksanaan</td><td class="py-1"><span id="cuti_verifTglMulai" class="font-weight-bold text-dark"></span> s/d <span id="cuti_verifTglSelesai" class="font-weight-bold text-dark"></span></td></tr>
-                                <tr><td class="text-muted font-weight-bold align-middle py-1">Lama Cuti</td><td class="py-1"><span class="badge badge-sultan badge-sultan-light-info" id="cuti_verifLama">- Hari</span></td></tr>
-                                <tr><td class="text-muted font-weight-bold py-1">Alasan</td><td class="py-1 font-italic text-dark" id="cuti_verifAlasan" style="white-space: normal;">-</td></tr>
-                            </table>
+                            <div class="sultan-card p-4 border-l-4 border-l-primary mb-6">
+                                <div class="flex flex-col gap-3">
+                                    <div class="flex flex-col gap-1">
+                                        <span class="text-[10px] font-black text-body/60 uppercase tracking-tighter">Nama Lengkap ASN</span>
+                                        <span class="text-sm font-black text-black dark:text-white uppercase" id="cuti_verifNama">-</span>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div class="flex flex-col gap-1">
+                                            <span class="text-[10px] font-black text-body/60 uppercase tracking-tighter">Jenis Cuti</span>
+                                            <span class="text-xs font-bold text-primary" id="cuti_verifJenis">-</span>
+                                        </div>
+                                        <div class="flex flex-col gap-1 text-right">
+                                            <span class="text-[10px] font-black text-body/60 uppercase tracking-tighter">Lama Cuti</span>
+                                            <span class="text-xs font-black text-black dark:text-white" id="cuti_verifLama">- Hari</span>
+                                        </div>
+                                    </div>
+                                    <div class="h-px bg-stroke dark:bg-white/5 my-1"></div>
+                                    <div class="flex flex-col gap-1">
+                                        <span class="text-[10px] font-black text-body/60 uppercase tracking-tighter">Periode Pelaksanaan</span>
+                                        <span class="text-xs font-bold text-black dark:text-white"><i class="fas fa-calendar-day mr-1 text-muted"></i> <span id="cuti_verifTglMulai"></span> s/d <span id="cuti_verifTglSelesai"></span></span>
+                                    </div>
+                                    <div class="flex flex-col gap-1">
+                                        <span class="text-[10px] font-black text-body/60 uppercase tracking-tighter">Alasan / Keterangan</span>
+                                        <p class="text-xs font-medium italic text-body leading-relaxed" id="cuti_verifAlasan">-</p>
+                                    </div>
+                                </div>
+                            </div>
 
-                            <div class="card bg-light border-0 shadow-sm mb-0 mt-3">
-                                <div class="card-body p-3">
-                                    <div class="form-group mb-3">
-                                        <label class="form-label-sultan font-weight-bold text-muted text-uppercase" style="font-size:12px; letter-spacing: 0.5px;">Keputusan Admin <span class="text-danger">*</span></label>
-                                        <select class="form-control form-control-sultan font-weight-bold text-dark border-primary" id="cuti_verifStatus" required style="font-size: 16px; height: auto !important; padding: 10px 15px;">
-                                            <option value="">-- Pilih Status --</option>
-                                            <option value="Disetujui">Disetujui (OK)</option>
-                                            <option value="Revisi">Revisi</option>
-                                            <option value="Ditolak">Ditolak</option>
+                            <div class="sultan-card p-4 bg-slate-50 dark:bg-meta-4 border-none shadow-inner">
+                                <div class="flex flex-col gap-4">
+                                    <div class="flex flex-col gap-1.5">
+                                        <label class="text-[10px] font-black text-body dark:text-bodydark uppercase tracking-widest flex items-center justify-between">
+                                            Keputusan Admin <span class="text-danger font-black">*</span>
+                                        </label>
+                                        <select class="rounded-xl border border-primary bg-white dark:bg-form-input py-2.5 px-4 text-sm font-black text-primary outline-none transition focus:shadow-lg focus:shadow-primary/10" id="cuti_verifStatus" required>
+                                            <option value="">-- Pilih Keputusan --</option>
+                                            <option value="Disetujui">DISETUJUI (OK)</option>
+                                            <option value="Revisi">REVISI DATA</option>
+                                            <option value="Ditolak">DITOLAK</option>
                                         </select>
                                     </div>
 
-                                    <div class="form-group mb-0">
-                                        <label class="form-label-sultan font-weight-bold text-muted text-uppercase" style="font-size:12px; letter-spacing: 0.5px;">Catatan (Alasan) <span class="text-danger" id="cuti_reqCatatanVerif" style="display:none;">*</span></label>
-                                        <textarea class="form-control form-control-sultan border-primary" id="cuti_verifCatatan" rows="3" placeholder="Wajib diisi jika Ditolak/Revisi..." style="font-size: 15px; padding: 10px 15px; resize:none;"></textarea>
+                                    <div class="flex flex-col gap-1.5">
+                                        <label class="text-[10px] font-black text-body dark:text-bodydark uppercase tracking-widest">
+                                            Catatan Verifikator <span class="text-danger hidden" id="cuti_reqCatatanVerif">* Wajib</span>
+                                        </label>
+                                        <textarea class="rounded-xl border border-stroke bg-white dark:bg-form-input py-3 px-4 text-xs font-medium outline-none transition focus:border-primary active:border-primary" id="cuti_verifCatatan" rows="4" placeholder="Berikan alasan atau instruksi jika revisi/tolak..."></textarea>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="p-3 bg-white border-top shadow-lg d-flex justify-content-between z-index-10 flex-shrink-0">
-                            <button type="button" class="btn btn-default shadow-sm font-weight-bold px-4 py-2" style="font-size:16px;" data-dismiss="modal">Tutup</button>
-                            <button type="submit" id="cuti_btnVerifEksekusi" class="btn btn-primary font-weight-bold shadow-sm px-4 py-2" style="font-size:16px;">
+                        <!-- Footer -->
+                        <div class="p-4 border-t border-stroke dark:border-white/5 flex items-center justify-between bg-white dark:bg-boxdark shrink-0">
+                            <button type="button" class="rounded-xl border border-stroke py-2 px-6 text-xs font-bold text-body hover:bg-gray-2 transition-all uppercase tracking-widest" data-dismiss="modal">Tutup</button>
+                            <button type="submit" id="cuti_btnVerifEksekusi" class="rounded-xl bg-blue-700 py-2 px-8 text-xs font-black text-white hover:bg-blue-800 shadow-lg shadow-blue-700/20 transition-all active:scale-95 uppercase tracking-widest">
                                 <i class="fas fa-check-double mr-2"></i> Eksekusi
                             </button>
                         </div>
                     </div>
                 </div>
-            </div>
             </form>
         </div>
     </div>
@@ -740,10 +829,9 @@ function cuti_resetModal() {
 function cuti_bukaModalTambah() {
     try {
         $('#cuti_editRowId').val(""); 
-        $('#cuti_headerModalForm').removeClass('bg-warning').addClass('bg-maroon');
-        $('#cuti_judulModalForm').html('<i class="fas fa-plus-circle mr-2"></i>Form Pengajuan Cuti').css('color', '#fff'); 
-        $('#cuti_closeModalForm').removeClass('text-dark').addClass('text-white');
-        $('#cuti_btnSimpanForm').removeClass('btn-warning text-dark').addClass('btn-maroon text-white').html('<i class="fas fa-paper-plane mr-2"></i>Kirim Pengajuan');
+        $('#cuti_headerModalForm').removeClass('from-amber-500 to-orange-600').addClass('from-teal-600 to-emerald-600');
+        $('#cuti_judulModalForm').html('Form Pengajuan Cuti'); 
+        $('#cuti_btnSimpanForm').removeClass('bg-amber-500 hover:bg-amber-600').addClass('bg-teal-600 hover:bg-teal-700').html('<i class="fas fa-paper-plane mr-2"></i> Kirim Pengajuan');
         
         cuti_resetModal();
         
@@ -767,10 +855,9 @@ function cuti_bukaModalEdit(rowIdx) {
         var data = CUTI_ROW_DATA[rowIdx]; if (!data) return;
         cuti_resetModal(); $('#cuti_editRowId').val(rowIdx);
         
-        $('#cuti_headerModalForm').removeClass('bg-maroon').addClass('bg-warning');
-        $('#cuti_judulModalForm').html('<i class="fas fa-pencil-alt mr-2"></i>Edit Pengajuan Cuti').css('color', '#343a40'); 
-        $('#cuti_closeModalForm').removeClass('text-white').addClass('text-dark');
-        $('#cuti_btnSimpanForm').removeClass('btn-maroon text-white').addClass('btn-warning text-dark').html('<i class="fas fa-save mr-2"></i>Simpan Perubahan');
+        $('#cuti_headerModalForm').removeClass('from-teal-600 to-emerald-600').addClass('from-amber-500 to-orange-600');
+        $('#cuti_judulModalForm').html('Edit Pengajuan Cuti'); 
+        $('#cuti_btnSimpanForm').removeClass('bg-teal-600 hover:bg-teal-700').addClass('bg-amber-500 hover:bg-amber-600').html('<i class="fas fa-save mr-2"></i> Simpan Perubahan');
         
         var tUnit = String(data.unit).trim();
         if ($('#cuti_inputUnit option').filter(function() { return $(this).val() === tUnit; }).length === 0) { $('#cuti_inputUnit').append($('<option>', {value: tUnit, text: tUnit})); }

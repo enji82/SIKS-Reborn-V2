@@ -1,7 +1,7 @@
-<div class="flex flex-col gap-4 md:gap-6 2xl:gap-7.5 animate-reveal">
+<div class="flex flex-col gap-2 md:gap-3 animate-reveal">
 
   <!-- 1. FILTER BAR -->
-  <div class="rounded-sm border border-stroke bg-white px-5 py-4 shadow-default dark:border-strokedark dark:bg-boxdark">
+  <div class="sultan-card p-3 shadow-sm">
     <div class="flex flex-wrap items-center justify-between gap-4">
       <div class="flex flex-wrap items-center gap-4">
         <!-- Kategori -->
@@ -36,12 +36,12 @@
   </div>
 
   <!-- 3. DASHBOARD CONTENT -->
-  <div id="efiledash_dashboardState" style="display: none;" class="flex flex-col gap-4 md:gap-6 2xl:gap-7.5">
+  <div id="efiledash_dashboardState" style="display: none;" class="flex flex-col gap-2 md:gap-3">
     
     <!-- KPI Metrics -->
-    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 md:gap-3">
         <!-- Target Sasaran -->
-        <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div class="sultan-card p-3 md:p-4 shadow-sm hover:translate-y-[-2px] transition-all">
             <div class="flex h-11 w-11 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4 mb-3">
                 <i class="fas fa-users text-primary text-xl"></i>
             </div>
@@ -51,7 +51,7 @@
             </div>
         </div>
         <!-- Sudah Unggah -->
-        <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div class="sultan-card p-3 md:p-4 shadow-sm hover:translate-y-[-2px] transition-all">
             <div class="flex h-11 w-11 items-center justify-center rounded-full bg-success/10 mb-3">
                 <i class="fas fa-check-circle text-success text-xl"></i>
             </div>
@@ -61,7 +61,7 @@
             </div>
         </div>
         <!-- Belum Unggah -->
-        <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark border-l-4 border-l-danger">
+        <div class="sultan-card p-3 md:p-4 shadow-sm hover:translate-y-[-2px] transition-all border-l-4 border-l-danger">
             <div class="flex h-11 w-11 items-center justify-center rounded-full bg-danger/10 mb-3">
                 <i class="fas fa-times-circle text-danger text-xl"></i>
             </div>
@@ -73,10 +73,10 @@
     </div>
 
     <!-- Data Sections -->
-    <div class="grid grid-cols-1 gap-4 lg:grid-cols-12">
+    <div class="grid grid-cols-1 gap-2 lg:grid-cols-12 md:gap-3">
         <!-- Rekap Table -->
-        <div class="col-span-1 lg:col-span-8 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark overflow-hidden">
-            <div class="border-b border-stroke py-4 px-6.5 dark:border-strokedark flex items-center justify-between">
+        <div class="col-span-1 lg:col-span-8 sultan-card overflow-hidden">
+            <div class="border-b border-gray-100 dark:border-white/5 py-3 px-5 flex items-center justify-between">
                 <h3 class="font-bold text-black dark:text-white flex items-center gap-2">
                     <i class="fas fa-building text-primary"></i> Rekapitulasi per Unit Kerja
                 </h3>
@@ -99,8 +99,8 @@
         </div>
 
         <!-- Belum Unggah List -->
-        <div class="col-span-1 lg:col-span-4 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark overflow-hidden">
-            <div class="border-b border-stroke py-4 px-6.5 dark:border-strokedark flex items-center justify-between bg-danger/[0.03]">
+        <div class="col-span-1 lg:col-span-4 sultan-card overflow-hidden">
+            <div class="border-b border-gray-100 dark:border-white/5 py-3 px-5 flex items-center justify-between bg-danger/[0.03]">
                 <h3 class="font-bold text-danger flex items-center gap-2">
                     <i class="fas fa-user-times"></i> Belum Unggah
                 </h3>

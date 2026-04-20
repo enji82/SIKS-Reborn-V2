@@ -1,167 +1,61 @@
-<div class="flex flex-col gap-4 animate-reveal">
-    <!-- PAGE HEADER -->
-    <div class="mb-2 flex flex-col">
-        <h1 class="sultan-title-sync text-black dark:text-white">
-            Status Data SK
-        </h1>
-        <p class="sk-section-title mt-1">
-            Matriks Progres Pengiriman Dokumen Pembagian Tugas
-        </p>
+<div class="animate-reveal flex flex-col gap-1">
+  <!-- Content Header -->
+  <div class="flex items-center justify-between px-1">
+    <div class="flex items-center gap-2">
+      <i class="fas fa-tasks text-primary"></i>
+      <h1 class="text-sm font-bold text-black dark:text-white uppercase tracking-wider">Status Data SK</h1>
+    </div>
+  </div>
+
+    <!-- 1. KARTU INFORMASI -->
+    <div class="sultan-card mb-0 px-1" x-data="{ isOpen: false }">
+      <div class="py-2 px-3 border-l-4 border-l-primary/50">
+        <div class="flex items-center justify-between cursor-pointer" @click="isOpen = !isOpen">
+          <div class="flex items-center text-primary font-bold text-xs uppercase tracking-tighter">
+            <i class="fas fa-info-circle mr-2"></i> Panduan Matriks
+          </div>
+          <i class="fas text-muted transition-transform" :class="isOpen ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+        </div>
+        <div x-show="isOpen" x-transition class="mt-2 pt-2 border-top border-stroke dark:border-white/5 small text-body">
+          <div class="flex flex-col gap-2">
+            <p class="mb-0 pl-1 font-medium">Matriks ini menampilkan progres per Semester untuk setiap Tahun Ajaran.</p>
+            <div class="flex flex-wrap gap-2 mt-1">
+                <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-lg bg-primary/5 text-primary text-[10px] font-black border border-primary/10 uppercase tracking-tighter"><i class="fas fa-clock"></i> Diproses</span>
+                <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-lg bg-success/5 text-success text-[10px] font-black border border-success/10 uppercase tracking-tighter"><i class="fas fa-check"></i> Disetujui</span>
+                <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-lg bg-warning/5 text-warning text-[10px] font-black border border-warning/10 uppercase tracking-tighter"><i class="fab fa-gg"></i> Revisi</span>
+                <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-lg bg-danger/5 text-danger text-[10px] font-black border border-danger/10 uppercase tracking-tighter"><i class="fas fa-times"></i> Ditolak</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- 1. KARTU INFORMASI (SK STYLE) -->
-    <div class="sk-card !p-0 overflow-hidden" x-data="{ isOpen: false }">
-        <div class="sk-card-header cursor-pointer hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
-            @click="isOpen = !isOpen">
-            <h3
-                class="font-black text-black dark:text-white flex items-center gap-2 text-sm uppercase tracking-[0.1em]">
-                <i class="fas fa-info-circle text-primary"></i> Panduan Matriks
-            </h3>
-            <i class="fas fa-chevron-down text-gray-400 text-sm transition-transform"
-                :class="{ 'rotate-180': isOpen }"></i>
-        </div>
-        <div x-show="isOpen" x-transition x-cloak
-            class="p-4 border-t border-gray-100 dark:border-white/5 sk-bg-surface">
-            <div class="rounded-xl border border-primary/20 bg-blue-50/80 dark:bg-white/5 p-5">
-                <ul class="space-y-3">
-                    <li class="flex gap-4 text-[14px] font-bold text-gray-900 dark:text-gray-100 items-start">
-                        <span
-                            class="flex h-5 w-5 min-w-[20px] items-center justify-center rounded-full bg-primary text-[10px] font-black text-white shadow-sm">1</span>
-                        <span>Matriks ini menampilkan progres per Semester untuk setiap Tahun Ajaran kategori awal
-                            semester.</span>
-                    </li>
-                    <li class="flex gap-4 text-[14px] font-bold text-gray-900 dark:text-gray-100 items-start">
-                        <span
-                            class="flex h-5 w-5 min-w-[20px] items-center justify-center rounded-full bg-primary text-[10px] font-black text-white shadow-sm">2</span>
-                        <span>Klik ikon <b class="text-warning">🔄</b> atau <b class="text-danger">❌</b> untuk membaca
-                            catatan revisi/penolakan dari admin pelaksana.</span>
-                    </li>
-                    <li class="flex gap-4 text-[14px] font-bold text-gray-900 dark:text-gray-100 items-start">
-                        <span
-                            class="flex h-5 w-5 min-w-[20px] items-center justify-center rounded-full bg-primary text-[10px] font-black text-white shadow-sm">3</span>
-                        <div class="flex flex-wrap gap-x-6 gap-y-2">
-                            <span class="flex items-center gap-2">
-                                <span class="flex h-6 w-6 items-center justify-center rounded-lg bg-primary/10 text-primary border border-primary/20"><i class="fas fa-clock text-[10px]"></i></span>
-                                <span class="text-xs uppercase tracking-tighter">Diproses</span>
-                            </span>
-                            <span class="flex items-center gap-2">
-                                <span class="flex h-6 w-6 items-center justify-center rounded-lg bg-success/10 text-success border border-success/20"><i class="fas fa-check text-[10px]"></i></span>
-                                <span class="text-xs uppercase tracking-tighter">Disetujui</span>
-                            </span>
-                            <span class="flex items-center gap-2">
-                                <span class="flex h-6 w-6 items-center justify-center rounded-lg bg-warning/10 text-warning border border-warning/20"><i class="fab fa-gg text-[10px]"></i></span>
-                                <span class="text-xs uppercase tracking-tighter">Revisi</span>
-                            </span>
-                            <span class="flex items-center gap-2">
-                                <span class="flex h-6 w-6 items-center justify-center rounded-lg bg-danger/10 text-danger border border-danger/20"><i class="fas fa-times text-[10px]"></i></span>
-                                <span class="text-xs uppercase tracking-tighter">Ditolak</span>
-                            </span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+    <!-- 2. KARTU FILTER -->
+    <div id="statussk_wadahFilter" class="sultan-card p-2 md:p-3 shadow-sm border-l-4 border-l-primary/30">
+        <div class="flex flex-wrap items-center gap-2 md:gap-3">
+            <select id="statussk_filterSekolah" class="rounded-xl border border-stroke bg-transparent py-1.5 px-3 text-xs font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark dark:bg-boxdark min-w-[300px] disabled:opacity-60">
+                <option value="SEMUA">- Memuat Database... -</option>
+            </select>
+            
+            <div class="h-6 w-[1px] bg-stroke dark:bg-white/10 hidden md:block mx-1"></div>
+
+            <button type="button" id="statussk_btnCari" class="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-stroke bg-white text-body hover:text-primary dark:border-strokedark dark:bg-boxdark shadow-sm transition-all" title="Refresh Data">
+                <i class="fab fa-gg"></i>
+            </button>
         </div>
     </div>
 
-    <!-- 2. KARTU FILTER (SK STYLE) -->
-    <div id="statussk_wadahFilter" class="sk-card p-4">
-        <div class="flex flex-col md:flex-row items-center gap-4">
-            <div class="flex flex-wrap flex-1 items-center gap-3 w-full">
-                <select id="statussk_filterSekolah"
-                    class="sk-form-input !py-2.5 !px-4 !text-sm !w-auto min-w-[300px] disabled:opacity-60">
-                    <option value="SEMUA">- Memuat Database... -</option>
-                </select>
-                <button type="button" id="statussk_btnCari"
-                    class="flex h-10 w-10 items-center justify-center rounded-xl sk-bg-section text-gray-500 hover:text-primary transition-all border border-gray-100 dark:border-white/5 shadow-sm active:scale-95"
-                    title="Refresh Data">
-                    <i class="fab fa-gg"></i>
-                </button>
+    <!-- 3. KARTU TABEL -->
+    <div class="sultan-card overflow-hidden">
+        <div class="p-0">
+            <div id="statussk_loadingState">
+              <div class="flex flex-col items-center justify-center py-20">
+                <div class="h-16 w-16 animate-spin rounded-full border-4 border-solid border-primary border-t-transparent"></div>
+                <h6 class="mt-5 font-bold text-black dark:text-white">MENYUSUN MATRIKS PROGRES...</h6>
+              </div>
             </div>
-        </div>
-    </div>
-
-    <!-- 3. KARTU TABEL (SK STYLE) -->
-    <div class="sk-card !p-0 overflow-hidden">
-        <!-- CUSTOM DATATABLES UTILITIES STYLING (SULTAN SYNC) -->
-        <style>
-            /* Container Padding Sync */
-            #statussk_tableState .dataTables_wrapper .flex {
-                padding-top: 0.75rem;
-                padding-bottom: 0.75rem;
-            }
-            #statussk_tableState .dataTables_wrapper label,
-            #statussk_tableState .dataTables_wrapper .dataTables_info {
-                padding: 0 !important;
-                margin: 0 !important;
-                font-size: 14px !important; 
-                font-weight: 700 !important;
-                letter-spacing: normal !important;
-                color: #64748b !important;
-            }
-            .dark #statussk_tableState .dataTables_wrapper label,
-            .dark #statussk_tableState .dataTables_wrapper .dataTables_info {
-                color: #94A3B8 !important;
-            }
-            #statussk_tableState .dataTables_wrapper .dataTables_length select,
-            #statussk_tableState .dataTables_wrapper .dataTables_filter input {
-                background: var(--sk-input-bg) !important;
-                border: 1.2px solid var(--sk-input-border) !important;
-                border-radius: 10px;
-                padding: 0 16px;
-                margin: 0 8px;
-                height: 38px;
-                font-size: 14px;
-                font-weight: 700;
-                color: var(--sk-text) !important;
-                appearance: auto;
-                transition: all 0.2s;
-                outline: none;
-                font-family: 'Satoshi', sans-serif !important;
-                box-shadow: 0 1px 2px rgba(0,0,0,0.02);
-            }
-            /* Placeholder Styling */
-            #statussk_tableState .dataTables_wrapper .dataTables_filter input::placeholder {
-                color: #94A3B8;
-                opacity: 0.5;
-                font-weight: 500;
-            }
-            .dark #statussk_tableState .dataTables_wrapper .dataTables_length select option {
-                background: #1A222C;
-                color: white;
-            }
-            #statussk_tableState .dataTables_wrapper .dataTables_length select:focus,
-            #statussk_tableState .dataTables_wrapper .dataTables_filter input:focus {
-                border-color: #3C50E0 !important;
-                box-shadow: 0 0 0 3px rgba(60, 80, 224, 0.1);
-            }
-            /* Memastikan tombol paginasi juga sinkron 14px */
-            #statussk_tableState .dataTables_wrapper .pagination-wrapper .paginate_button,
-            #statussk_tableState .dataTables_wrapper .sultan-dt-info {
-                font-size: 14px !important;
-                font-weight: 700 !important;
-                height: 38px !important;
-                min-width: 38px !important;
-                padding: 0 16px !important;
-                display: inline-flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-                border-radius: 10px !important;
-            }
-            .dataTables_wrapper.no-footer .dataTables_scrollBody {
-                border-bottom: none !important;
-            }
-        </style>
-
-        <div id="statussk_loadingState" class="py-20">
-            <div class="flex flex-col items-center justify-center">
-                <div class="sk-spinner-premium mb-5"></div>
-                <h6 class="sk-loading-text">Menyusun Matriks Data...</h6>
-            </div>
-        </div>
-
-        <div id="statussk_tableState" style="display: none;" class="w-full overflow-hidden">
-            <div class="overflow-x-auto sultan-scroll">
-                <table id="statussk_tabelUtama" class="w-full table-auto text-xs bg-transparent">
+            <div id="statussk_tableState" style="display: none;">
+                <table id="statussk_tabelUtama" class="w-full table-auto border-collapse text-xs bg-transparent">
                     <thead id="statussk_headerTabel">
                         <!-- Dinamis via JS -->
                     </thead>
@@ -374,17 +268,16 @@
         STATUSSK_TABEL_INSTANCE = $('#statussk_tabelUtama').DataTable({
             "data": dtArray,
             "ordering": false, "pageLength": 10, "autoWidth": false, "deferRender": true,
-            "lengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
-            "dom": "<'flex flex-col md:flex-row justify-between items-center bg-transparent border-b border-gray-100 dark:border-white/5 px-6'lf>" + 
-                "<'row'<'col-sm-12'<'overflow-x-auto sultan-scroll !border-none'tr>>>" +
-                "<'flex flex-col md:flex-row justify-between items-center gap-4 px-6 py-4'<'text-sm font-bold text-gray-500 sultan-dt-info'i><'pagination-wrapper'p>>",
+            "dom": '<"px-6 py-3 border-b border-stroke dark:border-strokedark"<"flex items-center justify-between gap-4"l f>>' +
+                   '<"sultan-scroll overflow-x-auto"t>' +
+                   '<"px-6 py-3 border-t border-stroke dark:border-strokedark"<"flex items-center justify-between"i p>>',
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json",
                 "emptyTable": "Belum ada data progres pengiriman.",
-                "lengthMenu": "Tampilkan _MENU_ entri",
+                "lengthMenu": "Tampilkan _MENU_",
                 "search": "Cari:",
                 "searchPlaceholder": "Ketik untuk mencari...",
-                "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri"
+                "info": "Menampilkan _START_ s/d _END_ dari _TOTAL_ entri"
             },
             "columnDefs": [
                 { "targets": 0, "className": "py-2.5 px-6 sticky left-0 z-[10] sk-bg-section shadow-[2px_0_5px_rgba(0,0,0,0.05)] border-r border-gray-100 dark:border-white/10" },

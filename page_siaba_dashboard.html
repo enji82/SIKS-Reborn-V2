@@ -1,10 +1,10 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 
 <!-- Metric Cards (Row 1) -->
-<div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 md:gap-6 2xl:gap-7.5 mb-6 animate-reveal">
+<div class="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-3 mb-2 animate-reveal">
   
   <!-- Cuti Card -->
-  <div class="rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark transition hover:border-primary">
+  <div class="sultan-card p-3 md:p-4 hover:translate-y-[-4px] transition-all">
     <div class="flex h-11.5 w-11.5 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4 mb-4">
       <i class="fas fa-calendar-alt text-primary text-xl"></i>
     </div>
@@ -19,7 +19,7 @@
   </div>
 
   <!-- Perjalanan Dinas Card -->
-  <div class="rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark transition hover:border-primary">
+  <div class="sultan-card p-3 md:p-4 hover:translate-y-[-4px] transition-all">
     <div class="flex h-11.5 w-11.5 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4 mb-4">
       <i class="fas fa-car text-primary text-xl"></i>
     </div>
@@ -34,7 +34,7 @@
   </div>
 
   <!-- Lupa Presensi Card -->
-  <div class="rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark transition hover:border-warning">
+  <div class="sultan-card p-3 md:p-4 hover:translate-y-[-4px] transition-all border-l-4 border-l-warning">
     <div class="flex h-11.5 w-11.5 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4 mb-4">
       <i class="fas fa-question-circle text-warning text-xl"></i>
     </div>
@@ -49,7 +49,7 @@
   </div>
 
   <!-- Salah Presensi Card -->
-  <div class="rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark transition hover:border-danger">
+  <div class="sultan-card p-3 md:p-4 hover:translate-y-[-4px] transition-all border-l-4 border-l-danger">
     <div class="flex h-11.5 w-11.5 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4 mb-4">
       <i class="fas fa-times-circle text-danger text-xl"></i>
     </div>
@@ -66,10 +66,10 @@
 </div>
 
 <!-- Row 2: Charts and Detail List -->
-<div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 md:gap-6 2xl:gap-7.5 mb-6 animate-reveal">
+<div class="grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-3 md:gap-3 mb-2 animate-reveal">
   
   <!-- Chart Pie -->
-  <div class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1 flex flex-col">
+  <div class="sultan-card p-3 md:p-4.5">
     <h4 class="mb-6 text-xl font-semibold text-black dark:text-white flex items-center">
       <i class="fas fa-chart-pie mr-2 text-primary"></i> Akumulasi Status
     </h4>
@@ -79,7 +79,7 @@
   </div>
 
   <!-- Rincian Status -->
-  <div class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1 flex flex-col">
+  <div class="sultan-card p-3 md:p-4.5 flex flex-col">
     <h4 class="mb-6 text-xl font-semibold text-black dark:text-white flex items-center">
       <i class="fas fa-list-alt mr-2 text-meta-6"></i> Rincian Status
     </h4>
@@ -94,7 +94,7 @@
   </div>
 
   <!-- Presensi Tidak Lengkap -->
-  <div class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1 flex flex-col">
+  <div class="sultan-card p-3 md:p-4.5 flex flex-col">
     <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-2">
       <h4 class="text-xl font-semibold text-danger flex items-center">
         <i class="fas fa-exclamation-circle mr-2"></i> Presensi Tidak Lengkap
@@ -128,9 +128,9 @@
 </div>
 
 <!-- Row 3: Bar Charts (Tren) -->
-<div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 md:gap-6 2xl:gap-7.5 mb-6 animate-reveal">
+<div class="grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-3 md:gap-3 mb-2 animate-reveal">
   
-  <div class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+  <div class="sultan-card p-3 md:p-4.5">
       <h4 class="mb-6 text-xl font-semibold text-black dark:text-white flex items-center">
         <i class="fas fa-chart-bar mr-2 text-primary"></i> Tren Kedisiplinan
       </h4>
@@ -138,7 +138,7 @@
       <div class="mt-2 text-center text-xs text-body dark:text-bodydark font-italic">*Rekap Terlambat & Pulang Awal</div>
   </div>
 
-  <div class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+  <div class="sultan-card p-3 md:p-4.5">
       <h4 class="mb-6 text-xl font-semibold text-black dark:text-white flex items-center">
         <i class="fas fa-chart-bar mr-2 text-meta-6"></i> Tren Cuti
       </h4>
@@ -147,7 +147,7 @@
       </div>
   </div>
 
-  <div class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+  <div class="sultan-card p-3 md:p-4.5">
       <h4 class="mb-6 text-xl font-semibold text-black dark:text-white flex items-center">
         <i class="fas fa-chart-bar mr-2 text-meta-5"></i> Tren Perjalanan Dinas
       </h4>
@@ -159,9 +159,9 @@
 </div>
 
 <!-- Row 4: Bar Charts (Tren 2) -->
-<div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 2xl:gap-7.5 mb-6 animate-reveal">
+<div class="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-3 mb-2 animate-reveal">
 
-  <div class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+  <div class="sultan-card p-3 md:p-4.5">
       <h4 class="mb-6 text-xl font-semibold text-black dark:text-white flex items-center">
         <i class="fas fa-chart-bar mr-2 text-warning"></i> Tren Lupa Presensi
       </h4>
@@ -170,7 +170,7 @@
       </div>
   </div>
 
-  <div class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+  <div class="sultan-card p-3 md:p-4.5">
       <h4 class="mb-6 text-xl font-semibold text-black dark:text-white flex items-center">
         <i class="fas fa-chart-bar mr-2 text-danger"></i> Tren Salah Presensi
       </h4>

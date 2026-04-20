@@ -10,196 +10,191 @@
         </p>
     </div>
 
-    <!-- 1. KARTU INFORMASI (SK STYLE) -->
-    <div class="sk-card !p-0 overflow-hidden" x-data="{ isOpen: false }">
-        <div class="sk-card-header cursor-pointer hover:bg-gray-100 dark:hover:bg-white/10 transition-colors" @click="isOpen = !isOpen">
-            <h3 class="font-black text-black dark:text-white flex items-center gap-2 text-sm uppercase tracking-[0.1em]">
-                <i class="fas fa-info-circle text-primary"></i> Panduan Pengisian
-            </h3>
-            <i class="fas fa-chevron-down text-gray-400 text-sm transition-transform" :class="{ 'rotate-180': isOpen }"></i>
+    <!-- 1. KARTU INFORMASI -->
+    <div class="sultan-card mb-0 px-1" x-data="{ isOpen: false }">
+      <div class="py-2 px-3 border-l-4 border-l-primary/50">
+        <div class="flex items-center justify-between cursor-pointer" @click="isOpen = !isOpen">
+          <div class="flex items-center text-primary font-bold text-xs uppercase tracking-tighter">
+            <i class="fas fa-info-circle mr-2"></i> Panduan Pengisian
+          </div>
+          <i class="fas text-muted transition-transform" :class="isOpen ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
         </div>
-        <div x-show="isOpen" x-transition x-cloak class="p-4 border-t border-gray-100 dark:border-white/5 bg-gray-50/50 dark:bg-boxdark">
-            <div class="rounded-xl border border-primary/20 bg-blue-50/80 dark:bg-white/5 p-5">
-                <ul class="space-y-4">
-                    <li class="flex gap-4 text-[14px] font-bold text-gray-900 dark:text-gray-100 items-start">
-                        <span class="flex h-6 w-6 min-w-[24px] items-center justify-center rounded-full bg-primary text-[12px] font-black text-white shadow-sm">1</span>
-                        <span>Klik tombol <b class="text-primary dark:text-[#818CF8] underline decoration-primary/20 underline-offset-4">+ TAMBAH SK</b> untuk mengunggah data baru.</span>
-                    </li>
-                    <li class="flex gap-4 text-[14px] font-bold text-gray-900 dark:text-gray-100 items-start">
-                        <span class="flex h-6 w-6 min-w-[24px] items-center justify-center rounded-full bg-primary text-[12px] font-black text-white shadow-sm">2</span>
-                        <span>Satu sekolah hanya dapat memiliki <b class="text-primary dark:text-[#818CF8]">1 SK aktif</b> untuk kombinasi Tahun, Semester, dan Kriteria yang sama.</span>
-                    </li>
-                    <li class="flex gap-4 text-[14px] font-bold text-gray-900 dark:text-gray-100 items-start">
-                        <span class="flex h-6 w-6 min-w-[24px] items-center justify-center rounded-full bg-primary text-[12px] font-black text-white shadow-sm">3</span>
-                        <span>Format file wajib <b class="text-danger">PDF</b> dengan ukuran maksimal <b class="text-danger">1 MB</b>.</span>
-                    </li>
-                </ul>
-            </div>
+        <div x-show="isOpen" x-transition class="mt-2 pt-2 border-top border-stroke dark:border-white/5 small text-body">
+          <ul class="mb-0 pl-3 list-disc space-y-1">
+            <li>Klik tombol <b class="text-primary">+ TAMBAH SK</b> untuk mengunggah data baru.</li>
+            <li>Satu sekolah hanya dapat memiliki <b class="text-primary">1 SK aktif</b> untuk kombinasi Tahun, Semester, dan Kriteria yang sama.</li>
+            <li>Format file wajib <b class="text-danger">PDF</b> dengan ukuran maksimal <b class="text-danger">1 MB</b>.</li>
+          </ul>
         </div>
+      </div>
     </div>
 
-    <!-- 2. KARTU FILTER (SK STYLE) -->
-    <div class="sk-card p-4">
-        <div class="flex flex-col md:flex-row items-center gap-4">
-            <div class="flex flex-wrap flex-1 items-center gap-3 w-full">
-                <select id="tugas_filterUnit"
-                    class="sk-form-input !py-2.5 !px-4 !text-sm !w-auto min-w-[250px] disabled:opacity-60"
-                    disabled>
-                    <option value="">- Memvalidasi Akses... -</option>
-                </select>
-                <select id="tugas_filterTahun" class="sk-form-input !py-2.5 !px-4 !text-sm !w-auto min-w-[120px]"></select>
-                <select id="tugas_filterSemester" class="sk-form-input !py-2.5 !px-4 !text-sm !w-auto min-w-[140px]">
-                    <option value="">- Semua Semester -</option>
-                    <option value="Semester 1">Semester 1</option>
-                    <option value="Semester 2">Semester 2</option>
-                </select>
-                <select id="tugas_filterStatus" class="sk-form-input !py-2.5 !px-4 !text-sm !w-auto min-w-[140px]">
-                    <option value="">- Semua Status -</option>
-                    <option value="Diproses">Diproses</option>
-                    <option value="Revisi">Revisi</option>
-                    <option value="OK">Disetujui</option>
-                    <option value="Ditolak">Ditolak</option>
-                </select>
-                <button type="button" id="tugas_btnCari" class="flex h-10 w-10 items-center justify-center rounded-xl sk-bg-section text-primary transition-all border border-gray-100 dark:border-white/5 shadow-sm active:scale-95" title="Refresh Data">
-                    <i class="fab fa-gg"></i>
+    <!-- 2. KARTU FILTER -->
+    <div class="sultan-card p-2 md:p-3 shadow-sm border-l-4 border-l-primary/30">
+        <div class="flex flex-wrap items-center gap-2 md:gap-3">
+            <select id="tugas_filterUnit" class="rounded-xl border border-stroke bg-gray-2 dark:bg-strokedark py-1.5 px-3 text-xs font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark min-w-[200px]" disabled>
+                <option value="">- Memvalidasi Akses... -</option>
+            </select>
+            <select id="tugas_filterTahun" class="rounded-xl border border-stroke bg-transparent py-1.5 px-3 text-xs font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark dark:bg-boxdark min-w-[100px]"></select>
+            <select id="tugas_filterSemester" class="rounded-xl border border-stroke bg-transparent py-1.5 px-3 text-xs font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark dark:bg-boxdark min-w-[140px]">
+                <option value="">- Semua Semester -</option>
+                <option value="Semester 1">Semester 1</option>
+                <option value="Semester 2">Semester 2</option>
+            </select>
+            <select id="tugas_filterStatus" class="rounded-xl border border-stroke bg-transparent py-1.5 px-3 text-xs font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark dark:bg-boxdark min-w-[140px]">
+                <option value="">- Semua Status -</option>
+                <option value="Diproses">Diproses</option>
+                <option value="Revisi">Revisi</option>
+                <option value="OK">Disetujui</option>
+                <option value="Ditolak">Ditolak</option>
+            </select>
+
+            <div class="h-6 w-[1px] bg-stroke dark:bg-white/10 hidden md:block mx-1"></div>
+
+            <button type="button" id="tugas_btnCari" class="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-stroke bg-white text-body hover:text-primary dark:border-strokedark dark:bg-boxdark shadow-sm transition-all" title="Refresh Data">
+                <i class="fab fa-gg"></i>
+            </button>
+
+            <div class="ml-auto flex items-center gap-2">
+                <button type="button" id="tugas_btnTambah" class="inline-flex items-center justify-center gap-2 rounded-xl bg-primary py-2 px-4 text-center text-xs font-bold text-white hover:bg-opacity-90 transition-all shadow-sm disabled:opacity-50" disabled>
+                    <i class="fas fa-plus mr-1"></i> TAMBAH SK
                 </button>
             </div>
-            <button type="button" id="tugas_btnTambah" class="sk-btn sk-btn-primary w-full md:w-auto !py-2.5 !px-8 disabled:opacity-50" disabled>
-                <i class="fas fa-plus mr-2"></i> TAMBAH SK
-            </button>
         </div>
     </div>
 
-    <!-- 3. KARTU TABEL (SK STYLE) -->
-    <div class="sk-card !p-0 overflow-hidden">
-        <div id="tugas_loadingState" class="py-20">
-            <div class="flex flex-col items-center justify-center">
-                <div class="sk-spinner-premium mb-5"></div>
-                <h6 class="sk-loading-text" id="tugas_loadingText">Sinkronisasi Data...</h6>
+    <!-- 3. KARTU TABEL -->
+    <div class="sultan-card overflow-hidden">
+        <div class="p-0">
+            <div id="tugas_loadingState">
+              <div class="flex flex-col items-center justify-center py-20">
+                <div class="h-16 w-16 animate-spin rounded-full border-4 border-solid border-primary border-t-transparent"></div>
+                <h6 class="mt-5 font-bold text-black dark:text-white" id="tugas_loadingText">SINKRONISASI DATA...</h6>
+              </div>
             </div>
-        </div>
-
-        <div id="tugas_tableState" style="display: none;" class="w-full overflow-hidden">
-            <div class="overflow-x-auto sultan-scroll">
-                <table id="tugas_tabelUtama" class="w-full table-auto text-xs bg-transparent sk-table-lead">
-                <thead>
-                    <tr class="sk-bg-section text-left border-b border-gray-100 dark:border-white/5 transition-colors">
-                        <th class="py-2.5 px-6 font-black uppercase text-primary dark:text-[#818CF8] text-center w-[120px] text-sm whitespace-nowrap">Aksi</th>
-                        <th class="py-2.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] text-sm whitespace-nowrap">Unit Kerja</th>
-                        <th class="py-2.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] text-sm whitespace-nowrap">Periode</th>
-                        <th class="py-2.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] text-sm whitespace-nowrap">Detail SK</th>
-                        <th class="py-2.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] text-center text-sm whitespace-nowrap">Berkas</th>
-                        <th class="py-2.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] text-center text-sm whitespace-nowrap">Status</th>
-                        <th class="py-2.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] text-sm whitespace-nowrap">Log Input</th>
-                        <th class="py-2.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] text-sm whitespace-nowrap">Log Update</th>
-                        <th class="py-2.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] text-center text-sm whitespace-nowrap">Verifikasi</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-100 dark:divide-white/5 bg-transparent"></tbody>
+            <div id="tugas_tableState" style="display: none;">
+                <table id="tugas_tabelUtama" class="w-full table-auto border-collapse text-xs">
+                    <thead>
+                        <tr class="bg-gray-2 text-left dark:bg-meta-4">
+                            <th class="py-3 px-4 font-bold text-black dark:text-white text-center" style="width:100px;">AKSI</th>
+                            <th class="py-3 px-4 font-bold text-black dark:text-white">UNIT KERJA</th>
+                            <th class="py-3 px-4 font-bold text-black dark:text-white">PERIODE</th>
+                            <th class="py-3 px-4 font-bold text-black dark:text-white">DETAIL SK</th>
+                            <th class="py-3 px-4 font-bold text-black dark:text-white text-center">BERKAS</th>
+                            <th class="py-3 px-4 font-bold text-black dark:text-white text-center">STATUS</th>
+                            <th class="py-3 px-4 font-bold text-black dark:text-white">LOG INPUT</th>
+                            <th class="py-3 px-4 font-bold text-black dark:text-white">LOG UPDATE</th>
+                            <th class="py-3 px-4 font-bold text-black dark:text-white text-center">VERIFIKASI</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
 
-<!-- 1. MODAL FORM SK (SULTAN STYLE) -->
-<div id="tugas_modalForm" class="fixed inset-0 z-[99999] hidden items-start justify-center sk-modal-overlay overflow-y-auto px-4 pt-12 pb-8">
-    <div class="w-full max-w-fit min-w-[480px] rounded-2xl border sk-modal-box shadow-2xl animate-reveal overflow-hidden">
-        <!-- Header Tambah/Edit (Dynamic Class Injection) -->
-        <div class="sk-modal-header-brand" id="tugas_headerModalForm">
-            <h3 id="tugas_judulModalForm" class="sk-modal-title">
-                <i class="fas fa-file-signature"></i>
-                Form Pengisian SK
-            </h3>
-            <button type="button" class="sk-modal-close" onclick="$('#tugas_modalForm').fadeOut().addClass('hidden').removeClass('flex')">
+<!-- 1. MODAL FORM SK (Sultan v5.7 Executive) -->
+<div id="tugas_modalForm" class="fixed inset-0 z-[99999] hidden items-center justify-center sk-modal-overlay overflow-y-auto px-4 py-8">
+    <div class="w-full max-w-2xl rounded-2xl border-0 bg-white dark:bg-boxdark shadow-2xl animate-reveal overflow-hidden flex flex-col min-h-[500px]">
+        <!-- Header Tambah/Edit -->
+        <div class="px-6 py-4 flex items-center justify-between shadow-md relative z-10" id="tugas_headerModalForm">
+            <div class="flex items-center gap-3 text-white">
+                <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center text-xl">
+                    <i class="fas fa-file-signature"></i>
+                </div>
+                <h3 id="tugas_judulModalForm" class="text-sm font-black uppercase tracking-widest">Form Pengisian SK</h3>
+            </div>
+            <button type="button" class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/10 text-white transition-all" onclick="$('#tugas_modalForm').fadeOut().addClass('hidden').removeClass('flex')">
                 <i class="fas fa-times"></i>
             </button>
         </div>
 
-        <form id="tugas_formUtama" class="p-6">
-            <input type="hidden" id="tugas_inputRowId">
-            <input type="hidden" id="tugas_editRowId">
+            <div id="tugas_formUtama" class="p-6">
+                <input type="hidden" id="tugas_inputRowId">
+                <input type="hidden" id="tugas_editRowId">
 
-            <div class="mb-5 flex items-start gap-4 rounded-xl border border-primary/20 bg-blue-50/80 py-3 px-5 transition-all dark:bg-white/5" id="tugas_alertInfo">
-                <div class="flex h-10 w-10 min-w-[40px] items-center justify-center rounded-lg bg-primary text-white shadow-lg shadow-primary/20 mt-0.5">
-                    <i class="fas fa-info-circle text-lg"></i>
-                </div>
-                <div class="flex-1">
-                    <p class="text-[12px] text-primary/60 font-black uppercase tracking-widest leading-none mb-1.5">Petunjuk Pengisian</p>
-                    <div id="tugas_alertText" class="text-[14px] font-bold text-black dark:text-white leading-relaxed">
-                        Tentukan Sekolah, Tahun, Semester, dan Kriteria untuk memulai pengisian data SK.
+                <!-- Info Alert -->
+                <div class="mb-4 flex items-start gap-4 rounded-xl border border-primary/10 bg-primary/5 py-4 px-5 transition-all" id="tugas_alertInfo">
+                    <div class="flex h-10 w-10 min-w-[40px] items-center justify-center rounded-xl bg-primary text-white shadow-lg shadow-primary/20">
+                        <i class="fas fa-info-circle"></i>
                     </div>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="md:col-span-2">
-                    <label class="sk-form-label">Nama Sekolah <span class="req">*</span></label>
-                    <select id="tugas_inputNamaSd" class="sk-form-input" required>
-                        <option value="">- Memuat Data -</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label class="sk-form-label !text-[13px]">Tahun Ajaran <span class="req">*</span></label>
-                    <select id="tugas_inputTahun" class="sk-form-input !text-sm" required></select>
-                </div>
-
-                <div>
-                    <label class="sk-form-label !text-[13px]">Semester <span class="req">*</span></label>
-                    <select id="tugas_inputSemester" class="sk-form-input !text-sm" required>
-                        <option value="Semester 1">Semester 1</option>
-                        <option value="Semester 2">Semester 2</option>
-                    </select>
-                </div>
-
-                <div class="md:col-span-2">
-                    <label class="sk-form-label">Kriteria SK <span class="req">*</span></label>
-                    <select id="tugas_inputKriteria" class="sk-form-input" required>
-                        <option value="">- Pilih Kriteria -</option>
-                        <option value="Awal Semester">Awal Semester</option>
-                        <option value="Perubahan ke 1">Perubahan ke 1</option>
-                        <option value="Perubahan ke 2">Perubahan ke 2</option>
-                        <option value="Perubahan ke 3">Perubahan ke 3</option>
-                        <option value="Perubahan ke 4">Perubahan ke 4</option>
-                        <option value="Perubahan ke 5">Perubahan ke 5</option>
-                    </select>
-                </div>
-
-                <div id="tugas_areaTerkunci" class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4 opacity-50 transition-opacity">
-                    <div>
-                        <label class="sk-form-label">Nomor SK <span class="req">*</span></label>
-                        <input type="text" id="tugas_inputNoSk" placeholder="Input nomor SK..." class="sk-form-input" required>
-                    </div>
-                    <div>
-                        <label class="sk-form-label">Tanggal SK <span class="req">*</span></label>
-                        <input type="date" id="tugas_inputTglSk" class="sk-form-input" required>
-                    </div>
-
-                    <div class="md:col-span-2 sk-input-card !mt-2">
-                        <label class="mb-3 flex items-center gap-2 text-[11px] font-black uppercase tracking-widest text-gray-400 leading-snug" id="tugas_labelFile">
-                            <i class="fas fa-file-pdf text-danger"></i> Unggah Scan Dokumen Asli (PDF Max 1 MB).
-                        </label>
-                        <div id="tugas_linkFileLama" class="mb-3 hidden">
-                            <button type="button" id="tugas_btnLihatDokumenLama" class="inline-flex items-center gap-2 rounded-lg bg-primary/10 px-3 py-1.5 text-[11px] font-black text-primary border border-primary/20 hover:bg-primary hover:text-white transition-all">
-                                <i class="fas fa-eye"></i> LIHAT DOKUMEN TERSIMPAN
-                            </button>
+                    <div class="flex-1">
+                        <p class="text-[10px] text-primary font-black uppercase tracking-widest leading-none mb-1">Petunjuk Pengisian</p>
+                        <div id="tugas_alertText" class="text-xs font-bold text-black dark:text-white leading-relaxed">
+                            Tentukan Sekolah, Tahun, Semester, dan Kriteria untuk memulai pengisian data SK.
                         </div>
-                        <input type="file" id="tugas_inputFile" accept="application/pdf" class="w-full text-[11px] font-bold text-gray-500 file:mr-4 file:rounded-xl file:border-0 file:bg-primary file:py-2 file:px-4 file:text-[11px] file:font-black file:text-white hover:file:bg-primary/90 transition shadow-sm" />
                     </div>
                 </div>
-            </div>
 
-            <!-- Footer (Universal Alignment) -->
-            <div class="sk-modal-footer">
-                <button type="button" class="sk-btn sk-btn-secondary" onclick="$('#tugas_modalForm').fadeOut().addClass('hidden').removeClass('flex')">
-                    Batal
-                </button>
-                <button type="submit" id="tugas_btnSimpanForm" class="sk-btn sk-btn-primary">
-                    <i class="fas fa-save"></i> Simpan Data
-                </button>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div class="md:col-span-2">
+                        <label class="text-[10px] font-black text-black/50 dark:text-white/50 uppercase tracking-tighter mb-1.5 block px-1">Nama Sekolah <span class="text-danger">*</span></label>
+                        <select id="tugas_inputNamaSd" class="w-full rounded-xl border border-stroke bg-transparent py-2 px-4 text-sm font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark dark:bg-boxdark" required>
+                            <option value="">- Memuat Data -</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="text-[10px] font-black text-black/50 dark:text-white/50 uppercase tracking-tighter mb-1.5 block px-1">Tahun Ajaran <span class="text-danger">*</span></label>
+                        <select id="tugas_inputTahun" class="w-full rounded-xl border border-stroke bg-transparent py-2 px-4 text-sm font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark dark:bg-boxdark" required></select>
+                    </div>
+
+                    <div>
+                        <label class="text-[10px] font-black text-black/50 dark:text-white/50 uppercase tracking-tighter mb-1.5 block px-1">Semester <span class="text-danger">*</span></label>
+                        <select id="tugas_inputSemester" class="w-full rounded-xl border border-stroke bg-transparent py-2 px-4 text-sm font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark dark:bg-boxdark" required>
+                            <option value="Semester 1">Semester 1</option>
+                            <option value="Semester 2">Semester 2</option>
+                        </select>
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <label class="text-[10px] font-black text-black/50 dark:text-white/50 uppercase tracking-tighter mb-1.5 block px-1">Kriteria SK <span class="text-danger">*</span></label>
+                        <select id="tugas_inputKriteria" class="w-full rounded-xl border border-stroke bg-transparent py-2 px-4 text-sm font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark dark:bg-boxdark" required>
+                            <option value="">- Pilih Kriteria -</option>
+                            <option value="Awal Semester">Awal Semester</option>
+                            <option value="Perubahan ke 1">Perubahan ke 1</option>
+                            <option value="Perubahan ke 2">Perubahan ke 2</option>
+                            <option value="Perubahan ke 3">Perubahan ke 3</option>
+                            <option value="Perubahan ke 4">Perubahan ke 4</option>
+                            <option value="Perubahan ke 5">Perubahan ke 5</option>
+                        </select>
+                    </div>
+
+                    <div id="tugas_areaTerkunci" class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-3 opacity-50 transition-opacity">
+                        <div>
+                            <label class="text-[10px] font-black text-black/50 dark:text-white/50 uppercase tracking-tighter mb-1.5 block px-1">Nomor SK <span class="text-danger">*</span></label>
+                            <input type="text" id="tugas_inputNoSk" placeholder="Input nomor SK..." class="w-full rounded-xl border border-stroke bg-transparent py-2 px-4 text-sm font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark dark:bg-boxdark" required>
+                        </div>
+                        <div>
+                            <label class="text-[10px] font-black text-black/50 dark:text-white/50 uppercase tracking-tighter mb-1.5 block px-1">Tanggal SK <span class="text-danger">*</span></label>
+                            <input type="date" id="tugas_inputTglSk" class="w-full rounded-xl border border-stroke bg-transparent py-2 px-4 text-sm font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark dark:bg-boxdark" required>
+                        </div>
+
+                        <div class="md:col-span-2 mt-2">
+                            <label class="text-[10px] font-black text-primary uppercase tracking-widest mb-2 block px-1" id="tugas_labelFile">
+                                <i class="fas fa-file-pdf mr-1"></i> Unggah Scan Dokumen Asli (PDF Max 1 MB)
+                            </label>
+                            <div id="tugas_linkFileLama" class="mb-3 hidden px-1">
+                                <button type="button" id="tugas_btnLihatDokumenLama" class="inline-flex items-center gap-2 rounded-xl bg-primary/10 px-4 py-2 text-xs font-bold text-primary border border-primary/20 hover:bg-primary hover:text-white transition-all">
+                                    <i class="fas fa-eye"></i> LIHAT DOKUMEN TERSIMPAN
+                                </button>
+                            </div>
+                            <input type="file" id="tugas_inputFile" accept="application/pdf" class="w-full rounded-xl border border-stroke bg-transparent py-2 px-4 text-sm font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark dark:bg-boxdark file:mr-4 file:rounded-lg file:border-0 file:bg-primary/10 file:py-1 file:px-3 file:text-xs file:font-bold file:text-primary hover:file:bg-primary/20 transition-all shadow-sm" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="mt-8 flex items-center justify-end gap-3 pt-6 border-t border-stroke dark:border-strokedark">
+                    <button type="button" class="rounded-xl border border-stroke bg-transparent py-2 px-6 text-sm font-bold text-black hover:border-primary dark:border-strokedark dark:text-white transition-all" onclick="$('#tugas_modalForm').fadeOut().addClass('hidden').removeClass('flex')">
+                        Batal
+                    </button>
+                    <button type="button" id="tugas_btnSimpanForm" class="rounded-xl bg-primary py-2 px-8 text-sm font-bold text-white hover:bg-opacity-90 shadow-lg shadow-primary/20 transition-all">
+                        <i class="fas fa-save mr-2"></i> Simpan Data
+                    </button>
+                </div>
             </div>
-        </form>
     </div>
 </div>
 
@@ -580,24 +575,17 @@
 
                 TUGAS_TABEL_INSTANCE = $('#tugas_tabelUtama').DataTable({
                     "destroy": true, "ordering": false, "pageLength": 10, "autoWidth": false,
-                    "deferRender": true, "responsive": false,
-                    "lengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
-                    "dom": "<'flex flex-col md:flex-row justify-between items-center bg-transparent border-b border-gray-100 dark:border-white/5 px-10 py-3'lf>" + 
-                           "<'row'<'col-sm-12'<'overflow-x-auto sultan-scroll !border-none'tr>>>" +
-                           "<'flex flex-col md:flex-row justify-between items-center gap-4 px-10 py-3'<'text-sm font-bold text-gray-500 sultan-dt-info'i><'pagination-wrapper'p>>",
+                    "deferRender": true, 
+                    "dom": '<"px-10 py-3 border-b border-stroke dark:border-strokedark"<"flex items-center justify-between gap-4"l f>>' +
+                           '<"sultan-scroll overflow-x-auto"t>' +
+                           '<"px-10 py-3 border-t border-stroke dark:border-strokedark"<"flex items-center justify-between"i p>>',
                     "columnDefs": [
-                        { "targets": 0, "className": "sultan-content-sync py-2 px-4 text-center", "width": "110px" },
-                        { "targets": [1, 2, 3, 6, 7, 8], "className": "sultan-content-sync py-2 px-4 text-left" },
-                        { "targets": [4, 5], "className": "sultan-content-sync py-2 px-4 text-center" }
+                        { "targets": 0, "width": "1%", "className": "text-center whitespace-nowrap" },
+                        { "targets": [1,6,7], "className": "text-left" }, 
+                        { "targets": [2,3,4,5,8], "className": "text-center" }
                     ],
-                    "language": { 
-                        "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", 
-                        "emptyTable": "Tidak ditemukan data SK.",
-                        "lengthMenu": "Tampilkan _MENU_ entri",
-                        "search": "Cari:",
-                        "searchPlaceholder": "Ketik untuk mencari...",
-                        "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri"
-                    },
+                    "language": { "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", "emptyTable": "Belum ada data SK yang diunggah." }
+                });
                     "drawCallback": function (settings) {
                         $('#tugas_tabelUtama tbody tr').addClass('bg-transparent hover:bg-primary/5 dark:hover:bg-white/5 transition-all cursor-default');
                         $('#tugas_tabelUtama tbody td').css('background-color', 'transparent'); // Force remove DataTables white cell inject

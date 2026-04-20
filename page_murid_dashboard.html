@@ -1,7 +1,7 @@
-<div class="flex flex-col gap-4 md:gap-6 2xl:gap-7.5 animate-reveal">
+<div class="flex flex-col gap-2 md:gap-3 animate-reveal">
     
   <!-- 1. FILTER PERIODE -->
-  <div class="rounded-sm border border-stroke bg-white px-5 py-4 shadow-default dark:border-strokedark dark:bg-boxdark">
+  <div class="sultan-card p-3 shadow-sm">
     <div class="flex flex-wrap items-center justify-center gap-4">
         <div class="flex items-center gap-2">
             <label class="text-sm font-bold text-primary flex items-center gap-2">
@@ -22,16 +22,16 @@
     </div>
   </div>
 
-  <div id="contentDash" class="flex flex-col gap-4 md:gap-6 2xl:gap-7.5">
+  <div id="contentDash" class="flex flex-col gap-2 md:gap-3">
     
     <!-- 2. KONDISI SD -->
-    <div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-2">
         <h3 class="font-bold text-black dark:text-white flex items-center gap-2 pl-1">
             <i class="fas fa-school text-primary"></i> KONDISI BULAN <span id="labelBulanIni" class="uppercase text-primary"></span> (SD)
         </h3>
         <div class="grid grid-cols-1 gap-4 lg:grid-cols-12">
             <!-- Total Card -->
-            <div class="col-span-1 lg:col-span-3 rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark border-l-4 border-l-primary">
+            <div class="col-span-1 lg:col-span-3 sultan-card p-4 md:p-5 border-l-4 border-l-primary shadow-sm hover:translate-y-[-2px] transition-all">
                 <div class="flex h-11.5 w-11.5 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4 mb-4">
                     <i class="fas fa-users text-primary text-xl"></i>
                 </div>
@@ -54,9 +54,9 @@
             </div>
 
             <!-- Grade Breakdown Grid -->
-            <div class="col-span-1 lg:col-span-9 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+            <div class="col-span-1 lg:col-span-9 grid grid-cols-3 md:grid-cols-6 gap-2 md:gap-3">
                 <template x-for="i in [1,2,3,4,5,6]">
-                    <div class="rounded-sm border border-stroke bg-white p-4 shadow-default dark:border-strokedark dark:bg-boxdark flex flex-col items-center justify-center text-center">
+                <div class="sultan-card p-3 shadow-sm flex flex-col items-center justify-center text-center">
                         <span class="text-[10px] font-bold text-body uppercase mb-2">Kelas <span x-text="i"></span></span>
                         <h4 class="text-xl font-bold text-primary mb-2" :id="'sd_k' + i + '_t'">0</h4>
                         <div class="flex gap-2 text-[9px] font-bold text-body">
@@ -67,32 +67,32 @@
                     </div>
                 </template>
                 <!-- Manual fallback because Alpine might not be on the parent -->
-                <div class="rounded-sm border border-stroke bg-white p-4 shadow-default dark:border-strokedark dark:bg-boxdark flex flex-col items-center justify-center text-center">
+                <div class="sultan-card p-3 shadow-sm flex flex-col items-center justify-center text-center">
                     <span class="text-[10px] font-bold text-body uppercase mb-2">Kelas 1</span>
                     <h4 class="text-xl font-bold text-primary mb-2" id="sd_k1_t">0</h4>
                     <div class="flex gap-2 text-[9px] font-bold text-body"><span>N: <b id="sd_k1_n" class="text-black dark:text-white">0</b></span> <span class="text-stroke">|</span> <span>S: <b id="sd_k1_s" class="text-black dark:text-white">0</b></span></div>
                 </div>
-                <div class="rounded-sm border border-stroke bg-white p-4 shadow-default dark:border-strokedark dark:bg-boxdark flex flex-col items-center justify-center text-center">
+                <div class="sultan-card p-3 shadow-sm flex flex-col items-center justify-center text-center">
                     <span class="text-[10px] font-bold text-body uppercase mb-2">Kelas 2</span>
                     <h4 class="text-xl font-bold text-primary mb-2" id="sd_k2_t">0</h4>
                     <div class="flex gap-2 text-[9px] font-bold text-body"><span>N: <b id="sd_k2_n" class="text-black dark:text-white">0</b></span> <span class="text-stroke">|</span> <span>S: <b id="sd_k2_s" class="text-black dark:text-white">0</b></span></div>
                 </div>
-                <div class="rounded-sm border border-stroke bg-white p-4 shadow-default dark:border-strokedark dark:bg-boxdark flex flex-col items-center justify-center text-center">
+                <div class="sultan-card p-3 shadow-sm flex flex-col items-center justify-center text-center">
                     <span class="text-[10px] font-bold text-body uppercase mb-2">Kelas 3</span>
                     <h4 class="text-xl font-bold text-primary mb-2" id="sd_k3_t">0</h4>
                     <div class="flex gap-2 text-[9px] font-bold text-body"><span>N: <b id="sd_k3_n" class="text-black dark:text-white">0</b></span> <span class="text-stroke">|</span> <span>S: <b id="sd_k3_s" class="text-black dark:text-white">0</b></span></div>
                 </div>
-                <div class="rounded-sm border border-stroke bg-white p-4 shadow-default dark:border-strokedark dark:bg-boxdark flex flex-col items-center justify-center text-center">
+                <div class="sultan-card p-3 shadow-sm flex flex-col items-center justify-center text-center">
                     <span class="text-[10px] font-bold text-body uppercase mb-2">Kelas 4</span>
                     <h4 class="text-xl font-bold text-primary mb-2" id="sd_k4_t">0</h4>
                     <div class="flex gap-2 text-[9px] font-bold text-body"><span>N: <b id="sd_k4_n" class="text-black dark:text-white">0</b></span> <span class="text-stroke">|</span> <span>S: <b id="sd_k4_s" class="text-black dark:text-white">0</b></span></div>
                 </div>
-                <div class="rounded-sm border border-stroke bg-white p-4 shadow-default dark:border-strokedark dark:bg-boxdark flex flex-col items-center justify-center text-center">
+                <div class="sultan-card p-3 shadow-sm flex flex-col items-center justify-center text-center">
                     <span class="text-[10px] font-bold text-body uppercase mb-2">Kelas 5</span>
                     <h4 class="text-xl font-bold text-primary mb-2" id="sd_k5_t">0</h4>
                     <div class="flex gap-2 text-[9px] font-bold text-body"><span>N: <b id="sd_k5_n" class="text-black dark:text-white">0</b></span> <span class="text-stroke">|</span> <span>S: <b id="sd_k5_s" class="text-black dark:text-white">0</b></span></div>
                 </div>
-                <div class="rounded-sm border border-stroke bg-white p-4 shadow-default dark:border-strokedark dark:bg-boxdark flex flex-col items-center justify-center text-center">
+                <div class="sultan-card p-3 shadow-sm flex flex-col items-center justify-center text-center">
                     <span class="text-[10px] font-bold text-body uppercase mb-2">Kelas 6</span>
                     <h4 class="text-xl font-bold text-primary mb-2" id="sd_k6_t">0</h4>
                     <div class="flex gap-2 text-[9px] font-bold text-body"><span>N: <b id="sd_k6_n" class="text-black dark:text-white">0</b></span> <span class="text-stroke">|</span> <span>S: <b id="sd_k6_s" class="text-black dark:text-white">0</b></span></div>
@@ -102,13 +102,13 @@
     </div>
 
     <!-- 3. KONDISI PAUD -->
-    <div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-2">
         <h3 class="font-bold text-black dark:text-white flex items-center gap-2 pl-1">
             <i class="fas fa-child text-primary"></i> KONDISI BULAN <span id="labelBulanIniPaud" class="uppercase text-primary"></span> (PAUD)
         </h3>
-        <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div class="grid grid-cols-1 gap-2 sm:grid-cols-3 md:gap-3">
             <!-- TK Card -->
-            <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark border-b-4 border-b-warning">
+            <div class="sultan-card p-3 md:p-4 shadow-sm border-b-4 border-b-warning hover:translate-y-[-2px] transition-all">
                 <div class="flex items-center gap-4">
                     <div class="flex h-11 w-11 items-center justify-center rounded-full bg-warning/10">
                         <i class="fas fa-shapes text-warning text-xl"></i>
@@ -122,7 +122,7 @@
                 </div>
             </div>
             <!-- KB Card -->
-            <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark border-b-4 border-b-success">
+            <div class="sultan-card p-3 md:p-4 shadow-sm border-b-4 border-b-success hover:translate-y-[-2px] transition-all">
                 <div class="flex items-center gap-4">
                     <div class="flex h-11 w-11 items-center justify-center rounded-full bg-success/10">
                         <i class="fas fa-gamepad text-success text-xl"></i>
@@ -136,7 +136,7 @@
                 </div>
             </div>
             <!-- SPS Card -->
-            <div class="rounded-sm border border-stroke bg-white py-4 px-6 shadow-default dark:border-strokedark dark:bg-boxdark border-b-4 border-b-meta-5">
+            <div class="sultan-card p-3 md:p-4 shadow-sm border-b-4 border-b-meta-5 hover:translate-y-[-2px] transition-all">
                 <div class="flex items-center gap-4">
                     <div class="flex h-11 w-11 items-center justify-center rounded-full bg-meta-5/10">
                         <i class="fas fa-baby text-meta-5 text-xl"></i>
@@ -153,13 +153,13 @@
     </div>
 
     <!-- 4. TREND CHART -->
-    <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark overflow-hidden">
-        <div class="border-b border-stroke py-4 px-6.5 dark:border-strokedark flex items-center justify-between">
+    <div class="sultan-card overflow-hidden">
+        <div class="border-b border-gray-100 dark:border-white/5 py-3 px-5 flex items-center justify-between">
             <h3 class="font-bold text-black dark:text-white flex items-center gap-2">
                 <i class="fas fa-chart-area text-primary"></i> Tren Tahunan <span id="labelTahunGrafik"></span>
             </h3>
         </div>
-        <div class="p-6.5">
+        <div class="p-4 md:p-6">
             <div class="chart h-[350px]">
                 <canvas id="chartMurid"></canvas>
             </div>

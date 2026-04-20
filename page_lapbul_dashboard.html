@@ -1,6 +1,6 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 
-<div class="flex flex-col gap-4 md:gap-6 2xl:gap-7.5 animate-reveal">
+<div class="flex flex-col gap-2 md:gap-3 animate-reveal">
     
   <!-- PAGE HEADER (SULTAN SYNC) -->
   <div class="mb-2 flex flex-col">
@@ -52,7 +52,7 @@
   </style>
 
   <!-- 1. FILTER BAR (SULTAN BLUEPRINT MODEL) -->
-  <div class="sultan-card p-4 shadow-sm">
+  <div class="sultan-card p-3 shadow-sm">
     <div class="flex flex-wrap items-center gap-3">
         <!-- Filter Tahun -->
         <div class="relative w-full sm:w-auto">
@@ -78,7 +78,7 @@
     </div>
   </div>
 
-  <div id="dashlapbul_contentDash" class="flex flex-col gap-4 md:gap-6 2xl:gap-7.5">
+  <div id="dashlapbul_contentDash" class="flex flex-col gap-2 md:gap-3">
     <!-- 2. KPI METRICS (Jenjang) -->
     <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
         <div class="col-span-1 dashlapbul-stat-col" data-jenjang="sd"></div>
@@ -88,7 +88,7 @@
     </div>
 
     <!-- 3. BELUM LAPOR LISTS -->
-    <div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-2">
         <div class="flex items-center justify-between">
             <h3 class="font-black text-black dark:text-white flex items-center gap-2 text-sm uppercase tracking-widest">
                 <i class="fas fa-exclamation-triangle text-danger"></i> Daftar Sekolah Belum Lapor
@@ -116,7 +116,7 @@
                 </div>
                 <span class="inline-flex rounded-full bg-primary/10 py-1 px-3 text-[10px] font-bold text-primary animate-pulse">LIVE SINKRONISASI</span>
             </div>
-            <div class="p-6">
+            <div class="p-3 md:p-4.5">
                 <div id="dashlapbul_chartBarWrapper" style="height: 320px; width: 100%;">
                     <canvas id="dashlapbul_chartLapbul"></canvas>
                 </div>
@@ -128,7 +128,7 @@
             <div class="border-b border-gray-100 py-4 px-6 dark:border-gray-800 bg-gray-50/30 dark:bg-black/10">
                 <h3 class="font-bold text-sm text-black dark:text-white uppercase tracking-widest">Proporsi Total Status</h3>
             </div>
-            <div class="p-6">
+            <div class="p-3 md:p-4.5">
                 <div id="dashlapbul_chartPieWrapper" class="relative mb-6 h-[180px]">
                     <canvas id="dashlapbul_chartTotalStatus"></canvas>
                 </div>
@@ -330,7 +330,7 @@ function dashlapbul_processResponse(res) {
 function dashlapbul_renderSkeleton() {
     $('.dashlapbul-stat-col').each(function() {
         $(this).html(`
-            <div class="sultan-card p-6 shadow-sm animate-pulse">
+            <div class="sultan-card p-3 md:p-4.5 shadow-sm animate-pulse">
                 <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-gray-100 dark:bg-gray-800 mb-4 scale-95 opacity-50"></div>
                 <div class="h-6 w-20 bg-gray-100 dark:bg-gray-800 mb-2 rounded-lg opacity-40"></div>
                 <div class="h-4 w-32 bg-gray-100 dark:bg-gray-800 rounded-lg opacity-30"></div>
@@ -366,7 +366,7 @@ function dashlapbul_renderStatsCards() {
         var d = DASHLAPBUL_DASH_DATA[j];
         
         var html = `
-            <div class="sultan-card sk-glass-card ${glassTypes[j]} p-4 md:p-6 hover:translate-y-[-4px] cursor-pointer" onclick="dashlapbul_bukaModalList('${j}')">
+            <div class="sultan-card sk-glass-card ${glassTypes[j]} p-3 md:p-4.5 hover:translate-y-[-4px] cursor-pointer" onclick="dashlapbul_bukaModalList('${j}')">
                 <div class="flex h-11 w-11 items-center justify-center rounded-xl ${iconColors[j]} mb-3.5 shadow-sm border border-black/5 dark:border-white/5">
                     <i class="fas ${statIcons[j]} text-lg"></i>
                 </div>
