@@ -1,11 +1,14 @@
-<div class="animate-reveal flex flex-col gap-1">
-  <!-- Content Header -->
-  <div class="flex items-center justify-between px-1">
-    <div class="flex items-center gap-2">
-      <i class="fas fa-file-invoice text-primary"></i>
-      <h1 class="text-sm font-bold text-black dark:text-white uppercase tracking-wider">Kelola Data Laporan Bulan</h1>
+<div class="sultan-container-executive">
+    
+    <!-- PAGE HEADER (SULTAN EXECUTIVE) -->
+    <div class="mb-2 flex flex-col px-1">
+        <h1 class="sultan-title-executive">
+            Kelola Data Laporan Bulan
+        </h1>
+        <p class="sultan-subtitle-executive">
+            Pantau progres unggahan, validasi dokumen, dan manajemen arsip laporan bulanan satuan pendidikan.
+        </p>
     </div>
-  </div>
 
     <!-- 1. KARTU INFORMASI -->
     <div class="sultan-card mb-0 px-1" x-data="{ isOpen: false }">
@@ -75,16 +78,16 @@
             <div id="lapbulkelola_tableState" style="display: none;">
                 <table id="lapbulkelola_tabelUtama" class="w-full table-auto border-collapse text-xs">
                     <thead>
-                        <tr class="bg-gray-2 text-left dark:bg-meta-4">
-                            <th class="py-3 px-4 font-bold text-black dark:text-white text-center" style="width:100px;">AKSI</th>
-                            <th class="py-3 px-4 font-bold text-black dark:text-white">UNIT KERJA</th>
-                            <th class="py-3 px-4 font-bold text-black dark:text-white text-center">PERIODE</th>
-                            <th class="py-3 px-4 font-bold text-black dark:text-white text-center">ROMBEL</th>
-                            <th class="py-3 px-4 font-bold text-black dark:text-white text-center">BERKAS</th>
-                            <th class="py-3 px-4 font-bold text-black dark:text-white text-center">STATUS</th>
-                            <th class="py-3 px-4 font-bold text-black dark:text-white">LOG INPUT</th>
-                            <th class="py-3 px-4 font-bold text-black dark:text-white">LOG UPDATE</th>
-                            <th class="py-3 px-4 font-bold text-black dark:text-white text-center">VERIFIKASI</th>
+                        <tr class="sultan-thead-executive">
+                            <th class="sultan-th-executive text-center" style="width:100px;">AKSI</th>
+                            <th class="sultan-th-executive">UNIT KERJA</th>
+                            <th class="sultan-th-executive text-center">PERIODE</th>
+                            <th class="sultan-th-executive text-center">ROMBEL</th>
+                            <th class="sultan-th-executive text-center">BERKAS</th>
+                            <th class="sultan-th-executive text-center">STATUS</th>
+                            <th class="sultan-th-executive text-center">LOG INPUT</th>
+                            <th class="sultan-th-executive text-center">LOG UPDATE</th>
+                            <th class="sultan-th-executive text-center">VERIFIKASI</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
