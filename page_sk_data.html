@@ -190,35 +190,27 @@
                             <label class="text-[10px] font-black text-black/50 dark:text-white/50 uppercase tracking-tighter mb-1.5 block px-1">Nomor SK <span class="text-danger">*</span></label>
                             <input type="text" id="tugas_inputNoSk" placeholder="Input nomor SK..." class="w-full rounded-xl border border-stroke bg-transparent py-2 px-4 text-sm font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark dark:bg-boxdark" required>
                         </div>
-                        <div>
-                            <label class="text-[10px] font-black text-black/50 dark:text-white/50 uppercase tracking-tighter mb-1.5 block px-1">Tanggal SK <span class="text-danger">*</span></label>
-                            <input type="date" id="tugas_inputTglSk" class="w-full rounded-xl border border-stroke bg-transparent py-2 px-4 text-sm font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark dark:bg-boxdark" required>
+                        <label class="sk-form-label !mb-2">Berkas Pendukung (PDF)</label>
+                        <div id="tugas_linkFileLama" class="mb-3 hidden">
+                            <button type="button" id="tugas_btnLihatDokumenLama" class="sms-btn sms-btn-ghost !h-7 !px-3 !text-[10px]">
+                                <i class="fas fa-eye"></i> LIHAT DOKUMEN TERSIMPAN
+                            </button>
                         </div>
-
-                        <div class="md:col-span-2 mt-2">
-                            <label class="text-[10px] font-black text-primary uppercase tracking-widest mb-2 block px-1" id="tugas_labelFile">
-                                <i class="fas fa-file-pdf mr-1"></i> Unggah Scan Dokumen Asli (PDF Max 1 MB)
-                            </label>
-                            <div id="tugas_linkFileLama" class="mb-3 hidden px-1">
-                                <button type="button" id="tugas_btnLihatDokumenLama" class="inline-flex items-center gap-2 rounded-xl bg-primary/10 px-4 py-2 text-xs font-bold text-primary border border-primary/20 hover:bg-primary hover:text-white transition-all">
-                                    <i class="fas fa-eye"></i> LIHAT DOKUMEN TERSIMPAN
-                                </button>
-                            </div>
-                            <input type="file" id="tugas_inputFile" accept="application/pdf" class="w-full rounded-xl border border-stroke bg-transparent py-2 px-4 text-sm font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark dark:bg-boxdark file:mr-4 file:rounded-lg file:border-0 file:bg-primary/10 file:py-1 file:px-3 file:text-xs file:font-bold file:text-primary hover:file:bg-primary/20 transition-all shadow-sm" />
-                        </div>
+                        <input type="file" id="tugas_inputFile" accept="application/pdf" class="sms-input-premium w-full !h-auto !py-2" />
                     </div>
                 </div>
-
-                <!-- Footer -->
-                <div class="mt-8 flex items-center justify-end gap-3 pt-6 border-t border-stroke dark:border-strokedark">
-                    <button type="button" class="rounded-xl border border-stroke bg-transparent py-2 px-6 text-sm font-bold text-black hover:border-primary dark:border-strokedark dark:text-white transition-all" onclick="$('#tugas_modalForm').fadeOut().addClass('hidden').removeClass('flex')">
-                        Batal
-                    </button>
-                    <button type="button" id="tugas_btnSimpanForm" class="rounded-xl bg-primary py-2 px-8 text-sm font-bold text-white hover:bg-opacity-90 shadow-lg shadow-primary/20 transition-all">
-                        <i class="fas fa-save mr-2"></i> Simpan Data
-                    </button>
-                </div>
             </div>
+
+            <!-- Footer -->
+            <div class="sk-modal-footer">
+                <button type="button" class="sms-btn sms-btn-ghost" onclick="$('#tugas_modalForm').fadeOut().addClass('hidden').removeClass('flex')">
+                    Batal
+                </button>
+                <button type="submit" id="tugas_btnSimpanForm" class="sms-btn sms-btn-primary">
+                    <i class="fas fa-save"></i> Simpan Data
+                </button>
+            </div>
+        </form>
     </div>
 </div>
 
@@ -248,11 +240,10 @@
 
         <!-- Form Area (Right - Compact 360px) -->
         <div class="w-full md:w-[360px] flex flex-col sk-modal-panel-right relative">
-            <!-- Modal Header (Standardized Green for Verification) -->
-            <div class="sk-modal-header-brand sk-modal-header-success">
+            <!-- Modal Header -->
+            <div class="sk-modal-header sk-modal-header-success">
                 <h3 class="sk-modal-title">
-                    <i class="fas fa-check-double"></i>
-                    Verifikasi SK Tugas
+                    <i class="fas fa-check-double"></i> Verifikasi SK Tugas
                 </h3>
                 <button type="button" class="sk-modal-close" onclick="$('#tugas_modalVerif').fadeOut().addClass('hidden').removeClass('flex')">
                     <i class="fas fa-times"></i>
@@ -372,11 +363,10 @@
 <div id="tugas_modalHapus" class="fixed inset-0 z-[99999] hidden items-start justify-center sk-modal-overlay overflow-y-auto px-4 pt-20 pb-8">
     <div class="w-full max-w-[520px] rounded-3xl border sk-modal-box shadow-2xl animate-reveal overflow-hidden">
 
-        <!-- Header Hapus (Standardized Red for Danger) -->
-        <div class="sk-modal-header-brand sk-modal-header-danger">
+        <!-- Header Hapus -->
+        <div class="sk-modal-header sk-modal-header-danger">
             <h3 class="sk-modal-title">
-                <i class="fas fa-trash-alt"></i>
-                Hapus Data SK
+                <i class="fas fa-trash-alt"></i> Hapus Data SK
             </h3>
             <button type="button" class="sk-modal-close" onclick="$('#tugas_modalHapus').fadeOut().addClass('hidden').removeClass('flex')">
                 <i class="fas fa-times"></i>
