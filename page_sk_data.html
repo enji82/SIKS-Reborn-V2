@@ -1,17 +1,17 @@
-<div class="sultan-container-executive">
+<div class="sms-layout-root">
     
     <!-- PAGE HEADER (SULTAN EXECUTIVE) -->
-    <div class="mb-2 flex flex-col px-1">
-        <h1 class="sultan-title-executive">
+    <header class="sms-header-group">
+        <h1 class="sms-header-title">
             Kelola Data SK
         </h1>
-        <p class="sultan-subtitle-executive">
+        <p class="sms-header-subtitle">
             Pantau progres, validasi dokumen, dan kelola arsip pembagian tugas satuan pendidikan.
         </p>
-    </div>
+    </header>
 
     <!-- 1. KARTU INFORMASI -->
-    <div class="sultan-card group mb-0" x-data="{ isOpen: false }">
+    <div class="sms-table-card mb-0 border-l-4 border-l-primary/50" x-data="{ isOpen: false }">
       <div class="py-2 px-3 border-l-4 border-l-primary/50">
         <div class="flex items-center justify-between cursor-pointer" @click="isOpen = !isOpen">
           <div class="flex items-center text-primary font-black text-xs uppercase tracking-widest">
@@ -30,7 +30,7 @@
     </div>
 
     <!-- 2. KARTU FILTER -->
-    <div class="sultan-card p-2 md:p-3 shadow-sm border-l-4 border-l-primary/30 mb-4">
+    <div class="sms-table-card p-2 md:p-3 shadow-sm border-l-4 border-l-primary/30 mb-4">
         <div class="flex flex-wrap items-center gap-2 md:gap-3">
             <select id="tugas_filterUnit" class="rounded-xl border border-stroke bg-gray-2 dark:bg-strokedark py-1.5 px-3 text-xs font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark min-w-[200px]" disabled>
                 <option value="">- Memvalidasi Akses... -</option>
@@ -64,7 +64,7 @@
     </div>
 
     <!-- 3. KARTU TABEL -->
-    <div class="sultan-card overflow-hidden">
+    <div class="sms-table-card">
         <div class="p-0">
             <div id="tugas_loadingState">
               <div class="flex flex-col items-center justify-center py-20">
@@ -75,16 +75,16 @@
             <div id="tugas_tableState" style="display: none;">
                 <table id="tugas_tabelUtama" class="w-full table-auto border-collapse text-xs">
                     <thead>
-                        <tr class="sultan-thead-executive">
-                            <th class="sultan-th-executive text-center" style="width:120px;">AKSI</th>
-                            <th class="sultan-th-executive">UNIT KERJA</th>
-                            <th class="sultan-th-executive text-center">PERIODE</th>
-                            <th class="sultan-th-executive text-center">DETAIL SK</th>
-                            <th class="sultan-th-executive text-center">BERKAS</th>
-                            <th class="sultan-th-executive text-center">STATUS</th>
-                            <th class="sultan-th-executive text-center">LOG INPUT</th>
-                            <th class="sultan-th-executive text-center">LOG UPDATE</th>
-                            <th class="sultan-th-executive text-center">VERIFIKASI</th>
+                        <tr class="sms-thead-executive">
+                            <th class="sms-th-executive text-center" style="width:120px;">AKSI</th>
+                            <th class="sms-th-executive">UNIT KERJA</th>
+                            <th class="sms-th-executive text-center">PERIODE</th>
+                            <th class="sms-th-executive text-center">DETAIL SK</th>
+                            <th class="sms-th-executive text-center">BERKAS</th>
+                            <th class="sms-th-executive text-center">STATUS</th>
+                            <th class="sms-th-executive text-center">LOG INPUT</th>
+                            <th class="sms-th-executive text-center">LOG UPDATE</th>
+                            <th class="sms-th-executive text-center">VERIFIKASI</th>
                         </tr>
                     </thead>
                     <tbody></tbody>

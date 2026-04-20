@@ -280,51 +280,72 @@ body {
 .sk-title-underline { width: 40px; height: 3px; background: var(--warna-utama); border-radius: 2px; margin-top: 0.5rem; }
 
 /* 
-   SULTAN EXECUTIVE FRAMEWORK (v1.0) 
-   Centralized authority for SIKS-Reborn-V2 Professional Aesthetics
+   ======================================================================
+   SULTAN MASTER SYSTEM (SMS) v6.0 - THE EXECUTIVE CORE
+   Prefix: sms- | Purpose: Global Design Authority & Maintenance
+   ======================================================================
 */
-.sultan-container-executive {
+
+/* 1. ROOT LAYOUT & ANIMATION */
+.sms-layout-root {
     display: flex; flex-direction: column; gap: 1.5rem !important;
-    animation: reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: sms-reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.sultan-title-executive {
+@keyframes sms-reveal {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 2. HEADER COMPONENT (PRO-LEVEL TYPOGRAPHY) */
+.sms-header-group { display: flex; flex-direction: column; padding-left: 0.25rem; margin-bottom: 0.5rem; }
+.sms-header-title {
     font-size: 1.875rem !important; /* text-3xl */
     font-weight: 900 !important;
     color: #1C2434 !important;
     letter-spacing: -0.025em !important;
     line-height: 1.2 !important;
 }
-.dark .sultan-title-executive { color: #FFFFFF !important; }
+.dark .sms-header-title { color: #FFFFFF !important; }
 
-.sultan-subtitle-executive {
-    font-size: 0.875rem !important; /* text-sm */
+.sms-header-subtitle {
+    font-size: 0.875rem !important;
     font-weight: 500 !important;
-    color: rgba(100, 116, 139, 0.8) !important; /* Muted Slate */
+    color: rgba(100, 116, 139, 0.9) !important;
     line-height: 1.6 !important;
     margin-top: 0.25rem !important;
 }
-.dark .sultan-subtitle-executive { color: rgba(222, 228, 238, 0.6) !important; }
+.dark .sms-header-subtitle { color: rgba(222, 228, 238, 0.7) !important; }
 
-.sultan-thead-executive {
+/* 3. TABLE COMPONENT (SEAMLESS EXECUTIVE) */
+.sms-table-card {
+    background-color: var(--sk-surface);
+    border-radius: 1rem;
+    border: 1px solid var(--sk-border);
+    overflow: hidden;
+    box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.05);
+    margin-bottom: 1.5rem;
+}
+
+.sms-thead-executive {
     background-color: #F7F9FC !important; /* bg-gray-2 */
     border-bottom: 1px solid var(--sk-border) !important;
 }
-.dark .sultan-thead-executive {
+.dark .sms-thead-executive {
     background-color: rgba(255, 255, 255, 0.05) !important;
     border-bottom-color: rgba(255, 255, 255, 0.05) !important;
 }
 
-.sultan-th-executive {
+.sms-th-executive {
     padding: 1rem 1rem !important;
     font-weight: 900 !important;
-    color: #64748B !important; /* Slate-500 */
+    color: #64748B !important;
     text-transform: uppercase !important;
     letter-spacing: 0.1em !important;
     font-size: 11px !important;
     text-align: left;
 }
-.dark .sultan-th-executive { color: #94A3B8 !important; }
+.dark .sms-th-executive { color: #94A3B8 !important; }
 
 /* Section Title (Unified) */
 .sk-section-title { 
