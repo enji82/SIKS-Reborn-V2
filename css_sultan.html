@@ -4052,11 +4052,11 @@ body, h1, h2, h3, h4, h5, h6, th, td, input, select, textarea, button, p, span:n
 
 /* 1. SECTION TITLE (Standardized Underline) */
 .sk-section-title {
-    font-size: 0.6875rem; 
+    font-size: 0.75rem; 
     font-weight: 800; 
     color: var(--sk-primary); 
     text-transform: uppercase; 
-    letter-spacing: 0.2em;
+    letter-spacing: 0.15em;
     padding-bottom: 4px;
     border-bottom: 2px solid var(--sk-primary);
     width: fit-content;
@@ -4113,40 +4113,70 @@ body, h1, h2, h3, h4, h5, h6, th, td, input, select, textarea, button, p, span:n
 }
 .sk-form-input:focus { border-color: var(--sk-primary) !important; box-shadow: 0 0 0 3px rgba(60, 80, 224, 0.1) !important; }
 
-/* 5. DATATABLE UTILITIES SYNC (v4.6 High-Fidelity) */
-.dataTables_wrapper .flex { padding-top: 1rem; padding-bottom: 1rem; }
+/* 5. UNIVERSAL TABLE ENGINE (v5.0 Structural Blueprint) */
+.sk-table-lead { width: 100%; border-collapse: collapse; background: transparent; }
 
-/* Universal Table Header Sync */
-.sk-table-th {
-    font-size: 0.9375rem !important; /* 15px */
+/* Thead v5.0 Standard */
+.sk-table-lead thead tr {
+    background: var(--sk-bg-section) !important;
+    border-bottom: 1px solid var(--sk-border);
+    transition: background 0.2s;
+}
+
+.sk-table-lead th {
+    padding: 10px 12px !important;
+    font-size: 0.875rem !important; /* 14px */
     font-weight: 900 !important;
     color: var(--sk-primary) !important;
     text-transform: uppercase !important;
     letter-spacing: 0.05em !important;
-    padding-top: 12px !important;
-    padding-bottom: 12px !important;
+    white-space: nowrap;
 }
 
-/* Universal Table Content Hierarchy */
-.sk-table-primary-text {
+.dark .sk-table-lead th { color: #818CF8 !important; }
+
+/* Tbody v5.0 Standard */
+.sk-table-lead td {
+    padding: 10px 12px !important;
+    vertical-align: middle;
+    transition: all 0.2s;
+}
+
+/* Typography Hierarchy inside sk-table-lead */
+.sk-table-lead .primary-text {
     font-size: 0.9375rem !important; /* 15px */
     font-weight: 900 !important;
     color: var(--sk-text) !important;
-    line-height: 1.2 !important;
+    display: block;
+    line-height: 1.2;
 }
 
-.sk-table-secondary-text {
+.sk-table-lead .secondary-text {
     font-size: 0.75rem !important; /* 12px */
     font-weight: 700 !important;
     color: #64748B !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.05em !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-top: 2px;
 }
-.dark .sk-table-secondary-text { color: #94A3B8 !important; }
+.dark .sk-table-lead .secondary-text { color: #94A3B8 !important; }
 
-.sk-table-highlight {
+.sk-table-lead .highlight-text {
     color: var(--sk-primary) !important;
     font-weight: 900 !important;
+    text-transform: uppercase;
+}
+.dark .sk-table-lead .highlight-text { color: #818CF8 !important; }
+
+/* Filter Grid Wrapper Sync */
+.sk-filter-grid {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+    align-items: center;
+    gap: 0.75rem; /* 12px matching SK blueprint */
+    width: 100%;
 }
 
 .dataTables_wrapper .dataTables_info, .dataTables_wrapper .sultan-dt-info {

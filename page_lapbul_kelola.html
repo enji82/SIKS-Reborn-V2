@@ -1,60 +1,47 @@
-<div class="flex flex-col gap-4 md:gap-6 2xl:gap-7.5 animate-reveal">
+<div class="flex flex-col gap-4 animate-reveal">
     
-  <!-- PAGE HEADER (SULTAN BLUEPRINT v4.5) -->
-  <div class="mb-6 flex flex-col items-start border-b border-gray-100 dark:border-white/10 pb-6">
+    <!-- PAGE HEADER (v5.0 Structural Sync) -->
+    <div class="mb-2 flex flex-col">
         <h1 class="sultan-title-sync text-black dark:text-white">
             Kelola Data Laporan Bulan
         </h1>
-        <div class="sk-title-underline"></div>
-        <p class="sk-section-title mt-4 !border-none !pb-0 !mb-0">
+        <p class="sk-section-title mt-1">
             Pengelolaan & Validasi Laporan Bulanan Satuan Pendidikan
         </p>
-  </div>
-
-  <!-- CUSTOM MODULE ACCENTS (SYNC) -->
-  <style>
-    :root {
-        --sk-primary: #3c50e0; 
-        --sk-primary-hover: #2d3bb1;
-    }
-  </style>
-
-  <!-- 1. KARTU INFORMASI (OPERATIONAL GUIDE) -->
-  <div class="sk-card !p-0 overflow-hidden mb-6" x-data="{ isOpen: false }">
-    <div class="sk-card-header cursor-pointer hover:bg-gray-100 dark:hover:bg-white/10 transition-colors h-[52px]" @click="isOpen = !isOpen">
-        <h3 class="font-bold text-black dark:text-white flex items-center gap-2 text-sm uppercase tracking-[0.1em]">
-            <i class="fas fa-info-circle text-primary"></i> Panduan Pengisian
-        </h3>
-        <i class="fas fa-chevron-down text-gray-400 text-sm transition-transform" :class="{ 'rotate-180': isOpen }"></i>
     </div>
-    <div x-show="isOpen" x-transition x-cloak class="p-4 border-t border-gray-100 dark:border-white/5 bg-gray-50/50 dark:bg-boxdark">
-        <div class="rounded-xl border border-primary/20 bg-blue-50/80 dark:bg-white/5 p-6 shadow-inner">
-            <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-                <li class="flex gap-4 text-[14px] font-bold text-gray-900 dark:text-gray-100 items-start">
-                    <span class="flex h-6 w-6 min-w-[24px] items-center justify-center rounded-full bg-primary text-[12px] font-bold text-white shadow-sm">1</span>
-                    <span>Laporan wajib diunggah sebelum <b class="text-primary dark:text-[#818CF8]">tanggal 10</b> setiap bulannya untuk tertib administrasi.</span>
-                </li>
-                <li class="flex gap-4 text-[14px] font-bold text-gray-900 dark:text-gray-100 items-start">
-                    <span class="flex h-6 w-6 min-w-[24px] items-center justify-center rounded-full bg-primary text-[12px] font-bold text-white shadow-sm">2</span>
-                    <span>Format dokumen wajib <b class="text-danger">PDF</b> dengan kapasitas maksimal <b class="text-danger">1 MB</b> per berkas.</span>
-                </li>
-                <li class="flex gap-4 text-[14px] font-bold text-gray-900 dark:text-gray-100 items-start">
-                    <span class="flex h-6 w-6 min-w-[24px] items-center justify-center rounded-full bg-primary text-[12px] font-bold text-white shadow-sm">3</span>
-                    <span>Gunakan fitur <b class="text-primary">Auto-Filter</b> untuk mempercepat pencarian data berdasarkan Bulan dan Status.</span>
-                </li>
-                <li class="flex gap-4 text-[14px] font-bold text-gray-900 dark:text-gray-100 items-start">
-                    <span class="flex h-6 w-6 min-w-[24px] items-center justify-center rounded-full bg-primary text-[12px] font-bold text-white shadow-sm">4</span>
-                    <span>Gunakan tombol <span class="text-danger font-bold"><i class="fas fa-comment-dots"></i> BACA CATATAN</span> pada kolom status untuk umpan balik revisi.</span>
-                </li>
-            </ul>
+
+    <!-- 1. KARTU INFORMASI (Boilerplate Sync) -->
+    <div class="sk-card !p-0 overflow-hidden" x-data="{ isOpen: false }">
+        <div class="sk-card-header cursor-pointer hover:bg-gray-100 dark:hover:bg-white/10 transition-colors" @click="isOpen = !isOpen">
+            <h3 class="font-black text-black dark:text-white flex items-center gap-2 text-sm uppercase tracking-[0.1em]">
+                <i class="fas fa-info-circle text-primary"></i> Panduan Pengisian
+            </h3>
+            <i class="fas fa-chevron-down text-gray-400 text-sm transition-transform" :class="{ 'rotate-180': isOpen }"></i>
+        </div>
+        <div x-show="isOpen" x-transition x-cloak class="p-4 border-t border-gray-100 dark:border-white/5 bg-gray-50/50 dark:bg-boxdark">
+            <div class="rounded-xl border border-primary/20 bg-blue-50/80 dark:bg-white/5 p-5">
+                <ul class="space-y-4">
+                    <li class="flex gap-4 text-[14px] font-bold text-gray-900 dark:text-gray-100 items-start">
+                        <span class="flex h-6 w-6 min-w-[24px] items-center justify-center rounded-full bg-primary text-[12px] font-black text-white shadow-sm">1</span>
+                        <span>Laporan wajib diunggah sebelum <b class="text-primary dark:text-[#818CF8]">tanggal 10</b> setiap bulannya untuk tertib administrasi.</span>
+                    </li>
+                    <li class="flex gap-4 text-[14px] font-bold text-gray-900 dark:text-gray-100 items-start">
+                        <span class="flex h-6 w-6 min-w-[24px] items-center justify-center rounded-full bg-primary text-[12px] font-black text-white shadow-sm">2</span>
+                        <span>Format dokumen wajib <b class="text-danger">PDF</b> dengan kapasitas maksimal <b class="text-danger">1 MB</b> per berkas.</span>
+                    </li>
+                    <li class="flex gap-4 text-[14px] font-bold text-gray-900 dark:text-gray-100 items-start">
+                        <span class="flex h-6 w-6 min-w-[24px] items-center justify-center rounded-full bg-primary text-[12px] font-black text-white shadow-sm">3</span>
+                        <span>Gunakan fitur <b class="text-primary">Auto-Filter</b> untuk mempercepat pencarian data berdasarkan Bulan dan Status.</span>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
-  </div>
 
-  <!-- 2. KARTU FILTER (SK STYLE) -->
-  <div class="sk-card p-4">
-      <div class="flex flex-col md:flex-row items-center gap-4">
-          <div class="flex flex-wrap flex-1 items-center gap-3 w-full">
+    <!-- 2. KARTU FILTER (v5.0 Flex Grid Sync) -->
+    <div class="sk-card p-4">
+        <div class="flex flex-col md:flex-row items-center gap-4">
+            <div class="sk-filter-grid">
                 <select id="lapbulkelola_filterJenjang" class="sk-form-input !py-2.5 !px-4 !text-sm !w-auto min-w-[150px]">
                     <option value="">- Semua Jenjang -</option>
                     <option value="SD">SD (Negeri/Swasta)</option>
@@ -81,37 +68,38 @@
             <button type="button" id="lapbulkelola_btnTambah" class="sk-btn sk-btn-primary w-full md:w-auto !py-2.5 !px-8 disabled:opacity-50">
                 <i class="fas fa-plus mr-2"></i> TAMBAH DATA
             </button>
-      </div>
-  </div>
+        </div>
+    </div>
 
-      <!-- Loading State: Sultan Premium Skeleton -->
-      <div id="lapbulkelola_loadingState" class="py-20 animate-reveal">
-          <div class="flex flex-col items-center justify-center">
-              <div class="sk-spinner-premium mb-5"></div>
-              <h6 class="sk-loading-text">Sinkronisasi Data...</h6>
-          </div>
-      </div>
+    <!-- 3. KARTU TABEL (v5.0 Universal Engine) -->
+    <div class="sk-card !p-0 overflow-hidden">
+        <div id="lapbulkelola_loadingState" class="py-20 animate-reveal">
+            <div class="flex flex-col items-center justify-center">
+                <div class="sk-spinner-premium mb-5"></div>
+                <h6 class="sk-loading-text">Sinkronisasi Data...</h6>
+            </div>
+        </div>
 
-      <!-- Table State -->
-      <div id="lapbulkelola_tableState" style="display: none;" class="w-full">
-          <div class="overflow-x-auto sultan-scroll">
-              <table id="lapbulkelola_tabelUtama" class="w-full table-auto text-xs bg-transparent border-collapse">
-                  <thead>
-                       <tr class="sk-bg-section border-b border-gray-100 dark:border-white/5">
-                           <th class="sk-table-th text-center w-[110px] whitespace-nowrap">Aksi</th>
-                           <th class="sk-table-th whitespace-nowrap text-left">Unit Kerja</th>
-                           <th class="sk-table-th whitespace-nowrap text-left">Periode</th>
-                           <th class="sk-table-th whitespace-nowrap text-center">Rombel</th>
-                           <th class="sk-table-th whitespace-nowrap text-center">Dokumen</th>
-                           <th class="sk-table-th whitespace-nowrap text-left">Status</th>
-                           <th class="sk-table-th whitespace-nowrap text-left">Linimasa</th>
-                       </tr>
-
-                  </thead>
-                  <tbody class="divide-y divide-gray-100 dark:divide-white/5"></tbody>
-              </table>
-          </div>
-      </div>
+        <div id="lapbulkelola_tableState" style="display: none;" class="w-full">
+            <div class="overflow-x-auto sultan-scroll">
+                <table id="lapbulkelola_tabelUtama" class="sk-table-lead">
+                    <thead>
+                        <tr>
+                            <th class="text-center w-[110px]">Aksi</th>
+                            <th class="text-left">Unit Kerja</th>
+                            <th class="text-left">Periode</th>
+                            <th class="text-center">Rombel</th>
+                            <th class="text-center">Dokumen</th>
+                            <th class="text-left">Status</th>
+                            <th class="text-left">Linimasa</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100 dark:divide-white/5"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
   </div>
 </div>
 
@@ -1002,25 +990,25 @@ function lapbulkelola_renderTabel(data) {
         var btnHapus = '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg bg-rose-500/5 text-rose-600 border border-rose-500/20 hover:bg-rose-600 hover:text-white transition-all shadow-sm active:scale-90 btn-aksi-hapus ' + (isApproved ? 'opacity-30 cursor-not-allowed' : '') + '" data-id="' + row.rowId + '" data-source="' + row.source + '" data-nama="' + safeNama + '" data-bulan="' + row.bulan + '" data-tahun="' + row.tahun + '" title="Hapus Permanen" ' + (isApproved ? 'disabled' : '') + '><i class="fas fa-trash-alt text-[11px]"></i></button>';
         var btnAksi = '<div class="flex items-center justify-center gap-1.5">' + btnVerif + btnEdit + btnHapus + '</div>';
 
-        // 4. Log Details (High-Fidelity Metadate Sync)
+        // 4. Log Details (v5.0 Structural Meta Sync)
         var uiLinimasa = '<div class="flex flex-col">' +
-            '<div class="sk-table-secondary-text !text-[10px] flex items-center gap-1 mb-1"><i class="fas fa-paper-plane opacity-50"></i> KIRIM: ' + (row.tglKirim || '-') + '</div>' +
-            '<div class="sk-table-secondary-text !text-[10px] flex items-center gap-1 mb-1"><i class="fas fa-edit opacity-50"></i> EDIT: ' + (row.tglEdit || '-') + '</div>' +
-            '<div class="sk-table-secondary-text !text-[10px] flex items-center gap-1"><i class="fas fa-check-circle opacity-50"></i> VERIF: ' + (row.tglVerif || '-') + '</div>' +
+            '<div class="secondary-text !text-[10px] flex items-center gap-1.5 mb-1"><i class="fas fa-paper-plane opacity-40"></i> <span class="opacity-60">KIRIM:</span> ' + (row.tglKirim || '-') + '</div>' +
+            '<div class="secondary-text !text-[10px] flex items-center gap-1.5 mb-1"><i class="fas fa-edit opacity-40"></i> <span class="opacity-60">EDIT:</span> ' + (row.tglEdit || '-') + '</div>' +
+            '<div class="secondary-text !text-[10px] flex items-center gap-1.5"><i class="fas fa-check-circle opacity-40"></i> <span class="opacity-60">VERIF:</span> ' + (row.tglVerif || '-') + '</div>' +
             '</div>';
 
-        // 5. Unit & Periode Stack (Premium Blueprint Logic)
-        var uiUnit = '<div class="sk-table-primary-text uppercase">' + lapbulkelola_escapeHtml(row.namaSekolah) + '</div>' +
-                     '<div class="sk-table-secondary-text mt-0.5">' + lapbulkelola_escapeHtml(row.npsn || '-') + '</div>';
+        // 5. Unit & Periode Stack (v5.0 LEAD Architecture)
+        var uiUnit = '<div class="primary-text uppercase">' + lapbulkelola_escapeHtml(row.namaSekolah) + '</div>' +
+                     '<div class="secondary-text">' + lapbulkelola_escapeHtml(row.npsn || '-') + '</div>';
 
-        var uiPeriode = '<div class="sk-table-primary-text uppercase tracking-tighter">' + lapbulkelola_escapeHtml(row.tahun) + '</div>' +
-                        '<div class="sk-table-highlight text-[12px] uppercase mt-0.5">' + lapbulkelola_escapeHtml(row.bulan) + '</div>';
+        var uiPeriode = '<div class="primary-text uppercase tracking-tighter">' + lapbulkelola_escapeHtml(row.tahun) + '</div>' +
+                        '<div class="highlight-text text-[11px] mt-0.5">' + lapbulkelola_escapeHtml(row.bulan) + '</div>';
 
         dtArray.push([ 
             btnAksi, 
             uiUnit,
             uiPeriode,
-            '<div class="sk-table-primary-text text-center">' + lapbulkelola_escapeHtml(row.rombel || row.totalRombel || '0') + '</div>',
+            '<div class="primary-text text-center">' + lapbulkelola_escapeHtml(row.rombel || row.totalRombel || '0') + '</div>',
             btnFile,
             badgeStatusData,
             uiLinimasa
@@ -1083,27 +1071,25 @@ function lapbulkelola_lihatCatatanSultan(pesan) {
 
 function lapbulkelola_buildBadgeStatus(status, ket) { 
     var s = String(status || "Diproses").toLowerCase(); 
-    var bgColor = 'bg-amber-500/10'; 
-    var textColor = 'text-amber-600';
-    var icon = 'clock'; 
-    var label = "DIPROSES";
+    s = String(s || "").toLowerCase(); ket = ket || "";
+    var bgColor = 'bg-primary/15'; var textColor = 'text-primary'; var icon = 'circle-notch fa-spin'; var label = "DIPROSES";
     
     if (s.includes('ok') || s.includes('setuju') || s.includes('terima') || s.includes('valid')) { 
-        bgColor = 'bg-emerald-500/10'; textColor = 'text-emerald-600'; icon = 'check-double'; label = "DISETUJUI"; 
+        bgColor = 'bg-success/15'; textColor = 'text-success'; icon = 'check-circle'; label = "DISETUJUI"; 
     } 
     else if (s.includes('revisi') || s.includes('perbaiki')) { 
-        bgColor = 'bg-blue-500/10'; textColor = 'text-blue-600'; icon = 'sync'; label = "REVISI"; 
+        bgColor = 'bg-warning/15'; textColor = 'text-warning'; icon = 'history'; label = "REVISI"; 
     } 
     else if (s.includes('tolak') || s.includes('salah')) { 
-        bgColor = 'bg-rose-500/10'; textColor = 'text-rose-600'; icon = 'times-circle'; label = "DITOLAK"; 
+        bgColor = 'bg-danger/15'; textColor = 'text-danger'; icon = 'ban'; label = "DITOLAK"; 
     } 
     
-    var baseCls = "inline-flex items-center rounded-lg px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.1em] shadow-sm border border-current/10 transition-all";
-    var badgeHtml = '<span class="' + baseCls + ' ' + bgColor + ' ' + textColor + '"><i class="fas fa-' + icon + ' mr-1.5 text-[11px]"></i> ' + label + '</span>';
+    var baseCls = "inline-flex items-center rounded-full px-3 py-1 text-[11px] font-black uppercase tracking-widest transition-all shadow-sm";
+    var badgeHtml = '<span class="' + baseCls + ' ' + bgColor + ' ' + textColor + '"><i class="fas fa-' + icon + ' mr-1.5"></i> ' + label + '</span>';
 
     if (ket && ket.trim().length > 2 && (s.includes('revisi') || s.includes('tolak'))) {
         var safeKet = lapbulkelola_escapeJs(ket);
-        var btnCatatan = '<button type="button" class="mt-2 flex items-center gap-1.5 text-[9px] font-black text-rose-500 uppercase tracking-[0.15em] hover:text-rose-600 transition-all btn-baca-catatan" data-pesan="' + safeKet + '"><i class="fas fa-comment-dots"></i> Baca Catatan</button>';
+        var btnCatatan = '<div class="mt-1"><button type="button" class="inline-flex rounded border border-danger p-1 text-[11px] font-black text-danger hover:bg-danger hover:text-white transition-all btn-baca-catatan" data-pesan="' + safeKet + '"><i class="fas fa-comment-dots mr-1"></i> Baca Catatan</button></div>';
         return '<div class="flex flex-col items-center">' + badgeHtml + btnCatatan + '</div>';
     }
 
