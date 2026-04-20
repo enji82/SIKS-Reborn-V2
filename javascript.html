@@ -6,7 +6,7 @@
  * ====================================================================
  */
 var Sultan = {
-    version: "2.3.2-Solid",
+    version: "2.3.3-Absolute",
     
     // 1. CONFIGURATION (Sync with css_sultan.html)
     config: {
@@ -348,6 +348,7 @@ function inisialisasiAplikasi() {
         }
         $('#gerbang-login').hide(); 
         $('#konten-aplikasi').show().css('display', 'flex'); 
+        document.body.setAttribute('data-user-state', 'active');
         updateUI(user); 
         tampilkanMenuAdmin(user); 
         loadContent('home');
@@ -524,6 +525,7 @@ function handleLoginV2(event) {
 function handleLogout() {
     Sultan.konfirmasi({judul: 'Keluar Aplikasi?', teks: 'Sesi Anda akan diakhiri.'}, function() {
         Sultan.db.clear();
+        document.body.setAttribute('data-user-state', 'login');
         $('#konten-aplikasi').hide();
         $('#app-content').empty();
         $('#gerbang-login').fadeIn('fast');
