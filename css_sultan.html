@@ -77,25 +77,7 @@
 .dark .bg-meta-4 { background-color: #313D4A; }
 
 
-html, body {
-  background-color: var(--bg-light);
-  overflow: hidden; /* Prevent global scroll for Fixed Layout */
-}
-
-body {
-  font-family: 'Satoshi', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif !important;
-  color: #1C2434;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-/* Base Dark Mode Overrides */
-.dark html, .dark body {
-  background-color: var(--bg-dark); /* #1A222C - Seals top/right leaks */
-}
-
-.dark body {
-  color: #DEE4EE;
-}
+/* Global body overrides removed in v8.0 to prevent SPA visibility conflicts */
 
 /* TAILADMIN MODERN CARD */
 .sultan-card {
@@ -179,8 +161,8 @@ body {
   to { transform: rotate(360deg); }
 }
 
-/* Dark Mode Transitions */
-* { transition: background-color 0.15s ease-out, border-color 0.15s ease-out; }
+/* Transitions restricted to specific components to prevent global lag and rendering bugs */
+.sms-layout-root * { transition: background-color 0.15s ease-out, border-color 0.15s ease-out; }
 
 /* LEGACY OVERRIDES (PRESERVED for backward compatibility) */
 .sultan-btn {
@@ -302,13 +284,13 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* 1.1 TYPOGRAPHY LOCKDOWN (SCOPED ONLY) */
-.sms-layout-root, 
-.sms-layout-root h1, 
-.sms-layout-root span, 
-.sms-layout-root div,
-.sms-layout-root select,
-.sms-layout-root button {
+/* 1.1 TYPOGRAPHY LOCKDOWN (RESTRICTED SCOPE) */
+#app-content-active .sms-layout-root, 
+#app-content-active .sms-layout-root h1, 
+#app-content-active .sms-layout-root span, 
+#app-content-active .sms-layout-root div,
+#app-content-active .sms-layout-root select,
+#app-content-active .sms-layout-root button {
     font-family: 'Satoshi', 'Inter', -apple-system, sans-serif !important;
 }
 
