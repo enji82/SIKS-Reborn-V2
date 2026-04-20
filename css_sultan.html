@@ -2098,15 +2098,7 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
 /* ==========================================================================
    GERBANG LOGIN (WRAPPER AWAL)
    ========================================================================== */
-#gerbang-login {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    background: #F8FAFC !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+/* GERBANG LOGIN RULE DELETED IN v7.7 TO PREVENT SPA CONFLICTS */
 
 /* ==========================================================================
    MODAL TERPUSAT - PREMIUM SAAS THEME
@@ -2417,10 +2409,9 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
 
 /* MAIN WRAPPERS */
 .page-wrapper {
-  display: flex;
+  display: flex !important; /* Force flex for the dashboard structure but don't override the style="display:none" on #konten-aplikasi */
   min-height: 100vh;
   overflow: hidden;
-  /* Persistent Sidebar Background for Desktop */
   background-image: linear-gradient(to right, var(--sidebar-bg) var(--sidebar-width), transparent var(--sidebar-width));
 }
 .content-area {
