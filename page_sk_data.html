@@ -5,8 +5,8 @@
         <h1 class="text-2xl md:text-3xl font-black text-black dark:text-white tracking-tight leading-tight sultan-title-sync">
             Kelola Data SK
         </h1>
-        <p class="text-xs font-bold text-primary dark:text-primary/70 uppercase tracking-widest mt-1">
-            Pengelolaan & Validasi Dokumen Pembagian Tugas
+        <p class="text-sm md:text-base text-black/60 dark:text-white/60 font-medium leading-relaxed">
+            Pantau progres, validasi dokumen, dan kelola arsip pembagian tugas satuan pendidikan.
         </p>
     </div>
 
@@ -76,15 +76,15 @@
                 <table id="tugas_tabelUtama" class="w-full table-auto border-collapse text-xs">
                     <thead>
                         <tr class="bg-gray-2 dark:bg-white/5 text-left border-b border-stroke dark:border-white/5">
-                            <th class="py-4 px-6 font-black text-black dark:text-white text-center uppercase tracking-widest text-[11px]" style="width:120px;">AKSI</th>
-                            <th class="py-4 px-4 font-black text-black dark:text-white uppercase tracking-widest text-[11px]">UNIT KERJA</th>
-                            <th class="py-4 px-4 font-black text-black dark:text-white text-center uppercase tracking-widest text-[11px]">PERIODE</th>
-                            <th class="py-4 px-4 font-black text-black dark:text-white text-center uppercase tracking-widest text-[11px]">DETAIL SK</th>
-                            <th class="py-4 px-4 font-black text-black dark:text-white text-center uppercase tracking-widest text-[11px]">BERKAS</th>
-                            <th class="py-4 px-4 font-black text-black dark:text-white text-center uppercase tracking-widest text-[11px]">STATUS</th>
-                            <th class="py-4 px-4 font-black text-black dark:text-white text-center uppercase tracking-widest text-[11px]">LOG INPUT</th>
-                            <th class="py-4 px-4 font-black text-black dark:text-white text-center uppercase tracking-widest text-[11px]">LOG UPDATE</th>
-                            <th class="py-4 px-4 font-black text-black dark:text-white text-center uppercase tracking-widest text-[11px]">VERIFIKASI</th>
+                            <th class="py-4 px-6 font-black text-slate-500 dark:text-slate-400 text-center uppercase tracking-widest text-[11px]" style="width:120px;">AKSI</th>
+                            <th class="py-4 px-4 font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest text-[11px]">UNIT KERJA</th>
+                            <th class="py-4 px-4 font-black text-slate-500 dark:text-slate-400 text-center uppercase tracking-widest text-[11px]">PERIODE</th>
+                            <th class="py-4 px-4 font-black text-slate-500 dark:text-slate-400 text-center uppercase tracking-widest text-[11px]">DETAIL SK</th>
+                            <th class="py-4 px-4 font-black text-slate-500 dark:text-slate-400 text-center uppercase tracking-widest text-[11px]">BERKAS</th>
+                            <th class="py-4 px-4 font-black text-slate-500 dark:text-slate-400 text-center uppercase tracking-widest text-[11px]">STATUS</th>
+                            <th class="py-4 px-4 font-black text-slate-500 dark:text-slate-400 text-center uppercase tracking-widest text-[11px]">LOG INPUT</th>
+                            <th class="py-4 px-4 font-black text-slate-500 dark:text-slate-400 text-center uppercase tracking-widest text-[11px]">LOG UPDATE</th>
+                            <th class="py-4 px-4 font-black text-slate-500 dark:text-slate-400 text-center uppercase tracking-widest text-[11px]">VERIFIKASI</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -705,8 +705,8 @@
             // 1. Tombol Aksi (Sultan Elite Premium - v2.3 Circular Model)
             var actionButtons = '<div class="flex items-center justify-center gap-1.5">' +
                 '<button type="button" class="btn-icon-sultan btn-icon-sultan-info" title="Verifikasi/Review" onclick="tugas_bukaModalVerif(\'' + id + '\')"><i class="fas fa-' + (TUGAS_IS_ADMIN ? 'check-double' : 'eye') + '"></i></button>' +
-                '<button type="button" class="btn-icon-sultan btn-icon-sultan-warning ' + (isApproved ? 'btn-sultan-locked' : '') + '" title="Edit Data" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalEdit('" + id + "')") + '"><i class="fas fa-pencil-alt"></i></button>' +
-                '<button type="button" class="btn-icon-sultan btn-icon-sultan-maroon ' + (isApproved ? 'btn-sultan-locked' : '') + '" title="Hapus Data" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalHapus('" + id + "')") + '"><i class="fas fa-trash-alt"></i></button>' +
+                '<button type="button" class="btn-icon-sultan btn-icon-sultan-warning" style="' + (isApproved ? 'filter: grayscale(1); opacity: 0.3; cursor: not-allowed;' : '') + '" title="Edit Data" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalEdit('" + id + "')") + '"><i class="fas fa-pencil-alt"></i></button>' +
+                '<button type="button" class="btn-icon-sultan btn-icon-sultan-maroon" style="' + (isApproved ? 'filter: grayscale(1); opacity: 0.3; cursor: not-allowed;' : '') + '" title="Hapus Data" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalHapus('" + id + "')") + '"><i class="fas fa-trash-alt"></i></button>' +
                 '</div>';
 
             // 2. Format Tanggal SK
