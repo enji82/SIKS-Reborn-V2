@@ -24,7 +24,7 @@
         document.documentElement.classList.remove('dark');
     }
 
-    window.SULTAN_ENGINE_ID = "Elite-v2.5.0-Total";
+    window.SULTAN_ENGINE_ID = "2.3.2-Solid";
     tailwind.config = {
       darkMode: 'class',
       theme: {
@@ -53,6 +53,19 @@
       }
     }
   </script>
+  <style>
+    /* EMERGENCY VISIBILITY GUARD (v12.0) */
+    #gerbang-login[style*="display: none"] + #konten-aplikasi,
+    #konten-aplikasi[style*="display: block"],
+    #konten-aplikasi[style*="display: flex"] {
+       display: flex !important;
+    }
+    #konten-aplikasi[style*="display: flex"] ~ #gerbang-login,
+    #konten-aplikasi[style*="display: block"] ~ #gerbang-login,
+    #gerbang-login.hidden-force {
+       display: none !important;
+    }
+  </style>
   <?!= include('css_sultan'); ?>
 </head>
 

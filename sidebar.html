@@ -46,7 +46,7 @@
         </li>
 
         <!-- ===== SK Pembagian Tugas ===== -->
-        <li>
+        <li class="menu-admin-only">
           <a href="#" class="nav-link-tail justify-between"
              @click.prevent="selectedMenu = (selectedMenu === 'sk' ? null : 'sk'); selectedSubMenu = null"
              :class="{ 'active': selectedMenu === 'sk' }">
@@ -70,7 +70,7 @@
         </li>
 
         <!-- ===== Laporan Bulan ===== -->
-        <li>
+        <li class="menu-admin-only">
           <a href="#" class="nav-link-tail justify-between"
              @click.prevent="selectedMenu = (selectedMenu === 'lapbul' ? null : 'lapbul'); selectedSubMenu = null"
              :class="{ 'active': selectedMenu === 'lapbul' }">
@@ -95,7 +95,7 @@
         </li>
 
         <!-- ===== SIABA ===== -->
-        <li>
+        <li class="menu-admin-only">
           <a href="#" class="nav-link-tail justify-between"
              @click.prevent="selectedMenu = (selectedMenu === 'siaba' ? null : 'siaba'); selectedSubMenu = null"
              :class="{ 'active': selectedMenu === 'siaba' }">
@@ -159,7 +159,7 @@
         </li>
 
         <!-- ===== Data PTK ===== -->
-        <li>
+        <li class="menu-admin-only">
           <a href="#" class="nav-link-tail justify-between"
              @click.prevent="selectedMenu = (selectedMenu === 'ptk' ? null : 'ptk'); selectedSubMenu = null"
              :class="{ 'active': selectedMenu === 'ptk' }">
@@ -217,7 +217,7 @@
         </li>
 
         <!-- ===== Data Murid ===== -->
-        <li>
+        <li class="menu-admin-only">
           <a href="#" class="nav-link-tail justify-between"
              @click.prevent="selectedMenu = (selectedMenu === 'murid' ? null : 'murid'); selectedSubMenu = null"
              :class="{ 'active': selectedMenu === 'murid' }">
@@ -261,7 +261,7 @@
         </li>
 
         <!-- ===== E-File Pegawai ===== -->
-        <li>
+        <li class="menu-admin-only">
           <a href="#" class="nav-link-tail justify-between"
              @click.prevent="selectedMenu = (selectedMenu === 'efile' ? null : 'efile'); selectedSubMenu = null"
              :class="{ 'active': selectedMenu === 'efile' }">
@@ -279,7 +279,7 @@
         </li>
 
         <!-- ===== Pengaturan ===== -->
-        <li>
+        <li class="menu-admin-only">
           <a href="#" class="nav-link-tail" data-page="page_setting" id="menu-setting-admin" @click="sidebarToggle = false; selectedMenu = null; selectedSubMenu = null">
             <i class="fas fa-sliders"></i>
             Pengaturan
@@ -287,7 +287,7 @@
         </li>
 
         <!-- ===== Monitoring Aktivitas ===== -->
-        <li>
+        <li class="menu-admin-only">
           <a href="#" class="nav-link-tail" data-page="page_monitoring" id="menu-monitoring" @click="sidebarToggle = false; selectedMenu = null; selectedSubMenu = null">
             <i class="fas fa-laptop-medical"></i>
             Monitoring Aktivitas
