@@ -47,6 +47,8 @@ Every page must follow this strict hierarchy to ensure visual parity:
 | **Root Container** | `.sms-layout-root` | `flex-col`, `gap-6`, `reveal-animation` |
 | **Page Title** | `.sms-header-title` | `font-900`, `text-3xl`, `tight-tracking` |
 | **Subtitle** | `.sms-header-subtitle` | `font-500`, `text-sm`, `muted-60%` |
+| **Primary Button** | `.sms-btn-primary` | `radius-10px`, `shadow-blue`, `font-800` |
+| **Status Badge** | `.sms-badge-*` | `pill-shape`, `modern-tint-colors`, `font-900` |
 | **Table Header Row** | `.sms-thead-executive` | `translucent-5%` (Dark), `slate-50` (Light) |
 | **Table Labels** | `.sms-th-executive` | `uppercase`, `tracking-0.1em`, `font-900` |
 

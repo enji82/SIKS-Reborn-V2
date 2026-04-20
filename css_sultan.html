@@ -297,25 +297,47 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* 2. HEADER COMPONENT (PRO-LEVEL TYPOGRAPHY) */
-.sms-header-group { display: flex; flex-direction: column; padding-left: 0.25rem; margin-bottom: 0.5rem; }
+/* 2. HEADER COMPONENT (V7.0 FINAL - PRECISION) */
+.sms-header-group { 
+    display: flex; 
+    flex-direction: column; 
+    padding-left: 0.25rem; 
+    margin-bottom: 24px !important; /* Fixed 24px Law */
+    gap: 4px !important; 
+}
 .sms-header-title {
-    font-size: 1.875rem !important; /* text-3xl */
+    font-size: 20px !important; /* Fixed Brand Link Mirror */
     font-weight: 900 !important;
     color: #1C2434 !important;
-    letter-spacing: -0.025em !important;
+    letter-spacing: -0.03em !important;
     line-height: 1.2 !important;
+    text-transform: uppercase !important;
 }
 .dark .sms-header-title { color: #FFFFFF !important; }
 
-.sms-header-subtitle {
-    font-size: 0.875rem !important;
-    font-weight: 500 !important;
-    color: rgba(100, 116, 139, 0.9) !important;
-    line-height: 1.6 !important;
-    margin-top: 0.25rem !important;
+.sms-header-underline {
+    width: 30px;
+    height: 3px;
+    background-color: #3C50E0;
+    border-radius: 2px;
+    margin-top: 0px !important; /* Precision gap: 4px from text */
 }
-.dark .sms-header-subtitle { color: rgba(222, 228, 238, 0.7) !important; }
+
+/* Breadcrumb - Sultan Executive Standard (14px) */
+.sms-breadcrumb {
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: #64748B !important;
+    margin-bottom: 8px !important;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.sms-breadcrumb span { opacity: 0.5; }
+.dark .sms-breadcrumb { color: #AEB7C0 !important; }
+
+/* Legacy - Deprecated in v7.0 */
+.sms-header-subtitle { display: none !important; }
 
 /* 3. TABLE COMPONENT (SEAMLESS EXECUTIVE) */
 .sms-table-card {
@@ -339,13 +361,99 @@ body {
 .sms-th-executive {
     padding: 1rem 1rem !important;
     font-weight: 900 !important;
-    color: #64748B !important;
+    color: #1C2434 !important;
     text-transform: uppercase !important;
     letter-spacing: 0.1em !important;
-    font-size: 11px !important;
+    font-size: 15px !important; /* Fixed Sidebar Mirror */
     text-align: left;
+    background-color: #F7F9FC !important;
 }
-.dark .sms-th-executive { color: #94A3B8 !important; }
+.dark .sms-th-executive { color: #FFFFFF !important; background-color: rgba(255,255,255,0.02) !important; }
+
+.sms-table-executive {
+    font-size: 15px !important; /* Fixed Sidebar Mirror */
+    font-weight: 500 !important;
+    color: #1C2434 !important;
+}
+.dark .sms-table-executive { color: #DEE4EE !important; }
+
+/* 4. BUTTON COMPONENTS (SMS PREMIUM) */
+.sms-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    height: 38px; padding: 0 1.25rem; border-radius: 10px !important;
+    font-size: 13px !important; font-weight: 800 !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer; border: none; outline: none;
+}
+.sms-btn:active { transform: scale(0.96); }
+
+.sms-btn-primary { 
+    background: #3C50E0 !important; color: #FFFFFF !important; 
+    box-shadow: 0 4px 12px rgba(60, 80, 224, 0.25); 
+}
+.sms-btn-primary:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(60, 80, 224, 0.35); }
+
+.sms-btn-ghost { 
+    background: rgba(60, 80, 224, 0.05) !important; color: #3C50E0 !important;
+    border: 1px solid rgba(60, 80, 224, 0.1) !important;
+}
+.sms-btn-ghost:hover { background: #3C50E0 !important; color: #FFFFFF !important; }
+
+.sms-btn-icon {
+    width: 36px; height: 36px; padding: 0; border-radius: 10px !important;
+    display: flex; align-items: center; justify-content: center;
+    background: #F1F5F9; color: #64748B; border: 1px solid #E2E8F0;
+}
+.dark .sms-btn-icon { background: rgba(255,255,255,0.05); color: #AEB7C0; border-color: rgba(255,255,255,0.1); }
+.sms-btn-icon:hover { background: #3C50E0; color: #FFFFFF; border-color: #3C50E0; transform: translateY(-1px); }
+
+/* 5. BADGE COMPONENTS (MODERN TINT STYLE) */
+.sms-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 0.35rem 0.75rem; border-radius: 50px !important;
+    font-size: 11px !important; font-weight: 900 !important;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    border: 1px solid transparent;
+}
+
+.sms-badge-success { background: #DCFCE7 !important; color: #166534 !important; border-color: #BBF7D0 !important; }
+.dark .sms-badge-success { background: rgba(22, 101, 52, 0.2) !important; color: #4ADE80 !important; border-color: rgba(74, 222, 128, 0.2) !important; }
+
+.sms-badge-warning { background: #FEF9C3 !important; color: #854D0E !important; border-color: #FEF08A !important; }
+.dark .sms-badge-warning { background: rgba(133, 77, 14, 0.2) !important; color: #FACC15 !important; border-color: rgba(250, 204, 21, 0.2) !important; }
+
+.sms-badge-danger { background: #FEE2E2 !important; color: #991B1B !important; border-color: #FECACA !important; }
+.dark .sms-badge-danger { background: rgba(153, 27, 27, 0.2) !important; color: #F87171 !important; border-color: rgba(248, 113, 113, 0.2) !important; }
+
+.sms-badge-info { background: #DBEAFE !important; color: #1E40AF !important; border-color: #BFDBFE !important; }
+.dark .sms-badge-info { background: rgba(30, 64, 175, 0.2) !important; color: #60A5FA !important; border-color: rgba(96, 165, 250, 0.2) !important; }
+
+/* 6. INPUT COMPONENTS (V7.0 FINAL - PRECISION) */
+.sms-input-premium {
+    height: 38px !important;
+    padding: 0 12px !important;
+    border-radius: 12px !important;
+    background-color: #F1F5F9 !important;
+    border: 1px solid #E2E8F0 !important;
+    font-size: 15px !important;
+    font-weight: 900 !important;
+    color: #1C2434 !important;
+    outline: none !important;
+    transition: all 0.2s;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748B'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 36px !important;
+}
+.dark .sms-input-premium { 
+    background-color: rgba(255, 255, 255, 0.05) !important; 
+    border-color: rgba(255, 255, 255, 0.1) !important; 
+    color: #FFFFFF !important; 
+}
+.sms-input-premium:focus { border-color: #3C50E0 !important; background-color: #FFFFFF !important; }
+.dark .sms-input-premium:focus { background-color: rgba(255, 255, 255, 0.08) !important; }
 
 /* Section Title (Unified) */
 .sk-section-title { 

@@ -1,13 +1,18 @@
 <div class="sms-layout-root">
     
-    <!-- PAGE HEADER (SULTAN EXECUTIVE) -->
+    <!-- PAGE BREADCRUMB (V7.0 FINAL) -->
+    <nav class="sms-breadcrumb">
+        <span>Beranda</span>
+        <i class="fas fa-chevron-right text-[10px] opacity-30"></i>
+        <span>SK Pembagian Tugas</span>
+        <i class="fas fa-chevron-right text-[10px] opacity-30"></i>
+        <span class="font-black text-black dark:text-white">Kelola Data</span>
+    </nav>
+
+    <!-- PAGE HEADER (SULTAN EXECUTIVE V7.0) -->
     <header class="sms-header-group">
-        <h1 class="sms-header-title">
-            Kelola Data SK
-        </h1>
-        <p class="sms-header-subtitle">
-            Pantau progres, validasi dokumen, dan kelola arsip pembagian tugas satuan pendidikan.
-        </p>
+        <h1 class="sms-header-title">Kelola Data SK</h1>
+        <div class="sms-header-underline"></div>
     </header>
 
     <!-- 1. KARTU INFORMASI -->
@@ -29,35 +34,53 @@
       </div>
     </div>
 
-    <!-- 2. KARTU FILTER -->
-    <div class="sms-table-card p-2 md:p-3 shadow-sm border-l-4 border-l-primary/30 mb-4">
-        <div class="flex flex-wrap items-center gap-2 md:gap-3">
-            <select id="tugas_filterUnit" class="rounded-xl border border-stroke bg-gray-2 dark:bg-strokedark py-1.5 px-3 text-xs font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark min-w-[200px]" disabled>
-                <option value="">- Memvalidasi Akses... -</option>
-            </select>
-            <select id="tugas_filterTahun" class="rounded-xl border border-stroke bg-transparent py-1.5 px-3 text-xs font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark dark:bg-boxdark min-w-[100px]"></select>
-            <select id="tugas_filterSemester" class="rounded-xl border border-stroke bg-transparent py-1.5 px-3 text-xs font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark dark:bg-boxdark min-w-[140px]">
-                <option value="">- Semua Semester -</option>
-                <option value="Semester 1">Semester 1</option>
-                <option value="Semester 2">Semester 2</option>
-            </select>
-            <select id="tugas_filterStatus" class="rounded-xl border border-stroke bg-transparent py-1.5 px-3 text-xs font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark dark:bg-boxdark min-w-[140px]">
-                <option value="">- Semua Status -</option>
-                <option value="Diproses">Diproses</option>
-                <option value="Revisi">Revisi</option>
-                <option value="OK">Disetujui</option>
-                <option value="Ditolak">Ditolak</option>
-            </select>
+    <!-- 2. KARTU FILTER (V7.0 FINAL - PRECISION) -->
+    <div class="sms-table-card p-3 shadow-sm border-l-4 border-l-primary/30 mb-6">
+        <div class="flex flex-wrap items-center gap-3">
+            <!-- Filter Unit -->
+            <div class="flex flex-col gap-1">
+                <select id="tugas_filterUnit" class="sms-input-premium min-w-[240px]" disabled>
+                    <option value="">- MEMVALIDASI AKSES... -</option>
+                </select>
+            </div>
 
-            <div class="h-6 w-[1px] bg-stroke dark:bg-white/10 hidden md:block mx-1"></div>
+            <!-- Filter Tahun -->
+            <div class="flex flex-col gap-1">
+                <select id="tugas_filterTahun" class="sms-input-premium min-w-[120px]"></select>
+            </div>
 
-            <button type="button" id="tugas_btnCari" class="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-primary/20 bg-primary/5 text-primary hover:bg-primary hover:text-white dark:border-white/10 dark:bg-white/5 dark:text-white transition-all shadow-sm active:scale-95" title="Refresh Data">
-                <i class="fab fa-gg text-xs"></i>
+            <!-- Filter Semester -->
+            <div class="flex flex-col gap-1">
+                <select id="tugas_filterSemester" class="sms-input-premium min-w-[160px]">
+                    <option value="">- SEMUA SEMESTER -</option>
+                    <option value="Semester 1">SEMESTER 1</option>
+                    <option value="Semester 2">SEMESTER 2</option>
+                </select>
+            </div>
+
+            <!-- Filter Status -->
+            <div class="flex flex-col gap-1">
+                <select id="tugas_filterStatus" class="sms-input-premium min-w-[160px]">
+                    <option value="">- SEMUA STATUS -</option>
+                    <option value="Diproses">DIPROSES</option>
+                    <option value="Revisi">REVISI</option>
+                    <option value="OK">DISETUJUI</option>
+                    <option value="Ditolak">DITOLAK</option>
+                </select>
+            </div>
+
+            <!-- Separator -->
+            <div class="h-8 w-[1px] bg-stroke dark:bg-white/10 hidden lg:block mx-1"></div>
+
+            <!-- Action: Refresh -->
+            <button type="button" id="tugas_btnCari" class="sms-btn-icon" title="Refresh Data">
+                <i class="fab fa-gg"></i>
             </button>
 
-            <div class="ml-auto flex items-center gap-2">
-                <button type="button" id="tugas_btnTambah" class="inline-flex items-center justify-center gap-2 rounded-xl bg-primary py-2 px-4 text-center text-xs font-bold text-white hover:bg-opacity-90 transition-all shadow-sm disabled:opacity-50" disabled>
-                    <i class="fas fa-plus mr-1"></i> TAMBAH SK
+            <!-- Action: Create (Right Aligned) -->
+            <div class="ml-auto">
+                <button type="button" id="tugas_btnTambah" class="sms-btn-primary disabled:opacity-50" disabled>
+                    <i class="fas fa-plus"></i> TAMBAH SK
                 </button>
             </div>
         </div>
@@ -73,9 +96,9 @@
               </div>
             </div>
             <div id="tugas_tableState" style="display: none;">
-                <table id="tugas_tabelUtama" class="w-full table-auto border-collapse text-xs">
+                <table id="tugas_tabelUtama" class="w-full table-auto border-collapse sms-table-executive">
                     <thead>
-                        <tr class="sms-thead-executive">
+                        <tr>
                             <th class="sms-th-executive text-center" style="width:120px;">AKSI</th>
                             <th class="sms-th-executive">UNIT KERJA</th>
                             <th class="sms-th-executive text-center">PERIODE</th>
@@ -1123,17 +1146,17 @@
         var badge = "";
         
         if (st.includes('setuju') || st.includes('acc') || st.includes('ok') || st.includes('valid'))
-            badge = '<span class="badge-sultan badge-sultan-light-success uppercase"><i class="fas fa-check-circle mr-1.5"></i> DISETUJUI</span>';
+            badge = '<span class="sms-badge-pill sms-badge-success"><i class="fas fa-check-circle mr-1.5"></i> DISETUJUI</span>';
         else if (st.includes('revisi'))
-            badge = '<span class="badge-sultan badge-sultan-light-info uppercase"><i class="fas fa-history mr-1.5"></i> REVISI</span>';
+            badge = '<span class="sms-badge-pill sms-badge-info"><i class="fas fa-history mr-1.5"></i> REVISI</span>';
         else if (st.includes('tolak'))
-            badge = '<span class="badge-sultan badge-sultan-light-danger uppercase"><i class="fas fa-ban mr-1.5"></i> DITOLAK</span>';
+            badge = '<span class="sms-badge-pill sms-badge-danger"><i class="fas fa-ban mr-1.5"></i> DITOLAK</span>';
         else
-            badge = '<span class="badge-sultan badge-sultan-light-warning uppercase"><i class="fas fa-circle-notch fa-spin mr-1.5"></i> DIPROSES</span>';
+            badge = '<span class="sms-badge-pill sms-badge-warning"><i class="fas fa-circle-notch fa-spin mr-1.5"></i> DIPROSES</span>';
 
         if (ket && ket.trim().length > 2 && (st.includes('revisi') || st.includes('tolak'))) {
             var safeKet = tugas_escapeJs(ket);
-            badge += '<div class="mt-1"><button type="button" class="inline-flex rounded border border-danger p-1 text-[11px] font-black text-danger hover:bg-danger hover:text-white transition-all tugas-btn-catatan" onclick="Sultan.catatan(\'Catatan Admin\', \'' + safeKet + '\')"><i class="fas fa-comment-dots mr-1"></i> Baca Catatan</button></div>';
+            badge += '<div class="mt-2"><button type="button" class="sms-btn-ghost !h-7 !px-2 !text-[10px] !rounded-md" onclick="Sultan.catatan(\'Catatan Admin\', \'' + safeKet + '\')"><i class="fas fa-comment-dots mr-1"></i> BACA CATATAN</button></div>';
         }
         return badge;
     }
