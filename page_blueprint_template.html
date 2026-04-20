@@ -1,0 +1,135 @@
+<!-- 
+  SULTAN MASTER BLUEPRINT v4.1
+  ---------------------------------------------------------
+  INSTRUCTIONS:
+  1. Copy this file and rename it (e.g., page_my_module.html).
+  2. Implement logic in the <script> block.
+  3. Ensure all components use the standard .sk- classes.
+  ---------------------------------------------------------
+-->
+
+<div class="flex flex-col gap-4 md:gap-6 2xl:gap-7.5 animate-reveal">
+    
+    <!-- 1. PAGE HEADER (SYCHRONIZED) -->
+    <div class="mb-2 flex flex-col">
+        <h1 class="sultan-title-sync text-black dark:text-white">
+            [TITLE_MODUL]
+        </h1>
+        <p class="sk-section-title mt-1">
+            [SUBTITLE_DESCRIPTION_MODUL]
+        </p>
+    </div>
+
+    <!-- 2. INFORMATION CARD (ACCORDION) -->
+    <div class="sk-card !p-0 overflow-hidden" x-data="{ isOpen: false }">
+        <div class="sk-card-header cursor-pointer hover:bg-gray-100 dark:hover:bg-white/10 transition-colors" @click="isOpen = !isOpen">
+            <h3 class="font-black text-black dark:text-white flex items-center gap-2 text-sm uppercase tracking-[0.1em]">
+                <i class="fas fa-info-circle text-primary"></i> Panduan Pengisian
+            </h3>
+            <i class="fas fa-chevron-down text-gray-400 text-sm transition-transform" :class="{ 'rotate-180': isOpen }"></i>
+        </div>
+        <div x-show="isOpen" x-transition x-cloak class="p-4 border-t border-gray-100 dark:border-white/5 bg-gray-50/50 dark:bg-boxdark">
+            <div class="rounded-xl border border-primary/20 bg-blue-50/80 dark:bg-white/5 p-5">
+                <ul class="space-y-4">
+                    <li class="flex gap-4 text-[14px] font-bold text-gray-900 dark:text-gray-100 items-start">
+                        <span class="flex h-6 w-6 min-w-[24px] items-center justify-center rounded-full bg-primary text-[12px] font-black text-white shadow-sm">1</span>
+                        <span>[PANDUAN_ITEM_1]</span>
+                    </li>
+                    <!-- Add more items as needed -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. FILTER BAR (BLUEPRINT MODEL) -->
+    <div class="sk-card p-4">
+        <div class="flex flex-col md:flex-row items-center gap-4">
+            <div class="flex flex-wrap flex-1 items-center gap-3 w-full">
+                <!-- Unit Select -->
+                <select id="[MODUL]_filterUnit" class="sk-form-input !py-2.5 !px-4 !text-sm !w-auto min-w-[250px] disabled:opacity-60" disabled>
+                    <option value="">- Memvalidasi Akses... -</option>
+                </select>
+                
+                <!-- Year Select -->
+                <select id="[MODUL]_filterTahun" class="sk-form-input !py-2.5 !px-4 !text-sm !w-auto min-w-[120px]"></select>
+
+                <!-- Custom Selects -->
+                <select id="[MODUL]_filterStatus" class="sk-form-input !py-2.5 !px-4 !text-sm !w-auto min-w-[140px]">
+                    <option value="">- Semua Status -</option>
+                    <option value="OK">Disetujui</option>
+                    <option value="Proses">Diproses</option>
+                </select>
+
+                <!-- Sync Button -->
+                <button type="button" id="[MODUL]_btnRefresh" class="flex h-10 w-10 items-center justify-center rounded-xl sk-bg-section text-gray-500 hover:text-primary transition-all border border-gray-100 dark:border-white/5 active:scale-95" title="Refresh Data">
+                    <i class="fab fa-gg"></i>
+                </button>
+            </div>
+
+            <!-- Action Button -->
+            <button type="button" id="[MODUL]_btnTambah" class="sk-btn sk-btn-primary w-full md:w-auto !py-2.5 !px-8 disabled:opacity-50" disabled>
+                <i class="fas fa-plus mr-2"></i> TAMBAH DATA
+            </button>
+        </div>
+    </div>
+
+    <!-- 4. DATA AREA (SKELETON & TABLE) -->
+    <div class="sk-card !p-0 overflow-hidden">
+        <!-- Skeleton Loader -->
+        <div id="[MODUL]_loadingState" class="py-20 animate-reveal">
+            <div class="flex flex-col items-center justify-center">
+                <div class="sk-spinner-premium mb-5"></div>
+                <h6 class="sk-loading-text">Sinkronisasi Data...</h6>
+            </div>
+        </div>
+
+        <!-- Table Container -->
+        <div id="[MODUL]_tableState" style="display: none;" class="w-full overflow-hidden">
+            <div class="overflow-x-auto sultan-scroll">
+                <table id="[MODUL]_tabelUtama" class="w-full table-auto text-xs bg-transparent border-collapse">
+                    <thead>
+                        <tr class="sk-bg-section text-left border-b border-gray-100 dark:border-white/5">
+                            <th class="py-3 px-6 font-black uppercase text-primary text-center w-[120px] text-sm tracking-widest whitespace-nowrap">Aksi</th>
+                            <th class="py-3 px-4 font-black uppercase text-primary text-sm tracking-widest whitespace-nowrap">[COLUMN_HEADER_1]</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    /**
+     * SULTAN LOGIC v4.1 (Standardized Template)
+     * Every module should maintain this function structure.
+     */
+    
+    // 1. Initial State
+    var [MODUL]_USER_AKTIF = Sultan.db.get('siksUser');
+    var [MODUL]_CACHE_DATA = [];
+
+    // 2. Document Ready
+    $(document).ready(function() {
+        console.log("[MODUL] Blueprint Initialized.");
+        [MODUL]_inisialisasiForm();
+        [MODUL]_tarikDataServer();
+    });
+
+    // 3. Core Functions
+    function [MODUL]_inisialisasiForm() {
+        // [Logic for populating years, units, etc]
+    }
+
+    function [MODUL]_tarikDataServer() {
+        var btn = $('#[MODUL]_btnRefresh');
+        btn.prop('disabled', true).html('<i class="fab fa-gg fa-spin"></i>');
+        
+        // google.script.run...
+    }
+
+    function [MODUL]_renderTabel(data) {
+        // DataTable Initialization
+    }
+</script>
