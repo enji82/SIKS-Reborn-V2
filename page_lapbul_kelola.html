@@ -61,7 +61,7 @@
                     <option value="Disetujui">Disetujui</option>
                     <option value="Ditolak">Ditolak</option>
                 </select>
-                <button type="button" id="lapbulkelola_btnCari" class="flex h-10 w-10 items-center justify-center rounded-xl sk-bg-section text-gray-500 hover:text-primary transition-all border border-gray-100 dark:border-white/5 shadow-sm active:scale-95" title="Refresh Data">
+                <button type="button" id="lapbulkelola_btnCari" class="flex h-10 w-10 items-center justify-center rounded-xl sk-bg-section text-primary transition-all border border-gray-100 dark:border-white/5 shadow-sm active:scale-95" title="Refresh Data">
                     <i class="fab fa-gg"></i>
                 </button>
             </div>
@@ -870,7 +870,7 @@ function lapbulkelola_prosesCariData(isForceSync) {
     var valKeyword = LAPBULKELOLA_IS_ADMIN ? "" : LAPBULKELOLA_USER_NPSN;
 
     google.script.run.withSuccessHandler(function(data) {
-        btn.prop('disabled', false).html('<i class="fab fa-gg"></i>');
+        btn.prop('disabled', false).html('<i class="fab fa-gg text-primary"></i>');
 
         if (!data) data = [];
         if (data.error) {
