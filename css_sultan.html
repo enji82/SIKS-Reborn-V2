@@ -4179,6 +4179,34 @@ body, h1, h2, h3, h4, h5, h6, th, td, input, select, textarea, button, p, span:n
     width: 100%;
 }
 
+/* 6. TABLE AUDIT LOGS (v5.2 Standard) */
+.sk-log-container { display: flex; flex-direction: column; gap: 5px; }
+.sk-log-item {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 10px !important; font-weight: 700 !important;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    color: #64748B; line-height: 1;
+}
+.dark .sk-log-item { color: #94A3B8; }
+.sk-log-label { font-weight: 900 !important; opacity: 0.6; min-width: 65px; }
+.sk-log-icon { width: 14px; text-align: center; opacity: 0.4; font-size: 11px; }
+
+/* 7. PREVIEW BUTTON (Standardized Premium) */
+.sk-btn-preview-premium {
+    display: inline-flex; align-items: center; justify-content: center;
+    height: 36px; width: 36px; border-radius: 12px !important;
+    background: rgba(60, 80, 224, 0.06) !important;
+    border: 1px solid rgba(60, 80, 224, 0.15) !important;
+    color: var(--sk-primary) !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.sk-btn-preview-premium:hover {
+    background: var(--sk-primary) !important;
+    color: #ffffff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px -2px rgba(60, 80, 224, 0.4);
+}
+
 .dataTables_wrapper .dataTables_info, .dataTables_wrapper .sultan-dt-info {
     font-size: 14px !important; font-weight: 700 !important; color: #64748b !important;
 }

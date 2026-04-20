@@ -990,16 +990,16 @@ function lapbulkelola_renderTabel(data) {
         var btnHapus = '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg bg-rose-500/5 text-rose-600 border border-rose-500/20 hover:bg-rose-600 hover:text-white transition-all shadow-sm active:scale-90 btn-aksi-hapus ' + (isApproved ? 'opacity-30 cursor-not-allowed' : '') + '" data-id="' + row.rowId + '" data-source="' + row.source + '" data-nama="' + safeNama + '" data-bulan="' + row.bulan + '" data-tahun="' + row.tahun + '" title="Hapus Permanen" ' + (isApproved ? 'disabled' : '') + '><i class="fas fa-trash-alt text-[11px]"></i></button>';
         var btnAksi = '<div class="flex items-center justify-center gap-1.5">' + btnVerif + btnEdit + btnHapus + '</div>';
 
-        // BAB IV: Tombol File (Sultan Premium Icon style)
+        // BAB IV: Tombol File (v5.2 Premium Standard)
         var btnFile = row.fileUrl 
-            ? '<button type="button" class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-primary/5 text-primary border border-primary/10 hover:bg-primary hover:text-white transition-all shadow-sm active:scale-95 btn-preview-lapbul" data-url="' + row.fileUrl + '" title="Lihat Dokumen"><i class="fas fa-file-pdf text-[14px]"></i></button>' 
-            : '<span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest opacity-50"><i class="fas fa-times-circle mr-1"></i> Kosong</span>';
+            ? '<button type="button" class="sk-btn-preview-premium btn-preview-lapbul" data-url="' + row.fileUrl + '" title="Lihat Dokumen"><i class="fas fa-file-pdf"></i></button>' 
+            : '<div class="flex flex-col items-center opacity-30"><i class="fas fa-file-excel text-[20px] mb-1"></i><span class="text-[9px] font-black uppercase">Kosong</span></div>';
 
-        // 4. Log Details (v5.0 Structural Meta Sync)
-        var uiLinimasa = '<div class="flex flex-col">' +
-            '<div class="secondary-text !text-[10px] flex items-center gap-1.5 mb-1"><i class="fas fa-paper-plane opacity-40"></i> <span class="opacity-60">KIRIM:</span> ' + (row.tglKirim || '-') + '</div>' +
-            '<div class="secondary-text !text-[10px] flex items-center gap-1.5 mb-1"><i class="fas fa-edit opacity-40"></i> <span class="opacity-60">EDIT:</span> ' + (row.tglEdit || '-') + '</div>' +
-            '<div class="secondary-text !text-[10px] flex items-center gap-1.5"><i class="fas fa-check-circle opacity-40"></i> <span class="opacity-60">VERIF:</span> ' + (row.tglVerif || '-') + '</div>' +
+        // 4. Log Details (v5.2 Structural Audit Standard)
+        var uiLinimasa = '<div class="sk-log-container">' +
+            '<div class="sk-log-item"><i class="fas fa-paper-plane sk-log-icon"></i> <span class="sk-log-label">LOG INPUT</span>' + (row.tglKirim || '-') + '</div>' +
+            '<div class="sk-log-item"><i class="fas fa-edit sk-log-icon"></i> <span class="sk-log-label">LOG UPDATE</span>' + (row.tglEdit || '-') + '</div>' +
+            '<div class="sk-log-item"><i class="fas fa-check-double sk-log-icon"></i> <span class="sk-log-label">VERIFIKASI</span>' + (row.tglVerif || '-') + '</div>' +
             '</div>';
 
         // 5. Unit & Periode Stack (v5.0 LEAD Architecture)
