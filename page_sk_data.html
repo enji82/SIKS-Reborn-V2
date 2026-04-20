@@ -1,7 +1,7 @@
-<div class="flex flex-col gap-1 animate-reveal">
+<div class="flex flex-col gap-3 animate-reveal">
 
     <!-- PAGE HEADER -->
-    <div class="mb-6 flex flex-col">
+    <div class="mb-4 flex flex-col">
         <h1 class="sultan-title-sync text-black dark:text-white">
             Kelola Data SK
         </h1>
@@ -11,7 +11,7 @@
     </div>
 
     <!-- 1. KARTU INFORMASI -->
-    <div class="sultan-card mb-0 px-1" x-data="{ isOpen: false }">
+    <div class="sultan-card group mb-0" x-data="{ isOpen: false }">
       <div class="py-2 px-3 border-l-4 border-l-primary/50">
         <div class="flex items-center justify-between cursor-pointer" @click="isOpen = !isOpen">
           <div class="flex items-center text-primary font-bold text-xs uppercase tracking-tighter">
@@ -30,7 +30,7 @@
     </div>
 
     <!-- 2. KARTU FILTER -->
-    <div class="sultan-card p-2 md:p-3 shadow-sm border-l-4 border-l-primary/30 mb-6">
+    <div class="sultan-card p-2 md:p-3 shadow-sm border-l-4 border-l-primary/30 mb-4">
         <div class="flex flex-wrap items-center gap-2 md:gap-3">
             <select id="tugas_filterUnit" class="rounded-xl border border-stroke bg-gray-2 dark:bg-strokedark py-1.5 px-3 text-xs font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark min-w-[200px]" disabled>
                 <option value="">- Memvalidasi Akses... -</option>
@@ -51,8 +51,8 @@
 
             <div class="h-6 w-[1px] bg-stroke dark:bg-white/10 hidden md:block mx-1"></div>
 
-            <button type="button" id="tugas_btnCari" class="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-stroke bg-white text-body hover:text-primary dark:border-strokedark dark:bg-boxdark shadow-sm transition-all" title="Refresh Data">
-                <i class="fab fa-gg"></i>
+            <button type="button" id="tugas_btnCari" class="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-primary/20 bg-primary/5 text-primary hover:bg-primary hover:text-white dark:border-white/10 dark:bg-white/5 dark:text-white transition-all shadow-sm active:scale-95" title="Refresh Data">
+                <i class="fab fa-gg text-xs"></i>
             </button>
 
             <div class="ml-auto flex items-center gap-2">
@@ -75,16 +75,16 @@
             <div id="tugas_tableState" style="display: none;">
                 <table id="tugas_tabelUtama" class="w-full table-auto border-collapse text-xs">
                     <thead>
-                        <tr class="bg-gray-2 text-left dark:bg-meta-4">
-                            <th class="py-3 px-4 font-bold text-black dark:text-white text-center" style="width:100px;">AKSI</th>
-                            <th class="py-3 px-4 font-bold text-black dark:text-white">UNIT KERJA</th>
-                            <th class="py-3 px-4 font-bold text-black dark:text-white">PERIODE</th>
-                            <th class="py-3 px-4 font-bold text-black dark:text-white">DETAIL SK</th>
-                            <th class="py-3 px-4 font-bold text-black dark:text-white text-center">BERKAS</th>
-                            <th class="py-3 px-4 font-bold text-black dark:text-white text-center">STATUS</th>
-                            <th class="py-3 px-4 font-bold text-black dark:text-white">LOG INPUT</th>
-                            <th class="py-3 px-4 font-bold text-black dark:text-white">LOG UPDATE</th>
-                            <th class="py-3 px-4 font-bold text-black dark:text-white text-center">VERIFIKASI</th>
+                        <tr class="bg-gray-2 dark:bg-slate-800 text-left">
+                            <th class="py-3 px-4 font-black text-black dark:text-white text-center uppercase tracking-widest text-[10px]" style="width:100px;">AKSI</th>
+                            <th class="py-3 px-4 font-black text-black dark:text-white uppercase tracking-widest text-[10px]">UNIT KERJA</th>
+                            <th class="py-3 px-4 font-black text-black dark:text-white uppercase tracking-widest text-[10px]">PERIODE</th>
+                            <th class="py-3 px-4 font-black text-black dark:text-white uppercase tracking-widest text-[10px]">DETAIL SK</th>
+                            <th class="py-3 px-4 font-black text-black dark:text-white text-center uppercase tracking-widest text-[10px]">BERKAS</th>
+                            <th class="py-3 px-4 font-black text-black dark:text-white text-center uppercase tracking-widest text-[10px]">STATUS</th>
+                            <th class="py-3 px-4 font-black text-black dark:text-white uppercase tracking-widest text-[10px]">LOG INPUT</th>
+                            <th class="py-3 px-4 font-black text-black dark:text-white uppercase tracking-widest text-[10px]">LOG UPDATE</th>
+                            <th class="py-3 px-4 font-black text-black dark:text-white text-center uppercase tracking-widest text-[10px]">VERIFIKASI</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -505,11 +505,15 @@
                 $('#tugas_loadingText').html('<span class="text-danger"><i class="fas fa-ban mb-2"></i><br>Akses ditolak: Sesi login tidak valid.</span>');
                 return;
             }
+            // Safety Fallback: Enable buttons even if lookup takes too long
+            setTimeout(function() { $('#tugas_btnCari, #tugas_btnTambah').prop('disabled', false); }, 2000);
+
             google.script.run.withSuccessHandler(function (resUnit) {
                 var dataUnit = JSON.parse(resUnit);
                 if (dataUnit.error) {
                     $('#tugas_filterUnit').empty().append('<option value="">AKSES DITOLAK</option>');
                     $('#tugas_loadingText').html('<span class="text-danger"><i class="fas fa-exclamation-triangle mb-2"></i><br>' + tugas_escapeHtml(dataUnit.error) + '</span>');
+                    $('#tugas_btnCari, #tugas_btnTambah').prop('disabled', false);
                     return;
                 }
                 TUGAS_UNIT_TERKUNCI = dataUnit.unitKerja;
@@ -519,6 +523,7 @@
             }).withFailureHandler(function (err) {
                 $('#tugas_filterUnit').empty().append('<option value="">ERROR SERVER</option>');
                 $('#tugas_loadingText').html('<span class="text-danger"><i class="fas fa-wifi mb-2"></i><br>Koneksi Terputus: ' + tugas_escapeHtml(err.message) + '</span>');
+                $('#tugas_btnCari, #tugas_btnTambah').prop('disabled', false);
             }).getUnitKerjaByNpsnPTK(TUGAS_USER_NPSN);
         }
     }
@@ -576,9 +581,9 @@
                 TUGAS_TABEL_INSTANCE = $('#tugas_tabelUtama').DataTable({
                     "destroy": true, "ordering": false, "pageLength": 10, "autoWidth": false,
                     "deferRender": true, 
-                    "dom": '<"px-10 py-3 border-b border-stroke dark:border-strokedark"<"flex items-center justify-between gap-4"l f>>' +
+                    "dom": '<"px-6 py-4 border-b border-stroke dark:border-white/5"<"flex items-center justify-between gap-4"l f>>' +
                            '<"sultan-scroll overflow-x-auto"t>' +
-                           '<"px-10 py-3 border-t border-stroke dark:border-strokedark"<"flex items-center justify-between"i p>>',
+                           '<"px-6 py-4 border-t border-stroke dark:border-white/5"<"flex items-center justify-between"i p>>',
                     "columnDefs": [
                         { "targets": 0, "width": "1%", "className": "text-center whitespace-nowrap" },
                         { "targets": [1,6,7], "className": "text-left" }, 
