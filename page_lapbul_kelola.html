@@ -100,18 +100,11 @@
       </div>
   </div>
 
-  <!-- 3. DATATABLE AREA (SKELETON SYNC) -->
-  <div class="sk-card !p-0 overflow-hidden">
-      <!-- Loading State: Skeleton Engine -->
-      <div id="lapbulkelola_loadingState" class="p-6">
-          <div class="flex flex-col gap-4">
-              <div class="flex items-center justify-between mb-2">
-                  <div class="h-8 w-48 bg-gray-100 dark:bg-white/5 animate-pulse rounded-lg"></div>
-                  <div class="h-8 w-32 bg-gray-100 dark:bg-white/5 animate-pulse rounded-lg"></div>
-              </div>
-              <div id="lapbulkelola_skeletonTarget" class="space-y-3">
-                  <!-- Skeleton rows injected by JS -->
-              </div>
+      <!-- Loading State: Sultan Premium Skeleton -->
+      <div id="lapbulkelola_loadingState" class="py-20 animate-reveal">
+          <div class="flex flex-col items-center justify-center">
+              <div class="sk-spinner-premium mb-5"></div>
+              <h6 class="sk-loading-text">Sinkronisasi Data...</h6>
           </div>
       </div>
 
@@ -145,23 +138,15 @@
 <div class="modal fade sk-overlay" id="lapbulkelola_modalPreview" tabindex="-1" role="dialog" data-backdrop="static">
     <div class="modal-dialog modal-dialog-full overflow-hidden" role="document">
         <div class="modal-content sk-modal h-[95vh] flex flex-col overflow-hidden">
-            <div class="sk-modal-header bg-gray-900 border-b border-white/10 px-6 py-4 flex items-center justify-between">
+            <!-- Modal Header (Sync Blueprint) -->
+            <div class="sk-modal-header-brand bg-gray-900 border-b border-white/10 px-6 py-4 flex items-center justify-between">
+                <h3 class="sk-modal-title text-white">
+                    <i class="fas fa-file-pdf"></i>
+                    PRATINJAU DOKUMEN
+                </h3>
                 <div class="flex items-center gap-3">
-                    <div class="h-10 w-10 flex items-center justify-center rounded-xl bg-danger/20 text-danger shadow-lg shadow-danger/10">
-                        <i class="fas fa-file-pdf text-xl"></i>
-                    </div>
-                    <div class="flex flex-col">
-                        <h5 class="text-sm font-black text-white uppercase tracking-widest">Pratinjau Dokumen</h5>
-                        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest leading-none mt-1">Sertifikat & Laporan Terverifikasi</p>
-                    </div>
-                </div>
-                <div class="flex items-center gap-2">
-                    <a href="#" id="lapbulkelola_linkDownloadHeader" class="sk-btn bg-white/10 text-white hover:bg-white/20 !px-4 !text-[10px]" target="_blank"><i class="fas fa-download mr-1.5"></i> UNDUH</a>
-                    <a href="#" id="lapbulkelola_linkTabHeader" class="sk-btn bg-white/10 text-white hover:bg-white/20 !px-4 !text-[10px]" target="_blank"><i class="fas fa-external-link-alt mr-1.5"></i> TAB BARU</a>
-                    <div class="w-px h-6 bg-white/10 mx-2"></div>
-                    <button type="button" class="h-10 w-10 flex items-center justify-center rounded-xl hover:bg-white/10 text-white transition-colors" data-dismiss="modal">
-                        <i class="fas fa-times text-lg"></i>
-                    </button>
+                    <a id="lapbulkelola_linkDownloadHeader" href="#" target="_blank" class="sk-btn sk-btn-white sk-btn-compact !h-8 !px-3 font-black text-[10px]"><i class="fas fa-download mr-1.5"></i> DOWNLOAD</a>
+                    <button type="button" class="sk-modal-close !text-white hover:!bg-white/10" data-dismiss="modal"><i class="fas fa-times"></i></button>
                 </div>
             </div>
             <div class="modal-body p-0 flex-grow relative bg-[#1c2434]">
@@ -181,19 +166,12 @@
 <div class="modal fade sk-overlay" id="lapbulkelola_modalTambahData" tabindex="-1" role="dialog" data-backdrop="static">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content sk-modal min-h-[85vh] flex flex-col">
-            <div class="sk-modal-header bg-primary px-6 py-5 flex items-center justify-between" id="lapbulkelola_headerModalForm">
-                <div class="flex items-center gap-4">
-                    <div class="h-12 w-12 flex items-center justify-center rounded-2xl bg-white/20 text-white shadow-lg shadow-black/10">
-                        <i class="fas fa-file-export text-2xl"></i>
-                    </div>
-                    <div class="flex flex-col">
-                        <h5 class="text-sm font-black text-white uppercase tracking-[0.1em]" id="lapbulkelola_judulModalForm">Manajemen Dokumen</h5>
-                        <p class="text-[11px] text-white/70 font-bold uppercase tracking-wider mt-1">Formulir Input Laporan Bulanan Edukasi</p>
-                    </div>
-                </div>
-                <button type="button" class="h-10 w-10 flex items-center justify-center rounded-xl bg-white/10 text-white hover:bg-white/20 transition-all" data-dismiss="modal">
-                    <i class="fas fa-times text-xl"></i>
-                </button>
+            <div id="lapbulkelola_headerModalForm" class="sk-modal-header-brand sultan-header-navy px-6 py-4 flex items-center justify-between shadow-sm">
+                <h3 class="sk-modal-title text-white" id="lapbulkelola_judulModalForm">
+                    <i class="fas fa-file-export"></i>
+                    Manajemen Dokumen
+                </h3>
+                <button type="button" class="sk-modal-close !text-white hover:!bg-white/10" data-dismiss="modal"><i class="fas fa-times"></i></button>
             </div>
             
             <div class="modal-body p-0 bg-gray-50/50 dark:bg-black/20 flex-grow">
@@ -228,7 +206,7 @@
                 <!-- Form Container View -->
                 <div id="lapbulkelola_viewFormContainer" class="d-none h-full flex flex-col">
                     <div class="bg-white dark:bg-boxdark border-b border-gray-100 dark:border-gray-800 px-6 py-3 flex items-center justify-between">
-                        <button id="lapbulkelola_btnKembaliPilih" class="sultan-btn sultan-btn-white sk-btn-compact !px-4"><i class="fas fa-arrow-left mr-2"></i> KEMBALI</button>
+                        <button id="lapbulkelola_btnKembaliPilih" class="sk-btn sk-btn-white sk-btn-compact !px-4"><i class="fas fa-arrow-left mr-2"></i> KEMBALI</button>
                         <span class="text-[12px] font-black text-primary uppercase tracking-widest" id="lapbulkelola_labelFormAktif">FORMULIR</span>
                         <div class="w-20"></div>
                     </div>
@@ -255,11 +233,11 @@
 
             <!-- Area Keputusan (Kanan) -->
             <div class="w-full md:w-[380px] flex flex-col bg-white dark:bg-boxdark h-full">
-                <div class="sk-modal-header-brand sk-modal-header-success flex items-center justify-between px-6 py-4">
-                    <h3 class="sk-modal-title flex items-center gap-2">
+                <div class="sk-modal-header-brand sk-modal-header-success px-6 py-4 flex items-center justify-between shadow-sm">
+                    <h3 class="sk-modal-title">
                         <i class="fas fa-check-double"></i> Verifikasi Data
                     </h3>
-                    <button type="button" class="text-white hover:bg-white/20 h-8 w-8 rounded-lg flex items-center justify-center transition-all" data-dismiss="modal">
+                    <button type="button" class="sk-modal-close" data-dismiss="modal">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
@@ -384,7 +362,7 @@
                                 <div class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-primary">
                                     <i class="fas fa-search"></i>
                                 </div>
-                                <input type="text" id="lapbulkelola_inputSearchSekolah" class="sk-dash-input w-full pl-12 bg-gray-50 dark:bg-black/20 border-gray-200 dark:border-gray-800 input-cari-sekolah" data-tipe="SD" placeholder="Ketik minimal 3 karakter..." autocomplete="off">
+                                <input type="text" id="lapbulkelola_inputSearchSekolah" class="sk-form-input w-full pl-12 bg-gray-50 dark:bg-black/20 border-gray-200 dark:border-gray-800 input-cari-sekolah" data-tipe="SD" placeholder="Ketik minimal 3 karakter..." autocomplete="off">
                                 <div id="lapbulkelola_suggestionBoxSD" class="absolute top-full left-0 right-0 z-[100] bg-white dark:bg-boxdark shadow-xl rounded-b-xl border border-gray-100 dark:border-gray-800 max-h-[300px] overflow-y-auto d-none sultan-scroll"></div>
                                 <input type="hidden" name="npsn" id="lapbulkelola_val_npsn">
                                 <input type="hidden" name="nama_sekolah" id="lapbulkelola_val_nama">
@@ -395,8 +373,8 @@
                         <div class="md:col-span-4 flex flex-col gap-2">
                             <label class="text-[11px] font-black text-gray-500 uppercase tracking-widest">Periode Laporan</label>
                             <div class="flex gap-2">
-                                <select name="bulan" id="lapbulkelola_sel_bulan" class="sk-dash-input flex-grow bg-gray-50 dark:bg-black/20 border-gray-200 dark:border-gray-800" required></select>
-                                <select name="tahun" id="lapbulkelola_sel_tahun" class="sk-dash-input w-[100px] bg-gray-50 dark:bg-black/20 border-gray-200 dark:border-gray-800" required></select>
+                                <select name="bulan" id="lapbulkelola_sel_bulan" class="sk-form-input flex-grow bg-gray-50 dark:bg-black/20 border-gray-200 dark:border-gray-800" required></select>
+                                <select name="tahun" id="lapbulkelola_sel_tahun" class="sk-form-input w-[100px] bg-gray-50 dark:bg-black/20 border-gray-200 dark:border-gray-800" required></select>
                             </div>
                         </div>
                     </div>
@@ -406,7 +384,7 @@
                     </div>
                     
                     <div class="flex items-center justify-end mt-8 pt-8 border-t border-gray-100 dark:border-gray-800">
-                        <button type="button" class="sultan-btn sultan-btn-primary sk-btn-compact btn-val-sek-sd">DATA MURID <i class="fas fa-arrow-right ml-2"></i></button>
+                        <button type="button" class="sk-btn sk-btn-primary sk-btn-compact btn-val-sek-sd">DATA MURID <i class="fas fa-arrow-right ml-2"></i></button>
                     </div>
                 </div>
             </div>
@@ -438,7 +416,7 @@
                                     <span class="text-[10px] text-gray-500 font-bold uppercase">Laporan periode sebelumnya</span>
                                 </div>
                             </div>
-                            <button type="button" class="sultan-btn sultan-btn-white sk-btn-compact !h-8 !px-3 font-black text-[10px] btn-aksi-preview"><i class="fas fa-eye mr-1.5"></i> LIHAT</button>
+                            <button type="button" class="sk-btn sk-btn-white sk-btn-compact !h-8 !px-3 font-black text-[10px] btn-aksi-preview"><i class="fas fa-eye mr-1.5"></i> LIHAT</button>
                         </div>
                     </div>
 
@@ -458,8 +436,8 @@
                     <p class="text-[10px] text-primary font-black italic mt-4 d-none uppercase tracking-wider" id="lapbulkelola_msgEditFileSD"><i class="fas fa-info-circle mr-1"></i> Biarkan kosong jika tidak ingin mengganti file</p>
                     
                     <div class="flex items-center justify-between w-full mt-10 pt-10 border-t border-gray-100 dark:border-gray-800">
-                        <button type="button" class="sultan-btn sultan-btn-white sk-btn-compact btn-back-tab" data-target="lapbulkelola_ts3"><i class="fas fa-arrow-left mr-2"></i> DATA PTK</button>
-                        <button type="submit" id="lapbulkelola_btnFinalSD" class="sultan-btn sultan-btn-primary sk-btn-compact px-8 !bg-maroon hover:!bg-maroon-700 shadow-maroon/20 shadow-lg"><i class="fas fa-paper-plane mr-2"></i> KIRIM DATA LAPORAN</button>
+                        <button type="button" class="sk-btn sk-btn-white sk-btn-compact btn-back-tab" data-target="lapbulkelola_ts3"><i class="fas fa-arrow-left mr-2"></i> DATA PTK</button>
+                        <button type="submit" id="lapbulkelola_btnFinalSD" class="sk-btn sk-btn-primary sk-btn-compact px-8 !bg-maroon hover:!bg-maroon-700 shadow-maroon/20 shadow-lg"><i class="fas fa-paper-plane mr-2"></i> KIRIM DATA LAPORAN</button>
                     </div>
                 </div>
             </div>
@@ -497,7 +475,7 @@
                                 <div class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-primary">
                                     <i class="fas fa-search"></i>
                                 </div>
-                                <input type="text" id="lapbulkelola_inputSearchSekolahPAUD" class="sk-dash-input w-full pl-12 bg-gray-50 dark:bg-black/20 border-gray-200 dark:border-gray-800 input-cari-sekolah" data-tipe="PAUD" placeholder="Ketik minimal 3 karakter..." autocomplete="off">
+                                <input type="text" id="lapbulkelola_inputSearchSekolahPAUD" class="sk-form-input w-full pl-12 bg-gray-50 dark:bg-black/20 border-gray-200 dark:border-gray-800 input-cari-sekolah" data-tipe="PAUD" placeholder="Ketik minimal 3 karakter..." autocomplete="off">
                                 <div id="lapbulkelola_suggestionBoxPAUD" class="absolute top-full left-0 right-0 z-[100] bg-white dark:bg-boxdark shadow-xl rounded-b-xl border border-gray-100 dark:border-gray-800 max-h-[300px] overflow-y-auto d-none sultan-scroll"></div>
                                 <input type="hidden" name="npsn" id="lapbulkelola_val_npsn_paud">
                                 <input type="hidden" name="nama_sekolah" id="lapbulkelola_val_nama_paud">
@@ -508,8 +486,8 @@
                         <div class="md:col-span-4 flex flex-col gap-2">
                             <label class="text-[11px] font-black text-gray-500 uppercase tracking-widest">Periode Laporan</label>
                             <div class="flex gap-2">
-                                <select name="bulan" id="lapbulkelola_sel_bulan_paud" class="sk-dash-input flex-grow bg-gray-50 dark:bg-black/20 border-gray-200 dark:border-gray-800" required></select>
-                                <select name="tahun" id="lapbulkelola_sel_tahun_paud" class="sk-dash-input w-[100px] bg-gray-50 dark:bg-black/20 border-gray-200 dark:border-gray-800" required></select>
+                                <select name="bulan" id="lapbulkelola_sel_bulan_paud" class="sk-form-input flex-grow bg-gray-50 dark:bg-black/20 border-gray-200 dark:border-gray-800" required></select>
+                                <select name="tahun" id="lapbulkelola_sel_tahun_paud" class="sk-form-input w-[100px] bg-gray-50 dark:bg-black/20 border-gray-200 dark:border-gray-800" required></select>
                             </div>
                         </div>
                     </div>
@@ -517,7 +495,7 @@
                     <div id="lapbulkelola_dynamicFieldsPAUD" class="grid grid-cols-1 lg:grid-cols-3 gap-6"></div>
                     
                     <div class="flex items-center justify-end mt-8 pt-8 border-t border-gray-100 dark:border-gray-800">
-                        <button type="button" class="sultan-btn sultan-btn-primary sk-btn-compact btn-val-sek-paud">DATA MURID <i class="fas fa-arrow-right ml-2"></i></button>
+                        <button type="button" class="sk-btn sk-btn-primary sk-btn-compact btn-val-sek-paud">DATA MURID <i class="fas fa-arrow-right ml-2"></i></button>
                     </div>
                 </div>
             </div>
@@ -528,7 +506,7 @@
                     <div class="flex flex-wrap items-center gap-6 mb-8 pb-8 border-b border-gray-100 dark:border-gray-800">
                         <div class="flex flex-col gap-2">
                             <label class="text-[11px] font-black text-gray-500 uppercase tracking-widest">Jumlah Rombel Keseluruhan</label>
-                            <input type="number" name="jumlah_rombel" class="sk-dash-input w-32 border-primary text-center" min="1" required placeholder="0">
+                            <input type="number" name="jumlah_rombel" class="sk-form-input w-32 border-primary text-center" min="1" required placeholder="0">
                         </div>
                         <div class="flex flex-col gap-2 flex-grow max-w-sm">
                             <label class="text-[11px] font-black text-gray-500 uppercase tracking-widest">Validasi Data</label>
@@ -565,8 +543,8 @@
                     </div>
 
                     <div class="flex items-center justify-between mt-10 pt-10 border-t border-gray-100 dark:border-gray-800">
-                        <button type="button" class="sultan-btn sultan-btn-white sk-btn-compact btn-back-tab-paud" data-target="lapbulkelola_tp1"><i class="fas fa-arrow-left mr-2"></i> DATA SEKOLAH</button>
-                        <button type="button" class="sultan-btn sultan-btn-primary sk-btn-compact btn-val-murid-paud">DATA PTK <i class="fas fa-arrow-right ml-2"></i></button>
+                        <button type="button" class="sk-btn sk-btn-white sk-btn-compact btn-back-tab-paud" data-target="lapbulkelola_tp1"><i class="fas fa-arrow-left mr-2"></i> DATA SEKOLAH</button>
+                        <button type="button" class="sk-btn sk-btn-primary sk-btn-compact btn-val-murid-paud">DATA PTK <i class="fas fa-arrow-right ml-2"></i></button>
                     </div>
                 </div>
             </div>
@@ -592,7 +570,7 @@
                                     <span class="text-[10px] text-gray-500 font-bold uppercase">Dokumen terakhir tersimpan</span>
                                 </div>
                             </div>
-                            <button type="button" class="sultan-btn sultan-btn-white sk-btn-compact !h-8 !px-3 font-black text-[10px] btn-aksi-preview"><i class="fas fa-eye mr-1.5"></i> LIHAT</button>
+                            <button type="button" class="sk-btn sk-btn-white sk-btn-compact !h-8 !px-3 font-black text-[10px] btn-aksi-preview"><i class="fas fa-eye mr-1.5"></i> LIHAT</button>
                         </div>
                     </div>
 
@@ -612,8 +590,8 @@
                     <p class="text-[10px] text-primary font-black italic mt-4 d-none uppercase tracking-wider" id="lapbulkelola_msgEditFilePAUD"><i class="fas fa-info-circle mr-1"></i> Kosongkan jika tidak mengganti file</p>
                     
                     <div class="flex items-center justify-between w-full mt-10 pt-10 border-t border-gray-100 dark:border-gray-800">
-                        <button type="button" class="sultan-btn sultan-btn-white sk-btn-compact btn-back-tab-paud" data-target="lapbulkelola_tp3"><i class="fas fa-arrow-left mr-2"></i> DATA PTK</button>
-                        <button type="submit" id="lapbulkelola_btnFinalPAUD" class="sultan-btn sultan-btn-primary sk-btn-compact px-8 !bg-maroon hover:!bg-maroon-700 shadow-maroon/20 shadow-lg"><i class="fas fa-paper-plane mr-2"></i> KIRIM LAPORAN SEKARANG</button>
+                        <button type="button" class="sk-btn sk-btn-white sk-btn-compact btn-back-tab-paud" data-target="lapbulkelola_tp3"><i class="fas fa-arrow-left mr-2"></i> DATA PTK</button>
+                        <button type="submit" id="lapbulkelola_btnFinalPAUD" class="sk-btn sk-btn-primary sk-btn-compact px-8 !bg-maroon hover:!bg-maroon-700 shadow-maroon/20 shadow-lg"><i class="fas fa-paper-plane mr-2"></i> KIRIM LAPORAN SEKARANG</button>
                     </div>
                 </div>
             </div>
@@ -632,8 +610,8 @@
                 <h5 class="text-sm font-black text-black dark:text-white uppercase tracking-widest mb-1">Data Guru Kosong</h5>
                 <p class="text-[11px] text-gray-500 font-bold uppercase mb-6 leading-relaxed">Jumlah Pendidik (Guru) bernilai 0.<br>Lanjutkan proses pengiriman?</p>
                 <div class="grid grid-cols-2 gap-3">
-                    <button type="button" class="sultan-btn sultan-btn-white sk-btn-compact !text-[10px]" data-dismiss="modal">BATAL</button>
-                    <button type="button" class="sultan-btn sultan-btn-primary !bg-warning hover:!bg-orange-500 sk-btn-compact !text-[10px] btn-paksa-lanjut">YA, LANJUT</button>
+                    <button type="button" class="sk-btn sk-btn-white sk-btn-compact !text-[10px]" data-dismiss="modal">BATAL</button>
+                    <button type="button" class="sk-btn sk-btn-primary !bg-warning hover:!bg-orange-500 sk-btn-compact !text-[10px] btn-paksa-lanjut">YA, LANJUT</button>
                 </div>
             </div>
         </div>
@@ -654,8 +632,8 @@
                     <span id="lapbulkelola_textPeriodeKonfirmasi" class="text-lg font-black text-primary uppercase tracking-tight"></span>
                 </div>
                 <div class="grid grid-cols-2 gap-3">
-                    <button type="button" class="sultan-btn sultan-btn-white sk-btn-compact !text-[10px]" data-dismiss="modal">KEMBALI</button>
-                    <button type="button" class="sultan-btn sultan-btn-primary sk-btn-compact !text-[10px]" id="lapbulkelola_btnKonfirmLanjutTab2">LANJUTKAN <i class="fas fa-arrow-right ml-1"></i></button>
+                    <button type="button" class="sk-btn sk-btn-white sk-btn-compact !text-[10px]" data-dismiss="modal">KEMBALI</button>
+                    <button type="button" class="sk-btn sk-btn-primary sk-btn-compact !text-[10px]" id="lapbulkelola_btnKonfirmLanjutTab2">LANJUTKAN <i class="fas fa-arrow-right ml-1"></i></button>
                 </div>
             </div>
         </div>
@@ -1036,9 +1014,9 @@ function lapbulkelola_renderTabel(data) {
         var safeNama = lapbulkelola_escapeJs(row.namaSekolah);        // VAKSIN DYNAMIC UI: Membedakan Aksi Admin dan User
         
         // BAB III: Tombol Aksi (Side-by-Side Blueprint Style)
-        var btnVerif = LAPBULKELOLA_IS_ADMIN ? '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-600 hover:bg-emerald-600 hover:text-white transition-all shadow-sm btn-aksi-verif" data-id="' + row.rowId + '" data-source="' + row.source + '" data-nama="' + safeNama + '" data-bulan="' + row.bulan + '" data-tahun="' + row.tahun + '" data-file="' + (row.fileUrl || "") + '" data-npsn="' + (row.npsn || "-") + '" data-status="' + (row.statusData || "Diproses") + '" title="Verifikasi Laporan"><i class="fas fa-check-double text-[12px]"></i></button>' : '';
-        var btnEdit  = '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-500/10 text-amber-600 hover:bg-amber-600 hover:text-white transition-all shadow-sm btn-aksi-edit ' + (isApproved ? 'opacity-30 cursor-not-allowed' : '') + '" data-id="' + row.rowId + '" data-source="' + row.source + '" title="Ubah Laporan" ' + (isApproved ? 'disabled' : '') + '><i class="fas fa-pencil-alt text-[12px]"></i></button>';
-        var btnHapus = '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg bg-rose-500/10 text-rose-600 hover:bg-rose-600 hover:text-white transition-all shadow-sm btn-aksi-hapus ' + (isApproved ? 'opacity-30 cursor-not-allowed' : '') + '" data-id="' + row.rowId + '" data-source="' + row.source + '" data-nama="' + safeNama + '" data-bulan="' + row.bulan + '" data-tahun="' + row.tahun + '" title="Hapus Permanen" ' + (isApproved ? 'disabled' : '') + '><i class="fas fa-trash-alt text-[12px]"></i></button>';
+        var btnVerif = LAPBULKELOLA_IS_ADMIN ? '<button type="button" class="sk-btn sk-btn-secondary !h-8 !w-8 !p-0 !text-emerald-600 hover:!bg-emerald-600 hover:!text-white btn-aksi-verif" data-id="' + row.rowId + '" data-source="' + row.source + '" data-nama="' + safeNama + '" data-bulan="' + row.bulan + '" data-tahun="' + row.tahun + '" data-file="' + (row.fileUrl || "") + '" data-npsn="' + (row.npsn || "-") + '" data-status="' + (row.statusData || "Diproses") + '" title="Verifikasi Laporan"><i class="fas fa-check-double text-[12px]"></i></button>' : '';
+        var btnEdit  = '<button type="button" class="sk-btn sk-btn-secondary !h-8 !w-8 !p-0 !text-amber-600 hover:!bg-amber-600 hover:!text-white btn-aksi-edit ' + (isApproved ? 'opacity-30 cursor-not-allowed' : '') + '" data-id="' + row.rowId + '" data-source="' + row.source + '" title="Ubah Laporan" ' + (isApproved ? 'disabled' : '') + '><i class="fas fa-pencil-alt text-[12px]"></i></button>';
+        var btnHapus = '<button type="button" class="sk-btn sk-btn-secondary !h-8 !w-8 !p-0 !text-rose-600 hover:!bg-rose-600 hover:!text-white btn-aksi-hapus ' + (isApproved ? 'opacity-30 cursor-not-allowed' : '') + '" data-id="' + row.rowId + '" data-source="' + row.source + '" data-nama="' + safeNama + '" data-bulan="' + row.bulan + '" data-tahun="' + row.tahun + '" title="Hapus Permanen" ' + (isApproved ? 'disabled' : '') + '><i class="fas fa-trash-alt text-[12px]"></i></button>';
         var btnAksi = '<div class="flex items-center justify-center gap-2">' + btnVerif + btnEdit + btnHapus + '</div>';
 
         var btnFile = '<span class="text-gray-300 font-bold uppercase tracking-widest text-[10px]">- KOSONG -</span>';
@@ -1327,22 +1305,22 @@ function lapbulkelola_initFormSD() {
         else if (i === 6) { footerBtn = '<div class="d-flex justify-content-between mt-4 border-top pt-3"><button type="button" class="btn btn-outline-secondary btn-sm font-weight-bold btn-nav-tk" data-target="#lapbulkelola_tk5"><i class="fas fa-chevron-left mr-1"></i> Kelas 5</button><button type="button" class="btn btn-primary px-4 font-weight-bold shadow-sm btn-val-murid-sd">DATA PTK <i class="fas fa-arrow-right ml-1"></i></button></div>'; } 
         else { var p = i - 1; var n = i + 1; footerBtn = '<div class="d-flex justify-content-between mt-4 border-top pt-3"><button type="button" class="btn btn-outline-secondary btn-sm font-weight-bold btn-nav-tk" data-target="#lapbulkelola_tk' + p + '"><i class="fas fa-chevron-left mr-1"></i> Kelas ' + p + '</button><button type="button" class="btn btn-outline-primary btn-sm font-weight-bold btn-nav-tk" data-target="#lapbulkelola_tk' + n + '">Kelas ' + n + ' <i class="fas fa-chevron-right ml-1"></i></button></div>'; }
 
-        contentHtml += '<div class="tab-pane fade ' + activeClass + '" id="lapbulkelola_tk' + i + '"><div class="card card-sultan shadow-sm p-4 border-top-0 rounded-0"><div class="group-box"><span class="group-title text-maroon font-weight-bold"><i class="fas fa-layer-group mr-2"></i>A. Menurut Rombel</span><div class="row align-items-center mb-2"><div class="col-md-3"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Jumlah Rombel</label><select class="form-control form-control-sultan form-control-sm sel-rombel border-maroon" data-kelas="' + i + '" name="rombel_' + i + '"><option value="0">0 (Tidak Ada)</option><option value="1" selected>1 Rombel</option><option value="2">2 Rombel</option><option value="3">3 Rombel</option></select></div><div class="col-md-9"><div id="lapbulkelola_containerRombel' + i + '" class="mt-1"></div></div></div></div><div class="group-box"><span class="group-title text-maroon font-weight-bold"><i class="fas fa-praying-hands mr-2"></i>B. Menurut Agama</span><div class="row">' + lapbulkelola_renderAgamaInput(i,'Islam','islam',true) + lapbulkelola_renderAgamaInput(i,'Kristen','kristen') + lapbulkelola_renderAgamaInput(i,'Katolik','katolik') + lapbulkelola_renderAgamaInput(i,'Hindu','hindu') + lapbulkelola_renderAgamaInput(i,'Buddha','buddha') + lapbulkelola_renderAgamaInput(i,'Konghucu','konghucu') + '</div></div><div class="alert alert-secondary border d-flex justify-content-between align-items-center py-2 px-3 m-0"><div class="small text-dark" style="line-height:1.2;"><div>Total Rombel: <strong><span id="lapbulkelola_totalRombel' + i + '" class="text-maroon" style="font-size:14px;">0</span></strong> <span class="text-muted small">(L:<span id="lapbulkelola_sumRL' + i + '">0</span> P:<span id="lapbulkelola_sumRP' + i + '">0</span>)</span></div><div>Total Agama: <strong><span id="lapbulkelola_totalAgama' + i + '" class="text-maroon" style="font-size:14px;">0</span></strong> <span class="text-muted small">(L:<span id="lapbulkelola_sumAL' + i + '">0</span> P:<span id="lapbulkelola_sumAP' + i + '">0</span>)</span></div></div><span class="badge badge-warning p-2 px-3 shadow-sm" id="lapbulkelola_statusVal' + i + '">Belum Sesuai</span></div>' + footerBtn + '</div></div>';
+        contentHtml += '<div class="tab-pane fade ' + activeClass + '" id="lapbulkelola_tk' + i + '"><div class="card card-sultan shadow-sm p-4 border-top-0 rounded-0"><div class="group-box"><span class="group-title text-maroon font-weight-bold"><i class="fas fa-layer-group mr-2"></i>A. Menurut Rombel</span><div class="row align-items-center mb-2"><div class="col-md-3"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Jumlah Rombel</label><select class="form-control sk-form-input form-control-sm sel-rombel border-maroon" data-kelas="' + i + '" name="rombel_' + i + '"><option value="0">0 (Tidak Ada)</option><option value="1" selected>1 Rombel</option><option value="2">2 Rombel</option><option value="3">3 Rombel</option></select></div><div class="col-md-9"><div id="lapbulkelola_containerRombel' + i + '" class="mt-1"></div></div></div></div><div class="group-box"><span class="group-title text-maroon font-weight-bold"><i class="fas fa-praying-hands mr-2"></i>B. Menurut Agama</span><div class="row">' + lapbulkelola_renderAgamaInput(i,'Islam','islam',true) + lapbulkelola_renderAgamaInput(i,'Kristen','kristen') + lapbulkelola_renderAgamaInput(i,'Katolik','katolik') + lapbulkelola_renderAgamaInput(i,'Hindu','hindu') + lapbulkelola_renderAgamaInput(i,'Buddha','buddha') + lapbulkelola_renderAgamaInput(i,'Konghucu','konghucu') + '</div></div><div class="alert alert-secondary border d-flex justify-content-between align-items-center py-2 px-3 m-0"><div class="small text-dark" style="line-height:1.2;"><div>Total Rombel: <strong><span id="lapbulkelola_totalRombel' + i + '" class="text-maroon" style="font-size:14px;">0</span></strong> <span class="text-muted small">(L:<span id="lapbulkelola_sumRL' + i + '">0</span> P:<span id="lapbulkelola_sumRP' + i + '">0</span>)</span></div><div>Total Agama: <strong><span id="lapbulkelola_totalAgama' + i + '" class="text-maroon" style="font-size:14px;">0</span></strong> <span class="text-muted small">(L:<span id="lapbulkelola_sumAL' + i + '">0</span> P:<span id="lapbulkelola_sumAP' + i + '">0</span>)</span></div></div><span class="badge badge-warning p-2 px-3 shadow-sm" id="lapbulkelola_statusVal' + i + '">Belum Sesuai</span></div>' + footerBtn + '</div></div>';
     }
     $('#lapbulkelola_subTabKelas').html(navHtml); $('#lapbulkelola_kelasContainer').html(contentHtml);
     for(var k=1; k<=6; k++) lapbulkelola_renderInputRombel(k);
 
-    var ptkHtml = '<div class="card card-sultan shadow-sm border-0"><div class="card-header bg-light p-0 border-bottom"><ul class="nav nav-pills nav-fill small font-weight-bold" id="lapbulkelola_subTabPTK"><li class="nav-item"><a class="nav-link active py-2" data-toggle="pill" href="#lapbulkelola_ptk1">1. Kepala Sekolah</a></li><li class="nav-item"><a class="nav-link py-2" data-toggle="pill" href="#lapbulkelola_ptk2">2. Pendidik (Guru)</a></li><li class="nav-item"><a class="nav-link py-2" data-toggle="pill" href="#lapbulkelola_ptk3">3. Tenaga Kependidikan</a></li></ul></div><div class="card-body p-3 tab-content"><div class="tab-pane fade show active" id="lapbulkelola_ptk1"><div class="alert alert-light border small mb-4"><i class="fas fa-info-circle mr-1"></i> Isikan jumlah Kepala Sekolah (Maksimal 1).</div><div class="row justify-content-center"><div class="col-md-3 text-center"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">PNS</label><input type="number" name="ks_pns" class="form-control form-control-sm form-control-sultan text-center val-ks mx-auto border-maroon" style="max-width:100px;" min="0"></div><div class="col-md-3 text-center"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">PPPK</label><input type="number" name="ks_pppk" class="form-control form-control-sm form-control-sultan text-center val-ks mx-auto border-maroon" style="max-width:100px;" min="0"></div><div class="col-md-3 text-center"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Non ASN</label><input type="number" name="ks_nonasn" class="form-control form-control-sm form-control-sultan text-center val-ks mx-auto border-maroon" style="max-width:100px;" min="0"></div></div><div class="text-center mt-2"><small id="lapbulkelola_errKS" class="text-danger font-weight-bold d-none"><i class="fas fa-exclamation-circle mr-1"></i> Jumlah KS tidak boleh lebih dari 1!</small></div><div class="d-flex justify-content-between mt-4 pt-3 border-top"><button type="button" class="btn btn-default btn-sm font-weight-bold shadow-sm btn-tab-sd" data-target="lapbulkelola_ts2"><i class="fas fa-arrow-left mr-1"></i> Data Murid</button><button type="button" class="btn btn-primary btn-sm px-4 font-weight-bold shadow-sm btn-nav-ptk" data-target="#lapbulkelola_ptk2">Pendidik <i class="fas fa-arrow-right ml-1"></i></button></div></div><div class="tab-pane fade" id="lapbulkelola_ptk2"><div class="table-responsive"><table class="table table-sm table-bordered table-striped table-matrix small mb-0"><thead class="bg-dark text-white text-center"><tr><th class="col-jabatan align-middle">Jabatan Guru</th><th class="align-middle">PNS</th><th class="align-middle">PPPK</th><th class="align-middle">PPPK PW</th><th class="align-middle">GTY</th><th class="align-middle">GTT</th></tr></thead><tbody id="lapbulkelola_bodyGuru"></tbody></table></div><div class="d-flex justify-content-between mt-3 pt-3 border-top"><button type="button" class="btn btn-outline-secondary btn-sm font-weight-bold btn-nav-ptk" data-target="#lapbulkelola_ptk1"><i class="fas fa-arrow-left mr-1"></i> Kepsek</button><button type="button" class="btn btn-primary btn-sm px-4 font-weight-bold shadow-sm btn-nav-ptk" data-target="#lapbulkelola_ptk3">Tendik <i class="fas fa-arrow-right ml-1"></i></button></div></div><div class="tab-pane fade" id="lapbulkelola_ptk3"><div class="table-responsive"><table class="table table-sm table-bordered table-striped table-matrix small mb-0"><thead class="bg-secondary text-white text-center"><tr><th class="col-jabatan align-middle">Jabatan Tendik</th><th class="align-middle">PNS</th><th class="align-middle">PPPK</th><th class="align-middle">PPPK PW</th><th class="align-middle">PTY</th><th class="align-middle">PTT</th></tr></thead><tbody id="lapbulkelola_bodyTendik"></tbody></table></div><div class="d-flex justify-content-between mt-3 pt-3 border-top"><button type="button" class="btn btn-outline-secondary btn-sm font-weight-bold btn-nav-ptk" data-target="#lapbulkelola_ptk2"><i class="fas fa-arrow-left mr-1"></i> Pendidik</button><button type="button" class="btn btn-maroon btn-sm text-white px-4 font-weight-bold shadow-sm btn-val-ptk-sd">UNGGAH FILE <i class="fas fa-arrow-right ml-1"></i></button></div></div></div></div>';
+    var ptkHtml = '<div class="card card-sultan shadow-sm border-0"><div class="card-header bg-light p-0 border-bottom"><ul class="nav nav-pills nav-fill small font-weight-bold" id="lapbulkelola_subTabPTK"><li class="nav-item"><a class="nav-link active py-2" data-toggle="pill" href="#lapbulkelola_ptk1">1. Kepala Sekolah</a></li><li class="nav-item"><a class="nav-link py-2" data-toggle="pill" href="#lapbulkelola_ptk2">2. Pendidik (Guru)</a></li><li class="nav-item"><a class="nav-link py-2" data-toggle="pill" href="#lapbulkelola_ptk3">3. Tenaga Kependidikan</a></li></ul></div><div class="card-body p-3 tab-content"><div class="tab-pane fade show active" id="lapbulkelola_ptk1"><div class="alert alert-light border small mb-4"><i class="fas fa-info-circle mr-1"></i> Isikan jumlah Kepala Sekolah (Maksimal 1).</div><div class="row justify-content-center"><div class="col-md-3 text-center"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">PNS</label><input type="number" name="ks_pns" class="form-control form-control-sm sk-form-input text-center val-ks mx-auto border-maroon" style="max-width:100px;" min="0"></div><div class="col-md-3 text-center"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">PPPK</label><input type="number" name="ks_pppk" class="form-control form-control-sm sk-form-input text-center val-ks mx-auto border-maroon" style="max-width:100px;" min="0"></div><div class="col-md-3 text-center"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Non ASN</label><input type="number" name="ks_nonasn" class="form-control form-control-sm sk-form-input text-center val-ks mx-auto border-maroon" style="max-width:100px;" min="0"></div></div><div class="text-center mt-2"><small id="lapbulkelola_errKS" class="text-danger font-weight-bold d-none"><i class="fas fa-exclamation-circle mr-1"></i> Jumlah KS tidak boleh lebih dari 1!</small></div><div class="d-flex justify-content-between mt-4 pt-3 border-top"><button type="button" class="btn btn-default btn-sm font-weight-bold shadow-sm btn-tab-sd" data-target="lapbulkelola_ts2"><i class="fas fa-arrow-left mr-1"></i> Data Murid</button><button type="button" class="btn btn-primary btn-sm px-4 font-weight-bold shadow-sm btn-nav-ptk" data-target="#lapbulkelola_ptk2">Pendidik <i class="fas fa-arrow-right ml-1"></i></button></div></div><div class="tab-pane fade" id="lapbulkelola_ptk2"><div class="table-responsive"><table class="table table-sm table-bordered table-striped table-matrix small mb-0"><thead class="bg-dark text-white text-center"><tr><th class="col-jabatan align-middle">Jabatan Guru</th><th class="align-middle">PNS</th><th class="align-middle">PPPK</th><th class="align-middle">PPPK PW</th><th class="align-middle">GTY</th><th class="align-middle">GTT</th></tr></thead><tbody id="lapbulkelola_bodyGuru"></tbody></table></div><div class="d-flex justify-content-between mt-3 pt-3 border-top"><button type="button" class="btn btn-outline-secondary btn-sm font-weight-bold btn-nav-ptk" data-target="#lapbulkelola_ptk1"><i class="fas fa-arrow-left mr-1"></i> Kepsek</button><button type="button" class="btn btn-primary btn-sm px-4 font-weight-bold shadow-sm btn-nav-ptk" data-target="#lapbulkelola_ptk3">Tendik <i class="fas fa-arrow-right ml-1"></i></button></div></div><div class="tab-pane fade" id="lapbulkelola_ptk3"><div class="table-responsive"><table class="table table-sm table-bordered table-striped table-matrix small mb-0"><thead class="bg-secondary text-white text-center"><tr><th class="col-jabatan align-middle">Jabatan Tendik</th><th class="align-middle">PNS</th><th class="align-middle">PPPK</th><th class="align-middle">PPPK PW</th><th class="align-middle">PTY</th><th class="align-middle">PTT</th></tr></thead><tbody id="lapbulkelola_bodyTendik"></tbody></table></div><div class="d-flex justify-content-between mt-3 pt-3 border-top"><button type="button" class="btn btn-outline-secondary btn-sm font-weight-bold btn-nav-ptk" data-target="#lapbulkelola_ptk2"><i class="fas fa-arrow-left mr-1"></i> Pendidik</button><button type="button" class="btn btn-maroon btn-sm text-white px-4 font-weight-bold shadow-sm btn-val-ptk-sd">UNGGAH FILE <i class="fas fa-arrow-right ml-1"></i></button></div></div></div></div>';
     $('#lapbulkelola_ts3').html(ptkHtml);
 
     var guruMapel = [['Guru Kelas','gk'],['Guru PAI','gpai'],['Guru PJOK','gpjok'],['Guru PA Kristen','gkris'],['Guru PA Katolik','gkat'],['Guru Bhs. Inggris','gbing',true],['Guru Mapel Lainnya','gmap',true]];
     var htmlG = "";
-    guruMapel.forEach(g => { var dis=g[2]?'readonly style="background:#eee;"':''; htmlG += '<tr><td class="font-weight-bold pl-3 text-left align-middle">' + g[0] + '</td><td><input type="number" name="' + g[1] + '_pns" class="form-control form-control-sm form-control-sultan val-ptk" min="0" ' + dis + '></td><td><input type="number" name="' + g[1] + '_pppk" class="form-control form-control-sm form-control-sultan val-ptk" min="0" ' + dis + '></td><td><input type="number" name="' + g[1] + '_pppk_pw" class="form-control form-control-sm form-control-sultan val-ptk" min="0" ' + dis + '></td><td><input type="number" name="' + g[1] + '_gty" class="form-control form-control-sm form-control-sultan val-ptk" min="0"></td><td><input type="number" name="' + g[1] + '_gtt" class="form-control form-control-sm form-control-sultan val-ptk" min="0"></td></tr>'; });
+    guruMapel.forEach(g => { var dis=g[2]?'readonly style="background:#eee;"':''; htmlG += '<tr><td class="font-weight-bold pl-3 text-left align-middle">' + g[0] + '</td><td><input type="number" name="' + g[1] + '_pns" class="form-control form-control-sm sk-form-input val-ptk" min="0" ' + dis + '></td><td><input type="number" name="' + g[1] + '_pppk" class="form-control form-control-sm sk-form-input val-ptk" min="0" ' + dis + '></td><td><input type="number" name="' + g[1] + '_pppk_pw" class="form-control form-control-sm sk-form-input val-ptk" min="0" ' + dis + '></td><td><input type="number" name="' + g[1] + '_gty" class="form-control form-control-sm sk-form-input val-ptk" min="0"></td><td><input type="number" name="' + g[1] + '_gtt" class="form-control form-control-sm sk-form-input val-ptk" min="0"></td></tr>'; });
     $('#lapbulkelola_bodyGuru').html(htmlG);
 
     var tendik = [['Pengelola Umum Operasional','puo'],['Operator Layanan Operasional','olo'],['Pengelola Layanan Operasional','plo'],['Penata Layanan Operasional','ptlo'],['Administrasi Perkantoran','adm'],['Penjaga','pjg',true],['Tenaga Administrasi','tas',true],['Tenaga Perpustakaan','pust',true],['Tendik Lainnya','lain',true]];
     var htmlT = "";
-    tendik.forEach(t => { var dis=t[2]?'readonly style="background:#eee;"':''; htmlT += '<tr><td class="font-weight-bold pl-3 text-left align-middle">' + t[0] + '</td><td><input type="number" name="' + t[1] + '_pns" class="form-control form-control-sm form-control-sultan val-ptk" min="0" ' + dis + '></td><td><input type="number" name="' + t[1] + '_pppk" class="form-control form-control-sm form-control-sultan val-ptk" min="0" ' + dis + '></td><td><input type="number" name="' + t[1] + '_pppk_pw" class="form-control form-control-sm form-control-sultan val-ptk" min="0" ' + dis + '></td><td><input type="number" name="' + t[1] + '_pty" class="form-control form-control-sm form-control-sultan val-ptk" min="0"></td><td><input type="number" name="' + t[1] + '_ptt" class="form-control form-control-sm form-control-sultan val-ptk" min="0"></td></tr>'; });
+    tendik.forEach(t => { var dis=t[2]?'readonly style="background:#eee;"':''; htmlT += '<tr><td class="font-weight-bold pl-3 text-left align-middle">' + t[0] + '</td><td><input type="number" name="' + t[1] + '_pns" class="form-control form-control-sm sk-form-input val-ptk" min="0" ' + dis + '></td><td><input type="number" name="' + t[1] + '_pppk" class="form-control form-control-sm sk-form-input val-ptk" min="0" ' + dis + '></td><td><input type="number" name="' + t[1] + '_pppk_pw" class="form-control form-control-sm sk-form-input val-ptk" min="0" ' + dis + '></td><td><input type="number" name="' + t[1] + '_pty" class="form-control form-control-sm sk-form-input val-ptk" min="0"></td><td><input type="number" name="' + t[1] + '_ptt" class="form-control form-control-sm sk-form-input val-ptk" min="0"></td></tr>'; });
     $('#lapbulkelola_bodyTendik').html(htmlT);
 
     lapbulkelola_isiOtomatisSekolahUser('SD');
@@ -1361,13 +1339,13 @@ function lapbulkelola_renderInputRombel(k) {
 }
 
 function lapbulkelola_colInput(k, suf, name) {
-    return '<div class="col-md-4 col-sm-6 mb-3"><div class="border rounded p-2 bg-white h-100 shadow-sm"><span class="d-block small font-weight-bold text-dark mb-2 border-bottom pb-1">Kelas ' + k + suf + '</span><div class="d-flex align-items-center"><div class="input-group input-group-sm mr-2"><div class="input-group-prepend"><span class="input-group-text input-group-text-sm bg-light-maroon text-maroon">L</span></div><input type="number" name="' + name + '_l" data-kelas="' + k + '" class="form-control form-control-sultan hitung-siswa rombel-l-' + k + '" min="0"></div><div class="input-group input-group-sm"><div class="input-group-prepend"><span class="input-group-text input-group-text-sm bg-light-maroon text-maroon">P</span></div><input type="number" name="' + name + '_p" data-kelas="' + k + '" class="form-control form-control-sultan hitung-siswa rombel-p-' + k + '" min="0"></div></div></div></div>';
+    return '<div class="col-md-4 col-sm-6 mb-3"><div class="border rounded p-2 bg-white h-100 shadow-sm"><span class="d-block small font-weight-bold text-dark mb-2 border-bottom pb-1">Kelas ' + k + suf + '</span><div class="d-flex align-items-center"><div class="input-group input-group-sm mr-2"><div class="input-group-prepend"><span class="input-group-text input-group-text-sm bg-light-maroon text-maroon">L</span></div><input type="number" name="' + name + '_l" data-kelas="' + k + '" class="form-control sk-form-input hitung-siswa rombel-l-' + k + '" min="0"></div><div class="input-group input-group-sm"><div class="input-group-prepend"><span class="input-group-text input-group-text-sm bg-light-maroon text-maroon">P</span></div><input type="number" name="' + name + '_p" data-kelas="' + k + '" class="form-control sk-form-input hitung-siswa rombel-p-' + k + '" min="0"></div></div></div></div>';
 }
 
 function lapbulkelola_renderAgamaInput(k, label, prefix, isDefault) {
     var show = isDefault ? '' : 'style="display:none;"';
     var sel = isDefault ? 'selected' : '';
-    return '<div class="col-md-4 col-sm-6 mb-3"><div class="card shadow-sm-inset border rounded p-2 h-100" style="background: #ffffff;"><div class="d-flex justify-content-between mb-2 pb-1 border-bottom align-items-center"><span class="small font-weight-bold text-dark text-uppercase" style="letter-spacing:0.5px; font-size:10px;">' + label + '</span><select class="form-control form-control-sm w-50 py-0 sel-toggle-agama font-weight-bold" data-prefix="' + prefix + '" data-kelas="' + k + '" style="height:24px; font-size:10px; border-radius:4px;"><option value="0">Tidak Ada</option><option value="1" ' + sel + '>Ada</option></select></div><div id="lapbulkelola_box_' + prefix + k + '" ' + show + '><div class="d-flex align-items-center"><div class="input-group input-group-sm mr-2 shadow-sm"><div class="input-group-prepend"><span class="input-group-text bg-light text-muted font-weight-bold" style="font-size:9px;">L</span></div><input type="number" name="k' + k + '_' + prefix + '_l" data-kelas="' + k + '" class="form-control form-control-sultan hitung-siswa agama-l-' + k + ' text-center font-weight-bold" min="0" placeholder="0"></div><div class="input-group input-group-sm shadow-sm"><div class="input-group-prepend"><span class="input-group-text bg-light text-muted font-weight-bold" style="font-size:9px;">P</span></div><input type="number" name="k' + k + '_' + prefix + '_p" data-kelas="' + k + '" class="form-control form-control-sultan hitung-siswa agama-p-' + k + ' text-center font-weight-bold" min="0" placeholder="0"></div></div></div></div></div>';
+    return '<div class="col-md-4 col-sm-6 mb-3"><div class="card shadow-sm-inset border rounded p-2 h-100" style="background: #ffffff;"><div class="d-flex justify-content-between mb-2 pb-1 border-bottom align-items-center"><span class="small font-weight-bold text-dark text-uppercase" style="letter-spacing:0.5px; font-size:10px;">' + label + '</span><select class="form-control form-control-sm w-50 py-0 sel-toggle-agama font-weight-bold" data-prefix="' + prefix + '" data-kelas="' + k + '" style="height:24px; font-size:10px; border-radius:4px;"><option value="0">Tidak Ada</option><option value="1" ' + sel + '>Ada</option></select></div><div id="lapbulkelola_box_' + prefix + k + '" ' + show + '><div class="d-flex align-items-center"><div class="input-group input-group-sm mr-2 shadow-sm"><div class="input-group-prepend"><span class="input-group-text bg-light text-muted font-weight-bold" style="font-size:9px;">L</span></div><input type="number" name="k' + k + '_' + prefix + '_l" data-kelas="' + k + '" class="form-control sk-form-input hitung-siswa agama-l-' + k + ' text-center font-weight-bold" min="0" placeholder="0"></div><div class="input-group input-group-sm shadow-sm"><div class="input-group-prepend"><span class="input-group-text bg-light text-muted font-weight-bold" style="font-size:9px;">P</span></div><input type="number" name="k' + k + '_' + prefix + '_p" data-kelas="' + k + '" class="form-control sk-form-input hitung-siswa agama-p-' + k + ' text-center font-weight-bold" min="0" placeholder="0"></div></div></div></div></div>';
 }
 
 function lapbulkelola_toggleAgama(el, prefix, k) {
@@ -1599,7 +1577,7 @@ function lapbulkelola_initFormPAUD() {
 }
 
 function lapbulkelola_generateDynamicFieldsPAUD() {
-    var h = '<div class="row"><div class="col-lg-4 col-md-12 mb-3"><div class="group-box h-100"><span class="group-title text-maroon" style="font-size: 13px;"><i class="fas fa-building mr-2"></i>Legalitas</span><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Yayasan</label><input type="text" name="yayasan" id="lapbulkelola_in_yayasan_paud" class="form-control form-control-sultan form-control-sm"></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">No SK Pendirian</label><input type="text" name="no_sk_pendirian" id="lapbulkelola_in_no_sk_pendirian_paud" class="form-control form-control-sultan form-control-sm"></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Tgl Pendirian</label><input type="date" name="tgl_pendirian" id="lapbulkelola_in_tgl_pendirian_paud" class="form-control form-control-sultan form-control-sm"></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">No Ijin Ops</label><input type="text" name="no_sk_ijin" id="lapbulkelola_in_no_sk_ijin_paud" class="form-control form-control-sultan form-control-sm"></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Tgl Ijin Ops</label><input type="date" name="tgl_ijin" id="lapbulkelola_in_tgl_ijin_paud" class="form-control form-control-sultan form-control-sm"></div></div></div><div class="col-lg-4 col-md-12 mb-3"><div class="group-box h-100"><span class="group-title text-maroon" style="font-size: 13px;"><i class="fas fa-star mr-2"></i>Akreditasi</span><div class="row"><div class="col-6 mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Akreditasi</label><select name="akreditasi" id="lapbulkelola_in_akreditasi_paud" class="form-control form-control-sultan form-control-sm"><option value="-">-</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="Belum">Belum</option></select></div><div class="col-6 mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">No Sertifikat</label><input type="text" name="no_sertifikat" id="lapbulkelola_in_no_sertifikat_paud" class="form-control form-control-sultan form-control-sm"></div></div></div></div><div class="col-lg-4 col-md-12 mb-3"><div class="group-box h-100"><span class="group-title text-maroon" style="font-size: 13px;"><i class="fas fa-address-book mr-2"></i>Kontak</span><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Alamat</label><textarea name="alamat" id="lapbulkelola_in_alamat_paud" class="form-control form-control-sultan form-control-sm" rows="3" style="resize:none;"></textarea></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Telepon</label><input type="text" name="telepon" id="lapbulkelola_in_telepon_paud" class="form-control form-control-sultan form-control-sm"></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Email</label><input type="email" name="email" id="lapbulkelola_in_email_paud" class="form-control form-control-sultan form-control-sm"></div></div></div></div>';
+    var h = '<div class="row"><div class="col-lg-4 col-md-12 mb-3"><div class="group-box h-100"><span class="group-title text-maroon" style="font-size: 13px;"><i class="fas fa-building mr-2"></i>Legalitas</span><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Yayasan</label><input type="text" name="yayasan" id="lapbulkelola_in_yayasan_paud" class="form-control sk-form-input form-control-sm"></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">No SK Pendirian</label><input type="text" name="no_sk_pendirian" id="lapbulkelola_in_no_sk_pendirian_paud" class="form-control sk-form-input form-control-sm"></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Tgl Pendirian</label><input type="date" name="tgl_pendirian" id="lapbulkelola_in_tgl_pendirian_paud" class="form-control sk-form-input form-control-sm"></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">No Ijin Ops</label><input type="text" name="no_sk_ijin" id="lapbulkelola_in_no_sk_ijin_paud" class="form-control sk-form-input form-control-sm"></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Tgl Ijin Ops</label><input type="date" name="tgl_ijin" id="lapbulkelola_in_tgl_ijin_paud" class="form-control sk-form-input form-control-sm"></div></div></div><div class="col-lg-4 col-md-12 mb-3"><div class="group-box h-100"><span class="group-title text-maroon" style="font-size: 13px;"><i class="fas fa-star mr-2"></i>Akreditasi</span><div class="row"><div class="col-6 mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Akreditasi</label><select name="akreditasi" id="lapbulkelola_in_akreditasi_paud" class="form-control sk-form-input form-control-sm"><option value="-">-</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="Belum">Belum</option></select></div><div class="col-6 mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">No Sertifikat</label><input type="text" name="no_sertifikat" id="lapbulkelola_in_no_sertifikat_paud" class="form-control sk-form-input form-control-sm"></div></div></div></div><div class="col-lg-4 col-md-12 mb-3"><div class="group-box h-100"><span class="group-title text-maroon" style="font-size: 13px;"><i class="fas fa-address-book mr-2"></i>Kontak</span><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Alamat</label><textarea name="alamat" id="lapbulkelola_in_alamat_paud" class="form-control sk-form-input form-control-sm" rows="3" style="resize:none;"></textarea></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Telepon</label><input type="text" name="telepon" id="lapbulkelola_in_telepon_paud" class="form-control sk-form-input form-control-sm"></div><div class="form-group mb-2"><label class="form-label-sultan small font-weight-bold text-muted text-uppercase mb-1">Email</label><input type="email" name="email" id="lapbulkelola_in_email_paud" class="form-control sk-form-input form-control-sm"></div></div></div></div>';
     $('#lapbulkelola_dynamicFieldsPAUD').html(h);
 }
 
@@ -1611,7 +1589,7 @@ function lapbulkelola_generateGridMuridPAUD() {
 }
 
 function lapbulkelola_rowInputPaud(label, prefix) {
-    return '<div class="d-flex justify-content-between align-items-center mb-2 border-bottom pb-1"><span class="small font-weight-bold text-dark w-50">' + label + '</span><div class="d-flex w-50"><div class="input-group input-group-sm mr-1"><div class="input-group-prepend"><span class="input-group-text px-2 font-weight-bold text-dark bg-light-maroon text-maroon">L</span></div><input type="number" name="' + prefix + '_l" class="form-control form-control-sm form-control-sultan hitung-paud paud-usia-l" min="0"></div><div class="input-group input-group-sm"><div class="input-group-prepend"><span class="input-group-text px-2 font-weight-bold text-dark bg-light-maroon text-maroon">P</span></div><input type="number" name="' + prefix + '_p" class="form-control form-control-sm form-control-sultan hitung-paud paud-usia-p" min="0"></div></div></div>';
+    return '<div class="d-flex justify-content-between align-items-center mb-2 border-bottom pb-1"><span class="small font-weight-bold text-dark w-50">' + label + '</span><div class="d-flex w-50"><div class="input-group input-group-sm mr-1"><div class="input-group-prepend"><span class="input-group-text px-2 font-weight-bold text-dark bg-light-maroon text-maroon">L</span></div><input type="number" name="' + prefix + '_l" class="form-control form-control-sm sk-form-input hitung-paud paud-usia-l" min="0"></div><div class="input-group input-group-sm"><div class="input-group-prepend"><span class="input-group-text px-2 font-weight-bold text-dark bg-light-maroon text-maroon">P</span></div><input type="number" name="' + prefix + '_p" class="form-control form-control-sm sk-form-input hitung-paud paud-usia-p" min="0"></div></div></div>';
 }
 
 function lapbulkelola_lanjutKeTabMuridPAUD() {
