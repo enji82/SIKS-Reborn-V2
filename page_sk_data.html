@@ -5,7 +5,7 @@
         <h1 class="text-2xl md:text-3xl font-black text-black dark:text-white tracking-tight leading-tight sultan-title-sync">
             Kelola Data SK
         </h1>
-        <p class="sk-section-title mt-1 text-xs">
+        <p class="text-xs font-bold text-primary dark:text-primary/70 uppercase tracking-widest mt-1">
             Pengelolaan & Validasi Dokumen Pembagian Tugas
         </p>
     </div>
@@ -75,7 +75,7 @@
             <div id="tugas_tableState" style="display: none;">
                 <table id="tugas_tabelUtama" class="w-full table-auto border-collapse text-xs">
                     <thead>
-                        <tr class="bg-gray-2 dark:bg-meta-4 text-left border-b border-stroke dark:border-white/5">
+                        <tr class="bg-gray-2 dark:bg-white/5 text-left border-b border-stroke dark:border-white/5">
                             <th class="py-4 px-6 font-black text-black dark:text-white text-center uppercase tracking-widest text-[11px]" style="width:120px;">AKSI</th>
                             <th class="py-4 px-4 font-black text-black dark:text-white uppercase tracking-widest text-[11px]">UNIT KERJA</th>
                             <th class="py-4 px-4 font-black text-black dark:text-white text-center uppercase tracking-widest text-[11px]">PERIODE</th>
@@ -724,7 +724,7 @@
             var uiVerif = row.tglVerval && row.tglVerval !== '-' ? '<div class="flex flex-col"><div class="sk-audit-date text-primary">' + row.tglVerval + '</div><div class="sk-audit-user">' + (row.verifikator || '-') + '</div></div>' : '-';
 
             // KOMBINASI KOLOM
-            var uiUnit = '<div class="text-[14px] font-black text-black dark:text-white leading-tight uppercase sultan-title-sync">' + tugas_cleanText(row.namaSd) + '</div><div class="text-[12px] font-bold text-gray-400 dark:text-gray-500">' + tugas_cleanText(row.npsn || '-') + '</div>';
+            var uiUnit = '<div class="text-[15px] font-black text-black dark:text-white leading-tight uppercase sultan-title-sync">' + tugas_cleanText(row.namaSd) + '</div><div class="text-[12px] font-medium text-gray-400 dark:text-gray-500">' + tugas_cleanText(row.npsn || '-') + '</div>';
             var uiTahunSem = '<div class="text-[14px] font-black text-black dark:text-white leading-none">' + tugas_cleanText(row.tahun) + '</div><div class="text-[12px] text-primary font-black uppercase tracking-widest mt-1">' + tugas_cleanText(row.semester) + '</div>';
             var uiSkDetail = '<div class="text-[14px] font-black text-black dark:text-white leading-tight">' + safeNoSk + '</div>' +
                 '<div class="text-[12px] text-gray-400 dark:text-gray-500 font-bold mt-1 uppercase tracking-widest flex items-center gap-1"><i class="far fa-calendar-alt opacity-40"></i> ' + tglSkDisplay + ' &bull; <span class="text-primary/70">' + tugas_cleanText(row.kriteria) + '</span></div>';
