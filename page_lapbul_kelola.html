@@ -990,6 +990,11 @@ function lapbulkelola_renderTabel(data) {
         var btnHapus = '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg bg-rose-500/5 text-rose-600 border border-rose-500/20 hover:bg-rose-600 hover:text-white transition-all shadow-sm active:scale-90 btn-aksi-hapus ' + (isApproved ? 'opacity-30 cursor-not-allowed' : '') + '" data-id="' + row.rowId + '" data-source="' + row.source + '" data-nama="' + safeNama + '" data-bulan="' + row.bulan + '" data-tahun="' + row.tahun + '" title="Hapus Permanen" ' + (isApproved ? 'disabled' : '') + '><i class="fas fa-trash-alt text-[11px]"></i></button>';
         var btnAksi = '<div class="flex items-center justify-center gap-1.5">' + btnVerif + btnEdit + btnHapus + '</div>';
 
+        // BAB IV: Tombol File (Sultan Premium Icon style)
+        var btnFile = row.fileUrl 
+            ? '<button type="button" class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-primary/5 text-primary border border-primary/10 hover:bg-primary hover:text-white transition-all shadow-sm active:scale-95 btn-preview-lapbul" data-url="' + row.fileUrl + '" title="Lihat Dokumen"><i class="fas fa-file-pdf text-[14px]"></i></button>' 
+            : '<span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest opacity-50"><i class="fas fa-times-circle mr-1"></i> Kosong</span>';
+
         // 4. Log Details (v5.0 Structural Meta Sync)
         var uiLinimasa = '<div class="flex flex-col">' +
             '<div class="secondary-text !text-[10px] flex items-center gap-1.5 mb-1"><i class="fas fa-paper-plane opacity-40"></i> <span class="opacity-60">KIRIM:</span> ' + (row.tglKirim || '-') + '</div>' +
