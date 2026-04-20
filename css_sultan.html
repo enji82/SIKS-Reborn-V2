@@ -4207,6 +4207,27 @@ body, h1, h2, h3, h4, h5, h6, th, td, input, select, textarea, button, p, span:n
     box-shadow: 0 4px 12px -2px rgba(60, 80, 224, 0.4);
 }
 
+/* 8. PREVIEW BUTTON DANGER (v5.3 Standard) */
+.sk-btn-preview-danger {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    height: 36px; padding: 0 16px; border-radius: 12px;
+    background: rgba(229, 62, 62, 0.08) !important;
+    border: 1px solid rgba(229, 62, 62, 0.15) !important;
+    color: #E53E3E !important;
+    font-size: 11px !important; font-weight: 900 !important;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    transition: all 0.2s;
+}
+.sk-btn-preview-danger:hover {
+    background: #E53E3E !important; color: #fff !important;
+    transform: translateY(-2px); box-shadow: 0 4px 12px rgba(229, 62, 62, 0.3);
+}
+
+/* 9. PHYSICAL AUDIT COLUMNS (v5.3 Standard) */
+.sk-audit-date { font-size: 13px !important; font-weight: 900 !important; color: var(--sk-text) !important; line-height: 1.2; }
+.sk-audit-user { font-size: 11px !important; font-weight: 700 !important; color: #64748B !important; text-transform: uppercase; letter-spacing: 0.05em; }
+.dark .sk-audit-user { color: #94A3B8 !important; }
+
 .dataTables_wrapper .dataTables_info, .dataTables_wrapper .sultan-dt-info {
     font-size: 14px !important; font-weight: 700 !important; color: #64748b !important;
 }
