@@ -299,7 +299,7 @@
                 <div class="sk-input-card !mt-0 !bg-gray-50/50 dark:!bg-white/5">
                     <div class="mb-4">
                         <label class="sk-form-label">KEPUTUSAN VERIFIKASI <span class="req">*</span></label>
-                        <select id="tugas_verifStatus" class="sk-form-input" onchange="tugas_cekStatusVerif(this.value)" required>
+                        <select id="tugas_verifStatus" class="sms-input-premium w-full" onchange="tugas_cekStatusVerif(this.value)" required>
                             <option value="">-- Pilih Status --</option>
                             <option value="Disetujui">&#x2705; TERIMA & SETUJUI</option>
                             <option value="Revisi">&#x1F504; PERLU REVISI</option>
@@ -309,7 +309,7 @@
 
                     <div>
                         <label class="sk-form-label">CATATAN ADMIN</label>
-                        <textarea id="tugas_verifKeterangan" rows="4" placeholder="Catatan opsional..." class="sk-form-input" style="resize:none"></textarea>
+                        <textarea id="tugas_verifKeterangan" rows="4" placeholder="Catatan opsional..." class="sms-input-premium w-full !h-auto !py-3" style="resize:none"></textarea>
                         <p id="tugas_verifWajibCatatan" class="mt-2 text-[12px] font-black text-danger uppercase tracking-widest hidden items-center gap-1.5 animate-pulse">
                             <i class="fas fa-exclamation-triangle"></i> Wajib isi alasan!
                         </p>
@@ -318,10 +318,10 @@
 
                 <!-- Footer (Universal Alignment) -->
                 <div class="sk-modal-footer mt-auto">
-                    <button type="button" class="sk-btn sk-btn-secondary" onclick="$('#tugas_modalVerif').fadeOut().addClass('hidden').removeClass('flex')">
+                    <button type="button" class="sms-btn sms-btn-ghost" onclick="$('#tugas_modalVerif').fadeOut().addClass('hidden').removeClass('flex')">
                         Batal
                     </button>
-                    <button type="submit" id="tugas_btnSimpanVerif" class="sk-btn sk-btn-primary">
+                    <button type="submit" id="tugas_btnSimpanVerif" class="sms-btn sms-btn-primary">
                         <i class="fas fa-check-circle"></i> Eksekusi
                     </button>
                 </div>
@@ -403,7 +403,7 @@
             <!-- Form Verifikasi (Hi-Fi Typography) -->
             <div class="mb-2">
                 <label class="sk-form-label">Kode Konfirmasi Hapus <span class="text-danger">*</span></label>
-                <input type="text" id="tugas_inputKodeHapus" placeholder="Masukkan kode konfirmasi..." class="sk-form-input !text-[15px] !py-4 border-danger/20 focus:border-danger focus:ring-danger/10" required autocomplete="off">
+                <input type="text" id="tugas_inputKodeHapus" placeholder="Masukkan kode konfirmasi..." class="sms-input-premium w-full !text-[15px] !h-auto !py-4 border-danger/20 focus:border-danger focus:ring-danger/10" required autocomplete="off">
                 <div class="mt-4 flex items-center gap-2 text-[11px] font-bold text-gray-400 dark:text-gray-500 opacity-70">
                     <i class="fas fa-shield-alt text-danger/50"></i>
                     Hubungi admin Korwil untuk mendapatkan kode hapus.
@@ -412,10 +412,10 @@
 
             <!-- Footer (Universal Alignment) -->
             <div class="sk-modal-footer !mt-8">
-                <button type="button" class="sk-btn sk-btn-secondary !px-8" onclick="$('#tugas_modalHapus').fadeOut().addClass('hidden').removeClass('flex')">
+                <button type="button" class="sms-btn sms-btn-ghost !px-8" onclick="$('#tugas_modalHapus').fadeOut().addClass('hidden').removeClass('flex')">
                     Tutup
                 </button>
-                <button type="submit" id="tugas_btnEksekusiHapus" class="sk-btn sk-btn-danger !px-8">
+                <button type="submit" id="tugas_btnEksekusiHapus" class="sms-btn !bg-danger !text-white !px-8">
                     <i class="fas fa-trash-alt"></i> Hapus Permanen
                 </button>
             </div>
