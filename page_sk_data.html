@@ -81,7 +81,7 @@
 
         <div id="tugas_tableState" style="display: none;" class="w-full overflow-hidden">
             <div class="overflow-x-auto sultan-scroll">
-                <table id="tugas_tabelUtama" class="w-full table-auto text-xs bg-transparent">
+                <table id="tugas_tabelUtama" class="w-full table-auto text-xs bg-transparent sk-table-lead">
                 <thead>
                     <tr class="sk-bg-section text-left border-b border-gray-100 dark:border-white/5 transition-colors">
                         <th class="py-2.5 px-6 font-black uppercase text-primary dark:text-[#818CF8] text-center w-[120px] text-sm whitespace-nowrap">Aksi</th>
@@ -709,11 +709,11 @@
 
             var badgeStatus = tugas_buildBadgeStatus(row.status, row.keterangan);
 
-            // 1. Tombol Aksi (Premium Button Group - High Fidelity)
+            // 1. Tombol Aksi (Premium Button Group - v5.5 Modern Master)
             var actionButtons = '<div class="flex items-center justify-center gap-1.5">' +
-                '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/5 text-primary border border-primary/20 hover:bg-primary hover:text-white transition-all shadow-sm active:scale-90" title="Verifikasi/Review" onclick="tugas_bukaModalVerif(\'' + id + '\')"><i class="fas fa-' + (TUGAS_IS_ADMIN ? 'check-double' : 'eye') + ' text-[11px]"></i></button>' +
-                '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg bg-warning/5 text-warning border border-warning/20 hover:bg-amber-500 hover:text-white transition-all shadow-sm active:scale-90 ' + (isApproved ? 'opacity-30 cursor-not-allowed' : '') + '" title="Edit Data" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalEdit('" + id + "')") + '"><i class="fas fa-pencil-alt text-[11px]"></i></button>' +
-                '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg bg-danger/5 text-danger border border-danger/20 hover:bg-danger hover:text-white transition-all shadow-sm active:scale-90 ' + (isApproved ? 'opacity-30 cursor-not-allowed' : '') + '" title="Hapus Data" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalHapus('" + id + "')") + '"><i class="fas fa-trash-alt text-[11px]"></i></button>' +
+                '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-xl bg-primary/5 text-primary border border-primary/20 hover:bg-primary hover:text-white transition-all shadow-sm active:scale-90" title="Verifikasi/Review" onclick="tugas_bukaModalVerif(\'' + id + '\')"><i class="fas fa-' + (TUGAS_IS_ADMIN ? 'check-double' : 'eye') + ' text-[11px]"></i></button>' +
+                '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-xl bg-warning/5 text-warning border border-warning/20 hover:bg-amber-500 hover:text-white transition-all shadow-sm active:scale-90 ' + (isApproved ? 'opacity-30 cursor-not-allowed' : '') + '" title="Edit Data" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalEdit('" + id + "')") + '"><i class="fas fa-pencil-alt text-[11px]"></i></button>' +
+                '<button type="button" class="flex h-8 w-8 items-center justify-center rounded-xl bg-danger/5 text-danger border border-danger/20 hover:bg-danger hover:text-white transition-all shadow-sm active:scale-90 ' + (isApproved ? 'opacity-30 cursor-not-allowed' : '') + '" title="Hapus Data" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalHapus('" + id + "')") + '"><i class="fas fa-trash-alt text-[11px]"></i></button>' +
                 '</div>';
 
             // 2. Format Tanggal SK
@@ -722,13 +722,13 @@
                 var p = tglSkDisplay.split('-'); tglSkDisplay = p[2] + '-' + p[1] + '-' + p[0];
             }
 
-            // 3. Tombol Dokumen (Consistent Button Look)
-            var btnDokumen = safeUrl.length > 5 ? '<button type="button" class="inline-flex items-center rounded-lg bg-danger/10 py-1.5 px-3 text-[10px] font-black uppercase tracking-wider text-danger border border-danger/10 transition-all hover:bg-danger hover:text-white shadow-sm active:scale-95" onclick="tugas_bukaPreview(\'' + safeUrlJs + '\')"><i class="fas fa-file-pdf mr-1.5 text-xs"></i> LIHAT</button>' : '-';
+            // 3. Tombol Dokumen (v5.5 Red LIHAT Standard)
+            var btnDokumen = safeUrl.length > 5 ? '<button type="button" class="sk-btn-preview-danger" onclick="tugas_bukaPreview(\'' + safeUrlJs + '\')"><i class="fas fa-file-pdf"></i> LIHAT</button>' : '-';
 
-            // 4. Log Detils (Muted Premium Typography)
-            var uiDikirim = '<div class="flex flex-col"><span class="text-[13px] font-black text-black dark:text-white">' + (row.tglUnggah || '-') + '</span><span class="text-[12px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-tighter">' + (row.userInput || '-') + '</span></div>';
-            var uiDiubah = row.tglUpdate && row.tglUpdate !== '-' ? '<div class="flex flex-col"><span class="text-[13px] font-black text-black dark:text-white">' + row.tglUpdate + '</span><span class="text-[12px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-tighter">' + (row.userUpdate || '-') + '</span></div>' : '-';
-            var uiVerif = row.tglVerval && row.tglVerval !== '-' ? '<div class="flex flex-col"><span class="text-[13px] font-black text-primary">' + row.tglVerval + '</span><span class="text-[12px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-tighter">' + (row.verifikator || '-') + '</span></div>' : '-';
+            // 4. Log Detils (v5.5 Structural Audit Typography)
+            var uiDikirim = '<div class="flex flex-col"><div class="sk-audit-date">' + (row.tglUnggah || '-') + '</div><div class="sk-audit-user">' + (row.userInput || '-') + '</div></div>';
+            var uiDiubah = row.tglUpdate && row.tglUpdate !== '-' ? '<div class="flex flex-col"><div class="sk-audit-date">' + row.tglUpdate + '</div><div class="sk-audit-user">' + (row.userUpdate || '-') + '</div></div>' : '-';
+            var uiVerif = row.tglVerval && row.tglVerval !== '-' ? '<div class="flex flex-col"><div class="sk-audit-date text-primary">' + row.tglVerval + '</div><div class="sk-audit-user">' + (row.verifikator || '-') + '</div></div>' : '-';
 
             // KOMBINASI KOLOM
             var uiUnit = '<div class="text-[14px] font-black text-black dark:text-white leading-tight uppercase">' + tugas_cleanText(row.namaSd) + '</div><div class="text-[12px] font-bold text-gray-400 dark:text-gray-500">' + tugas_cleanText(row.npsn || '-') + '</div>';
