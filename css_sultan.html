@@ -261,5 +261,389 @@
 .sultan-title-sync { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; }
 .sk-title-underline { width: 40px; height: 3px; background: var(--warna-utama); border-radius: 2px; margin-top: 0.5rem; }
 
-/* --- SULTAN FRAMEWORK STABILITY (v14.0) --- */
+/* --- SULTAN FRAMEWORK STABILITY (v15) --- */
+:root {
+  --sidebar-bg: #FFFFFF;
+  --sidebar-border: #E5E7EB;  /* gray-200 */
+  --sidebar-active-bg: #F1F5F9;
+  --sidebar-active-text: #465FFF;  /* TailAdmin indigo-blue */
+  --sidebar-text: #64748B;         /* slate-500 */
+  --sidebar-hover-bg: #F8FAFC;     /* very subtle hover */
+  --sidebar-group-color: #9CA3AF;  /* gray-400 */
+  --sidebar-logo-text: #111928;    /* very dark for logo */
+}
+
+.dark {
+  --sidebar-bg: #1C2434;
+  --sidebar-border: #313D4A;
+  --sidebar-active-bg: #233A5F;
+  --sidebar-active-text: #818CF8;  /* indigo-400 in dark */
+  --sidebar-text: #8A99AF;
+  --sidebar-hover-bg: #253047;
+  --sidebar-group-color: #64748B;
+  --sidebar-logo-text: #FFFFFF;
+}
+
+/* MAIN WRAPPERS */
+/* Correcting the wrapper in v10.0: REMOVING !important to allow the SPA engine to hide it */
+.page-wrapper {
+  display: flex; /* Neutral flex for structure */
+  min-height: 100vh;
+  overflow: hidden;
+}
+.content-area {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: #F9FAFB;
+}
+.dark .content-area { background-color: #1A222C; }
+
+/* SIDEBAR DRAWER */
+.sidebar-drawer {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  display: flex;
+  height: 100vh;
+  width: var(--sidebar-width);
+  flex-direction: column;
+  background-color: var(--sidebar-bg);
+  border-right: 1px solid var(--sidebar-border);
+  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), background-color 0.3s ease;
+  transform: translateX(-100%);
+  overflow: hidden;
+}
+.dark .sidebar-drawer { background-color: var(--sidebar-bg); border-right-color: var(--sidebar-border); }
+
+@media (min-width: 1024px) {
+  .sidebar-drawer { 
+    position: sticky; top: 0; transform: translateX(0); height: 100vh; 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 1;
+    visibility: visible;
+  }
+  .sidebar-toggled .sidebar-drawer {
+    width: 0 !important;
+    min-width: 0 !important;
+    transform: translateX(-100%);
+    opacity: 0;
+    visibility: hidden;
+    border: none;
+  }
+  .sidebar-toggled .page-wrapper {
+    background-image: none !important;
+  }
+}
+.sidebar-drawer.open { transform: translateX(0); }
+
+/* =============================================
+   SIDEBAR RESET — Force override AdminLTE/Bootstrap globals
+   ============================================= */
+.sidebar-drawer *,
+.sidebar-drawer *::before,
+.sidebar-drawer *::after {
+  box-sizing: border-box !important;
+}
+.sidebar-drawer ul,
+.sidebar-drawer ol {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin: 0 !important;
+}
+.sidebar-drawer li {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.sidebar-drawer a {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+.sidebar-drawer h1,
+.sidebar-drawer h2,
+.sidebar-drawer h3 {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* =============================================
+   SIDEBAR LOGO HEADER
+   Height = 70px, matching navbar height
+   ============================================= */
+.sidebar-drawer > div:first-child {
+  height: 70px !important;
+  min-height: 70px !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 0 20px !important;
+  border-bottom: 1px solid var(--sidebar-border) !important;
+  border-right: 1px solid var(--sidebar-border) !important;
+  flex-shrink: 0 !important;
+}
+
+/* =============================================
+   MENU GROUP TITLES
+   Matches TailAdmin group labels: "MENU", "SUPPORT"
+   ============================================= */
+.menu-group-title {
+  display: block !important;
+  font-size: 0.6875rem !important;   /* 11px */
+  font-weight: 600 !important;
+  color: var(--sidebar-group-color) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  padding: 0 12px !important;
+  margin-bottom: 8px !important;
+  margin-top: 0 !important;
+}
+
+/* =============================================
+   NAV LINK — Primary menu items  
+   Height ~40px, icon 20px, text 14px
+   ============================================= */
+.nav-link-tail {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  width: 100% !important;
+  padding: 9px 12px !important;
+  border-radius: 6px !important;
+  font-size: 0.9375rem !important;   /* 15px */
+  font-weight: 500 !important;
+  color: var(--sidebar-text) !important;
+  background: transparent !important;
+  text-decoration: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  cursor: pointer !important;
+  transition: background 0.15s, color 0.15s !important;
+  line-height: 1.4 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.nav-link-tail:hover {
+  background-color: var(--sidebar-hover-bg) !important;
+  color: #1C2434 !important;
+  text-decoration: none !important;
+}
+.dark .nav-link-tail:hover {
+  background-color: var(--sidebar-hover-bg) !important;
+  color: #FFFFFF !important;
+}
+
+/* Active state: indigo bg + indigo text */
+.nav-link-tail.active {
+  background-color: var(--sidebar-active-bg) !important;
+  color: var(--sidebar-active-text) !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+.dark .nav-link-tail.active {
+  background-color: var(--sidebar-active-bg) !important;
+  color: var(--sidebar-active-text) !important;
+}
+
+/* Icons inside nav links */
+.nav-link-tail > i,
+.nav-link-tail > div > i {
+  font-size: 1rem !important;
+  width: 20px !important;
+  min-width: 20px !important;
+  text-align: center !important;
+  color: inherit !important;
+  transition: color 0.15s !important;
+}
+
+/* Chevron/arrow (right side) */
+.nav-link-tail .fa-chevron-down {
+  margin-left: auto !important;
+  font-size: 0.7rem !important;
+  width: auto !important;
+  min-width: auto !important;
+  opacity: 0.7 !important;
+}
+
+/* =============================================
+   SUBMENU (children of nav group)
+   Indented, smaller font, no icons
+   ============================================= */
+.submenu-tail {
+  margin: 2px 0 4px 0 !important;
+  padding-left: 0 !important;
+  list-style: none !important;
+  display: flex; /* Alpine.js x-show will handle toggle */
+  flex-direction: column;
+  gap: 1px;
+}
+
+.submenu-link-tail {
+  display: block !important;
+  font-size: 0.9375rem !important;  /* 15px - Matched to parent */
+  font-weight: 500 !important;
+  color: var(--sidebar-text) !important; /* Unified color */
+  text-decoration: none !important;
+  padding: 9px 12px 9px 42px !important;  /* Matched vertical padding: 9px */
+  border-radius: 6px !important;
+  transition: background 0.15s, color 0.15s !important;
+  line-height: 1.4 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+.dark .submenu-link-tail { color: var(--sidebar-text) !important; }
+
+.submenu-link-tail:hover {
+  color: #1C2434 !important;
+  background: var(--sidebar-hover-bg) !important;
+  text-decoration: none !important;
+}
+.dark .submenu-link-tail:hover {
+  color: #FFFFFF !important;
+  background: var(--sidebar-hover-bg) !important;
+}
+
+.submenu-link-tail.active {
+  color: var(--sidebar-active-text) !important;
+  background: var(--sidebar-active-bg) !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+.dark .submenu-link-tail.active {
+  color: var(--sidebar-active-text) !important;
+  background: var(--sidebar-active-bg) !important;
+}
+
+/* 
+   LEVEL 2 → LEVEL 3 TRIGGER (Child item that has grandchildren)
+   Same as submenu-link-tail but with a right-side chevron
+*/
+.submenu-link-tail.has-sub {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+.submenu-link-tail.has-sub .sub-chevron {
+  font-size: 0.65rem !important;
+  opacity: 0.6;
+  transition: transform 0.2s ease !important;
+  flex-shrink: 0;
+}
+.submenu-link-tail.has-sub.open .sub-chevron {
+  transform: rotate(180deg);
+}
+
+/* 
+   GRANDCHILD CONTAINER (Level 3 wrapper)
+   Left border accent to show hierarchy depth
+*/
+.sub-submenu-tail {
+  margin: 2px 0 2px 0 !important;
+  padding: 0 0 0 42px !important;
+  list-style: none !important;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  border-left: 2px solid var(--sidebar-active-bg);
+  margin-left: 42px !important;
+  padding-left: 0 !important;
+}
+
+/* GRANDCHILD LINK (Level 3) */
+.sub-submenu-link-tail {
+  display: block !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  color: var(--sidebar-text) !important;
+  text-decoration: none !important;
+  padding: 8px 12px 8px 14px !important;
+  border-radius: 6px !important;
+  transition: background 0.15s, color 0.15s !important;
+  line-height: 1.4 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  position: relative;
+}
+.sub-submenu-link-tail::before {
+  content: '';
+  position: absolute;
+  left: -2px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 1px;
+  background: var(--sidebar-active-bg);
+  opacity: 0.5;
+}
+.dark .sub-submenu-link-tail { color: var(--sidebar-text) !important; }
+
+.sub-submenu-link-tail:hover {
+  color: var(--sidebar-active-text) !important;
+  background: var(--sidebar-hover-bg) !important;
+  text-decoration: none !important;
+}
+.dark .sub-submenu-link-tail:hover {
+  color: #FFFFFF !important;
+  background: var(--sidebar-hover-bg) !important;
+}
+
+.sub-submenu-link-tail.active {
+  color: var(--sidebar-active-text) !important;
+  background: var(--sidebar-active-bg) !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+.dark .sub-submenu-link-tail.active {
+  color: var(--sidebar-active-text) !important;
+  background: var(--sidebar-active-bg) !important;
+}
+
+/* CUSTOM SCROLLBAR (TAILADMIN) */
+.no-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.no-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.no-scrollbar::-webkit-scrollbar-thumb {
+  background: #E2E8F0;
+  border-radius: 10px;
+}
+.dark .no-scrollbar::-webkit-scrollbar-thumb {
+  background: #313D4A;
+}
+
+/* FONT SMOOTHING */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[x-cloak] { display: none !important; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* OVERLAY (FOR MOBILE SIDEBAR) */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+}
+
+.sidebar-overlay.show {
+  display: block;
+}
+@media (min-width: 1024px) { .sidebar-overlay.show { display: none; } }
 </style>
