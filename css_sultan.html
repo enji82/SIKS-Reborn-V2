@@ -452,6 +452,24 @@
   color: var(--sidebar-active-text) !important;
 }
 
+/* TOTAL ILLUMINATION: Force color on ALL descendants to kill legacy dimming */
+.sidebar-drawer * {
+  color: var(--sidebar-text); /* Base theme color */
+}
+.sidebar-drawer .nav-link-tail,
+.sidebar-drawer .nav-link-tail span,
+.sidebar-drawer .nav-link-tail i {
+  color: var(--sidebar-text) !important;
+}
+.sidebar-drawer .nav-link-tail.active,
+.sidebar-drawer .nav-link-tail.active span,
+.sidebar-drawer .nav-link-tail.active i {
+  color: var(--sidebar-active-text) !important;
+}
+.sidebar-drawer .submenu-link-tail.active {
+  color: var(--sidebar-active-text) !important;
+}
+
 .nav-link-tail:hover {
   background-color: var(--sidebar-hover-bg) !important;
   color: #1C2434 !important;
