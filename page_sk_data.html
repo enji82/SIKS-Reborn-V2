@@ -120,7 +120,7 @@
 
 <!-- 1. MODAL FORM SK (Sultan v5.7 Executive) -->
 <div id="tugas_modalForm" class="fixed inset-0 z-[99999] hidden items-center justify-center sk-modal-overlay overflow-y-auto px-4 py-8">
-    <div class="w-full max-w-2xl rounded-2xl border-0 bg-white dark:bg-boxdark shadow-2xl animate-reveal overflow-hidden flex flex-col min-h-[500px]">
+    <div class="w-full max-w-2xl sk-modal-box animate-reveal overflow-hidden flex flex-col">
         <!-- Header Tambah/Edit -->
         <div class="px-6 py-4 flex items-center justify-between shadow-md relative z-10" id="tugas_headerModalForm">
             <div class="flex items-center gap-3 text-white">
@@ -134,69 +134,59 @@
             </button>
         </div>
 
-            <div id="tugas_formUtama" class="p-6">
+        <form id="tugas_formUtama" class="flex-1 flex flex-col overflow-y-auto">
+            <div class="sk-modal-body space-y-5">
                 <input type="hidden" id="tugas_inputRowId">
                 <input type="hidden" id="tugas_editRowId">
 
-                <!-- Info Alert -->
-                <div class="mb-4 flex items-start gap-4 rounded-xl border border-primary/10 bg-primary/5 py-4 px-5 transition-all" id="tugas_alertInfo">
-                    <div class="flex h-10 w-10 min-w-[40px] items-center justify-center rounded-xl bg-primary text-white shadow-lg shadow-primary/20">
-                        <i class="fas fa-info-circle"></i>
+                <!-- Identitas Sekolah -->
+                <div>
+                    <label class="sk-form-label">Nama Sekolah <span class="text-danger">*</span></label>
+                    <select id="tugas_inputNamaSd" class="sms-input-premium w-full" required>
+                        <option value="">- Memuat Data -</option>
+                    </select>
+                </div>
+
+                <!-- Periode Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="sk-form-label">Tahun Ajaran <span class="text-danger">*</span></label>
+                        <select id="tugas_inputTahun" class="sms-input-premium w-full" required></select>
                     </div>
-                    <div class="flex-1">
-                        <p class="text-[10px] text-primary font-black uppercase tracking-widest leading-none mb-1">Petunjuk Pengisian</p>
-                        <div id="tugas_alertText" class="text-xs font-bold text-black dark:text-white leading-relaxed">
-                            Tentukan Sekolah, Tahun, Semester, dan Kriteria untuk memulai pengisian data SK.
-                        </div>
+                    <div>
+                        <label class="sk-form-label">Semester <span class="text-danger">*</span></label>
+                        <select id="tugas_inputSemester" class="sms-input-premium w-full" required>
+                            <option value="Semester 1">SEMESTER 1</option>
+                            <option value="Semester 2">SEMESTER 2</option>
+                        </select>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <div class="md:col-span-2">
-                        <label class="text-[10px] font-black text-black/50 dark:text-white/50 uppercase tracking-tighter mb-1.5 block px-1">Nama Sekolah <span class="text-danger">*</span></label>
-                        <select id="tugas_inputNamaSd" class="w-full rounded-xl border border-stroke bg-transparent py-2 px-4 text-sm font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark dark:bg-boxdark" required>
-                            <option value="">- Memuat Data -</option>
-                        </select>
-                    </div>
+                <!-- Kriteria -->
+                <div>
+                    <label class="sk-form-label">Kriteria SK <span class="text-danger">*</span></label>
+                    <select id="tugas_inputKriteria" class="sms-input-premium w-full" required>
+                        <option value="">- Pilih Kriteria -</option>
+                        <option value="Awal Semester">AWAL SEMESTER</option>
+                        <option value="Perubahan ke 1">PERUBAHAN KE 1</option>
+                        <option value="Perubahan ke 2">PERUBAHAN KE 2</option>
+                        <option value="Perubahan ke 3">PERUBAHAN KE 3</option>
+                        <option value="Perubahan ke 4">PERUBAHAN KE 4</option>
+                        <option value="Perubahan ke 5">PERUBAHAN KE 5</option>
+                    </select>
+                </div>
 
-                    <div>
-                        <label class="text-[10px] font-black text-black/50 dark:text-white/50 uppercase tracking-tighter mb-1.5 block px-1">Tahun Ajaran <span class="text-danger">*</span></label>
-                        <select id="tugas_inputTahun" class="w-full rounded-xl border border-stroke bg-transparent py-2 px-4 text-sm font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark dark:bg-boxdark" required></select>
-                    </div>
-
-                    <div>
-                        <label class="text-[10px] font-black text-black/50 dark:text-white/50 uppercase tracking-tighter mb-1.5 block px-1">Semester <span class="text-danger">*</span></label>
-                        <select id="tugas_inputSemester" class="w-full rounded-xl border border-stroke bg-transparent py-2 px-4 text-sm font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark dark:bg-boxdark" required>
-                            <option value="Semester 1">Semester 1</option>
-                            <option value="Semester 2">Semester 2</option>
-                        </select>
-                    </div>
-
-                    <div class="md:col-span-2">
-                        <label class="text-[10px] font-black text-black/50 dark:text-white/50 uppercase tracking-tighter mb-1.5 block px-1">Kriteria SK <span class="text-danger">*</span></label>
-                        <select id="tugas_inputKriteria" class="w-full rounded-xl border border-stroke bg-transparent py-2 px-4 text-sm font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark dark:bg-boxdark" required>
-                            <option value="">- Pilih Kriteria -</option>
-                            <option value="Awal Semester">Awal Semester</option>
-                            <option value="Perubahan ke 1">Perubahan ke 1</option>
-                            <option value="Perubahan ke 2">Perubahan ke 2</option>
-                            <option value="Perubahan ke 3">Perubahan ke 3</option>
-                            <option value="Perubahan ke 4">Perubahan ke 4</option>
-                            <option value="Perubahan ke 5">Perubahan ke 5</option>
-                        </select>
-                    </div>
-
-                    <div id="tugas_areaTerkunci" class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-3 opacity-50 transition-opacity">
+                <!-- Detail Section -->
+                <div id="tugas_areaTerkunci" class="pt-4 border-t border-gray-100 dark:border-white/5 space-y-5 opacity-50 transition-opacity">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="text-[10px] font-black text-black/50 dark:text-white/50 uppercase tracking-tighter mb-1.5 block px-1">Nomor SK <span class="text-danger">*</span></label>
-                            <input type="text" id="tugas_inputNoSk" placeholder="Input nomor SK..." class="w-full rounded-xl border border-stroke bg-transparent py-2 px-4 text-sm font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark dark:bg-boxdark" required>
+                            <label class="sk-form-label">Nomor SK <span class="text-danger">*</span></label>
+                            <input type="text" id="tugas_inputNoSk" placeholder="800/..." class="sms-input-premium w-full" required>
                         </div>
-                        <label class="sk-form-label !mb-2">Berkas Pendukung (PDF)</label>
-                        <div id="tugas_linkFileLama" class="mb-3 hidden">
-                            <button type="button" id="tugas_btnLihatDokumenLama" class="sms-btn sms-btn-ghost !h-7 !px-3 !text-[10px]">
-                                <i class="fas fa-eye"></i> LIHAT DOKUMEN TERSIMPAN
-                            </button>
+                        <div>
+                            <label class="sk-form-label">Tanggal SK <span class="text-danger">*</span></label>
+                            <input type="date" id="tugas_inputTglSk" class="sms-input-premium w-full" required>
                         </div>
-                        <input type="file" id="tugas_inputFile" accept="application/pdf" class="sms-input-premium w-full !h-auto !py-2" />
                     </div>
                 </div>
             </div>
@@ -253,11 +243,11 @@
             <form id="tugas_formVerif" class="flex-1 flex flex-col overflow-y-auto p-5 scroll-smooth sultan-scroll">
                 <input type="hidden" id="tugas_verifRowId">
                 
-                <!-- Data Identitas SK (Target Model) -->
-                <div class="mb-2">
-                    <h4 class="sk-section-title">
+                <div class="sk-modal-header sk-modal-header-success">
+                    <h3 class="sk-modal-title">
                         <i class="fas fa-id-card"></i> Data Identitas SK
-                    </h4>
+                    </h3>
+                </div>
 
                     <div class="sk-data-grid">
                         <div class="sk-data-row">
@@ -287,7 +277,7 @@
                     </div>
                 </div>
 
-                <div class="sk-input-card !mt-0 !bg-gray-50/50 dark:!bg-white/5">
+                <div class="sk-modal-body !bg-gray-50/50 dark:!bg-white/5">
                     <div class="mb-4">
                         <label class="sk-form-label">KEPUTUSAN VERIFIKASI <span class="req">*</span></label>
                         <select id="tugas_verifStatus" class="sms-input-premium w-full" onchange="tugas_cekStatusVerif(this.value)" required>
@@ -596,9 +586,9 @@
                 TUGAS_TABEL_INSTANCE = $('#tugas_tabelUtama').DataTable({
                     "destroy": true, "ordering": false, "pageLength": 10, "autoWidth": false,
                     "deferRender": true, 
-                    "dom": '<"px-6 py-4 border-b border-stroke dark:border-white/5"<"flex items-center justify-between gap-4"l f>>' +
+                    "dom": '<"px-6 py-4 border-b border-gray-100 dark:border-white/5"<"flex items-center justify-between gap-4"l f>>' +
                            '<"sultan-scroll overflow-x-auto"t>' +
-                           '<"px-6 py-4 border-t border-stroke dark:border-white/5"<"flex items-center justify-between"i p>>',
+                           '<"px-6 py-4 border-t border-gray-100 dark:border-white/5"<"flex items-center justify-between"i p>>',
                     "columnDefs": [
                         { "targets": 0, "width": "1%", "className": "text-center whitespace-nowrap" },
                         { "targets": [1,6,7], "className": "text-left" }, 
