@@ -287,29 +287,41 @@ body {
 */
 
 /* 1. ROOT LAYOUT & ANIMATION */
-/* 1. LAYOUT ROOT & GLOBAL FONT LOCK (V7.3 STABILITY) */
+/* 1. LAYOUT ROOT & STABILITY (v7.5 RESTORED) */
+.sms-layout-root {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    animation: sms-reveal 0.4s ease-out forwards;
+    padding: 0;
+    margin: 0;
+}
+
+@keyframes sms-reveal {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 1.1 TYPOGRAPHY LOCKDOWN (SCOPED ONLY) */
 .sms-layout-root, 
-.sms-layout-root *:not(i):not(.fa):not(.fas):not(.fab):not(.far) {
+.sms-layout-root h1, 
+.sms-layout-root span, 
+.sms-layout-root div,
+.sms-layout-root select,
+.sms-layout-root button {
     font-family: 'Satoshi', 'Inter', -apple-system, sans-serif !important;
 }
 
-/* Force FontAwesome for Icons */
+/* 1.2 ICON EMERGENCY RESTORATION */
 .sms-layout-root i, 
 .sms-layout-root .fas, 
 .sms-layout-root .fab, 
 .sms-layout-root .far,
-.sms-layout-root .fa {
+.sms-layout-root [class^="fa-"] {
     font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", "FontAwesome" !important;
     font-weight: 900 !important;
     font-style: normal !important;
-}
-
-.sms-layout-root {
-    display: flex; /* REMOVED !important TO ALLOW SPA VISIBILITY ENGINE */
-    flex-direction: column; 
-    gap: 20px !important; /* Back to original harmonious gap */
-    animation: sms-reveal 0.4s ease-out forwards;
-    padding: 0 !important;
+    display: inline-block !important;
 }
 
 @keyframes sms-reveal {
@@ -317,13 +329,14 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* 2. HEADER COMPONENT (V7.3 PRECISION) */
+/* 2. HEADER COMPONENT (v7.5 CLEAN) */
 header.sms-header-group { 
     display: flex !important; 
     flex-direction: column !important; 
-    padding: 0 !important; 
     margin-bottom: 24px !important; 
     gap: 4px !important; 
+    border: none !important;
+    background: transparent !important;
 }
 
 .sms-header-title {
@@ -334,7 +347,6 @@ header.sms-header-group {
     line-height: 1 !important;
     text-transform: uppercase !important;
     margin: 0 !important;
-    display: block !important;
 }
 .dark .sms-header-title { color: #FFFFFF !important; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
 
