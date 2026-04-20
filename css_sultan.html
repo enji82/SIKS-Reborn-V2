@@ -280,7 +280,7 @@
   --sidebar-border: rgba(255, 255, 255, 0.05);
   --sidebar-active-bg: #1E293B;
   --sidebar-active-text: #818CF8;
-  --sidebar-text: #94A3B8;
+  --sidebar-text: #CBD5E1;         /* Brightened from #94A3B8 for better visibility */
   --sidebar-hover-bg: #1A2234;
   --sidebar-group-color: #64748B;
   --sidebar-logo-text: #FFFFFF;
@@ -468,8 +468,13 @@
   width: 20px !important;
   min-width: 20px !important;
   text-align: center !important;
-  color: inherit !important;
+  color: var(--sidebar-text) !important; /* Force match text color */
   transition: color 0.15s !important;
+}
+
+.nav-link-tail.active > i,
+.nav-link-tail.active > div > i {
+  color: var(--sidebar-active-text) !important;
 }
 
 /* Chevron/arrow (right side) */
