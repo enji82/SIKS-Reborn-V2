@@ -287,21 +287,29 @@ body {
 */
 
 /* 1. ROOT LAYOUT & ANIMATION */
-/* 1. LAYOUT ROOT & GLOBAL FONT LOCK (V7.2) */
+/* 1. LAYOUT ROOT & GLOBAL FONT LOCK (V7.3 STABILITY) */
 .sms-layout-root, 
-.sms-layout-root *,
-[class^="sms-"], 
-[class*=" sms-"] {
+.sms-layout-root *:not(i):not(.fa):not(.fas):not(.fab):not(.far) {
     font-family: 'Satoshi', 'Inter', -apple-system, sans-serif !important;
-    box-sizing: border-box !important;
+}
+
+/* Force FontAwesome for Icons */
+.sms-layout-root i, 
+.sms-layout-root .fas, 
+.sms-layout-root .fab, 
+.sms-layout-root .far,
+.sms-layout-root .fa {
+    font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", "FontAwesome" !important;
+    font-weight: 900 !important;
+    font-style: normal !important;
 }
 
 .sms-layout-root {
-    display: flex !important; 
-    flex-direction: column !important; 
-    gap: 32px !important; /* Increased for breathing room */
-    animation: sms-reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
-    padding: 12px !important;
+    display: flex; /* REMOVED !important TO ALLOW SPA VISIBILITY ENGINE */
+    flex-direction: column; 
+    gap: 20px !important; /* Back to original harmonious gap */
+    animation: sms-reveal 0.4s ease-out forwards;
+    padding: 0 !important;
 }
 
 @keyframes sms-reveal {
@@ -309,14 +317,13 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* 2. HEADER COMPONENT (ULTRASONIC SPECIFICITY) */
+/* 2. HEADER COMPONENT (V7.3 PRECISION) */
 header.sms-header-group { 
     display: flex !important; 
     flex-direction: column !important; 
-    padding-left: 0 !important; 
-    margin-bottom: 32px !important; 
-    gap: 8px !important; 
-    align-items: flex-start !important;
+    padding: 0 !important; 
+    margin-bottom: 24px !important; 
+    gap: 4px !important; 
 }
 
 .sms-header-title {
@@ -333,11 +340,11 @@ header.sms-header-group {
 
 .sms-header-underline {
     width: 30px !important;
-    height: 4px !important;
+    height: 3px !important;
     background-color: #3C50E0 !important;
     border-radius: 99px !important;
     display: block !important;
-    margin-top: 0 !important;
+    margin-top: 2px !important;
 }
 
 /* Breadcrumb - Sultan Executive Standard (14px) */
@@ -383,10 +390,10 @@ header.sms-header-group {
 .dark .sms-th-executive { color: #FFFFFF !important; }
 
 .sms-table-executive td {
-    font-size: 15px !important; /* Locked Sidebar Mirror */
+    font-size: 14px !important; /* Slightly more compact for long lists */
     font-weight: 500 !important;
     color: #1C2434 !important;
-    padding: 16px !important;
+    padding: 12px 16px !important; /* Tighter padding */
     vertical-align: middle !important;
     border-bottom: 1px solid #F1F5F9 !important;
 }
