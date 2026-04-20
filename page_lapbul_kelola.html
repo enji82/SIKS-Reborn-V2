@@ -1976,16 +1976,17 @@ function lapbulkelola_submitVerifikasi(e) {
 }
 
 function lapbulkelola_renderSkeleton() {
-    var $cont = $('#lapbulkelola_skeletonTarget').empty();
-    
-    for (var i = 0; i < 5; i++) {
-        var $row = $('<div class="flex items-center gap-4 p-4 bg-gray-50/50 dark:bg-white/5 rounded-xl border border-gray-100 dark:border-white/5 animate-pulse"></div>');
-        $row.append('<div class="h-10 w-10 rounded-lg bg-gray-200 dark:bg-white/10"></div>'); // Aksi
-        $row.append('<div class="flex-1 space-y-2"><div class="h-4 w-1/3 bg-gray-200 dark:bg-white/10 rounded"></div><div class="h-3 w-1/4 bg-gray-200 dark:bg-white/10 rounded opacity-50"></div></div>'); // Unit
-        $row.append('<div class="h-8 w-24 bg-gray-200 dark:bg-white/10 rounded-lg"></div>'); // Periode
-        $row.append('<div class="h-8 w-16 bg-gray-200 dark:bg-white/10 rounded-lg"></div>'); // Rombel
-        $row.append('<div class="h-8 w-32 bg-gray-200 dark:bg-white/10 rounded-lg"></div>'); // Status
-        $cont.append($row);
+    var $cont = $('#lapbulkelola_loadingState').empty();
+    var $grid = $('<div/>', { "class": "flex flex-col gap-4 py-10" });
+    for (var i = 0; i < 4; i++) {
+        var $row = $('<div/>', { "class": "flex items-center gap-4 sk-skeleton" });
+        $row.append($('<div/>', { "class": "h-12 w-12 rounded-lg bg-gray-200 dark:bg-white/10" }));
+        var $meta = $('<div/>', { "class": "flex-1 space-y-2" });
+        $meta.append($('<div/>', { "class": "h-4 w-1/3 rounded bg-gray-200 dark:bg-white/10" }));
+        $meta.append($('<div/>', { "class": "h-3 w-1/2 rounded bg-gray-200 dark:bg-white/10 opacity-50" }));
+        $row.append($meta);
+        $grid.append($row);
     }
+    $cont.append($grid);
 }
 </script>
