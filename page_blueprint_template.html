@@ -3,19 +3,19 @@
   ---------------------------------------------------------
   GOLDEN RULE: This is the ONLY source of truth for UI structure.
   1. DO NOT change IDs or logic unless commanded.
-  2. Maintain Gap-2 density for root containers.
-  3. All headers must use [10px] font-black uppercase tracking-widest.
+  2. Use Gap-6 for root containers (Executive Spacing).
+  3. Headers use sultan-title-sync (text-3xl font-black).
   ---------------------------------------------------------
 -->
 
-<div class="flex flex-col gap-2 animate-reveal">
+<div class="flex flex-col gap-6 animate-reveal">
     
-    <!-- 1. PAGE HEADER -->
-    <div class="mb-4 flex flex-col px-1">
-        <h1 class="sultan-title-sync text-black dark:text-white uppercase tracking-tighter">
+    <!-- 1. PAGE HEADER (SULTAN EXECUTIVE) -->
+    <div class="mb-2 flex flex-col px-1">
+        <h1 class="text-2xl md:text-3xl font-black text-black dark:text-white tracking-tight leading-tight sultan-title-sync">
             [TITLE_MODUL]
         </h1>
-        <p class="sk-section-title mt-1">
+        <p class="sk-section-title mt-1 text-xs">
             [SUBTITLE_DESCRIPTION_MODUL]
         </p>
     </div>
@@ -24,7 +24,7 @@
     <div class="sultan-card group mb-0" x-data="{ isOpen: false }">
       <div class="py-2 px-3 border-l-4 border-l-primary/50">
         <div class="flex items-center justify-between cursor-pointer" @click="isOpen = !isOpen">
-          <div class="flex items-center text-primary font-black text-[10px] uppercase tracking-widest">
+          <div class="flex items-center text-primary font-black text-xs uppercase tracking-widest">
             <i class="fas fa-info-circle mr-2"></i> PANDUAN PENGISIAN
           </div>
           <i class="fas text-muted transition-transform" :class="isOpen ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
@@ -39,7 +39,7 @@
     </div>
 
     <!-- 3. FILTER & ACTION CARD -->
-    <div class="sultan-card p-2 md:p-3 shadow-sm border-l-4 border-l-primary/30 mb-4">
+    <div class="sultan-card p-2 md:p-3 shadow-sm border-l-4 border-l-primary/30">
         <div class="flex flex-wrap items-center gap-2 md:gap-3">
             <!-- Example Filter: Unit -->
             <select id="[MODUL]_filterUnit" class="rounded-xl border border-stroke bg-gray-2 dark:bg-strokedark py-1.5 px-3 text-xs font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark min-w-[200px]" disabled>
@@ -75,9 +75,9 @@
             <div id="[MODUL]_tableState" style="display: none;">
                 <table id="[MODUL]_tabelUtama" class="w-full table-auto border-collapse text-xs">
                     <thead>
-                        <tr class="bg-gray-2 dark:bg-slate-800 text-left">
-                            <th class="py-3 px-4 font-black text-black dark:text-white text-center uppercase tracking-widest text-[10px]" style="width:100px;">AKSI</th>
-                            <th class="py-3 px-4 font-black text-black dark:text-white uppercase tracking-widest text-[10px]">[COL_HEADER_1]</th>
+                        <tr class="bg-gray-2 dark:bg-meta-4 text-left border-b border-stroke dark:border-white/5">
+                            <th class="py-4 px-6 font-black text-black dark:text-white text-center uppercase tracking-widest text-[11px]" style="width:120px;">AKSI</th>
+                            <th class="py-4 px-4 font-black text-black dark:text-white uppercase tracking-widest text-[11px]">[COL_HEADER_1]</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -101,8 +101,8 @@
 
     function [MODUL]_tarikDataServer() {
         // [MODUL]_TABEL_INSTANCE initialization with standard dom:
-        // "dom": '<"px-4 py-2.5 border-b border-stroke dark:border-white/5"<"flex items-center justify-between gap-4"l f>>' +
+        // "dom": '<"px-6 py-4 border-b border-stroke dark:border-white/5"<"flex items-center justify-between gap-4"l f>>' +
         //        '<"sultan-scroll overflow-x-auto"t>' +
-        //        '<"px-4 py-2.5 border-t border-stroke dark:border-white/5"<"flex items-center justify-between"i p>>',
+        //        '<"px-6 py-4 border-t border-stroke dark:border-white/5"<"flex items-center justify-between"i p>>',
     }
 </script>
