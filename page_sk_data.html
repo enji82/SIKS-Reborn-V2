@@ -1,7 +1,7 @@
-<div class="flex flex-col gap-4 animate-reveal">
+<div class="flex flex-col gap-1 animate-reveal">
 
     <!-- PAGE HEADER -->
-    <div class="mb-2 flex flex-col">
+    <div class="mb-6 flex flex-col">
         <h1 class="sultan-title-sync text-black dark:text-white">
             Kelola Data SK
         </h1>
@@ -11,7 +11,7 @@
     </div>
 
     <!-- 1. KARTU INFORMASI -->
-    <div class="sultan-card px-1" x-data="{ isOpen: false }">
+    <div class="sultan-card mb-0 px-1" x-data="{ isOpen: false }">
       <div class="py-2 px-3 border-l-4 border-l-primary/50">
         <div class="flex items-center justify-between cursor-pointer" @click="isOpen = !isOpen">
           <div class="flex items-center text-primary font-bold text-xs uppercase tracking-tighter">
@@ -30,7 +30,7 @@
     </div>
 
     <!-- 2. KARTU FILTER -->
-    <div class="sultan-card p-2 md:p-3 shadow-sm border-l-4 border-l-primary/30">
+    <div class="sultan-card p-2 md:p-3 shadow-sm border-l-4 border-l-primary/30 mb-6">
         <div class="flex flex-wrap items-center gap-2 md:gap-3">
             <select id="tugas_filterUnit" class="rounded-xl border border-stroke bg-gray-2 dark:bg-strokedark py-1.5 px-3 text-xs font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark min-w-[200px]" disabled>
                 <option value="">- Memvalidasi Akses... -</option>
