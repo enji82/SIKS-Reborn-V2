@@ -164,17 +164,32 @@ header.sms-header-group {
 }
 .dark .sk-row-subtitle { color: #8A99AF !important; }
 
-/* LEGACY ALIASES (FOR STABILITY) */
-.sk-form-label { display: block; margin-bottom: 0.5rem; font-size: 11px !important; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; color: var(--sk-text-muted); }
-.sk-form-input { width: 100%; }
-.sk-modal-header-brand { }
-.sk-modal-header-primary { background: #3C50E0 !important; color: #FFFFFF !important; }
-.sk-modal-header-danger { background: #E11D48 !important; color: #FFFFFF !important; }
-.sk-modal-header-success { background: #10B981 !important; color: #FFFFFF !important; }
-.sk-modal-header-warning { background: #F59E0B !important; color: #FFFFFF !important; }
-.sk-btn-primary { }
-.sk-btn-secondary { }
-.sk-btn-danger { background: #E11D48 !important; color: #FFFFFF !important; }
+/* 6. SULTAN DANGER SYSTEM (v19.0) */
+.sk-alert-danger {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 16px 20px; border-radius: 16px; 
+    background: #FFF1F2 !important; border: 1.5px solid #FECDD3 !important;
+    color: #9F1239 !important; shadow: 0 4px 6px -1px rgba(159, 18, 57, 0.05);
+}
+
+.dark .sk-alert-danger {
+    background: rgba(159, 18, 57, 0.1) !important; 
+    border-color: rgba(159, 18, 57, 0.2) !important;
+    color: #FDA4AF !important;
+}
+
+.sk-alert-warning {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 12px 16px; border-radius: 12px;
+    background: #FFFBEB !important; border-left: 4px solid #F59E0B !important;
+    color: #92400E !important; font-size: 13px;
+}
+
+.dark .sk-alert-warning {
+    background: rgba(245, 158, 11, 0.05) !important;
+    border-left-color: #F59E0B !important;
+    color: #FCD34D !important;
+}
 
 /* 6. PILL BADGES (EXECUTIVE TINT) */
 .sms-badge-pill {
