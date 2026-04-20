@@ -270,40 +270,31 @@
 
 /* 1. ROOT LAYOUT & ANIMATION */
 /* 1. LAYOUT ROOT & STABILITY (v7.5 RESTORED) */
+/* Total Reset of Layout Root Overrides (v9.0 Recovery) */
 .sms-layout-root {
     display: flex;
     flex-direction: column;
-    gap: 24px;
-    animation: sms-reveal 0.4s ease-out forwards;
+    gap: 20px;
     padding: 0;
-    margin: 0;
 }
 
-@keyframes sms-reveal {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
+/* Selective Typography Scoping (Restored v9.0) */
+#app-content-active #sultan-master-scope,
+#app-content-active #sultan-master-scope h1,
+#app-content-active #sultan-master-scope span,
+#app-content-active #sultan-master-scope div,
+#app-content-active #sultan-master-scope select,
+#app-content-active #sultan-master-scope button {
+    font-family: 'Satoshi', 'Inter', sans-serif !important;
 }
 
-/* 1.1 TYPOGRAPHY LOCKDOWN (RESTRICTED SCOPE) */
-#app-content-active .sms-layout-root, 
-#app-content-active .sms-layout-root h1, 
-#app-content-active .sms-layout-root span, 
-#app-content-active .sms-layout-root div,
-#app-content-active .sms-layout-root select,
-#app-content-active .sms-layout-root button {
-    font-family: 'Satoshi', 'Inter', -apple-system, sans-serif !important;
-}
-
-/* 1.2 ICON EMERGENCY RESTORATION */
-.sms-layout-root i, 
-.sms-layout-root .fas, 
-.sms-layout-root .fab, 
-.sms-layout-root .far,
-.sms-layout-root [class^="fa-"] {
+/* Scoped Icon Restoration */
+#sultan-master-scope i, 
+#sultan-master-scope .fas, 
+#sultan-master-scope .fab, 
+#sultan-master-scope .far {
     font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", "FontAwesome" !important;
     font-weight: 900 !important;
-    font-style: normal !important;
-    display: inline-block !important;
 }
 
 @keyframes sms-reveal {
@@ -2390,11 +2381,11 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
 }
 
 /* MAIN WRAPPERS */
+/* Reverting .page-wrapper to system default in v9.0 */
 .page-wrapper {
-  display: flex !important; /* Force flex for the dashboard structure but don't override the style="display:none" on #konten-aplikasi */
+  display: flex !important; /* Restore basic flex structure */
   min-height: 100vh;
   overflow: hidden;
-  background-image: linear-gradient(to right, var(--sidebar-bg) var(--sidebar-width), transparent var(--sidebar-width));
 }
 .content-area {
   position: relative;
