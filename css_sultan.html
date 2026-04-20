@@ -276,8 +276,23 @@ body {
 }
 
 /* --- TYPOGRAPHY & HEADER SYNC --- */
-.sultan-title-sync { font-size: 1.5rem; font-weight: 800; tracking: -0.02em; }
-.sk-section-title { font-size: 0.6875rem !important; font-weight: 900; text-transform: uppercase; letter-spacing: 0.15em; color: var(--sk-text-muted); opacity: 0.8; }
+.sultan-title-sync { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; }
+.sk-title-underline { width: 40px; height: 3px; background: var(--warna-utama); border-radius: 2px; margin-top: 0.5rem; }
+
+/* Section Title (Unified) */
+.sk-section-title { 
+    display: flex; align-items: center; gap: 0.75rem;
+    font-size: 0.75rem !important; /* ~12px */
+    font-weight: 900; 
+    color: var(--sk-text-muted); 
+    text-transform: uppercase; 
+    letter-spacing: 0.15em; 
+    opacity: 0.9;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--sk-border);
+    margin-bottom: 1.25rem;
+}
+.dark .sk-section-title { border-bottom-color: rgba(255,255,255,0.06); }
 
 /* --- HEADER MODAL (STANDARD) --- */
 .sk-modal-header {
@@ -312,21 +327,21 @@ body {
 }
 .dark .sk-modal-title { color: #fff; }
 
-/* Section Title (Underlined) */
-.sk-section-title {
+/* Form Section Header (Underlined) */
+.sk-form-section-title {
     display: flex; align-items: center; gap: 0.75rem;
     font-size: 0.9375rem; /* 15px Sync */
     font-weight: 900;
-    color: #3C50E0;
+    color: var(--warna-utama);
     padding-bottom: 0.75rem;
     margin-bottom: 1.25rem;
-    border-bottom: 2px solid #3C50E0;
+    border-bottom: 2px solid var(--warna-utama);
     width: 100%;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     font-family: 'Satoshi', sans-serif !important;
 }
-.dark .sk-section-title { color: #818CF8; border-bottom-color: rgba(129, 140, 248, 0.4); }
+.dark .sk-form-section-title { color: #818CF8; border-bottom-color: rgba(129, 140, 248, 0.4); }
 
 /* --- DATA DISPLAY GRID --- */
 .sk-data-grid { display: flex; flex-direction: column; gap: 0.875rem; margin-bottom: 1.5rem; }

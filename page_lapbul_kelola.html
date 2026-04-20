@@ -1,35 +1,35 @@
 <div class="flex flex-col gap-4 md:gap-6 2xl:gap-7.5 animate-reveal">
     
-  <!-- PAGE HEADER (SULTAN SYNC) -->
-  <div class="mb-2 flex flex-col">
+  <!-- PAGE HEADER (SULTAN BLUEPRINT v4.5) -->
+  <div class="mb-6 flex flex-col items-start border-b border-gray-100 dark:border-white/10 pb-6">
         <h1 class="sultan-title-sync text-black dark:text-white">
             Kelola Data Laporan Bulan
         </h1>
-        <p class="sk-section-title mt-1">
+        <div class="sk-title-underline"></div>
+        <p class="sk-section-title mt-4 !border-none !pb-0 !mb-0">
             Pengelolaan & Validasi Laporan Bulanan Satuan Pendidikan
         </p>
   </div>
 
-  <!-- CUSTOM MODULE ACCENTS (SULTAN BLUEPRINT 2.0) -->
+  <!-- CUSTOM MODULE ACCENTS (SYNC) -->
   <style>
-    /* Mengikuti Blueprint: Menghapus override maroon untuk sinkronisasi warna primary BIRU */
     :root {
         --sk-primary: #3c50e0; 
         --sk-primary-hover: #2d3bb1;
     }
   </style>
 
-  <!-- 1. KARTU INFORMASI (SK STYLE) -->
-  <div class="sk-card !p-0 overflow-hidden" x-data="{ isOpen: false }">
-    <div class="sk-card-header cursor-pointer hover:bg-gray-100 dark:hover:bg-white/10 transition-colors" @click="isOpen = !isOpen">
+  <!-- 1. KARTU INFORMASI (OPERATIONAL GUIDE) -->
+  <div class="sk-card !p-0 overflow-hidden mb-6" x-data="{ isOpen: false }">
+    <div class="sk-card-header cursor-pointer hover:bg-gray-100 dark:hover:bg-white/10 transition-colors h-[52px]" @click="isOpen = !isOpen">
         <h3 class="font-bold text-black dark:text-white flex items-center gap-2 text-sm uppercase tracking-[0.1em]">
             <i class="fas fa-info-circle text-primary"></i> Panduan Pengisian
         </h3>
         <i class="fas fa-chevron-down text-gray-400 text-sm transition-transform" :class="{ 'rotate-180': isOpen }"></i>
     </div>
     <div x-show="isOpen" x-transition x-cloak class="p-4 border-t border-gray-100 dark:border-white/5 bg-gray-50/50 dark:bg-boxdark">
-        <div class="rounded-xl border border-primary/20 bg-blue-50/80 dark:bg-white/5 p-5">
-            <ul class="space-y-4">
+        <div class="rounded-xl border border-primary/20 bg-blue-50/80 dark:bg-white/5 p-6 shadow-inner">
+            <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
                 <li class="flex gap-4 text-[14px] font-bold text-gray-900 dark:text-gray-100 items-start">
                     <span class="flex h-6 w-6 min-w-[24px] items-center justify-center rounded-full bg-primary text-[12px] font-bold text-white shadow-sm">1</span>
                     <span>Laporan wajib diunggah sebelum <b class="text-primary dark:text-[#818CF8]">tanggal 10</b> setiap bulannya untuk tertib administrasi.</span>
@@ -44,7 +44,7 @@
                 </li>
                 <li class="flex gap-4 text-[14px] font-bold text-gray-900 dark:text-gray-100 items-start">
                     <span class="flex h-6 w-6 min-w-[24px] items-center justify-center rounded-full bg-primary text-[12px] font-bold text-white shadow-sm">4</span>
-                    <span>Gunakan tombol <span class="text-danger font-bold"><i class="fas fa-comment-dots"></i> BACA CATATAN</span> pada kolom status untuk melihat umpan balik revisi dari Admin.</span>
+                    <span>Gunakan tombol <span class="text-danger font-bold"><i class="fas fa-comment-dots"></i> BACA CATATAN</span> pada kolom status untuk umpan balik revisi.</span>
                 </li>
             </ul>
         </div>
@@ -175,11 +175,6 @@
                                 <p class="text-[11px] text-gray-500 font-bold leading-relaxed px-4">Formulir terpadu untuk jenjang TK, KB, SPS, dan TPA</p>
                             </div>
                         </div>
-                        <div class="sk-card group cursor-pointer hover:scale-[1.02] transition-all border border-transparent hover:border-primary/50 shadow-md btn-pilih-jenjang" data-jenjang="SD">
-                            <div class="p-8 flex flex-col items-center text-center">
-                                <div class="h-20 w-20 flex items-center justify-center rounded-2xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors mb-6 shadow-sm">
-                                    <i class="fas fa-school text-3xl"></i>
-                                </div>
                                 <h4 class="text-lg font-bold text-black dark:text-white uppercase mb-2">SEKOLAH DASAR</h4>
                                 <p class="text-[11px] text-gray-500 font-bold leading-relaxed px-4">Formulir khusus untuk jenjang Sekolah Dasar (Negeri/Swasta)</p>
                             </div>
@@ -230,8 +225,8 @@
                     <input type="hidden" id="lapbulkelola_targetVerifId">
                     
                     <div class="mb-6">
-                        <h4 class="text-[11px] font-black text-primary uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
-                            <i class="fas fa-id-card"></i> Detail Identitas
+                        <h4 class="sk-form-section-title">
+                            <i class="fas fa-gavel"></i> Keputusan Verifikasi
                         </h4>
                         <div class="space-y-3 bg-gray-50 dark:bg-white/5 p-4 rounded-xl border border-gray-100 dark:border-white/5">
                             <div class="flex justify-between items-center text-[13px]">
@@ -424,7 +419,7 @@
                     
                     <div class="flex items-center justify-between w-full mt-10 pt-10 border-t border-gray-100 dark:border-gray-800">
                         <button type="button" class="sk-btn sk-btn-white sk-btn-compact btn-back-tab" data-target="lapbulkelola_ts3"><i class="fas fa-arrow-left mr-2"></i> DATA PTK</button>
-                        <button type="submit" id="lapbulkelola_btnFinalSD" class="sk-btn sk-btn-primary sk-btn-compact px-8 !bg-maroon hover:!bg-maroon-700 shadow-maroon/20 shadow-lg"><i class="fas fa-paper-plane mr-2"></i> KIRIM DATA LAPORAN</button>
+                        <button type="submit" id="lapbulkelola_btnFinalSD" class="sk-btn sk-btn-primary sk-btn-compact px-8 shadow-lg"><i class="fas fa-paper-plane mr-2"></i> KIRIM DATA LAPORAN</button>
                     </div>
                 </div>
             </div>
@@ -578,7 +573,7 @@
                     
                     <div class="flex items-center justify-between w-full mt-10 pt-10 border-t border-gray-100 dark:border-gray-800">
                         <button type="button" class="sk-btn sk-btn-white sk-btn-compact btn-back-tab-paud" data-target="lapbulkelola_tp3"><i class="fas fa-arrow-left mr-2"></i> DATA PTK</button>
-                        <button type="submit" id="lapbulkelola_btnFinalPAUD" class="sk-btn sk-btn-primary sk-btn-compact px-8 !bg-maroon hover:!bg-maroon-700 shadow-maroon/20 shadow-lg"><i class="fas fa-paper-plane mr-2"></i> KIRIM LAPORAN SEKARANG</button>
+                        <button type="submit" id="lapbulkelola_btnFinalPAUD" class="sk-btn sk-btn-primary sk-btn-compact px-8 shadow-lg"><i class="fas fa-paper-plane mr-2"></i> KIRIM LAPORAN SEKARANG</button>
                     </div>
                 </div>
             </div>
@@ -901,7 +896,7 @@ function lapbulkelola_prosesCariData(isForceSync) {
         lapbulkelola_terapkanFilterLokal();
 
     }).withFailureHandler(function(e) {
-        btn.prop('disabled', false).html('<i class="fab fa-gg"></i>');
+        btn.prop('disabled', false).removeClass('fa-spin').html('<i class="fab fa-gg"></i>');
         Sultan.notif.gagal('Koneksi Terputus: ' + e.message);
     }).getLapbulKelolaData("", "", valTahun, "", valKeyword); 
 }
@@ -1051,8 +1046,9 @@ function lapbulkelola_renderTabel(data) {
             ],
             "language": { 
                 "sLengthMenu": "Tampilkan _MENU_",
-                "sSearch": "Cari:",
-                "sInfo": "Menampilkan _START_ s/d _END_ dari _TOTAL_ data laporan",
+                "sSearch": "Cari: ",
+                "searchPlaceholder": "Ketik untuk mencari...",
+                "sInfo": "Menampilkan _START_ s/d _END_ dari _TOTAL_ Laporan",
                 "emptyTable": "Tidak ditemukan data laporan.",
                 "oPaginate": { "sNext": "<i class='fas fa-chevron-right'></i>", "sPrevious": "<i class='fas fa-chevron-left'></i>" }
             }
@@ -1077,11 +1073,11 @@ function lapbulkelola_escapeJs(str) {
 
 function lapbulkelola_lihatCatatanSultan(pesan) {
     Swal.fire({
-        title: '<i class="fas fa-comment-dots text-maroon mb-2"></i><br>Catatan Verifikasi',
-        html: '<div class="text-left bg-light p-3 rounded border text-dark" style="font-size:15px; line-height:1.5;">' + pesan + '</div>',
+        title: '<i class="fas fa-comment-dots text-primary mb-2"></i><br>Catatan Verifikasi',
+        html: '<div class="text-left bg-gray-50 dark:bg-white/5 p-4 rounded-xl border border-gray-100 dark:border-white/10 text-black dark:text-white" style="font-size:14px; line-height:1.6;">' + pesan + '</div>',
         showConfirmButton: true,
-        confirmButtonText: 'Saya Mengerti',
-        confirmButtonColor: '#85144b',
+        confirmButtonText: 'SAYA MENGERTI',
+        confirmButtonColor: '#3C50E0',
         width: '400px'
     });
 }
