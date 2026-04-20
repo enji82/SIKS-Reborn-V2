@@ -13,6 +13,7 @@
     flex-direction: column;
     gap: 20px;
     padding: 0;
+}
 /* Selective Typography Scoping (Restored v9.0) */
 #app-content-active #sultan-master-scope,
 #app-content-active #sultan-master-scope h1,
@@ -31,6 +32,27 @@
 @keyframes sms-reveal {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes sk-shimmer {
+    0% { background-position: -468px 0; }
+    100% { background-position: 468px 0; }
+}
+
+.sk-shimmer {
+    background: #f6f7f8;
+    background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+    background-repeat: no-repeat;
+    background-size: 800px 104px; 
+    display: inline-block;
+    position: relative; 
+    animation: sk-shimmer 1.2s linear infinite forwards;
+}
+
+.dark .sk-shimmer {
+    background: #1A222C;
+    background-image: linear-gradient(to right, #1A222C 0%, #24303F 20%, #1A222C 40%, #1A222C 100%);
+}
 /* 2. HEADER COMPONENT (v7.5 CLEAN) */
 header.sms-header-group { 
     display: flex !important; 
@@ -39,6 +61,7 @@ header.sms-header-group {
     gap: 4px !important; 
     border: none !important;
     background: transparent !important;
+}
 .sms-header-title {
     font-size: 20px !important; 
     font-weight: 900 !important;
@@ -47,6 +70,7 @@ header.sms-header-group {
     line-height: 1 !important;
     text-transform: uppercase !important;
     margin: 0 !important;
+}
 .dark .sms-header-title { color: #FFFFFF !important; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
 .sms-header-underline {
     width: 30px !important;
@@ -64,6 +88,7 @@ header.sms-header-group {
     display: flex;
     align-items: center;
     gap: 8px;
+}
 .sms-breadcrumb span { opacity: 0.5; }
 .dark .sms-breadcrumb { color: #AEB7C0 !important; }
 /* Legacy - Deprecated in v7.0 */
@@ -89,15 +114,39 @@ header.sms-header-group {
     text-align: left !important;
 .dark .sms-th-executive { color: #FFFFFF !important; }
 .sms-table-executive td {
-    font-size: 14px !important; /* Slightly more compact for long lists */
+    font-size: 14px !important; 
     font-weight: 500 !important;
     color: #1C2434 !important;
-    padding: 12px 16px !important; /* Tighter padding */
+    padding: 16px 16px !important; /* Premium breathable padding */
     vertical-align: middle !important;
     border-bottom: 1px solid #F1F5F9 !important;
+}
+
 .dark .sms-table-executive td { 
     color: #DEE4EE !important; 
     border-bottom-color: rgba(255,255,255,0.05) !important; 
+}
+
+/* EXECUTIVE ROW TYPOGRAPHY */
+.sk-row-title {
+    font-weight: 900 !important;
+    color: #1C2434 !important;
+    text-transform: uppercase !important;
+    letter-spacing: -0.01em !important;
+    line-height: 1.2 !important;
+    font-size: 14px !important;
+}
+.dark .sk-row-title { color: #FFFFFF !important; }
+
+.sk-row-subtitle {
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    color: #64748B !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    margin-top: 4px !important;
+}
+.dark .sk-row-subtitle { color: #8A99AF !important; }
 /* 4. BUTTON COMPONENTS (SMS PREMIUM) */
 .sms-btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
@@ -120,21 +169,25 @@ header.sms-header-group {
     background: #F1F5F9; color: #64748B; border: 1px solid #E2E8F0;
 .dark .sms-btn-icon { background: rgba(255,255,255,0.05); color: #AEB7C0; border-color: rgba(255,255,255,0.1); }
 .sms-btn-icon:hover { background: #3C50E0; color: #FFFFFF; border-color: #3C50E0; transform: translateY(-1px); }
-/* 5. BADGE COMPONENTS (MODERN TINT STYLE) */
-.sms-badge {
+/* 5. BADGE COMPONENTS (EXECUTIVE PILL STYLE) */
+.sms-badge-pill {
     display: inline-flex; align-items: center; justify-content: center;
-    padding: 0.35rem 0.75rem; border-radius: 50px !important;
-    font-size: 11px !important; font-weight: 900 !important;
-    text-transform: uppercase; letter-spacing: 0.05em;
-    border: 1px solid transparent;
+    padding: 4px 12px !important; border-radius: 50px !important;
+    font-size: 10px !important; font-weight: 900 !important;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    border: 1.5px solid transparent;
+}
 .sms-badge-success { background: #DCFCE7 !important; color: #166534 !important; border-color: #BBF7D0 !important; }
-.dark .sms-badge-success { background: rgba(22, 101, 52, 0.2) !important; color: #4ADE80 !important; border-color: rgba(74, 222, 128, 0.2) !important; }
+.dark .sms-badge-success { background: rgba(22, 101, 52, 0.2) !important; color: #4ADE80 !important; border-color: rgba(74, 222, 128, 0.1) !important; }
+
 .sms-badge-warning { background: #FEF9C3 !important; color: #854D0E !important; border-color: #FEF08A !important; }
-.dark .sms-badge-warning { background: rgba(133, 77, 14, 0.2) !important; color: #FACC15 !important; border-color: rgba(250, 204, 21, 0.2) !important; }
+.dark .sms-badge-warning { background: rgba(133, 77, 14, 0.2) !important; color: #FACC15 !important; border-color: rgba(250, 204, 21, 0.1) !important; }
+
 .sms-badge-danger { background: #FEE2E2 !important; color: #991B1B !important; border-color: #FECACA !important; }
-.dark .sms-badge-danger { background: rgba(153, 27, 27, 0.2) !important; color: #F87171 !important; border-color: rgba(248, 113, 113, 0.2) !important; }
+.dark .sms-badge-danger { background: rgba(153, 27, 27, 0.2) !important; color: #F87171 !important; border-color: rgba(248, 113, 113, 0.1) !important; }
+
 .sms-badge-info { background: #DBEAFE !important; color: #1E40AF !important; border-color: #BFDBFE !important; }
-.dark .sms-badge-info { background: rgba(30, 64, 175, 0.2) !important; color: #60A5FA !important; border-color: rgba(96, 165, 250, 0.2) !important; }
+.dark .sms-badge-info { background: rgba(30, 64, 175, 0.2) !important; color: #60A5FA !important; border-color: rgba(96, 165, 250, 0.1) !important; }
 /* 6. INPUT COMPONENTS (ABSOLUTE 38px DIMENSION LOCK) */
 select.sms-input-premium {
     height: 38px !important;
