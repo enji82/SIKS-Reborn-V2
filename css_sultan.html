@@ -274,15 +274,15 @@
   --sidebar-logo-text: #111928;    /* very dark for logo */
 }
 
-/* Pure Tailwind Dark Theme (Sultan Edition) */
+/* --- SULTAN EXECUTIVE THEME (v17.0) --- */
 .dark {
-  --sidebar-bg: #111827;           /* Absolute Deep Black for maximum contrast */
+  --sidebar-bg: rgba(18, 25, 38, 0.95);  /* Executive Charcoal with glass hint */
   --sidebar-border: rgba(255, 255, 255, 0.05);
-  --sidebar-active-bg: #1E293B;
+  --sidebar-active-bg: rgba(60, 80, 224, 0.15); /* Soft Brand Blue */
   --sidebar-active-text: #818CF8;
-  --sidebar-text: #FFFFFF;         /* Absolute White for maximum readability */
-  --sidebar-hover-bg: #1F2937;
-  --sidebar-group-color: #94A3B8;
+  --sidebar-text: #CBD5E1;              /* Soft Slate for Premium feel */
+  --sidebar-hover-bg: rgba(255, 255, 255, 0.03);
+  --sidebar-group-color: #64748B;
   --sidebar-logo-text: #FFFFFF;
 }
 
@@ -304,21 +304,35 @@
 }
 .dark .content-area { background-color: #1A222C; }
 
-/* SIDEBAR DRAWER */
+/* SIDEBAR DRAWER - Premium Fluid Edition */
 .sidebar-drawer {
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 99999; /* Boosted for Absolute Visibility */
+  z-index: 99999;
   display: flex;
   height: 100vh;
   width: var(--sidebar-width);
   flex-direction: column;
   background-color: var(--sidebar-bg);
   border-right: 1px solid var(--sidebar-border);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  /* SPRING ANIMATION for fluid feel */
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              background-color 0.3s ease;
   transform: translateX(-100%);
   overflow: hidden;
+  box-shadow: 10px 0 30px -15px rgba(0,0,0,0.3);
+}
+
+/* Inner Inner Glow for Sidebar Depth */
+.sidebar-drawer::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.05), transparent);
 }
 
 .dark .sidebar-drawer { 
@@ -430,13 +444,19 @@
   text-decoration: none !important;
   border: none !important;
   box-shadow: none !important;
-  outline: none !important;
-  cursor: pointer !important;
-  transition: background 0.15s, color 0.15s !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   line-height: 1.4 !important;
   white-space: nowrap !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
+}
+
+.nav-link-tail i {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+.nav-link-tail:hover i {
+  transform: scale(1.15) !important;
 }
 
 /* ABSOLUTE TARGETING - Prevent span/i from inheriting legacy dim colors */
