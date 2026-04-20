@@ -2381,9 +2381,9 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
 }
 
 /* MAIN WRAPPERS */
-/* Reverting .page-wrapper to system default in v9.0 */
+/* Correcting the wrapper in v10.0: REMOVING !important to allow the SPA engine to hide it */
 .page-wrapper {
-  display: flex !important; /* Restore basic flex structure */
+  display: flex; /* Neutral flex for structure */
   min-height: 100vh;
   overflow: hidden;
 }
