@@ -1,12 +1,10 @@
 <style>
-
 /* 
    ======================================================================
    SULTAN MASTER SYSTEM (SMS) v6.0 - THE EXECUTIVE CORE
    Prefix: sms- | Purpose: Global Design Authority & Maintenance
    ======================================================================
 */
-
 /* 1. ROOT LAYOUT & ANIMATION */
 /* 1. LAYOUT ROOT & STABILITY (v7.5 RESTORED) */
 /* Total Reset of Layout Root Overrides (v9.0 Recovery) */
@@ -15,8 +13,6 @@
     flex-direction: column;
     gap: 20px;
     padding: 0;
-}
-
 /* Selective Typography Scoping (Restored v9.0) */
 #app-content-active #sultan-master-scope,
 #app-content-active #sultan-master-scope h1,
@@ -25,8 +21,6 @@
 #app-content-active #sultan-master-scope select,
 #app-content-active #sultan-master-scope button {
     font-family: 'Satoshi', 'Inter', sans-serif !important;
-}
-
 /* Scoped Icon Restoration */
 #sultan-master-scope i, 
 #sultan-master-scope .fas, 
@@ -34,13 +28,9 @@
 #sultan-master-scope .far {
     font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", "FontAwesome" !important;
     font-weight: 900 !important;
-}
-
 @keyframes sms-reveal {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
-}
-
 /* 2. HEADER COMPONENT (v7.5 CLEAN) */
 header.sms-header-group { 
     display: flex !important; 
@@ -49,8 +39,6 @@ header.sms-header-group {
     gap: 4px !important; 
     border: none !important;
     background: transparent !important;
-}
-
 .sms-header-title {
     font-size: 20px !important; 
     font-weight: 900 !important;
@@ -59,9 +47,7 @@ header.sms-header-group {
     line-height: 1 !important;
     text-transform: uppercase !important;
     margin: 0 !important;
-}
 .dark .sms-header-title { color: #FFFFFF !important; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
-
 .sms-header-underline {
     width: 30px !important;
     height: 3px !important;
@@ -69,8 +55,6 @@ header.sms-header-group {
     border-radius: 99px !important;
     display: block !important;
     margin-top: 2px !important;
-}
-
 /* Breadcrumb - Sultan Executive Standard (14px) */
 .sms-breadcrumb {
     font-size: 14px !important;
@@ -80,13 +64,10 @@ header.sms-header-group {
     display: flex;
     align-items: center;
     gap: 8px;
-}
 .sms-breadcrumb span { opacity: 0.5; }
 .dark .sms-breadcrumb { color: #AEB7C0 !important; }
-
 /* Legacy - Deprecated in v7.0 */
 .sms-header-subtitle { display: none !important; }
-
 /* 3. TABLE & LIST REFINEMENT (V7.2) */
 .sms-table-card {
     background-color: var(--sk-surface) !important;
@@ -95,13 +76,9 @@ header.sms-header-group {
     overflow: hidden !important;
     box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.1) !important;
     margin-bottom: 24px !important;
-}
-
 .sms-thead-executive tr {
     background-color: #F7F9FC !important;
-}
 .dark .sms-thead-executive tr { background-color: #24303F !important; }
-
 .sms-th-executive {
     padding: 14px 16px !important;
     font-weight: 900 !important;
@@ -110,9 +87,7 @@ header.sms-header-group {
     letter-spacing: 0.1em !important;
     font-size: 13px !important; /* Slightly smaller for executive density */
     text-align: left !important;
-}
 .dark .sms-th-executive { color: #FFFFFF !important; }
-
 .sms-table-executive td {
     font-size: 14px !important; /* Slightly more compact for long lists */
     font-weight: 500 !important;
@@ -120,12 +95,9 @@ header.sms-header-group {
     padding: 12px 16px !important; /* Tighter padding */
     vertical-align: middle !important;
     border-bottom: 1px solid #F1F5F9 !important;
-}
 .dark .sms-table-executive td { 
     color: #DEE4EE !important; 
     border-bottom-color: rgba(255,255,255,0.05) !important; 
-}
-
 /* 4. BUTTON COMPONENTS (SMS PREMIUM) */
 .sms-btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
@@ -133,29 +105,21 @@ header.sms-header-group {
     font-size: 13px !important; font-weight: 800 !important;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer; border: none; outline: none;
-}
 .sms-btn:active { transform: scale(0.96); }
-
 .sms-btn-primary { 
     background: #3C50E0 !important; color: #FFFFFF !important; 
     box-shadow: 0 4px 12px rgba(60, 80, 224, 0.25); 
-}
 .sms-btn-primary:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(60, 80, 224, 0.35); }
-
 .sms-btn-ghost { 
     background: rgba(60, 80, 224, 0.05) !important; color: #3C50E0 !important;
     border: 1px solid rgba(60, 80, 224, 0.1) !important;
-}
 .sms-btn-ghost:hover { background: #3C50E0 !important; color: #FFFFFF !important; }
-
 .sms-btn-icon {
     width: 36px; height: 36px; padding: 0; border-radius: 10px !important;
     display: flex; align-items: center; justify-content: center;
     background: #F1F5F9; color: #64748B; border: 1px solid #E2E8F0;
-}
 .dark .sms-btn-icon { background: rgba(255,255,255,0.05); color: #AEB7C0; border-color: rgba(255,255,255,0.1); }
 .sms-btn-icon:hover { background: #3C50E0; color: #FFFFFF; border-color: #3C50E0; transform: translateY(-1px); }
-
 /* 5. BADGE COMPONENTS (MODERN TINT STYLE) */
 .sms-badge {
     display: inline-flex; align-items: center; justify-content: center;
@@ -163,20 +127,14 @@ header.sms-header-group {
     font-size: 11px !important; font-weight: 900 !important;
     text-transform: uppercase; letter-spacing: 0.05em;
     border: 1px solid transparent;
-}
-
 .sms-badge-success { background: #DCFCE7 !important; color: #166534 !important; border-color: #BBF7D0 !important; }
 .dark .sms-badge-success { background: rgba(22, 101, 52, 0.2) !important; color: #4ADE80 !important; border-color: rgba(74, 222, 128, 0.2) !important; }
-
 .sms-badge-warning { background: #FEF9C3 !important; color: #854D0E !important; border-color: #FEF08A !important; }
 .dark .sms-badge-warning { background: rgba(133, 77, 14, 0.2) !important; color: #FACC15 !important; border-color: rgba(250, 204, 21, 0.2) !important; }
-
 .sms-badge-danger { background: #FEE2E2 !important; color: #991B1B !important; border-color: #FECACA !important; }
 .dark .sms-badge-danger { background: rgba(153, 27, 27, 0.2) !important; color: #F87171 !important; border-color: rgba(248, 113, 113, 0.2) !important; }
-
 .sms-badge-info { background: #DBEAFE !important; color: #1E40AF !important; border-color: #BFDBFE !important; }
 .dark .sms-badge-info { background: rgba(30, 64, 175, 0.2) !important; color: #60A5FA !important; border-color: rgba(96, 165, 250, 0.2) !important; }
-
 /* 6. INPUT COMPONENTS (ABSOLUTE 38px DIMENSION LOCK) */
 select.sms-input-premium {
     height: 38px !important;
@@ -200,15 +158,11 @@ select.sms-input-premium {
     background-repeat: no-repeat !important;
     background-position: right 14px center !important;
     background-size: 14px !important;
-}
-
 .dark select.sms-input-premium { 
     background-color: #24303F !important;
     border-color: rgba(255, 255, 255, 0.1) !important; 
     color: #FFFFFF !important; 
-}
 .sms-input-premium:focus { border-color: #3C50E0 !important; background-color: #FFFFFF !important; box-shadow: 0 0 0 4px rgba(60,80,224,0.1) !important; }
-
 /* Section Title (Unified) */
 .sk-section-title { 
     display: flex; align-items: center; gap: 0.75rem;
@@ -221,9 +175,7 @@ select.sms-input-premium {
     padding-bottom: 0.5rem;
     border-bottom: 2px solid var(--sk-border);
     margin-bottom: 1.25rem;
-}
 .dark .sk-section-title { border-bottom-color: rgba(255,255,255,0.06); }
-
 /* --- HEADER MODAL (STANDARD) --- */
 .sk-modal-header {
     display: flex;
@@ -232,21 +184,15 @@ select.sms-input-premium {
     padding: 1.125rem 1.5rem;
     border-bottom: 1px solid #F1F5F9;
     background: #FAFAFA;
-}
 .dark .sk-modal-header { border-bottom-color: rgba(255,255,255,0.06); background: var(--sk-surface); }
-
 /* --- MODAL OVERLAY --- */
 .sk-modal-overlay {
     background: var(--sk-overlay) !important;
-}
-
 /* --- MODAL BOX CONTAINER --- */
 .sk-modal-box {
     background-color: var(--sk-surface) !important;
     color: var(--sk-text) !important;
     border-color: var(--sk-border) !important;
-}
-
 /* --- TITLES & LABELS --- */
 .sk-modal-title {
     display: flex; align-items: center; gap: 0.75rem;
@@ -254,9 +200,7 @@ select.sms-input-premium {
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: #1A1F36;
-}
 .dark .sk-modal-title { color: #fff; }
-
 /* Form Section Header (Underlined) */
 .sk-form-section-title {
     display: flex; align-items: center; gap: 0.75rem;
@@ -270,9 +214,7 @@ select.sms-input-premium {
     text-transform: uppercase;
     letter-spacing: 0.05em;
     font-family: 'Satoshi', sans-serif !important;
-}
 .dark .sk-form-section-title { color: #818CF8; border-bottom-color: rgba(129, 140, 248, 0.4); }
-
 /* --- DATA DISPLAY GRID --- */
 .sk-data-grid { display: flex; flex-direction: column; gap: 0.875rem; margin-bottom: 1.5rem; }
 .sk-data-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
@@ -280,7 +222,6 @@ select.sms-input-premium {
 .sk-data-value { font-family: 'Satoshi', sans-serif !important; font-size: 0.875rem !important; font-weight: 900; color: var(--sk-text); text-align: right; }
 .sk-data-value.text-brand { color: #3C50E0 !important; font-weight: 900; }
 .dark .sk-data-value.text-brand { color: #818CF8 !important; }
-
 /* Badge for Data Value */
 .sk-badge-brand {
     background: rgba(60, 80, 224, 0.1);
@@ -292,9 +233,7 @@ select.sms-input-premium {
     text-transform: uppercase;
     letter-spacing: 0.05em;
     font-family: 'Satoshi', sans-serif !important;
-}
 .dark .sk-badge-brand { background: rgba(129, 140, 248, 0.1); color: #818CF8; }
-
 /* --- CARD FOUNDATION --- */
 .sk-card {
     background-color: var(--sk-surface);
@@ -303,8 +242,6 @@ select.sms-input-premium {
     border: 1px solid var(--sk-border);
     margin-bottom: 1.25rem;
     box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.05);
-}
-
 .sk-card-header {
     display: flex;
     align-items: center;
@@ -312,8 +249,6 @@ select.sms-input-premium {
     padding: 0.75rem 1.5rem;
     border-bottom: 1px solid var(--sk-border);
     background-color: var(--sk-section);
-}
-
 /* --- INPUT SECTION CARD --- */
 .sk-input-card {
     background: #F8FAFC;
@@ -321,22 +256,17 @@ select.sms-input-premium {
     padding: 1.25rem;
     margin-top: 1.5rem;
     border: 1px solid #F1F5F9;
-}
 .dark .sk-input-card { background: rgba(255, 255, 255, 0.02); border-color: rgba(255, 255, 255, 0.05); }
-
 /* --- FORM ELEMENTS --- */
 .sk-form-label { display: block; margin-bottom: 0.5rem; font-size: 0.8125rem !important; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; color: var(--sk-text-muted); font-family: 'Satoshi', sans-serif !important; }
-
 .sk-form-input { 
     width: 100%; padding: 0.75rem 1rem; border-radius: 0.625rem; 
     border: 1.5px solid var(--sk-input-border) !important; 
     background: var(--sk-input-bg) !important; 
     font-size: 0.875rem !important; font-weight: 700; color: var(--sk-text) !important; 
     outline: none; transition: all 0.2s; font-family: 'Satoshi', sans-serif !important; 
-}
 .sk-form-input:focus { border-color: #3C50E0 !important; box-shadow: 0 0 0 4px rgba(60, 80, 224, 0.1); }
 .sk-form-input:disabled { opacity: 0.6; cursor: not-allowed; background: var(--sk-section) !important; }
-
 /* Browser Autofill Fix (Force theme background) */
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
@@ -345,8 +275,6 @@ input:-webkit-autofill:active{
     -webkit-box-shadow: 0 0 0 30px var(--sk-input-bg) inset !important;
     -webkit-text-fill-color: var(--sk-text) !important;
     transition: background-color 5000s ease-in-out 0s;
-}
-
 /* --- DATATABLES PAGINATION OVERRIDES (Library Force-Sync) --- */
 .pagination-wrapper .paginate_button {
     display: inline-flex !important;
@@ -364,37 +292,25 @@ input:-webkit-autofill:active{
     font-weight: 700 !important;
     cursor: pointer !important;
     transition: all 0.2s !important;
-}
-
 .pagination-wrapper .paginate_button:hover {
     background: var(--warna-utama) !important;
     color: #FFFFFF !important;
     border-color: var(--warna-utama) !important;
-}
-
 .pagination-wrapper .paginate_button.current {
     background: var(--warna-utama) !important;
     color: #FFFFFF !important;
     border-color: var(--warna-utama) !important;
-}
-
 .pagination-wrapper .paginate_button.disabled {
     opacity: 0.4 !important;
     cursor: not-allowed !important;
     background: var(--sk-section) !important;
-}
-
 .pagination-wrapper .paginate_button.previous,
 .pagination-wrapper .paginate_button.next {
     background: var(--sk-section) !important;
     padding: 0 12px !important;
-}
-
 .dark .pagination-wrapper .paginate_button {
     background: #24303F !important;
     border-color: rgba(255,255,255,0.05) !important;
-}
-
 /* AGGRESSIVE BOOTSTRAP PAGINATION OVERRIDE */
 .page-item .page-link {
     background-color: var(--sk-surface) !important;
@@ -404,65 +320,41 @@ input:-webkit-autofill:active{
     font-size: 11px !important;
     padding: 0.5rem 0.85rem !important;
     transition: all 0.2s !important;
-}
-
 .page-item.active .page-link {
     background-color: var(--warna-utama) !important;
     border-color: var(--warna-utama) !important;
     color: #FFFFFF !important;
-}
-
 .page-item.disabled .page-link {
     background-color: var(--sk-section) !important;
     color: var(--sk-text-muted) !important;
     opacity: 0.5 !important;
-}
-
 .page-link:hover {
     background-color: var(--warna-utama) !important;
     color: #FFFFFF !important;
-}
-
 .dark .page-link {
     background-color: #24303F !important;
     border-color: rgba(255,255,255,0.05) !important;
-}
-
 .dark .page-item.active .page-link {
     background-color: var(--warna-utama) !important;
     border-color: var(--warna-utama) !important;
-}
-
-
 /* --- BUTTONS --- */
 .sk-btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 0.625rem;
     padding: 0.75rem 1.75rem; border-radius: 0.625rem; font-size: 0.875rem; font-weight: 800;
     transition: all 0.2s; cursor: pointer; border: none;
-}
 .sk-btn-primary { background: #3C50E0; color: #fff; box-shadow: 0 4px 12px rgba(60, 80, 224, 0.3); }
 .sk-btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(60, 80, 224, 0.4); }
 .sk-btn-primary:active { transform: translateY(0); }
-
 .sk-btn-secondary { background: #F1F5F9; color: #475569; border: 1.5px solid #E2E8F0; }
 .sk-btn-secondary:hover { background: #E2E8F0; }
 .dark .sk-btn-secondary { background: #1E293B; color: #CBD5E1; border-color: #334155; }
-
 .sk-btn-danger { background: #EF4444; color: #fff; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3); }
-
 .sk-modal-footer { display: flex; align-items: center; justify-content: flex-end; gap: 1rem; padding: 1.25rem 1.5rem; border-top: 1px solid #F1F5F9; background: #FFF; }
 .dark .sk-modal-footer { border-top-color: rgba(255, 255, 255, 0.05) !important; background: #1A222C !important; }
-
 /* 9. SPECIALIZED COMPONENTS FOR VERIFICATION MODAL */
 .sk-modal-panel-left { background: var(--sk-section); border-right: 1px solid var(--sk-border); }
 .sk-modal-panel-right { background: var(--sk-surface); border-left: 1px solid var(--sk-border); }
-
-
 .sk-modal-close { display: flex; align-items: center; justify-content: center; border-radius: 0.5rem; transition: all 0.2s; border: none; cursor: pointer; }
-
-
-
-
   /* ADMINLTE OVERRIDES (CLEAN SAAS THEME) */
   /* Keep necessary core overrides but cleanup clutter */
   .main-header, #main-navbar {
@@ -473,7 +365,6 @@ input:-webkit-autofill:active{
   }
   .main-header .nav-link { color: #475569 !important; }
   .main-header .nav-link:hover { color: var(--warna-utama) !important; }
-
   /* Animasi bell notifikasi */
   @keyframes bellRing {
     0%   { transform: rotate(0); }
@@ -499,11 +390,9 @@ input:-webkit-autofill:active{
     0%, 100% { box-shadow: 0 0 0 0 rgba(220,53,69,0.5); }
     50%       { box-shadow: 0 0 0 4px rgba(220,53,69,0); }
   }
-
   /* ---- USER DROPDOWN CARD ---- */
   /* Hapus caret default Bootstrap .dropdown-toggle */
   #userDropdownTrigger::after { display: none !important; }
-
   /* Hover state trigger */
   #userDropdownTrigger:hover,
   #userDropdownTrigger:focus {
@@ -511,7 +400,6 @@ input:-webkit-autofill:active{
     box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
     outline: none !important;
   }
-
   /* Animasi masuk dropdown */
   #userDropdownMenu.show {
     animation: dropdownFadeIn 0.18s ease !important;
@@ -520,7 +408,6 @@ input:-webkit-autofill:active{
     from { opacity: 0; transform: translateY(-6px); }
     to   { opacity: 1; transform: translateY(0); }
   }
-
   /* Pastikan dropdown tidak terpotong navbar */
   #user-dropdown-wrapper { position: static !important; }
   #userDropdownMenu {
@@ -529,10 +416,7 @@ input:-webkit-autofill:active{
     right: 0.5rem !important;
     z-index: 9999 !important;
   }
-
   /* B. SIDEBAR DASAR & LOGO — Dikelola oleh section 7 (Glassmorphism) */
-
-
   /* C. FOOTER */
   .main-footer { 
     background: var(--warna-kartu-bg) !important;
@@ -542,14 +426,11 @@ input:-webkit-autofill:active{
   }
   .main-footer a { color: var(--warna-emas); font-weight: 600; text-decoration: none; }
   .main-footer strong { color: #334155 !important; }
-
   /* D. CONTENT WRAPPER */
   .content-wrapper { padding-bottom: 70px !important; background: transparent !important; }
-
   /* ===================================================================
      3. SIDEBAR SAAS HIERARCHY — Dikelola oleh section 7 (Glassmorphism)
      =================================================================== */
-
   /* ===================================================================
      4. KOMPONEN UI SULTAN (BUTTONS, CARDS, INPUTS)
      =================================================================== */
@@ -574,7 +455,6 @@ input:-webkit-autofill:active{
     transform: translateY(-2px);
     box-shadow: 0 0.5rem 1rem rgba(29, 53, 115, 0.3) !important;
   }
-
   /* Card Sultan - Codebyte Specification */
   .card-sultan, .card { 
       border: 0 !important; 
@@ -597,7 +477,6 @@ input:-webkit-autofill:active{
   
   .border-left-dark { border-left: 4px solid var(--warna-emas) !important; }
   .style-sultan-solid { border: 0; height: 1px; background-color: #E2E8F0; margin: 1rem 0; }
-
   /* Form Controls */
   .form-control-sultan { border-radius: var(--radius-sultan) !important; border: var(--border-sultan) !important; height: calc(2.25rem + 2px) !important; font-size: 14px; background: var(--warna-abu-bg) !important; color: var(--warna-tegas) !important; box-shadow: none; }
   .form-control-sultan:focus { border-color: var(--warna-maroon) !important; box-shadow: 0 0 0 0.25rem var(--warna-maroon-light) !important; background: var(--warna-kartu-bg) !important; }
@@ -614,7 +493,6 @@ input:-webkit-autofill:active{
     -moz-appearance: textfield; /* Firefox */
     appearance: textfield;
   }
-
   /* User Capsule (Navbar Profile) */
   .user-capsule {
     display: flex; align-items: center; background: #F1F5F9;
@@ -624,29 +502,23 @@ input:-webkit-autofill:active{
   .user-capsule:hover { background: #E2E8F0; }
   .user-capsule img { width: 30px; height: 30px; border-radius: 50%; margin-right: 8px; }
   .user-capsule span { color: #0F172A; font-size: 0.9rem; font-weight: 600; }
-
   /* ===================================================================
      5. UTILITY CLASSES (LAYOUT & HELPER)
      =================================================================== */
 /* ===================================================================
    E. PREMIUM NOTIFICATION ENGINE (Sultan Elite)
    =================================================================== */
-
 /* ===================================================================
    NOTIFICATION DROPDOWN COMPONENT (TailAdmin Match)
    Uses .dark parent selector — works with JS-injected HTML
    =================================================================== */
-
 .notif-item {
     list-style: none;
     border-bottom: 1px solid #E2E8F0;
     transition: all 0.2s ease;
-}
 .dark .notif-item {
     border-bottom-color: rgba(255,255,255,0.05);
-}
 .notif-item:last-child { border-bottom: none; }
-
 .notif-link {
     display: flex;
     align-items: flex-start;
@@ -655,21 +527,15 @@ input:-webkit-autofill:active{
     text-decoration: none !important;
     background: transparent;
     transition: all 0.2s ease;
-}
 .notif-link:hover {
     background: #F9FBFF;
-}
 .dark .notif-link:hover {
     background: rgba(255,255,255,0.03);
-}
-
 .notif-avatar-wrap {
     position: relative;
     flex-shrink: 0;
     width: 48px;
     height: 48px;
-}
-
 .notif-avatar {
     width: 48px;
     height: 48px;
@@ -683,8 +549,6 @@ input:-webkit-autofill:active{
     letter-spacing: 0.05em;
     object-fit: cover;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-}
-
 .notif-status-dot {
     position: absolute;
     bottom: 2px;
@@ -694,42 +558,29 @@ input:-webkit-autofill:active{
     border-radius: 50%;
     border: 2.5px solid #ffffff;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
 .dark .notif-status-dot {
     border-color: #24303F;
-}
 .status-online  { background-color: #10B981; }
 .status-offline { background-color: #EF4444; }
-
 .notif-content {
     flex: 1;
     min-width: 0;
     padding-top: 2px;
-}
-
 .notif-text {
     margin: 0 0 4px;
     font-size: 14px;
     line-height: 1.4;
     color: #1C2434;
-}
 .dark .notif-text {
     color: #DEE4EE;
-}
-
 .notif-name {
     font-weight: 700;
     color: inherit;
-}
-
 .notif-action-text {
     color: #64748B;
     font-weight: 400;
-}
 .dark .notif-action-text {
     color: #8A99AF;
-}
-
 .notif-meta {
     margin: 0;
     font-size: 12px;
@@ -738,20 +589,13 @@ input:-webkit-autofill:active{
     align-items: center;
     gap: 6px;
     font-weight: 500;
-}
 .dark .notif-meta {
     color: #8A99AF;
-}
-
 .notif-meta-category {
     font-weight: 600;
-}
-
 .notif-dot {
     opacity: 0.5;
     font-size: 8px;
-}
-
 .notif-view-all-btn {
     display: flex;
     align-items: center;
@@ -765,28 +609,22 @@ input:-webkit-autofill:active{
     font-size: 14px;
     font-weight: 700;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
 .dark .notif-view-all-btn {
     border-color: rgba(255,255,255,0.1);
     color: #DEE4EE;
-}
 .notif-view-all-btn:hover {
     background: #3C50E0;
     color: #ffffff;
     border-color: #3C50E0;
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(60, 80, 224, 0.25);
-}
 .dark .notif-view-all-btn:hover {
     background: rgba(255,255,255,0.05);
     color: #ffffff;
     border-color: rgba(255,255,255,0.2);
-}
-
 /* ===================================================================
    END NOTIFICATION COMPONENT
    =================================================================== */
-
 .sultan-alert-popup {
     background: rgba(255, 255, 255, 0.85) !important;
     backdrop-filter: blur(25px) saturate(180%) !important;
@@ -798,14 +636,9 @@ input:-webkit-autofill:active{
     font-family: 'Satoshi', sans-serif !important;
     padding: 2rem !important;
     animation: sultan-bounce-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
 .swal2-show.sultan-alert-popup {
     animation: sultan-bounce-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-}
-
 /* Ensure exit animation works natively in sweetalert */
-
 /* Icon Containers with Glow */
 .sultan-alert-icon-wrapper {
     width: 80px; height: 80px;
@@ -813,44 +646,30 @@ input:-webkit-autofill:active{
     display: flex; align-items: center; justify-content: center;
     border-radius: 50%;
     font-size: 40px;
-}
-
 .icon-success-glow {
     background: #ecfdf5; color: #059669;
     box-shadow: 0 0 20px rgba(5, 150, 105, 0.2);
     animation: sultan-pulse-emerald 2s infinite;
-}
-
 .icon-error-glow {
     background: #fef2f2; color: #b91c1c;
     box-shadow: 0 0 20px rgba(185, 28, 28, 0.2);
     animation: sultan-shake-maroon 0.8s cubic-bezier(.36,.07,.19,.97) both;
-}
-
 .icon-warning-glow {
     background: #fffbeb; color: #d97706;
     box-shadow: 0 0 20px rgba(217, 119, 6, 0.15);
-}
-
 /* Animations */
 @keyframes sultan-bounce-in {
     0% { transform: scale(0.85); opacity: 0; }
     100% { transform: scale(1); opacity: 1; }
-}
-
 @keyframes sultan-pulse-emerald {
     0% { box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.4); }
     70% { box-shadow: 0 0 0 15px rgba(5, 150, 105, 0); }
     100% { box-shadow: 0 0 0 0 rgba(5, 150, 105, 0); }
-}
-
 @keyframes sultan-shake-maroon {
     10%, 90% { transform: translate3d(-1px, 0, 0); }
     20%, 80% { transform: translate3d(2px, 0, 0); }
     30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
     40%, 60% { transform: translate3d(4px, 0, 0); }
-}
-
 /* Standardized Titles & Content */
 .sultan-alert-title {
     font-size: 22px !important;
@@ -858,14 +677,10 @@ input:-webkit-autofill:active{
     color: #1D3573 !important;
     margin-bottom: 0.5rem !important;
     letter-spacing: -0.5px !important;
-}
-
 .sultan-alert-text {
     font-size: 15px !important;
     color: #64748b !important;
     line-height: 1.6 !important;
-}
-
 .sultan-swal-confirm, .swal2-confirm.swal2-styled {
     display: inline-block !important;
     cursor: pointer !important;
@@ -883,21 +698,14 @@ input:-webkit-autofill:active{
     text-align: center !important;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
     opacity: 1 !important;
-}
-
 .swal2-confirm.swal2-styled:focus {
     box-shadow: none !important;
-}
-
 .sultan-swal-confirm:hover, .swal2-confirm.swal2-styled:hover {
     transform: translateY(-2px) scale(1.05) !important;
     filter: brightness(1.1) !important;
-}
-
 .sultan-btn-success, .swal2-confirm.swal2-styled.sultan-btn-success { background: #059669 !important; box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3) !important; }
 .sultan-btn-error, .swal2-confirm.swal2-styled.sultan-btn-error { background: var(--warna-utama) !important; box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3) !important; }
 .sultan-btn-warning, .swal2-confirm.swal2-styled.sultan-btn-warning { background: #d97706 !important; box-shadow: 0 4px 15px rgba(217, 119, 6, 0.3) !important; }
-
 /* Orbit Loader */
 .sk-spinner-premium {
   border: 4px solid rgba(0,0,0,0.05);
@@ -906,11 +714,9 @@ input:-webkit-autofill:active{
   width: 40px;
   height: 40px;
   animation: sk-spin-premium 1s linear infinite;
-}
 .dark .sk-spinner-premium {
   border: 4px solid rgba(255,255,255,0.05);
   border-top: 4px solid var(--warna-utama);
-}
 .sultan-orbit {
     width: 60px; height: 60px;
     border: 4px solid #f1f5f9;
@@ -918,8 +724,6 @@ input:-webkit-autofill:active{
     border-radius: 50%;
     animation: sultan-spin 1s linear infinite;
     margin: 0 auto 20px;
-}
-
 @keyframes sultan-spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
@@ -937,7 +741,6 @@ input:-webkit-autofill:active{
   .td-aksi { white-space: nowrap !important; text-align: center !important; }
   .td-spinner { padding: 3rem !important; height: 150px !important; text-align: center !important; background-color: var(--warna-kartu-bg) !important; }
   .divider-vertical { height: 25px; border-left: 1px solid #ccc; margin: 0 10px; }
-
   /* ===================================================================
      7. BADGE & TOMBOL AKSI (SULTAN STYLE)
      =================================================================== */
@@ -979,7 +782,6 @@ input:-webkit-autofill:active{
     border-color: var(--warna-emas); transform: translateY(-2px);
   }
   .btn-unduh-preview i { margin-right: 6px; }
-
   /* ===================================================================
      8. ANIMASI & WARNA TAMBAHAN
      =================================================================== */
@@ -1001,17 +803,14 @@ input:-webkit-autofill:active{
   .text-blue-sultan { color: #0d6efd !important; font-weight: 800; }
   .text-orange-sultan { color: #fd7e14 !important; font-weight: 800; }
   .text-danger-bold { color: #dc3545 !important; font-weight: 800; }
-
   /* Scrollbar */
   ::-webkit-scrollbar { width: 8px; height: 8px; }
   ::-webkit-scrollbar-track { background: #f1f1f1; }
   ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
   ::-webkit-scrollbar-thumb:hover { background: var(--warna-maroon); }
-
   /* ===================================================================
    DATA TABLES CONTROLS (LAYOUT ATAS & BAWAH)
    =================================================================== */
-
   /* 1. INPUT SEARCH (Kotak Pencarian) */
   div.dataTables_wrapper div.dataTables_filter input {
       border-radius: 20px !important;
@@ -1019,7 +818,6 @@ input:-webkit-autofill:active{
       padding: 5px 15px !important;
       width: 200px !important; /* Lebar fix biar rapi */
   }
-
   /* 2. DROPDOWN LENGTH (Show Entries) - UPDATE PERBAIKAN */
   div.dataTables_wrapper div.dataTables_length select {
       border-radius: 20px !important;
@@ -1033,7 +831,6 @@ input:-webkit-autofill:active{
       
       min-width: 80px !important;    /* LEBAR MINIMAL (Kunci agar angka 100 muat) */
   }
-
   /* 3. PAGINASI & INFO (Tetap seperti sebelumnya) */
   div.dataTables_wrapper div.dataTables_paginate {
       font-size: 0.9rem !important; font-weight: 500;
@@ -1042,7 +839,6 @@ input:-webkit-autofill:active{
       font-size: 0.9rem !important; padding-top: 10px !important;
       color: #858796 !important; font-weight: 600;
   }
-
   /* ===================================================================
    PALET WARNA BACKGROUND SOFT (UNTUK GROUPING KOLOM)
    =================================================================== */
@@ -1054,7 +850,6 @@ input:-webkit-autofill:active{
 .bg-soft-purple    { background-color: #f3e5f5 !important; } /* Ungu Muda */
 .bg-soft-orange    { background-color: #fff3e0 !important; } /* Orange Muda */
 .bg-soft-grey      { background-color: #f5f5f5 !important; } /* Abu Muda */
-
 /* ===================================================================
    WARNA TEKS KHUSUS (PRESET SULTAN)
    =================================================================== */
@@ -1064,7 +859,6 @@ input:-webkit-autofill:active{
 .text-green-sultan  { color: #198754 !important; font-weight: 800; } /* Hijau (Cuti, dll) */
 .text-purple-sultan { color: #6f42c1 !important; font-weight: 800; } /* Ungu (U) */
 .text-danger-bold   { color: #dc3545 !important; font-weight: 800; } /* Merah (TA, PLA) */
-
 /* ===================================================================
    UTILITY KHUSUS: HEADER BERTINGKAT COMPACT
    Gunakan class ini di tag <table> agar header tidak terlalu tinggi
@@ -1078,25 +872,19 @@ input:-webkit-autofill:active{
     font-size: 13px !important;     /* Ukuran font sedikit dikecilkan */
     line-height: 1.1 !important;    /* Jarak antar baris teks dirapatkan */
     height: auto !important;        /* Reset tinggi */
-}
-
 /* Fix khusus untuk input filter di header (jika ada) agar muat */
 .table-header-compact thead input {
     font-size: 12px !important;
     padding: 2px 4px !important;
     height: 25px !important;
-}
-
 /* ===================================================================
    MODAL FULL SCREEN UTILITIES
    Digunakan untuk Preview File agar lega
    =================================================================== */
-
 /* ===================================================================
    V6.5: SULTAN ELITE PREVIEW (PREMIUM WHITE CONCEPT)
    Gunakan untuk pratinjau dokumen dengan estetika SaaS bersih.
    =================================================================== */
-
 .sultan-preview-header {
     background: #ffffff !important;
     height: 44px !important;
@@ -1106,22 +894,16 @@ input:-webkit-autofill:active{
     justify-content: space-between !important;
     padding: 0 1.25rem !important;
     z-index: 1050;
-}
-
 .sultan-preview-title {
     display: flex;
     align-items: center;
     font-size: 0.85rem !important;
     font-weight: 700 !important;
     color: #1e293b !important;
-}
-
 .sultan-preview-actions {
     display: flex;
     align-items: center;
     gap: 5px;
-}
-
 .sultan-preview-btn {
     color: #1D3573 !important;
     font-size: 0.72rem !important;
@@ -1136,21 +918,15 @@ input:-webkit-autofill:active{
     background: transparent !important;
     display: inline-flex;
     align-items: center;
-}
-
 .sultan-preview-btn:hover {
     color: #0f172a !important;
     background: rgba(29, 53, 115, 0.05) !important;
     transform: translateY(-1px);
-}
-
 .sultan-preview-divider {
     height: 18px;
     width: 1px;
     background-color: #e2e8f0;
     margin: 0 8px;
-}
-
 .sultan-preview-close {
     background: transparent;
     border: none;
@@ -1162,105 +938,70 @@ input:-webkit-autofill:active{
     display: inline-flex;
     align-items: center;
     justify-content: center;
-}
-
 .sultan-preview-close:hover {
     color: #ef4444;
     transform: scale(1.1);
-}
-
 .sultan-spinner-compact {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-
 @keyframes sultan-spin-mini {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-}
-
 .bg-black { background-color: #000 !important; }
 .text-white-50 { color: rgba(255, 255, 255, 0.5) !important; }
-
 /* 1. Dialog (Wrapper Luar): Lebar 95% */
 .modal-dialog-full {
     max-width: 95% !important;
     margin: 10px auto !important;
     height: calc(100vh - 20px) !important;
-}
-
 /* 2. Content (Box Utama Dokumen) */
 .modal-content-full-height {
     height: 100% !important;
     border-radius: 18px !important;
     overflow: hidden !important;
-}
-
 /* ===================================================================
    SULTAN CRUD MODAL & PREVIEW STANDARDIZATION
    =================================================================== */
-
 .sultan-modal-content {
     /* Glassmorphism inherits from .modal-content globally */
-}
-
 .sultan-modal-header {
     padding: 1rem 1.25rem !important;
     border-bottom: 0 !important;
-}
-
 .sultan-modal-header.sultan-header-maroon {
     background: rgba(29, 53, 115, 0.85) !important;
     color: #ffffff !important;
     backdrop-filter: blur(4px) !important;
-}
-
 .sultan-modal-header.sultan-header-emerald {
     background: rgba(5, 150, 105, 0.85) !important;
     color: #ffffff !important;
     backdrop-filter: blur(4px) !important;
-}
-
 .sultan-modal-header.sultan-header-danger {
     background: rgba(220, 53, 69, 0.85) !important;
     color: #ffffff !important;
     backdrop-filter: blur(4px) !important;
-}
-
 .sultan-modal-header .modal-title {
     font-size: 1rem !important;
     font-weight: 700 !important;
-}
-
 .sultan-modal-header .close {
     color: #ffffff !important;
     opacity: 0.8;
     transition: opacity 0.2s;
     outline: none !important;
-}
-
 .sultan-modal-header .close:hover {
     opacity: 1;
-}
-
 .sultan-modal-body {
     padding: 1.5rem !important;
     background: transparent !important;
-}
-
 .sultan-modal-footer {
     padding: 1rem 1.25rem !important;
     background: transparent !important;
     border-top: 1px solid rgba(0,0,0,0.05) !important;
-}
-
 /* ===================================================================
    SULTAN NOTIFICATION SYSTEM (SWEETALERT2 OVERRIDES)
    Centralized styling for global notifications.
    =================================================================== */
-
 .sultan-alert-popup {
     background: rgba(255, 255, 255, 0.75) !important;
     backdrop-filter: blur(15px) saturate(180%) !important;
@@ -1269,13 +1010,9 @@ input:-webkit-autofill:active{
     border-radius: 18px !important;
     padding: 1.25rem !important;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1) !important;
-}
-
 .sultan-alert-text {
     font-size: 1rem !important;
     color: #1e293b !important;
-}
-
 .sultan-swal-confirm {
     background: var(--warna-maroon) !important;
     border-radius: 10px !important;
@@ -1283,8 +1020,6 @@ input:-webkit-autofill:active{
     padding: 0.6rem 2rem !important;
     box-shadow: 0 4px 12px rgba(139,0,0,0.2) !important;
     border: none !important;
-}
-
 .sultan-swal-cancel {
     background: #f1f5f9 !important;
     color: #475569 !important;
@@ -1292,13 +1027,10 @@ input:-webkit-autofill:active{
     font-weight: 600 !important;
     padding: 0.6rem 2rem !important;
     border: 1px solid #e2e8f0 !important;
-}
-
 /* Success/Error Popup Specifics */
 .sultan-success-popup { border-top: 5px solid #059669 !important; }
 .sultan-error-popup { border-top: 5px solid #dc3545 !important; }
 .sultan-warning-popup { border-top: 5px solid #f59e0b !important; }
-
 /* Sultan Orbit Loading Animation */
 .sultan-orbit {
     width: 60px;
@@ -1307,32 +1039,23 @@ input:-webkit-autofill:active{
     border-radius: 50%;
     border-top-color: var(--warna-maroon);
     animation: sultan-spin 1s ease-in-out infinite;
-}
-
 @keyframes sultan-spin {
     to { transform: rotate(360deg); }
-}
-
 /* 3. Body (Tempat Iframe): Mengisi sisa ruang antara Header & Footer */
 .modal-body-full {
     flex: 1 1 auto; /* Flex grow agar mengisi ruang kosong */
     padding: 0 !important;
     overflow: hidden;
     background-color: #343a40; /* Background gelap biar fokus */
-}
-
 /* 4. Iframe: Full 100% Induknya */
 .iframe-full {
     width: 100%;
     height: 100%;
     border: none;
-}
-
 /* ===================================================================
    UPDATE V5.1: BADGE STATUS & TOMBOL AKSI STANDAR SULTAN
    (Gunakan class ini di seluruh halaman SIKS-Reborn)
    =================================================================== */
-
 /* --- 1. BADGE STATUS SULTAN (CODEBYTE STYLE) --- */
 .badge-sultan {
     padding: 0.35rem 0.65rem;
@@ -1345,8 +1068,6 @@ input:-webkit-autofill:active{
     display: inline-flex;
     align-items: center;
     box-shadow: none;
-}
-
 /* Standar Warna Status:
    - DIPROSES  : Kuning/Warning
    - DISETUJUI : Hijau/Success
@@ -1357,11 +1078,9 @@ input:-webkit-autofill:active{
 .badge-sultan-light-success { background-color: #d1e7dd !important; color: #0f5132 !important; border-color: #badbcc !important; } /* Disetujui */
 .badge-sultan-light-info    { background-color: #cff4fc !important; color: #055160 !important; border-color: #b6effb !important; } /* Revisi */
 .badge-sultan-light-danger  { background-color: #f8d7da !important; color: #842029 !important; border-color: #f5c2c7 !important; } /* Ditolak */
-
 /* Varian Lain (Untuk Jenis Presensi: Datang/Pulang, dll) */
 .badge-sultan-light-dark    { background-color: #e2e3e5 !important; color: #41464b !important; border-color: #d3d6d8 !important; } /* Pulang */
 .badge-sultan-light-orange  { background-color: #ffe5d0 !important; color: #fd7e14 !important; border-color: #ffdec5 !important; } /* Datang */
-
 /* --- 2. TOMBOL AKSI BULAT SULTAN (Icon Only) --- */
 .btn-icon-sultan {
     width: 28px;
@@ -1376,16 +1095,11 @@ input:-webkit-autofill:active{
     background-color: #eaecf4; /* Default abu */
     color: #5a5c69;
     margin: 0 3px;             /* Jarak antar tombol */
-}
-
 .btn-icon-sultan:hover {
     transform: scale(1.15) translateY(-2px); /* Membesar & terangkat */
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
 .btn-icon-sultan i { font-size: 13px !important; } /* Ukuran ikon pas di tengah */
-
 /* Standar Warna Tombol Aksi:
    - PREVIEW PDF : Merah (Danger)
    - VERIFIKASI  : Biru (Primary)
@@ -1397,53 +1111,40 @@ input:-webkit-autofill:active{
 .btn-icon-sultan-warning { background-color: #f6c23e !important; color: #fff !important; } /* Edit (Kuning) */
 .btn-icon-sultan-maroon  { background-color: var(--warna-maroon) !important; color: #fff !important; } /* Hapus Permanen */
 .btn-sultan-locked       { filter: grayscale(1) opacity(0.5) !important; pointer-events: none !important; cursor: not-allowed !important; }
-
-
 /* 3. MODAL UTILITIES (Pastikan ini ada untuk Preview Full Screen) */
 /* Jika sudah ditambahkan di langkah Unduh Rekap, biarkan saja. Jika belum, tambahkan ini. */
-
 .modal-dialog-full {
     max-width: 95% !important;
     width: 95% !important;
     margin: 1.75rem auto; 
-}
 .modal-content-full-height {
     height: 90vh !important;
     display: flex;
     flex-direction: column;
     overflow: hidden; 
-}
 .modal-body-full {
     flex: 1 1 auto;
     padding: 0 !important;
     overflow: hidden;
     background-color: #343a40;
-}
 .iframe-full {
     width: 100%;
     height: 100%;
     border: none;
-}
-
 /* Perkecil padding kolom status agar ikon rapat */
 .table-sultan-compact td:not(:first-child) {
     padding: 8px 4px !important; /* Atas-Bawah 8px, Kiri-Kanan 4px */
     width: 60px !important;      /* Lebar paksa kecil */
     text-align: center;
-}
-
 /* =========================================
    OVERRIDE: MODAL VERIFIKASI LUPA PRESENSI
    (Menggunakan ID #modalVerif agar tidak merusak halaman lain)
    ========================================= */
-
 /* 1. Perbesar Label */
 #modalVerif .small, 
 #modalVerif .text-muted {
     font-size: 14px !important;
     margin-bottom: 5px;
-}
-
 /* 2. Perbesar Data Utama (Nama, NIP, Unit) */
 #modalVerif .font-weight-bold,
 #modalVerif h6,
@@ -1452,29 +1153,21 @@ input:-webkit-autofill:active{
 #modalVerif #vUnit {
     font-size: 18px !important;
     line-height: 1.5;
-}
-
 /* 3. Perbesar Badge Status & Waktu */
 #modalVerif #vJenis span,
 #modalVerif #vWaktu {
     font-size: 16px !important;
     padding: 8px 12px; /* Tambah padding biar badge lebih tebal */
-}
-
 /* 4. Perbesar Form Input (Select & Textarea) */
 #modalVerif .form-control {
     font-size: 16px !important;
     height: auto !important; /* Biar tinggi menyesuaikan font */
     padding: 10px 12px !important;
-}
-
 /* 5. Perbesar Tombol Aksi */
 #modalVerif .btn {
     font-size: 16px !important;
     font-weight: 600; /* Semi-bold */
     padding: 10px 24px;
-}
-
 /* ==============================================================
    ANIMASI TRANSISI HALAMAN (SPA SULTAN)
    ============================================================== */
@@ -1483,16 +1176,11 @@ input:-webkit-autofill:active{
   background: var(--warna-utama) !important; /* Warna Maroon Sultan */
   height: 4px !important;
   z-index: 99999 !important;
-}
 #nprogress .peg {
   box-shadow: 0 0 10px var(--warna-utama), 0 0 5px var(--warna-utama) !important;
-}
-
 /* 2. Animasi Konten Muncul (Fade In + Slide Up) */
 .sultan-page-transition {
   animation: fadeInUpSultan 0.5s ease-out forwards;
-}
-
 @keyframes fadeInUpSultan {
   0% {
     opacity: 0;
@@ -1502,39 +1190,28 @@ input:-webkit-autofill:active{
     opacity: 1;
     transform: translateY(0);
   }
-}
-
 /* ========================================================= */
 /* TAMBAHAN KELAS UTILITAS SULTAN (Untuk Master Blueprint)   */
 /* ========================================================= */
-
 /* Modal Verifikasi Ekstra Lebar (Side-by-side PDF & Form) */
 .modal-dialog-sultan-verif {
     max-width: 98% !important;
     width: 98% !important;
     margin: 10px auto !important;
-}
 .modal-content-sultan-verif {
     height: 95vh !important;
     display: flex;
     flex-direction: column;
-}
-
 /* Wrapper Iframe Responsif */
 .iframe-sultan-verif {
     width: 100%;
     height: 100%;
     border: none;
-}
-
 /* Utilitas Z-Index & Gap (Jika belum ada di Bootstrap) */
 .z-index-10 { z-index: 10 !important; }
-
-
 /* ===================================================================
    OBAT GLOBAL: TRACKPAD SCROLL FIX (ANTI ADMINLTE BLOCK)
    =================================================================== */
-
 /* Memaksa area tabel untuk menerima sentuhan trackpad secara mandiri */
 .table-responsive {
     overflow-x: auto !important;
@@ -1547,81 +1224,60 @@ input:-webkit-autofill:active{
     padding-bottom: 5px; 
     width: 100% !important;
     display: block !important;
-}
-
 /* Memastikan baris tabel tidak tumpang tindih dengan wrapper */
 table.dataTable {
     border-collapse: collapse !important;
     max-width: none !important;
-}
-
 /* ===================================================================
    UTILITAS TABEL & SCROLL TRACKPAD SULTAN
    =================================================================== */
-
 /* Obat Kuat Anti-Macet Scroll Trackpad (Dipakai di semua halaman) */
 .sultan-scroll { 
     overflow-x: auto; 
     -webkit-overflow-scrolling: touch; 
     width: 100%; 
     border-radius: 4px; 
-}
-
 /* Modifikasi Textarea & Sel Tabel (Dipakai di Perjadin & Cuti) */
 textarea.form-control-sultan { height: auto !important; min-height: 100px !important; }
 .table-sultan-compact td.col-wrap-sultan { white-space: normal !important; min-width: 200px; line-height: 1.3; }
-
 /* ===================================================================
    UTILITAS WARNA & BADGE KHUSUS CUTI
    =================================================================== */
-
 /* Warna Background Tabel Sisa Cuti */
 .val-minus { background-color: #dc3545; color: white; padding: 2px 8px; border-radius: 4px; font-weight: bold; font-size: 11px; display: inline-block; min-width: 30px; }
 .bg-col-highlight-1 { background-color: #fff8e1 !important; color: #856404; font-weight:bold; } /* Kuning Soft */
 .bg-col-highlight-2 { background-color: #e8f5e9 !important; color: #155724; font-weight:bold; } /* Hijau Soft */
-
 /* Badge Jenis Cuti (Dipakai di Pengajuan Cuti) */
 .badge-cuti-ct { background-color: #d1e7dd; color: #0f5132; }
 .badge-cuti-cs { background-color: #fff3cd; color: #664d03; }
 .badge-cuti-cap { background-color: #f8d7da; color: #842029; }
-
 /* ===================================================================
    UTILITAS HEADER BERTINGKAT (REKAP CUTI)
    =================================================================== */
-
 .th-main {
     background-color: #f4f6f9 !important; /* Disamakan dengan header sultan */
     color: #343a40 !important;
     font-weight: bold;
     border-bottom: 2px solid #dee2e6 !important;
     vertical-align: middle !important;
-}
-
 .th-sub {
     background-color: #ffffff !important; 
     color: #6c757d !important;
     font-size: 12px;
     font-weight: 600;
     vertical-align: middle !important;
-}
-
 /* Background Abu untuk nilai rekap kosong */
 .bg-abu-terang {
     background-color: #f8f9fa !important;
     color: #adb5bd !important;
-}
-
 /* ==========================================================================
    VAKSIN DATATABLES V8 (HOVER, FREEZE BORDER, & COMPLEX HEADER FIX)
    ========================================================================== */
-
 /* 1. Efek Hover untuk tabel dengan kolom Sticky/Freeze (Nuclear Sultan V3 - Pseudo Element) */
 table.table-hover tbody tr:hover td.col-sticky-left,
 table.table-premium tbody tr:hover td.col-sticky-left,
 table.table-sultan-compact tbody tr:hover td.col-sticky-left {
     position: relative !important;
-}
-
 table.table-hover tbody tr:hover td.col-sticky-left::after,
 table.table-premium tbody tr:hover td.col-sticky-left::after,
 table.table-sultan-compact tbody tr:hover td.col-sticky-left::after {
@@ -1634,39 +1290,28 @@ table.table-sultan-compact tbody tr:hover td.col-sticky-left::after {
     background-color: rgba(0, 0, 0, 0.05);
     pointer-events: none;
     z-index: 5;
-}
-
 /* Fallback untuk tr:hover standar agar semua td kena (termasuk yang bukan sticky) */
 table.table-premium tbody tr:hover td,
 table.table-sultan-compact tbody tr:hover td {
     background-color: rgba(0, 0, 0, 0.04);
-}
-
 /* [DEACTIVATED V3.1] Legacy sticky borders
 table.table-sultan-compact th.col-sticky-left, 
 table.table-sultan-compact td.col-sticky-left {
     border-right: 1px solid #dee2e6 !important;
 } */
-
 /* 3. Mencegah Garis Dobel pada DataTables dengan fitur ScrollX & Complex Header */
 .dataTables_scrollHeadInner {
     box-sizing: content-box !important;
-}
 .dataTables_scrollHeadInner table.table-bordered {
     border-bottom: none !important;
     margin-bottom: 0 !important;
-}
 .dataTables_scrollHeadInner table.table-bordered thead th {
     border-bottom: 1px solid #dee2e6 !important;
-}
 .dataTables_scrollBody table.table-bordered {
     border-top: none !important;
     margin-top: -1px !important; /* Menarik body naik 1px agar menyatu tanpa garis ganda */
-}
 table.dataTable.no-footer {
     border-bottom: 1px solid #dee2e6 !important;
-}
-
 /* ==========================================================================
    BUTTON ICON SULTAN (AKSI TABEL & ICON STATUS BULAT ELEGANT)
    ========================================================================== */
@@ -1685,55 +1330,38 @@ table.dataTable.no-footer {
     vertical-align: middle;
     cursor: default; /* Default untuk icon status (div/span) */
     margin: 0 2px;
-}
-
 /* Jika berupa tombol yang bisa diklik */
 button.btn-icon-sultan, a.btn-icon-sultan {
     cursor: pointer;
-}
-
 /* Animasi melayang saat disorot (hanya untuk yang bisa diklik) */
 button.btn-icon-sultan:hover, a.btn-icon-sultan:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 6px rgba(0,0,0,0.15) !important;
-}
-
 button.btn-icon-sultan:active, a.btn-icon-sultan:active {
     transform: translateY(0);
-}
-
 /* --- VARIAN WARNA SULTAN (Soft BG -> Solid Hover) --- */
-
 /* 1. SUCCESS (Hijau) */
 .btn-icon-sultan-success { background-color: #d4edda; color: #155724; }
 button.btn-icon-sultan-success:hover, a.btn-icon-sultan-success:hover { background-color: #28a745; color: #ffffff; }
-
 /* 2. DANGER (Merah) */
 .btn-icon-sultan-danger { background-color: #f8d7da; color: #721c24; }
 button.btn-icon-sultan-danger:hover, a.btn-icon-sultan-danger:hover { background-color: #dc3545; color: #ffffff; }
-
 /* 3. WARNING (Kuning/Oranye) */
 .btn-icon-sultan-warning { background-color: #fff3cd; color: #856404; }
 button.btn-icon-sultan-warning:hover, a.btn-icon-sultan-warning:hover { background-color: #ffc107; color: #212529; }
-
 /* 4. INFO (Biru Muda/Cyan) */
 .btn-icon-sultan-info { background-color: #d1ecf1; color: #0c5460; }
 button.btn-icon-sultan-info:hover, a.btn-icon-sultan-info:hover { background-color: #17a2b8; color: #ffffff; }
-
 /* 5. PRIMARY (Biru Tua) */
 .btn-icon-sultan-primary { background-color: #cce5ff; color: #004085; }
 button.btn-icon-sultan-primary:hover, a.btn-icon-sultan-primary:hover { background-color: #007bff; color: #ffffff; }
-
 /* 6. MAROON (Warna Utama Aplikasi) */
 .btn-icon-sultan-maroon { background-color: #f8dada; color: var(--warna-utama); }
 button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background-color: var(--warna-utama); color: #ffffff; }
-
 .preloader { display: none !important; }
-
 /* =========================================
    SULTAN LUXURY: MODERN GLASSMORPHISM THEME
    ========================================= */
-
 /* 1. Efek Kaca (Glassmorphism) untuk Kartu, Modal, dan Info Box */
 .card, .modal-content, .info-box, .small-box {
     background: rgba(255, 255, 255, 0.70) !important; /* Kaca semi-transparan */
@@ -1742,22 +1370,16 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     border: 1px solid rgba(255, 255, 255, 0.6) !important;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07) !important;
     border-radius: 16px !important; /* Sudut lebih tumpul yang modern */
-}
-
 /* 2. Form Input, Select, dan File Upload (Transparan Elegan) */
 .form-control, .custom-select, .custom-file-label {
     background: rgba(255, 255, 255, 0.5) !important;
     border: 1px solid rgba(0, 0, 0, 0.1) !important;
     border-radius: 10px;
     color: #333 !important;
-}
-
 .form-control:focus, .custom-select:focus {
     background: rgba(255, 255, 255, 0.95) !important;
     box-shadow: 0 0 12px rgba(212, 175, 55, 0.4) !important; /* Glowing emas Sultan saat diklik */
     border-color: #d4af37 !important; 
-}
-
 /* 3. UBAH TABEL MENJADI KARTU KACA DI HP (Mobile Card View) */
 @media screen and (max-width: 767px) {
     /* Sembunyikan Header Tabel Bawaan (Kecuali Table Premium Sultan) */
@@ -1779,7 +1401,6 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
         box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         padding: 10px;
     }
-
     /* Ubah sel (td) agar berjejer ke bawah dan sejajar */
     .table tbody td {
         display: flex;
@@ -1796,7 +1417,6 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
         border-bottom: none;
         justify-content: flex-end; 
     }
-
     /* Memunculkan Judul Kolom di sisi kiri layar HP dari atribut data-label */
     .table tbody td::before {
         content: attr(data-label);
@@ -1805,13 +1425,10 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
         text-align: left;
         padding-right: 15px;
     }
-}
-
 /* ==========================================================================
    GERBANG LOGIN (WRAPPER AWAL)
    ========================================================================== */
 /* GERBANG LOGIN RULE DELETED IN v7.7 TO PREVENT SPA CONFLICTS */
-
 /* ==========================================================================
    MODAL TERPUSAT - PREMIUM SAAS THEME
    (Menaungi seluruh pop-up/modal yang berceceran di berbagai file)
@@ -1824,50 +1441,39 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     border-radius: 1.25rem !important;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15) !important;
     overflow: hidden;
-}
 .modal-header {
     background: transparent !important;
     border-bottom: 1px solid rgba(0,0,0,0.05) !important;
     padding: 1.5rem !important;
     color: var(--warna-tegas) !important;
-}
 .modal-title {
     font-weight: 700 !important;
     font-size: 1.25rem !important;
     display: flex;
     align-items: center;
     letter-spacing: -0.01em;
-}
 .modal-body {
     padding: 1.5rem !important;
     background: transparent !important;
     color: #475569 !important;
-}
 .modal-footer {
     background: rgba(255, 255, 255, 0.05) !important;
     border-top: 1px solid rgba(0,0,0,0.05) !important;
     padding: 1.25rem 1.5rem !important;
-}
 .modal-backdrop.show {
     opacity: 0.5 !important;
     backdrop-filter: blur(4px) !important;
     -webkit-backdrop-filter: blur(4px) !important;
-}
-
 /* Menyeragamkan Judul Utama Modal yg sebelumnya di set ID unik */
 .modal-title i {
     color: var(--warna-emas);
     margin-right: 8px;
-}
-
 /* ==========================================================================
    FITUR 1: SKELETON LOADING (Tulang Bayangan)
    ========================================================================== */
 @keyframes shimmer {
     0% { background-position: -1000px 0; }
     100% { background-position: 1000px 0; }
-}
-
 .skeleton-box {
     display: inline-block;
     height: 1em;
@@ -1875,9 +1481,7 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     overflow: hidden;
     background-color: var(--stroke);
     border-radius: 4px;
-}
 .dark .skeleton-box { background-color: #1F2937; }
-
 .skeleton-box::after {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -1885,11 +1489,8 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     background: linear-gradient(90deg, rgba(255,255,255,0) 0, rgba(255,255,255,0.1) 20%, rgba(255,255,255,0.2) 60%, rgba(255,255,255,0) 100%);
     background-size: 2000px 100%;
     animation: shimmer 2s infinite linear;
-}
 .dark .skeleton-box::after {
     background: linear-gradient(90deg, rgba(255,255,255,0) 0, rgba(255,255,255,0.05) 20%, rgba(255,255,255,0.1) 60%, rgba(255,255,255,0) 100%);
-}
-
 /* ==========================================================================
    FITUR 2: MICRO-INTERACTION TABEL (Hover Reveal)
    Menyembunyikan aksi sampai ditunjuk mouse
@@ -1907,12 +1508,9 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
         opacity: 1;
         transform: scale(1);
     }
-}
-
 /* ==========================================================================
    FITUR 3: REVERT DARK THEME (Deprecated for Student Portal Theme)
    ========================================================================== */
-
 /* ==========================================================================
    FITUR 4: FLOATING ACTION BUTTON (FAB) MOBILE
    ========================================================================== */
@@ -1921,11 +1519,8 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     bottom: 80px; /* Di atas footer adminLTE mobile */
     right: 20px;
     z-index: 999;
-}
 @media (min-width: 768px) {
     .fab-container { display: none !important; } /* Sembunyikan di layar besar */
-}
-
 .fab-button {
     width: 56px;
     height: 56px;
@@ -1940,31 +1535,23 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     transition: all 0.3s ease;
     border: none;
     cursor: pointer;
-}
 .fab-button:active {
     transform: scale(0.9);
-}
 .fab-button.fab-danger { background-color: #EF4444; box-shadow: 0 4px 10px rgba(239, 68, 68, 0.4); }
 .fab-button.fab-success { background-color: #10B981; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.4); }
-
 /* ==========================================================================
    FITUR 5: MAC-STYLE CUSTOM SCROLLBAR
    ========================================================================== */
 ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
-}
 ::-webkit-scrollbar-track {
     background: transparent;
-}
 ::-webkit-scrollbar-thumb {
     background: rgba(100, 116, 139, 0.3); /* Slate transparan */
     border-radius: 10px;
-}
 ::-webkit-scrollbar-thumb:hover {
     background: rgba(100, 116, 139, 0.6);
-}
-
 /* ==========================================================================
    FITUR 6: PULSING BADGES
    ========================================================================== */
@@ -1972,20 +1559,14 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
     70% { box-shadow: 0 0 0 6px rgba(245, 158, 11, 0); }
     100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
-}
 @keyframes pulse-danger {
     0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
     70% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
     100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-}
-
 .badge-pulse-warning {
     animation: pulse-warning 2s infinite;
-}
 .badge-pulse-danger {
     animation: pulse-danger 2s infinite;
-}
-
 /* ==========================================================================
    FITUR 7: SLIDE-IN APP TRANSITION
    ========================================================================== */
@@ -1993,12 +1574,9 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     transform: translateX(20px);
     opacity: 0;
     transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-}
 .slide-in-right.active {
     transform: translateX(0);
     opacity: 1;
-}
-
 /* ==========================================================================
    FITUR 8: FLOATING LABELS (Material Design)
    Digunakan di form login
@@ -2006,19 +1584,16 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
 .form-floating-sultan {
     position: relative;
     margin-bottom: 1rem;
-}
 .form-floating-sultan .form-control {
     height: 58px;
     padding: 1.25rem 0.75rem 0.25rem 0.75rem;
     font-size: 1rem;
     background: #F8FAFC !important;
     border: 1px solid #E2E8F0;
-}
 .form-floating-sultan .form-control:focus {
     background: var(--warna-kartu-bg) !important;
     border-color: var(--warna-emas);
     box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
-}
 .form-floating-sultan label {
     position: absolute;
     top: 0;
@@ -2030,16 +1605,13 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     transition: opacity .1s ease-in-out, transform .1s ease-in-out;
     color: #64748B;
     font-weight: 500;
-}
 .form-floating-sultan .form-control:focus ~ label,
 .form-floating-sultan .form-control:not(:placeholder-shown) ~ label {
     transform: scale(.85) translateY(-0.6rem) translateX(0.15rem);
     color: var(--warna-emas);
-}
 /* ===================================================================
    6. CODEBYTE ALERTS & TABS (New Components)
    =================================================================== */
-
 /* CODEBYTE ALERT */
 .alert, .alert-sultan {
   border-radius: var(--radius-sultan) !important;
@@ -2049,17 +1621,14 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
   background-color: #F8F9FA !important;
   border-left: 4px solid #E6E6E6 !important;
   box-shadow: 0 4px 6px rgba(0,0,0,0.02) !important;
-}
 .alert-success { background-color: rgba(9, 189, 60, 0.1) !important; border-left-color: var(--warna-hijau) !important; color: #078c2c !important; }
 .alert-info    { background-color: rgba(0, 175, 239, 0.1) !important; border-left-color: var(--warna-cyan) !important; color: #007bb5 !important; }
 .alert-warning { background-color: rgba(234, 201, 71, 0.1) !important; border-left-color: var(--warna-emas) !important; color: #9c8322 !important; }
 .alert-danger  { background-color: rgba(208, 65, 46, 0.1) !important; border-left-color: var(--warna-orange-pastel) !important; color: #9c3122 !important; }
-
 /* CODEBYTE TABS (Underline Indicator) */
 .nav-tabs {
   border-bottom: 2px solid #E6E6E6 !important;
   gap: 1rem;
-}
 .nav-tabs .nav-link {
   border: none !important;
   color: #737B8B !important;
@@ -2069,24 +1638,19 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
   border-bottom: 2px solid transparent !important;
   margin-bottom: -2px !important;
   transition: all 0.3s ease;
-}
 .nav-tabs .nav-link:hover {
   color: var(--warna-maroon) !important;
   border-color: transparent !important;
-}
 .nav-tabs .nav-link.active {
   color: var(--warna-maroon) !important;
   border-bottom: 2px solid var(--warna-maroon) !important;
   background: transparent !important;
-}
-
 /* ===================================================================
    7. MODERN SIDEBAR — Deep Maroon Heritage Theme
    Maroon sejati: var(--warna-utama) (bukan pinkish).
    HP-friendly: min-height 44px.
    Teks 1 baris. Sisi kanan rata. Warna aktif beda per level.
    =================================================================== */
-
 /* ===================================================================
    7. TAILADMIN SHELL & NAVIGATION (v3.0 — Pixel Perfect)
    Measured directly from TailAdmin demo screenshot.
@@ -2095,7 +1659,6 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
    - Nav link height: ~40px
    - Active: indigo bg #EEF2FF, text #465FFF
    =================================================================== */
-
 :root {
   --sidebar-width: 260px;
 .nav-sidebar .nav-link {
@@ -2110,8 +1673,6 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     position: relative !important;
     overflow: hidden !important;         /* penting: cegah teks meluber */
     text-decoration: none !important;
-}
-
 /* Teks menu: 1 baris, ellipsis, flex-grow agar arrow tetap di kanan */
 .nav-sidebar .nav-link p {
     flex: 1 !important;
@@ -2124,8 +1685,6 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     text-overflow: ellipsis !important;
     color: rgba(255,255,255,0.78) !important;
     min-width: 0 !important;             /* penting: agar flex + ellipsis bekerja */
-}
-
 /* Ikon kiri */
 .nav-sidebar .nav-link > .nav-icon,
 .nav-sidebar .nav-link > i.nav-icon {
@@ -2135,8 +1694,6 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     margin-right: 8px !important;
     font-size: 0.9rem !important;
     color: rgba(255,255,255,0.45) !important;
-}
-
 /* Arrow dropdown — SELALU di kanan, tidak melompat */
 .nav-sidebar .nav-link i.right {
     flex-shrink: 0 !important;
@@ -2144,23 +1701,17 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     font-size: 0.7rem !important;
     color: rgba(255,255,255,0.35) !important;
     transition: transform 0.22s ease, color 0.2s ease !important;
-}
 .nav-sidebar .menu-open > .nav-link i.right {
     transform: rotate(-90deg) !important;
     color: rgba(255,255,255,0.7) !important;
-}
-
 /* Hover global */
 .nav-sidebar .nav-link:hover {
     background: rgba(255,255,255,0.09) !important;
     border-color: rgba(255,255,255,0.12) !important;
     transform: translateX(3px) !important;
-}
 .nav-sidebar .nav-link:hover p,
 .nav-sidebar .nav-link:hover > .nav-icon {
     color: #fff !important;
-}
-
 /* ================================================
    LEVEL 1 — BAPAK
    Normal : teks putih agak transparan
@@ -2169,27 +1720,21 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
 .nav-sidebar > .nav-item > .nav-link {
     background: rgba(255,255,255,0.04) !important;
     margin: 3px 8px !important;
-}
 .nav-sidebar > .nav-item > .nav-link > .nav-icon {
     color: rgba(234,201,71,0.7) !important;
     font-size: 1rem !important;
-}
 .nav-sidebar > .nav-item > .nav-link:hover > .nav-icon {
     color: #EAC947 !important;
-}
 .nav-sidebar > .nav-item > .nav-link.active {
     background: rgba(255,248,220,0.95) !important;  /* cream solid */
     border-color: rgba(255,248,220,0.3) !important;
     box-shadow: 0 3px 12px rgba(0,0,0,0.25) !important;
-}
 .nav-sidebar > .nav-item > .nav-link.active p {
     color: #5A0000 !important;
     font-weight: 700 !important;
-}
 .nav-sidebar > .nav-item > .nav-link.active > .nav-icon,
 .nav-sidebar > .nav-item > .nav-link.active i.right {
     color: var(--warna-utama) !important;
-}
 /* Gold bar indikator aktif (kiri) */
 .nav-sidebar > .nav-item > .nav-link.active::before {
     content: '' !important;
@@ -2200,8 +1745,6 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     width: 3px !important;
     background: #EAC947 !important;
     border-radius: 0 3px 3px 0 !important;
-}
-
 /* ================================================
    LEVEL 2 — ANAK
    Normal : teks pink-putih lebih redup, indentasi
@@ -2210,38 +1753,30 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
 .nav-sidebar .nav-treeview {
     padding: 0 !important;
     margin: 1px 0 !important;
-}
 .nav-sidebar .nav-treeview > .nav-item > .nav-link {
     margin-left: 20px !important;
     margin-right: 8px !important;
     background: rgba(0,0,0,0.1) !important;
     border-radius: 7px !important;
     font-size: 0.8rem !important;
-}
 .nav-sidebar .nav-treeview > .nav-item > .nav-link p {
     color: rgba(255,210,210,0.78) !important;
     font-size: 0.8rem !important;
-}
 .nav-sidebar .nav-treeview > .nav-item > .nav-link > .nav-icon,
 .nav-sidebar .nav-treeview > .nav-item > .nav-link > i.nav-icon {
     color: rgba(255,180,180,0.5) !important;
     font-size: 7px !important;
     width: 16px !important;
-}
 .nav-sidebar .nav-treeview > .nav-item > .nav-link.active {
     background: rgba(179,229,252,0.18) !important;  /* sky-blue glass */
     border-color: rgba(179,229,252,0.35) !important;
     box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
-}
 .nav-sidebar .nav-treeview > .nav-item > .nav-link.active p {
     color: #B3E5FC !important;
     font-weight: 700 !important;
-}
 .nav-sidebar .nav-treeview > .nav-item > .nav-link.active > .nav-icon,
 .nav-sidebar .nav-treeview > .nav-item > .nav-link.active > i.nav-icon {
     color: #B3E5FC !important;
-}
-
 /* ================================================
    LEVEL 3 — CUCU
    Normal : teks gold redup, indentasi lebih dalam
@@ -2254,42 +1789,33 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     border-color: rgba(234,201,71,0.08) !important;
     border-radius: 6px !important;
     font-size: 0.77rem !important;
-}
 .nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link p {
     color: rgba(234,201,71,0.65) !important;
     font-size: 0.77rem !important;
-}
 .nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link > .nav-icon,
 .nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link > i.nav-icon {
     color: rgba(234,201,71,0.4) !important;
     font-size: 6px !important;
     width: 14px !important;
-}
 .nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link.active {
     border-color: rgba(234,201,71,0.55) !important;
     background: rgba(234,201,71,0.08) !important;
     box-shadow: 0 2px 8px rgba(234,201,71,0.1) !important;
-}
 .nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link.active p {
     color: #EAC947 !important;
     font-weight: 700 !important;
-}
 .nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link.active > .nav-icon,
 .nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link.active > i.nav-icon {
     color: #EAC947 !important;
-}
-
 /* Slim gold scrollbar */
 .sidebar::-webkit-scrollbar { width: 3px; }
 .sidebar::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
 .sidebar::-webkit-scrollbar-thumb { background: rgba(234,201,71,0.35); border-radius: 4px; }
 .sidebar::-webkit-scrollbar-thumb:hover { background: rgba(234,201,71,0.65); }
-
 /* --- STANDARD SULTAN LOADER --- */
 .sk-loader-wrapper {
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     padding: 2rem; position: relative; min-height: 100px;
-}
 .sk-spinner-premium {
     width: 40px; height: 40px;
     border: 3px solid rgba(123, 0, 0, 0.1);
@@ -2297,15 +1823,11 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     border-top-color: var(--warna-utama);
     animation: sk-spin 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
     margin-bottom: 12px;
-}
 @keyframes sk-spin {
     to { transform: rotate(360deg); }
-}
 .sk-loading-text {
     font-size: 0.75rem; font-weight: 700; color: #64748b;
     text-transform: uppercase; letter-spacing: 0.5px;
-}
-
 /* --- SULTAN PREMIUM UI STANDARD (V2) --- */
 .sk-turbo-badge {
     position: fixed; bottom: 20px; right: 20px;
@@ -2316,12 +1838,9 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     display: none; align-items: center; gap: 6px;
     animation: skReveal 0.4s ease forwards;
-}
 @keyframes skReveal {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
-}
-
 .card-sultan {
     backdrop-filter: blur(12px);
     background: rgba(255, 255, 255, 0.85) !important;
@@ -2329,7 +1848,6 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     border-radius: 16px !important;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05) !important;
     overflow: hidden;
-}
 /* =============================================================
    SULTAN PREMIUM COMPONENTS
    ============================================================= */
@@ -2340,7 +1858,6 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     margin: 10px 0 20px 0;
     position: relative;
     border-radius: 2px;
-}
 .sultan-header-line::after {
     content: '';
     position: absolute;
@@ -2348,8 +1865,6 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     width: 80px; height: 100%;
     background: var(--warna-utama);
     border-radius: 2px;
-}
-
 .sk-premium-info {
     border-left: 5px solid var(--warna-utama) !important;
     background: linear-gradient(to right, #ffffff, #fffdfd) !important;
@@ -2362,15 +1877,11 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     border: 1px solid #E2E8F0 !important;
     border-left-width: 5px !important;
     transition: all 0.3s;
-}
 .sk-premium-info:hover {
     box-shadow: 0 8px 25px rgba(0,0,0,0.08) !important;
-}
 .sk-premium-info .card-body {
     padding: 0 1.25rem !important;
     width: 100%;
-}
-
 /* =============================================================
    SULTAN ENTERPRISE TOOLBAR
    ============================================================= */
@@ -2380,7 +1891,6 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     border-radius: 16px;
     padding: 1rem 1.25rem;
     box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-}
 .sk-filter-item label {
     font-size: 11px;
     font-weight: 800;
@@ -2388,7 +1898,6 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     color: #64748B;
     margin-bottom: 2px;
     letter-spacing: 0.8px;
-}
 .sk-input-premium {
     background: #F8FAFC !important;
     border: 1px solid #E2E8F0 !important;
@@ -2399,23 +1908,18 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     color: #1E293B;
     transition: all 0.2s;
     height: 38px !important;
-}
 .sk-input-premium:focus:not(:disabled) {
     background: #fff !important;
     border-color: var(--warna-utama) !important;
     box-shadow: 0 0 0 3px rgba(123, 0, 0, 0.1) !important;
-}
 .sk-input-premium:disabled {
     background: #F1F5F9 !important;
     color: var(--warna-utama) !important;
     font-weight: 800 !important;
-}
-
 .sk-action-group-toolbar {
     display: flex;
     align-items: center;
     gap: 8px;
-}
 .sk-btn-toolbar {
     height: 38px;
     border-radius: 10px;
@@ -2427,53 +1931,41 @@ button.btn-icon-sultan-maroon:hover, a.btn-icon-sultan-maroon:hover { background
     transition: all 0.2s;
     border: none;
     box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-}
 .sk-btn-refresh {
     width: 38px;
     background: #f8fafc;
     color: var(--warna-maroon);
     border: 1px solid #E2E8F0;
-}
 .sk-btn-refresh:hover {
     background: #E2E8F0;
     transform: rotate(30deg);
-}
 .sk-btn-add {
     padding: 0 1.25rem;
     background: var(--warna-maroon);
     color: #fff;
-}
 .sk-btn-add:hover {
     background: var(--warna-maroon-dark);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(29, 53, 115, 0.2);
-}
 .sk-btn-add:disabled {
     opacity: 0.6;
     background: #94A3B8;
     cursor: not-allowed;
-}
-
 @media (max-width: 767.98px) {
     .sk-toolbar-row { flex-direction: column; align-items: stretch; }
     .sk-filter-group { gap: 10px; }
     .sk-filter-item { flex: 1; min-width: 120px; }
     .sk-action-group-toolbar { justify-content: flex-end; }
-}
-
 /* =============================================================
    SULTAN UNIFIED GRID SYSTEM (MODEL TUNGGAL)
    Fixes conflicts between DataTables, AdminLTE, and Custom CSS.
    ============================================================= */
-
 /* 1. Core Grid Structure */
 table.table-premium {
     width: 100% !important;
     border-collapse: separate !important;
     border-spacing: 0 !important;
     table-layout: auto !important;
-}
-
 table.table-premium thead th {
     background-color: #dee2e6 !important; /* Unified Sultan Grey Standard */
     color: #475569 !important;
@@ -2484,8 +1976,6 @@ table.table-premium thead th {
     border-bottom: 2px solid #E2E8F0 !important;
     vertical-align: middle !important;
     padding: 8px 12px !important;
-}
-
 /* 2. Cell & Row Standards (Sultan Standard Padding) */
 table.table-premium tr { display: table-row !important; }
 table.table-premium td {
@@ -2498,13 +1988,9 @@ table.table-premium td {
     font-size: 0.85rem; /* Refined Sultan Font */
     line-height: 1.25 !important;
     color: #1e293b !important;
-}
-
 /* 3. Interaction (Unified Colors) */
 table.table-premium tbody tr:hover td {
     background-color: #F1F5F9 !important; /* Matches Header Exactly */
-}
-
 /* [DEACTIVATED V3.1] Unified Grid conflicts
 .col-sticky-left {
     position: sticky !important;
@@ -2513,37 +1999,28 @@ table.table-premium tbody tr:hover td {
     background-color: #ffffff !important; 
     border-right: 2px solid #E2E8F0 !important;
     box-shadow: 6px 0 15px rgba(0,0,0,0.05) !important;
-}
 table.table-premium thead th.col-sticky-left {
     background-color: #F1F5F9 !important;
     z-index: 30 !important;
-}
 table.table-premium tbody tr:hover td.col-sticky-left {
     background-color: #F1F5F9 !important;
 } */
-
 /* 5. Responsive Cleanups */
 .table-responsive.sultan-scroll {
     overflow-x: auto !important;
     -webkit-overflow-scrolling: touch !important;
     padding-bottom: 5px;
-}
 .dtr-control, .dtr-details, tr.child { display: none !important; } /* Final Stake in Responsive Plugin */
-
 /* Tighten inner elements */
 .table-premium td div, .table-premium td p, .table-premium td small, .table-premium td span {
     margin: 0 !important;
     line-height: 1.0 !important;
-}
-
 /* UNIVERSAL ACTION BUTTONS */
 .sk-action-group {
     display: flex; gap: 4px; justify-content: center;
-}
 .table-premium .sk-btn-icon {
     width: 34px !important; height: 34px !important;
     font-size: 1.0rem !important; border-radius: 8px;
-}
 .sk-btn-icon {
     width: 32px; height: 32px;
     display: flex; align-items: center; justify-content: center;
@@ -2551,20 +2028,15 @@ table.table-premium tbody tr:hover td.col-sticky-left {
     background: #fff; color: #64748b;
     transition: all 0.2s; cursor: pointer;
     font-size: 0.9rem;
-}
 .sk-btn-icon:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-}
-
 /* Colored Icons (Active) */
 .sk-btn-edit.active { background: #FFF9E6; color: #D97706; border-color: #FDE68A; }
 .sk-btn-delete.active { background: #FEF2F2; color: #DC2626; border-color: #FECACA; }
 .sk-btn-verify.active { background: #F0F9FF; color: #0284C7; border-color: #BAE6FD; }
-
 /* Gray Icons (Locked) */
 .sk-btn-icon.locked { background: #F8FAFC; color: #94a3b8; border-color: #E2E8F0; opacity: 0.7; }
-
 /* Mobile & Tablet Tap Targets Optimization (Finger-Friendly) */
 @media (max-width: 991.98px) {
     .sk-btn-icon { 
@@ -2583,36 +2055,27 @@ table.table-premium tbody tr:hover td.col-sticky-left {
         display: flex; align-items: center; justify-content: center;
         border-radius: 8px !important;
     }
-}
-
 /* THEMATIC BADGES */
 .badge-sultan {
     padding: 5px 10px; border-radius: 6px;
     font-weight: 700; font-size: 10px; letter-spacing: 0.5px;
     text-transform: uppercase;
-}
 /* Utility: Standard Responsive Hide Helpers */
 @media (max-width: 575.98px) {
     .sk-hide-xs { display: none !important; }
-}
 .badge-sultan-light-success { background: #ECFDF5; color: #059669; border: 1px solid #A7F3D0; }
 .badge-sultan-light-warning { background: #FFFBEB; color: #D97706; border: 1px solid #FDE68A; }
 .badge-sultan-light-info { background: #F0F9FF; color: #0284C7; border: 1px solid #BAE6FD; }
 .badge-sultan-light-danger { background: #FEF2F2; color: #DC2626; border: 1px solid #FECACA; }
-
 /* SHARED UTILS */
 .divider-vertical {
     width: 1px; height: 24px; background: #e2e8f0; margin: 0 5px;
-}
 .divider-vertical.sk-hide-sm { display: block; }
 @media (max-width: 767.98px) { .divider-vertical.sk-hide-sm { display: none; } }
-
 /* --- SULTAN KPI & DASHBOARD COMPONENTS --- */
 :root {
     --sk-radius: 16px;
     --sk-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-}
-
 .sk-kpi-card {
     border-radius: var(--sk-radius);
     padding: 1.5rem;
@@ -2625,36 +2088,27 @@ table.table-premium tbody tr:hover td.col-sticky-left {
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
 .sk-kpi-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
-}
 .sk-kpi-card .kpi-icon-bg {
     position: absolute; top: -15px; right: -15px;
     font-size: 5rem; opacity: 0.1; transform: rotate(-15deg);
-}
 .sk-kpi-card .kpi-number {
     font-size: 2.5rem; font-weight: 800; line-height: 1;
     margin-bottom: 0.25rem; letter-spacing: -1px;
-}
 .sk-kpi-card .kpi-label {
     font-size: 0.75rem; font-weight: 700; letter-spacing: 0.5px;
     text-transform: uppercase; opacity: 0.9;
-}
 .sk-kpi-card .kpi-sub {
     font-size: 0.7rem; opacity: 0.75; margin-top: 0.6rem;
     padding-top: 0.6rem; border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
 /* KPI Variants */
 .kpi-main { background: linear-gradient(135deg, var(--warna-utama) 0%, #4A0000 100%); color: #fff; box-shadow: 0 10px 25px rgba(123, 0, 0, 0.25); }
 .kpi-gold { background: linear-gradient(135deg, #EAC947 0%, #C0A020 100%); color: #1e293b; box-shadow: 0 10px 25px rgba(234, 201, 71, 0.25); }
 .kpi-blue { background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%); color: #fff; box-shadow: 0 10px 25px rgba(2, 132, 199, 0.25); }
 .kpi-teal { background: linear-gradient(135deg, #0D9488 0%, #0F766E 100%); color: #fff; box-shadow: 0 10px 25px rgba(13, 148, 136, 0.25); }
-
 .sk-animate-reveal { animation: skReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
-
 /* Dashboard Structural Elements */
 .sk-dash-filter-bar {
     background: #ffffff;
@@ -2663,8 +2117,6 @@ table.table-premium tbody tr:hover td.col-sticky-left {
     padding: 0.85rem 1.25rem;
     margin-bottom: 1.5rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-}
-
 .sk-info-pill {
     background: #ffffff;
     border-radius: var(--sk-radius);
@@ -2673,80 +2125,61 @@ table.table-premium tbody tr:hover td.col-sticky-left {
     display: flex; align-items: center; gap: 1.1rem;
     transition: all 0.2s ease; height: 100%;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-}
 .sk-info-pill:hover {
     transform: scale(1.02);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
     border-color: #E2E8F0;
-}
 .sk-info-pill .pill-icon {
     width: 48px; height: 48px; border-radius: 12px;
     display: flex; align-items: center; justify-content: center;
     font-size: 1.35rem; flex-shrink: 0;
-}
 .sk-info-pill .pill-value {
     font-size: 1.7rem; font-weight: 800; color: #1e293b; line-height: 1;
-}
 .sk-info-pill .pill-label {
     font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
     letter-spacing: 0.5px; color: #64748b; margin-top: 3px;
-}
-
 .sk-panel {
     background: #ffffff; border-radius: var(--sk-radius);
     border: 1px solid #E2E8F0; box-shadow: var(--sk-shadow);
     overflow: hidden; height: 100%;
-}
 .sk-panel .panel-header {
     padding: 1.2rem 1.5rem; border-bottom: 1px solid #F1F5F9;
     background: #FAFBFC; display: flex; align-items: center; justify-content: space-between;
-}
 .sk-panel .panel-title {
     font-size: 0.95rem; font-weight: 700; color: #1e293b;
     margin: 0; display: flex; align-items: center; gap: 0.6rem;
-}
-
 /* Lists & Timelines */
 .sk-timeline-item {
     display: flex; align-items: flex-start; gap: 1rem;
     padding: 1rem 1.5rem; border-bottom: 1px solid #F1F5F9;
     transition: background 0.2s;
-}
 .sk-timeline-item:hover { background: #F8FAFC; }
 .sk-timeline-icon {
     width: 40px; height: 40px; border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
     font-size: 0.9rem; flex-shrink: 0;
-}
 .sk-timeline-school { font-size: 0.88rem; font-weight: 700; color: #1e293b; margin-bottom: 2px; }
 .sk-timeline-meta { font-size: 0.75rem; color: #64748b; }
-
 .sk-belum-item {
     display: flex; align-items: center; gap: 0.75rem;
     padding: 0.8rem 1.5rem; border-bottom: 1px solid #F1F5F9;
     font-size: 0.85rem; font-weight: 600; color: #334155;
     transition: all 0.2s;
-}
 .sk-belum-item:hover { background: #FEF2F2; color: #B91C1C; }
 .sk-belum-num {
     width: 24px; height: 24px; border-radius: 6px;
     background: #FEE2E2; color: #EF4444;
     font-size: 0.7rem; font-weight: 800;
     display: flex; align-items: center; justify-content: center;
-}
-
 /* #############################################################
    CODEBYTE WORLD-CLASS PROFESSIONAL DESIGN SYSTEM
    ############################################################# */
-
 :root {
     --cb-radius: 12px;
     --cb-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     --cb-border: #E2E8F0;
     --cb-bg-soft: #FDF2F2; /* Soft pinkish tint from mockup */
     --cb-maroon: var(--warna-utama);
-}
-
 /* 1. CARDS & CONTAINERS */
 .cb-card {
     background: #ffffff;
@@ -2755,22 +2188,17 @@ table.table-premium tbody tr:hover td.col-sticky-left {
     box-shadow: var(--cb-shadow) !important;
     overflow: hidden;
     margin-bottom: 2rem;
-}
 .cb-card-header {
     padding: 1.25rem 1.5rem;
     background: transparent;
     border-bottom: 1px solid var(--cb-border);
-}
 .cb-card-body {
     padding: 1.5rem;
-}
-
 /* 2. TABLE - NO VERTICAL BORDERS (THE SWEEP LOOK) */
 .cb-table {
     width: 100% !important;
     border-collapse: collapse !important;
     border: none !important;
-}
 .cb-table thead th {
     background: #FFF9E6 !important; /* Pale yellowish gold */
     color: var(--warna-utama) !important; /* Maroon text */
@@ -2782,7 +2210,6 @@ table.table-premium tbody tr:hover td.col-sticky-left {
     border: 1px solid #FDE047 !important;
     border-bottom: 2px solid #EAB308 !important;
     white-space: nowrap;
-}
 .cb-table tbody td {
     padding: 0.75rem 0.75rem !important;
     border: 1px solid #F1F5F9 !important;
@@ -2790,11 +2217,8 @@ table.table-premium tbody tr:hover td.col-sticky-left {
     font-size: 0.875rem;
     background: #fff !important;
     color: #334155;
-}
 .cb-table tbody tr:hover td {
     background: var(--cb-bg-soft) !important;
-}
-
 /* 3. INPUT PILLS & FILTERS */
 .cb-filter-toolbar {
     display: flex;
@@ -2804,19 +2228,16 @@ table.table-premium tbody tr:hover td.col-sticky-left {
     padding: 1.25rem 1.5rem;
     background: #fff;
     border-bottom: 1px solid var(--cb-border);
-}
 .cb-input-group {
     display: flex;
     flex-direction: column;
     gap: 4px;
-}
 .cb-input-group label {
     font-size: 0.7rem;
     font-weight: 700;
     color: #64748B;
     text-transform: uppercase;
     margin: 0;
-}
 .cb-select-pill {
     background: var(--cb-bg-soft) !important;
     border: 1px solid var(--cb-border) !important;
@@ -2827,13 +2248,10 @@ table.table-premium tbody tr:hover td.col-sticky-left {
     transition: all 0.2s;
     min-width: 120px;
     font-size: 0.85rem !important;
-}
 .cb-select-pill:focus {
     background: #fff !important;
     border-color: var(--cb-maroon) !important;
     box-shadow: 0 0 0 4px rgba(123, 0, 0, 0.08) !important;
-}
-
 /* 4. MODERN DOT BADGES (STATUS) */
 .cb-badge-dot {
     display: inline-flex;
@@ -2843,13 +2261,11 @@ table.table-premium tbody tr:hover td.col-sticky-left {
     font-size: 0.75rem;
     padding: 0.25rem 0.75rem;
     border-radius: 2rem;
-}
 .cb-badge-dot::before {
     content: '';
     width: 6px;
     height: 6px;
     border-radius: 50%;
-}
 .cb-status-ok { background: #ECFDF5; color: #059669; }
 .cb-status-ok::before { background: #10B981; }
 .cb-status-prosess { background: #F0F9FF; color: #0284C7; }
@@ -2858,7 +2274,6 @@ table.table-premium tbody tr:hover td.col-sticky-left {
 .cb-status-revisi::before { background: #F59E0B; }
 .cb-status-tolak { background: #FEF2F2; color: #DC2626; }
 .cb-status-tolak::before { background: #EF4444; }
-
 /* 5. ACTION BUTTONS (CODEBYTE SHARP) */
 .cb-btn-action {
     width: 30px; height: 30px;
@@ -2871,17 +2286,13 @@ table.table-premium tbody tr:hover td.col-sticky-left {
     transition: all 0.2s;
     margin: 0 2px;
     font-size: 0.8rem;
-}
 .cb-btn-action-verify { background: #007BFF; } /* Blue */
 .cb-btn-action-edit { background: #D1D5DB; color: #4B5563; } /* Silver/Light Grey */
 .cb-btn-action-delete { background: #9CA3AF; } /* Grey */
-
 .cb-btn-action:hover {
     filter: brightness(0.9);
     transform: translateY(-1px);
     color: #fff;
-}
-
 .cb-btn-toolbar {
     height: 40px;
     padding: 0 1rem;
@@ -2893,16 +2304,13 @@ table.table-premium tbody tr:hover td.col-sticky-left {
     justify-content: center;
     gap: 8px;
     transition: all 0.2s;
-}
 .cb-btn-primary { background: var(--cb-maroon); color: #fff; border: none; }
 .cb-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(123, 0, 0, 0.2); }
 .cb-btn-white { background: #fff; color: var(--cb-maroon); border: 1px solid var(--cb-border); }
 .cb-btn-white:hover { background: var(--cb-bg-soft); }
-
 /* Breadcrumb Styling */
 .cb-breadcrumb {
     display: none; /* User requested removal */
-}
 .cb-page-title {
     font-size: 1.1rem !important;
     font-weight: 800 !important;
@@ -2913,8 +2321,6 @@ table.table-premium tbody tr:hover td.col-sticky-left {
     border-bottom: 2px solid var(--cb-maroon) !important; /* Divider Garis Bawah */
     display: block;
     width: 100%;
-}
-
 /* Updated Legacy Info Card (Premium Codebyte Skin) */
 .cb-info-collapse-card {
     border-left: 5px solid var(--cb-maroon) !important;
@@ -2922,7 +2328,6 @@ table.table-premium tbody tr:hover td.col-sticky-left {
     border-radius: 12px !important;
     box-shadow: var(--cb-shadow) !important;
     margin-bottom: 1.5rem !important;
-}
 .cb-info-header {
     padding: 0.85rem 1.25rem !important;
     display: flex;
@@ -2932,8 +2337,6 @@ table.table-premium tbody tr:hover td.col-sticky-left {
     font-weight: 800;
     color: var(--cb-maroon);
     font-size: 0.88rem;
-}
-
 /* [DEACTIVATED V3.1] Legacy Freeze Logic
 .col-sticky-left {
     position: sticky !important;
@@ -2941,15 +2344,12 @@ table.table-premium tbody tr:hover td.col-sticky-left {
     z-index: 10 !important;
     background: #fff !important;
     box-shadow: 5px 0 10px -5px rgba(0,0,0,0.1);
-}
 th.col-sticky-left {
     z-index: 11 !important;
 } */
-
 /* ===================================================================
    9. GLOBAL UI UTILITIES (REF: DATA SK MODERNIZATION)
    =================================================================== */
-
 /* Decorative Title Line */
 .sultan-title-line { 
     height: 3px; 
@@ -2958,33 +2358,25 @@ th.col-sticky-left {
     border: 0; 
     margin: 8px 0 16px 0; 
     border-radius: 5px; 
-}
-
 /* Compact Info Card (Match sidebar-menu height ~42px) */
 .card-sultan-info-compact .card-body { 
     padding: 0.5rem 1.25rem !important; 
     min-height: 42px; 
-}
 .card-sultan-info-compact .d-flex-info-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-}
-
 /* Table Premium Modernization (Sultan Enterprise Standard - Strengthened Specificity) */
 body #konten-aplikasi .table-premium { 
     border-collapse: separate !important; 
     border-spacing: 0 !important; 
     width: 100% !important;
-}
 body #konten-aplikasi .table-premium td { 
     vertical-align: middle !important; 
     padding: 12px 14px !important; 
     line-height: 1.5 !important; 
     background-color: #ffffff !important;
-}
-
 /* --- POLISH SULTAN: HEADER ULTRA COMPACT & PREMIUM --- */
 .table-header-compact thead th {
     padding: 6px 8px !important;
@@ -2994,8 +2386,6 @@ body #konten-aplikasi .table-premium td {
     background-color: #dee2e6 !important; /* Sultan Grey */
     color: #1a202c !important;
     border: 1px solid #ced4da !important;
-}
-
 /* Header Styles with High Specificity */
 body #konten-aplikasi .table-premium thead th,
 body #konten-aplikasi .thead-grey-sultan th { 
@@ -3007,8 +2397,6 @@ body #konten-aplikasi .thead-grey-sultan th {
     border-bottom: 2px solid #adb5bd !important;
     padding: 12px 14px !important;
     white-space: nowrap !important;
-}
-
 /* Sticky Column & Corner Logic - Reinforced V3.2 (Absolute Mobile & Desktop Authority) */
 body #konten-aplikasi .table-premium td.col-sticky-left,
 body #konten-aplikasi .table-header-compact td.col-sticky-left { 
@@ -3018,7 +2406,6 @@ body #konten-aplikasi .table-header-compact td.col-sticky-left {
     background-color: #ffffff !important; 
     box-shadow: 2px 0 5px rgba(0,0,0,0.05) !important; 
     border-right: 1px solid #dee2e6 !important;
-}
 body #konten-aplikasi .table-premium thead th.col-sticky-left,
 body #konten-aplikasi .table-header-compact thead th.col-sticky-left { 
     position: sticky !important; 
@@ -3027,8 +2414,6 @@ body #konten-aplikasi .table-header-compact thead th.col-sticky-left {
     z-index: 9999 !important; 
     background-color: #dee2e6 !important; 
     border-right: 1px solid #adb5bd !important;
-}
-
 /* Multi-line Item Support */
 body .sk-item-main { 
     display: block !important; 
@@ -3036,7 +2421,6 @@ body .sk-item-main {
     color: #1a202c !important; 
     font-size: 13px !important; 
     line-height: 1.4 !important; 
-}
 body .sk-item-sub { 
     display: block !important; 
     font-weight: 500 !important; 
@@ -3044,7 +2428,6 @@ body .sk-item-sub {
     color: #4a5568 !important; 
     padding-top: 6px !important; 
     line-height: 1.3 !important; 
-}
 body .sk-item-sub-lg { 
     display: block !important; 
     font-weight: 600 !important; 
@@ -3052,12 +2435,9 @@ body .sk-item-sub-lg {
     color: #334155 !important; 
     padding-top: 4px !important; 
     line-height: 1.4 !important; 
-}
-
 .sk-log-box { line-height: 1.4; font-size: 11px; }
 .sk-log-date { display: block; font-weight: 700; color: #1e293b; }
 .sk-log-user { display: block; color: #64748b; font-weight: 500; margin-top: 4px; }
-
 /* Standardized Buttons (Consistent with Action Buttons) */
 .btn-sk-pdf { 
     border: 1px solid #f87171; 
@@ -3072,9 +2452,7 @@ body .sk-item-sub-lg {
     display: inline-flex; 
     align-items: center;
     box-shadow: 0 2px 4px rgba(220, 53, 69, 0.1);
-}
 .btn-sk-pdf:hover { background: #fee2e2; transform: translateY(-1px); box-shadow: 0 4px 6px rgba(220, 53, 69, 0.15); text-decoration: none; color: #b91c1c; }
-
 /* Standardized Badges (Capsule Shape to Distinguish from Buttons) */
 .badge-sultan {
     padding: 5px 12px !important;
@@ -3085,46 +2463,36 @@ body .sk-item-sub-lg {
     text-transform: uppercase;
     display: inline-flex;
     align-items: center;
-}
 .badge-sultan i { margin-right: 4px; font-size: 11px; }
-
 .btn-icon-ref-blue { background-color: #3b82f6 !important; color: #fff !important; box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2); }
 .btn-icon-ref-grey { background-color: #94a3b8 !important; color: #fff !important; box-shadow: 0 2px 4px rgba(148, 163, 184, 0.2); }
 .btn-icon-ref-dark { background-color: #475569 !important; color: #fff !important; box-shadow: 0 2px 4px rgba(71, 85, 105, 0.2); }
 .btn-icon-sultan:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
-
 /* ANIMATIONS: SULTAN CINEMATIC SYSTEM */
 @keyframes shimmer { 0% { background-position: -468px 0; } 100% { background-position: 468px 0; } }
 @keyframes sultanEntrance { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
 body .sultan-skeleton { 
     background: #f6f7f8; 
     background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%); 
     background-repeat: no-repeat; background-size: 800px 104px; display: inline-block; position: relative; 
     animation: shimmer 1.2s linear infinite forwards; border-radius: 4px; 
-}
 body .sultan-entrance { animation: sultanEntrance 0.4s ease-out forwards; }
-
 /* MODAL: SULTAN PREMIUM STANDARDS */
 body .modal-content-sultan { 
     border-radius: 16px !important; 
     border: none !important; 
     overflow: hidden !important; 
     box-shadow: 0 15px 35px rgba(0,0,0,0.2) !important;
-}
 body .modal-header-sultan { 
     padding: 1rem 1.5rem !important; 
     border-bottom: 2px solid rgba(0,0,0,0.1) !important;
     background-color: var(--warna-maroon) !important;
     color: #ffffff !important;
-}
 body .modal-header-sultan .modal-title { 
     font-weight: 700 !important; 
     letter-spacing: 0.5px; 
     color: #ffffff !important; 
-}
 body .modal-header-sultan .modal-title i { color: var(--warna-emas) !important; }
-
 /* REFINEMENT V4.2: Twin Button System for Preview Header */
 .btn-sultan-twin {
     padding: 8px 24px !important;
@@ -3140,31 +2508,25 @@ body .modal-header-sultan .modal-title i { color: var(--warna-emas) !important; 
     height: 40px !important;
     transition: all 0.2s ease !important;
     border: 1px solid rgba(255,255,255,0.2) !important;
-}
 .btn-sultan-twin:hover {
     transform: translateY(-2px) !important;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
     border-color: rgba(255,255,255,0.5) !important;
-}
 /* ===================================================================
    10. SULTAN GLOBAL UI KIT (STANDARDIZATION V5.0)
    =================================================================== */
-
 /* A. SEMANTIC MODAL HEADERS */
 .sultan-header-navy { background: #1D3573 !important; color: #fff !important; padding: 0.75rem 1.5rem !important; border-bottom: 3px solid rgba(0,0,0,0.15) !important; }
 .sultan-header-indigo { background: #4F46E5 !important; color: #fff !important; padding: 0.75rem 1.5rem !important; border-bottom: 3px solid rgba(0,0,0,0.15) !important; }
 .sultan-header-emerald { background: #059669 !important; color: #fff !important; padding: 0.75rem 1.5rem !important; border-bottom: 3px solid rgba(0,0,0,0.15) !important; }
 .sultan-header-maroon { background: var(--warna-utama) !important; color: #fff !important; padding: 0.75rem 1.5rem !important; border-bottom: 3px solid rgba(0,0,0,0.15) !important; }
 .sultan-header-gold { background: #EAC947 !important; color: #1D3573 !important; padding: 0.75rem 1.5rem !important; border-bottom: 3px solid rgba(0,0,0,0.15) !important; }
-
 /* Ensure white text inside color headers */
 .sultan-header-navy h1, .sultan-header-navy h2, .sultan-header-navy h3, .sultan-header-navy h4, .sultan-header-navy h5, .sultan-header-navy h6, .sultan-header-navy .modal-title,
 .sultan-header-indigo h1, .sultan-header-indigo h2, .sultan-header-indigo h3, .sultan-header-indigo h4, .sultan-header-indigo h5, .sultan-header-indigo h6, .sultan-header-indigo .modal-title,
 .sultan-header-emerald h1, .sultan-header-emerald h2, .sultan-header-emerald h3, .sultan-header-emerald h4, .sultan-header-emerald h5, .sultan-header-emerald h6, .sultan-header-emerald .modal-title,
 .sultan-header-maroon h1, .sultan-header-maroon h2, .sultan-header-maroon h3, .sultan-header-maroon h4, .sultan-header-maroon h5, .sultan-header-maroon h6, .sultan-header-maroon .modal-title {
     color: #ffffff !important;
-}
-
 /* B. ELITE INFO BOXES (Glassmorphism + Accents) */
 .sultan-info-box {
     background: rgba(248, 250, 252, 0.8) !important;
@@ -3178,7 +2540,6 @@ body .modal-header-sultan .modal-title i { color: var(--warna-emas) !important; 
     align-items: flex-start !important;
     gap: 15px !important;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
-}
 .sultan-info-box i { font-size: 1.25rem; margin-top: 2px; }
 .sultan-info-box.info-navy { border-left-color: #1D3573 !important; color: #1e293b !important; }
 .sultan-info-box.info-navy i { color: #1D3573 !important; }
@@ -3188,7 +2549,6 @@ body .modal-header-sultan .modal-title i { color: var(--warna-emas) !important; 
 .sultan-info-box.info-emerald i { color: #059669 !important; }
 .sultan-info-box.info-gold { border-left-color: #EAC947 !important; }
 .sultan-info-box.info-gold i { color: #EAC947 !important; }
-
 /* C. EXTENDED BUTTON SYSTEM */
 .btn-sultan-outline {
     background: transparent !important;
@@ -3198,14 +2558,11 @@ body .modal-header-sultan .modal-title i { color: var(--warna-emas) !important; 
     padding: 10px 24px !important;
     border-radius: 12px !important;
     transition: all 0.2s ease !important;
-}
 .btn-sultan-outline:hover {
     background: #F1F5F9 !important;
     border-color: #CBD5E1 !important;
     color: #1e293b !important;
     transform: translateY(-1px);
-}
-
 /* Modal-sized small buttons */
 .btn-sultan-sm {
     padding: 8px 18px !important;
@@ -3213,8 +2570,6 @@ body .modal-header-sultan .modal-title i { color: var(--warna-emas) !important; 
     font-weight: 700 !important;
     border-radius: 10px !important;
     letter-spacing: 0.3px !important;
-}
-
 /* Standardized Premium Buttons (Taller) */
 .btn-sultan-standard {
     padding: 12px 28px !important;
@@ -3222,42 +2577,29 @@ body .modal-header-sultan .modal-title i { color: var(--warna-emas) !important; 
     font-weight: 700 !important;
     border-radius: 12px !important;
     transition: all 0.2s ease !important;
-}
-
 .btn-sultan-bold { font-weight: 800 !important; letter-spacing: 0.5px !important; }
-
 /* Color Variants */
 .btn-sultan-maroon {
     background-color: var(--warna-utama) !important;
     border-color: var(--warna-utama) !important;
     color: #ffffff !important;
-}
 .btn-sultan-maroon:hover {
     background-color: #6B0000 !important;
     transform: translateY(-1px);
-}
-
 .btn-sultan-emerald {
     background-color: #059669 !important;
     border-color: #059669 !important;
     color: #ffffff !important;
-}
 .btn-sultan-emerald:hover {
     background-color: #047857 !important;
     transform: translateY(-1px);
-}
-
 .btn-sultan-indigo {
     background-color: #4F46E5 !important;
     border-color: #4F46E5 !important;
     color: #ffffff !important;
-}
 .btn-sultan-indigo:hover {
     background-color: #4338CA !important;
     transform: translateY(-1px);
-}
-
-
 /* Standardized Badge System */
 .badge-sultan {
     padding: 5px 12px !important;
@@ -3266,26 +2608,19 @@ body .modal-header-sultan .modal-title i { color: var(--warna-emas) !important; 
     font-size: 11px !important;
     text-transform: uppercase;
     letter-spacing: 0.4px;
-}
-
 /* D. GLOW INPUTS */
 .form-control-sultan:focus {
     background: #fff !important;
     border-color: #4F46E5 !important;
     box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1) !important;
     outline: none !important;
-}
 .form-label-sultan {
     margin-bottom: 8px !important;
     display: inline-block;
     transition: all 0.2s ease;
-}
-
 /* F. PREMIUM NOTIFICATION ENGINE (Sultan Elite V6.4 - Sovereign) */
 .swal2-container {
     z-index: 10000 !important;
-}
-
 .sultan-alert-popup {
     background: rgba(255, 255, 255, 0.9) !important;
     backdrop-filter: blur(25px) saturate(180%) !important;
@@ -3296,18 +2631,12 @@ body .modal-header-sultan .modal-title i { color: var(--warna-emas) !important; 
     color: #1e293b !important;
     font-family: 'Satoshi', sans-serif !important;
     padding: 1rem !important;
-}
-
 .swal2-popup.sultan-alert-popup .swal2-title {
     font-size: 22px !important; font-weight: 800 !important; color: #1D3573 !important;
     margin-bottom: 0.5rem !important; letter-spacing: -0.5px !important;
-}
-
 .swal2-popup.sultan-alert-popup .swal2-html-container {
     font-size: 15px !important; color: #64748b !important; line-height: 1.6 !important;
     margin: 0.5rem 1rem !important; overflow: hidden !important;
-}
-
 /* Global Button Sovereignty (Overriding SWAL native while keeping logic) */
 .swal2-confirm.swal2-styled {
     border-radius: 14px !important;
@@ -3322,36 +2651,27 @@ body .modal-header-sultan .modal-title i { color: var(--warna-emas) !important; 
     transition: all 0.2s ease !important;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
     pointer-events: all !important;
-}
-
 .swal2-confirm.swal2-styled:hover { transform: translateY(-2px); filter: brightness(1.1); }
 .swal2-confirm.swal2-styled:focus { box-shadow: none !important; }
-
 /* Theme Colors */
 .swal2-popup.sultan-alert-popup .swal2-confirm.swal2-styled { background-color: var(--warna-utama) !important; } /* Default Maroon */
 .swal2-popup.sultan-success-popup .swal2-confirm.swal2-styled { background-color: #059669 !important; } /* Emerald for Success */
 .swal2-popup.sultan-warning-popup .swal2-confirm.swal2-styled { background-color: #d97706 !important; } /* Gold for Warning */
-
 .swal2-cancel.swal2-styled {
     background-color: #f1f5f9 !important; color: #475569 !important;
     border-radius: 14px !important; padding: 12px 40px !important;
     font-weight: 700 !important; text-transform: uppercase !important;
     min-width: 120px !important; border: none !important; margin: 10px !important;
-}
-
 /* Sultan Orbit Loader Fix */
 .sultan-orbit-icon { border: 0 !important; background: transparent !important; }
 .sultan-orbit {
     width: 50px; height: 50px; border: 4px solid #f1f5f9; border-top: 4px solid var(--warna-utama);
     border-radius: 50%; animation: sultan-spin 1s linear infinite; margin: 0 auto;
-}
 @keyframes sultan-spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
 @media (max-width: 768px) {
     .cb-card-body { padding: 0.75rem; }
     .cb-filter-toolbar { flex-direction: column; align-items: stretch; gap: 0.75rem; padding: 1rem; }
     .cb-select-pill { min-width: 100%; }
-}
 /* TailAdmin High-Fidelity Notification Standards (Photo-Matched) */
 .tail-notif {
     display: flex; align-items: center; position: relative;
@@ -3360,48 +2680,39 @@ body .modal-header-sultan .modal-title i { color: var(--warna-emas) !important; 
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     overflow: hidden; width: 100%; min-width: 320px;
     animation: sultan-reveal 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
 .dark .tail-notif { background: #24303F; border-color: #313D4A; }
-
 /* Icon Square Box with Soft BG */
 .tail-notif-icon-box {
     width: 44px; height: 44px; border-radius: 8px;
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0; font-size: 18px;
-}
 .tail-notif-success .tail-notif-icon-box { background: rgba(16, 185, 129, 0.1); color: #10B981; }
 .tail-notif-error .tail-notif-icon-box { background: rgba(239, 68, 68, 0.1); color: #EF4444; }
 .tail-notif-warning .tail-notif-icon-box { background: rgba(245, 158, 11, 0.1); color: #F59E0B; }
 .tail-notif-info .tail-notif-icon-box { background: rgba(60, 80, 224, 0.1); color: #3C50E0; }
-
 /* Thick Bottom Border Accent */
 .tail-notif-border {
     position: absolute; bottom: 0; left: 0; width: 100%; height: 6px;
-}
 .tail-notif-success .tail-notif-border { background: #10B981; }
 .tail-notif-error .tail-notif-border { background: #EF4444; }
 .tail-notif-warning .tail-notif-border { background: #F59E0B; }
 .tail-notif-info .tail-notif-border { background: #3C50E0; }
-
 .tail-notif-content { flex: 1; text-align: left; }
 .tail-notif-title { font-weight: 700; font-size: 16px; color: #1C2434; margin: 0; line-height: 1.2; }
 .dark .tail-notif-title { color: #FFFFFF; }
 .tail-notif-content p { margin-top: 4px; color: #64748B; font-weight: 500; font-size: 13px; margin-bottom: 0; }
 .dark .tail-notif-content p { color: rgba(255,255,255,0.7); }
-
 /* SweetAlert2 Modal Overrides for Tail-Toast Style */
 .tail-toast-popup {
     background: transparent !important;
     box-shadow: none !important;
     padding: 0 !important;
     overflow: visible !important;
-}
 .swal2-close { font-size: 20px !important; color: #64748B !important; outline: none !important; box-shadow: none !important; }
 .dark .swal2-close { color: #AEB7C0 !important; }
 /* 
    SULTAN ULTIMATE SYSTEM v2.5 (Global Overrides)
    ------------------------------------------------------------ */
-
 /* 1. COMPONENT: PREMIUM SPINNERS */
 .sk-spinner-premium {
     width: 44px; height: 44px;
@@ -3409,27 +2720,20 @@ body .modal-header-sultan .modal-title i { color: var(--warna-emas) !important; 
     border-top: 3.5px solid var(--warna-utama);
     border-radius: 50%;
     animation: sk-spin 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
 @keyframes sk-spin { to { transform: rotate(360deg); } }
-
 .sk-loader-wrapper {
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     padding: 3rem 1rem; gap: 1rem;
-}
 .sk-loading-text {
     font-size: 0.6875rem; font-weight: 900; color: #64748B;
     text-transform: uppercase; letter-spacing: 0.2em;
-}
 .dark .sk-loading-text { color: #AEB7C0; }
-
 /* 2. THEME: ULTIMATE DARK MODE COHESION */
 .dark select, .dark input, .dark textarea {
     background-color: rgba(255, 255, 255, 0.05) !important;
     color: #FFFFFF !important;
     border-color: rgba(255, 255, 255, 0.1) !important;
-}
 .dark select option { background-color: #1A222C !important; color: #FFFFFF !important; }
-
 /* 3. DATATABLES: PREMIUM DARK MODE */
 .dark .dataTables_wrapper .dataTables_info { color: #8A99AF !important; font-size: 0.75rem !important; }
 .dark .dataTables_paginate .paginate_button {
@@ -3441,129 +2745,97 @@ body .modal-header-sultan .modal-title i { color: var(--warna-emas) !important; 
     font-size: 0.75rem !important;
     padding: 6px 14px !important;
     transition: all 0.2s !important;
-}
 .dark .dataTables_paginate .paginate_button:hover {
     background: rgba(255, 255, 255, 0.15) !important;
     color: #FFFFFF !important;
-}
 .dark .dataTables_paginate .paginate_button.current,
 .dark .dataTables_paginate .paginate_button.current:hover {
     background: #3C50E0 !important;
     color: #FFFFFF !important;
     border-color: #3C50E0 !important;
     box-shadow: 0 4px 12px rgba(60, 80, 224, 0.4) !important;
-}
 .dark .dataTables_paginate .paginate_button.disabled { opacity: 0.3 !important; cursor: not-allowed !important; }
-
 /* Skeleton Animate */
 @keyframes sk-shimmer { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
 .sk-skeleton { animation: sk-shimmer 1.5s ease-in-out infinite; background: #F1F5F9; border-radius: 6px; }
 .dark .sk-skeleton { background: rgba(255, 255, 255, 0.05); }
-
 /* 
    SULTAN ULTIMATE SYSTEM v2.9 (High-Precision Typography Sync)
    ------------------------------------------------------------ */
-
 /* Total Border Silence (Final Artifact Killer) */
 .dark .main-header, .dark .main-sidebar, .dark .sidebar-drawer, .dark .content-wrapper, .dark .page-wrapper, .dark #main-navbar, .dark .cb-breadcrumb, .dark .cb-page-title {
     border: none !important;
     border-bottom: 0 !important;
     border-right: 0 !important;
     box-shadow: none !important;
-}
-
 /* Force Satoshi Primary Font (Safely) */
 body, h1, h2, h3, h4, h5, h6, th, td, input, select, textarea, button, p, span:not([class*="fa-"]), div:not([class*="fa-"]) {
   font-family: 'Satoshi', ui-sans-serif, system-ui, -apple-system, sans-serif !important;
-}
-
 /* Global Scrollbar Suppression */
 ::-webkit-scrollbar-track { background: transparent !important; }
 ::-webkit-scrollbar-corner { background: transparent !important; }
-
 /* BRANDING SYNC: Page Title Matches Brandlink */
 .sultan-title-sync {
   font-size: 1.25rem !important; /* 20px */
   font-weight: 900 !important;
   letter-spacing: -0.03em !important;
   line-height: 1 !important;
-}
-
 /* CONTENT SYNC: Page Content Matches Sidebar Links */
 .sultan-content-sync, 
 #tugas_tabelUtama td {
   font-size: 0.9375rem !important; /* 15px */
   font-weight: 500 !important;     /* Sidebar Link Weight */
   line-height: 1.4 !important;
-}
-
 /* Table Header Specificity Calibration (Weight Sync) */
 #tugas_tabelUtama th {
   font-size: 0.9375rem !important; /* 15px */
   font-weight: 900 !important;     /* Match Row Boldness */
   letter-spacing: normal !important; /* Remove thinning effect */
   line-height: 1.4 !important;
-}
-
 /* Table Header Specificity Calibration */
 #tugas_tabelUtama th {
   padding-top: 12px !important;
   padding-bottom: 12px !important;
   text-transform: uppercase !important;
-}
-
 /* Table Row Padding */
 #tugas_tabelUtama td {
   padding-top: 10px !important;
   padding-bottom: 10px !important;
-}
-
 /* Dark Mode Background Seal */
 .dark html, .dark body { background-color: #1A222C !important; }
-
 /* 8. MODAL REFINEMENT SYSTEM (Sultan v3.3) */
 .sk-modal-header-brand {
     display: flex; align-items: center; justify-content: space-between;
     padding: 0.625rem 1.5rem; border-bottom: 1px solid rgba(0,0,0,0.05);
     background: #FFFFFF; color: #1C2434;
-}
 .dark .sk-modal-header-brand { background: #24303F; border-bottom-color: rgba(255,255,255,0.05); color: #FFFFFF; }
-
 /* High-Impact Color Variants */
 .sk-modal-header-primary { background: #3C50E0 !important; color: #FFFFFF !important; border: none !important; }
 .sk-modal-header-warning { background: #FFA70B !important; color: #1C2434 !important; border: none !important; }
 .sk-modal-header-success { background: #10B981 !important; color: #FFFFFF !important; border: none !important; }
 .sk-modal-header-danger  { background: #E53E3E !important; color: #FFFFFF !important; border: none !important; }
-
 .sk-modal-title {
     display: flex; align-items: center; gap: 0.75rem;
     font-size: 0.9375rem !important; /* 15px */
     font-weight: 900 !important;
     text-transform: uppercase; letter-spacing: 0.05em; margin: 0;
-}
 .sk-modal-header-primary .sk-modal-title, .sk-modal-header-success .sk-modal-title, .sk-modal-header-danger .sk-modal-title { color: #FFFFFF !important; }
 .sk-modal-header-warning .sk-modal-title { color: #1C2434 !important; }
-
 .sk-modal-close {
     display: flex; align-items: center; justify-content: center;
     width: 2.25rem; height: 2.25rem; border-radius: 9999px;
     transition: all 0.2s; background: rgba(0,0,0,0.05);
-}
 .sk-modal-header-primary .sk-modal-close, .sk-modal-header-success .sk-modal-close, .sk-modal-header-danger .sk-modal-close { color: #FFFFFF !important; background: rgba(255,255,255,0.15); }
 .sk-modal-header-warning .sk-modal-close { color: #1C2434 !important; background: rgba(0,0,0,0.08); }
 .sk-modal-close:hover { transform: rotate(90deg); scale: 1.1; }
-
 .sk-modal-footer {
     display: flex; align-items: center; justify-content: flex-end; gap: 1rem;
     padding: 1.25rem 1.5rem; border-top: 1px solid rgba(0,0,0,0.05);
     background: #F9FAFB;
-}
 .dark .sk-modal-footer { border-top-color: rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); }
-
 /* ===================================================================
    11. SULTAN BLUEPRINT v4.1 (COMPONENT ENGINE)
    =================================================================== */
-
 :root {
     --sk-primary: #3C50E0;
     --sk-primary-hover: #2A3BB7;
@@ -3573,7 +2845,6 @@ body, h1, h2, h3, h4, h5, h6, th, td, input, select, textarea, button, p, span:n
     --sk-bg-section: #f8fafc;
     --sk-input-bg: #ffffff;
     --sk-input-border: #e2e8f0;
-}
 .dark {
     --sk-surface: #1a222c;
     --sk-border: rgba(255,255,255,0.05);
@@ -3581,8 +2852,6 @@ body, h1, h2, h3, h4, h5, h6, th, td, input, select, textarea, button, p, span:n
     --sk-bg-section: #0f172a;
     --sk-input-bg: #1a222c;
     --sk-input-border: rgba(255,255,255,0.1);
-}
-
 /* 1. SECTION TITLE (Standardized Underline) */
 .sk-section-title {
     font-size: 0.75rem; 
@@ -3594,9 +2863,7 @@ body, h1, h2, h3, h4, h5, h6, th, td, input, select, textarea, button, p, span:n
     border-bottom: 2px solid var(--sk-primary);
     width: fit-content;
     display: block;
-}
 .dark .sk-section-title { color: #818CF8; border-bottom-color: rgba(129, 140, 248, 0.4); }
-
 /* 2. CARD ARCHITECTURE */
 .sk-card {
     background: var(--sk-surface) !important;
@@ -3604,31 +2871,24 @@ body, h1, h2, h3, h4, h5, h6, th, td, input, select, textarea, button, p, span:n
     border-radius: 16px !important;
     box-shadow: 0 1px 3px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.04) !important;
     transition: all 0.3s ease;
-}
 .sk-card-header {
     padding: 0.85rem 1.25rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
 /* 3. BUTTON ENGINE */
 .sk-btn {
     display: inline-flex; align-items: center; justify-content: center; 
     font-family: 'Satoshi', sans-serif; font-weight: 900; text-transform: uppercase;
     border-radius: 10px; transition: all 0.2s; cursor: pointer; height: 38px;
     padding: 0 1.5rem; font-size: 11px; letter-spacing: 0.05em; border: none;
-}
 .sk-btn-primary {
     background: var(--sk-primary) !important; color: #fff !important;
     box-shadow: 0 4px 6px -1px rgba(60, 80, 224, 0.2) !important;
-}
 .sk-btn-primary:hover { background: var(--sk-primary-hover) !important; transform: translateY(-1px); }
 .sk-btn-secondary {
     background: #f1f5f9 !important; color: #475569 !important;
-}
 .dark .sk-btn-secondary { background: #1e293b !important; color: #cbd5e1 !important; }
-
 /* 4. FORM & INPUTS */
 .sk-form-input {
     background: var(--sk-input-bg) !important;
@@ -3642,19 +2902,14 @@ body, h1, h2, h3, h4, h5, h6, th, td, input, select, textarea, button, p, span:n
     color: var(--sk-text) !important;
     transition: all 0.2s;
     outline: none !important;
-}
 .sk-form-input:focus { border-color: var(--sk-primary) !important; box-shadow: 0 0 0 3px rgba(60, 80, 224, 0.1) !important; }
-
 /* 5. UNIVERSAL TABLE ENGINE (v5.0 Structural Blueprint) */
 .sk-table-lead { width: 100%; border-collapse: collapse; background: transparent; }
-
 /* Thead v5.0 Standard */
 .sk-table-lead thead tr {
     background: var(--sk-bg-section) !important;
     border-bottom: 1px solid var(--sk-border);
     transition: background 0.2s;
-}
-
 .sk-table-lead th {
     padding: 10px 12px !important;
     font-size: 0.875rem !important; /* 14px */
@@ -3663,16 +2918,12 @@ body, h1, h2, h3, h4, h5, h6, th, td, input, select, textarea, button, p, span:n
     text-transform: uppercase !important;
     letter-spacing: 0.05em !important;
     white-space: nowrap;
-}
 .dark .sk-table-lead th { color: #818CF8 !important; }
-
 /* Tbody v5.0 Standard */
 .sk-table-lead td {
     padding: 10px 12px !important;
     vertical-align: middle;
     transition: all 0.2s;
-}
-
 /* Typography Hierarchy inside sk-table-lead */
 .sk-table-lead .primary-text {
     font-size: 0.9375rem !important; /* 15px */
@@ -3680,8 +2931,6 @@ body, h1, h2, h3, h4, h5, h6, th, td, input, select, textarea, button, p, span:n
     color: var(--sk-text) !important;
     display: block;
     line-height: 1.2;
-}
-
 .sk-table-lead .secondary-text {
     font-size: 0.75rem !important; /* 12px */
     font-weight: 700 !important;
@@ -3690,16 +2939,12 @@ body, h1, h2, h3, h4, h5, h6, th, td, input, select, textarea, button, p, span:n
     letter-spacing: 0.05em;
     display: block;
     margin-top: 2px;
-}
 .dark .sk-table-lead .secondary-text { color: #94A3B8 !important; }
-
 .sk-table-lead .highlight-text {
     color: var(--sk-primary) !important;
     font-weight: 900 !important;
     text-transform: uppercase;
-}
 .dark .sk-table-lead .highlight-text { color: #818CF8 !important; }
-
 /* Filter Grid Wrapper Sync */
 .sk-filter-grid {
     display: flex;
@@ -3708,8 +2953,6 @@ body, h1, h2, h3, h4, h5, h6, th, td, input, select, textarea, button, p, span:n
     align-items: center;
     gap: 0.75rem; /* 12px matching SK blueprint */
     width: 100%;
-}
-
 /* 6. TABLE AUDIT LOGS (v5.2 Standard) */
 .sk-log-container { display: flex; flex-direction: column; gap: 5px; }
 .sk-log-item {
@@ -3717,11 +2960,9 @@ body, h1, h2, h3, h4, h5, h6, th, td, input, select, textarea, button, p, span:n
     font-size: 10px !important; font-weight: 700 !important;
     text-transform: uppercase; letter-spacing: 0.05em;
     color: #64748B; line-height: 1;
-}
 .dark .sk-log-item { color: #94A3B8; }
 .sk-log-label { font-weight: 900 !important; opacity: 0.6; min-width: 65px; }
 .sk-log-icon { width: 14px; text-align: center; opacity: 0.4; font-size: 11px; }
-
 /* 7. PREVIEW BUTTON (Standardized Premium) */
 .sk-btn-preview-premium {
     display: inline-flex; align-items: center; justify-content: center;
@@ -3730,14 +2971,11 @@ body, h1, h2, h3, h4, h5, h6, th, td, input, select, textarea, button, p, span:n
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
     color: var(--sk-primary) !important;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
 .sk-btn-preview-premium:hover {
     background: var(--sk-primary) !important;
     color: #ffffff !important;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px -2px rgba(60, 80, 224, 0.4);
-}
-
 /* 8. PREVIEW BUTTON DANGER (v5.3 Standard) */
 .sk-btn-preview-danger {
     display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -3748,22 +2986,16 @@ body, h1, h2, h3, h4, h5, h6, th, td, input, select, textarea, button, p, span:n
     font-size: 11px !important; font-weight: 900 !important;
     text-transform: uppercase; letter-spacing: 0.1em;
     transition: all 0.2s;
-}
 .sk-btn-preview-danger:hover {
     background: #E53E3E !important; color: #fff !important;
     transform: translateY(-2px); box-shadow: 0 4px 12px rgba(229, 62, 62, 0.3);
-}
-
 /* 9. PHYSICAL AUDIT COLUMNS (v5.3 Standard) */
 .sk-audit-date { font-size: 13px !important; font-weight: 900 !important; color: var(--sk-text) !important; line-height: 1.2; }
 .sk-audit-user { font-size: 11px !important; font-weight: 700 !important; color: #64748B !important; text-transform: uppercase; letter-spacing: 0.05em; }
 .dark .sk-audit-user { color: #94A3B8 !important; }
-
 .dataTables_wrapper .dataTables_info, .dataTables_wrapper .sultan-dt-info {
     font-size: 14px !important; font-weight: 700 !important; color: #64748b !important;
-}
 .dark .dataTables_wrapper .dataTables_info { color: #94A3B8 !important; }
-
 .dataTables_wrapper .dataTables_length select,
 .dataTables_wrapper .dataTables_filter input {
     background: var(--sk-input-bg) !important;
@@ -3775,29 +3007,22 @@ body, h1, h2, h3, h4, h5, h6, th, td, input, select, textarea, button, p, span:n
     color: var(--sk-text) !important;
     font-family: 'Satoshi', sans-serif !important;
     outline: none;
-}
 .dataTables_wrapper .dataTables_length select:focus,
 .dataTables_wrapper .dataTables_filter input:focus {
     border-color: var(--sk-primary) !important;
     box-shadow: 0 0 0 3px rgba(60, 80, 224, 0.1);
-}
-
 /* 6. MODAL & OVERLAY ARCHITECTURE */
 .sk-overlay {
     background: rgba(15, 23, 42, 0.6) !important;
     backdrop-filter: blur(8px) !important;
     -webkit-backdrop-filter: blur(8px) !important;
-}
 .sk-modal {
     border-radius: 24px !important;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
     background: var(--sk-surface) !important;
     border: none !important;
-}
 .sk-modal-header {
     border-radius: 24px 24px 0 0 !important;
-}
-
 /* 7. CUSTOM COMPONENTS */
 .sk-spinner-premium {
     width: 40px; height: 40px;
@@ -3805,15 +3030,12 @@ body, h1, h2, h3, h4, h5, h6, th, td, input, select, textarea, button, p, span:n
     border-top-color: var(--sk-primary);
     border-radius: 50%;
     animation: spin 1s linear infinite;
-}
 @keyframes spin { to { transform: rotate(360deg); } }
-
 .sultan-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
 .sultan-scroll::-webkit-scrollbar-track { background: transparent; }
 .sultan-scroll::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
 .dark .sultan-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
 .sultan-scroll::-webkit-scrollbar-thumb:hover { background: var(--sk-primary); }
-
 /* 8. PAGINATION SYNC */
 .dataTables_wrapper .pagination-wrapper .paginate_button {
     font-size: 14px !important;
@@ -3825,8 +3047,6 @@ body, h1, h2, h3, h4, h5, h6, th, td, input, select, textarea, button, p, span:n
     align-items: center !important;
     justify-content: center !important;
     border-radius: 10px !important;
-}
-
 /* 4. BUTTON COMPONENTS (ABSOLUTE 38px DIMENSION LOCK) */
 .sms-btn, 
 button.sms-btn-primary, 
@@ -3848,21 +3068,15 @@ button.sms-btn-icon,
     letter-spacing: 0.05em !important;
     border: none !important;
     cursor: pointer !important;
-}
-
 .sms-btn-primary { 
     background: #3C50E0 !important; 
     color: #FFFFFF !important; 
     box-shadow: 0 4px 12px rgba(60, 80, 224, 0.3) !important; 
-}
 .sms-btn-primary:hover { transform: translateY(-1px) !important; box-shadow: 0 6px 16px rgba(60, 80, 224, 0.4) !important; }
-
 .sms-btn-ghost { 
     background: rgba(60, 80, 224, 0.05) !important; 
     color: #3C50E0 !important;
     border: 1px solid rgba(60, 80, 224, 0.2) !important;
-}
-
 .sms-btn-icon {
     width: 38px !important;
     min-width: 38px !important;
@@ -3870,7 +3084,6 @@ button.sms-btn-icon,
     background: #F1F5F9 !important; 
     color: #64748B !important; 
     border: 1px solid #E2E8F0 !important;
-}
 .dark .sms-btn-icon { background: rgba(255,255,255,0.05) !important; color: #AEB7C0 !important; border-color: rgba(255,255,255,0.1) !important; }
 </style>
-}
+</style>

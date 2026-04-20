@@ -274,11 +274,12 @@
   --sidebar-logo-text: #111928;    /* very dark for logo */
 }
 
-.dark {
+/* Unified Dark Theme Support */
+.dark, .dark-mode {
   --sidebar-bg: #1C2434;
-  --sidebar-border: #313D4A;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
   --sidebar-active-bg: #233A5F;
-  --sidebar-active-text: #818CF8;  /* indigo-400 in dark */
+  --sidebar-active-text: #818CF8;
   --sidebar-text: #8A99AF;
   --sidebar-hover-bg: #253047;
   --sidebar-group-color: #64748B;
@@ -308,18 +309,22 @@
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 9999;
+  z-index: 99999; /* Boosted for Absolute Visibility */
   display: flex;
   height: 100vh;
   width: var(--sidebar-width);
   flex-direction: column;
   background-color: var(--sidebar-bg);
   border-right: 1px solid var(--sidebar-border);
-  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), background-color 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
   transform: translateX(-100%);
   overflow: hidden;
 }
-.dark .sidebar-drawer { background-color: var(--sidebar-bg); border-right-color: var(--sidebar-border); }
+
+.dark .sidebar-drawer, .dark-mode .sidebar-drawer { 
+  background-color: var(--sidebar-bg); 
+  border-right-color: var(--sidebar-border); 
+}
 
 @media (min-width: 1024px) {
   .sidebar-drawer { 
