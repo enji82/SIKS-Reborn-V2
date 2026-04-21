@@ -696,11 +696,11 @@
 
             var badgeStatus = tugas_buildBadgeStatus(row.status, row.keterangan);
 
-            // 1. Tombol Aksi (SMS v7.2 Standard)
+            // 1. Tombol Aksi (SMS v45.0 - Ghost-to-Branded)
             var actionButtons = '<div class="flex items-center justify-center gap-2">' +
-                '<button type="button" class="sms-btn-icon" title="Verifikasi/Review" onclick="tugas_bukaModalVerif(\'' + id + '\')"><i class="fas fa-' + (TUGAS_IS_ADMIN ? 'check-double' : 'eye') + '"></i></button>' +
-                '<button type="button" class="sms-btn-icon" style="' + (isApproved ? 'filter: grayscale(1); opacity: 0.3; cursor: not-allowed;' : '') + '" title="Edit Data" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalEdit('" + id + "')") + '"><i class="fas fa-pencil-alt"></i></button>' +
-                '<button type="button" class="sms-btn-icon" style="' + (isApproved ? 'filter: grayscale(1); opacity: 0.3; cursor: not-allowed;' : '') + '" title="Hapus Data" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalHapus('" + id + "')") + '"><i class="fas fa-trash-alt"></i></button>' +
+                '<button type="button" class="sms-action-btn sms-action-btn-primary" title="Verifikasi/Review" onclick="tugas_bukaModalVerif(\'' + id + '\')"><i class="fas fa-' + (TUGAS_IS_ADMIN ? 'check-double' : 'eye') + '"></i></button>' +
+                '<button type="button" class="sms-action-btn sms-action-btn-primary" style="' + (isApproved ? 'filter: grayscale(1); opacity: 0.3; cursor: not-allowed;' : '') + '" title="Edit Data" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalEdit('" + id + "')") + '"><i class="fas fa-pencil-alt"></i></button>' +
+                '<button type="button" class="sms-action-btn sms-action-btn-danger" style="' + (isApproved ? 'filter: grayscale(1); opacity: 0.3; cursor: not-allowed;' : '') + '" title="Hapus Data" onclick="' + (isApproved ? 'void(0)' : "tugas_bukaModalHapus('" + id + "')") + '"><i class="fas fa-trash-alt"></i></button>' +
                 '</div>';
 
             // 2. Format Tanggal SK
@@ -709,23 +709,23 @@
                 var p = tglSkDisplay.split('-'); tglSkDisplay = p[2] + '-' + p[1] + '-' + p[0];
             }
 
-            // 3. Tombol Dokumen (SMS Ghost Style)
-            var btnDokumen = safeUrl.length > 5 ? '<button type="button" class="sms-btn-ghost !h-8 !px-3" onclick="tugas_bukaPreview(\'' + safeUrlJs + '\')"><i class="fas fa-file-pdf mr-1"></i> LIHAT</button>' : '-';
+            // 3. Tombol Dokumen (SMS Ghost Style - Text Only)
+            var btnDokumen = safeUrl.length > 5 ? '<button type="button" class="sms-btn-ghost !h-8 !px-3" onclick="tugas_bukaPreview(\'' + safeUrlJs + '\')">LIHAT</button>' : '-';
 
             // 4. Log Details (Executive Standard)
             var uiDikirim = '<div class="flex flex-col"><div class="sk-row-title !text-[13px]">' + (row.tglUnggah || '-') + '</div><div class="sk-row-subtitle">' + (row.userInput || '-') + '</div></div>';
             var uiDiubah = row.tglUpdate && row.tglUpdate !== '-' ? '<div class="flex flex-col"><div class="sk-row-title !text-[13px]">' + row.tglUpdate + '</div><div class="sk-row-subtitle">' + (row.userUpdate || '-') + '</div></div>' : '-';
             var uiVerif = row.tglVerval && row.tglVerval !== '-' ? '<div class="flex flex-col"><div class="sk-row-title !text-[13px] !text-primary">' + row.tglVerval + '</div><div class="sk-row-subtitle">' + (row.verifikator || '-') + '</div></div>' : '-';
 
-            // KOMBINASI KOLOM (Executive Hierarchy)
+            // KOMBINASI KOLOM (Executive Hierarchy - Text Only)
             var uiUnit = '<div class="sk-row-title">' + tugas_cleanText(row.namaSd) + '</div>' + 
-                         '<div class="sk-row-subtitle"><i class="fas fa-fingerprint opacity-40"></i> ' + tugas_cleanText(row.npsn || '-') + ' &bull; ' + tugas_cleanText(row.kriteria || 'TUGAS') + '</div>';
+                         '<div class="sk-row-subtitle">' + tugas_cleanText(row.npsn || '-') + ' &bull; ' + tugas_cleanText(row.kriteria || 'TUGAS') + '</div>';
             
             var uiTahunSem = '<div class="sk-row-title !text-primary">' + tugas_cleanText(row.tahun) + '</div>' + 
                               '<div class="sk-row-subtitle uppercase font-black">' + tugas_cleanText(row.semester) + '</div>';
             
             var uiSkDetail = '<div class="sk-row-title">' + safeNoSk + '</div>' +
-                             '<div class="sk-row-subtitle flex items-center gap-1"><i class="far fa-calendar-alt opacity-40"></i> ' + tglSkDisplay + '</div>';
+                             '<div class="sk-row-subtitle flex items-center gap-1">' + tglSkDisplay + '</div>';
 
             dtArray.push([
                 actionButtons,
