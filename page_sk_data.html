@@ -30,27 +30,27 @@
         </div>
     </div>
 
-    <!-- 2. KARTU FILTER (V30.0 - LAPBUL STYLE ADAPTATION) -->
-    <div class="sms-table-card p-2 md:p-3 shadow-sm border-l-4 border-l-primary/30 mb-6">
-        <div class="flex flex-wrap items-center gap-2 md:gap-3">
+    <!-- 2. KARTU FILTER (V31.0 - THEME HARMONIZED) -->
+    <div class="sms-table-card p-3 shadow-lg border-l-4 border-l-primary/40 mb-6">
+        <div class="flex flex-wrap items-center gap-3">
             
             <!-- Filter Unit -->
-            <select id="tugas_filterUnit" class="rounded-xl border border-stroke bg-transparent py-1.5 px-3 text-xs font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark dark:bg-boxdark min-w-[200px]" disabled>
+            <select id="tugas_filterUnit" class="sms-input-premium !h-9 !py-0 !text-xs min-w-[200px] flex-grow lg:flex-grow-0" disabled>
                 <option value="">- Memvalidasi Akses... -</option>
             </select>
 
             <!-- Filter Tahun -->
-            <select id="tugas_filterTahun" class="rounded-xl border border-stroke bg-transparent py-1.5 px-3 text-xs font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark dark:bg-boxdark min-w-[100px]"></select>
+            <select id="tugas_filterTahun" class="sms-input-premium !h-9 !py-0 !text-xs min-w-[100px]" title="Tahun Ajaran"></select>
 
             <!-- Filter Semester -->
-            <select id="tugas_filterSemester" class="rounded-xl border border-stroke bg-transparent py-1.5 px-3 text-xs font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark dark:bg-boxdark min-w-[140px]">
+            <select id="tugas_filterSemester" class="sms-input-premium !h-9 !py-0 !text-xs min-w-[140px]">
                 <option value="">- Semua Semester -</option>
                 <option value="Semester 1">Semester 1</option>
                 <option value="Semester 2">Semester 2</option>
             </select>
 
             <!-- Filter Status -->
-            <select id="tugas_filterStatus" class="rounded-xl border border-stroke bg-transparent py-1.5 px-3 text-xs font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark dark:bg-boxdark min-w-[140px]">
+            <select id="tugas_filterStatus" class="sms-input-premium !h-9 !py-0 !text-xs min-w-[140px]">
                 <option value="">- Semua Status -</option>
                 <option value="Diproses">Diproses</option>
                 <option value="Revisi">Revisi</option>
@@ -58,19 +58,17 @@
                 <option value="Ditolak">Ditolak</option>
             </select>
 
-            <div class="h-6 w-[1px] bg-stroke dark:bg-white/10 hidden md:block mx-1"></div>
-
-            <!-- Action: Refresh -->
-            <button type="button" id="tugas_btnCari" class="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-stroke bg-white text-primary hover:bg-gray-100 dark:border-strokedark dark:bg-boxdark shadow-sm transition-all" title="Refresh Data">
-                <i class="fab fa-gg"></i>
-            </button>
-
-            <!-- Action: Create (Right Aligned) -->
-            <div class="ml-auto">
-                <button type="button" id="tugas_btnTambah" class="inline-flex items-center justify-center gap-2 rounded-xl bg-primary py-2 px-4 text-center text-xs font-bold text-white hover:bg-opacity-90 transition-all shadow-sm disabled:opacity-50" disabled>
-                    <i class="fas fa-plus"></i> TAMBAH SK
+            <!-- Actions -->
+            <div class="flex items-center gap-2 ml-auto">
+                <button type="button" id="tugas_btnCari" class="sms-btn-icon !h-9 !w-9" title="Refresh Data">
+                    <i class="fab fa-gg text-primary"></i>
+                </button>
+                <button type="button" id="tugas_btnTambah" class="sms-btn-primary !h-9 !text-xs shadow-none disabled:opacity-50" disabled>
+                    <i class="fas fa-plus mr-1"></i> TAMBAH SK
                 </button>
             </div>
+        </div>
+    </div>
         </div>
     </div>
 
