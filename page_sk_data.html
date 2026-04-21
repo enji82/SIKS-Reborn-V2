@@ -721,8 +721,8 @@
             var uiUnit = '<div class="sk-row-title">' + tugas_cleanText(row.namaSd) + '</div>' + 
                          '<div class="sk-row-subtitle">' + tugas_cleanText(row.npsn || '-') + '</div>';
             
-            var uiTahunSem = '<div class="sk-row-title !text-primary">' + tugas_cleanText(row.tahun) + '</div>' + 
-                              '<div class="sk-row-subtitle uppercase font-black">' + tugas_cleanText(row.semester) + '</div>';
+            var uiTahunSem = '<div class="sk-row-title">' + tugas_cleanText(row.tahun) + '</div>' + 
+                              '<div class="sk-row-subtitle">' + tugas_cleanText(row.semester) + '</div>';
             
             var uiSkDetail = '<div class="sk-row-title">' + safeNoSk + '</div>' +
                              '<div class="sk-row-subtitle">' + tugas_cleanText(row.kriteria || 'TUGAS') + ' &bull; ' + tglSkDisplay + '</div>';
