@@ -32,22 +32,26 @@
 
     <!-- 2. KARTU FILTER (V7.0 FINAL - PRECISION) -->
     <div class="sms-table-card p-4 shadow-sm border-l-4 border-l-primary/30 mb-6">
-        <div class="flex flex-wrap items-center gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5 items-end">
+            
             <!-- Filter Unit -->
-            <div class="flex flex-col gap-1">
-                <select id="tugas_filterUnit" class="sms-input-premium min-w-[240px]" disabled>
+            <div class="lg:col-span-4 flex flex-col">
+                <label class="sk-form-label"><i class="fas fa-school mr-1"></i> Satuan Pendidikan / Unit Kerja</label>
+                <select id="tugas_filterUnit" class="sms-input-premium w-full" disabled>
                     <option value="">- MEMVALIDASI AKSES... -</option>
                 </select>
             </div>
 
             <!-- Filter Tahun -->
-            <div class="flex flex-col gap-1">
-                <select id="tugas_filterTahun" class="sms-input-premium min-w-[120px]"></select>
+            <div class="lg:col-span-2 flex flex-col">
+                <label class="sk-form-label"><i class="fas fa-calendar-alt mr-1"></i> Tahun Ajaran</label>
+                <select id="tugas_filterTahun" class="sms-input-premium w-full"></select>
             </div>
 
             <!-- Filter Semester -->
-            <div class="flex flex-col gap-1">
-                <select id="tugas_filterSemester" class="sms-input-premium min-w-[160px]">
+            <div class="lg:col-span-2 flex flex-col">
+                <label class="sk-form-label"><i class="fas fa-layer-group mr-1"></i> Semester</label>
+                <select id="tugas_filterSemester" class="sms-input-premium w-full">
                     <option value="">- SEMUA SEMESTER -</option>
                     <option value="Semester 1">SEMESTER 1</option>
                     <option value="Semester 2">SEMESTER 2</option>
@@ -55,8 +59,9 @@
             </div>
 
             <!-- Filter Status -->
-            <div class="flex flex-col gap-1">
-                <select id="tugas_filterStatus" class="sms-input-premium min-w-[160px]">
+            <div class="lg:col-span-2 flex flex-col">
+                <label class="sk-form-label"><i class="fas fa-check-circle mr-1"></i> Status Verifikasi</label>
+                <select id="tugas_filterStatus" class="sms-input-premium w-full">
                     <option value="">- SEMUA STATUS -</option>
                     <option value="Diproses">DIPROSES</option>
                     <option value="Revisi">REVISI</option>
@@ -65,20 +70,16 @@
                 </select>
             </div>
 
-            <!-- Separator -->
-            <div class="h-8 w-[1px] bg-stroke dark:bg-white/10 hidden lg:block mx-1"></div>
-
-            <!-- Action: Refresh -->
-            <button type="button" id="tugas_btnCari" class="sms-btn-icon" title="Refresh Data">
-                <i class="fab fa-gg"></i>
-            </button>
-
-            <!-- Action: Create (Right Aligned) -->
-            <div class="ml-auto">
-                <button type="button" id="tugas_btnTambah" class="sms-btn-primary disabled:opacity-50" disabled>
+            <!-- Actions Console -->
+            <div class="lg:col-span-2 flex items-center gap-3">
+                <button type="button" id="tugas_btnCari" class="sms-btn-icon flex-shrink-0" title="Refresh Data">
+                    <i class="fab fa-gg"></i>
+                </button>
+                <button type="button" id="tugas_btnTambah" class="sms-btn-primary flex-1 disabled:opacity-50" disabled>
                     <i class="fas fa-plus"></i> TAMBAH SK
                 </button>
             </div>
+
         </div>
     </div>
 
