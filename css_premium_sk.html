@@ -110,12 +110,12 @@ header.sms-header-group {
 }
 
 .sms-header-underline {
-    width: 110px !important;
-    height: 4px !important;
-    background-color: var(--sk-primary) !important;
+    width: 250px !important;
+    height: 3px !important;
+    background: linear-gradient(to right, var(--sk-primary) 0%, rgba(60, 80, 224, 0.4) 50%, transparent 100%) !important;
     border-radius: 99px !important;
-    margin-top: 6px !important;
-    box-shadow: 0 0 15px rgba(60, 80, 224, 0.4) !important;
+    margin-top: 8px !important;
+    opacity: 0.8 !important;
 }
 
 /* 5. SULTAN CARD SYSTEM (v32.0) */
@@ -134,12 +134,19 @@ header.sms-header-group {
 /* 6. SULTAN ALERT SYSTEM (BLUEPRINT v7.0) */
 .sk-alert-blue {
     display: flex; align-items: flex-start; gap: 12px;
-    padding: 14px 18px; border-radius: 12px;
-    background: #EFF6FF !important; 
-    border: 1.5px solid #DBEAFE !important;
+    padding: 12px 18px; border-radius: 12px;
+    background: rgba(239, 246, 255, 0.5) !important; 
+    border: 1px solid rgba(191, 219, 254, 0.5) !important;
     border-left: 5px solid var(--sk-primary) !important;
-    color: #1D4ED8 !important; 
-    box-shadow: 0 4px 6px -1px rgba(29, 78, 216, 0.05);
+    color: var(--sk-primary) !important; 
+    box-shadow: 0 4px 12px rgba(29, 78, 216, 0.03);
+    transition: all 0.3s ease;
+}
+
+.dark .sk-alert-blue {
+    background: rgba(30, 64, 175, 0.1) !important;
+    border-color: rgba(30, 64, 175, 0.2) !important;
+    color: #60A5FA !important;
 }
 
 /* 7. SULTAN GLOBAL ACTION SYSTEM (v58.0 - Cache Bust) */
