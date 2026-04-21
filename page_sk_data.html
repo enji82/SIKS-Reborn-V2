@@ -88,17 +88,17 @@
             </div>
             <div id="tugas_tableState" style="display: none;">
                 <table id="tugas_tabelUtama" class="w-full table-auto border-collapse sms-table-executive">
-                    <thead>
+                    <thead class="sms-thead-executive">
                         <tr>
-                            <th class="sms-th-executive text-center" style="width:120px;">AKSI</th>
-                            <th class="sms-th-executive">UNIT KERJA</th>
-                            <th class="sms-th-executive text-center">PERIODE</th>
-                            <th class="sms-th-executive text-center">DETAIL SK</th>
-                            <th class="sms-th-executive text-center">BERKAS</th>
-                            <th class="sms-th-executive text-center">STATUS</th>
-                            <th class="sms-th-executive text-center">LOG INPUT</th>
-                            <th class="sms-th-executive text-center">LOG UPDATE</th>
-                            <th class="sms-th-executive text-center">VERIFIKASI</th>
+                            <th class="sms-th-executive text-center" style="width:120px;"><i class="fas fa-bolt mr-1"></i> AKSI</th>
+                            <th class="sms-th-executive"><i class="fas fa-school mr-1"></i> UNIT KERJA</th>
+                            <th class="sms-th-executive text-center"><i class="fas fa-calendar-alt mr-1"></i> PERIODE</th>
+                            <th class="sms-th-executive text-center"><i class="fas fa-file-invoice mr-1"></i> DETAIL SK</th>
+                            <th class="sms-th-executive text-center"><i class="fas fa-copy mr-1"></i> BERKAS</th>
+                            <th class="sms-th-executive text-center"><i class="fas fa-shield-alt mr-1"></i> STATUS</th>
+                            <th class="sms-th-executive text-center"><i class="fas fa-history mr-1"></i> LOG INPUT</th>
+                            <th class="sms-th-executive text-center"><i class="fas fa-edit mr-1"></i> LOG UPDATE</th>
+                            <th class="sms-th-executive text-center"><i class="fas fa-check-double mr-1"></i> VERIFIKASI</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -576,9 +576,9 @@
                 TUGAS_TABEL_INSTANCE = $('#tugas_tabelUtama').DataTable({
                     "destroy": true, "ordering": false, "pageLength": 10, "autoWidth": false,
                     "deferRender": true, 
-                    "dom": '<"px-6 py-4 border-b border-gray-100 dark:border-white/5"<"flex items-center justify-between gap-4"l f>>' +
+                    "dom": '<"px-6 py-4 border-b border-gray-100 dark:border-white/5 bg-gray-50/30 dark:bg-black/10"<"flex items-center justify-between gap-4"l f>>' +
                            '<"sultan-scroll overflow-x-auto"t>' +
-                           '<"px-6 py-4 border-t border-gray-100 dark:border-white/5"<"flex items-center justify-between"i p>>',
+                           '<"px-6 py-4 border-t border-gray-100 dark:border-white/5 bg-gray-50/30 dark:bg-black/10"<"flex items-center justify-between"i p>>',
                     "columnDefs": [
                         { "targets": 0, "width": "1%", "className": "text-center whitespace-nowrap" },
                         { "targets": [1,6,7], "className": "text-left" }, 
@@ -713,19 +713,19 @@
             var btnDokumen = safeUrl.length > 5 ? '<button type="button" class="sms-btn-ghost !h-8 !px-3" onclick="tugas_bukaPreview(\'' + safeUrlJs + '\')"><i class="fas fa-file-pdf mr-1"></i> LIHAT</button>' : '-';
 
             // 4. Log Details (Executive Standard)
-            var uiDikirim = '<div class="flex flex-col"><span class="font-bold text-black dark:text-white">' + (row.tglUnggah || '-') + '</span><span class="text-[12px] text-gray-400">' + (row.userInput || '-') + '</span></div>';
-            var uiDiubah = row.tglUpdate && row.tglUpdate !== '-' ? '<div class="flex flex-col"><span class="font-bold text-black dark:text-white">' + row.tglUpdate + '</span><span class="text-[12px] text-gray-400">' + (row.userUpdate || '-') + '</span></div>' : '-';
-            var uiVerif = row.tglVerval && row.tglVerval !== '-' ? '<div class="flex flex-col"><span class="font-bold text-primary">' + row.tglVerval + '</span><span class="text-[12px] text-gray-400">' + (row.verifikator || '-') + '</span></div>' : '-';
+            var uiDikirim = '<div class="flex flex-col"><div class="sk-row-title !text-[12px]">' + (row.tglUnggah || '-') + '</div><div class="sk-row-subtitle">' + (row.userInput || '-') + '</div></div>';
+            var uiDiubah = row.tglUpdate && row.tglUpdate !== '-' ? '<div class="flex flex-col"><div class="sk-row-title !text-[12px]">' + row.tglUpdate + '</div><div class="sk-row-subtitle">' + (row.userUpdate || '-') + '</div></div>' : '-';
+            var uiVerif = row.tglVerval && row.tglVerval !== '-' ? '<div class="flex flex-col"><div class="sk-row-title !text-[12px] !text-primary">' + row.tglVerval + '</div><div class="sk-row-subtitle">' + (row.verifikator || '-') + '</div></div>' : '-';
 
             // KOMBINASI KOLOM (Executive Hierarchy)
             var uiUnit = '<div class="sk-row-title">' + tugas_cleanText(row.namaSd) + '</div>' + 
-                         '<div class="sk-row-subtitle">' + tugas_cleanText(row.npsn || '-') + '</div>';
+                         '<div class="sk-row-subtitle"><i class="fas fa-fingerprint opacity-40"></i> ' + tugas_cleanText(row.npsn || '-') + ' &bull; ' + tugas_cleanText(row.kriteria || 'TUGAS') + '</div>';
             
-            var uiTahunSem = '<div class="sk-row-title">' + tugas_cleanText(row.tahun) + '</div>' + 
-                             '<div class="sk-row-subtitle text-primary !opacity-100 uppercase">' + tugas_cleanText(row.semester) + '</div>';
+            var uiTahunSem = '<div class="sk-row-title !text-primary">' + tugas_cleanText(row.tahun) + '</div>' + 
+                              '<div class="sk-row-subtitle uppercase font-black">' + tugas_cleanText(row.semester) + '</div>';
             
             var uiSkDetail = '<div class="sk-row-title">' + safeNoSk + '</div>' +
-                             '<div class="sk-row-subtitle flex items-center gap-1"><i class="far fa-calendar-alt opacity-40"></i> ' + tglSkDisplay + ' &bull; <span class="text-primary/70">' + tugas_cleanText(row.kriteria) + '</span></div>';
+                             '<div class="sk-row-subtitle flex items-center gap-1"><i class="far fa-calendar-alt opacity-40"></i> ' + tglSkDisplay + '</div>';
 
             dtArray.push([
                 actionButtons,
