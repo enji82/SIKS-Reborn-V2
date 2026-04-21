@@ -58,13 +58,18 @@
                 <option value="Ditolak">Ditolak</option>
             </select>
 
-            <!-- Actions -->
-            <div class="flex items-center gap-2 ml-auto">
-                <button type="button" id="tugas_btnCari" class="sms-btn-icon !h-9 !w-9" title="Refresh Data">
-                    <i class="fab fa-gg text-primary"></i>
-                </button>
-                <button type="button" id="tugas_btnTambah" class="sms-btn-primary !h-9 !text-xs shadow-none disabled:opacity-50" disabled>
-                    <i class="fas fa-plus mr-1"></i> TAMBAH SK
+            <!-- Separator -->
+            <div class="h-6 w-[1px] bg-white/10 mx-1 hidden md:block"></div>
+
+            <!-- Action: Refresh with Integrated Spinner Logic -->
+            <button type="button" id="tugas_btnCari" class="sms-btn-icon !h-9 !w-9" title="Refresh Data">
+                <i class="fab fa-gg text-primary"></i>
+            </button>
+
+            <!-- Action: Create SK (Premium Primary) -->
+            <div class="ml-auto">
+                <button type="button" id="tugas_btnTambah" class="sms-btn-primary !h-9 !px-5 !text-xs !rounded-xl shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50" disabled>
+                    <i class="fas fa-plus mr-1.5"></i> TAMBAH SK
                 </button>
             </div>
         </div>
@@ -529,7 +534,7 @@
         var btn = $('#tugas_btnCari');
         var cacheKey = 'tugas_cache_full';
 
-        btn.prop('disabled', true).html('<i class="fab fa-gg fa-spin text-maroon"></i>');
+        btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin text-primary"></i>');
 
         // TURBO LOGIC: Load from cache first
         var cachedData = sessionStorage.getItem(cacheKey);
