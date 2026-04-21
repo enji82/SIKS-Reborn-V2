@@ -1121,13 +1121,13 @@
         var badge = "";
         
         if (st.includes('setuju') || st.includes('acc') || st.includes('ok') || st.includes('valid'))
-            badge = '<span class="sms-badge-pill sms-badge-success"><i class="fas fa-check-circle mr-1.5"></i> DISETUJUI</span>';
+            badge = '<span class="sms-badge-pill sms-badge-success">DISETUJUI</span>';
         else if (st.includes('revisi'))
-            badge = '<span class="sms-badge-pill sms-badge-info"><i class="fas fa-history mr-1.5"></i> REVISI</span>';
+            badge = '<span class="sms-badge-pill sms-badge-info">REVISI</span>';
         else if (st.includes('tolak'))
-            badge = '<span class="sms-badge-pill sms-badge-danger"><i class="fas fa-ban mr-1.5"></i> DITOLAK</span>';
+            badge = '<span class="sms-badge-pill sms-badge-danger">DITOLAK</span>';
         else
-            badge = '<span class="sms-badge-pill sms-badge-warning"><i class="fas fa-circle-notch fa-spin mr-1.5"></i> DIPROSES</span>';
+            badge = '<span class="sms-badge-pill sms-badge-warning">DIPROSES</span>';
 
         if (ket && ket.trim().length > 2 && (st.includes('revisi') || st.includes('tolak'))) {
             var safeKet = tugas_escapeJs(ket);

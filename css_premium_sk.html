@@ -227,6 +227,60 @@ header.sms-header-group {
     color: #FCD34D !important;
 }
 
+/* 8. SULTAN BADGE & ACTION SYSTEM (v45.0) */
+.sms-badge-pill {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 6px 14px !important;
+    border-radius: 99px !important;
+    font-size: 11px !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.05em !important;
+    white-space: nowrap !important;
+    text-transform: uppercase !important;
+}
+
+.sms-badge-success { background: rgba(16, 185, 129, 0.1) !important; color: #10B981 !important; }
+.sms-badge-info    { background: rgba(60, 80, 224, 0.1) !important; color: var(--sk-primary) !important; }
+.sms-badge-danger  { background: rgba(251, 84, 84, 0.1) !important; color: #FB5454 !important; }
+.sms-badge-warning { background: rgba(255, 186, 0, 0.1) !important; color: #FFBA00 !important; }
+
+/* Ghost-to-Branded Action Buttons */
+.sms-action-btn {
+    width: 38px !important;
+    height: 38px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 12px !important;
+    background: transparent !important;
+    border: 1.5px solid var(--sk-border) !important;
+    color: var(--sk-text-muted) !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    cursor: pointer !important;
+    font-size: 16px !important;
+}
+
+.sms-action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.sms-action-btn-primary:hover {
+    background: var(--sk-primary) !important;
+    border-color: var(--sk-primary) !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 4px 12px rgba(60, 80, 224, 0.3) !important;
+}
+
+.sms-action-btn-danger:hover {
+    background: #FB5454 !important;
+    border-color: #FB5454 !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 4px 12px rgba(251, 84, 84, 0.3) !important;
+}
+
 /* 6. PILL BADGES (EXECUTIVE TINT) */
 .sms-badge-pill {
     display: inline-flex; align-items: center; justify-content: center;
