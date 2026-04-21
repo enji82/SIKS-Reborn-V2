@@ -89,21 +89,22 @@ header.sms-header-group {
 }
 
 .sms-header-title {
-    font-size: 20px !important; 
+    font-size: 22px !important; 
     font-weight: 900 !important;
     color: var(--sk-text) !important;
-    letter-spacing: -0.04em !important;
+    letter-spacing: -0.01em !important;
     line-height: 1 !important;
     text-transform: uppercase !important;
     margin: 0 !important;
 }
 
 .sms-header-underline {
-    width: 80px !important;
-    height: 3px !important;
+    width: 110px !important;
+    height: 4px !important;
     background-color: var(--sk-primary) !important;
     border-radius: 99px !important;
-    margin-top: 4px !important;
+    margin-top: 6px !important;
+    box-shadow: 0 0 15px rgba(60, 80, 224, 0.4) !important;
 }
 
 .sms-breadcrumb {
@@ -114,13 +115,17 @@ header.sms-header-group {
 .sk-alert-blue {
     display: flex; align-items: flex-start; gap: 12px;
     padding: 14px 18px; border-radius: 12px;
-    background: #EFF6FF !important; border: 1.5px solid #DBEAFE !important;
-    color: #1D4ED8 !important; box-shadow: 0 4px 6px -1px rgba(29, 78, 216, 0.05);
+    background: #EFF6FF !important; 
+    border: 1.5px solid #DBEAFE !important;
+    border-left: 5px solid var(--sk-primary) !important;
+    color: #1D4ED8 !important; 
+    box-shadow: 0 4px 6px -1px rgba(29, 78, 216, 0.05);
 }
 
 .dark .sk-alert-blue {
-    background: rgba(30, 64, 175, 0.1) !important;
+    background: linear-gradient(180deg, rgba(30, 64, 175, 0.15) 0%, rgba(30, 64, 175, 0.05) 100%) !important;
     border-color: rgba(30, 64, 175, 0.2) !important;
+    border-left-color: var(--sk-primary) !important;
     color: #60A5FA !important;
 }
 
