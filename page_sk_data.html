@@ -61,8 +61,8 @@
             <!-- Separator -->
             <div class="h-6 w-[1px] bg-white/10 mx-1 hidden md:block"></div>
 
-            <!-- Action: Refresh with Integrated Spinner Logic -->
-            <button type="button" id="tugas_btnCari" class="sms-btn-icon !h-9 !w-9" title="Refresh Data">
+            <!-- Action: Refresh with Branded Spinner Logic -->
+            <button type="button" id="tugas_btnCari" class="sms-btn-icon !h-9 !w-9 !rounded-xl" title="Refresh Data">
                 <i class="fab fa-gg text-primary"></i>
             </button>
 
@@ -534,7 +534,7 @@
         var btn = $('#tugas_btnCari');
         var cacheKey = 'tugas_cache_full';
 
-        btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin text-primary"></i>');
+        btn.prop('disabled', true).html('<i class="fab fa-gg fa-spin text-primary"></i>');
 
         // TURBO LOGIC: Load from cache first
         var cachedData = sessionStorage.getItem(cacheKey);
