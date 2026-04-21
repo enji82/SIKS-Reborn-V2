@@ -328,18 +328,24 @@ select.sms-input-premium {
 .sk-modal-body { padding: 24px; overflow-y: auto; flex: 1; }
 .sk-modal-footer { padding: 20px 24px; border-top: 1px solid var(--sk-border); background: var(--sk-section); display: flex; justify-content: flex-end; gap: 12px; }
 
-/* 10. DATATABLES PREMIUM OVERRIDES (v36.0) */
+/* 10. DATATABLES PREMIUM OVERRIDES (v37.0) */
 .dataTables_wrapper {
     color: var(--sk-text) !important;
+    font-size: 12px !important;
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button {
-    border-radius: 12px !important; 
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    border-radius: 10px !important; 
     border: 1.5px solid var(--sk-border) !important;
-    background: rgba(255, 255, 255, 0.03) !important; 
+    background: var(--sk-input-bg) !important; 
     color: var(--sk-text) !important;
-    margin: 0 4px !important; 
-    padding: 6px 16px !important; 
+    margin: 0 3px !important; 
+    padding: 0 12px !important; 
     font-weight: 800 !important;
     transition: all 0.2s !important;
     box-shadow: none !important;
@@ -349,6 +355,7 @@ select.sms-input-premium {
     background: var(--sk-primary) !important;
     color: #FFFFFF !important;
     border-color: var(--sk-primary) !important;
+    transform: translateY(-1px);
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current, 
@@ -366,11 +373,12 @@ select.sms-input-premium {
     color: var(--sk-text-muted) !important;
     border-color: var(--sk-border) !important;
     cursor: not-allowed !important;
+    transform: none !important;
 }
 
 .dataTables_wrapper .dataTables_info {
     color: var(--sk-text-muted) !important; 
-    font-size: 13px !important; 
+    font-size: 12px !important; 
     font-weight: 700 !important;
     letter-spacing: 0.02em !important;
 }
@@ -380,14 +388,22 @@ select.sms-input-premium {
     border: 1.5px solid var(--sk-input-border) !important;
     border-radius: 10px !important;
     color: var(--sk-text) !important;
-    padding: 6px 12px !important;
-    font-size: 13px !important;
+    padding: 0 12px !important;
+    height: 34px !important;
+    font-size: 12px !important;
     font-weight: 700 !important;
     outline: none !important;
+    transition: all 0.2s !important;
+}
+
+.dataTables_filter input {
+    width: 200px !important;
 }
 
 .dataTables_filter input:focus {
     border-color: var(--sk-primary) !important;
+    width: 240px !important;
+    box-shadow: 0 0 0 4px rgba(60, 80, 224, 0.1) !important;
 }
 
 </style>
