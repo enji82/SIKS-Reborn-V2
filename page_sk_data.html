@@ -709,8 +709,8 @@
                 var p = tglSkDisplay.split('-'); tglSkDisplay = p[2] + '-' + p[1] + '-' + p[0];
             }
 
-            // 3. Tombol Dokumen (SMS Ghost Style - Text Only)
-            var btnDokumen = safeUrl.length > 5 ? '<button type="button" class="sms-btn-ghost !h-8 !px-3" onclick="tugas_bukaPreview(\'' + safeUrlJs + '\')">LIHAT</button>' : '-';
+            // 3. Tombol Dokumen (SMS v48.0 - PDF Branded Icon)
+            var btnDokumen = safeUrl.length > 5 ? '<button type="button" class="sms-pdf-btn" title="Lihat Berkas PDF" onclick="tugas_bukaPreview(\'' + safeUrlJs + '\')"><i class="fas fa-file-pdf"></i></button>' : '-';
 
             // 4. Log Details (Executive Standard)
             var uiDikirim = '<div class="flex flex-col"><div class="sk-row-title !text-[13px]">' + (row.tglUnggah || '-') + '</div><div class="sk-row-subtitle">' + (row.userInput || '-') + '</div></div>';
@@ -1121,13 +1121,13 @@
         var badge = "";
         
         if (st.includes('setuju') || st.includes('acc') || st.includes('ok') || st.includes('valid'))
-            badge = '<span class="sms-badge-pill sms-badge-success">DISETUJUI</span>';
+            badge = '<span class="sms-status-tag sms-status-success">DISETUJUI</span>';
         else if (st.includes('revisi'))
-            badge = '<span class="sms-badge-pill sms-badge-info">REVISI</span>';
+            badge = '<span class="sms-status-tag sms-status-info">REVISI</span>';
         else if (st.includes('tolak'))
-            badge = '<span class="sms-badge-pill sms-badge-danger">DITOLAK</span>';
+            badge = '<span class="sms-status-tag sms-status-danger">DITOLAK</span>';
         else
-            badge = '<span class="sms-badge-pill sms-badge-warning">DIPROSES</span>';
+            badge = '<span class="sms-status-tag sms-status-warning">DIPROSES</span>';
 
         if (ket && ket.trim().length > 2 && (st.includes('revisi') || st.includes('tolak'))) {
             var safeKet = tugas_escapeJs(ket);

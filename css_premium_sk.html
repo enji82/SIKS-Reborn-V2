@@ -227,24 +227,49 @@ header.sms-header-group {
     color: #FCD34D !important;
 }
 
-/* 8. SULTAN BADGE & ACTION SYSTEM (v45.0) */
-.sms-badge-pill {
+/* 8. SULTAN COMPONENT SYSTEM (v48.0 - Distinction Refresh) */
+.sms-status-tag {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    padding: 6px 14px !important;
-    border-radius: 99px !important;
+    padding: 6px 12px 6px 10px !important;
+    border-radius: 4px !important;
     font-size: 11px !important;
     font-weight: 800 !important;
     letter-spacing: 0.05em !important;
     white-space: nowrap !important;
     text-transform: uppercase !important;
+    border: 1px solid transparent !important;
 }
 
-.sms-badge-success { background: rgba(16, 185, 129, 0.1) !important; color: #10B981 !important; }
-.sms-badge-info    { background: rgba(60, 80, 224, 0.1) !important; color: var(--sk-primary) !important; }
-.sms-badge-danger  { background: rgba(251, 84, 84, 0.1) !important; color: #FB5454 !important; }
-.sms-badge-warning { background: rgba(255, 186, 0, 0.1) !important; color: #FFBA00 !important; }
+.sms-status-success { background: rgba(16, 185, 129, 0.08) !important; color: #10B981 !important; border-left: 4px solid #10B981 !important; }
+.sms-status-info    { background: rgba(60, 80, 224, 0.08) !important; color: var(--sk-primary) !important; border-left: 4px solid var(--sk-primary) !important; }
+.sms-status-danger  { background: rgba(251, 84, 84, 0.08) !important; color: #FB5454 !important; border-left: 4px solid #FB5454 !important; }
+.sms-status-warning { background: rgba(255, 186, 0, 0.08) !important; color: #FFBA00 !important; border-left: 4px solid #FFBA00 !important; }
+
+/* Branded PDF Preview Button */
+.sms-pdf-btn {
+    width: 38px !important;
+    height: 38px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 12px !important;
+    background: transparent !important;
+    border: 1.5px solid var(--sk-border) !important;
+    color: #FB5454 !important;
+    transition: all 0.25s !important;
+    cursor: pointer !important;
+    font-size: 18px !important;
+}
+
+.sms-pdf-btn:hover {
+    background: #FB5454 !important;
+    border-color: #FB5454 !important;
+    color: #FFFFFF !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(251, 84, 84, 0.3) !important;
+}
 
 /* Ghost-to-Branded Action Buttons */
 .sms-action-btn {
