@@ -328,13 +328,15 @@ select.sms-input-premium {
 .sk-modal-body { padding: 24px; overflow-y: auto; flex: 1; }
 .sk-modal-footer { padding: 20px 24px; border-top: 1px solid var(--sk-border); background: var(--sk-section); display: flex; justify-content: flex-end; gap: 12px; }
 
-/* 10. DATATABLES PREMIUM OVERRIDES (v37.0) */
+/* 10. DATATABLES PREMIUM OVERRIDES (v38.0 - Absolute Sync) */
 .dataTables_wrapper {
     color: var(--sk-text) !important;
     font-size: 12px !important;
 }
 
-.dataTables_wrapper .dataTables_paginate .paginate_button {
+/* Base Buttons (Compatible with both DT Pure & Bootstrap Integration) */
+.dataTables_wrapper .dataTables_paginate .paginate_button,
+.pagination .page-item .page-link {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -349,25 +351,34 @@ select.sms-input-premium {
     font-weight: 800 !important;
     transition: all 0.2s !important;
     box-shadow: none !important;
+    outline: none !important;
 }
 
-.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+/* Hover State */
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover,
+.pagination .page-item .page-link:hover {
     background: var(--sk-primary) !important;
     color: #FFFFFF !important;
     border-color: var(--sk-primary) !important;
     transform: translateY(-1px);
+    z-index: 10 !important;
 }
 
+/* Active/Current State */
 .dataTables_wrapper .dataTables_paginate .paginate_button.current, 
-.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover,
+.pagination .page-item.active .page-link {
     background: var(--sk-primary) !important; 
     color: #FFFFFF !important; 
     border-color: var(--sk-primary) !important;
     box-shadow: 0 4px 12px rgba(60, 80, 224, 0.3) !important;
+    z-index: 10 !important;
 }
 
+/* Disabled State */
 .dataTables_wrapper .dataTables_paginate .paginate_button.disabled,
-.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover {
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover,
+.pagination .page-item.disabled .page-link {
     opacity: 0.3 !important;
     background: transparent !important;
     color: var(--sk-text-muted) !important;
