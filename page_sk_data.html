@@ -10,20 +10,23 @@
 
     <!-- 1. KARTU INFORMASI (PANDUAN) -->
     <div class="sms-table-card p-4 mb-4" x-data="{ isOpen: false }">
-        <div class="sk-alert-blue cursor-pointer" @click="isOpen = !isOpen">
-            <div class="flex items-center justify-between w-full">
+        <div class="sk-alert-blue flex-col !items-stretch !p-0 overflow-hidden shadow-none">
+            <!-- Header Clickable -->
+            <div class="flex items-center justify-between w-full p-4 cursor-pointer" @click="isOpen = !isOpen">
                 <div class="flex items-center font-black uppercase tracking-widest text-[15px]">
-                    <i class="fas fa-info-circle mr-2"></i> PANDUAN PENGISIAN
+                    <i class="fas fa-info-circle mr-2 text-[18px]"></i> PANDUAN PENGISIAN
                 </div>
                 <i class="fas transition-transform" :class="isOpen ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
             </div>
-        </div>
-        <div x-show="isOpen" x-transition class="pt-4 mt-4 border-t border-gray-100 dark:border-white/5 px-1">
-            <ul class="mb-0 pl-5 list-disc space-y-2 text-[13px] font-medium text-gray-500 dark:text-gray-400">
-                <li>Klik tombol <b class="text-primary">+ TAMBAH SK</b> untuk mengunggah data baru.</li>
-                <li>Satu sekolah hanya dapat memiliki <b class="text-primary">1 SK aktif</b> untuk kombinasi Tahun, Semester, dan Kriteria yang sama.</li>
-                <li>Format file wajib <b class="text-danger">PDF</b> dengan ukuran maksimal <b class="text-danger">1 MB</b>.</li>
-            </ul>
+            
+            <!-- Body Content (Inside the same blue box) -->
+            <div x-show="isOpen" x-transition class="px-5 pb-5 border-t border-blue-100/50 dark:border-blue-900/30">
+                <ul class="mb-0 pl-7 mt-4 list-disc space-y-2 text-[13px] font-medium text-gray-500 dark:text-gray-400">
+                    <li>Klik tombol <b class="text-primary">+ TAMBAH SK</b> untuk mengunggah data baru.</li>
+                    <li>Satu sekolah hanya dapat memiliki <b class="text-primary">1 SK aktif</b> untuk kombinasi Tahun, Semester, dan Kriteria yang sama.</li>
+                    <li>Format file wajib <b class="text-danger">PDF</b> dengan ukuran maksimal <b class="text-danger">1 MB</b>.</li>
+                </ul>
+            </div>
         </div>
     </div>
 
