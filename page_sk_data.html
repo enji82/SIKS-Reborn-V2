@@ -713,9 +713,9 @@
             var btnDokumen = safeUrl.length > 5 ? '<button type="button" class="sms-btn-ghost !h-8 !px-3" onclick="tugas_bukaPreview(\'' + safeUrlJs + '\')"><i class="fas fa-file-pdf mr-1"></i> LIHAT</button>' : '-';
 
             // 4. Log Details (Executive Standard)
-            var uiDikirim = '<div class="flex flex-col"><div class="sk-row-title !text-[12px]">' + (row.tglUnggah || '-') + '</div><div class="sk-row-subtitle">' + (row.userInput || '-') + '</div></div>';
-            var uiDiubah = row.tglUpdate && row.tglUpdate !== '-' ? '<div class="flex flex-col"><div class="sk-row-title !text-[12px]">' + row.tglUpdate + '</div><div class="sk-row-subtitle">' + (row.userUpdate || '-') + '</div></div>' : '-';
-            var uiVerif = row.tglVerval && row.tglVerval !== '-' ? '<div class="flex flex-col"><div class="sk-row-title !text-[12px] !text-primary">' + row.tglVerval + '</div><div class="sk-row-subtitle">' + (row.verifikator || '-') + '</div></div>' : '-';
+            var uiDikirim = '<div class="flex flex-col"><div class="sk-row-title !text-[13px]">' + (row.tglUnggah || '-') + '</div><div class="sk-row-subtitle">' + (row.userInput || '-') + '</div></div>';
+            var uiDiubah = row.tglUpdate && row.tglUpdate !== '-' ? '<div class="flex flex-col"><div class="sk-row-title !text-[13px]">' + row.tglUpdate + '</div><div class="sk-row-subtitle">' + (row.userUpdate || '-') + '</div></div>' : '-';
+            var uiVerif = row.tglVerval && row.tglVerval !== '-' ? '<div class="flex flex-col"><div class="sk-row-title !text-[13px] !text-primary">' + row.tglVerval + '</div><div class="sk-row-subtitle">' + (row.verifikator || '-') + '</div></div>' : '-';
 
             // KOMBINASI KOLOM (Executive Hierarchy)
             var uiUnit = '<div class="sk-row-title">' + tugas_cleanText(row.namaSd) + '</div>' + 
