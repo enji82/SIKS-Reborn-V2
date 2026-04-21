@@ -717,15 +717,15 @@
             var uiDiubah = row.tglUpdate && row.tglUpdate !== '-' ? '<div class="flex flex-col whitespace-nowrap"><div class="sk-row-title !text-[13px]">' + row.tglUpdate + '</div><div class="sk-row-subtitle">' + (row.userUpdate || '-') + '</div></div>' : '-';
             var uiVerif = row.tglVerval && row.tglVerval !== '-' ? '<div class="flex flex-col whitespace-nowrap"><div class="sk-row-title !text-[13px] !text-primary">' + row.tglVerval + '</div><div class="sk-row-subtitle">' + (row.verifikator || '-') + '</div></div>' : '-';
 
-            // KOMBINASI KOLOM (Executive Hierarchy - Text Only Refinement)
-            var uiUnit = '<div class="sk-row-title">' + tugas_cleanText(row.namaSd) + '</div>' + 
-                         '<div class="sk-row-subtitle">' + tugas_cleanText(row.npsn || '-') + '</div>';
+            // KOMBINASI KOLOM (Executive Hierarchy - Forced 2-Line Sync)
+            var uiUnit = '<div class="flex flex-col"><div class="sk-row-title">' + tugas_cleanText(row.namaSd) + '</div>' + 
+                         '<div class="sk-row-subtitle">' + tugas_cleanText(row.npsn || '-') + '</div></div>';
             
-            var uiTahunSem = '<div class="sk-row-title">' + tugas_cleanText(row.tahun) + '</div>' + 
-                              '<div class="sk-row-subtitle">' + tugas_cleanText(row.semester) + '</div>';
+            var uiTahunSem = '<div class="flex flex-col items-center"><div class="sk-row-title">' + tugas_cleanText(row.tahun) + '</div>' + 
+                              '<div class="sk-row-subtitle">' + tugas_cleanText(row.semester) + '</div></div>';
             
-            var uiSkDetail = '<div class="sk-row-title">' + safeNoSk + '</div>' +
-                             '<div class="sk-row-subtitle">' + tugas_cleanText(row.kriteria || 'TUGAS') + ' &bull; ' + tglSkDisplay + '</div>';
+            var uiSkDetail = '<div class="flex flex-col"><div class="sk-row-title">' + safeNoSk + '</div>' +
+                             '<div class="sk-row-subtitle">' + tugas_cleanText(row.kriteria || 'TUGAS') + ' &bull; ' + tglSkDisplay + '</div></div>';
 
             dtArray.push([
                 actionButtons,
