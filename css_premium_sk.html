@@ -99,25 +99,32 @@ header.sms-header-group {
 }
 
 .sms-header-underline {
-    width: 30px !important;
+    width: 80px !important;
     height: 3px !important;
     background-color: var(--sk-primary) !important;
     border-radius: 99px !important;
-    margin-top: 2px !important;
+    margin-top: 4px !important;
 }
 
 .sms-breadcrumb {
-    font-size: 14px !important;
-    font-weight: 500 !important;
-    color: var(--sk-text-muted) !important;
-    margin-bottom: 8px !important;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    display: none !important; /* Managed by Global Nav */
 }
 
-/* 5. TABLE CARD & EXECUTIVE DATA */
-.sms-table-card {
+/* 6. SULTAN ALERT SYSTEM (BLUEPRINT v7.0) */
+.sk-alert-blue {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 14px 18px; border-radius: 12px;
+    background: #EFF6FF !important; border: 1.5px solid #DBEAFE !important;
+    color: #1D4ED8 !important; box-shadow: 0 4px 6px -1px rgba(29, 78, 216, 0.05);
+}
+
+.dark .sk-alert-blue {
+    background: rgba(30, 64, 175, 0.1) !important;
+    border-color: rgba(30, 64, 175, 0.2) !important;
+    color: #60A5FA !important;
+}
+
+.sk-alert-danger {
     background-color: var(--sk-surface) !important;
     border-radius: 18px !important;
     border: 1px solid var(--sk-border) !important;
