@@ -581,8 +581,9 @@
                            '<"px-6 py-3 border-t border-gray-100 dark:border-white/5 bg-gray-50/30 dark:bg-black/10"<"flex items-center justify-between"i p>>',
                     "columnDefs": [
                         { "targets": 0, "width": "1%", "className": "text-center whitespace-nowrap" },
+                        { "targets": 2, "className": "text-center whitespace-nowrap", "width": "100px" },
                         { "targets": [1,3,6,7,8], "className": "text-left whitespace-nowrap" }, 
-                        { "targets": [2,4,5], "className": "text-center" }
+                        { "targets": [4,5], "className": "text-center" }
                     ],
                     "language": { "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", "emptyTable": "Belum ada data SK yang diunggah." },
                     "drawCallback": function (settings) {
@@ -721,7 +722,7 @@
             var uiUnit = '<div class="flex flex-col"><div class="sk-row-title">' + tugas_cleanText(row.namaSd) + '</div>' + 
                          '<div class="sk-row-subtitle">' + tugas_cleanText(row.npsn || '-') + '</div></div>';
             
-            var uiTahunSem = '<div class="flex flex-col items-center"><div class="sk-row-title">' + tugas_cleanText(row.tahun) + '</div>' + 
+            var uiTahunSem = '<div class="flex flex-col items-center whitespace-nowrap"><div class="sk-row-title">' + tugas_cleanText(row.tahun) + '</div>' + 
                               '<div class="sk-row-subtitle">' + tugas_cleanText(row.semester) + '</div></div>';
             
             var uiSkDetail = '<div class="flex flex-col"><div class="sk-row-title">' + safeNoSk + '</div>' +
