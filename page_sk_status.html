@@ -18,41 +18,18 @@
       <div class="sms-header-underline"></div>
     </header>
 
-    <!-- 1. KARTU PANDUAN (EXECUTIVE STYLE) -->
-    <div class="sultan-card !p-0 overflow-hidden border-l-4 border-l-primary" x-data="{ isOpen: false }">
-        <div class="py-3 px-5 flex items-center justify-between cursor-pointer bg-primary/5 hover:bg-primary/10 transition-colors" @click="isOpen = !isOpen">
-            <div class="flex items-center gap-3">
-                <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-white shadow-sm">
-                    <i class="fas fa-info-circle text-xs"></i>
-                </div>
-                <div>
-                    <h4 class="text-xs font-black text-black dark:text-white uppercase tracking-widest">Panduan Matriks Progres</h4>
-                    <p class="text-[10px] text-gray-500 font-bold uppercase tracking-tight mt-0.5">Penjelasan indikator status pengiriman</p>
-                </div>
-            </div>
-            <i class="fas text-gray-400 transition-transform duration-300" :class="isOpen ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+    <!-- 1. PAPAN INFORMASI (EXECUTIVE TEMPLATE MODEL) -->
+    <div class="sultan-card !p-5 border-l-4 border-l-primary">
+        <div class="flex items-center gap-2 mb-4">
+            <i class="fas fa-info-circle text-primary"></i>
+            <h4 class="text-[11px] font-black text-black dark:text-white uppercase tracking-[0.2em]">Informasi</h4>
         </div>
-        <div x-show="isOpen" x-transition class="p-5 border-t border-gray-100 dark:border-white/5 bg-transparent">
-            <p class="text-xs font-medium text-gray-500 dark:text-gray-400 mb-4">Matriks ini menampilkan progres pengunggahan berkas per Semester untuk setiap Tahun Ajaran yang terdata di sistem.</p>
-            <div class="flex flex-wrap gap-3">
-                <div class="flex items-center gap-2 px-3 py-2 rounded-xl bg-primary/5 border border-primary/10">
-                    <div class="h-6 w-6 rounded-lg bg-primary/20 flex items-center justify-center text-primary"><i class="fas fa-clock text-[10px]"></i></div>
-                    <span class="text-[10px] font-black text-primary uppercase tracking-tighter">Diproses</span>
-                </div>
-                <div class="flex items-center gap-2 px-3 py-2 rounded-xl bg-success/5 border border-success/10">
-                    <div class="h-6 w-6 rounded-lg bg-success/20 flex items-center justify-center text-success"><i class="fas fa-check text-[10px]"></i></div>
-                    <span class="text-[10px] font-black text-success uppercase tracking-tighter">Valid</span>
-                </div>
-                <div class="flex items-center gap-2 px-3 py-2 rounded-xl bg-warning/5 border border-warning/10">
-                    <div class="h-6 w-6 rounded-lg bg-warning/20 flex items-center justify-center text-warning"><i class="fab fa-gg text-[10px]"></i></div>
-                    <span class="text-[10px] font-black text-warning uppercase tracking-tighter">Revisi</span>
-                </div>
-                <div class="flex items-center gap-2 px-3 py-2 rounded-xl bg-danger/5 border border-danger/10">
-                    <div class="h-6 w-6 rounded-lg bg-danger/20 flex items-center justify-center text-danger"><i class="fas fa-times text-[10px]"></i></div>
-                    <span class="text-[10px] font-black text-danger uppercase tracking-tighter">Ditolak</span>
-                </div>
-            </div>
-        </div>
+        <ul class="list-disc ml-5 text-xs text-gray-500 dark:text-gray-400 space-y-2 font-medium">
+            <li>Matriks ini menampilkan progres pengunggahan berkas per Semester untuk setiap Tahun Ajaran yang terdata di sistem.</li>
+            <li>Status <b>Diproses</b> (Ikon Jam) menunjukkan berkas telah diunggah dan sedang menunggu verifikasi.</li>
+            <li>Status <b>Valid</b> (Ikon Centang) menunjukkan berkas telah disetujui oleh verifikator.</li>
+            <li>Status <b>Revisi/Ditolak</b> (Ikon GG/Silang) menunjukkan berkas perlu diperbaiki. Klik ikon untuk melihat catatan perbaikan.</li>
+        </ul>
     </div>
 
     <!-- 2. EXECUTIVE FILTER BAR -->
