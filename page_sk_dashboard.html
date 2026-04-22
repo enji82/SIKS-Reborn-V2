@@ -3,6 +3,21 @@
 
 <div id="sultan-master-scope" class="sms-layout-root p-0 lg:p-4 animate-reveal flex flex-col gap-6">
 
+  <!-- DASHBOARD STYLE OVERRIDES -->
+  <style>
+    /* Keeping the colorful analytics card logic but synced with Executive UI */
+    .sk-glass-card {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid var(--sk-border);
+    }
+    .sk-glass-primary { background: rgba(59, 130, 246, 0.05); color: #3b82f6; border-left: 4px solid #3b82f6 !important; }
+    .sk-glass-success { background: rgba(16, 185, 129, 0.05); color: #10b981; border-left: 4px solid #10b981 !important; }
+    .sk-glass-warning { background: rgba(245, 158, 11, 0.08); color: #f59e0b; border-left: 4px solid #f59e0b !important; }
+    .sk-glass-danger  { background: rgba(239, 68, 68, 0.08); color: #ef4444; border-left: 4px solid #ef4444 !important; }
+  </style>
+
   <!-- PAGE HEADER (SULTAN EXECUTIVE TEMPLATE SYNC) -->
   <header class="sms-header-group">
     <h1 class="sms-header-title">Dashboard Monitoring SK</h1>
@@ -39,19 +54,6 @@
 
   <!-- 2. KPI METRICS (SULTAN v4.1 STYLE) -->
   <div class="grid grid-cols-2 gap-6 lg:grid-cols-4">
-    <style>
-      /* Keeping the colorful analytics card logic but synced with Executive UI */
-      .sk-glass-card {
-          position: relative;
-          overflow: hidden;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          border: 1px solid var(--sk-border);
-      }
-      .sk-glass-primary { background: rgba(59, 130, 246, 0.05); color: #3b82f6; border-left: 4px solid #3b82f6 !important; }
-      .sk-glass-success { background: rgba(16, 185, 129, 0.05); color: #10b981; border-left: 4px solid #10b981 !important; }
-      .sk-glass-warning { background: rgba(245, 158, 11, 0.08); color: #f59e0b; border-left: 4px solid #f59e0b !important; }
-      .sk-glass-danger  { background: rgba(239, 68, 68, 0.08); color: #ef4444; border-left: 4px solid #ef4444 !important; }
-    </style>
     <!-- Total Berkas (Primary) -->
     <div class="sultan-card sk-glass-card sk-glass-primary p-3 md:p-4.5 hover:translate-y-[-4px]">
         <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary mb-3.5 shadow-sm border border-primary/20">
