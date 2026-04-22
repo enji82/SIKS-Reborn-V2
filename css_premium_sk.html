@@ -267,10 +267,10 @@ header.sms-header-group {
 .sk-modal-overlay {
     position: fixed !important; inset: 0 !important;
     z-index: 1000000 !important; /* Above everything including sidebars on mobile */
-    background: rgba(15, 23, 42, 0.85) !important;
-    backdrop-filter: blur(8px) !important;
-    -webkit-backdrop-filter: blur(8px) !important;
-    transition: all 0.3s ease !important;
+    background: rgba(15, 23, 42, 0.60) !important;  /* Dikurangi dari 0.85 → tetap gelap tapi masih bisa lihat konteks */
+    backdrop-filter: blur(4px) !important;           /* Dikurangi dari 8px → cukup untuk fokus, tidak membutakan */
+    -webkit-backdrop-filter: blur(4px) !important;
+    transition: all 0.25s ease !important;
     display: none; /* Default Hidden */
 }
 
