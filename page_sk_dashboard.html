@@ -383,12 +383,12 @@
       $('#dashsk_listBelumBody').html(dashsk_getLoaderHtml('Cek Kepatuhan...'));
     }
 
-    $('#dashsk_btnRefresh').prop('disabled', true).html('<i class="fab fa-gg fa-spin"></i>');
+    $('#dashsk_btnRefresh').prop('disabled', true).html('<i class="fab fa-gg fa-spin text-primary"></i>');
 
     google.script.run
       .withSuccessHandler(function (data) {
         DASHSK_IS_FETCHING = false;
-        $('#dashsk_btnRefresh').prop('disabled', false).html('<i class="fab fa-gg"></i>');
+        $('#dashsk_btnRefresh').prop('disabled', false).html('<i class="fab fa-gg text-primary"></i>');
 
         if (data && !data.error) {
           sessionStorage.setItem(cacheKey, JSON.stringify(data));
