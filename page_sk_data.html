@@ -817,6 +817,8 @@
     }
 
     function tugas_bukaModalTambah() {
+        tugas_initFilterTahun(); // Ensure years are populated
+        tugas_populateFilterOptions(); // Ensure schools are populated
         tugas_resetForm();
         $('#tugas_headerModalForm').removeClass('sk-modal-header-warning sk-modal-header-danger').addClass('sk-modal-header-primary');
         $('#tugas_judulModalForm').html('<i class="fas fa-plus-circle mr-2"></i> Tambah SK Pembagian Tugas');
@@ -878,6 +880,8 @@
     }
 
     function tugas_bukaModalEdit(rowId) {
+        tugas_initFilterTahun(); // Ensure years are populated
+        tugas_populateFilterOptions(); // Ensure schools are populated
         tugas_resetForm();
         var rowData = TUGAS_DATA_MASTER[rowId];
         if (!rowData) return;
