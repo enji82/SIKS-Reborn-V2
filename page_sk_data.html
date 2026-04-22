@@ -234,106 +234,110 @@
     </div>
 </div>
 
-<!-- 2. MODAL VERIFIKASI (v63.1 side-by-side) -->
+<!-- 2. MODAL VERIFIKASI (v68.0 side-by-side Executive) -->
 <div id="tugas_modalVerif" class="sk-modal-overlay hidden items-center justify-center">
-    <div class="relative flex flex-col md:flex-row w-full max-w-[96%] h-[90vh] sk-modal-box shadow-2xl overflow-hidden">
+    <div class="relative flex flex-col md:flex-row w-full max-w-[98%] h-[95vh] sk-modal-box shadow-2xl overflow-hidden">
         
-        <!-- Document Area (Left - Expanded) -->
-        <div class="flex-1 sk-modal-panel-left relative overflow-hidden flex items-center justify-center">
+        <!-- Left: Document Preview -->
+        <div class="flex-1 relative bg-gray-100 dark:bg-black/20 flex items-center justify-center overflow-hidden">
              <iframe id="tugas_verifFrame" class="w-full h-full border-none hidden" src=""></iframe>
-             
-             <!-- Loader Overlay -->
-             <div id="tugas_verifLoader" class="absolute inset-0 flex flex-col items-center justify-center sk-bg-surface z-10">
+             <!-- Loader -->
+             <div id="tugas_verifLoader" class="absolute inset-0 flex flex-col items-center justify-center bg-white dark:bg-[#1A222C] z-10">
                   <div class="sk-spinner-premium mb-4"></div>
-                  <p class="sk-loading-text animate-pulse">Menyiapkan Dokumen SK...</p>
+                  <p class="sk-loading-text animate-pulse">Menyiapkan Pratinjau Dokumen...</p>
              </div>
-
-             <!-- Error State -->
-             <div id="tugas_verifNoFile" class="hidden flex flex-col items-center text-center px-10">
-                  <div class="w-16 h-16 rounded-2xl bg-danger/10 flex items-center justify-center mb-4">
-                      <i class="fas fa-file-excel fa-2x text-danger opacity-50"></i>
+             <!-- Error -->
+             <div id="tugas_verifNoFile" class="hidden flex flex-col items-center text-center p-8">
+                  <div class="w-16 h-16 rounded-2xl bg-danger/10 flex items-center justify-center mb-4 text-danger opacity-50">
+                      <i class="fas fa-file-excel fa-2x"></i>
                   </div>
-                  <h4 class="font-black text-black dark:text-white uppercase tracking-wider mb-2 text-sm">Dokumen Hilang</h4>
-                  <p class="text-[13px] text-gray-400 font-bold max-w-[200px] leading-relaxed">Gagal memuat pratinjau dokumen. Silakan cek koneksi atau hubungi admin.</p>
+                  <h4 class="font-black text-black dark:text-white uppercase tracking-wider mb-2 text-sm">Pratinjau Tidak Tersedia</h4>
+                  <p class="text-[12px] text-gray-400 font-bold max-w-[250px] leading-relaxed">Gagal memuat dokumen. Silakan coba buka di Tab Baru atau cek koneksi Anda.</p>
              </div>
         </div>
 
         <!-- Form Area (Right - Compact 360px) -->
-        <div class="w-full md:w-[360px] flex flex-col sk-modal-panel-right relative">
-            <!-- Modal Header -->
+        <!-- Right: Verification Form (Fixed 380px) -->
+        <div class="w-full md:w-[380px] flex flex-col border-l border-gray-100 dark:border-white/5 bg-white dark:bg-[#1A222C]">
+            <!-- Header -->
             <div class="sk-modal-header sk-modal-header-success">
                 <h3 class="sk-modal-title">
-                    <i class="fas fa-check-double"></i> Verifikasi SK Tugas
+                    <i class="fas fa-check-double"></i> Verifikasi SK
                 </h3>
                 <button type="button" class="sk-modal-close" onclick="$('#tugas_modalVerif').fadeOut().addClass('hidden').removeClass('flex')">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            
-            <form id="tugas_formVerif" class="flex-1 flex flex-col overflow-y-auto p-5 scroll-smooth sultan-scroll">
-                <input type="hidden" id="tugas_verifRowId">
-                
-                <div class="sk-modal-header sk-modal-header-success">
-                    <h3 class="sk-modal-title">
-                        <i class="fas fa-id-card"></i> Data Identitas SK
-                    </h3>
-                </div>
 
-                    <div class="sk-data-grid">
-                        <div class="sk-data-row">
-                            <span class="sk-data-label">Unit Kerja</span>
-                            <span class="sk-data-value" id="tugas_vNamaSd">-</span>
-                        </div>
-                        <div class="sk-data-row">
-                            <span class="sk-data-label">Tahun Ajaran</span>
-                            <span class="sk-data-value" id="tugas_vTahun">-</span>
-                        </div>
-                        <div class="sk-data-row">
-                            <span class="sk-data-label">Semester</span>
-                            <span class="sk-data-value" id="tugas_vSemester">-</span>
-                        </div>
-                        <div class="sk-data-row">
-                            <span class="sk-data-label">Jenis SK</span>
-                            <span class="sk-badge-brand" id="tugas_vKriteria">-</span>
-                        </div>
-                        <div class="sk-data-row pt-2 border-t border-gray-100 dark:border-white/5">
-                            <span class="sk-data-label">Nomor SK</span>
-                            <span class="sk-data-value text-brand" id="tugas_vNoSk">-</span>
-                        </div>
-                        <div class="sk-data-row">
-                            <span class="sk-data-label">Tanggal SK</span>
-                            <span class="sk-data-value" id="tugas_vTglSk">-</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sk-modal-body !bg-gray-50/50 dark:!bg-white/5">
-                    <div class="mb-4">
-                        <label class="sk-form-label">KEPUTUSAN VERIFIKASI <span class="req">*</span></label>
-                        <select id="tugas_verifStatus" class="sms-input-premium w-full" onchange="tugas_cekStatusVerif(this.value)" required>
-                            <option value="">-- Pilih Status --</option>
-                            <option value="Disetujui">&#x2705; TERIMA & SETUJUI</option>
-                            <option value="Revisi">&#x1F504; PERLU REVISI</option>
-                            <option value="Ditolak">&#x274C; TOLAK PERMANEN</option>
-                        </select>
-                    </div>
-
+            <form id="tugas_formVerif" class="flex-1 flex flex-col overflow-y-auto sultan-scroll">
+                <div class="p-6 space-y-6">
+                    <input type="hidden" id="tugas_verifRowId">
+                    
+                    <!-- Identity Summary -->
                     <div>
-                        <label class="sk-form-label">CATATAN ADMIN</label>
-                        <textarea id="tugas_verifKeterangan" rows="4" placeholder="Catatan opsional..." class="sms-input-premium w-full !h-auto !py-3" style="resize:none"></textarea>
-                        <p id="tugas_verifWajibCatatan" class="mt-2 text-[12px] font-black text-danger uppercase tracking-widest hidden items-center gap-1.5 animate-pulse">
-                            <i class="fas fa-exclamation-triangle"></i> Wajib isi alasan!
-                        </p>
+                        <div class="sk-verif-identity-title">
+                            <i class="fas fa-id-card text-emerald-500"></i> Identitas Dokumen
+                        </div>
+                        <div class="space-y-1">
+                            <div class="sk-verif-row">
+                                <span class="sk-verif-label">Unit Kerja</span>
+                                <span class="sk-verif-value" id="tugas_vNamaSd">-</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="sk-verif-row">
+                                    <span class="sk-verif-label">Tahun Ajaran</span>
+                                    <span class="sk-verif-value" id="tugas_vTahun">-</span>
+                                </div>
+                                <div class="sk-verif-row">
+                                    <span class="sk-verif-label">Semester</span>
+                                    <span class="sk-verif-value" id="tugas_vSemester">-</span>
+                                </div>
+                            </div>
+                            <div class="sk-verif-row">
+                                <span class="sk-verif-label">Kriteria SK</span>
+                                <span class="text-[11px] font-black uppercase text-emerald-500" id="tugas_vKriteria">-</span>
+                            </div>
+                            <div class="pt-2 mt-2 border-t border-gray-100 dark:border-white/5">
+                                <div class="sk-verif-row">
+                                    <span class="sk-verif-label">Nomor SK</span>
+                                    <span class="sk-verif-value !text-primary" id="tugas_vNoSk">-</span>
+                                </div>
+                                <div class="sk-verif-row">
+                                    <span class="sk-verif-label">Tanggal SK</span>
+                                    <span class="sk-verif-value" id="tugas_vTglSk">-</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Decision Section -->
+                    <div class="pt-6 border-t border-gray-100 dark:border-white/5 space-y-4">
+                        <div>
+                            <label class="sk-form-label">KEPUTUSAN VERIFIKASI <span class="text-danger">*</span></label>
+                            <select id="tugas_verifStatus" class="sms-input-premium w-full" required>
+                                <option value="">-- Pilih Keputusan --</option>
+                                <option value="Disetujui">✅ TERIMA & SETUJUI</option>
+                                <option value="Revisi">🔄 PERLU REVISI</option>
+                                <option value="Ditolak">❌ TOLAK PERMANEN</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="sk-form-label">CATATAN ADMIN / VERIFIKATOR</label>
+                            <textarea id="tugas_verifKeterangan" class="sms-input-premium w-full h-24 py-3 resize-none" placeholder="Masukkan alasan jika revisi/tolak..."></textarea>
+                            <p id="tugas_verifWajibCatatan" class="mt-2 text-[12px] font-black text-danger uppercase tracking-widest hidden items-center gap-1.5 animate-pulse">
+                                <i class="fas fa-exclamation-triangle"></i> Wajib isi alasan!
+                            </p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Footer (Universal Alignment) -->
+                <!-- Footer -->
                 <div class="sk-modal-footer mt-auto">
                     <button type="button" class="sms-btn sms-btn-ghost" onclick="$('#tugas_modalVerif').fadeOut().addClass('hidden').removeClass('flex')">
                         Batal
                     </button>
                     <button type="submit" id="tugas_btnSimpanVerif" class="sms-btn sms-btn-primary">
-                        <i class="fas fa-check-circle"></i> Eksekusi
+                        <i class="fas fa-check-circle mr-2"></i> EKSEKUSI
                     </button>
                 </div>
             </form>
