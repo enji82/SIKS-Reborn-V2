@@ -347,44 +347,47 @@
     </div>
 </div>
 
-<!-- 3. MODAL PREVIEW PDF (v75.0 Cinematic Viewer) -->
-<div id="tugas_modalPreview" class="sk-modal-overlay hidden flex-col">
-    <!-- Header -->
-    <div class="flex items-center justify-between px-6 sk-modal-header-primary !h-16 shadow-lg z-20">
-        <div class="flex items-center gap-4">
-            <div class="relative flex h-10 w-10 items-center justify-center rounded-xl bg-white/20 text-white shadow-sm overflow-hidden group">
-                <i class="fas fa-file-pdf text-lg relative z-10"></i>
-            </div>
-            <div>
-                <h3 class="sk-modal-title !text-sm">Pratinjau Dokumen</h3>
-                <div class="flex items-center gap-2 mt-0.5">
-                    <span class="flex h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    <p class="text-[9px] text-white/50 font-black uppercase tracking-widest">Sultan Cinematic Viewer v75.0</p>
+<!-- 3. MODAL PREVIEW PDF (v76.0 Floating Executive Viewer) -->
+<div id="tugas_modalPreview" class="sk-modal-overlay hidden items-center justify-center">
+    <div class="w-full max-w-[95%] h-[90vh] sk-modal-box flex flex-col overflow-hidden shadow-2xl">
+        
+        <!-- Header (Fixed Top) -->
+        <div class="flex items-center justify-between px-6 sk-modal-header-primary !h-16 z-20">
+            <div class="flex items-center gap-4">
+                <div class="relative flex h-10 w-10 items-center justify-center rounded-xl bg-white/20 text-white shadow-sm overflow-hidden group">
+                    <i class="fas fa-file-pdf text-lg relative z-10"></i>
+                </div>
+                <div>
+                    <h3 class="sk-modal-title !text-sm">Pratinjau Dokumen</h3>
+                    <div class="flex items-center gap-2 mt-0.5">
+                        <span class="flex h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <p class="text-[9px] text-white/50 font-black uppercase tracking-widest">Sultan Floating Viewer v76.0</p>
+                    </div>
                 </div>
             </div>
+            <div class="flex items-center gap-3">
+                <a href="#" id="tugas_linkDownloadHeader" target="_blank" class="sms-btn !h-9 !px-4 !bg-white/10 !text-white !border-white/10 !rounded-lg !text-[10px] hover:!bg-white/20 transition-all">
+                    <i class="fas fa-download mr-2"></i> UNDUH
+                </a>
+                <a href="#" id="tugas_linkTabHeader" target="_blank" class="sms-btn !h-9 !px-4 !bg-white/10 !text-white !border-white/10 !rounded-lg !text-[10px] hover:!bg-white/20 transition-all">
+                    <i class="fas fa-external-link-alt mr-2"></i> TAB BARU
+                </a>
+                <div class="h-6 w-[1px] bg-white/10 mx-1"></div>
+                <button type="button" class="sk-modal-close" onclick="$('#tugas_modalPreview').fadeOut().addClass('hidden').removeClass('flex')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
         </div>
-        <div class="flex items-center gap-3">
-            <a href="#" id="tugas_linkDownloadHeader" target="_blank" class="sms-btn !h-9 !px-4 !bg-white/10 !text-white !border-white/10 !rounded-lg !text-[10px] hover:!bg-white/20 transition-all">
-                <i class="fas fa-download mr-2"></i> UNDUH
-            </a>
-            <a href="#" id="tugas_linkTabHeader" target="_blank" class="sms-btn !h-9 !px-4 !bg-white/10 !text-white !border-white/10 !rounded-lg !text-[10px] hover:!bg-white/20 transition-all">
-                <i class="fas fa-external-link-alt mr-2"></i> TAB BARU
-            </a>
-            <div class="h-6 w-[1px] bg-white/10 mx-1"></div>
-            <button type="button" class="sk-modal-close" onclick="$('#tugas_modalPreview').fadeOut().addClass('hidden').removeClass('flex')">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    </div>
-    
-    <!-- Cinematic Workspace -->
-    <div class="flex-1 relative bg-black overflow-hidden">
-        <iframe id="tugas_framePreviewFull" class="absolute inset-0 w-full h-full border-none hidden" src=""></iframe>
         
-        <!-- Premium Loader -->
-        <div id="tugas_loadingPreviewPDF" class="absolute inset-0 flex flex-col items-center justify-center bg-slate-950 z-10">
-            <div class="sk-spinner-premium mb-6"></div>
-            <p class="sk-loading-text animate-pulse !text-white/40 font-bold uppercase tracking-[0.2em] text-[10px]">Menyiapkan Tampilan Sinematik...</p>
+        <!-- Cinematic Workspace -->
+        <div class="flex-1 relative bg-black overflow-hidden">
+            <iframe id="tugas_framePreviewFull" class="absolute inset-0 w-full h-full border-none hidden" src=""></iframe>
+            
+            <!-- Premium Loader -->
+            <div id="tugas_loadingPreviewPDF" class="absolute inset-0 flex flex-col items-center justify-center bg-slate-950 z-10">
+                <div class="sk-spinner-premium mb-6"></div>
+                <p class="sk-loading-text animate-pulse !text-white/40 font-bold uppercase tracking-[0.2em] text-[10px]">Menyiapkan Tampilan Sinematik...</p>
+            </div>
         </div>
     </div>
 </div>
