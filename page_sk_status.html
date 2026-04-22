@@ -2,16 +2,15 @@
 
 <div id="sultan-master-scope" class="sms-layout-root p-0 lg:p-4">
     
-    <!-- 1. PAGE HEADER (CLONED FROM KELOLA DATA) -->
+    <!-- 1. PAGE HEADER (GOLDEN TEMPLATE) -->
     <header class="sms-header-group mb-8">
         <h1 class="sms-header-title">Status Data SK</h1>
         <div class="sms-header-underline"></div>
     </header>
 
-    <!-- 2. INFORMASI (CLONED FROM KELOLA DATA) -->
+    <!-- 2. INFORMASI (GOLDEN TEMPLATE) -->
     <div class="mb-6" x-data="{ isOpen: false }">
         <div class="sk-alert-blue flex-col !items-stretch !p-0 overflow-hidden shadow-none">
-            <!-- Header Clickable -->
             <div class="flex items-center justify-between w-full py-3 px-5 cursor-pointer hover:bg-primary/5 transition-colors" @click="isOpen = !isOpen">
                 <div class="flex items-center font-bold uppercase tracking-wide text-[14px]">
                     <i class="fas fa-info-circle mr-3 text-[18px]"></i> INFORMASI
@@ -20,8 +19,6 @@
                     <i class="fas fa-chevron-down transition-transform duration-300" :class="isOpen ? 'rotate-180' : ''"></i>
                 </div>
             </div>
-            
-            <!-- Body Content -->
             <div x-show="isOpen" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 -translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" class="px-8 pb-8 border-t border-primary/10">
                 <div class="max-w-4xl mx-auto">
                     <ul class="mb-0 pl-0 mt-6 list-none space-y-5 text-[14px] font-medium text-gray-300 dark:text-gray-300">
@@ -29,58 +26,48 @@
                             <div class="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_8px_rgba(60,80,224,0.8)]"></div>
                             <span>Halaman ini menampilkan progres pengunggahan berkas per Semester untuk setiap Tahun Ajaran.</span>
                         </li>
-                        <li class="flex items-start gap-4">
-                            <div class="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_8px_rgba(60,80,224,0.8)]"></div>
-                            <span>Status <b>Diproses</b> menunjukkan berkas telah diunggah dan sedang menunggu verifikasi oleh tim Admin.</span>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <div class="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_8px_rgba(60,80,224,0.8)]"></div>
-                            <span>Klik ikon status pada baris sekolah untuk melihat <b>Catatan Perbaikan</b> jika statusnya Revisi atau Ditolak.</span>
-                        </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 3. KARTU FILTER (CLONED FROM KELOLA DATA) -->
+    <!-- 3. KARTU FILTER (GOLDEN TEMPLATE) -->
     <div class="sms-table-card p-3 shadow-lg border-l-4 border-l-primary/40 mb-6">
         <div class="flex flex-wrap items-center gap-3">
-            
-            <!-- Filter Instansi -->
-            <select id="statussk_filterSekolah" class="sms-input-premium !h-9 !py-0 !text-xs min-w-[320px] flex-grow lg:flex-grow-0">
-                <option value="SEMUA">- SEMUA SEKOLAH -</option>
-            </select>
-
-            <!-- Separator -->
+            <div class="w-fit min-w-[320px]">
+                <select id="statussk_filterSekolah" class="sms-input-premium !h-9 !py-0 !text-xs min-w-[320px] flex-grow lg:flex-grow-0">
+                    <option value="SEMUA">- PILIHAN SEMUA SEKOLAH -</option>
+                </select>
+            </div>
             <div class="h-6 w-[1px] bg-white/10 mx-1 hidden md:block"></div>
-
-            <!-- Action: Refresh -->
             <button type="button" id="statussk_btnCari" class="sms-btn-icon !h-9 !w-9 !rounded-xl" title="Refresh Data">
                 <i class="fab fa-gg text-primary"></i>
             </button>
         </div>
     </div>
 
-    <!-- 4. KARTU TABEL (MATRIX MODE) -->
-    <div class="sms-table-card">
-        <div class="p-0">
-            <div id="statussk_loadingState">
-              <div class="flex flex-col items-center justify-center py-20">
-                <div class="h-16 w-16 animate-spin rounded-full border-4 border-solid border-primary border-t-transparent"></div>
-                <h6 class="mt-5 font-bold text-black dark:text-white" id="statussk_loadingText">SINKRONISASI DATA...</h6>
-              </div>
+    <!-- 4. DATA TABLE (GOLDEN TEMPLATE - OPTION B MATRIX) -->
+    <div class="sms-table-card overflow-hidden">
+        <!-- Skeleton State (GOLDEN TEMPLATE STANDARD) -->
+        <div id="statussk_loadingState" class="p-6">
+            <div class="flex flex-col gap-4">
+                <div class="h-10 w-full bg-gray-100/10 rounded-lg sk-shimmer"></div>
+                <div class="h-10 w-full bg-gray-100/10 rounded-lg sk-shimmer"></div>
+                <div class="h-10 w-full bg-gray-100/10 rounded-lg sk-shimmer"></div>
             </div>
-            <div id="statussk_tableState" style="display: none;">
-                <table id="statussk_tabelUtama" class="w-full table-auto border-collapse sms-table-executive">
-                    <thead>
-                        <!-- Header akan diinjeksi via JS untuk menjaga konsistensi gaya -->
-                        <tr id="statussk_headerTabel" class="sms-thead-executive">
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-            </div>
+        </div>
+
+        <!-- Table State (GOLDEN TEMPLATE STANDARD) -->
+        <div id="statussk_tableState" style="display: none;">
+            <table id="statussk_tabelUtama" class="table table-bordered table-hover table-premium table-header-compact mb-0 w-100 text-nowrap">
+                <thead class="thead-grey-sultan">
+                    <tr id="statussk_headerTabel">
+                        <!-- Dinamis via JS -->
+                    </tr>
+                </thead>
+                <tbody class="text-[14px]"></tbody>
+            </table>
         </div>
     </div>
 
@@ -92,18 +79,13 @@
     var STATUSSK_RAW_HEADER = null;
     var STATUSSK_IS_ADMIN = false;
     var STATUSSK_USER_NPSN = "";
-    var STATUSSK_UNIT_TERKUNCI = "";
 
     $(document).ready(function () {
-        $('#statussk_tableState').hide();
-        $('#statussk_loadingState').show();
-
         try {
             var user = (typeof Sultan !== 'undefined' && Sultan.db) ? Sultan.db.get('siksUser') : {};
             STATUSSK_IS_ADMIN = (user.role || "").toLowerCase().includes("admin") || (user.role || "").toLowerCase().includes("verifikator");
             STATUSSK_USER_NPSN = user.npsn || user.username || "";
         } catch (e) { STATUSSK_IS_ADMIN = false; }
-
         statussk_validasiAksesUser();
     });
 
@@ -113,12 +95,7 @@
         } else {
             google.script.run.withSuccessHandler(function (resUnit) {
                 var dataUnit = JSON.parse(resUnit);
-                if (dataUnit.error) {
-                    $('#statussk_loadingState').html('<div class="text-center py-10 text-danger"><h6>' + statussk_escapeHtml(dataUnit.error) + '</h6></div>');
-                    return;
-                }
-                STATUSSK_UNIT_TERKUNCI = dataUnit.unitKerja;
-                $('#statussk_filterSekolah').empty().append($('<option>', {value: STATUSSK_UNIT_TERKUNCI, text: STATUSSK_UNIT_TERKUNCI})).prop('disabled', true);
+                $('#statussk_filterSekolah').empty().append($('<option>', {value: dataUnit.unitKerja, text: dataUnit.unitKerja})).prop('disabled', true);
                 statussk_tarikDataServer();
             }).getUnitKerjaByNpsnPTK(STATUSSK_USER_NPSN);
         }
@@ -127,13 +104,8 @@
     function statussk_tarikDataServer() {
         var btn = $('#statussk_btnCari');
         btn.prop('disabled', true).html('<i class="fab fa-gg fa-spin text-primary"></i>');
-
         google.script.run.withSuccessHandler(function (res) {
             btn.prop('disabled', false).html('<i class="fab fa-gg text-primary"></i>');
-            if (res.error) {
-                $('#statussk_loadingState').html('<div class="text-center py-10 text-danger"><h6>' + statussk_escapeHtml(res.error) + '</h6></div>');
-                return;
-            }
             STATUSSK_CACHE_DATA = res.rows || [];
             STATUSSK_RAW_HEADER = res.headers || null;
             statussk_populateDropdown(res.schools || []);
@@ -143,31 +115,21 @@
 
     function statussk_populateDropdown(schools) {
         if (STATUSSK_IS_ADMIN) {
-            var el = $('#statussk_filterSekolah');
-            var h = '<option value="SEMUA">- SEMUA SEKOLAH -</option>';
+            var h = '<option value="SEMUA">- PILIHAN SEMUA SEKOLAH -</option>';
             schools.forEach(function (s) { h += '<option value="' + statussk_escapeHtml(s) + '">' + statussk_escapeHtml(s) + '</option>'; });
-            el.html(h).prop('disabled', false);
+            $('#statussk_filterSekolah').html(h).prop('disabled', false);
         }
     }
 
-    $('#statussk_filterSekolah').on('change', function () {
-        if (STATUSSK_TABEL_INSTANCE) {
-            var val = $(this).val();
-            if (val === "SEMUA") STATUSSK_TABEL_INSTANCE.column(0).search('').draw();
-            else STATUSSK_TABEL_INSTANCE.column(0).search('^' + val + '$', true, false).draw();
-        }
-    });
-
     function statussk_renderTabel(rows) {
         var dtArray = [];
-        var headerHtml = '<th class="sms-th-executive text-left" style="min-width: 250px;">UNIT KERJA / SATDIK</th>';
-
+        var headerHtml = '<th class="th-main col-sticky-left align-middle text-left" style="width: 250px;">UNIT KERJA / SATDIK</th>';
         if (STATUSSK_RAW_HEADER && STATUSSK_RAW_HEADER.length >= 2) {
             var hRow1 = STATUSSK_RAW_HEADER[0], hRow2 = STATUSSK_RAW_HEADER[1];
             for (var i = 1; i < hRow2.length; i++) {
                 var year = ""; for (var k = i; k >= 1; k--) { if (hRow1[k]) { year = hRow1[k]; break; } }
-                headerHtml += '<th class="sms-th-executive text-center">' +
-                              '<div class="text-[10px] opacity-50">' + year + '</div>' +
+                headerHtml += '<th class="th-main text-center align-middle">' +
+                              '<div class="small opacity-50">' + year + '</div>' +
                               '<div>' + hRow2[i].toUpperCase().replace("SEMESTER ", "SEM ") + '</div></th>';
             }
         }
@@ -175,32 +137,32 @@
 
         rows.forEach(function (row) {
             var rowData = [], parts = String(row[0] || "").split('|');
-            rowData.push('<div class="text-left px-2 font-bold text-white">' + statussk_escapeHtml(parts[0]) + '<br><span class="text-[11px] text-gray-400 font-normal">' + statussk_escapeHtml(parts[1] || "-") + '</span></div>');
+            rowData.push('<div class="text-left font-bold text-white">' + statussk_escapeHtml(parts[0]) + '<br><span class="text-[11px] text-gray-500 font-normal">' + statussk_escapeHtml(parts[1] || "-") + '</span></div>');
             for (var i = 1; i < row.length; i++) { rowData.push(statussk_buildBadgeSultan(row[i])); }
             dtArray.push(rowData);
         });
 
         if (STATUSSK_TABEL_INSTANCE) STATUSSK_TABEL_INSTANCE.destroy();
         STATUSSK_TABEL_INSTANCE = $('#statussk_tabelUtama').DataTable({
-            "data": dtArray, "ordering": false, "pageLength": 10, "autoWidth": false,
+            "data": dtArray, "ordering": false, "pageLength": 10, "autoWidth": false, "deferRender": true,
+            "dom": '<"px-6 py-4 border-b border-gray-100 dark:border-white/5 bg-gray-50/30 dark:bg-black/10"<"flex items-center justify-between gap-4"l f>>' +
+                   '<"sultan-scroll overflow-x-auto"t>' +
+                   '<"px-6 py-4 border-t border-gray-100 dark:border-white/5 bg-gray-50/30 dark:bg-black/10"<"flex items-center justify-between"i p>>',
             "language": { "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json" },
-            "columnDefs": [ { "targets": 0, "className": "bg-[#1A222C] align-middle" }, { "targets": "_all", "className": "text-center align-middle" } ],
-            "drawCallback": function() {
-                $('#statussk_tabelUtama tbody tr').addClass('hover:bg-primary/5 transition-all');
-            }
+            "columnDefs": [ { "targets": 0, "className": "col-sticky-left bg-[#1A222C] align-middle px-4" }, { "targets": "_all", "className": "text-center align-middle border-l border-gray-100/5" } ]
         });
         $('#statussk_loadingState').hide(); $('#statussk_tableState').show();
     }
 
     function statussk_buildBadgeSultan(s) {
-        if (!s || s === "-" || s === "") return '<i class="fas fa-minus text-gray-600 small"></i>';
+        if (!s || s === "-" || s === "") return '<i class="fas fa-minus text-gray-700 small"></i>';
         var parts = String(s).split('|'), raw = parts[0].toLowerCase(), icon = "";
         var baseCls = "inline-flex h-7 w-7 items-center justify-center rounded-full transition-all border";
         if (raw.includes('revisi')) icon = '<span class="' + baseCls + ' bg-warning/10 text-warning border-warning/20"><i class="fab fa-gg text-[10px]"></i></span>';
         else if (raw.includes('tolak')) icon = '<span class="' + baseCls + ' bg-danger/10 text-danger border-danger/20"><i class="fas fa-times text-[10px]"></i></span>';
         else if (raw.includes('verif') || raw.includes('valid') || raw.includes('ok')) icon = '<span class="' + baseCls + ' bg-success/10 text-success border-success/20"><i class="fas fa-check text-[10px]"></i></span>';
         else if (raw.includes('proses')) icon = '<span class="' + baseCls + ' bg-primary/10 text-primary border-primary/20"><i class="fas fa-clock text-[10px]"></i></span>';
-        else icon = '<span class="font-bold text-gray-400">' + statussk_escapeHtml(parts[0]) + '</span>';
+        else icon = '<span class="font-bold text-gray-500">' + statussk_escapeHtml(parts[0]) + '</span>';
         return icon;
     }
     function statussk_escapeHtml(t) { return String(t || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"); }
