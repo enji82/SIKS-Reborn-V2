@@ -338,7 +338,7 @@
                     <button type="button" class="sms-btn sms-btn-ghost" onclick="$('#tugas_modalVerif').fadeOut().addClass('hidden').removeClass('flex')">
                         Batal
                     </button>
-                    <button type="submit" id="tugas_btnSimpanVerif" class="sms-btn sms-btn-primary">
+                    <button type="submit" id="tugas_btnSimpanVerif" class="sms-btn sms-btn-success">
                         <i class="fas fa-check-circle mr-2"></i> EKSEKUSI
                     </button>
                 </div>
@@ -866,6 +866,7 @@
         tugas_populateFilterOptions(); // Ensure schools are populated
         tugas_resetForm();
         $('#tugas_headerModalForm').removeClass('sk-modal-header-warning sk-modal-header-danger').addClass('sk-modal-header-primary');
+        $('#tugas_btnSimpanForm').removeClass('sms-btn-warning sms-btn-danger sms-btn-success').addClass('sms-btn-primary');
         $('#tugas_judulModalForm').html('<i class="fas fa-plus-circle mr-2"></i> Tambah SK Pembagian Tugas');
         $('#tugas_btnSimpanForm').html('<i class="fas fa-save mr-2"></i> SIMPAN DATA SK');
 
@@ -932,10 +933,8 @@
         if (!rowData) return;
 
         $('#tugas_headerModalForm').removeClass('sk-modal-header-primary sk-modal-header-danger').addClass('sk-modal-header-warning');
+        $('#tugas_btnSimpanForm').removeClass('sms-btn-primary sms-btn-danger sms-btn-success').addClass('sms-btn-warning');
         $('#tugas_judulModalForm').html('<i class="fas fa-edit mr-2"></i> Edit Data SK Pembagian Tugas');
-        $('#tugas_editRowId').val(rowId);
-
-        $('#tugas_btnSimpanForm').removeClass('btn-sultan-maroon').addClass('btn-sultan-indigo');
 
         $('#tugas_inputNamaSd').val(rowData.namaSd);
         $('#tugas_inputTahun').val(rowData.tahun);
