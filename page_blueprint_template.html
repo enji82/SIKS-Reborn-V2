@@ -1,85 +1,97 @@
+<?!= include('css_premium_sk_repaired'); ?>
+
 <!-- 
-  SULTAN MASTER SYSTEM (SMS) v6.0 - GOLDEN BOILERPLATE
-  ---------------------------------------------------------
-  This template is strictly managed by the SMS v6.0 Specification.
-  DO NOT use inline Tailwind gap/typography classes for core layout.
-  ---------------------------------------------------------
+    ===================================================================
+    SULTAN EXECUTIVE GOLDEN TEMPLATE (v6.5 - DEFINITIVE)
+    Semua elemen UI/UX telah distandarisasi untuk seluruh website.
+    Gunakan file ini sebagai satu-satunya referensi modernisasi.
+    ===================================================================
 -->
 
-<div class="sms-layout-root">
+<div id="sultan-master-scope" class="sms-layout-root p-0 lg:p-4 animate-reveal">
     
-    <!-- 1. EXECUTIVE HEADER -->
-    <header class="sms-header-group">
-        <h1 class="sms-header-title">[TITLE_MODULE]</h1>
-        <p class="sms-header-subtitle">[DESCRIPTION_MODULE]</p>
+    <!-- 1. EXECUTIVE HEADER GROUP (STANDAR) -->
+    <header class="sms-header-group mb-6">
+        <h1 class="sms-header-title uppercase">NAMA HALAMAN UTAMA</h1>
+        <p class="sms-header-subtitle">Deskripsi singkat fungsi halaman untuk membantu navigasi pengguna secara real-time.</p>
     </header>
 
-    <!-- 2. INFORMATION/GUIDE SECTION -->
-    <section class="sms-table-card border-l-4 border-l-primary/50" x-data="{ isOpen: false }">
-        <div class="py-2 px-3">
+    <!-- 2. INFORMATION CARD (STANDAR) -->
+    <section class="sms-table-card border-l-4 border-l-primary/50 mb-6" x-data="{ isOpen: false }">
+        <div class="py-3 px-5">
             <div class="flex items-center justify-between cursor-pointer" @click="isOpen = !isOpen">
-                <div class="flex items-center text-primary font-black text-xs uppercase tracking-widest">
-                    <i class="fas fa-info-circle mr-2"></i> PANDUAN PENGISIAN
+                <div class="flex items-center text-primary font-black text-[14px] uppercase tracking-widest">
+                    <i class="fas fa-info-circle mr-3 text-[18px]"></i> INFORMASI
                 </div>
-                <i class="fas text-muted transition-transform" :class="isOpen ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+                <div class="h-8 w-8 flex items-center justify-center rounded-full hover:bg-primary/10 transition-all">
+                    <i class="fas text-muted transition-transform duration-300" :class="isOpen ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+                </div>
             </div>
-            <div x-show="isOpen" x-transition class="mt-2 pt-2 border-t border-stroke dark:border-white/5 small text-body">
-                <ul class="mb-0 pl-3 list-disc space-y-1">
-                    <li>[GUIDE_ITEM_1]</li>
+            <div x-show="isOpen" x-transition class="mt-4 pt-4 border-t border-gray-100 dark:border-white/5 text-gray-500">
+                <ul class="mb-0 pl-4 list-disc space-y-4 text-[14px] font-medium leading-relaxed">
+                    <li>Poin informasi utama menggunakan kalimat yang jelas dan informatif.</li>
+                    <li>Status data diperbarui secara otomatis dari sistem pusat setiap kali tombol refresh ditekan.</li>
+                    <li>Gunakan filter untuk mempersempit pencarian data berdasarkan instansi atau kategori.</li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- 3. ACTIONS & FILTERS -->
-    <section class="sms-table-card p-3 border-l-4 border-l-primary/30">
-        <div class="flex flex-wrap items-center gap-3">
-            <select id="[PREFIX]_filterUnit" class="rounded-xl border border-stroke bg-gray-2 dark:bg-strokedark py-1.5 px-3 text-xs font-bold outline-none transition focus:border-primary active:border-primary dark:border-strokedark min-w-[200px]" disabled>
-                <option value="">- Memvalidasi Akses... -</option>
-            </select>
-
-            <button type="button" id="[PREFIX]_btnRefresh" class="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-primary/20 bg-primary/5 text-primary hover:bg-primary hover:text-white dark:border-white/10 dark:bg-white/5 dark:text-white transition-all shadow-sm active:scale-95">
-                <i class="fab fa-gg text-xs"></i>
-            </button>
-
-            <div class="ml-auto">
-                <button type="button" id="[PREFIX]_btnTambah" class="inline-flex items-center justify-center gap-2 rounded-xl bg-primary py-2 px-4 text-center text-xs font-bold text-white hover:bg-opacity-90 transition-all shadow-sm disabled:opacity-50" disabled>
-                    <i class="fas fa-plus mr-1"></i> TAMBAH DATA
-                </button>
+    <!-- 3. ACTION & FILTER BAR (STANDAR) -->
+    <section class="sms-table-card p-4 border-l-4 border-l-primary/30 mb-6">
+        <div class="flex flex-wrap items-center gap-4">
+            <!-- Dropdown Filter -->
+            <div class="w-fit min-w-[320px]">
+                <select id="TEMPLATE_ID_filter" class="sms-input-premium w-full !h-10 !py-0 !text-xs font-black uppercase">
+                    <option value="SEMUA">- PILIHAN SEMUA DATA -</option>
+                </select>
             </div>
+            
+            <div class="h-8 w-[1px] bg-gray-100 dark:bg-white/10 mx-1 hidden md:block"></div>
+
+            <!-- Action Buttons -->
+            <button type="button" id="TEMPLATE_ID_btnRefresh" class="sms-btn-icon !h-10 !w-10 !rounded-xl" title="Refresh Data">
+                <i class="fab fa-gg text-primary"></i>
+            </button>
         </div>
     </section>
 
-    <!-- 4. CORE DATA TABLE -->
-    <section class="sms-table-card">
-        <div id="[PREFIX]_tableState" style="display: none;">
-            <table id="[PREFIX]_tabelUtama" class="w-full table-auto border-collapse text-xs">
-                <thead>
-                    <tr class="sms-thead-executive">
-                        <th class="sms-th-executive text-center" style="width:120px;">AKSI</th>
-                        <th class="sms-th-executive">[COL_1]</th>
-                        <th class="sms-th-executive text-center text-slate-500">STATUS</th>
+    <!-- 4. DATA TABLE SECTION (PREMIUM MATRIX) -->
+    <section class="sms-table-card shadow-sm border border-gray-100 overflow-hidden">
+        
+        <!-- Loading State (Sultan Shimmer Skeleton) -->
+        <div id="TEMPLATE_ID_loadingState" class="p-6">
+            <div class="flex flex-col gap-4">
+                <div class="h-10 w-full bg-gray-50/50 rounded-lg sk-shimmer"></div>
+                <div class="h-10 w-full bg-gray-50/50 rounded-lg sk-shimmer"></div>
+                <div class="h-10 w-full bg-gray-50/50 rounded-lg sk-shimmer"></div>
+            </div>
+        </div>
+
+        <!-- Table State -->
+        <div id="TEMPLATE_ID_tableState" style="display: none;">
+            <table id="TEMPLATE_ID_tabelUtama" class="table table-bordered table-hover table-premium table-header-compact mb-0 w-100 text-nowrap">
+                <thead class="thead-grey-sultan">
+                    <tr>
+                        <th class="th-main col-sticky-left align-middle text-left" style="width: 250px;">KOLOM STICKY (JUDUL)</th>
+                        <th class="th-main text-center align-middle">KOLOM DATA 1</th>
+                        <th class="th-main text-center align-middle">KOLOM DATA 2</th>
+                        <th class="th-main text-center align-middle">KOLOM DATA 3</th>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody class="text-[14px]">
+                    <!-- Konten dinamis -->
+                </tbody>
             </table>
         </div>
     </section>
 
 </div>
 
-<script>
-    // ======================================================================
-    // ISOLASI VARIABEL GLOBAL (SMS v6.0 STANDARDS)
-    // ======================================================================
-    var [PREFIX]_CACHE_DATA = [];
-    var [PREFIX]_TABEL_INSTANCE = null;
-
-    $(document).ready(function () {
-        [PREFIX]_tarikDataServer();
-    });
-
-    function [PREFIX]_tarikDataServer() {
-        // [PREFIX]_TABEL_INSTANCE initialization code goes here
-    }
-</script>
+<!-- 
+    PANDUAN IMPLEMENTASI JAVASCRIPT:
+    1. Gunakan 'thead-grey-sultan' untuk header tabel.
+    2. Gunakan 'col-sticky-left' untuk kolom pertama yang tidak ikut geser.
+    3. Gunakan 'table-bordered' untuk garis kotak penuh pada matriks.
+    4. Gunakan 'sk-shimmer' untuk animasi skeleton.
+-->

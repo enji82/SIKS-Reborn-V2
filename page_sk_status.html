@@ -1,14 +1,14 @@
-<?!= include('css_premium_sk'); ?>
+<?!= include('css_premium_sk_repaired'); ?>
 
 <div id="sultan-master-scope" class="sms-layout-root p-0 lg:p-4 animate-reveal">
     
-    <!-- 1. EXECUTIVE HEADER -->
+    <!-- 1. EXECUTIVE HEADER GROUP -->
     <header class="sms-header-group mb-6">
-        <h1 class="sms-header-title">STATUS DATA SK</h1>
+        <h1 class="sms-header-title uppercase">STATUS DATA SK</h1>
         <p class="sms-header-subtitle">Monitoring real-time progres pengiriman dan validasi berkas SK Satuan Pendidikan.</p>
     </header>
 
-    <!-- 2. INFORMATION SECTION -->
+    <!-- 2. INFORMATION CARD -->
     <section class="sms-table-card border-l-4 border-l-primary/50 mb-6" x-data="{ isOpen: false }">
         <div class="py-3 px-5">
             <div class="flex items-center justify-between cursor-pointer" @click="isOpen = !isOpen">
@@ -19,57 +19,55 @@
                     <i class="fas text-muted transition-transform duration-300" :class="isOpen ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
                 </div>
             </div>
-            <div x-show="isOpen" x-transition class="mt-4 pt-4 border-t border-gray-100 dark:border-white/5 text-gray-500 dark:text-gray-400">
-                <ul class="mb-0 pl-4 list-disc space-y-4 text-[14px] font-medium">
-                    <li>Matriks ini menampilkan progres pengunggahan berkas per Semester untuk setiap Tahun Ajaran yang terdata di sistem.</li>
+            <div x-show="isOpen" x-transition class="mt-4 pt-4 border-t border-gray-100 dark:border-white/5 text-gray-500">
+                <ul class="mb-0 pl-4 list-disc space-y-4 text-[14px] font-medium leading-relaxed">
+                    <li>Halaman ini menampilkan progres pengunggahan berkas per Semester untuk setiap Tahun Ajaran.</li>
                     <li>Status <b>Diproses</b> menunjukkan berkas telah diunggah dan sedang menunggu verifikasi oleh tim Admin.</li>
-                    <li>Status <b>Valid</b> menunjukkan berkas telah disetujui. Pastikan data sudah sesuai sebelum pengarsipan fisik.</li>
                     <li>Klik ikon status pada baris sekolah untuk melihat <b>Catatan Perbaikan</b> jika statusnya Revisi atau Ditolak.</li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- 3. ACTIONS & FILTERS -->
+    <!-- 3. ACTION & FILTER BAR -->
     <section class="sms-table-card p-4 border-l-4 border-l-primary/30 mb-6">
         <div class="flex flex-wrap items-center gap-4">
-            <!-- Filter Instansi -->
             <div class="w-fit min-w-[320px]">
-                <select id="statussk_filterSekolah" class="sms-input-premium w-full !h-10 !py-0 !text-xs font-black">
-                    <option value="SEMUA">- Semua Sekolah -</option>
+                <select id="statussk_filterSekolah" class="sms-input-premium w-full !h-10 !py-0 !text-xs font-black uppercase">
+                    <option value="SEMUA">- PILIHAN SEMUA SEKOLAH -</option>
                 </select>
             </div>
-            
-            <!-- Separator -->
             <div class="h-8 w-[1px] bg-gray-100 dark:bg-white/10 mx-1 hidden md:block"></div>
-
-            <!-- Action: Refresh -->
             <button type="button" id="statussk_btnCari" class="sms-btn-icon !h-10 !w-10 !rounded-xl" title="Refresh Data">
                 <i class="fab fa-gg text-primary"></i>
             </button>
         </div>
     </section>
 
-    <!-- 4. CORE DATA TABLE (EXECUTIVE MATRIX) -->
-    <section class="sms-table-card">
-        <div id="statussk_loadingState">
-            <!-- Skeleton Bars Rendered via JS -->
-        </div>
-        <div id="statussk_tableState" style="display: none;">
-            <div class="p-0 overflow-hidden">
-                <table id="statussk_tabelUtama" class="w-full table-auto border-collapse text-xs bg-transparent">
-                    <thead id="statussk_headerTabel" class="bg-gray-50/80 dark:bg-white/5">
-                        <!-- Dinamis via JS -->
-                    </thead>
-                    <tbody class="divide-y divide-gray-100 dark:divide-white/5 bg-transparent"></tbody>
-                </table>
+    <!-- 4. DATA TABLE SECTION (PREMIUM MATRIX) -->
+    <section class="sms-table-card shadow-sm border border-gray-100 overflow-hidden">
+        <div id="statussk_loadingState" class="p-6">
+            <div class="flex flex-col gap-4">
+                <div class="h-10 w-full bg-gray-50/50 rounded-lg sk-shimmer"></div>
+                <div class="h-10 w-full bg-gray-50/50 rounded-lg sk-shimmer"></div>
+                <div class="h-10 w-full bg-gray-50/50 rounded-lg sk-shimmer"></div>
             </div>
+        </div>
+
+        <div id="statussk_tableState" style="display: none;">
+            <table id="statussk_tabelUtama" class="table table-bordered table-hover table-premium table-header-compact mb-0 w-100 text-nowrap">
+                <thead class="thead-grey-sultan">
+                    <tr id="statussk_headerTabel">
+                        <!-- Dinamis via JS -->
+                    </tr>
+                </thead>
+                <tbody class="text-[14px]"></tbody>
+            </table>
         </div>
     </section>
 
 </div>
 
-<!-- SCRIPT LOGIC -->
 <script>
     var STATUSSK_CACHE_DATA = [];
     var STATUSSK_TABEL_INSTANCE = null;
@@ -79,14 +77,11 @@
     var STATUSSK_UNIT_TERKUNCI = "";
 
     $(document).ready(function () {
-        statussk_renderSkeleton();
-        
         try {
             var user = (typeof Sultan !== 'undefined' && Sultan.db) ? Sultan.db.get('siksUser') : {};
             STATUSSK_IS_ADMIN = (user.role || "").toLowerCase().includes("admin") || (user.role || "").toLowerCase().includes("verifikator");
             STATUSSK_USER_NPSN = user.npsn || user.username || "";
         } catch (e) { STATUSSK_IS_ADMIN = false; }
-
         statussk_validasiAksesUser();
     });
 
@@ -95,13 +90,13 @@
             statussk_tarikDataServer();
         } else {
             if (!STATUSSK_USER_NPSN) {
-                $('#statussk_loadingState').html('<div class="flex flex-col items-center py-10 text-danger"><i class="fas fa-ban text-4xl mb-3 opacity-50"></i><h6 class="font-black text-xs uppercase tracking-widest">Sesi Login Invalid</h6></div>');
+                $('#statussk_loadingState').html('<div class="text-center py-10 text-danger"><h6>Sesi Login Invalid</h6></div>');
                 return;
             }
             google.script.run.withSuccessHandler(function (resUnit) {
                 var dataUnit = JSON.parse(resUnit);
                 if (dataUnit.error) {
-                    $('#statussk_loadingState').html('<div class="flex flex-col items-center py-10 text-danger"><h6>' + statussk_escapeHtml(dataUnit.error) + '</h6></div>');
+                    $('#statussk_loadingState').html('<div class="text-center py-10 text-danger"><h6>' + statussk_escapeHtml(dataUnit.error) + '</h6></div>');
                     return;
                 }
                 STATUSSK_UNIT_TERKUNCI = dataUnit.unitKerja;
@@ -114,12 +109,11 @@
     function statussk_tarikDataServer() {
         var btn = $('#statussk_btnCari');
         btn.prop('disabled', true).html('<i class="fab fa-gg fa-spin text-primary"></i>');
-
         google.script.run
             .withSuccessHandler(function (res) {
                 btn.prop('disabled', false).html('<i class="fab fa-gg text-primary"></i>');
                 if (res.error) {
-                    $('#statussk_loadingState').html('<div class="flex flex-col items-center py-10 text-danger"><h6>' + statussk_escapeHtml(res.error) + '</h6></div>');
+                    $('#statussk_loadingState').html('<div class="text-center py-10 text-danger"><h6>' + statussk_escapeHtml(res.error) + '</h6></div>');
                     return;
                 }
                 STATUSSK_CACHE_DATA = res.rows || [];
@@ -129,7 +123,7 @@
             })
             .withFailureHandler(function (err) {
                 btn.prop('disabled', false).html('<i class="fab fa-gg text-primary"></i>');
-                $('#statussk_loadingState').html('<div class="flex flex-col items-center py-10 text-danger"><h6>Server Error</h6></div>');
+                $('#statussk_loadingState').html('<div class="text-center py-10 text-danger"><h6>Server Error</h6></div>');
             })
             .getSiabaStatusData();
     }
@@ -137,12 +131,9 @@
     function statussk_populateDropdown(schools) {
         if (STATUSSK_IS_ADMIN) {
             var el = $('#statussk_filterSekolah');
-            var h = '<option value="SEMUA">- Semua Sekolah -</option>';
-            schools.forEach(function (s) {
-                var safeS = statussk_escapeHtml(s);
-                h += '<option value="' + safeS + '">' + safeS + '</option>';
-            });
-            el.html(h);
+            var h = '<option value="SEMUA">- PILIHAN SEMUA SEKOLAH -</option>';
+            schools.forEach(function (s) { h += '<option value="' + statussk_escapeHtml(s) + '">' + statussk_escapeHtml(s) + '</option>'; });
+            el.html(h).prop('disabled', false);
         }
     }
 
@@ -156,21 +147,14 @@
 
     function statussk_renderTabel(rows) {
         var dtArray = [];
-        var headerHtml = '<tr class="border-b border-gray-100 dark:border-white/5">';
-
-        headerHtml += '<th class="py-4 px-6 font-bold uppercase text-[12px] text-gray-500 text-left sticky left-0 z-[30] bg-gray-50 dark:bg-[#1A222C] border-r border-gray-100 dark:border-white/10">' +
-                      'UNIT KERJA / SATDIK' +
-                      '</th>';
-
+        var headerHtml = '<tr><th class="th-main col-sticky-left align-middle text-left" style="width: 250px;">UNIT KERJA / SATDIK</th>';
         if (STATUSSK_RAW_HEADER && STATUSSK_RAW_HEADER.length >= 2) {
             var hRow1 = STATUSSK_RAW_HEADER[0], hRow2 = STATUSSK_RAW_HEADER[1];
             for (var i = 1; i < hRow2.length; i++) {
-                var year = "";
-                for (var k = i; k >= 1; k--) { if (hRow1[k]) { year = hRow1[k]; break; } }
-                var cleanSmt = hRow2[i].toUpperCase().replace("SEMESTER ", "SEM ").replace("SMT ", "SEM ");
-                headerHtml += '<th class="py-4 px-3 font-bold uppercase text-[10px] text-gray-400 border-l border-gray-100 dark:border-white/5 text-center">' +
-                              '<div class="opacity-50 mb-0.5">' + year + '</div>' +
-                              '<div>' + cleanSmt + '</div></th>';
+                var year = ""; for (var k = i; k >= 1; k--) { if (hRow1[k]) { year = hRow1[k]; break; } }
+                headerHtml += '<th class="th-main text-center align-middle">' +
+                              '<div class="small opacity-50">' + year + '</div>' +
+                              '<div>' + hRow2[i].toUpperCase().replace("SEMESTER ", "SEM ") + '</div></th>';
             }
         }
         headerHtml += '</tr>';
@@ -178,53 +162,33 @@
 
         rows.forEach(function (row) {
             var rowData = [], parts = String(row[0] || "").split('|');
-            rowData.push('<div class="flex flex-col text-left py-1">' +
-                         '<span class="font-bold text-gray-800 dark:text-white text-[14px]">' + statussk_escapeHtml(parts[0]) + '</span>' +
-                         '<span class="text-[10px] text-gray-400 font-bold tracking-widest">' + statussk_escapeHtml(parts[1] || "-") + '</span>' +
-                         '</div>');
+            rowData.push('<div class="text-left px-2 font-weight-bold text-dark">' + statussk_escapeHtml(parts[0]) + '<br><span class="small text-muted font-weight-normal">' + statussk_escapeHtml(parts[1] || "-") + '</span></div>');
             for (var i = 1; i < row.length; i++) { rowData.push(statussk_buildBadgeSultan(row[i])); }
             dtArray.push(rowData);
         });
 
         if (STATUSSK_TABEL_INSTANCE) STATUSSK_TABEL_INSTANCE.destroy();
-        
         STATUSSK_TABEL_INSTANCE = $('#statussk_tabelUtama').DataTable({
             "data": dtArray, "ordering": false, "pageLength": 10, "autoWidth": false, "deferRender": true,
-            "dom": '<"px-6 py-4 border-b border-gray-100 dark:border-white/5 bg-gray-50/30 dark:bg-black/10"<"flex items-center justify-between gap-4"l f>>' +
+            "dom": '<"px-6 py-4 border-b border-gray-100 dark:border-white/5 bg-gray-50/30"<"flex items-center justify-between gap-4"l f>>' +
                    '<"sultan-scroll overflow-x-auto"t>' +
-                   '<"px-6 py-4 border-t border-gray-100 dark:border-white/5 bg-gray-50/30 dark:bg-black/10"<"flex items-center justify-between"i p>>',
+                   '<"px-6 py-4 border-t border-gray-100 dark:border-white/5 bg-gray-50/30"<"flex items-center justify-between"i p>>',
             "language": { "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json" },
-            "columnDefs": [ 
-                { "targets": 0, "className": "py-3 px-6 sticky left-0 z-[10] bg-white dark:bg-[#1A222C] border-r border-gray-100 dark:border-white/10" },
-                { "targets": "_all", "className": "text-center py-3 px-2 border-l border-gray-50 dark:border-white/5 border-b border-gray-50" }
-            ]
+            "columnDefs": [ { "targets": 0, "className": "col-sticky-left bg-white align-middle" }, { "targets": "_all", "className": "text-center align-middle" } ]
         });
-
-        $('#statussk_loadingState').hide();
-        $('#statussk_tableState').show();
-        setTimeout(function () { STATUSSK_TABEL_INSTANCE.columns.adjust(); }, 150);
-    }
-
-    function statussk_renderSkeleton() {
-        var h = '<div class="flex flex-col gap-4 p-10">';
-        for (var i = 0; i < 6; i++) {
-            h += '<div class="flex items-center gap-4 sk-shimmer h-10 w-full rounded-lg bg-gray-100/50"></div>';
-        }
-        h += '</div>';
-        $('#statussk_loadingState').html(h);
+        $('#statussk_loadingState').hide(); $('#statussk_tableState').show();
     }
 
     function statussk_buildBadgeSultan(s) {
         if (!s || s === "-" || s === "") return '<i class="fas fa-minus text-gray-200 small"></i>';
         var parts = String(s).split('|'), raw = parts[0].toLowerCase(), icon = "";
         var baseCls = "inline-flex h-7 w-7 items-center justify-center rounded-full transition-all border";
-        if (raw.includes('revisi')) icon = '<button type="button" class="' + baseCls + ' bg-warning/10 text-warning border-warning/20"><i class="fab fa-gg text-[10px]"></i></button>';
-        else if (raw.includes('tolak')) icon = '<button type="button" class="' + baseCls + ' bg-danger/10 text-danger border-danger/20"><i class="fas fa-times text-[10px]"></i></button>';
+        if (raw.includes('revisi')) icon = '<span class="' + baseCls + ' bg-warning/10 text-warning border-warning/20"><i class="fab fa-gg text-[10px]"></i></span>';
+        else if (raw.includes('tolak')) icon = '<span class="' + baseCls + ' bg-danger/10 text-danger border-danger/20"><i class="fas fa-times text-[10px]"></i></span>';
         else if (raw.includes('verif') || raw.includes('valid') || raw.includes('ok')) icon = '<span class="' + baseCls + ' bg-success/10 text-success border-success/20"><i class="fas fa-check text-[10px]"></i></span>';
         else if (raw.includes('proses')) icon = '<span class="' + baseCls + ' bg-primary/10 text-primary border-primary/20"><i class="fas fa-clock text-[10px]"></i></span>';
         else icon = '<span class="font-bold text-gray-600">' + statussk_escapeHtml(parts[0]) + '</span>';
         return icon;
     }
-
     function statussk_escapeHtml(t) { return String(t || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"); }
 </script>
