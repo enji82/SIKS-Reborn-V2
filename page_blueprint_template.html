@@ -1,97 +1,245 @@
 <?!= include('css_premium_sk_repaired'); ?>
 
 <!-- 
-    ===================================================================
-    SULTAN EXECUTIVE GOLDEN TEMPLATE (v6.5 - DEFINITIVE)
-    Semua elemen UI/UX telah distandarisasi untuk seluruh website.
-    Gunakan file ini sebagai satu-satunya referensi modernisasi.
-    ===================================================================
+    ========================================================================================
+    SULTAN EXECUTIVE UI KIT & BLUEPRINT (v7.0 - THE DEFINITIVE STANDARD)
+    
+    File ini adalah "Single Source of Truth" (Satu-satunya sumber kebenaran) 
+    untuk seluruh desain UI/UX di proyek ini. 
+    Dibuat berdasarkan struktur terbaik dari "Kelola Data SK".
+    ========================================================================================
 -->
 
-<div id="sultan-master-scope" class="sms-layout-root p-0 lg:p-4 animate-reveal">
+<div id="sultan-master-scope" class="sms-layout-root p-0 lg:p-4">
     
-    <!-- 1. EXECUTIVE HEADER GROUP (STANDAR) -->
-    <header class="sms-header-group mb-6">
-        <h1 class="sms-header-title uppercase">NAMA HALAMAN UTAMA</h1>
-        <p class="sms-header-subtitle">Deskripsi singkat fungsi halaman untuk membantu navigasi pengguna secara real-time.</p>
+    <!-- =========================================================
+         1. PAGE HEADER (SULTAN EXECUTIVE V7.0)
+         ========================================================= -->
+    <header class="sms-header-group mb-8">
+        <h1 class="sms-header-title">Judul Halaman</h1>
+        <div class="sms-header-underline"></div>
+        <p class="sms-header-subtitle mt-2">Deskripsi singkat fungsi halaman ini untuk membantu pengguna.</p>
     </header>
 
-    <!-- 2. INFORMATION CARD (STANDAR) -->
-    <section class="sms-table-card border-l-4 border-l-primary/50 mb-6" x-data="{ isOpen: false }">
-        <div class="py-3 px-5">
-            <div class="flex items-center justify-between cursor-pointer" @click="isOpen = !isOpen">
-                <div class="flex items-center text-primary font-black text-[14px] uppercase tracking-widest">
-                    <i class="fas fa-info-circle mr-3 text-[18px]"></i> INFORMASI
+    <!-- =========================================================
+         2. PANDUAN PENGISIAN / INFORMASI (ACCORDION)
+         ========================================================= -->
+    <div class="mb-6" x-data="{ isOpen: false }">
+        <div class="sk-alert-blue flex-col !items-stretch !p-0 overflow-hidden shadow-none">
+            <!-- Header Clickable -->
+            <div class="flex items-center justify-between w-full py-3 px-5 cursor-pointer hover:bg-primary/5 transition-colors" @click="isOpen = !isOpen">
+                <div class="flex items-center font-bold uppercase tracking-wide text-[14px]">
+                    <i class="fas fa-info-circle mr-3 text-[18px]"></i> INFORMASI PENTING
                 </div>
                 <div class="h-8 w-8 flex items-center justify-center rounded-full hover:bg-primary/10 transition-all">
-                    <i class="fas text-muted transition-transform duration-300" :class="isOpen ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+                    <i class="fas fa-chevron-down transition-transform duration-300" :class="isOpen ? 'rotate-180' : ''"></i>
                 </div>
             </div>
-            <div x-show="isOpen" x-transition class="mt-4 pt-4 border-t border-gray-100 dark:border-white/5 text-gray-500">
-                <ul class="mb-0 pl-4 list-disc space-y-4 text-[14px] font-medium leading-relaxed">
-                    <li>Poin informasi utama menggunakan kalimat yang jelas dan informatif.</li>
-                    <li>Status data diperbarui secara otomatis dari sistem pusat setiap kali tombol refresh ditekan.</li>
-                    <li>Gunakan filter untuk mempersempit pencarian data berdasarkan instansi atau kategori.</li>
-                </ul>
+            
+            <!-- Body Content -->
+            <div x-show="isOpen" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 -translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" class="px-8 pb-8 border-t border-primary/10">
+                <div class="max-w-4xl mx-auto">
+                    <ul class="mb-0 pl-0 mt-6 list-none space-y-5 text-[14px] font-medium text-gray-300 dark:text-gray-300">
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_8px_rgba(60,80,224,0.8)]"></div>
+                            <span>Poin informasi pertama yang menjelaskan aturan main.</span>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_8px_rgba(60,80,224,0.8)]"></div>
+                            <span>Gunakan <b>teks tebal</b> atau <span class="sms-text-soft-danger">warna khusus</span> untuk penekanan.</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- 3. ACTION & FILTER BAR (STANDAR) -->
-    <section class="sms-table-card p-4 border-l-4 border-l-primary/30 mb-6">
-        <div class="flex flex-wrap items-center gap-4">
-            <!-- Dropdown Filter -->
-            <div class="w-fit min-w-[320px]">
-                <select id="TEMPLATE_ID_filter" class="sms-input-premium w-full !h-10 !py-0 !text-xs font-black uppercase">
-                    <option value="SEMUA">- PILIHAN SEMUA DATA -</option>
-                </select>
-            </div>
+    <!-- =========================================================
+         3. KARTU FILTER & ACTION (HARMONIZED)
+         ========================================================= -->
+    <div class="sms-table-card p-3 shadow-lg border-l-4 border-l-primary/40 mb-6">
+        <div class="flex flex-wrap items-center gap-3">
             
-            <div class="h-8 w-[1px] bg-gray-100 dark:bg-white/10 mx-1 hidden md:block"></div>
+            <!-- Contoh Dropdown Biasa -->
+            <select id="TEMPLATE_filter1" class="sms-input-premium !h-9 !py-0 !text-xs min-w-[200px] flex-grow lg:flex-grow-0">
+                <option value="">- Semua Kategori -</option>
+            </select>
 
-            <!-- Action Buttons -->
-            <button type="button" id="TEMPLATE_ID_btnRefresh" class="sms-btn-icon !h-10 !w-10 !rounded-xl" title="Refresh Data">
+            <!-- Contoh Dropdown Terkunci (Disabled) -->
+            <select id="TEMPLATE_filter2" class="sms-input-premium !h-9 !py-0 !text-xs min-w-[150px] font-bold text-primary bg-primary/5" disabled>
+                <option value="">TERKUNCI</option>
+            </select>
+
+            <!-- Separator -->
+            <div class="h-6 w-[1px] bg-gray-200 dark:bg-white/10 mx-1 hidden md:block"></div>
+
+            <!-- Tombol Refresh (Icon) -->
+            <button type="button" id="TEMPLATE_btnRefresh" class="sms-btn-icon !h-9 !w-9 !rounded-xl" title="Refresh Data">
                 <i class="fab fa-gg text-primary"></i>
             </button>
-        </div>
-    </section>
 
-    <!-- 4. DATA TABLE SECTION (PREMIUM MATRIX) -->
-    <section class="sms-table-card shadow-sm border border-gray-100 overflow-hidden">
+            <!-- Tombol Aksi Utama (Kanan) -->
+            <div class="ml-auto">
+                <button type="button" id="TEMPLATE_btnTambah" class="sms-btn-premium-action">
+                    <i class="fas fa-plus mr-1.5"></i> TAMBAH DATA
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         4. OPSI A: TABEL STANDAR (DAFTAR DATA)
+         Gunakan tabel ini untuk list data biasa (seperti Kelola Data SK)
+         ========================================================= -->
+    <div class="sms-table-card mb-8">
+        <div class="p-4 border-b border-gray-100 dark:border-white/5 bg-gray-50/50 dark:bg-black/20">
+            <h3 class="text-[13px] font-bold text-gray-700 dark:text-gray-300 uppercase tracking-widest"><i class="fas fa-list mr-2"></i> Opsi A: Tabel Standar</h3>
+        </div>
+        <div class="p-0">
+            <!-- Loading State (Spinner) -->
+            <div id="TEMPLATE_loadingStateA" style="display:none;">
+                <div class="flex flex-col items-center justify-center py-20">
+                    <div class="h-16 w-16 animate-spin rounded-full border-4 border-solid border-primary border-t-transparent"></div>
+                    <h6 class="mt-5 font-bold text-black dark:text-white">SINKRONISASI DATA...</h6>
+                </div>
+            </div>
+
+            <!-- Table State -->
+            <div id="TEMPLATE_tableStateA" class="overflow-x-auto">
+                <table class="w-full table-auto border-collapse sms-table-executive">
+                    <thead>
+                        <tr class="sms-thead-executive">
+                            <th class="sms-th-executive text-center">AKSI</th>
+                            <th class="sms-th-executive text-left">NAMA SEKOLAH</th>
+                            <th class="sms-th-executive text-center">STATUS</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100 dark:divide-white/5">
+                        <tr class="hover:bg-primary/5 dark:hover:bg-white/5 transition-all">
+                            <td class="text-center py-4">
+                                <button class="sms-btn-icon !h-8 !w-8 bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white"><i class="fas fa-edit"></i></button>
+                            </td>
+                            <td class="py-4 font-bold text-gray-800 dark:text-white">SDN CONTOH 1</td>
+                            <td class="text-center py-4">
+                                <span class="inline-flex h-7 px-3 items-center justify-center rounded-full border bg-success/10 text-success border-success/20 font-bold text-[10px]">DISETUJUI</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         5. OPSI B: TABEL MATRIKS (LAPORAN GRID)
+         Gunakan tabel ini untuk rekapitulasi kolom banyak (seperti Status Data SK)
+         ========================================================= -->
+    <div class="sms-table-card overflow-hidden">
+        <div class="p-4 border-b border-gray-100 dark:border-white/5 bg-gray-50/50 dark:bg-black/20">
+            <h3 class="text-[13px] font-bold text-gray-700 dark:text-gray-300 uppercase tracking-widest"><i class="fas fa-th mr-2"></i> Opsi B: Tabel Matriks (Grid)</h3>
+        </div>
         
-        <!-- Loading State (Sultan Shimmer Skeleton) -->
-        <div id="TEMPLATE_ID_loadingState" class="p-6">
+        <!-- Loading State (Shimmer Skeleton) -->
+        <div id="TEMPLATE_loadingStateB" class="p-6" style="display:none;">
             <div class="flex flex-col gap-4">
                 <div class="h-10 w-full bg-gray-50/50 rounded-lg sk-shimmer"></div>
                 <div class="h-10 w-full bg-gray-50/50 rounded-lg sk-shimmer"></div>
-                <div class="h-10 w-full bg-gray-50/50 rounded-lg sk-shimmer"></div>
             </div>
         </div>
 
-        <!-- Table State -->
-        <div id="TEMPLATE_ID_tableState" style="display: none;">
-            <table id="TEMPLATE_ID_tabelUtama" class="table table-bordered table-hover table-premium table-header-compact mb-0 w-100 text-nowrap">
+        <div id="TEMPLATE_tableStateB" class="sultan-scroll overflow-x-auto">
+            <table class="table table-bordered table-hover table-premium table-header-compact mb-0 w-100 text-nowrap">
                 <thead class="thead-grey-sultan">
                     <tr>
-                        <th class="th-main col-sticky-left align-middle text-left" style="width: 250px;">KOLOM STICKY (JUDUL)</th>
-                        <th class="th-main text-center align-middle">KOLOM DATA 1</th>
-                        <th class="th-main text-center align-middle">KOLOM DATA 2</th>
-                        <th class="th-main text-center align-middle">KOLOM DATA 3</th>
+                        <th class="th-main col-sticky-left align-middle text-left" style="width: 250px;">UNIT KERJA / SATDIK</th>
+                        <th class="th-main text-center align-middle">
+                            <div class="small opacity-50">2023/2024</div>
+                            <div>SEM 1</div>
+                        </th>
+                        <th class="th-main text-center align-middle">
+                            <div class="small opacity-50">2023/2024</div>
+                            <div>SEM 2</div>
+                        </th>
                     </tr>
                 </thead>
                 <tbody class="text-[14px]">
-                    <!-- Konten dinamis -->
+                    <tr>
+                        <td class="col-sticky-left bg-white align-middle px-4 py-2 border-r border-gray-200">
+                            <div class="font-bold text-gray-800">SDN MATRIKS 1</div>
+                        </td>
+                        <td class="text-center align-middle border-l border-gray-100 py-2">
+                            <span class="inline-flex h-7 w-7 items-center justify-center rounded-full border bg-success/10 text-success border-success/20"><i class="fas fa-check text-[10px]"></i></span>
+                        </td>
+                        <td class="text-center align-middle border-l border-gray-100 py-2">
+                            <span class="inline-flex h-7 w-7 items-center justify-center rounded-full border bg-warning/10 text-warning border-warning/20"><i class="fab fa-gg text-[10px]"></i></span>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
-    </section>
+    </div>
 
 </div>
 
 <!-- 
-    PANDUAN IMPLEMENTASI JAVASCRIPT:
-    1. Gunakan 'thead-grey-sultan' untuk header tabel.
-    2. Gunakan 'col-sticky-left' untuk kolom pertama yang tidak ikut geser.
-    3. Gunakan 'table-bordered' untuk garis kotak penuh pada matriks.
-    4. Gunakan 'sk-shimmer' untuk animasi skeleton.
+    ========================================================================================
+    KOLEKSI MODAL (POPUPS) SULTAN EXECUTIVE
+    ========================================================================================
 -->
+
+<!-- MODAL 1: FORM INPUT (Gaya Standar) -->
+<div id="TEMPLATE_modalForm" class="sk-modal-overlay hidden items-center justify-center">
+    <div class="w-full max-w-2xl sk-modal-box">
+        <div class="flex items-center justify-between px-6 py-4 sk-modal-header-primary">
+            <h3 class="sk-modal-title"><i class="fas fa-edit text-xl mr-2"></i> Form Input Data</h3>
+            <button type="button" class="sk-modal-close" onclick="$('#TEMPLATE_modalForm').fadeOut().addClass('hidden').removeClass('flex')"><i class="fas fa-times"></i></button>
+        </div>
+        <form class="sk-modal-body p-6 space-y-5">
+            <!-- Input Form Disini -->
+            <div>
+                <label class="sk-form-label">Contoh Input <span class="text-danger">*</span></label>
+                <input type="text" class="sms-input-premium w-full" required>
+            </div>
+            <div class="sk-modal-footer mt-4">
+                <button type="button" class="sms-btn sms-btn-ghost">Batal</button>
+                <button type="submit" class="sms-btn sms-btn-primary"><i class="fas fa-save mr-2"></i> Simpan Data</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL 2: KONFIRMASI HAPUS (Gaya Merah/Danger) -->
+<div id="TEMPLATE_modalHapus" class="sk-modal-overlay hidden items-center justify-center">
+    <div class="w-full max-w-[500px] sk-modal-box shadow-2xl overflow-hidden">
+        <div class="sk-modal-header sk-modal-header-danger !h-16 flex items-center px-6">
+            <div class="flex-1 flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center"><i class="fas fa-trash-alt text-white text-sm"></i></div>
+                <h3 class="sk-modal-title !text-sm">Hapus Data</h3>
+            </div>
+            <button type="button" class="sk-modal-close" onclick="$('#TEMPLATE_modalHapus').fadeOut().addClass('hidden').removeClass('flex')"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="p-8 space-y-6">
+            <div class="flex items-center gap-4 p-4 rounded-xl bg-rose-500/5 border border-rose-500/10">
+                <div class="h-10 w-10 flex items-center justify-center rounded-lg bg-rose-500 text-white"><i class="fas fa-exclamation-triangle"></i></div>
+                <div>
+                    <p class="text-[10px] font-black uppercase tracking-widest text-rose-500 mb-0.5">Peringatan Penghapusan</p>
+                    <p class="text-[12px] font-bold text-slate-500">Data yang dihapus tidak dapat dikembalikan.</p>
+                </div>
+            </div>
+            <div class="sk-modal-footer">
+                <button type="button" class="sms-btn sms-btn-ghost">BATAL</button>
+                <button type="button" class="sms-btn sms-btn-danger"><i class="fas fa-trash-alt mr-2"></i> HAPUS PERMANEN</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL 3: PREVIEW DOKUMEN / VERIFIKASI (Gaya Split/Side-by-Side) -->
+<!-- Referensi struktur modal ini dapat dilihat di 'page_sk_data.html' bagian 'tugas_modalVerif' -->
+
+<script>
+    // SCRIPT BOILERPLATE
+    $(document).ready(function () {
+        // Inisialisasi awal
+    });
+</script>
