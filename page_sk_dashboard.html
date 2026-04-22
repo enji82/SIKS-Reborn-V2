@@ -1,222 +1,222 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 
-<div class="flex flex-col gap-4 md:gap-6 animate-reveal">
+<div class="flex flex-col gap-3 md:gap-4 animate-reveal">
 
   <!-- PAGE HEADER (SULTAN SYNC) -->
-  <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-    <div>
-      <h1 class="sultan-title-sync text-black dark:text-white">
-        Dashboard Analytics
-      </h1>
-      <p class="sk-section-title mt-1">
-        Pemantauan Progress & Validasi Dokumen Satuan Pendidikan
-      </p>
-    </div>
-    <div id="dashsk_realtimeClock" class="text-[10px] font-black text-primary/40 dark:text-white/20 uppercase tracking-[0.2em] bg-primary/5 dark:bg-white/5 px-4 py-2 rounded-full border border-primary/10">
-        --:--:--
-    </div>
+  <div class="mb-2 flex flex-col">
+    <h1 class="sultan-title-sync text-black dark:text-white">
+      Dashboard Monitoring SK
+    </h1>
+    <p class="sk-section-title mt-1">
+      Pemantauan Progress & Validasi Dokumen Satuan Pendidikan
+    </p>
   </div>
 
-  <!-- CUSTOM EXECUTIVE STYLES (SULTAN v3.11) -->
+  <!-- CUSTOM EXECUTIVE STYLES (SULTAN v3.12 - Restored Aesthetic) -->
   <style>
     .sk-glass-card {
         position: relative;
         overflow: hidden;
-        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        border: 1px solid var(--sk-border);
-        background: var(--sk-surface);
-    }
-    .sk-glass-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 40px -15px rgba(0,0,0,0.1);
-        border-color: var(--sk-primary);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(8px);
     }
     .sk-glass-card::before {
         content: '';
         position: absolute;
         top: 0; right: 0;
-        width: 150px; height: 150px;
+        width: 100px; height: 100px;
         background: radial-gradient(circle, currentColor 0%, transparent 70%);
-        opacity: 0.05;
-        transform: translate(40%, -40%);
-        transition: all 0.6s ease;
+        opacity: 0.1;
+        transform: translate(30%, -30%);
+        transition: all 0.5s;
     }
-    .sk-glass-card:hover::before { transform: translate(20%, -20%) scale(1.2); opacity: 0.1; }
+    .sk-glass-card:hover::before { transform: translate(10%, -10%) scale(1.5); opacity: 0.15; }
     
-    .sk-stat-icon {
-        display: flex; height: 48px; width: 48px;
-        align-items: center; justify-content: center;
-        border-radius: 14px; margin-bottom: 1rem;
-        box-shadow: 0 8px 16px -4px rgba(0,0,0,0.1);
-    }
+    .sk-glass-primary { background: rgba(59, 130, 246, 0.05); color: #3b82f6; border-left: 4px solid #3b82f6 !important; }
+    .sk-glass-success { background: rgba(16, 185, 129, 0.05); color: #10b981; border-left: 4px solid #10b981 !important; }
+    .sk-glass-warning { background: rgba(245, 158, 11, 0.08); color: #f59e0b; border-left: 4px solid #f59e0b !important; }
+    .sk-glass-danger  { background: rgba(239, 68, 68, 0.08); color: #ef4444; border-left: 4px solid #ef4444 !important; }
 
-    .sk-dash-filter {
-        height: 42px !important;
-        font-size: 13px !important;
+    .dark .sk-glass-card { background: rgba(255, 255, 255, 0.03); }
+    .dark .sk-glass-primary { background: rgba(59, 130, 246, 0.1); }
+    .dark .sk-glass-success { background: rgba(16, 185, 129, 0.1); }
+    .dark .sk-glass-warning { background: rgba(245, 158, 11, 0.1); }
+    .dark .sk-glass-danger  { background: rgba(239, 68, 68, 0.12); }
+
+    .sk-dash-input {
+        height: 38px !important;
+        font-size: 14px !important;
         font-weight: 700 !important;
-        border-radius: 12px !important;
-        background: var(--sk-surface) !important;
-        border: 1px solid var(--sk-border) !important;
+        border-radius: 10px !important;
+        font-family: 'Satoshi', sans-serif !important;
     }
   </style>
 
-  <!-- 1. FILTER BAR (EXECUTIVE STANDARD) -->
-  <div class="sultan-card p-4 shadow-sm border border-primary/10">
-    <div class="flex flex-wrap items-center gap-4">
-        <div class="flex items-center gap-4 flex-1 flex-wrap">
-            <!-- Filter Tahun -->
-            <div class="relative w-full sm:w-[220px]">
-                <select id="dashsk_filterTahun" class="sk-dash-filter w-full appearance-none pl-4 pr-10 text-black dark:text-white outline-none transition focus:border-primary"></select>
-                <div class="pointer-events-none absolute inset-y-0 right-4 flex items-center text-primary/40"><i class="fas fa-calendar-alt text-xs"></i></div>
-            </div>
-            <!-- Filter Semester -->
-            <div class="relative w-full sm:w-[220px]">
-                <select id="dashsk_filterSemester" class="sk-dash-filter w-full appearance-none pl-4 pr-10 text-black dark:text-white outline-none transition focus:border-primary">
-                    <option value="">- Semua Semester -</option>
-                    <option value="Semester 1">Semester 1</option>
-                    <option value="Semester 2">Semester 2</option>
-                </select>
-                <div class="pointer-events-none absolute inset-y-0 right-4 flex items-center text-primary/40"><i class="fas fa-clock text-xs"></i></div>
-            </div>
+  <!-- 1. FILTER BAR (SULTAN BLUEPRINT MODEL) -->
+  <div class="sultan-card p-3 shadow-sm">
+    <div class="flex flex-wrap items-center gap-3">
+        <!-- Filter Tahun -->
+        <div class="relative w-full sm:w-auto">
+            <select id="dashsk_filterTahun" class="sk-dash-input appearance-none border border-gray-200 bg-white py-2 pl-4 pr-10 text-black outline-none transition focus:border-primary dark:border-white/10 dark:bg-boxdark dark:text-white shadow-sm min-w-[180px]"></select>
+            <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400"><i class="fas fa-calendar-alt text-xs"></i></div>
+        </div>
+        <!-- Filter Semester -->
+        <div class="relative w-full sm:w-auto">
+            <select id="dashsk_filterSemester" class="sk-dash-input appearance-none border border-gray-200 bg-white py-2 pl-4 pr-10 text-black outline-none transition focus:border-primary dark:border-gray-700 dark:bg-boxdark dark:text-white shadow-sm min-w-[200px]">
+                <option value="">- Semua Semester -</option>
+                <option value="Semester 1">Semester 1</option>
+                <option value="Semester 2">Semester 2</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400"><i class="fas fa-clock text-xs"></i></div>
         </div>
         <!-- Action Button -->
-        <button type="button" id="dashsk_btnRefresh" class="sms-btn sms-btn-primary !h-[42px] !px-8">
-            <i class="fab fa-gg mr-2"></i> PERBARUI DATA
-        </button>
+        <div class="ml-auto flex items-center">
+            <button type="button" id="dashsk_btnRefresh" class="sms-btn sms-btn-primary shadow-md !h-[38px] !px-8 !text-sm !font-black">
+                <i class="fab fa-gg mr-2"></i> PERBARUI DATA
+            </button>
+        </div>
     </div>
   </div>
 
-  <!-- 2. KPI METRICS (EXECUTIVE ANALYTICS) -->
+  <!-- 2. KPI METRICS (SULTAN v4.1 STYLE) -->
   <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
-    <!-- Total Berkas -->
-    <div class="sultan-card sk-glass-card p-5 !text-primary">
-        <div class="sk-stat-icon bg-primary/10 text-primary">
-            <i class="fas fa-file-export fa-lg"></i>
+    <!-- Total Berkas (Primary) -->
+    <div class="sultan-card sk-glass-card sk-glass-primary p-3 md:p-4.5 hover:translate-y-[-4px]">
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary mb-3.5 shadow-sm border border-primary/20">
+            <i class="fas fa-file-export"></i>
         </div>
-        <h4 class="text-3xl font-black text-black dark:text-white leading-none" id="dashsk_valTotal">0</h4>
-        <span class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mt-3 block">Total Berkas</span>
-        <div class="mt-4 pt-3 border-t border-gray-100 dark:border-white/5 text-[11px] text-gray-400 italic truncate" id="dashsk_subTotal">—</div>
+        <div class="flex flex-col gap-0.5">
+            <h4 class="text-2xl font-black text-black dark:text-white leading-none" id="dashsk_valTotal">0</h4>
+            <span class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mt-1">Total Berkas</span>
+        </div>
+        <div class="mt-2 text-[11px] text-gray-500 italic truncate opacity-80" id="dashsk_subTotal">—</div>
     </div>
 
-    <!-- Berkas Valid -->
-    <div class="sultan-card sk-glass-card p-5 !text-emerald-500">
-        <div class="sk-stat-icon bg-emerald-500/10 text-emerald-500">
-            <i class="fas fa-check-double fa-lg"></i>
+    <!-- Berkas Valid (Success) -->
+    <div class="sultan-card sk-glass-card sk-glass-success p-3 md:p-4.5 hover:translate-y-[-4px]">
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-success/10 text-success mb-3.5 shadow-sm border border-success/20">
+            <i class="fas fa-check-double"></i>
         </div>
-        <h4 class="text-3xl font-black text-black dark:text-white leading-none" id="dashsk_valDisetujui">0</h4>
-        <span class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mt-3 block">Berkas Valid</span>
-        <div class="mt-4 pt-3 border-t border-gray-100 dark:border-white/5 text-[11px] text-gray-400 italic truncate" id="dashsk_subValid">—</div>
+        <div class="flex flex-col gap-0.5">
+            <h4 class="text-2xl font-black text-black dark:text-white leading-none" id="dashsk_valDisetujui">0</h4>
+            <span class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mt-1">Berkas Valid</span>
+        </div>
+        <div class="mt-2 text-[11px] text-gray-500 italic truncate opacity-80" id="dashsk_subValid">—</div>
     </div>
 
-    <!-- Realisasi -->
-    <div class="sultan-card sk-glass-card p-5 !text-amber-500">
-        <div class="sk-stat-icon bg-amber-500/10 text-amber-500">
-            <i class="fas fa-bullseye fa-lg"></i>
+    <!-- Realisasi (Warning) -->
+    <div class="sultan-card sk-glass-card sk-glass-warning p-3 md:p-4.5 hover:translate-y-[-4px]">
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-warning/10 text-warning mb-3.5 shadow-sm border border-warning/20">
+            <i class="fas fa-bullseye"></i>
         </div>
-        <h4 class="text-3xl font-black text-black dark:text-white leading-none"><span id="dashsk_valProgress">0</span>%</h4>
-        <span class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mt-3 block">Realisasi</span>
-        <div class="mt-4 pt-3 border-t border-gray-100 dark:border-white/5 text-[11px] text-gray-400 italic">Target Kepatuhan Awal</div>
+        <div class="flex flex-col gap-0.5">
+            <h4 class="text-2xl font-black text-black dark:text-white leading-none"><span id="dashsk_valProgress">0</span>%</h4>
+            <span class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mt-1">Realisasi</span>
+        </div>
+        <div class="mt-2 text-[11px] text-gray-500 italic opacity-80">Target Kepatuhan Awal</div>
     </div>
 
-    <!-- Belum Lapor -->
-    <div class="sultan-card sk-glass-card p-5 !text-rose-500 cursor-pointer group" id="dashsk_btnModalBelum">
-        <div class="sk-stat-icon bg-rose-500/10 text-rose-500 group-hover:bg-rose-500 group-hover:text-white transition-colors">
-            <i class="fas fa-clock fa-lg"></i>
+    <!-- Belum Lapor (Danger) -->
+    <div class="sultan-card sk-glass-card sk-glass-danger p-3 md:p-4.5 hover:translate-y-[-4px] cursor-pointer" id="dashsk_btnModalBelum">
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-danger/10 text-danger mb-3.5 shadow-sm border border-danger/20">
+            <i class="fas fa-clock"></i>
         </div>
-        <h4 class="text-3xl font-black text-black dark:text-white leading-none" id="dashsk_valBelum">0</h4>
-        <span class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mt-3 block">Belum Lapor</span>
-        <div class="mt-4 pt-3 border-t border-gray-100 dark:border-white/5 flex items-center justify-between">
-            <span class="text-[10px] font-bold text-rose-500 uppercase">Lihat Daftar</span>
-            <i class="fas fa-chevron-right text-[8px] text-rose-400 group-hover:translate-x-1 transition-transform"></i>
+        <div class="flex flex-col gap-0.5">
+            <h4 class="text-2xl font-black text-black dark:text-white leading-none" id="dashsk_valBelum">0</h4>
+            <span class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mt-1">Belum Lapor</span>
+        </div>
+        <div class="mt-3 text-[11px] font-black text-danger tracking-tight uppercase flex items-center gap-1.5 bg-danger/5 py-1 px-2 rounded-lg w-fit">
+            LIHAT DAFTAR <i class="fas fa-chevron-right text-[8px]"></i>
         </div>
     </div>
   </div>
 
-  <!-- 3. INFO PILLS (SECONDARY METRICS) -->
+  <!-- 3. INFO PILLS (SECONDARY METRICS SYNC) -->
   <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
     <!-- Sedang Diproses -->
-    <div class="sultan-card p-5 hover:bg-amber-500/5 transition-colors border-l-4 border-l-amber-500">
-        <div class="flex items-center gap-5">
-            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-500/10 text-amber-500">
-                <i class="fas fa-hourglass-half fa-lg"></i>
+    <div class="sultan-card p-3 md:p-4.5 hover:bg-warning/5 transition-colors border-l-4 border-l-warning">
+        <div class="flex items-center gap-4">
+            <div class="flex h-11 w-11 items-center justify-center rounded-full bg-warning/10 text-warning shadow-sm">
+                <i class="fas fa-hourglass-half"></i>
             </div>
-            <div>
-                <h4 class="text-2xl font-black text-black dark:text-white leading-tight" id="dashsk_valDiproses">0</h4>
-                <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Sedang Diproses</span>
+            <div class="flex flex-col">
+                <h4 class="text-xl font-black text-black dark:text-white dashsk-count-up leading-tight" id="dashsk_valDiproses">0</h4>
+                <span class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Diproses</span>
             </div>
         </div>
     </div>
     <!-- Perlu Revisi -->
-    <div class="sultan-card p-5 hover:bg-primary/5 transition-colors border-l-4 border-l-primary">
-        <div class="flex items-center gap-5">
-            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                <i class="fas fa-file-signature fa-lg"></i>
+    <div class="sultan-card p-3 md:p-4.5 hover:bg-primary/5 transition-colors border-l-4 border-l-primary">
+        <div class="flex items-center gap-4">
+            <div class="flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 text-primary shadow-sm">
+                <i class="fas fa-file-signature"></i>
             </div>
-            <div>
-                <h4 class="text-2xl font-black text-black dark:text-white leading-tight" id="dashsk_valRevisi">0</h4>
-                <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Perlu Revisi</span>
+            <div class="flex flex-col">
+                <h4 class="text-xl font-black text-black dark:text-white dashsk-count-up leading-tight" id="dashsk_valRevisi">0</h4>
+                <span class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Revisi</span>
             </div>
         </div>
     </div>
     <!-- Ditolak -->
-    <div class="sultan-card p-5 hover:bg-rose-500/5 transition-colors border-l-4 border-l-rose-500">
-        <div class="flex items-center gap-5">
-            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-rose-500/10 text-rose-500">
-                <i class="fas fa-ban fa-lg"></i>
+    <div class="sultan-card p-3 md:p-4.5 hover:bg-danger/5 transition-colors border-l-4 border-l-danger">
+        <div class="flex items-center gap-4">
+            <div class="flex h-11 w-11 items-center justify-center rounded-full bg-danger/10 text-danger shadow-sm">
+                <i class="fas fa-ban"></i>
             </div>
-            <div>
-                <h4 class="text-2xl font-black text-black dark:text-white leading-tight" id="dashsk_valDitolak">0</h4>
-                <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Data Ditolak</span>
+            <div class="flex flex-col">
+                <h4 class="text-xl font-black text-black dark:text-white dashsk-count-up leading-tight" id="dashsk_valDitolak">0</h4>
+                <span class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Ditolak</span>
             </div>
         </div>
     </div>
   </div>
 
   <!-- 4. ANALYTICS (CHARTS) -->
-  <div class="grid grid-cols-1 gap-6 lg:grid-cols-12">
+  <div class="grid grid-cols-1 gap-4 lg:grid-cols-12">
     <!-- Trend Chart -->
-    <div class="col-span-1 lg:col-span-8 sultan-card overflow-hidden">
-        <div class="border-b border-gray-100 py-5 px-8 dark:border-white/5 flex justify-between items-center">
+    <div class="col-span-1 lg:col-span-8 sultan-card overflow-hidden h-full">
+        <div class="border-b border-gray-100 py-4 px-6 dark:border-gray-800 flex justify-between items-center bg-gray-50/30 dark:bg-black/10">
             <div>
-                <h3 class="font-black text-xs text-black dark:text-white uppercase tracking-widest">Tren Pengiriman SK</h3>
-                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-tight mt-1">Aktivitas pengunggahan berkas</p>
+                <h3 class="font-bold text-sm text-black dark:text-white uppercase tracking-widest">Tren Pengiriman SK</h3>
+                <p class="text-[11px] text-gray-400 font-bold uppercase tracking-tight">Pengunggahan berkas bulan berjalan</p>
             </div>
-            <span class="inline-flex rounded-full bg-emerald-500/10 py-1 px-4 text-[9px] font-black text-emerald-600 animate-pulse uppercase">Live Analytics</span>
+            <span class="inline-flex rounded-full bg-emerald-500/10 py-1 px-3 text-[10px] font-bold text-emerald-600 animate-pulse">LIVE ANALYTICS</span>
         </div>
-        <div class="p-8" style="height: 380px;">
+        <div class="p-6" style="height: 350px;">
             <canvas id="dashsk_chartTrend"></canvas>
         </div>
     </div>
 
     <!-- Composition Chart -->
-    <div class="col-span-1 lg:col-span-4 sultan-card overflow-hidden">
-        <div class="border-b border-gray-100 py-5 px-8 dark:border-white/5">
-            <h3 class="font-black text-xs text-black dark:text-white uppercase tracking-widest">Komposisi Status</h3>
+    <div class="col-span-1 lg:col-span-4 sultan-card overflow-hidden h-full">
+        <div class="border-b border-gray-100 py-4 px-6 dark:border-gray-800 bg-gray-50/30 dark:bg-black/10">
+            <h3 class="font-bold text-sm text-black dark:text-white uppercase tracking-widest">Komposisi Status</h3>
         </div>
-        <div class="p-8">
-            <div class="relative h-[240px]">
+        <div class="p-6">
+            <div class="relative h-[220px]">
                 <canvas id="dashsk_chartStatus"></canvas>
                 <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none">
                     <span class="block text-[8px] font-black text-gray-400 uppercase tracking-[0.2em]">TOTAL</span>
-                    <span class="text-3xl font-black text-black dark:text-white leading-none" id="dashsk_chartTotalCenter">0</span>
+                    <span class="text-2xl font-black text-black dark:text-white leading-none" id="dashsk_chartTotalCenter">0</span>
                 </div>
             </div>
-            <div class="mt-8 grid grid-cols-2 gap-4">
-                <div class="flex flex-col p-3 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10">
-                    <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-2 text-center">Valid</span>
-                    <span class="text-base font-black text-emerald-500 text-center" id="dashsk_txtChartSetuju">0</span>
+            <div class="mt-6 grid grid-cols-2 gap-3">
+                <div class="flex flex-col p-2.5 rounded-xl bg-gray-50 dark:bg-black/20 border border-gray-100 dark:border-gray-800">
+                    <span class="text-[10px] font-bold text-gray-400 uppercase leading-none mb-1 text-center">Disetujui</span>
+                    <span class="text-sm font-black text-emerald-600 text-center" id="dashsk_txtChartSetuju">0</span>
                 </div>
-                <div class="flex flex-col p-3 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10">
-                    <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-2 text-center">Proses</span>
-                    <span class="text-base font-black text-amber-500 text-center" id="dashsk_txtChartProses">0</span>
+                <div class="flex flex-col p-2.5 rounded-xl bg-gray-50 dark:bg-black/20 border border-gray-100 dark:border-gray-800">
+                    <span class="text-[10px] font-bold text-gray-400 uppercase leading-none mb-1 text-center">Diproses</span>
+                    <span class="text-sm font-black text-amber-500 text-center" id="dashsk_txtChartProses">0</span>
                 </div>
-                <div class="flex flex-col p-3 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10">
-                    <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-2 text-center">Revisi</span>
-                    <span class="text-base font-black text-primary text-center" id="dashsk_txtChartRevisi">0</span>
+                <div class="flex flex-col p-2.5 rounded-xl bg-gray-50 dark:bg-black/20 border border-gray-100 dark:border-gray-800">
+                    <span class="text-[10px] font-bold text-gray-400 uppercase leading-none mb-1 text-center">Revisi</span>
+                    <span class="text-sm font-black text-indigo-500 text-center" id="dashsk_txtChartRevisi">0</span>
                 </div>
-                <div class="flex flex-col p-3 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10">
-                    <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-2 text-center">Tolak</span>
-                    <span class="text-base font-black text-rose-500 text-center" id="dashsk_txtChartTolak">0</span>
+                <div class="flex flex-col p-2.5 rounded-xl bg-gray-50 dark:bg-black/20 border border-gray-100 dark:border-gray-800">
+                    <span class="text-[10px] font-bold text-gray-400 uppercase leading-none mb-1 text-center">Ditolak</span>
+                    <span class="text-sm font-black text-rose-500 text-center" id="dashsk_txtChartTolak">0</span>
                 </div>
             </div>
         </div>
@@ -224,41 +224,41 @@
   </div>
 
   <!-- 5. LISTS & ACTIVITY -->
-  <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
-    <!-- Unit Belum Lapor -->
+  <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+    <!-- Belum Lapor List -->
     <div class="sultan-card overflow-hidden">
-        <div class="border-b border-gray-100 py-5 px-8 dark:border-white/5 flex justify-between items-center bg-gray-50/30 dark:bg-white/5">
-            <h3 class="font-black text-xs text-black dark:text-white uppercase tracking-widest flex items-center gap-3">
-                <i class="fas fa-exclamation-triangle text-rose-500"></i> Unit Belum Lapor
+        <div class="border-b border-gray-100 py-4 px-6 dark:border-gray-800 flex justify-between items-center bg-gray-50/30 dark:bg-black/10">
+            <h3 class="font-bold text-black dark:text-white flex items-center gap-2">
+                <i class="fas fa-exclamation-triangle text-danger"></i> Unit Belum Lapor
             </h3>
-            <div class="flex items-center gap-4">
-                <span class="inline-flex items-center justify-center rounded-lg bg-rose-500 py-1 px-3 text-[10px] font-black text-white shadow-lg shadow-rose-500/20" id="dashsk_badgeBelumCount">0</span>
-                <button type="button" class="text-[9px] font-black text-primary bg-primary/10 hover:bg-primary/20 px-3 py-1.5 rounded-lg transition-all" id="dashsk_btnSalinDaftar">
-                    <i class="fas fa-copy mr-1"></i> SALIN
+            <div class="flex items-center gap-3">
+                <span class="inline-flex items-center justify-center rounded-full bg-danger py-0.5 px-2.5 text-[10px] font-black text-white" id="dashsk_badgeBelumCount">0</span>
+                <button type="button" class="text-[10px] font-black text-primary hover:text-primary/80 transition-colors bg-primary/10 px-2 py-1 rounded" id="dashsk_btnSalinDaftar">
+                    <i class="fas fa-copy"></i> SALIN
                 </button>
             </div>
         </div>
-        <div class="p-4 bg-gray-50/50 dark:bg-white/5 border-b border-gray-100 dark:border-white/10">
+        <div class="p-4 bg-gray-50/50 dark:bg-black/10 border-b border-gray-100 dark:border-white/5">
             <div class="relative">
-                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
-                    <i class="fas fa-search"></i>
+                <span class="absolute left-4 top-1/2 -translate-y-1/2">
+                    <i class="fas fa-search text-gray-400"></i>
                 </span>
-                <input type="text" id="dashsk_cariBelumLangsung" placeholder="Ketik unit sekolah..." class="sk-dash-filter w-full pl-11">
+                <input type="text" id="dashsk_cariBelumLangsung" placeholder="Ketik unit sekolah..." class="sk-dash-input w-full border border-gray-200 dark:border-white/10 bg-white dark:!bg-boxdark py-2 pl-11 pr-4 outline-none transition focus:border-primary dark:focus:border-primary dark:text-white shadow-sm">
             </div>
         </div>
-        <div id="dashsk_containerBelum" style="max-height: 420px; overflow-y: auto;" class="sultan-scroll">
-            <div id="dashsk_listBelumBody" class="p-4"></div>
+        <div id="dashsk_containerBelum" style="max-height: 400px; overflow-y: auto;" class="sultan-scroll">
+            <div id="dashsk_listBelumBody" class="p-2"></div>
         </div>
     </div>
 
     <!-- Aktivitas Terakhir -->
     <div class="sultan-card overflow-hidden">
-        <div class="border-b border-gray-100 py-5 px-8 dark:border-white/5 bg-gray-50/30 dark:bg-white/5">
-            <h3 class="font-black text-xs text-black dark:text-white uppercase tracking-widest flex items-center gap-3">
+        <div class="border-b border-gray-100 py-4 px-6 dark:border-gray-800 bg-gray-50/30 dark:bg-black/10">
+            <h3 class="font-bold text-black dark:text-white flex items-center gap-2">
                 <i class="fas fa-bolt text-amber-500"></i> Aktivitas Terakhir
             </h3>
         </div>
-        <div id="dashsk_timelineContainer" style="max-height: 512px; overflow-y: auto;" class="sultan-scroll p-8">
+        <div id="dashsk_timelineContainer" style="max-height: 485px; overflow-y: auto;" class="sultan-scroll p-6">
             <!-- Timeline injected here -->
         </div>
     </div>
@@ -267,11 +267,8 @@
 </div>
 
 <!-- TURBO STATUS BADGE -->
-<div id="dashsk_turboBadge" class="fixed bottom-8 right-8 z-[100] hidden items-center gap-3 rounded-2xl bg-black/80 px-5 py-3 text-[10px] font-black text-white shadow-2xl backdrop-blur-md border border-white/10">
-    <div class="flex h-6 w-6 items-center justify-center rounded-lg bg-amber-500 text-black">
-        <i class="fas fa-bolt animate-pulse"></i>
-    </div>
-    <span class="tracking-widest">TURBO ANALYTICS ACTIVE</span>
+<div id="dashsk_turboBadge" class="fixed bottom-6 right-6 z-[100] hidden items-center gap-2 rounded-full bg-black/80 px-4 py-2 text-[10px] font-black text-white shadow-2xl backdrop-blur-md border border-white/10">
+    <i class="fas fa-bolt text-amber-400 animate-pulse"></i> TURBO ANALYTICS ACTIVE
 </div>
 
 <!-- MODAL BELUM LAPOR (EXECUTIVE FLOATING v78.0) -->
@@ -300,7 +297,7 @@
                 <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
                     <i class="fas fa-search"></i>
                 </span>
-                <input type="text" id="dashsk_inputCariBelumModal" placeholder="Cari unit sekolah di sini..." class="sk-dash-filter w-full pl-11 !h-12 !text-base">
+                <input type="text" id="dashsk_inputCariBelumModal" placeholder="Cari unit sekolah di sini..." class="sk-dash-input w-full pl-11 !h-12">
             </div>
 
             <!-- Dynamic List Area -->
@@ -320,7 +317,6 @@
         </div>
     </div>
 </div>
-iv>
 
 <script>
   var DASHSK_CHART_STATUS = null;
