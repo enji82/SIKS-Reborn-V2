@@ -123,18 +123,15 @@
     </div>
 </div>
 
-<!-- 1. MODAL FORM SK (Sultan v5.7 Executive) -->
-<div id="tugas_modalForm" class="fixed inset-0 z-[99999] hidden items-center justify-center sk-modal-overlay overflow-y-auto px-4 py-8">
-    <div class="w-full max-w-2xl sk-modal-box animate-reveal overflow-hidden flex flex-col">
-        <!-- Header Tambah/Edit -->
-        <div class="px-6 py-4 flex items-center justify-between shadow-md relative z-10" id="tugas_headerModalForm">
-            <div class="flex items-center gap-3 text-white">
-                <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center text-xl">
-                    <i class="fas fa-file-signature"></i>
-                </div>
-                <h3 id="tugas_judulModalForm" class="text-sm font-black uppercase tracking-widest">Form Pengisian SK</h3>
-            </div>
-            <button type="button" class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/10 text-white transition-all" onclick="$('#tugas_modalForm').fadeOut().addClass('hidden').removeClass('flex')">
+<!-- 1. MODAL FORM SK (Sultan v63.1 Executive) -->
+<div id="tugas_modalForm" class="sk-modal-overlay hidden items-center justify-center">
+    <div class="w-full max-w-2xl sk-modal-box">
+        <!-- Header (Swapped via JS: primary/warning) -->
+        <div class="flex items-center justify-between px-6 py-4" id="tugas_headerModalForm">
+            <h3 id="tugas_judulModalForm" class="sk-modal-title">
+                <i class="fas fa-file-signature text-xl"></i> Form Pengisian SK
+            </h3>
+            <button type="button" class="sk-modal-close" onclick="$('#tugas_modalForm').fadeOut().addClass('hidden').removeClass('flex')">
                 <i class="fas fa-times"></i>
             </button>
         </div>
@@ -202,16 +199,16 @@
                     Batal
                 </button>
                 <button type="submit" id="tugas_btnSimpanForm" class="sms-btn sms-btn-primary">
-                    <i class="fas fa-save"></i> Simpan Data
+                    <i class="fas fa-save mr-2"></i> Simpan Data
                 </button>
             </div>
         </form>
     </div>
 </div>
 
-<!-- 2. MODAL VERIFIKASI (Side-by-Side Review) -->
-<div id="tugas_modalVerif" class="fixed inset-0 z-[99999] hidden items-start justify-center sk-modal-overlay px-2 pt-4 pb-4 md:px-4 md:pt-4 md:pb-4">
-    <div class="relative flex flex-col md:flex-row w-full max-w-[98%] h-[92vh] rounded-2xl border border-white/10 sk-modal-box shadow-2xl animate-reveal overflow-hidden">
+<!-- 2. MODAL VERIFIKASI (v63.1 side-by-side) -->
+<div id="tugas_modalVerif" class="sk-modal-overlay hidden items-center justify-center">
+    <div class="relative flex flex-col md:flex-row w-full max-w-[96%] h-[90vh] sk-modal-box shadow-2xl overflow-hidden">
         
         <!-- Document Area (Left - Expanded) -->
         <div class="flex-1 sk-modal-panel-left relative overflow-hidden flex items-center justify-center">
@@ -316,32 +313,32 @@
     </div>
 </div>
 
-<!-- 3. MODAL PREVIEW PDF (SULTAN PREMIUM FULL SCREEN) -->
-<div id="tugas_modalPreview" class="fixed inset-0 z-[99999] hidden flex-col sk-modal-overlay animate-reveal">
-    <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 dark:border-white/5 sk-bg-section transition-colors">
+<!-- 3. MODAL PREVIEW PDF (v63.1 Executive Viewer) -->
+<div id="tugas_modalPreview" class="sk-modal-overlay hidden flex-col">
+    <div class="flex items-center justify-between px-6 py-4 sk-modal-header-primary">
         <div class="flex items-center gap-4">
             <div class="relative flex h-11 w-11 items-center justify-center rounded-xl bg-danger/10 text-danger shadow-sm overflow-hidden group">
                 <div class="absolute inset-0 bg-danger/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <i class="fas fa-file-pdf text-xl relative z-10 transition-transform group-hover:scale-110"></i>
             </div>
             <div>
-                <h3 class="font-black text-black dark:text-white text-[11px] uppercase tracking-wider">Pratinjau Dokumen SK</h3>
+                <h3 class="sk-modal-title">Pratinjau Dokumen SK</h3>
                 <div class="flex items-center gap-2 mt-0.5">
-                    <span class="flex h-1.5 w-1.5 rounded-full bg-success"></span>
-                    <p class="text-[11px] text-gray-400 font-bold uppercase tracking-widest">Sultan Viewer • High Compatibility</p>
+                    <span class="flex h-1.5 w-1.5 rounded-full bg-success animate-pulse"></span>
+                    <p class="text-[10px] text-white/60 font-black uppercase tracking-widest">Sultan Executive Viewer v3.6.0</p>
                 </div>
             </div>
         </div>
         <div class="flex items-center gap-3">
-            <a href="#" id="tugas_linkDownloadHeader" target="_blank" class="inline-flex items-center gap-2 rounded-xl border border-gray-100 bg-gray-50/50 px-4 py-2.5 text-[11px] font-black uppercase text-black transition-all hover:bg-gray-100 active:scale-95 dark:border-white/5 dark:bg-white/5 dark:text-white shadow-sm">
-                <i class="fas fa-download text-primary"></i> UNDUH
+            <a href="#" id="tugas_linkDownloadHeader" target="_blank" class="inline-flex items-center gap-2 rounded-xl bg-white/10 px-4 py-2 text-[10px] font-black uppercase text-white transition-all hover:bg-white/20 active:scale-95">
+                <i class="fas fa-download"></i> UNDUH
             </a>
-            <a href="#" id="tugas_linkTabHeader" target="_blank" class="inline-flex items-center gap-2 rounded-xl border border-gray-100 bg-gray-50/50 px-4 py-2.5 text-[11px] font-black uppercase text-black transition-all hover:bg-gray-100 active:scale-95 dark:border-white/5 dark:bg-white/5 dark:text-white shadow-sm">
-                <i class="fas fa-external-link-alt text-primary"></i> TAB BARU
+            <a href="#" id="tugas_linkTabHeader" target="_blank" class="inline-flex items-center gap-2 rounded-xl bg-white/10 px-4 py-2 text-[10px] font-black uppercase text-white transition-all hover:bg-white/20 active:scale-95">
+                <i class="fas fa-external-link-alt"></i> TAB BARU
             </a>
-            <div class="h-6 w-[1px] bg-gray-200 dark:bg-white/10 mx-2"></div>
-            <button type="button" class="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-500 hover:text-danger hover:bg-danger/10 transition-all dark:bg-white/5 dark:text-white/60 dark:hover:bg-danger/20" onclick="$('#tugas_modalPreview').fadeOut().addClass('hidden').removeClass('flex')">
-                <i class="fas fa-times text-lg"></i>
+            <div class="h-6 w-[1px] bg-white/20 mx-2"></div>
+            <button type="button" class="sk-modal-close" onclick="$('#tugas_modalPreview').fadeOut().addClass('hidden').removeClass('flex')">
+                <i class="fas fa-times"></i>
             </button>
         </div>
     </div>
@@ -354,9 +351,9 @@
     </div>
 </div>
 
-<!-- 4. MODAL HAPUS — Menggunakan template yang sama dengan Modal Tambah/Edit -->
-<div id="tugas_modalHapus" class="fixed inset-0 z-[99999] hidden items-start justify-center sk-modal-overlay overflow-y-auto px-4 pt-20 pb-8">
-    <div class="w-full max-w-[520px] rounded-3xl border sk-modal-box shadow-2xl animate-reveal overflow-hidden">
+<!-- 4. MODAL HAPUS (v63.1) -->
+<div id="tugas_modalHapus" class="sk-modal-overlay hidden items-center justify-center">
+    <div class="w-full max-w-[500px] sk-modal-box">
 
         <!-- Header Hapus -->
         <div class="sk-modal-header sk-modal-header-danger">
@@ -778,8 +775,8 @@
 
     function tugas_bukaModalTambah() {
         tugas_resetForm();
-        $('#tugas_headerModalForm').removeClass('sk-modal-header-warning sk-modal-header-success sk-modal-header-danger').addClass('sk-modal-header-primary');
-        $('#tugas_judulModalForm').html('<i class="fas fa-plus-circle"></i> Tambah SK Pembagian Tugas');
+        $('#tugas_headerModalForm').removeClass('sk-modal-header-warning sk-modal-header-danger').addClass('sk-modal-header-primary');
+        $('#tugas_judulModalForm').html('<i class="fas fa-plus-circle mr-2"></i> Tambah SK Pembagian Tugas');
         $('#tugas_btnSimpanForm').html('<i class="fas fa-save mr-2"></i> SIMPAN DATA SK');
 
         var now = new Date(); var curYear = now.getFullYear(); var curMonth = now.getMonth();
@@ -841,8 +838,8 @@
         var rowData = TUGAS_DATA_MASTER[rowId];
         if (!rowData) return;
 
-        $('#tugas_headerModalForm').removeClass('sk-modal-header-primary sk-modal-header-success sk-modal-header-danger').addClass('sk-modal-header-warning');
-        $('#tugas_judulModalForm').html('<i class="fas fa-edit"></i> Edit Data SK Pembagian Tugas');
+        $('#tugas_headerModalForm').removeClass('sk-modal-header-primary sk-modal-header-danger').addClass('sk-modal-header-warning');
+        $('#tugas_judulModalForm').html('<i class="fas fa-edit mr-2"></i> Edit Data SK Pembagian Tugas');
         $('#tugas_editRowId').val(rowId);
 
         $('#tugas_btnSimpanForm').removeClass('btn-sultan-maroon').addClass('btn-sultan-indigo');

@@ -168,8 +168,82 @@ header.sms-header-group {
 }
 
 .sms-text-soft-danger {
-    color: #F43F5E !important; /* Soft Rose/Coral */
+    color: #FB7185 !important; /* Premium Rose Glow */
     font-weight: 800 !important;
+    letter-spacing: 0.02em !important;
+}
+
+/* 8. EXECUTIVE MODAL SYSTEM (v63.1 - Z-SUPREMACY) */
+.sk-modal-overlay {
+    position: fixed !important; inset: 0 !important;
+    z-index: 1000000 !important; /* Above everything including sidebars on mobile */
+    background: rgba(15, 23, 42, 0.85) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    transition: all 0.3s ease !important;
+}
+
+.sk-modal-box {
+    background: var(--sk-surface) !important;
+    border-radius: 24px !important;
+    border: 1px solid var(--sk-border) !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+    max-height: 90vh;
+    animation: sk-modal-reveal 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+@keyframes sk-modal-reveal {
+    from { opacity: 0; transform: translateY(30px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* CONTEXTUAL BRANDED HEADERS (SULTAN SHIMMER) */
+.sk-modal-header-primary {
+    background: linear-gradient(135deg, #3C50E0 0%, #1E40AF 100%) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.sk-modal-header-warning {
+    background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.sk-modal-header-danger {
+    background: linear-gradient(135deg, #FB7185 0%, #E11D48 100%) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.sk-modal-title {
+    color: #FFFFFF !important;
+    font-weight: 900 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    font-size: 12px !important;
+    display: flex; align-items: center; gap: 10px;
+}
+
+.sk-modal-close {
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%; background: rgba(255, 255, 255, 0.1) !important;
+    color: #FFFFFF !important; border: none !important;
+    transition: all 0.2s !important;
+    cursor: pointer !important;
+}
+
+.sk-modal-close:hover { background: rgba(255, 255, 255, 0.2) !important; transform: rotate(90deg); }
+
+.sk-modal-body {
+    padding: 24px 32px !important;
+    background: var(--sk-surface) !important;
+}
+
+.sk-modal-footer {
+    padding: 18px 32px !important;
+    border-top: 1px solid var(--sk-border) !important;
+    background: var(--sk-section) !important;
+    display: flex; justify-content: flex-end; gap: 12px;
+    border-radius: 0 0 24px 24px;
 }
 
 /* 7. SULTAN GLOBAL ACTION SYSTEM (v58.0 - Cache Bust) */
