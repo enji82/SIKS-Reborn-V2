@@ -19,7 +19,7 @@
     </header>
 
     <!-- 1. PAPAN INFORMASI (SULTAN EXECUTIVE MASTER TEMPLATE v3.3.0) -->
-    <div class="mb-6" x-data="{ isOpen: false }">
+    <div x-data="{ isOpen: false }">
         <div class="sk-alert-blue flex-col !items-stretch !p-0 overflow-hidden shadow-none">
             <!-- Header Clickable -->
             <div class="flex items-center justify-between w-full py-3 px-5 cursor-pointer hover:bg-primary/5 transition-colors" @click="isOpen = !isOpen">
@@ -61,7 +61,7 @@
     <div id="statussk_wadahFilter" class="sms-table-card p-3 shadow-lg border-l-4 border-l-primary/40">
         <div class="flex flex-wrap items-center gap-3">
             <!-- Filter Instansi -->
-            <div class="flex-grow">
+            <div class="w-fit min-w-[300px]">
                 <select id="statussk_filterSekolah" class="sms-input-premium w-full !h-9 !py-0 !text-xs font-black">
                     <option value="SEMUA">- Filter Semua Instansi Satuan Pendidikan -</option>
                 </select>
@@ -180,7 +180,7 @@
 
         google.script.run
             .withSuccessHandler(function (res) {
-                btn.prop('disabled', false).html('<i class="fab fa-gg"></i>');
+                btn.prop('disabled', false).html('<i class="fab fa-gg text-primary"></i>');
                 if (res.error) {
                     $('#statussk_loadingState').html('<div class="flex flex-col items-center py-10 text-danger"><i class="fas fa-exclamation-triangle text-4xl mb-3 opacity-50"></i><h6 class="font-black text-xs uppercase tracking-widest">' + statussk_escapeHtml(res.error) + '</h6></div>');
                     return;
@@ -192,7 +192,7 @@
                 statussk_terapkanFilterLokal();
             })
             .withFailureHandler(function (err) {
-                btn.prop('disabled', false).html('<i class="fab fa-gg"></i>');
+                btn.prop('disabled', false).html('<i class="fab fa-gg text-primary"></i>');
                 $('#statussk_loadingState').html('<div class="flex flex-col items-center py-10 text-danger"><i class="fas fa-wifi text-4xl mb-3 opacity-50"></i><h6 class="font-black text-xs uppercase tracking-widest">Server Error</h6></div>');
             })
             .getSiabaStatusData();
