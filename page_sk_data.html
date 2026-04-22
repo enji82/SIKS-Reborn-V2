@@ -1127,8 +1127,8 @@
         $('#tugas_hapusRowId').val(rowId);
         
         // Populate Full Identity
-        $('#tugas_hNamaSd').text(d.unitKerja || d.namaSd || '-');
-        $('#tugas_hTahun').text(d.tahunAjaran || '-');
+        $('#tugas_hNamaSd').text(d.namaSd || d.unitKerja || '-');
+        $('#tugas_hTahun').text(d.tahun || '-');
         $('#tugas_hSemester').text(d.semester || '-');
         $('#tugas_hNoSk').text(d.noSk || '-');
         $('#tugas_hKriteria').text(d.kriteria || '-');
