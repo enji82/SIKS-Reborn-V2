@@ -2,13 +2,13 @@
 
 <div id="sultan-master-scope" class="sms-layout-root p-0 lg:p-4 animate-reveal">
     
-    <!-- 1. PAGE HEADER (READABILITY BOOST v7.6) -->
+    <!-- 1. PAGE HEADER (STRICT TEMPLATE COMPLIANCE) -->
     <header class="sms-header-group mb-8">
         <h1 class="sms-header-title uppercase tracking-wider text-slate-800 dark:text-white">STATUS DATA SK</h1>
         <div class="sms-header-underline"></div>
     </header>
 
-    <!-- 2. INFORMASI (READABILITY BOOST) -->
+    <!-- 2. INFORMASI (STRICT TEMPLATE COMPLIANCE) -->
     <div class="mb-6" x-data="{ isOpen: false }">
         <div class="sk-alert-blue flex-col !items-stretch !p-0 overflow-hidden shadow-none border border-primary/20 bg-primary/5">
             <div class="flex items-center justify-between w-full py-3 px-5 cursor-pointer hover:bg-primary/10 transition-colors" @click="isOpen = !isOpen">
@@ -32,7 +32,7 @@
         </div>
     </div>
 
-    <!-- 3. KARTU FILTER -->
+    <!-- 3. KARTU FILTER (STRICT TEMPLATE COMPLIANCE) -->
     <div class="sms-table-card p-3 shadow-lg border-l-4 border-l-primary/40 mb-6 bg-white dark:bg-[#1e293b]">
         <div class="flex flex-wrap items-center gap-3">
             <div class="w-fit min-w-[320px]">
@@ -47,7 +47,7 @@
         </div>
     </div>
 
-    <!-- 4. DATA TABLE (READABILITY BOOST v7.6) -->
+    <!-- 4. DATA TABLE (TOTAL PURIFICATION - NO ADDED ELEMENTS) -->
     <div class="sms-table-card shadow-xl bg-white dark:bg-[#1e293b]">
         <div class="p-0">
             <!-- Skeleton Shimmer -->
@@ -58,7 +58,7 @@
                 </div>
             </div>
 
-            <!-- Table Matrix Structure -->
+            <!-- Table Matrix Structure (NO GRID LINES - JUST LIKE IMAGE 1) -->
             <div id="statussk_tableState" style="display: none;" class="overflow-x-auto sultan-scroll">
                 <table id="statussk_tabelUtama" class="w-full table-auto border-collapse sms-table-executive">
                     <thead>
@@ -124,14 +124,14 @@
 
     function statussk_renderTabel(rows) {
         var dtArray = [];
-        // Header Metrics Boosted
+        // Header: REMOVED ALL VERTICAL BORDERS
         var headerHtml = '<th class="sms-th-executive text-left px-4 py-3 text-[12px] font-bold text-primary border-b border-slate-200 dark:border-white/10" style="min-width: 280px;">NAMA SEKOLAH / SATDIK</th>';
         
         if (STATUSSK_RAW_HEADER && STATUSSK_RAW_HEADER.length >= 2) {
             var hRow1 = STATUSSK_RAW_HEADER[0], hRow2 = STATUSSK_RAW_HEADER[1];
             for (var i = 1; i < hRow2.length; i++) {
                 var year = ""; for (var k = i; k >= 1; k--) { if (hRow1[k]) { year = hRow1[k]; break; } }
-                headerHtml += '<th class="sms-th-executive text-center border-l border-slate-100 dark:border-white/5 border-b border-slate-200 dark:border-white/10 px-2 py-3">' +
+                headerHtml += '<th class="sms-th-executive text-center border-b border-slate-200 dark:border-white/10 px-2 py-3">' +
                               '<div class="text-[11px] font-normal opacity-60 text-slate-500 dark:text-gray-400">' + year + '</div>' +
                               '<div class="tracking-widest uppercase text-[12px]">' + hRow2[i].replace("SEMESTER ", "SEM ") + '</div></th>';
             }
@@ -140,7 +140,7 @@
 
         rows.forEach(function (row) {
             var rowData = [], parts = String(row[0] || "").split('|');
-            // TD Metrics Boosted: 14px and 12px
+            // TD: REMOVED ALL VERTICAL BORDERS
             rowData.push('<div class="text-left align-middle px-4 py-3">' + 
                          '<div class="text-[14px] font-bold text-slate-800 dark:text-white leading-tight">' + statussk_escapeHtml(parts[0]) + '</div>' + 
                          '<div class="text-[12px] text-slate-400 dark:text-gray-500 font-normal mt-1">' + statussk_escapeHtml(parts[1] || "-") + '</div>' + 
@@ -156,7 +156,7 @@
                    '<"sultan-scroll overflow-x-auto"t>' +
                    '<"px-6 py-3 border-t border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-black/20"<"flex items-center justify-between"i p>>',
             "language": { "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json" },
-            "columnDefs": [ { "targets": "_all", "className": "text-center align-middle border-l border-slate-50 dark:border-white/5" } ]
+            "columnDefs": [ { "targets": "_all", "className": "text-center align-middle" } ]
         });
         $('#statussk_loadingState').hide(); $('#statussk_tableState').show();
     }
