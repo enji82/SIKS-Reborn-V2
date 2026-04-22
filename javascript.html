@@ -182,29 +182,44 @@ var Sultan = {
         });
     },
 
-    // New: Intentional Info Modal for Admin Notes (Unified UI)
+    // New: Intentional Info Modal for Admin Notes (Unified UI v77.0)
     catatan: (title, text) => {
+        const isDark = document.documentElement.classList.contains('dark');
         return Swal.fire({
-            background: 'transparent',
-            showConfirmButton: false, // Using internal button for perfect sync
-            customClass: { popup: 'tail-toast-popup' },
+            background: isDark ? '#1A222C' : '#FFFFFF',
+            showConfirmButton: false,
+            padding: '0',
+            width: '450px',
+            customClass: { popup: 'sk-modal-box overflow-hidden !rounded-[24px] shadow-2xl' },
             html: `
-            <div class="tail-notif tail-notif-info mb-0 flex-col !items-start gap-0">
-                <div class="flex items-center gap-4 w-full mb-4">
-                    <div class="tail-notif-icon-box"><i class="fas fa-comment-dots"></i></div>
-                    <div class="tail-notif-content text-left">
-                        <h4 class="tail-notif-title mb-1">${title || 'Catatan Admin'}</h4>
+            <div class="flex flex-col">
+                <div class="sk-modal-header sk-modal-header-primary !h-14 flex items-center px-6">
+                    <div class="flex-1 flex items-center gap-3">
+                        <i class="fas fa-comment-dots text-white text-sm"></i>
+                        <h3 class="sk-modal-title !text-sm">${title || 'Catatan Admin'}</h3>
                     </div>
-                </div>
-                <div class="w-full text-left pl-[60px] pr-4 mb-6">
-                    <p class="text-sm opacity-90 leading-relaxed dark:text-gray-300 font-medium">${text}</p>
-                </div>
-                <div class="w-full flex justify-end px-4 pb-2">
-                    <button type="button" class="bg-primary text-white px-6 py-2 rounded-lg font-bold text-sm shadow-lg hover:shadow-primary/20 active:scale-95 transition-all" onclick="Swal.close()">
-                        Baik, Saya Mengerti
+                    <button type="button" class="text-white/50 hover:text-white transition-colors" onclick="Swal.close()">
+                        <i class="fas fa-times"></i>
                     </button>
                 </div>
-                <div class="tail-notif-border"></div>
+                <div class="p-8 text-left">
+                    <div class="mb-6 p-5 rounded-2xl bg-primary/5 border border-primary/10 flex items-start gap-4">
+                        <div class="h-10 w-10 min-w-[40px] flex items-center justify-center rounded-xl bg-primary text-white shadow-lg shadow-primary/20">
+                            <i class="fas fa-quote-left text-xs"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-[10px] font-black uppercase tracking-widest text-primary mb-1">Pesan Administrator</p>
+                            <div class="text-[14px] font-medium text-slate-700 dark:text-slate-300 leading-relaxed italic">
+                                "${text}"
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-end">
+                        <button type="button" class="sms-btn sms-btn-primary !h-10 !px-6" onclick="Swal.close()">
+                            BAIK, SAYA MENGERTI
+                        </button>
+                    </div>
+                </div>
             </div>`
         });
     },

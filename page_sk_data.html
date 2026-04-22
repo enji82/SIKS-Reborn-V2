@@ -1250,7 +1250,7 @@
 
         if (ket && ket.trim().length > 2 && (st.includes('revisi') || st.includes('tolak'))) {
             var safeKet = tugas_escapeJs(ket);
-            badge += '<div class="mt-2"><button type="button" class="sms-btn-ghost !h-7 !px-2 !text-[10px] !rounded-md" onclick="Sultan.catatan(\'Catatan Admin\', \'' + safeKet + '\')"><i class="fas fa-comment-dots mr-1"></i> BACA CATATAN</button></div>';
+            badge += '<div class="mt-2"><button type="button" class="sms-btn-ghost !h-7 !px-2 !text-[10px] !rounded-md !whitespace-nowrap" onclick="Sultan.catatan(\'Catatan Admin\', \'' + safeKet + '\')"><i class="fas fa-comment-dots mr-1"></i> BACA CATATAN</button></div>';
         }
         return badge;
     }
