@@ -177,6 +177,13 @@
                         <option value="Perubahan ke 5">PERUBAHAN KE 5</option>
                     </select>
                 </div>
+                
+                <!-- Information Alert (Dynamic Slot Feedback) -->
+                <div id="tugas_alertInfo" class="px-5 py-3 rounded-xl border border-dashed border-primary/20 bg-primary/5 transition-all">
+                    <p id="tugas_alertText" class="text-[11px] font-bold uppercase tracking-wider text-center">
+                        Tentukan <b>Sekolah, Tahun, Semester,</b> dan <b>Kriteria</b> untuk memulai pengisian data SK.
+                    </p>
+                </div>
 
                 <!-- Detail Section -->
                 <div id="tugas_areaTerkunci" class="pt-4 border-t border-gray-100 dark:border-white/5 space-y-5 opacity-50 transition-opacity">
@@ -803,13 +810,14 @@
             return;
         }
 
-        $('#tugas_alertInfo').removeClass('border-danger border-success border-warning/30').addClass('border-primary/20 text-primary');
+        $('#tugas_alertInfo').removeClass('border-danger border-success border-warning/30').addClass('border-primary/20 text-primary sk-alert-pulse');
         $('#tugas_alertText').html('<i class="fas fa-spinner fa-spin mr-1"></i> Mengecek data di server...');
 
         var payload = { namaSd: vSd, tahunAjaran: vTh, semester: vSm, kriteria: vKr };
 
         google.script.run.withSuccessHandler(function (res) {
             var currentId = $('#tugas_editRowId').val();
+            $('#tugas_alertInfo').removeClass('sk-alert-pulse'); // Stop animation
 
             if (res.found) {
                 if (currentId && String(res.data.rowId) === String(currentId)) {

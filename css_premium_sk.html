@@ -201,16 +201,19 @@ header.sms-header-group {
 .sk-modal-header-primary {
     background: linear-gradient(135deg, #3C50E0 0%, #1E40AF 100%) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 23px 23px 0 0 !important; /* Fix corner leak */
 }
 
 .sk-modal-header-warning {
     background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 23px 23px 0 0 !important;
 }
 
 .sk-modal-header-danger {
     background: linear-gradient(135deg, #FB7185 0%, #E11D48 100%) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 23px 23px 0 0 !important;
 }
 
 .sk-modal-title {
@@ -218,7 +221,7 @@ header.sms-header-group {
     font-weight: 900 !important;
     text-transform: uppercase !important;
     letter-spacing: 0.15em !important;
-    font-size: 14px !important;
+    font-size: 15px !important;
     display: flex; align-items: center; gap: 12px;
 }
 
@@ -523,6 +526,17 @@ header.sms-header-group {
     -webkit-box-shadow: 0 0 0 40px var(--sk-input-bg) inset !important;
     -webkit-text-fill-color: var(--sk-text) !important;
     transition: background-color 5000s ease-in-out 0s;
+}
+
+/* 9. INTERACTION ANIMATIONS */
+.sk-alert-pulse {
+    animation: sk-alert-pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes sk-alert-pulse {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(0.99); }
+    100% { opacity: 1; transform: scale(1); }
 }
 
 select.sms-input-premium {
