@@ -1,32 +1,39 @@
 <?!= include('css_premium_sk'); ?>
 
-<div id="sultan-master-scope" class="sms-layout-root p-0 lg:p-4">
+<div id="sultan-master-scope" class="sms-layout-root p-0 lg:p-4 font-['Satoshi',sans-serif]">
     
     <!-- 
-        MASTER TEMPLATE RULE v7.1: UNIFIED HEADER
-        1. FONT SIZE: Standard 12px (text-[12px]) for BOTH List and Matrix headers.
-        2. FONT COLOR: Always 'text-primary' (Executive Blue) in Light Mode.
-        3. TEXT STYLE: Always Bold, Uppercase, and 'tracking-widest'.
-        4. CONSISTENCY: Matrix headers must NOT be smaller or dimmer than standard headers.
+        MASTER TEMPLATE RULE v7.2: TYPOGRAPHY & FONT
+        1. FONT FAMILY: Mandatory 'Satoshi'. Fallback to 'Inter' or Sans-serif.
+        2. FONT RENDERING: Ensure anti-aliasing is active for sharpness.
+        3. FONT SCALE:
+           - Page Title: Bold, Uppercase, 18px-24px.
+           - Table Header: Bold, Uppercase, 12px (text-primary).
+           - Table Body Main: Bold, 14px (text-slate-800/white).
+           - Table Body Sub: Regular, 12px (text-slate-400/gray).
     -->
 
-    <!-- Example: Unified Header Table -->
+    <header class="sms-header-group mb-8">
+        <h1 class="sms-header-title uppercase tracking-wider text-slate-800 dark:text-white font-['Satoshi',sans-serif] font-bold">NAMA HALAMAN</h1>
+        <div class="sms-header-underline"></div>
+    </header>
+
     <div class="sms-table-card bg-white dark:bg-[#1e293b] shadow-xl">
         <div class="p-0">
             <div class="overflow-x-auto sultan-scroll">
-                <table class="w-full table-auto border-collapse sms-table-executive">
+                <table class="w-full table-auto border-collapse sms-table-executive font-['Satoshi',sans-serif]">
                     <thead>
-                        <!-- Unified Header Style -->
                         <tr class="sms-thead-executive bg-slate-50 dark:bg-black/20">
                             <th class="sms-th-executive text-left px-4 py-3 text-[12px] font-bold uppercase tracking-widest text-primary border-b border-slate-200 dark:border-white/10 align-middle">
-                                Nama Kolom (Unified Style)
+                                Kolom Satoshi
                             </th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-100 dark:divide-white/5">
                         <tr class="hover:bg-primary/5 transition-all">
                             <td class="px-4 py-3 align-middle h-auto">
-                                <div class="text-[14px] font-bold text-slate-800 dark:text-white leading-tight">Data Row</div>
+                                <div class="text-[14px] font-bold text-slate-800 dark:text-white leading-tight">Satoshi Bold 14px</div>
+                                <div class="text-[12px] font-normal text-slate-400 dark:text-gray-500 mt-1">Satoshi Regular 12px</div>
                             </td>
                         </tr>
                     </tbody>
