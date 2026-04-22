@@ -235,17 +235,20 @@
         var dtArray = [];
 
         var sampleRow = rows[0] || [];
-        var headerHtml = '<tr class="sk-bg-section text-center border-b border-gray-100 dark:border-white/5">';
+        // THEAD SYNC: Sultan Executive Header Standard (v7.2)
+        var headerHtml = '<tr class="bg-gray-50/80 dark:bg-white/5 border-b border-gray-100 dark:border-white/5">';
 
-        // Kolom UNIT KERJA (Warna Biru sesuai gambar)
-        headerHtml += '<th class="py-3.5 px-6 font-black uppercase text-primary text-left sticky left-0 z-[30] sk-bg-section shadow-[2px_0_5px_rgba(0,0,0,0.05)] border-r border-gray-100 dark:border-white/10 text-sm tracking-wider">UNIT KERJA</th>';
+        // Kolom UNIT KERJA (Sticky Left - Executive Standard)
+        headerHtml += `
+            <th class="py-4 px-6 font-black uppercase text-[11px] text-primary text-left sticky left-0 z-[30] bg-[#F9FAFB] dark:bg-[#1A222C] shadow-[4px_0_10px_rgba(0,0,0,0.05)] border-r border-gray-100 dark:border-white/10 tracking-[0.1em]">
+                UNIT KERJA / SATDIK
+            </th>`;
 
         if (STATUSSK_RAW_HEADER && STATUSSK_RAW_HEADER.length >= 2) {
             var hRow1 = STATUSSK_RAW_HEADER[0];
             var hRow2 = STATUSSK_RAW_HEADER[1];
 
             for (var i = 1; i < hRow2.length; i++) {
-                // Ambil Tahun (Bisa kosong jika merged di sheet, cari ke belakang)
                 var year = "";
                 for (var k = i; k >= 1; k--) {
                     if (hRow1[k] && hRow1[k] !== "") { year = hRow1[k]; break; }
@@ -255,18 +258,16 @@
                 var cleanSmt = smtLabel.toUpperCase().replace("SEMESTER ", "SEM ").replace("SMT ", "SEM ");
                 if (!cleanSmt.includes("SEM")) cleanSmt = "SEM " + cleanSmt;
 
-                // Header 2 Baris dalam 1 Cell - Unified Blue Style
                 headerHtml += `
-                    <th class="py-3.5 px-3 font-black uppercase text-xs text-primary dark:text-[#818CF8] border-l border-gray-100 dark:border-white/5 whitespace-nowrap leading-tight">
-                        <span class="text-xs">${year}</span><br>
-                        <span class="text-xs">${cleanSmt}</span>
+                    <th class="py-4 px-3 font-black uppercase text-[10px] text-gray-500 dark:text-gray-400 border-l border-gray-100 dark:border-white/5 whitespace-nowrap leading-tight tracking-widest text-center">
+                        <div class="opacity-50 mb-0.5">${year}</div>
+                        <div class="text-primary dark:text-[#818CF8]">${cleanSmt}</div>
                     </th>`;
             }
         } else {
-            // Fallback
             for (var i = 1; i < sampleRow.length; i++) {
                 var label = i % 2 !== 0 ? "SEM 1" : "SEM 2";
-                headerHtml += '<th class="py-3.5 px-3 font-black uppercase text-primary dark:text-[#818CF8] min-w-[80px] border-l border-gray-100 dark:border-white/5 text-sm whitespace-nowrap">' + label + '</th>';
+                headerHtml += '<th class="py-4 px-3 font-black uppercase text-[11px] text-primary dark:text-[#818CF8] min-w-[80px] border-l border-gray-100 dark:border-white/5 whitespace-nowrap tracking-widest text-center">' + label + '</th>';
             }
         }
         headerHtml += '</tr>';
@@ -274,16 +275,14 @@
 
         rows.forEach(function (row) {
             var rowData = [];
-
-            // Kolom 1: Nama Unit (Sticky) + NPSN - SESUAI GAMBAR
             var schoolParts = String(row[0] || "").split('|');
             var schName = statussk_escapeHtml(schoolParts[0]);
             var schNpsn = statussk_escapeHtml(schoolParts[1] || "-");
 
             rowData.push(`
-                <div class="flex flex-col text-left py-1">
-                    <span class="font-black text-black dark:text-white uppercase tracking-tight text-sm leading-snug">${schName}</span>
-                    <span class="text-[11px] text-gray-400 dark:text-gray-500 font-bold tracking-widest">${schNpsn}</span>
+                <div class="flex flex-col text-left py-1.5">
+                    <span class="font-black text-black dark:text-white uppercase tracking-tight text-[13px] leading-snug">${schName}</span>
+                    <span class="text-[10px] text-gray-400 dark:text-gray-500 font-black tracking-[0.1em] mt-0.5">${schNpsn}</span>
                 </div>
             `);
 
@@ -298,26 +297,27 @@
             $('#statussk_tabelUtama tbody').empty();
         }
 
+        // DATATABLE EXECUTIVE CONFIG (v9.0 - LUXURY SYNC)
         STATUSSK_TABEL_INSTANCE = $('#statussk_tabelUtama').DataTable({
             "data": dtArray,
             "ordering": false, "pageLength": 10, "autoWidth": false, "deferRender": true,
-            "dom": '<"px-6 py-3 border-b border-stroke dark:border-strokedark"<"flex items-center justify-between gap-4"l f>>' +
+            "dom": '<"px-6 py-4 border-b border-gray-100 dark:border-white/5 bg-gray-50/30 dark:bg-black/10"<"flex items-center justify-between gap-4"l f>>' +
                    '<"sultan-scroll overflow-x-auto"t>' +
-                   '<"px-6 py-3 border-t border-stroke dark:border-strokedark"<"flex items-center justify-between"i p>>',
+                   '<"px-6 py-4 border-t border-gray-100 dark:border-white/5 bg-gray-50/30 dark:bg-black/10"<"flex items-center justify-between"i p>>',
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json",
                 "emptyTable": "Belum ada data progres pengiriman.",
                 "lengthMenu": "Tampilkan _MENU_",
                 "search": "Cari:",
-                "searchPlaceholder": "Ketik untuk mencari...",
+                "searchPlaceholder": "Cari sekolah...",
                 "info": "Menampilkan _START_ s/d _END_ dari _TOTAL_ entri"
             },
             "columnDefs": [
-                { "targets": 0, "className": "py-2.5 px-6 sticky left-0 z-[10] sk-bg-section shadow-[2px_0_5px_rgba(0,0,0,0.05)] border-r border-gray-100 dark:border-white/10" },
-                { "targets": "_all", "className": "text-center py-2.5 px-2 border-l border-gray-50 dark:border-white/5" }
+                { "targets": 0, "className": "py-3 px-6 sticky left-0 z-[10] bg-[#F9FAFB] dark:bg-[#1A222C] shadow-[4px_0_10px_rgba(0,0,0,0.05)] border-r border-gray-100 dark:border-white/10" },
+                { "targets": "_all", "className": "text-center py-3 px-2 border-l border-gray-50 dark:border-white/5" }
             ],
             "drawCallback": function (settings) {
-                $('#statussk_tabelUtama tbody tr').addClass('bg-transparent hover:bg-primary/5 dark:hover:bg-white/5 transition-all');
+                $('#statussk_tabelUtama tbody tr').addClass('bg-transparent hover:bg-primary/5 dark:hover:bg-white/5 transition-all cursor-default');
                 $('#statussk_tabelUtama tbody td').css('background-color', 'transparent');
             }
         });
