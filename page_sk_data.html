@@ -403,33 +403,64 @@
         </div>
 
         <form id="tugas_formHapus" class="sk-modal-body-adaptive">
-            <div class="p-8">
+            <div class="p-8 space-y-6">
                 <input type="hidden" id="tugas_hapusRowId">
 
-                <!-- Warning Block -->
-                <div class="mb-8 p-5 rounded-2xl bg-rose-500/5 border border-rose-500/10 flex items-start gap-4">
-                    <div class="h-10 w-10 min-w-[40px] flex items-center justify-center rounded-xl bg-rose-500 text-white shadow-lg shadow-rose-500/20">
+                <!-- Warning Header -->
+                <div class="flex items-center gap-4 p-4 rounded-xl bg-rose-500/5 border border-rose-500/10">
+                    <div class="h-10 w-10 flex items-center justify-center rounded-lg bg-rose-500 text-white shadow-lg shadow-rose-500/20">
                         <i class="fas fa-exclamation-triangle"></i>
                     </div>
-                    <div class="flex-1">
-                        <p class="text-[10px] font-black uppercase tracking-widest text-rose-500 mb-1">Tindakan Destruktif</p>
-                        <div class="text-[13px] font-bold text-slate-700 dark:text-white leading-relaxed">
-                            Anda akan menghapus SK nomor <span id="tugas_hapusViewNomor" class="text-rose-500 underline decoration-2 underline-offset-4"></span>. Data yang sudah dihapus tidak dapat dipulihkan kembali.
+                    <div>
+                        <p class="text-[10px] font-black uppercase tracking-widest text-rose-500 mb-0.5">Peringatan Penghapusan</p>
+                        <p class="text-[12px] font-bold text-slate-500 dark:text-slate-400">Data yang dihapus tidak dapat dikembalikan.</p>
+                    </div>
+                </div>
+
+                <!-- Identity Summary (Adaptive Box) -->
+                <div class="sk-verif-identity-box !py-5">
+                    <div class="sk-verif-identity-title">
+                        <i class="fas fa-id-card"></i> Detail Dokumen
+                    </div>
+                    <div class="space-y-1">
+                        <div class="sk-verif-row">
+                            <span class="sk-verif-label">Unit Kerja</span>
+                            <span class="sk-verif-value" id="tugas_hNamaSd">-</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="sk-verif-row">
+                                <span class="sk-verif-label">Tahun Ajaran</span>
+                                <span class="sk-verif-value" id="tugas_hTahun">-</span>
+                            </div>
+                            <div class="sk-verif-row">
+                                <span class="sk-verif-label">Semester</span>
+                                <span class="sk-verif-value" id="tugas_hSemester">-</span>
+                            </div>
+                        </div>
+                        <div class="pt-2 mt-2 border-t border-gray-100 dark:border-white/5">
+                            <div class="sk-verif-row">
+                                <span class="sk-verif-label">Nomor SK</span>
+                                <span class="sk-verif-value !text-rose-500" id="tugas_hNoSk">-</span>
+                            </div>
+                            <div class="sk-verif-row">
+                                <span class="sk-verif-label">Kriteria SK</span>
+                                <span class="sk-verif-value" id="tugas_hKriteria">-</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Verification Input -->
                 <div class="space-y-3">
-                    <label class="sk-form-label !text-[11px] !text-slate-500 dark:!text-slate-400">MASUKKAN KODE KONFIRMASI <span class="text-rose-500">*</span></label>
+                    <label class="sk-form-label !text-[11px]">MASUKKAN KODE KONFIRMASI <span class="text-rose-500">*</span></label>
                     <div class="relative">
-                        <input type="text" id="tugas_inputKodeHapus" placeholder="YYYYMMDD" class="sms-input-premium w-full !h-14 !text-center !text-lg !tracking-[0.5em] !font-black !border-rose-500/20 focus:!border-rose-500 focus:!ring-rose-500/10" required autocomplete="off">
+                        <input type="text" id="tugas_inputKodeHapus" placeholder="......" class="sms-input-premium w-full !h-14 !text-center !text-lg !tracking-[0.5em] !font-black !border-rose-500/20 focus:!border-rose-500 focus:!ring-rose-500/10" required autocomplete="off">
                         <div class="absolute right-4 top-1/2 -translate-y-1/2 text-rose-500/20">
-                            <i class="fas fa-shield-alt fa-lg"></i>
+                            <i class="fas fa-key fa-lg"></i>
                         </div>
                     </div>
                     <p class="text-[11px] font-bold text-slate-400 dark:text-slate-500 flex items-center gap-2">
-                        <i class="fas fa-info-circle"></i> Gunakan format tanggal hari ini untuk konfirmasi.
+                        <i class="fas fa-shield-alt"></i> Hubungi admin korwil untuk mendapatkan kode.
                     </p>
                 </div>
             </div>
@@ -1086,7 +1117,7 @@
         if (!d) return;
 
         if (!TUGAS_IS_ADMIN) {
-            var st = String(rowId.status || "").toLowerCase();
+            var st = String(d.status || "").toLowerCase();
             if (st.includes('ok') || st.includes('setuju') || st.includes('valid')) {
                 Sultan.alert('error', 'Terkunci', 'Anda tidak dapat menghapus data yang sudah disetujui Admin.');
                 return;
@@ -1094,12 +1125,19 @@
         }
 
         $('#tugas_hapusRowId').val(rowId);
-        $('#tugas_hapusViewNomor').text(d.noSk);
+        
+        // Populate Full Identity
+        $('#tugas_hNamaSd').text(d.unitKerja || d.namaSd || '-');
+        $('#tugas_hTahun').text(d.tahunAjaran || '-');
+        $('#tugas_hSemester').text(d.semester || '-');
+        $('#tugas_hNoSk').text(d.noSk || '-');
+        $('#tugas_hKriteria').text(d.kriteria || '-');
+
         $('#tugas_inputKodeHapus').val('');
         $('#tugas_modalHapus').removeClass('hidden').addClass('flex').hide().fadeIn();
         
-        // Reset Button State (Spinner Fix)
-        $('#tugas_btnEksekusiHapus').prop('disabled', false).html('<i class="fas fa-trash-alt"></i> Hapus Permanen');
+        // Reset Button State
+        $('#tugas_btnEksekusiHapus').prop('disabled', false).html('<i class="fas fa-trash-alt mr-2"></i> Hapus Permanen');
     }
 
     function tugas_handleSimpanHapus(e) {
