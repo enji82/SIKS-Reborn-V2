@@ -47,7 +47,7 @@
         </div>
     </div>
 
-    <!-- 4. DATA TABLE (MATCHING IMAGE 1 - PREMIUM EXECUTIVE STYLE) -->
+    <!-- 4. DATA TABLE (MATCHING IMAGE 1 - NO FREEZE COLUMN) -->
     <div class="sms-table-card shadow-2xl">
         <div class="p-0">
             <!-- Skeleton Shimmer -->
@@ -58,7 +58,7 @@
                 </div>
             </div>
 
-            <!-- Table Matrix Structure (Exact Image 1 Match) -->
+            <!-- Table Matrix Structure (Exact Image 1 Match - NO FREEZE) -->
             <div id="statussk_tableState" style="display: none;" class="overflow-x-auto sultan-scroll">
                 <table id="statussk_tabelUtama" class="w-full table-auto border-collapse sms-table-executive">
                     <thead>
@@ -124,8 +124,8 @@
 
     function statussk_renderTabel(rows) {
         var dtArray = [];
-        // Header Matching Image 1: Bold, Blue, Uppercase
-        var headerHtml = '<th class="sms-th-executive text-left sticky left-0 z-10 border-r border-white/10" style="min-width: 280px; background-color: #1e293b;">NAMA SEKOLAH / SATDIK</th>';
+        // Header Matching Image 1: Bold, Blue, Uppercase, NO STICKY
+        var headerHtml = '<th class="sms-th-executive text-left" style="min-width: 280px;">NAMA SEKOLAH / SATDIK</th>';
         
         if (STATUSSK_RAW_HEADER && STATUSSK_RAW_HEADER.length >= 2) {
             var hRow1 = STATUSSK_RAW_HEADER[0], hRow2 = STATUSSK_RAW_HEADER[1];
@@ -140,8 +140,8 @@
 
         rows.forEach(function (row) {
             var rowData = [], parts = String(row[0] || "").split('|');
-            // Typography Matching Image 1: Pure White Bold
-            rowData.push('<div class="text-left font-bold text-white sticky left-0 z-10 px-5 py-4 border-r border-white/10" style="background-color: #0f172a;">' + 
+            // NO STICKY logic in rows
+            rowData.push('<div class="text-left font-bold text-white px-5 py-4">' + 
                          statussk_escapeHtml(parts[0]) + '<br>' + 
                          '<span class="text-[11px] text-gray-500 font-normal">' + statussk_escapeHtml(parts[1] || "-") + '</span></div>');
             for (var i = 1; i < row.length; i++) { rowData.push(statussk_buildBadgeSultan(row[i])); }
@@ -155,7 +155,7 @@
                    '<"sultan-scroll overflow-x-auto"t>' +
                    '<"px-6 py-4 border-t border-white/5 bg-black/20"<"flex items-center justify-between"i p>>',
             "language": { "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json" },
-            "columnDefs": [ { "targets": 0, "className": "p-0" }, { "targets": "_all", "className": "text-center align-middle border-l border-white/5" } ]
+            "columnDefs": [ { "targets": "_all", "className": "text-center align-middle border-l border-white/5" } ]
         });
         $('#statussk_loadingState').hide(); $('#statussk_tableState').show();
     }
@@ -163,7 +163,6 @@
     function statussk_buildBadgeSultan(s) {
         if (!s || s === "-" || s === "") return '<i class="fas fa-minus text-gray-700 small"></i>';
         var parts = String(s).split('|'), raw = parts[0].toLowerCase(), icon = "";
-        // Badge Matching Image 1: High Contrast Solid-ish Pills
         var baseCls = "inline-flex h-6 px-3 items-center justify-center rounded-full border-2 font-black text-[9px] uppercase tracking-widest";
         
         if (raw.includes('revisi')) icon = '<span class="' + baseCls + ' bg-blue-600/20 text-blue-400 border-blue-500/30 shadow-[0_0_10px_rgba(37,99,235,0.2)]">REVISI</span>';
