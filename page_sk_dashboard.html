@@ -1,76 +1,56 @@
 <?!= include('css_premium_sk'); ?>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 
-<div id="sultan-master-scope" class="flex flex-col gap-4 md:gap-6 animate-reveal p-0 lg:p-4">
+<div id="sultan-master-scope" class="sms-layout-root p-0 lg:p-4 animate-reveal">
 
   <!-- PAGE HEADER (SULTAN EXECUTIVE TEMPLATE SYNC) -->
-  <header class="sms-header-group mb-4">
+  <header class="sms-header-group mb-8">
     <h1 class="sms-header-title">Dashboard Monitoring SK</h1>
     <div class="sms-header-underline"></div>
-    <p class="text-sm font-medium text-gray-500 dark:text-gray-400 mt-2">
-      Pemantauan Progress & Validasi Dokumen Satuan Pendidikan
-    </p>
   </header>
 
-  <!-- CUSTOM DASHBOARD POLISH (SULTAN v3.12.5) -->
-  <style>
-    .sk-glass-card {
-        position: relative;
-        overflow: hidden;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        border: 1px solid var(--sk-border);
-    }
-    
-    .sk-glass-primary { background: rgba(59, 130, 246, 0.05); color: #3b82f6; border-left: 4px solid #3b82f6 !important; }
-    .sk-glass-success { background: rgba(16, 185, 129, 0.05); color: #10b981; border-left: 4px solid #10b981 !important; }
-    .sk-glass-warning { background: rgba(245, 158, 11, 0.08); color: #f59e0b; border-left: 4px solid #f59e0b !important; }
-    .sk-glass-danger  { background: rgba(239, 68, 68, 0.08); color: #ef4444; border-left: 4px solid #ef4444 !important; }
-
-    /* Syncing Dashboard Inputs with Executive standard but keeping 48px height for Analytics */
-    .sms-input-premium.dashsk-sync {
-        height: 48px !important;
-        border-radius: 14px !important;
-        background: #FFFFFF !important;
-        color: #1A222C !important;
-        border: none !important;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
-    }
-    
-    /* Ensure the dashboard filter card is slightly darker for analytics depth */
-    .dark .sms-table-card.dashsk-filter-sync {
-        background: rgba(15, 23, 42, 0.4) !important;
-        backdrop-filter: blur(10px) !important;
-    }
-  </style>
-
-  <!-- 1. FILTER BAR (SULTAN EXECUTIVE TEMPLATE) -->
-  <div class="sms-table-card dashsk-filter-sync !p-5 shadow-2xl !rounded-[24px]">
-    <div class="flex flex-wrap items-center gap-4">
-        <div class="flex items-center gap-4 flex-1 flex-wrap">
-            <!-- Filter Tahun -->
-            <div class="relative w-full sm:w-[240px]">
-                <select id="dashsk_filterTahun" class="sms-input-premium dashsk-sync w-full appearance-none pl-5 pr-12 outline-none transition focus:ring-4 focus:ring-primary/10"></select>
-                <div class="pointer-events-none absolute inset-y-0 right-5 flex items-center text-slate-400"><i class="fas fa-calendar-alt text-sm"></i></div>
-            </div>
-            <!-- Filter Semester -->
-            <div class="relative w-full sm:w-[240px]">
-                <select id="dashsk_filterSemester" class="sms-input-premium dashsk-sync w-full appearance-none pl-5 pr-12 outline-none transition focus:ring-4 focus:ring-primary/10">
-                    <option value="">- Semua Semester -</option>
-                    <option value="Semester 1">Semester 1</option>
-                    <option value="Semester 2">Semester 2</option>
-                </select>
-                <div class="pointer-events-none absolute inset-y-0 right-5 flex items-center text-slate-400"><i class="fas fa-clock text-sm"></i></div>
-            </div>
+  <!-- 1. KARTU FILTER (V31.0 - TEMPLATE HARMONIZED) -->
+  <div class="sms-table-card p-3 shadow-lg border-l-4 border-l-primary/40 mb-6">
+    <div class="flex flex-wrap items-center gap-3">
+        
+        <!-- Filter Tahun -->
+        <div class="flex-grow lg:flex-grow-0 min-w-[200px]">
+            <select id="dashsk_filterTahun" class="sms-input-premium w-full !h-9 !py-0 !text-xs" title="Tahun Ajaran"></select>
         </div>
-        <!-- Action Button -->
-        <button type="button" id="dashsk_btnRefresh" class="sms-btn sms-btn-primary !h-[48px] !px-12 !text-[11px] !font-black !tracking-[0.2em] shadow-xl shadow-primary/30">
-            <i class="fab fa-gg mr-2 text-base"></i> PERBARUI DATA
-        </button>
+
+        <!-- Filter Semester -->
+        <div class="flex-grow lg:flex-grow-0 min-w-[220px]">
+            <select id="dashsk_filterSemester" class="sms-input-premium w-full !h-9 !py-0 !text-xs">
+                <option value="">- Semua Semester -</option>
+                <option value="Semester 1">Semester 1</option>
+                <option value="Semester 2">Semester 2</option>
+            </select>
+        </div>
+
+        <!-- Action: Refresh (SULTAN Template Logic) -->
+        <div class="ml-auto flex items-center gap-3">
+            <button type="button" id="dashsk_btnRefresh" class="sms-btn-premium-action !h-9 !px-6 !text-[10px] !font-black !tracking-widest">
+                <i class="fab fa-gg mr-1.5"></i> PERBARUI DATA
+            </button>
+        </div>
     </div>
   </div>
 
   <!-- 2. KPI METRICS (SULTAN v4.1 STYLE) -->
   <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
+    <style>
+      /* Keeping the colorful analytics card logic but synced with Executive UI */
+      .sk-glass-card {
+          position: relative;
+          overflow: hidden;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          border: 1px solid var(--sk-border);
+      }
+      .sk-glass-primary { background: rgba(59, 130, 246, 0.05); color: #3b82f6; border-left: 4px solid #3b82f6 !important; }
+      .sk-glass-success { background: rgba(16, 185, 129, 0.05); color: #10b981; border-left: 4px solid #10b981 !important; }
+      .sk-glass-warning { background: rgba(245, 158, 11, 0.08); color: #f59e0b; border-left: 4px solid #f59e0b !important; }
+      .sk-glass-danger  { background: rgba(239, 68, 68, 0.08); color: #ef4444; border-left: 4px solid #ef4444 !important; }
+    </style>
     <!-- Total Berkas (Primary) -->
     <div class="sultan-card sk-glass-card sk-glass-primary p-3 md:p-4.5 hover:translate-y-[-4px]">
         <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary mb-3.5 shadow-sm border border-primary/20">
