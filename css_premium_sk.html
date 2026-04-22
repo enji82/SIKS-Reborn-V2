@@ -467,24 +467,28 @@ header.sms-header-group {
 .sms-thead-executive tr { background-color: var(--sk-section) !important; }
 
 .sms-th-executive {
-    padding: var(--sk-table-py) var(--sk-table-px) !important;
+    padding: 0 16px !important;       /* Padding horizontal dikunci agar stabil */
+    height: 50px !important;           /* Tinggi dikunci agar header tidak collapse */
+    min-height: 50px !important;
     font-weight: 700 !important;
-    color: var(--sk-header-color) !important;
+    color: var(--sk-header-color) !important;  /* → ubah --sk-header-color di :root */
     background: var(--sk-section) !important;
     text-transform: uppercase !important;
     letter-spacing: 0.05em !important;
-    font-size: var(--sk-size-header) !important;
+    font-size: var(--sk-size-header) !important; /* → ubah --sk-size-header di :root */
     vertical-align: middle !important;
     border-bottom: 2px solid var(--sk-border) !important;
     white-space: nowrap !important;
 }
 
 .sms-table-executive td {
-    padding: var(--sk-table-py) var(--sk-table-px) !important;
+    padding: 16px !important;          /* Padding dikunci pada nilai stabil */
     vertical-align: middle !important;
     border-bottom: 1px solid var(--sk-border) !important;
     color: var(--sk-text) !important;
 }
+
+/* Gunakan sk-cell-padding untuk override padding via variabel pada halaman tertentu */
 
 /* EXECUTIVE ROW TYPOGRAPHY (The Hierarchy Fix) */
 .sk-row-title {
