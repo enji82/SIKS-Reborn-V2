@@ -385,54 +385,62 @@
     </div>
 </div>
 
-<!-- 4. MODAL HAPUS (v63.1) -->
+<!-- 4. MODAL HAPUS (v72.0 Executive Deletion) -->
 <div id="tugas_modalHapus" class="sk-modal-overlay hidden items-center justify-center">
-    <div class="w-full max-w-[500px] sk-modal-box">
+    <div class="w-full max-w-[500px] sk-modal-box shadow-2xl overflow-hidden">
 
-        <!-- Header Hapus -->
-        <div class="sk-modal-header sk-modal-header-danger">
-            <h3 class="sk-modal-title">
-                <i class="fas fa-trash-alt"></i> Hapus Data SK
-            </h3>
+        <!-- Header -->
+        <div class="sk-modal-header sk-modal-header-danger !h-16 flex items-center px-6">
+            <div class="flex-1 flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center">
+                    <i class="fas fa-trash-alt text-white text-sm"></i>
+                </div>
+                <h3 class="sk-modal-title !text-sm">Hapus Data SK</h3>
+            </div>
             <button type="button" class="sk-modal-close" onclick="$('#tugas_modalHapus').fadeOut().addClass('hidden').removeClass('flex')">
                 <i class="fas fa-times"></i>
             </button>
         </div>
 
-        <!-- Body Optimized Spacing -->
-        <form id="tugas_formHapus" class="p-10">
-            <input type="hidden" id="tugas_hapusRowId">
+        <form id="tugas_formHapus" class="flex flex-col bg-white dark:bg-[#1A222C]">
+            <div class="p-8">
+                <input type="hidden" id="tugas_hapusRowId">
 
-            <!-- Ringkasan Data (Sultan Danger System) -->
-            <div class="mb-8 sk-alert-danger">
-                <div class="flex h-10 w-10 min-w-[40px] items-center justify-center rounded-xl bg-danger text-white shadow-lg shadow-danger/20">
-                    <i class="fas fa-exclamation-triangle"></i>
-                </div>
-                <div class="flex-1">
-                    <p class="text-[11px] font-black uppercase tracking-[0.1em] leading-none mb-2 opacity-70">Peringatan Penghapusan</p>
-                    <div class="text-[14px] font-bold leading-relaxed">
-                        Anda akan menghapus SK nomor <span id="tugas_hapusViewNomor" class="font-black underline decoration-2 underline-offset-4"></span>. Tindakan ini <span class="italic">permanen</span>.
+                <!-- Warning Block -->
+                <div class="mb-8 p-5 rounded-2xl bg-rose-50 dark:bg-rose-500/5 border border-rose-100 dark:border-rose-500/10 flex items-start gap-4">
+                    <div class="h-10 w-10 min-w-[40px] flex items-center justify-center rounded-xl bg-rose-500 text-white shadow-lg shadow-rose-500/20">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-[10px] font-black uppercase tracking-widest text-rose-600 dark:text-rose-400 mb-1">Tindakan Destruktif</p>
+                        <div class="text-[13px] font-bold text-slate-700 dark:text-slate-300 leading-relaxed">
+                            Anda akan menghapus SK nomor <span id="tugas_hapusViewNomor" class="text-rose-600 dark:text-rose-400 underline decoration-2 underline-offset-4"></span>. Data yang sudah dihapus tidak dapat dipulihkan kembali.
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Form Verifikasi (Hi-Fi Typography) -->
-            <div class="mb-2">
-                <label class="sk-form-label">Kode Konfirmasi Hapus <span class="text-danger">*</span></label>
-                <input type="text" id="tugas_inputKodeHapus" placeholder="Masukkan kode konfirmasi..." class="sms-input-premium w-full !text-[15px] !h-auto !py-4 border-danger/20 focus:border-danger focus:ring-danger/10" required autocomplete="off">
-                <div class="mt-4 flex items-center gap-2 text-[11px] font-bold text-gray-400 dark:text-gray-500 opacity-70">
-                    <i class="fas fa-shield-alt text-danger/50"></i>
-                    Hubungi admin Korwil untuk mendapatkan kode hapus.
+                <!-- Verification Input -->
+                <div class="space-y-3">
+                    <label class="sk-form-label !text-[11px] !text-slate-500 dark:!text-slate-400">MASUKKAN KODE KONFIRMASI <span class="text-rose-500">*</span></label>
+                    <div class="relative">
+                        <input type="text" id="tugas_inputKodeHapus" placeholder="YYYYMMDD" class="sms-input-premium w-full !h-14 !text-center !text-lg !tracking-[0.5em] !font-black !border-rose-500/20 focus:!border-rose-500 focus:!ring-rose-500/10" required autocomplete="off">
+                        <div class="absolute right-4 top-1/2 -translate-y-1/2 text-rose-500/20">
+                            <i class="fas fa-shield-alt fa-lg"></i>
+                        </div>
+                    </div>
+                    <p class="text-[11px] font-bold text-slate-400 dark:text-slate-500 flex items-center gap-2">
+                        <i class="fas fa-info-circle"></i> Gunakan format tanggal hari ini untuk konfirmasi.
+                    </p>
                 </div>
             </div>
 
-            <!-- Footer (Universal Alignment) -->
-            <div class="sk-modal-footer !mt-8">
-                <button type="button" class="sms-btn sms-btn-ghost !px-8" onclick="$('#tugas_modalHapus').fadeOut().addClass('hidden').removeClass('flex')">
-                    Tutup
+            <!-- Footer -->
+            <div class="sk-modal-footer">
+                <button type="button" class="sms-btn sms-btn-ghost" onclick="$('#tugas_modalHapus').fadeOut().addClass('hidden').removeClass('flex')">
+                    BATAL
                 </button>
-                <button type="submit" id="tugas_btnEksekusiHapus" class="sms-btn !bg-danger !text-white !px-8">
-                    <i class="fas fa-trash-alt"></i> Hapus Permanen
+                <button type="submit" id="tugas_btnEksekusiHapus" class="sms-btn sms-btn-danger">
+                    <i class="fas fa-trash-alt mr-2"></i> HAPUS PERMANEN
                 </button>
             </div>
         </form>
