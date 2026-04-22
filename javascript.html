@@ -182,40 +182,12 @@ var Sultan = {
         });
     },
 
-    // New: Intentional Info Modal for Admin Notes (Unified UI v77.2 Reliable)
+    // New: Intentional Info Modal for Admin Notes (Unified UI v78.0 Native Bridge)
     catatan: (title, text) => {
-        const isDark = document.documentElement.classList.contains('dark');
-        return Swal.fire({
-            background: isDark ? '#1A222C' : '#FFFFFF',
-            showConfirmButton: true,
-            confirmButtonText: 'BAIK, SAYA MENGERTI',
-            buttonsStyling: false,
-            padding: '0',
-            width: '450px',
-            customClass: { 
-                popup: 'sk-modal-box overflow-hidden !rounded-[24px] shadow-2xl',
-                confirmButton: 'sms-btn sms-btn-primary !h-11 !px-10 mb-8'
-            },
-            html: `
-            <div class="flex flex-col">
-                <div class="sk-modal-header sk-modal-header-primary !h-14 flex items-center px-6">
-                    <div class="flex-1 flex items-center gap-3">
-                        <i class="fas fa-comment-dots text-white text-sm"></i>
-                        <h3 class="sk-modal-title !text-sm">${title || 'Catatan Admin'}</h3>
-                    </div>
-                    <button type="button" class="text-white/50 hover:text-white transition-colors" onclick="Swal.close()">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                <div class="p-8 pb-0 text-center">
-                    <div class="mb-4 p-6 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5">
-                        <div class="text-[15px] font-medium text-slate-700 dark:text-slate-200 leading-relaxed italic">
-                            "${text}"
-                        </div>
-                    </div>
-                </div>
-            </div>`
-        });
+        // Use Native HTML Modal for absolute reliability
+        $('#tugas_catatanJudul').text(title || 'Catatan Admin');
+        $('#tugas_catatanTeks').text(text || '-');
+        $('#tugas_modalCatatan').removeClass('hidden').addClass('flex').hide().fadeIn();
     },
     konfirmasi: function(opsi, callbackYa) {
         return Swal.fire({

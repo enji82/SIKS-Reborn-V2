@@ -392,6 +392,36 @@
     </div>
 </div>
 
+<!-- 3.1 MODAL CATATAN ADMIN (v78.0 Absolute Reliability) -->
+<div id="tugas_modalCatatan" class="sk-modal-overlay hidden items-center justify-center">
+    <div class="w-full max-w-[450px] sk-modal-box flex flex-col overflow-hidden shadow-2xl">
+        <!-- Header -->
+        <div class="sk-modal-header sk-modal-header-primary !h-14 flex items-center px-6">
+            <div class="flex-1 flex items-center gap-3">
+                <i class="fas fa-comment-dots text-white text-sm"></i>
+                <h3 class="sk-modal-title !text-sm" id="tugas_catatanJudul">Catatan Admin</h3>
+            </div>
+            <button type="button" class="sk-modal-close" onclick="$('#tugas_modalCatatan').fadeOut().addClass('hidden').removeClass('flex')">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <!-- Body -->
+        <div class="sk-modal-body-adaptive p-8 text-center">
+            <div class="mb-8 p-6 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5">
+                <div class="text-[15px] font-medium text-slate-700 dark:text-slate-200 leading-relaxed italic" id="tugas_catatanTeks">
+                    -
+                </div>
+            </div>
+            <div class="flex justify-center">
+                <button type="button" class="sms-btn sms-btn-primary !h-11 !px-10" onclick="$('#tugas_modalCatatan').fadeOut().addClass('hidden').removeClass('flex')">
+                    BAIK, SAYA MENGERTI
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- 4. MODAL HAPUS (v72.0 Executive Deletion) -->
 <div id="tugas_modalHapus" class="sk-modal-overlay hidden items-center justify-center">
     <div class="w-full max-w-[500px] sk-modal-box shadow-2xl overflow-hidden">
