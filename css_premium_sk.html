@@ -288,6 +288,21 @@ header.sms-header-group {
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
     max-height: 90vh;
     animation: sk-modal-reveal 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    font-family: 'Satoshi', 'Inter', sans-serif !important; /* Modal menggunakan font Satoshi */
+}
+
+/* Pastikan semua elemen dalam modal mewarisi font Satoshi */
+.sk-modal-box *, .sk-modal-overlay * {
+    font-family: 'Satoshi', 'Inter', sans-serif !important;
+}
+
+/* Kecualikan icon dari override font (agar Font Awesome tidak rusak) */
+.sk-modal-box i, .sk-modal-overlay i,
+.sk-modal-box .fa, .sk-modal-overlay .fa,
+.sk-modal-box .fas, .sk-modal-overlay .fas,
+.sk-modal-box .far, .sk-modal-overlay .far,
+.sk-modal-box .fab, .sk-modal-overlay .fab {
+    font-family: 'Font Awesome 6 Free', 'Font Awesome 5 Free', 'Font Awesome 5 Brands' !important;
 }
 
 @keyframes sk-modal-reveal {

@@ -187,7 +187,7 @@ var Sultan = {
         // Use Native HTML Modal for absolute reliability
         $('#tugas_catatanJudul').text(title || 'Catatan Admin');
         $('#tugas_catatanTeks').text(text || '-');
-        $('#tugas_modalCatatan').removeClass('hidden').addClass('flex').hide().fadeIn();
+        $('#tugas_modalCatatan').removeClass('hidden').css({'display':'flex', 'opacity':0}).animate({'opacity':1}, 250);
     },
     konfirmasi: function(opsi, callbackYa) {
         return Swal.fire({
