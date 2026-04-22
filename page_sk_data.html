@@ -197,6 +197,27 @@
                             <input type="date" id="tugas_inputTglSk" class="sms-input-premium w-full" required>
                         </div>
                     </div>
+
+                    <!-- File Upload Section (Restored & Modernized) -->
+                    <div class="mt-4">
+                        <label id="tugas_labelFile" class="sk-form-label mb-2 block">
+                            <i class="fas fa-file-pdf text-danger mr-1"></i> Unggah Dokumen Asli <span class="text-danger">*</span>
+                        </label>
+                        <div class="relative group">
+                            <input type="file" id="tugas_inputFile" accept="application/pdf" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" onchange="tugas_handleFileChange(this)">
+                            <div class="sms-input-premium w-full flex items-center justify-between px-4 group-hover:border-primary transition-colors">
+                                <span id="tugas_fileName" class="text-gray-400 font-medium truncate">Pilih file PDF (Maks. 1MB)...</span>
+                                <i class="fas fa-cloud-upload-alt text-primary opacity-60"></i>
+                            </div>
+                        </div>
+                        <!-- Link File Lama (Edit Mode) -->
+                        <div id="tugas_linkFileLama" class="mt-3 hidden">
+                            <div class="flex items-center gap-2 p-2 rounded-lg bg-primary/5 border border-primary/10">
+                                <i class="fas fa-external-link-alt text-primary text-[10px]"></i>
+                                <a href="javascript:void(0)" onclick="tugas_bukaPreview(TUGAS_CURRENT_FILE_URL)" class="text-[11px] font-bold text-primary hover:underline">LIHAT DOKUMEN SAAT INI</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -771,13 +792,28 @@
         $('#tugas_editRowId').val('');
         TUGAS_CURRENT_FILE_URL = "";
         $('#tugas_linkFileLama').addClass('hidden');
+        $('#tugas_fileName').html('Pilih file PDF (Maks. 1MB)...').removeClass('text-success font-bold');
         $('#tugas_labelFile').html('<i class="fas fa-file-pdf text-danger mr-1"></i> Unggah Dokumen Asli <span class="text-danger">*</span>');
-        $('.custom-file-label').removeClass("selected text-success font-weight-bold").html('Pilih file PDF...');
         $('#tugas_areaTerkunci').prop('disabled', true).css('opacity', '0.5');
         $('#tugas_inputNamaSd, #tugas_inputTahun, #tugas_inputSemester, #tugas_inputKriteria').prop('disabled', false);
         $('#tugas_btnSimpanForm').removeClass('btn-sultan-indigo').addClass('btn-sultan-maroon').show().prop('disabled', true);
         $('#tugas_alertInfo').removeClass('border-danger border-success').addClass('border-primary/20');
         $('#tugas_alertText').html('Tentukan <b>Sekolah, Tahun, Semester,</b> dan <b>Kriteria</b> untuk memulai pengisian data SK.');
+    }
+
+    function tugas_handleFileChange(el) {
+        if (el.files && el.files[0]) {
+            var file = el.files[0];
+            if (file.size > 1024 * 1024) {
+                Sultan.alert('error', 'File Terlalu Besar', 'Maksimal ukuran file adalah 1 MB.');
+                $(el).val('');
+                $('#tugas_fileName').html('Pilih file PDF (Maks. 1MB)...').removeClass('text-success font-bold');
+                return;
+            }
+            $('#tugas_fileName').html('<i class="fas fa-check-circle mr-1"></i> ' + file.name).addClass('text-success font-bold');
+        } else {
+            $('#tugas_fileName').html('Pilih file PDF (Maks. 1MB)...').removeClass('text-success font-bold');
+        }
     }
 
     function tugas_bukaModalTambah() {
