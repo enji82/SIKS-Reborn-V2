@@ -63,7 +63,7 @@
             <!-- Filter Instansi -->
             <div class="w-fit min-w-[300px]">
                 <select id="statussk_filterSekolah" class="sms-input-premium w-full !h-9 !py-0 !text-xs font-black">
-                    <option value="SEMUA">- Filter Semua Instansi Satuan Pendidikan -</option>
+                    <option value="SEMUA">- Semua Sekolah -</option>
                 </select>
             </div>
             
@@ -202,7 +202,7 @@
         if (STATUSSK_IS_ADMIN) {
             var el = $('#statussk_filterSekolah');
             var currentVal = el.val();
-            var h = '<option value="SEMUA">- Filter Semua Instansi -</option>';
+            var h = '<option value="SEMUA">- Semua Sekolah -</option>';
             schools.forEach(function (s) {
                 var safeS = statussk_escapeHtml(s);
                 h += '<option value="' + safeS + '">' + safeS + '</option>';
