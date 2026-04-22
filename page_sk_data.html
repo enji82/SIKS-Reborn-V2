@@ -914,7 +914,7 @@
         $('#tugas_inputSemester').val(currentSmt);
         if (!TUGAS_IS_ADMIN && TUGAS_UNIT_TERKUNCI) { $('#tugas_inputNamaSd').val(TUGAS_UNIT_TERKUNCI); }
 
-        $('#tugas_modalForm').removeClass('hidden').addClass('flex').hide().fadeIn();
+        $('#tugas_modalForm').removeClass('hidden').css({'display':'flex', 'opacity':0}).animate({'opacity':1}, 250);
     }
 
     function tugas_cekKetersediaanSlot() {
@@ -994,7 +994,7 @@
         $('#tugas_alertInfo').removeClass('border-primary/20 border-danger border-warning/30').addClass('border-success/30');
         $('#tugas_alertText').html('<i class="fas fa-check-circle mr-1 text-success"></i> Data siap diubah.');
         
-        $('#tugas_modalForm').removeClass('hidden').addClass('flex').hide().fadeIn();
+        $('#tugas_modalForm').removeClass('hidden').css({'display':'flex', 'opacity':0}).animate({'opacity':1}, 250);
     }
 
     function tugas_handleSimpan(e) {
@@ -1097,7 +1097,7 @@
             $('#tugas_verifNoFile').removeClass('hidden');
         }
 
-        $('#tugas_modalVerif').removeClass('hidden').addClass('flex').hide().fadeIn();
+        $('#tugas_modalVerif').removeClass('hidden').css({'display':'flex', 'opacity':0}).animate({'opacity':1}, 250);
         
         // Reset Button State (Spinner Fix)
         $('#tugas_btnSimpanVerif').prop('disabled', false).html('<i class="fas fa-check-circle"></i> Eksekusi');
@@ -1170,7 +1170,7 @@
         $('#tugas_hKriteria').text(d.kriteria || '-');
 
         $('#tugas_inputKodeHapus').val('');
-        $('#tugas_modalHapus').removeClass('hidden').addClass('flex').hide().fadeIn();
+        $('#tugas_modalHapus').removeClass('hidden').css({'display':'flex', 'opacity':0}).animate({'opacity':1}, 250);
         
         // Reset Button State
         $('#tugas_btnEksekusiHapus').prop('disabled', false).html('<i class="fas fa-trash-alt mr-2"></i> Hapus Permanen');
@@ -1236,7 +1236,7 @@
         $('#tugas_loadingPreviewPDF').removeClass('hidden');
 
         $('#tugas_framePreviewFull').addClass('hidden').attr('src', '');
-        $('#tugas_modalPreview').removeClass('hidden').addClass('flex').hide().fadeIn();
+        $('#tugas_modalPreview').removeClass('hidden').css({'display':'flex', 'opacity':0}).animate({'opacity':1}, 250);
 
         setTimeout(function () {
             $('#tugas_framePreviewFull').attr('src', tugas_convertDriveUrl(url));
