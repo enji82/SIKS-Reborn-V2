@@ -1,24 +1,24 @@
+<?!= include('css_premium_sk'); ?>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 
-<div class="flex flex-col gap-4 md:gap-6 animate-reveal">
+<div id="sultan-master-scope" class="flex flex-col gap-4 md:gap-6 animate-reveal p-0 lg:p-4">
 
-  <!-- PAGE HEADER (SULTAN EXECUTIVE TEMPLATE) -->
-  <header class="sms-header-group mb-2">
-    <h1 class="sms-header-title !text-black dark:!text-white">Dashboard Monitoring SK</h1>
-    <div class="sms-header-underline !bg-gradient-to-r !from-primary !to-transparent"></div>
-    <p class="sk-section-title mt-3 !text-gray-500 dark:!text-gray-400 font-medium">
+  <!-- PAGE HEADER (SULTAN EXECUTIVE TEMPLATE SYNC) -->
+  <header class="sms-header-group mb-4">
+    <h1 class="sms-header-title">Dashboard Monitoring SK</h1>
+    <div class="sms-header-underline"></div>
+    <p class="text-sm font-medium text-gray-500 dark:text-gray-400 mt-2">
       Pemantauan Progress & Validasi Dokumen Satuan Pendidikan
     </p>
   </header>
 
-  <!-- CUSTOM EXECUTIVE STYLES (SULTAN v3.12.4 - Visibility Fix) -->
+  <!-- CUSTOM DASHBOARD POLISH (SULTAN v3.12.5) -->
   <style>
     .sk-glass-card {
         position: relative;
         overflow: hidden;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(8px);
+        border: 1px solid var(--sk-border);
     }
     
     .sk-glass-primary { background: rgba(59, 130, 246, 0.05); color: #3b82f6; border-left: 4px solid #3b82f6 !important; }
@@ -26,48 +26,44 @@
     .sk-glass-warning { background: rgba(245, 158, 11, 0.08); color: #f59e0b; border-left: 4px solid #f59e0b !important; }
     .sk-glass-danger  { background: rgba(239, 68, 68, 0.08); color: #ef4444; border-left: 4px solid #ef4444 !important; }
 
-    /* Executive Capsule Inputs */
-    .sms-input-dashboard {
+    /* Syncing Dashboard Inputs with Executive standard but keeping 48px height for Analytics */
+    .sms-input-premium.dashsk-sync {
         height: 48px !important;
         border-radius: 14px !important;
         background: #FFFFFF !important;
         color: #1A222C !important;
-        border: 1px solid rgba(0,0,0,0.05) !important;
-        font-weight: 700 !important;
-        font-size: 14px !important;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08) !important;
-        padding-left: 20px !important;
-        padding-right: 45px !important;
+        border: none !important;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
     }
     
-    .dark .sms-table-card-analytics {
-        background: rgba(30, 41, 59, 0.5) !important;
+    /* Ensure the dashboard filter card is slightly darker for analytics depth */
+    .dark .sms-table-card.dashsk-filter-sync {
+        background: rgba(15, 23, 42, 0.4) !important;
         backdrop-filter: blur(10px) !important;
-        border: 1px solid rgba(255,255,255,0.05) !important;
     }
   </style>
 
-  <!-- 1. FILTER BAR (SULTAN EXECUTIVE CAPSULE) -->
-  <div class="sms-table-card-analytics p-5 shadow-2xl rounded-[24px] border border-gray-100">
+  <!-- 1. FILTER BAR (SULTAN EXECUTIVE TEMPLATE) -->
+  <div class="sms-table-card dashsk-filter-sync !p-5 shadow-2xl !rounded-[24px]">
     <div class="flex flex-wrap items-center gap-4">
         <div class="flex items-center gap-4 flex-1 flex-wrap">
             <!-- Filter Tahun -->
             <div class="relative w-full sm:w-[240px]">
-                <select id="dashsk_filterTahun" class="sms-input-dashboard w-full appearance-none"></select>
-                <div class="pointer-events-none absolute inset-y-0 right-5 flex items-center text-slate-400"><i class="fas fa-calendar-alt"></i></div>
+                <select id="dashsk_filterTahun" class="sms-input-premium dashsk-sync w-full appearance-none pl-5 pr-12 outline-none transition focus:ring-4 focus:ring-primary/10"></select>
+                <div class="pointer-events-none absolute inset-y-0 right-5 flex items-center text-slate-400"><i class="fas fa-calendar-alt text-sm"></i></div>
             </div>
             <!-- Filter Semester -->
             <div class="relative w-full sm:w-[240px]">
-                <select id="dashsk_filterSemester" class="sms-input-dashboard w-full appearance-none">
+                <select id="dashsk_filterSemester" class="sms-input-premium dashsk-sync w-full appearance-none pl-5 pr-12 outline-none transition focus:ring-4 focus:ring-primary/10">
                     <option value="">- Semua Semester -</option>
                     <option value="Semester 1">Semester 1</option>
                     <option value="Semester 2">Semester 2</option>
                 </select>
-                <div class="pointer-events-none absolute inset-y-0 right-5 flex items-center text-slate-400"><i class="fas fa-clock"></i></div>
+                <div class="pointer-events-none absolute inset-y-0 right-5 flex items-center text-slate-400"><i class="fas fa-clock text-sm"></i></div>
             </div>
         </div>
         <!-- Action Button -->
-        <button type="button" id="dashsk_btnRefresh" class="sms-btn sms-btn-primary !h-[48px] !px-10 !text-[11px] !font-black !tracking-[0.2em] shadow-xl">
+        <button type="button" id="dashsk_btnRefresh" class="sms-btn sms-btn-primary !h-[48px] !px-12 !text-[11px] !font-black !tracking-[0.2em] shadow-xl shadow-primary/30">
             <i class="fab fa-gg mr-2 text-base"></i> PERBARUI DATA
         </button>
     </div>
