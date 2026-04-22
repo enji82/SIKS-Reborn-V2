@@ -111,6 +111,71 @@ window.sultanRenderSkeleton = function(containerId, rows, layout) {
     $cont.append($wrap);
 };
 
+/* ================================================================
+   SULTAN GLOBAL UTILITIES (v1.0)
+   ================================================================ */
+
+// 1. DataTable Constants
+window.SULTAN_DT_DOM = '<"px-6 py-3 border-b border-gray-100 dark:border-white/5 bg-gray-50/30 dark:bg-black/10"<"flex items-center justify-between gap-4"l f>>' +
+                       '<"sultan-scroll overflow-x-auto"t>' +
+                       '<"px-6 py-3 border-t border-gray-100 dark:border-white/5 bg-gray-50/30 dark:bg-black/10"<"flex items-center justify-between"i p>>';
+window.SULTAN_DT_LANG_URL = "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json";
+
+// 2. Global Utilities
+window.skParseDateTime = function(s) {
+    if (!s || s === "-") return 0;
+    try {
+        var p = s.split(' '); var d = p[0].split('-'); var t = (p[1] || "00:00:00").split(':');
+        return new Date(d[2], d[1] - 1, d[0], t[0], t[1], t[2]).getTime();
+    } catch (e) { return 0; }
+};
+
+window.skEscapeJs = function(str) {
+    if (!str) return "";
+    return String(str).replace(/\\/g, "\\\\").replace(/'/g, "\\'").replace(/"/g, '\\"').replace(/\n/g, "\\n").replace(/\r/g, "\\r");
+};
+
+window.skCleanText = function(text) {
+    if (text === null || text === undefined || text === "") return "-";
+    return window.skEscapeHtml(String(text).trim());
+};
+
+// 3. Modal Helpers
+window.skOpenModal = function(modalId) {
+    var $modal = typeof modalId === 'string' ? (modalId.startsWith('#') ? $(modalId) : $('#' + modalId)) : $(modalId);
+    $modal.removeClass('hidden').css({'display':'flex', 'opacity':0}).animate({'opacity':1}, 250);
+};
+
+window.skCloseModal = function(modalId) {
+    var $modal = typeof modalId === 'string' ? (modalId.startsWith('#') ? $(modalId) : $('#' + modalId)) : $(modalId);
+    $modal.fadeOut(250, function() { $(this).addClass('hidden').removeClass('flex'); });
+};
+
+// 4. Default DataTable Configurator
+window.sultanInitDataTable = function(tableId, options) {
+    var defaultOptions = {
+        destroy: true, 
+        ordering: false, 
+        pageLength: 10, 
+        autoWidth: false,
+        deferRender: true,
+        dom: window.SULTAN_DT_DOM,
+        language: { 
+            url: window.SULTAN_DT_LANG_URL, 
+            emptyTable: "Belum ada data yang tersedia." 
+        },
+        drawCallback: function (settings) {
+            var id = tableId.startsWith('#') ? tableId : '#' + tableId;
+            $(id + ' tbody tr').addClass('bg-transparent hover:bg-primary/5 dark:hover:bg-white/5 transition-all cursor-default');
+            $(id + ' tbody td').css('background-color', 'transparent'); 
+        }
+    };
+    
+    // Merge options (deep merge to allow overriding language.emptyTable etc)
+    var finalOptions = $.extend(true, {}, defaultOptions, options);
+    return $(tableId.startsWith('#') ? tableId : '#' + tableId).DataTable(finalOptions);
+};
+
 /**
  * LOGIKA INTEGRASI: Menghubungkan Form Baru ke Mesin Lama yang Stabil
  */

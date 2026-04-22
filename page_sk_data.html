@@ -131,7 +131,7 @@
             <h3 id="tugas_judulModalForm" class="sk-modal-title">
                 <i class="fas fa-file-signature text-xl"></i> Form Pengisian SK
             </h3>
-            <button type="button" class="sk-modal-close" onclick="$('#tugas_modalForm').fadeOut().addClass('hidden').removeClass('flex')">
+            <button type="button" class="sk-modal-close" onclick="window.skCloseModal('tugas_modalForm')">
                 <i class="fas fa-times"></i>
             </button>
         </div>
@@ -223,7 +223,7 @@
 
             <!-- Footer -->
             <div class="sk-modal-footer">
-                <button type="button" class="sms-btn sms-btn-ghost" onclick="$('#tugas_modalForm').fadeOut().addClass('hidden').removeClass('flex')">
+                <button type="button" class="sms-btn sms-btn-ghost" onclick="window.skCloseModal('tugas_modalForm')">
                     Batal
                 </button>
                 <button type="submit" id="tugas_btnSimpanForm" class="sms-btn sms-btn-primary">
@@ -266,7 +266,7 @@
                     </div>
                     <h3 class="sk-modal-title !text-sm">Verifikasi SK</h3>
                 </div>
-                <button type="button" class="sk-modal-close" onclick="$('#tugas_modalVerif').fadeOut().addClass('hidden').removeClass('flex')">
+                <button type="button" class="sk-modal-close" onclick="window.skCloseModal('tugas_modalVerif')">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
@@ -335,7 +335,7 @@
 
                 <!-- Footer -->
                 <div class="sk-modal-footer mt-auto">
-                    <button type="button" class="sms-btn sms-btn-ghost" onclick="$('#tugas_modalVerif').fadeOut().addClass('hidden').removeClass('flex')">
+                    <button type="button" class="sms-btn sms-btn-ghost" onclick="window.skCloseModal('tugas_modalVerif')">
                         Batal
                     </button>
                     <button type="submit" id="tugas_btnSimpanVerif" class="sms-btn sms-btn-success">
@@ -369,7 +369,7 @@
                     <i class="fas fa-external-link-alt mr-2"></i> TAB BARU
                 </a>
                 <div class="h-6 w-[1px] bg-white/10 mx-1"></div>
-                <button type="button" class="sk-modal-close" onclick="$('#tugas_modalPreview').fadeOut().addClass('hidden').removeClass('flex')">
+                <button type="button" class="sk-modal-close" onclick="window.skCloseModal('tugas_modalPreview')">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
@@ -397,7 +397,7 @@
                 <i class="fas fa-comment-dots text-white text-sm"></i>
                 <h3 class="sk-modal-title !text-sm" id="tugas_catatanJudul">Catatan Admin</h3>
             </div>
-            <button type="button" class="sk-modal-close" onclick="$('#tugas_modalCatatan').fadeOut().addClass('hidden').removeClass('flex')">
+            <button type="button" class="sk-modal-close" onclick="window.skCloseModal('tugas_modalCatatan')">
                 <i class="fas fa-times"></i>
             </button>
         </div>
@@ -410,7 +410,7 @@
                 </div>
             </div>
             <div class="flex justify-center">
-                <button type="button" class="sms-btn sms-btn-primary !h-11 !px-10" onclick="$('#tugas_modalCatatan').fadeOut().addClass('hidden').removeClass('flex')">
+                <button type="button" class="sms-btn sms-btn-primary !h-11 !px-10" onclick="window.skCloseModal('tugas_modalCatatan')">
                     BAIK, SAYA MENGERTI
                 </button>
             </div>
@@ -430,7 +430,7 @@
                 </div>
                 <h3 class="sk-modal-title !text-sm">Hapus Data SK</h3>
             </div>
-            <button type="button" class="sk-modal-close" onclick="$('#tugas_modalHapus').fadeOut().addClass('hidden').removeClass('flex')">
+            <button type="button" class="sk-modal-close" onclick="window.skCloseModal('tugas_modalHapus')">
                 <i class="fas fa-times"></i>
             </button>
         </div>
@@ -500,7 +500,7 @@
 
             <!-- Footer -->
             <div class="sk-modal-footer">
-                <button type="button" class="sms-btn sms-btn-ghost" onclick="$('#tugas_modalHapus').fadeOut().addClass('hidden').removeClass('flex')">
+                <button type="button" class="sms-btn sms-btn-ghost" onclick="window.skCloseModal('tugas_modalHapus')">
                     BATAL
                 </button>
                 <button type="submit" id="tugas_btnEksekusiHapus" class="sms-btn sms-btn-danger">
@@ -534,7 +534,7 @@
     $(document).ready(function () {
         TUGAS_TABEL_INSTANCE = null;
         $('#tugas_tableState').hide();
-        tugas_renderSkeleton();
+        window.sultanRenderSkeleton('tugas_loadingState', 5, 'default');
         $('#tugas_loadingState').show();
 
         try {
@@ -625,17 +625,17 @@
                 var dataUnit = JSON.parse(resUnit);
                 if (dataUnit.error) {
                     $('#tugas_filterUnit').empty().append('<option value="">AKSES DITOLAK</option>');
-                    $('#tugas_loadingText').html('<span class="text-danger"><i class="fas fa-exclamation-triangle mb-2"></i><br>' + tugas_escapeHtml(dataUnit.error) + '</span>');
+                    $('#tugas_loadingText').html('<span class="text-danger"><i class="fas fa-exclamation-triangle mb-2"></i><br>' + window.skEscapeHtml(dataUnit.error) + '</span>');
                     $('#tugas_btnCari, #tugas_btnTambah').prop('disabled', false);
                     return;
                 }
                 TUGAS_UNIT_TERKUNCI = dataUnit.unitKerja;
-                $('#tugas_filterUnit').empty().append('<option value="' + tugas_escapeHtml(TUGAS_UNIT_TERKUNCI) + '">' + tugas_escapeHtml(TUGAS_UNIT_TERKUNCI) + '</option>').prop('disabled', true);
+                $('#tugas_filterUnit').empty().append('<option value="' + window.skEscapeHtml(TUGAS_UNIT_TERKUNCI) + '">' + window.skEscapeHtml(TUGAS_UNIT_TERKUNCI) + '</option>').prop('disabled', true);
                 $('#tugas_btnCari, #tugas_btnTambah').prop('disabled', false);
                 tugas_tarikDataServer();
             }).withFailureHandler(function (err) {
                 $('#tugas_filterUnit').empty().append('<option value="">ERROR SERVER</option>');
-                $('#tugas_loadingText').html('<span class="text-danger"><i class="fas fa-wifi mb-2"></i><br>Koneksi Terputus: ' + tugas_escapeHtml(err.message) + '</span>');
+                $('#tugas_loadingText').html('<span class="text-danger"><i class="fas fa-wifi mb-2"></i><br>Koneksi Terputus: ' + window.skEscapeHtml(err.message) + '</span>');
                 $('#tugas_btnCari, #tugas_btnTambah').prop('disabled', false);
             }).getUnitKerjaByNpsnPTK(TUGAS_USER_NPSN);
         }
@@ -668,7 +668,7 @@
 
         if (!$.fn.DataTable.isDataTable('#tugas_tabelUtama') && !cachedData) {
             $('#tugas_tableState').hide();
-            tugas_renderSkeleton();
+            window.sultanRenderSkeleton('tugas_loadingState', 5, 'default');
             $('#tugas_loadingState').show();
         }
 
@@ -691,23 +691,14 @@
                     SK_GLOBAL_FILTER_PRESET = null; // Clear after use
                 }
 
-                TUGAS_TABEL_INSTANCE = $('#tugas_tabelUtama').DataTable({
-                    "destroy": true, "ordering": false, "pageLength": 10, "autoWidth": false,
-                    "deferRender": true, 
-                    "dom": '<"px-6 py-3 border-b border-gray-100 dark:border-white/5 bg-gray-50/30 dark:bg-black/10"<"flex items-center justify-between gap-4"l f>>' +
-                           '<"sultan-scroll overflow-x-auto"t>' +
-                           '<"px-6 py-3 border-t border-gray-100 dark:border-white/5 bg-gray-50/30 dark:bg-black/10"<"flex items-center justify-between"i p>>',
+                TUGAS_TABEL_INSTANCE = window.sultanInitDataTable('#tugas_tabelUtama', {
                     "columnDefs": [
                         { "targets": 0, "width": "1%", "className": "text-center whitespace-nowrap" },
                         { "targets": 2, "className": "text-center whitespace-nowrap", "width": "100px" },
                         { "targets": [1,3,6,7,8], "className": "text-left whitespace-nowrap" }, 
                         { "targets": [4,5], "className": "text-center" }
                     ],
-                    "language": { "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json", "emptyTable": "Belum ada data SK yang diunggah." },
-                    "drawCallback": function (settings) {
-                        $('#tugas_tabelUtama tbody tr').addClass('bg-transparent hover:bg-primary/5 dark:hover:bg-white/5 transition-all cursor-default');
-                        $('#tugas_tabelUtama tbody td').css('background-color', 'transparent'); // Force remove DataTables white cell inject
-                    }
+                    "language": { "emptyTable": "Belum ada data SK yang diunggah." }
                 });
 
                 tugas_populateFilterOptions();
@@ -740,14 +731,14 @@
 
         if (TUGAS_IS_ADMIN) {
             var uHtml = '<option value="SEMUA">- Semua Sekolah-</option>';
-            sortedUnits.forEach(function (u) { uHtml += '<option value="' + tugas_escapeHtml(u) + '">' + tugas_escapeHtml(u) + '</option>'; });
+            sortedUnits.forEach(function (u) { uHtml += '<option value="' + window.skEscapeHtml(u) + '">' + window.skEscapeHtml(u) + '</option>'; });
             var curUnit = $('#tugas_filterUnit').val();
             $('#tugas_filterUnit').html(uHtml);
             if (curUnit && uniqueUnits.has(curUnit)) $('#tugas_filterUnit').val(curUnit);
         }
 
         var formHtml = '<option value="">- Pilih Sekolah -</option>';
-        sortedUnits.forEach(function (u) { formHtml += '<option value="' + tugas_escapeHtml(u) + '">' + tugas_escapeHtml(u) + '</option>'; });
+        sortedUnits.forEach(function (u) { formHtml += '<option value="' + window.skEscapeHtml(u) + '">' + window.skEscapeHtml(u) + '</option>'; });
         $('#tugas_inputNamaSd').html(formHtml);
         if (!TUGAS_IS_ADMIN && TUGAS_UNIT_TERKUNCI) {
             $('#tugas_inputNamaSd').val(TUGAS_UNIT_TERKUNCI).prop('disabled', true);
@@ -798,8 +789,8 @@
 
         // Pengurutan Tambahan di Frontend (Berdasarkan aktivitas terbaru)
         data.sort(function (a, b) {
-            var timeA = Math.max(tugas_parseDateTime(a.tglUnggah), tugas_parseDateTime(a.tglUpdate), tugas_parseDateTime(a.tglVerval));
-            var timeB = Math.max(tugas_parseDateTime(b.tglUnggah), tugas_parseDateTime(b.tglUpdate), tugas_parseDateTime(b.tglVerval));
+            var timeA = Math.max(window.skParseDateTime(a.tglUnggah), window.skParseDateTime(a.tglUpdate), window.skParseDateTime(a.tglVerval));
+            var timeB = Math.max(window.skParseDateTime(b.tglUnggah), window.skParseDateTime(b.tglUpdate), window.skParseDateTime(b.tglVerval));
             return timeB - timeA;
         });
 
@@ -807,9 +798,9 @@
             var id = String(row.rowBaris);
             TUGAS_DATA_MASTER[id] = row;
 
-            var safeNoSk = tugas_cleanText(row.noSk || "-");
+            var safeNoSk = window.skCleanText(row.noSk || "-");
             var safeUrl = String(row.fileUrl || "").replace(/'/g, "%27").replace(/"/g, "%22");
-            var safeUrlJs = tugas_escapeJs(safeUrl);
+            var safeUrlJs = window.skEscapeJs(safeUrl);
             var stButton = String(row.status || "").toLowerCase();
             var isApproved = (stButton.includes('setuju') || stButton.includes('ok') || stButton.includes('valid'));
 
@@ -837,14 +828,14 @@
             var uiVerif = row.tglVerval && row.tglVerval !== '-' ? '<div class="flex flex-col whitespace-nowrap"><div class="sk-row-title !text-[13px] !text-primary">' + row.tglVerval + '</div><div class="sk-row-subtitle">' + (row.verifikator || '-') + '</div></div>' : '-';
 
             // KOMBINASI KOLOM (Executive Hierarchy - Forced 2-Line Sync)
-            var uiUnit = '<div class="flex flex-col"><div class="sk-row-title">' + tugas_cleanText(row.namaSd) + '</div>' + 
-                         '<div class="sk-row-subtitle">' + tugas_cleanText(row.npsn || '-') + '</div></div>';
+            var uiUnit = '<div class="flex flex-col"><div class="sk-row-title">' + window.skCleanText(row.namaSd) + '</div>' + 
+                         '<div class="sk-row-subtitle">' + window.skCleanText(row.npsn || '-') + '</div></div>';
             
-            var uiTahunSem = '<div class="flex flex-col items-center whitespace-nowrap"><div class="sk-row-title">' + tugas_cleanText(row.tahun) + '</div>' + 
-                              '<div class="sk-row-subtitle">' + tugas_cleanText(row.semester) + '</div></div>';
+            var uiTahunSem = '<div class="flex flex-col items-center whitespace-nowrap"><div class="sk-row-title">' + window.skCleanText(row.tahun) + '</div>' + 
+                              '<div class="sk-row-subtitle">' + window.skCleanText(row.semester) + '</div></div>';
             
             var uiSkDetail = '<div class="flex flex-col"><div class="sk-row-title">' + safeNoSk + '</div>' +
-                             '<div class="sk-row-subtitle">' + tugas_cleanText(row.kriteria || 'TUGAS') + ' &bull; ' + tglSkDisplay + '</div></div>';
+                             '<div class="sk-row-subtitle">' + window.skCleanText(row.kriteria || 'TUGAS') + ' &bull; ' + tglSkDisplay + '</div></div>';
 
             dtArray.push([
                 actionButtons,
@@ -910,7 +901,7 @@
         $('#tugas_inputSemester').val(currentSmt);
         if (!TUGAS_IS_ADMIN && TUGAS_UNIT_TERKUNCI) { $('#tugas_inputNamaSd').val(TUGAS_UNIT_TERKUNCI); }
 
-        $('#tugas_modalForm').removeClass('hidden').css({'display':'flex', 'opacity':0}).animate({'opacity':1}, 250);
+        window.skOpenModal('tugas_modalForm');
     }
 
     function tugas_cekKetersediaanSlot() {
@@ -990,7 +981,7 @@
         $('#tugas_alertInfo').removeClass('border-primary/20 border-danger border-warning/30').addClass('border-success/30');
         $('#tugas_alertText').html('<i class="fas fa-check-circle mr-1 text-success"></i> Data siap diubah.');
         
-        $('#tugas_modalForm').removeClass('hidden').css({'display':'flex', 'opacity':0}).animate({'opacity':1}, 250);
+        window.skOpenModal('tugas_modalForm');
     }
 
     function tugas_handleSimpan(e) {
@@ -1040,7 +1031,7 @@
 
         google.script.run.withSuccessHandler(function (res) {
             if (res.success) {
-                $('#tugas_modalForm').fadeOut(function() { $(this).addClass('hidden').removeClass('flex'); });
+                window.skCloseModal('tugas_modalForm');
                 Sultan.alert('success', 'Berhasil', rowId ? 'Data berhasil diperbarui.' : 'Data berhasil disimpan.');
                 tugas_tarikDataServer();
                 if (typeof sk_updateSidebarBadge === 'function') sk_updateSidebarBadge();
@@ -1093,7 +1084,7 @@
             $('#tugas_verifNoFile').removeClass('hidden');
         }
 
-        $('#tugas_modalVerif').removeClass('hidden').css({'display':'flex', 'opacity':0}).animate({'opacity':1}, 250);
+        window.skOpenModal('tugas_modalVerif');
         
         // Reset Button State (Spinner Fix)
         $('#tugas_btnSimpanVerif').prop('disabled', false).html('<i class="fas fa-check-circle"></i> Eksekusi');
@@ -1130,7 +1121,7 @@
 
         google.script.run.withSuccessHandler(function (res) {
             if (res.success) {
-                $('#tugas_modalVerif').fadeOut(function() { $(this).addClass('hidden').removeClass('flex'); });
+                window.skCloseModal('tugas_modalVerif');
                 Sultan.alert('success', 'Verifikasi Berhasil', 'Status SK telah diperbarui.');
                 tugas_tarikDataServer();
                 if (typeof sk_updateSidebarBadge === 'function') sk_updateSidebarBadge();
@@ -1166,7 +1157,7 @@
         $('#tugas_hKriteria').text(d.kriteria || '-');
 
         $('#tugas_inputKodeHapus').val('');
-        $('#tugas_modalHapus').removeClass('hidden').css({'display':'flex', 'opacity':0}).animate({'opacity':1}, 250);
+        window.skOpenModal('tugas_modalHapus');
         
         // Reset Button State
         $('#tugas_btnEksekusiHapus').prop('disabled', false).html('<i class="fas fa-trash-alt mr-2"></i> Hapus Permanen');
@@ -1202,7 +1193,7 @@
         google.script.run.withSuccessHandler(function (res) {
             if (res.success) {
                 Sultan.alert('success', 'Dihapus', 'Data telah dihapus dari database dan server.');
-                $('#tugas_modalHapus').fadeOut(function() { $(this).addClass('hidden').removeClass('flex'); });
+                window.skCloseModal('tugas_modalHapus');
                 tugas_tarikDataServer();
                 if (typeof sk_updateSidebarBadge === 'function') sk_updateSidebarBadge();
             } else {
@@ -1232,7 +1223,7 @@
         $('#tugas_loadingPreviewPDF').removeClass('hidden');
 
         $('#tugas_framePreviewFull').addClass('hidden').attr('src', '');
-        $('#tugas_modalPreview').removeClass('hidden').css({'display':'flex', 'opacity':0}).animate({'opacity':1}, 250);
+        window.skOpenModal('tugas_modalPreview');
 
         setTimeout(function () {
             $('#tugas_framePreviewFull').attr('src', tugas_convertDriveUrl(url));
@@ -1275,52 +1266,11 @@
             badge = '<span class="sms-status-tag sms-status-warning">DIPROSES</span>';
 
         if (ket && ket.trim().length > 2 && (st.includes('revisi') || st.includes('tolak'))) {
-            var safeKet = tugas_escapeJs(ket);
+            var safeKet = window.skEscapeJs(ket);
             badge += '<div class="mt-2"><button type="button" class="sms-btn-ghost !h-7 !px-2 !text-[10px] !rounded-md !whitespace-nowrap" onclick="Sultan.catatan(\'Catatan Admin\', \'' + safeKet + '\')"><i class="fas fa-comment-dots mr-1"></i> BACA CATATAN</button></div>';
         }
         return badge;
     }
 
-    function tugas_parseDateTime(s) {
-        if (!s || s === "-") return 0;
-        try {
-            var p = s.split(' '); var d = p[0].split('-'); var t = (p[1] || "00:00:00").split(':');
-            return new Date(d[2], d[1] - 1, d[0], t[0], t[1], t[2]).getTime();
-        } catch (e) { return 0; }
-    }
-
-
-    function tugas_renderSkeleton() {
-        var $cont = $('#tugas_loadingState').empty();
-        var $grid = $('<div/>', { "class": "flex flex-col gap-4 py-10 px-6" });
-        for (var i = 0; i < 4; i++) {
-            var $row = $('<div/>', { "class": "flex items-center gap-4" });
-            $row.append($('<div/>', { "class": "h-12 w-12 rounded-xl sk-shimmer" }));
-            var $meta = $('<div/>', { "class": "flex-1 space-y-2" });
-            $meta.append($('<div/>', { "class": "h-4 w-1/3 rounded-md sk-shimmer" }));
-            $meta.append($('<div/>', { "class": "h-3 w-1/2 rounded-md sk-shimmer !opacity-50" }));
-            $row.append($meta);
-            $grid.append($row);
-        }
-        $cont.append($grid);
-        if (!$('#tugas_turboBadge').length) {
-            $cont.append('<div id="tugas_turboBadge" style="display:none;" class="items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-[11px] font-black text-primary uppercase shadow-sm"><i class="fas fa-bolt"></i> Cached Data</div>');
-        }
-    }
-
-    function tugas_cleanText(t) { return tugas_escapeHtml(String(t || "").trim() || "-"); }
-    function tugas_escapeHtml(text) {
-        if (!text) return "";
-        return String(text)
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
-    }
-    function tugas_escapeJs(t) {
-        if (!t) return "";
-        return String(t).replace(/'/g, "\\'").replace(/"/g, "\\\"");
-    }
-
+    
 </script>
