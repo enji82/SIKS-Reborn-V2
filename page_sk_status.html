@@ -77,20 +77,46 @@
     var STATUSSK_CACHE_DATA = [];
     var STATUSSK_TABEL_INSTANCE = null;
     var STATUSSK_RAW_HEADER = null;
+    
+    var STATUSSK_USER_AKTIF = "";
     var STATUSSK_IS_ADMIN = false;
+    var STATUSSK_USER_NPSN = "";
+    var STATUSSK_UNIT_TERKUNCI = "";
 
     $(document).ready(function () {
         statussk_renderSkeleton();
-        statussk_cekAkses();
+        
+        // Sync Sesi via Sultan.db (Master Standard)
+        try {
+            var user = (typeof Sultan !== 'undefined' && Sultan.db) ? Sultan.db.get('siksUser') : {};
+            STATUSSK_USER_AKTIF = user.nama_lengkap || user.fullname || user.nama || user.username || "User Web";
+            var role = (user.role || "").toLowerCase();
+            STATUSSK_IS_ADMIN = role.includes("admin") || role.includes("verifikator");
+            STATUSSK_USER_NPSN = user.npsn || user.username || "";
+        } catch (e) { STATUSSK_USER_NPSN = ""; STATUSSK_IS_ADMIN = false; }
+
+        statussk_validasiAksesUser();
     });
 
-    function statussk_cekAkses() {
-        google.script.run
-            .withSuccessHandler(function(role) {
-                STATUSSK_IS_ADMIN = (role === 'ADMIN' || role === 'SUPERADMIN');
+    function statussk_validasiAksesUser() {
+        if (STATUSSK_IS_ADMIN) {
+            statussk_tarikDataServer();
+        } else {
+            if (!STATUSSK_USER_NPSN) {
+                $('#statussk_loadingState').html('<div class="flex flex-col items-center py-10 text-danger"><i class="fas fa-ban text-4xl mb-3 opacity-50"></i><h6 class="font-black text-xs uppercase tracking-widest">Akses Ditolak: Sesi Invalid</h6></div>');
+                return;
+            }
+            // Khusus sekolah, cari unit kerja dulu
+            google.script.run.withSuccessHandler(function (resUnit) {
+                var dataUnit = JSON.parse(resUnit);
+                if (dataUnit.error) {
+                    $('#statussk_loadingState').html('<div class="flex flex-col items-center py-10 text-danger"><i class="fas fa-exclamation-triangle text-4xl mb-3 opacity-50"></i><h6 class="font-black text-xs uppercase tracking-widest">' + statussk_escapeHtml(dataUnit.error) + '</h6></div>');
+                    return;
+                }
+                STATUSSK_UNIT_TERKUNCI = dataUnit.unitKerja;
                 statussk_tarikDataServer();
-            })
-            .statussk_getUserRole();
+            }).getUnitKerjaByNpsnPTK(STATUSSK_USER_NPSN);
+        }
     }
 
     function statussk_tarikDataServer() {
