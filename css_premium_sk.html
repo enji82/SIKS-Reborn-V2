@@ -6,7 +6,7 @@
    ======================================================================
 */
 
-/* 1. ROOT VARIABLES & DESIGN TOKENS */
+/* 1. ROOT VARIABLES & DESIGN TOKENS (v1.0 Design System) */
 :root {
     --sk-primary: #3C50E0;
     --sk-surface: #FFFFFF;
@@ -17,10 +17,28 @@
     --sk-input-bg: #FFFFFF;
     --sk-input-border: #E2E8F0;
     --sk-overlay: rgba(15, 23, 42, 0.4);
+
+    /* --- NEW DESIGN SYSTEM VARIABLES --- */
+    --sk-header-color: #3C50E0;      
+    --sk-size-header: 12px;
+    --sk-size-body-main: 14px;
+    --sk-size-body-sub: 12px;
+    --sk-size-filter: 12px;
+    --sk-size-badge: 10px;
+    --sk-table-py: 0.75rem;          /* py-3 */
+    --sk-table-px: 1rem;             /* px-4 */
 }
 
+/* SEMANTIC UTILITIES */
+.sk-text-header { color: var(--sk-header-color) !important; font-size: var(--sk-size-header) !important; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+.sk-text-body-main { font-size: var(--sk-size-body-main) !important; font-weight: 700; }
+.sk-text-body-sub { font-size: var(--sk-size-body-sub) !important; font-weight: 400; }
+.sk-text-filter { font-size: var(--sk-size-filter) !important; font-weight: 700; }
+.sk-text-badge { font-size: var(--sk-size-badge) !important; font-weight: 900; }
+.sk-cell-padding { padding-top: var(--sk-table-py) !important; padding-bottom: var(--sk-table-py) !important; padding-left: var(--sk-table-px) !important; padding-right: var(--sk-table-px) !important; }
+
 .dark {
-    --sk-surface: #1B2431; /* Charcoal Executive */
+    --sk-surface: #1B2431; 
     --sk-section: #24303F;
     --sk-border: rgba(255, 255, 255, 0.05);
     --sk-text: #FFFFFF;
@@ -28,6 +46,7 @@
     --sk-input-bg: rgba(255, 255, 255, 0.02);
     --sk-input-border: rgba(255, 255, 255, 0.1);
     --sk-overlay: rgba(0, 0, 0, 0.7);
+    --sk-header-color: #60A5FA; /* Brighter for dark mode visibility */
 }
 
 /* 2. ANIMATIONS (SHIMMER & REVEAL) */
@@ -379,21 +398,20 @@ header.sms-header-group {
 .sms-thead-executive tr { background-color: var(--sk-section) !important; }
 
 .sms-th-executive {
-    padding: 0 16px !important;
-    height: 50px !important;
+    padding: var(--sk-table-py) var(--sk-table-px) !important;
     font-weight: 700 !important;
-    color: var(--sk-primary) !important;
+    color: var(--sk-header-color) !important;
     background: var(--sk-section) !important;
     text-transform: uppercase !important;
-    letter-spacing: 0.02em !important;
-    font-size: 15px !important;
+    letter-spacing: 0.05em !important;
+    font-size: var(--sk-size-header) !important;
     vertical-align: middle !important;
     border-bottom: 2px solid var(--sk-border) !important;
     white-space: nowrap !important;
 }
 
 .sms-table-executive td {
-    padding: 16px !important;
+    padding: var(--sk-table-py) var(--sk-table-px) !important;
     vertical-align: middle !important;
     border-bottom: 1px solid var(--sk-border) !important;
     color: var(--sk-text) !important;
@@ -401,20 +419,16 @@ header.sms-header-group {
 
 /* EXECUTIVE ROW TYPOGRAPHY (The Hierarchy Fix) */
 .sk-row-title {
-    font-weight: 600 !important;
+    font-weight: 700 !important;
     color: var(--sk-text) !important;
-    text-transform: uppercase !important;
-    letter-spacing: -0.01em !important;
     line-height: 1.2 !important;
-    font-size: 14px !important;
+    font-size: var(--sk-size-body-main) !important;
 }
 
 .sk-row-subtitle {
-    font-size: 12px !important;
+    font-size: var(--sk-size-body-sub) !important;
     font-weight: 400 !important;
     color: var(--sk-text-muted) !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.05em !important;
     margin-top: 4px !important;
 }
 .dark .sk-row-subtitle { color: #8A99AF !important; }

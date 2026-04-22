@@ -3,14 +3,14 @@
 <div id="sultan-master-scope" class="sms-layout-root p-0 lg:p-4">
     
     <!-- 
-        MASTER TEMPLATE RULE v7.3: CLEAN ARCHITECTURE
-        1. TYPOGRAPHY: All fonts are managed globally via 'css_premium_sk'. 
-           Do NOT add manual font classes (e.g., font-['Satoshi']) to elements.
-        2. FONT SCALE:
-           - Page Title: Bold, Uppercase, 18px-24px.
-           - Table Header: Bold, Uppercase, 12px (text-primary).
-           - Table Body Main: Bold, 14px (text-slate-800/white).
-           - Table Body Sub: Regular, 12px (text-slate-400/gray).
+        MASTER TEMPLATE RULE v7.4: TOTAL DESIGN SYSTEM (ONE-DOOR)
+        1. TYPOGRAPHY & COLORS: Managed via variables in 'css_premium_sk.html'.
+           - Header: Use 'sk-text-header'
+           - Body Main: Use 'sk-text-body-main'
+           - Body Sub: Use 'sk-text-body-sub'
+           - Filter: Use 'sk-text-filter'
+        2. SPACING: Use 'sk-cell-padding' for all table cells.
+        3. NO HARDCODED VALUES: Do NOT use text-[14px], py-3, etc. in this file.
     -->
 
     <header class="sms-header-group mb-8">
@@ -24,16 +24,18 @@
                 <table class="w-full table-auto border-collapse sms-table-executive">
                     <thead>
                         <tr class="sms-thead-executive bg-slate-50 dark:bg-black/20">
-                            <th class="sms-th-executive text-left px-4 py-3 text-[12px] font-bold uppercase tracking-widest text-primary border-b border-slate-200 dark:border-white/10 align-middle">
-                                Kolom Standar
+                            <!-- Using Semantic Utility for Header -->
+                            <th class="sms-th-executive text-left sk-text-header sk-cell-padding border-b border-slate-200 dark:border-white/10 align-middle">
+                                Kolom Design System
                             </th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-100 dark:divide-white/5">
                         <tr class="hover:bg-primary/5 transition-all">
-                            <td class="px-4 py-3 align-middle h-auto">
-                                <div class="text-[14px] font-bold text-slate-800 dark:text-white leading-tight">Konten Utama</div>
-                                <div class="text-[12px] font-normal text-slate-400 dark:text-gray-500 mt-1">Detail Konten</div>
+                            <!-- Using Semantic Utilities for Body -->
+                            <td class="sk-cell-padding align-middle h-auto">
+                                <div class="sk-text-body-main text-slate-800 dark:text-white leading-tight">Konten Dinamis</div>
+                                <div class="sk-text-body-sub text-slate-400 dark:text-gray-500 mt-1">Sub-detail Dinamis</div>
                             </td>
                         </tr>
                     </tbody>
