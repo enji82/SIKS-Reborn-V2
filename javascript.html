@@ -182,7 +182,7 @@ var Sultan = {
         });
     },
 
-    // New: Intentional Info Modal for Admin Notes (Unified UI v77.0)
+    // New: Intentional Info Modal for Admin Notes (Unified UI v77.1 Minimalist)
     catatan: (title, text) => {
         const isDark = document.documentElement.classList.contains('dark');
         return Swal.fire({
@@ -202,20 +202,14 @@ var Sultan = {
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
-                <div class="p-8 text-left">
-                    <div class="mb-6 p-5 rounded-2xl bg-primary/5 border border-primary/10 flex items-start gap-4">
-                        <div class="h-10 w-10 min-w-[40px] flex items-center justify-center rounded-xl bg-primary text-white shadow-lg shadow-primary/20">
-                            <i class="fas fa-quote-left text-xs"></i>
-                        </div>
-                        <div class="flex-1">
-                            <p class="text-[10px] font-black uppercase tracking-widest text-primary mb-1">Pesan Administrator</p>
-                            <div class="text-[14px] font-medium text-slate-700 dark:text-slate-300 leading-relaxed italic">
-                                "${text}"
-                            </div>
+                <div class="p-8 text-center">
+                    <div class="mb-8 p-6 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5">
+                        <div class="text-[15px] font-medium text-slate-700 dark:text-slate-200 leading-relaxed italic">
+                            "${text}"
                         </div>
                     </div>
-                    <div class="flex justify-end">
-                        <button type="button" class="sms-btn sms-btn-primary !h-10 !px-6" onclick="Swal.close()">
+                    <div class="flex justify-center">
+                        <button type="button" class="sms-btn sms-btn-primary !h-11 !px-10" onclick="Swal.close()">
                             BAIK, SAYA MENGERTI
                         </button>
                     </div>
