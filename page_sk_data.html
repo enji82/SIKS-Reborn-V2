@@ -234,11 +234,11 @@
     </div>
 </div>
 
-<!-- 2. MODAL VERIFIKASI (v68.0 side-by-side Executive) -->
+<!-- 2. MODAL VERIFIKASI (v69.0 side-by-side Executive) -->
 <div id="tugas_modalVerif" class="sk-modal-overlay hidden items-center justify-center">
     <div class="relative flex flex-col md:flex-row w-full max-w-[98%] h-[95vh] sk-modal-box shadow-2xl overflow-hidden">
         
-        <!-- Left: Document Preview -->
+        <!-- Left: Document Preview (Full Space) -->
         <div class="flex-1 relative bg-gray-100 dark:bg-black/20 flex items-center justify-center overflow-hidden">
              <iframe id="tugas_verifFrame" class="w-full h-full border-none hidden" src=""></iframe>
              <!-- Loader -->
@@ -256,14 +256,15 @@
              </div>
         </div>
 
-        <!-- Form Area (Right - Compact 360px) -->
         <!-- Right: Verification Form (Fixed 380px) -->
         <div class="w-full md:w-[380px] flex flex-col border-l border-gray-100 dark:border-white/5 bg-white dark:bg-[#1A222C]">
             <!-- Header -->
-            <div class="sk-modal-header sk-modal-header-success">
-                <h3 class="sk-modal-title">
-                    <i class="fas fa-check-double"></i> Verifikasi SK
-                </h3>
+            <div class="sk-modal-header sk-modal-header-success !h-16 flex items-center px-6">
+                <div class="flex-1">
+                    <h3 class="sk-modal-title">
+                        <i class="fas fa-check-double"></i> Verifikasi SK
+                    </h3>
+                </div>
                 <button type="button" class="sk-modal-close" onclick="$('#tugas_modalVerif').fadeOut().addClass('hidden').removeClass('flex')">
                     <i class="fas fa-times"></i>
                 </button>
@@ -273,10 +274,10 @@
                 <div class="p-6 space-y-6">
                     <input type="hidden" id="tugas_verifRowId">
                     
-                    <!-- Identity Summary -->
-                    <div>
+                    <!-- Identity Summary (Adaptive Box) -->
+                    <div class="sk-verif-identity-box">
                         <div class="sk-verif-identity-title">
-                            <i class="fas fa-id-card text-emerald-500"></i> Identitas Dokumen
+                            <i class="fas fa-id-card"></i> Identitas Dokumen
                         </div>
                         <div class="space-y-1">
                             <div class="sk-verif-row">
@@ -311,9 +312,9 @@
                     </div>
 
                     <!-- Decision Section -->
-                    <div class="pt-6 border-t border-gray-100 dark:border-white/5 space-y-4">
+                    <div class="pt-2 space-y-4">
                         <div>
-                            <label class="sk-form-label">KEPUTUSAN VERIFIKASI <span class="text-danger">*</span></label>
+                            <label class="sk-form-label !text-[11px]">KEPUTUSAN VERIFIKASI <span class="text-danger">*</span></label>
                             <select id="tugas_verifStatus" class="sms-input-premium w-full" required>
                                 <option value="">-- Pilih Keputusan --</option>
                                 <option value="Disetujui">✅ TERIMA & SETUJUI</option>
@@ -322,7 +323,7 @@
                             </select>
                         </div>
                         <div>
-                            <label class="sk-form-label">CATATAN ADMIN / VERIFIKATOR</label>
+                            <label class="sk-form-label !text-[11px]">CATATAN ADMIN / VERIFIKATOR</label>
                             <textarea id="tugas_verifKeterangan" class="sms-input-premium w-full h-24 py-3 resize-none" placeholder="Masukkan alasan jika revisi/tolak..."></textarea>
                             <p id="tugas_verifWajibCatatan" class="mt-2 text-[12px] font-black text-danger uppercase tracking-widest hidden items-center gap-1.5 animate-pulse">
                                 <i class="fas fa-exclamation-triangle"></i> Wajib isi alasan!
