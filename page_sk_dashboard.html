@@ -1,18 +1,18 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 
-<div class="flex flex-col gap-3 md:gap-4 animate-reveal">
+<div class="flex flex-col gap-4 md:gap-6 animate-reveal">
 
   <!-- PAGE HEADER (SULTAN SYNC) -->
   <div class="mb-2 flex flex-col">
     <h1 class="sultan-title-sync text-black dark:text-white">
       Dashboard Monitoring SK
     </h1>
-    <p class="sk-section-title mt-1">
+    <p class="sk-section-title mt-1 opacity-60">
       Pemantauan Progress & Validasi Dokumen Satuan Pendidikan
     </p>
   </div>
 
-  <!-- CUSTOM EXECUTIVE STYLES (SULTAN v3.12 - Restored Aesthetic) -->
+  <!-- CUSTOM EXECUTIVE STYLES (SULTAN v3.12.2 - Unified Template) -->
   <style>
     .sk-glass-card {
         position: relative;
@@ -44,38 +44,42 @@
     .dark .sk-glass-warning { background: rgba(245, 158, 11, 0.1); }
     .dark .sk-glass-danger  { background: rgba(239, 68, 68, 0.12); }
 
-    .sk-dash-input {
-        height: 38px !important;
+    .sk-dash-input-sync {
+        height: 48px !important;
         font-size: 14px !important;
         font-weight: 700 !important;
-        border-radius: 10px !important;
+        border-radius: 12px !important;
+        background: #FFFFFF !important;
+        color: #1A222C !important;
+        border: none !important;
         font-family: 'Satoshi', sans-serif !important;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
     }
   </style>
 
-  <!-- 1. FILTER BAR (SULTAN BLUEPRINT MODEL) -->
-  <div class="sultan-card p-3 shadow-sm">
-    <div class="flex flex-wrap items-center gap-3">
-        <!-- Filter Tahun -->
-        <div class="relative w-full sm:w-auto">
-            <select id="dashsk_filterTahun" class="sk-dash-input appearance-none border border-gray-200 bg-white py-2 pl-4 pr-10 text-black outline-none transition focus:border-primary dark:border-white/10 dark:bg-boxdark dark:text-white shadow-sm min-w-[180px]"></select>
-            <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400"><i class="fas fa-calendar-alt text-xs"></i></div>
-        </div>
-        <!-- Filter Semester -->
-        <div class="relative w-full sm:w-auto">
-            <select id="dashsk_filterSemester" class="sk-dash-input appearance-none border border-gray-200 bg-white py-2 pl-4 pr-10 text-black outline-none transition focus:border-primary dark:border-gray-700 dark:bg-boxdark dark:text-white shadow-sm min-w-[200px]">
-                <option value="">- Semua Semester -</option>
-                <option value="Semester 1">Semester 1</option>
-                <option value="Semester 2">Semester 2</option>
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400"><i class="fas fa-clock text-xs"></i></div>
+  <!-- 1. FILTER BAR (SULTAN TEMPLATE SYNC) -->
+  <div class="sultan-card !p-5 shadow-xl !rounded-[16px] bg-slate-900/40 dark:bg-black/20 border border-white/5">
+    <div class="flex flex-wrap items-center gap-4">
+        <div class="flex items-center gap-4 flex-1 flex-wrap">
+            <!-- Filter Tahun -->
+            <div class="relative w-full sm:w-[240px]">
+                <select id="dashsk_filterTahun" class="sk-dash-input-sync w-full appearance-none pl-5 pr-12 outline-none transition focus:ring-2 focus:ring-primary/20"></select>
+                <div class="pointer-events-none absolute inset-y-0 right-5 flex items-center text-slate-400"><i class="fas fa-calendar-alt text-sm"></i></div>
+            </div>
+            <!-- Filter Semester -->
+            <div class="relative w-full sm:w-[240px]">
+                <select id="dashsk_filterSemester" class="sk-dash-input-sync w-full appearance-none pl-5 pr-12 outline-none transition focus:ring-2 focus:ring-primary/20">
+                    <option value="">- Semua Semester -</option>
+                    <option value="Semester 1">Semester 1</option>
+                    <option value="Semester 2">Semester 2</option>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-5 flex items-center text-slate-400"><i class="fas fa-clock text-sm"></i></div>
+            </div>
         </div>
         <!-- Action Button -->
-        <div class="ml-auto flex items-center">
-            <button type="button" id="dashsk_btnRefresh" class="sms-btn sms-btn-primary shadow-md !h-[38px] !px-8 !text-sm !font-black">
-                <i class="fab fa-gg mr-2"></i> PERBARUI DATA
-            </button>
-        </div>
+        <button type="button" id="dashsk_btnRefresh" class="sms-btn sms-btn-primary !h-[48px] !px-10 !text-xs !font-black !tracking-widest shadow-lg shadow-primary/20">
+            <i class="fab fa-gg mr-2 text-sm"></i> PERBARUI DATA
+        </button>
     </div>
   </div>
 
@@ -243,7 +247,7 @@
                 <span class="absolute left-4 top-1/2 -translate-y-1/2">
                     <i class="fas fa-search text-gray-400"></i>
                 </span>
-                <input type="text" id="dashsk_cariBelumLangsung" placeholder="Ketik unit sekolah..." class="sk-dash-input w-full border border-gray-200 dark:border-white/10 bg-white dark:!bg-boxdark py-2 pl-11 pr-4 outline-none transition focus:border-primary dark:focus:border-primary dark:text-white shadow-sm">
+                <input type="text" id="dashsk_cariBelumLangsung" placeholder="Ketik unit sekolah..." class="sk-dash-input-sync w-full !h-10 !rounded-lg pl-11 pr-4 outline-none transition focus:ring-2 focus:ring-primary/20">
             </div>
         </div>
         <div id="dashsk_containerBelum" style="max-height: 400px; overflow-y: auto;" class="sultan-scroll">
@@ -297,7 +301,7 @@
                 <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
                     <i class="fas fa-search"></i>
                 </span>
-                <input type="text" id="dashsk_inputCariBelumModal" placeholder="Cari unit sekolah di sini..." class="sk-dash-input w-full pl-11 !h-12">
+                <input type="text" id="dashsk_inputCariBelumModal" placeholder="Cari unit sekolah di sini..." class="sk-dash-input-sync w-full pl-11 !h-12 !text-base">
             </div>
 
             <!-- Dynamic List Area -->
