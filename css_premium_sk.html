@@ -37,10 +37,10 @@
 
     /* ── TIPOGRAFI ───────────────────────────────────────────────── */
     --sk-header-color:   #3C50E0;   /* Warna font header tabel */
-    --sk-size-header:    12px;      /* Ukuran font header tabel */
+    --sk-size-header:    14px;      /* Ukuran font header tabel (sama dengan sidebar & baris utama) */
     --sk-size-body-main: 14px;      /* Ukuran font isi baris utama (nama) */
-    --sk-size-body-sub:  12px;      /* Ukuran font isi baris sekunder (NPSN) */
-    --sk-size-filter:    12px;      /* Ukuran font dropdown filter */
+    --sk-size-body-sub:  13px;      /* Ukuran font isi baris sekunder (NPSN) */
+    --sk-size-filter:    13px;      /* Ukuran font dropdown filter */
     --sk-size-badge:     10px;      /* Ukuran font badge status */
 
     /* ── SPASI TABEL ─────────────────────────────────────────────── */
@@ -159,8 +159,12 @@
 
 /* 3b. GLOBAL TYPOGRAPHY - ONE DOOR SYSTEM */
 /* Untuk mengubah font seluruh aplikasi, cukup ubah nilai di bawah ini */
-body, table, input, select, textarea, button, .sms-layout-root,
-#sultan-master-scope, #sultan-master-scope * {
+/* CATATAN: Jangan gunakan wildcard (*) karena akan merusak icon Font Awesome */
+body, input, select, textarea, button, .sms-layout-root,
+#sultan-master-scope, #sultan-master-scope div, #sultan-master-scope span,
+#sultan-master-scope p, #sultan-master-scope td, #sultan-master-scope th,
+#sultan-master-scope label, #sultan-master-scope h1, #sultan-master-scope h2,
+#sultan-master-scope h3, #sultan-master-scope a {
     font-family: 'Satoshi', 'Inter', sans-serif !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
