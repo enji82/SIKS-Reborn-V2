@@ -217,9 +217,9 @@ header.sms-header-group {
     color: #FFFFFF !important;
     font-weight: 900 !important;
     text-transform: uppercase !important;
-    letter-spacing: 0.1em !important;
-    font-size: 12px !important;
-    display: flex; align-items: center; gap: 10px;
+    letter-spacing: 0.15em !important;
+    font-size: 14px !important;
+    display: flex; align-items: center; gap: 12px;
 }
 
 .sk-modal-close {
@@ -515,6 +515,16 @@ header.sms-header-group {
 
 .sms-input-premium:focus { border-color: var(--sk-primary) !important; box-shadow: 0 0 0 4px rgba(60, 80, 224, 0.1) !important; }
 
+/* Browser Autofill Fix for Premium Inputs */
+.sms-input-premium:-webkit-autofill,
+.sms-input-premium:-webkit-autofill:hover, 
+.sms-input-premium:-webkit-autofill:focus, 
+.sms-input-premium:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 40px var(--sk-input-bg) inset !important;
+    -webkit-text-fill-color: var(--sk-text) !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
 select.sms-input-premium {
     padding-right: 40px !important;
     appearance: none !important;
@@ -524,29 +534,7 @@ select.sms-input-premium {
     background-size: 14px !important;
 }
 
-/* 9. MODAL & OVERLAY ARCHITECTURE */
-.sk-modal-overlay {
-    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-    background: var(--sk-overlay) !important;
-    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-    z-index: 9999; 
-}
-.sk-modal-overlay.flex { display: flex !important; align-items: center; justify-content: center; }
-.sk-modal-overlay.items-start { align-items: flex-start !important; }
-
-.sk-modal-box {
-    background: var(--sk-surface) !important;
-    border-radius: 24px !important;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
-    width: 90%; max-width: 800px; max-height: 90vh;
-    overflow: hidden; display: flex; flex-direction: column;
-    border: 1px solid var(--sk-border) !important;
-}
-
-.sk-modal-header {
-    padding: 20px 24px; border-bottom: 1px solid var(--sk-border);
-    background: var(--sk-section); display: flex; align-items: center; justify-content: space-between;
-}
+/* 10. TABLES & LISTS SYNC */
 
 .sk-modal-title {
     font-size: 16px; font-weight: 900; text-transform: uppercase;
