@@ -2,17 +2,16 @@
 
 <div class="flex flex-col gap-4 md:gap-6 animate-reveal">
 
-  <!-- PAGE HEADER (SULTAN SYNC) -->
-  <div class="mb-2 flex flex-col">
-    <h1 class="sultan-title-sync text-black dark:text-white">
-      Dashboard Monitoring SK
-    </h1>
-    <p class="sk-section-title mt-1 opacity-60">
+  <!-- PAGE HEADER (SULTAN EXECUTIVE TEMPLATE SYNC) -->
+  <header class="sms-header-group mb-2">
+    <h1 class="sms-header-title">Dashboard Monitoring SK</h1>
+    <div class="sms-header-underline"></div>
+    <p class="sk-section-title mt-2 opacity-60">
       Pemantauan Progress & Validasi Dokumen Satuan Pendidikan
     </p>
-  </div>
+  </header>
 
-  <!-- CUSTOM EXECUTIVE STYLES (SULTAN v3.12.2 - Unified Template) -->
+  <!-- CUSTOM EXECUTIVE STYLES (SULTAN v3.12.3 - Global Sync) -->
   <style>
     .sk-glass-card {
         position: relative;
@@ -44,31 +43,29 @@
     .dark .sk-glass-warning { background: rgba(245, 158, 11, 0.1); }
     .dark .sk-glass-danger  { background: rgba(239, 68, 68, 0.12); }
 
-    .sk-dash-input-sync {
+    /* Syncing Dashboard Inputs with Executive standard but keeping 48px height for Analytics */
+    .sms-input-premium.dashsk-sync {
         height: 48px !important;
-        font-size: 14px !important;
-        font-weight: 700 !important;
-        border-radius: 12px !important;
+        border-radius: 14px !important;
         background: #FFFFFF !important;
         color: #1A222C !important;
         border: none !important;
-        font-family: 'Satoshi', sans-serif !important;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
     }
   </style>
 
-  <!-- 1. FILTER BAR (SULTAN TEMPLATE SYNC) -->
-  <div class="sultan-card !p-5 shadow-xl !rounded-[16px] bg-slate-900/40 dark:bg-black/20 border border-white/5">
+  <!-- 1. FILTER BAR (SULTAN TABLE-CARD TEMPLATE) -->
+  <div class="sms-table-card !p-5 shadow-2xl !rounded-[24px] bg-slate-900/40 dark:bg-black/20 border border-white/5">
     <div class="flex flex-wrap items-center gap-4">
         <div class="flex items-center gap-4 flex-1 flex-wrap">
             <!-- Filter Tahun -->
             <div class="relative w-full sm:w-[240px]">
-                <select id="dashsk_filterTahun" class="sk-dash-input-sync w-full appearance-none pl-5 pr-12 outline-none transition focus:ring-2 focus:ring-primary/20"></select>
+                <select id="dashsk_filterTahun" class="sms-input-premium dashsk-sync w-full appearance-none pl-5 pr-12 outline-none transition focus:ring-4 focus:ring-primary/10"></select>
                 <div class="pointer-events-none absolute inset-y-0 right-5 flex items-center text-slate-400"><i class="fas fa-calendar-alt text-sm"></i></div>
             </div>
             <!-- Filter Semester -->
             <div class="relative w-full sm:w-[240px]">
-                <select id="dashsk_filterSemester" class="sk-dash-input-sync w-full appearance-none pl-5 pr-12 outline-none transition focus:ring-2 focus:ring-primary/20">
+                <select id="dashsk_filterSemester" class="sms-input-premium dashsk-sync w-full appearance-none pl-5 pr-12 outline-none transition focus:ring-4 focus:ring-primary/10">
                     <option value="">- Semua Semester -</option>
                     <option value="Semester 1">Semester 1</option>
                     <option value="Semester 2">Semester 2</option>
@@ -77,8 +74,8 @@
             </div>
         </div>
         <!-- Action Button -->
-        <button type="button" id="dashsk_btnRefresh" class="sms-btn sms-btn-primary !h-[48px] !px-10 !text-xs !font-black !tracking-widest shadow-lg shadow-primary/20">
-            <i class="fab fa-gg mr-2 text-sm"></i> PERBARUI DATA
+        <button type="button" id="dashsk_btnRefresh" class="sms-btn sms-btn-primary !h-[48px] !px-12 !text-[11px] !font-black !tracking-[0.2em] shadow-xl shadow-primary/30">
+            <i class="fab fa-gg mr-2 text-base"></i> PERBARUI DATA
         </button>
     </div>
   </div>
@@ -247,7 +244,7 @@
                 <span class="absolute left-4 top-1/2 -translate-y-1/2">
                     <i class="fas fa-search text-gray-400"></i>
                 </span>
-                <input type="text" id="dashsk_cariBelumLangsung" placeholder="Ketik unit sekolah..." class="sk-dash-input-sync w-full !h-10 !rounded-lg pl-11 pr-4 outline-none transition focus:ring-2 focus:ring-primary/20">
+                <input type="text" id="dashsk_cariBelumLangsung" placeholder="Ketik unit sekolah..." class="sms-input-premium w-full !h-10 !rounded-lg pl-11 pr-4 outline-none transition focus:ring-2 focus:ring-primary/20">
             </div>
         </div>
         <div id="dashsk_containerBelum" style="max-height: 400px; overflow-y: auto;" class="sultan-scroll">
@@ -301,7 +298,7 @@
                 <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
                     <i class="fas fa-search"></i>
                 </span>
-                <input type="text" id="dashsk_inputCariBelumModal" placeholder="Cari unit sekolah di sini..." class="sk-dash-input-sync w-full pl-11 !h-12 !text-base">
+                <input type="text" id="dashsk_inputCariBelumModal" placeholder="Cari unit sekolah di sini..." class="sms-input-premium w-full pl-11 !h-12 !text-base">
             </div>
 
             <!-- Dynamic List Area -->
