@@ -2,26 +2,26 @@
 
 <div id="sultan-master-scope" class="sms-layout-root p-0 lg:p-4 animate-reveal">
     
-    <!-- 1. PAGE HEADER (EXACT SYNC v7.2) -->
+    <!-- 1. PAGE HEADER (MATCHING IMAGE 1 - ALL CAPS) -->
     <header class="sms-header-group mb-8">
-        <h1 class="sms-header-title">Status Data SK</h1>
+        <h1 class="sms-header-title uppercase tracking-wider">STATUS DATA SK</h1>
         <div class="sms-header-underline"></div>
     </header>
 
-    <!-- 2. INFORMASI (EXACT SYNC - space-y-5) -->
+    <!-- 2. INFORMASI (MATCHING IMAGE 1 - ALL CAPS "PANDUAN PENGISIAN") -->
     <div class="mb-6" x-data="{ isOpen: false }">
         <div class="sk-alert-blue flex-col !items-stretch !p-0 overflow-hidden shadow-none">
             <div class="flex items-center justify-between w-full py-3 px-5 cursor-pointer hover:bg-primary/5 transition-colors" @click="isOpen = !isOpen">
-                <div class="flex items-center font-bold text-[14px]">
-                    <i class="fas fa-info-circle mr-3 text-[18px]"></i> Informasi Pengisian
+                <div class="flex items-center font-bold text-[14px] uppercase tracking-widest text-primary">
+                    <i class="fas fa-info-circle mr-3 text-[18px]"></i> PANDUAN PENGISIAN
                 </div>
                 <div class="h-8 w-8 flex items-center justify-center rounded-full hover:bg-primary/10 transition-all">
                     <i class="fas fa-chevron-down transition-transform duration-300" :class="isOpen ? 'rotate-180' : ''"></i>
                 </div>
             </div>
-            <div x-show="isOpen" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 -translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" class="px-8 pb-8 border-t border-primary/10">
+            <div x-show="isOpen" x-transition class="px-8 pb-8 border-t border-primary/10">
                 <div class="max-w-4xl mx-auto">
-                    <ul class="mb-0 pl-0 mt-6 list-none space-y-5 text-[14px] font-medium text-gray-300 dark:text-gray-300">
+                    <ul class="mb-0 pl-0 mt-6 list-none space-y-5 text-[14px] font-medium text-gray-300">
                         <li class="flex items-start gap-4">
                             <div class="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_8px_rgba(60,80,224,0.8)]"></div>
                             <span>Halaman ini menampilkan progres pengunggahan berkas per semester untuk setiap tahun ajaran.</span>
@@ -32,11 +32,11 @@
         </div>
     </div>
 
-    <!-- 3. KARTU FILTER (EXACT SYNC - Title Case) -->
+    <!-- 3. KARTU FILTER (MATCHING IMAGE 1 - TITLE CASE OPTIONS) -->
     <div class="sms-table-card p-3 shadow-lg border-l-4 border-l-primary/40 mb-6">
         <div class="flex flex-wrap items-center gap-3">
             <div class="w-fit min-w-[320px]">
-                <select id="statussk_filterSekolah" class="sms-input-premium !h-9 !py-0 !text-xs min-w-[320px] flex-grow lg:flex-grow-0">
+                <select id="statussk_filterSekolah" class="sms-input-premium !h-9 !py-0 !text-xs min-w-[320px] font-bold">
                     <option value="SEMUA">- Semua Sekolah -</option>
                 </select>
             </div>
@@ -47,19 +47,18 @@
         </div>
     </div>
 
-    <!-- 4. DATA TABLE (EXACT SYNC - TEXT BADGES) -->
-    <div class="sms-table-card">
+    <!-- 4. DATA TABLE (MATCHING IMAGE 1 - PREMIUM EXECUTIVE STYLE) -->
+    <div class="sms-table-card shadow-2xl">
         <div class="p-0">
             <!-- Skeleton Shimmer -->
             <div id="statussk_loadingState" class="p-6">
                 <div class="flex flex-col gap-4">
                     <div class="h-10 w-full bg-gray-100/5 rounded-lg sk-shimmer"></div>
                     <div class="h-10 w-full bg-gray-100/5 rounded-lg sk-shimmer"></div>
-                    <div class="h-10 w-full bg-gray-100/5 rounded-lg sk-shimmer"></div>
                 </div>
             </div>
 
-            <!-- Table Matrix Structure -->
+            <!-- Table Matrix Structure (Exact Image 1 Match) -->
             <div id="statussk_tableState" style="display: none;" class="overflow-x-auto sultan-scroll">
                 <table id="statussk_tabelUtama" class="w-full table-auto border-collapse sms-table-executive">
                     <thead>
@@ -125,22 +124,24 @@
 
     function statussk_renderTabel(rows) {
         var dtArray = [];
-        var headerHtml = '<th class="sms-th-executive text-left bg-[#1A222C] sticky left-0 z-10 border-r border-white/10" style="min-width: 250px;">Nama Sekolah / Satdik</th>';
+        // Header Matching Image 1: Bold, Blue, Uppercase
+        var headerHtml = '<th class="sms-th-executive text-left sticky left-0 z-10 border-r border-white/10" style="min-width: 280px; background-color: #1e293b;">NAMA SEKOLAH / SATDIK</th>';
         
         if (STATUSSK_RAW_HEADER && STATUSSK_RAW_HEADER.length >= 2) {
             var hRow1 = STATUSSK_RAW_HEADER[0], hRow2 = STATUSSK_RAW_HEADER[1];
             for (var i = 1; i < hRow2.length; i++) {
                 var year = ""; for (var k = i; k >= 1; k--) { if (hRow1[k]) { year = hRow1[k]; break; } }
                 headerHtml += '<th class="sms-th-executive text-center border-l border-white/5">' +
-                              '<div class="text-[10px] opacity-50">' + year + '</div>' +
-                              '<div>' + hRow2[i].replace("SEMESTER ", "Sem ") + '</div></th>';
+                              '<div class="text-[9px] opacity-60 font-normal">' + year + '</div>' +
+                              '<div class="tracking-widest uppercase">' + hRow2[i].replace("SEMESTER ", "SEM ") + '</div></th>';
             }
         }
         $('#statussk_headerTabel').html(headerHtml);
 
         rows.forEach(function (row) {
             var rowData = [], parts = String(row[0] || "").split('|');
-            rowData.push('<div class="text-left font-bold text-white bg-[#1A222C] sticky left-0 z-10 px-4 py-3 border-r border-white/10">' + 
+            // Typography Matching Image 1: Pure White Bold
+            rowData.push('<div class="text-left font-bold text-white sticky left-0 z-10 px-5 py-4 border-r border-white/10" style="background-color: #0f172a;">' + 
                          statussk_escapeHtml(parts[0]) + '<br>' + 
                          '<span class="text-[11px] text-gray-500 font-normal">' + statussk_escapeHtml(parts[1] || "-") + '</span></div>');
             for (var i = 1; i < row.length; i++) { rowData.push(statussk_buildBadgeSultan(row[i])); }
@@ -150,9 +151,9 @@
         if (STATUSSK_TABEL_INSTANCE) STATUSSK_TABEL_INSTANCE.destroy();
         STATUSSK_TABEL_INSTANCE = $('#statussk_tabelUtama').DataTable({
             "data": dtArray, "ordering": false, "pageLength": 10, "autoWidth": false, "deferRender": true,
-            "dom": '<"px-6 py-3 border-b border-white/5 bg-gray-50/30 dark:bg-black/10"<"flex items-center justify-between gap-4"l f>>' +
+            "dom": '<"px-6 py-4 border-b border-white/5 bg-black/20"<"flex items-center justify-between gap-4"l f>>' +
                    '<"sultan-scroll overflow-x-auto"t>' +
-                   '<"px-6 py-3 border-t border-white/5 bg-gray-50/30 dark:bg-black/10"<"flex items-center justify-between"i p>>',
+                   '<"px-6 py-4 border-t border-white/5 bg-black/20"<"flex items-center justify-between"i p>>',
             "language": { "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json" },
             "columnDefs": [ { "targets": 0, "className": "p-0" }, { "targets": "_all", "className": "text-center align-middle border-l border-white/5" } ]
         });
@@ -162,12 +163,13 @@
     function statussk_buildBadgeSultan(s) {
         if (!s || s === "-" || s === "") return '<i class="fas fa-minus text-gray-700 small"></i>';
         var parts = String(s).split('|'), raw = parts[0].toLowerCase(), icon = "";
-        var baseCls = "inline-flex h-6 px-2 items-center justify-center rounded-full border font-bold text-[9px] uppercase tracking-tighter";
+        // Badge Matching Image 1: High Contrast Solid-ish Pills
+        var baseCls = "inline-flex h-6 px-3 items-center justify-center rounded-full border-2 font-black text-[9px] uppercase tracking-widest";
         
-        if (raw.includes('revisi')) icon = '<span class="' + baseCls + ' bg-warning/10 text-warning border-warning/20">REVISI</span>';
-        else if (raw.includes('tolak')) icon = '<span class="' + baseCls + ' bg-danger/10 text-danger border-danger/20">DITOLAK</span>';
-        else if (raw.includes('verif') || raw.includes('valid') || raw.includes('ok')) icon = '<span class="' + baseCls + ' bg-success/10 text-success border-success/20">VALID</span>';
-        else if (raw.includes('proses')) icon = '<span class="' + baseCls + ' bg-primary/10 text-primary border-primary/20">PROSES</span>';
+        if (raw.includes('revisi')) icon = '<span class="' + baseCls + ' bg-blue-600/20 text-blue-400 border-blue-500/30 shadow-[0_0_10px_rgba(37,99,235,0.2)]">REVISI</span>';
+        else if (raw.includes('tolak')) icon = '<span class="' + baseCls + ' bg-rose-600/20 text-rose-400 border-rose-500/30">DITOLAK</span>';
+        else if (raw.includes('verif') || raw.includes('valid') || raw.includes('ok')) icon = '<span class="' + baseCls + ' bg-emerald-600/20 text-emerald-400 border-emerald-500/40 shadow-[0_0_10px_rgba(16,185,129,0.2)]">DISETUJUI</span>';
+        else if (raw.includes('proses')) icon = '<span class="' + baseCls + ' bg-amber-600/20 text-amber-400 border-amber-500/30">PROSES</span>';
         else icon = '<span class="font-bold text-gray-500">' + statussk_escapeHtml(parts[0]) + '</span>';
         return icon;
     }
