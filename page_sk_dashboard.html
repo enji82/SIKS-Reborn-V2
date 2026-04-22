@@ -1,16 +1,16 @@
 <?!= include('css_premium_sk'); ?>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 
-<div id="sultan-master-scope" class="sms-layout-root p-0 lg:p-4 animate-reveal">
+<div id="sultan-master-scope" class="sms-layout-root p-0 lg:p-4 animate-reveal flex flex-col gap-6 lg:gap-8">
 
   <!-- PAGE HEADER (SULTAN EXECUTIVE TEMPLATE SYNC) -->
-  <header class="sms-header-group mb-8">
+  <header class="sms-header-group mb-4">
     <h1 class="sms-header-title">Dashboard Monitoring SK</h1>
     <div class="sms-header-underline"></div>
   </header>
 
   <!-- 1. KARTU FILTER (V31.0 - TEMPLATE HARMONIZED) -->
-  <div class="sms-table-card p-3 shadow-lg border-l-4 border-l-primary/40 mb-6">
+  <div class="sms-table-card p-3 shadow-lg border-l-4 border-l-primary/40 mb-2">
     <div class="flex flex-wrap items-center gap-3">
         
         <!-- Filter Tahun -->
@@ -38,7 +38,7 @@
   </div>
 
   <!-- 2. KPI METRICS (SULTAN v4.1 STYLE) -->
-  <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
+  <div class="grid grid-cols-2 gap-6 lg:grid-cols-4">
     <style>
       /* Keeping the colorful analytics card logic but synced with Executive UI */
       .sk-glass-card {
@@ -104,7 +104,7 @@
   </div>
 
   <!-- 3. INFO PILLS (SECONDARY METRICS SYNC) -->
-  <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+  <div class="grid grid-cols-1 gap-6 sm:grid-cols-3">
     <!-- Sedang Diproses -->
     <div class="sultan-card p-3 md:p-4.5 hover:bg-warning/5 transition-colors border-l-4 border-l-warning">
         <div class="flex items-center gap-4">
@@ -144,7 +144,7 @@
   </div>
 
   <!-- 4. ANALYTICS (CHARTS) -->
-  <div class="grid grid-cols-1 gap-4 lg:grid-cols-12">
+  <div class="grid grid-cols-1 gap-6 lg:grid-cols-12">
     <!-- Trend Chart -->
     <div class="col-span-1 lg:col-span-8 sultan-card overflow-hidden h-full">
         <div class="border-b border-gray-100 py-4 px-6 dark:border-gray-800 flex justify-between items-center bg-gray-50/30 dark:bg-black/10">
