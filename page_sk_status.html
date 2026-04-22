@@ -124,7 +124,6 @@
 
     function statussk_renderTabel(rows) {
         var dtArray = [];
-        // Header: Semantic Classes instead of hardcoded tailwind
         var headerHtml = '<th class="sms-th-executive text-left sk-text-header sk-cell-padding border-b border-slate-200 dark:border-white/10 align-middle h-auto" style="min-width: 280px;">NAMA SEKOLAH / SATDIK</th>';
         
         if (STATUSSK_RAW_HEADER && STATUSSK_RAW_HEADER.length >= 2) {
@@ -140,12 +139,11 @@
 
         rows.forEach(function (row) {
             var rowData = [], parts = String(row[0] || "").split('|');
-            // TD: Semantic Classes
             rowData.push('<div class="text-left align-middle sk-cell-padding h-auto">' + 
-                         '<div class="sk-text-body-main text-slate-800 dark:text-white leading-tight">' + statussk_escapeHtml(parts[0]) + '</div>' + 
-                         '<div class="sk-text-body-sub text-slate-400 dark:text-gray-500 font-normal mt-1">' + statussk_escapeHtml(parts[1] || "-") + '</div>' + 
+                         '<div class="sk-text-body-main text-slate-800 dark:text-white leading-tight">' + window.skEscapeHtml(parts[0]) + '</div>' + 
+                         '<div class="sk-text-body-sub text-slate-400 dark:text-gray-500 font-normal mt-1">' + window.skEscapeHtml(parts[1] || "-") + '</div>' + 
                          '</div>');
-            for (var i = 1; i < row.length; i++) { rowData.push(statussk_buildBadgeSultan(row[i])); }
+            for (var i = 1; i < row.length; i++) { rowData.push(window.buildBadgeSultan(row[i])); }
             dtArray.push(rowData);
         });
 
@@ -161,17 +159,9 @@
         $('#statussk_loadingState').hide(); $('#statussk_tableState').show();
     }
 
-    function statussk_buildBadgeSultan(s) {
-        if (!s || s === "-" || s === "") return '<i class="fas fa-minus text-slate-300 dark:text-gray-700 small"></i>';
-        var parts = String(s).split('|'), raw = parts[0].toLowerCase(), icon = "";
-        var baseCls = "inline-flex h-6 px-3 items-center justify-center rounded-full border-2 sk-text-badge transition-all";
-        
-        if (raw.includes('revisi')) icon = '<span class="' + baseCls + ' bg-blue-50 dark:bg-blue-600/20 text-blue-600 dark:text-blue-400 border-blue-200 dark:border-blue-500/30">REVISI</span>';
-        else if (raw.includes('tolak')) icon = '<span class="' + baseCls + ' bg-rose-50 dark:bg-rose-600/20 text-rose-600 dark:text-rose-400 border-rose-200 dark:border-rose-500/30">DITOLAK</span>';
-        else if (raw.includes('verif') || raw.includes('valid') || raw.includes('ok')) icon = '<span class="' + baseCls + ' bg-emerald-50 dark:bg-emerald-600/20 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-500/40 shadow-sm">DISETUJUI</span>';
-        else if (raw.includes('proses')) icon = '<span class="' + baseCls + ' bg-amber-50 dark:bg-amber-600/20 text-amber-600 dark:text-amber-400 border-amber-200 dark:border-amber-500/30">PROSES</span>';
-        else icon = '<span class="font-bold text-slate-500">' + statussk_escapeHtml(parts[0]) + '</span>';
-        return icon;
-    }
-    function statussk_escapeHtml(t) { return String(t || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"); }
+    /* 
+     * CATATAN: Fungsi buildBadgeSultan dan skEscapeHtml telah dipindahkan ke
+     * sk_logic.js.html sebagai window.buildBadgeSultan() dan window.skEscapeHtml()
+     * Jika ingin mengubah tampilan/label badge, edit di sk_logic.js.html
+     */
 </script>

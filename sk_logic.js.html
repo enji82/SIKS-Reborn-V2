@@ -1,5 +1,61 @@
 <script>
 /**
+ * ============================================================
+ * SULTAN GLOBAL SHARED FUNCTIONS (sk_logic.js.html)
+ * ============================================================
+ * File ini berisi fungsi-fungsi yang digunakan bersama oleh
+ * semua halaman. Jika ingin mengubah tampilan badge, label,
+ * atau logika escaping, cukup ubah di sini — satu pintu.
+ * ============================================================
+ */
+
+/**
+ * buildBadgeSultan - Fungsi Terpusat untuk Badge Status
+ * 
+ * Cara mengubah tampilan badge:
+ *   1. Ubah warna → Edit variabel --sk-badge-* di css_premium_sk.html
+ *   2. Ubah label → Edit teks 'DISETUJUI', 'REVISI', dll. di fungsi ini
+ *   3. Tambah status baru → Tambahkan blok else-if baru di sini
+ * 
+ * @param {string} s - String status dari server (bisa mengandung '|' sebagai pemisah)
+ * @returns {string} - HTML string berupa badge pill
+ */
+window.buildBadgeSultan = function(s) {
+    if (!s || s === "-" || s === "") {
+        return '<i class="fas fa-minus text-slate-300 dark:text-gray-600 text-xs"></i>';
+    }
+    var parts = String(s).split('|');
+    var raw   = parts[0].toLowerCase();
+    var baseCls = "inline-flex h-6 px-3 items-center justify-center rounded-full sk-text-badge font-black uppercase tracking-widest transition-all";
+
+    if (raw.includes('revisi')) {
+        return '<span class="' + baseCls + ' sk-badge-revision">REVISI</span>';
+    } else if (raw.includes('tolak')) {
+        return '<span class="' + baseCls + ' sk-badge-rejected">DITOLAK</span>';
+    } else if (raw.includes('verif') || raw.includes('valid') || raw.includes('ok') || raw.includes('setuj')) {
+        return '<span class="' + baseCls + ' sk-badge-approved">DISETUJUI</span>';
+    } else if (raw.includes('proses') || raw.includes('pending')) {
+        return '<span class="' + baseCls + ' sk-badge-process">PROSES</span>';
+    } else {
+        return '<span class="font-bold text-slate-500 sk-text-badge">' + window.skEscapeHtml(parts[0]) + '</span>';
+    }
+};
+
+/**
+ * skEscapeHtml - Fungsi Terpusat untuk Sanitasi HTML
+ * @param {string} t - String yang ingin di-escape
+ * @returns {string} - String yang aman dari XSS
+ */
+window.skEscapeHtml = function(t) {
+    return String(t || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+};
+
+/**
  * LOGIKA INTEGRASI: Menghubungkan Form Baru ke Mesin Lama yang Stabil
  */
 

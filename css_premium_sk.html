@@ -1,52 +1,121 @@
 <style>
 /* 
    ======================================================================
-   SULTAN MASTER SYSTEM (SMS) v7.5 - THE EXECUTIVE RECONSTRUCTION
-   Format: CSS Core | Scope: Kelola Data SK
+   SULTAN MASTER SYSTEM (SMS) v8.0 - THE EXECUTIVE DESIGN SYSTEM
+   Format: CSS Core | Scope: Global Dashboard
+   
+   ╔══════════════════════════════════════════════════════════════════╗
+   ║          PANDUAN MAINTENANCE - SATU PINTU KENDALI               ║
+   ╠══════════════════════════════════════════════════════════════════╣
+   ║ WARNA UTAMA       → ubah  --sk-primary                          ║
+   ║ WARNA HEADER TBL  → ubah  --sk-header-color                     ║
+   ║ UKURAN FONT HEADER → ubah --sk-size-header                      ║
+   ║ UKURAN FONT ISI   → ubah  --sk-size-body-main                   ║
+   ║ UKURAN FONT SUB   → ubah  --sk-size-body-sub                    ║
+   ║ UKURAN FONT FILTER → ubah --sk-size-filter                      ║
+   ║ UKURAN FONT BADGE → ubah  --sk-size-badge                       ║
+   ║ TINGGI BARIS TBL  → ubah  --sk-table-py                         ║
+   ║ WARNA BADGE STATUS → ubah variabel --sk-badge-*                 ║
+   ║ SUDUT ROUNDED     → ubah  --sk-radius-card / --sk-radius-badge  ║
+   ║ KECEPATAN ANIMASI → ubah  --sk-transition-speed                 ║
+   ╚══════════════════════════════════════════════════════════════════╝
    ======================================================================
 */
 
-/* 1. ROOT VARIABLES & DESIGN TOKENS (v1.0 Design System) */
+/* 1. ROOT VARIABLES & DESIGN TOKENS (v8.0 - Full Design System) */
 :root {
-    --sk-primary: #3C50E0;
-    --sk-surface: #FFFFFF;
-    --sk-section: #F8FAFC;
-    --sk-border: #E2E8F0;
-    --sk-text: #1C2434;
-    --sk-text-muted: #64748B;
-    --sk-input-bg: #FFFFFF;
-    --sk-input-border: #E2E8F0;
-    --sk-overlay: rgba(15, 23, 42, 0.4);
+    /* ── WARNA DASAR ─────────────────────────────────────────────── */
+    --sk-primary:        #3C50E0;   /* Warna aksen utama (biru eksekutif) */
+    --sk-surface:        #FFFFFF;   /* Latar kartu/modal */
+    --sk-section:        #F8FAFC;   /* Latar header tabel / section */
+    --sk-border:         #E2E8F0;   /* Warna garis pembatas */
+    --sk-text:           #1C2434;   /* Warna teks utama */
+    --sk-text-muted:     #64748B;   /* Warna teks sekunder/sub */
+    --sk-input-bg:       #FFFFFF;   /* Latar input & select */
+    --sk-input-border:   #E2E8F0;   /* Border input & select */
+    --sk-overlay:        rgba(15, 23, 42, 0.4); /* Overlay modal */
 
-    /* --- NEW DESIGN SYSTEM VARIABLES --- */
-    --sk-header-color: #3C50E0;      
-    --sk-size-header: 12px;
-    --sk-size-body-main: 14px;
-    --sk-size-body-sub: 12px;
-    --sk-size-filter: 12px;
-    --sk-size-badge: 10px;
-    --sk-table-py: 0.75rem;          /* py-3 */
-    --sk-table-px: 1rem;             /* px-4 */
+    /* ── TIPOGRAFI ───────────────────────────────────────────────── */
+    --sk-header-color:   #3C50E0;   /* Warna font header tabel */
+    --sk-size-header:    12px;      /* Ukuran font header tabel */
+    --sk-size-body-main: 14px;      /* Ukuran font isi baris utama (nama) */
+    --sk-size-body-sub:  12px;      /* Ukuran font isi baris sekunder (NPSN) */
+    --sk-size-filter:    12px;      /* Ukuran font dropdown filter */
+    --sk-size-badge:     10px;      /* Ukuran font badge status */
+
+    /* ── SPASI TABEL ─────────────────────────────────────────────── */
+    --sk-table-py:       0.75rem;   /* Padding vertikal sel tabel (py-3) */
+    --sk-table-px:       1rem;      /* Padding horizontal sel tabel (px-4) */
+
+    /* ── WARNA BADGE STATUS ──────────────────────────────────────── */
+    --sk-badge-approved-bg:     #ECFDF5;  /* Latar badge Disetujui (light) */
+    --sk-badge-approved-text:   #059669;  /* Teks badge Disetujui (light) */
+    --sk-badge-approved-border: #A7F3D0;  /* Border badge Disetujui (light) */
+
+    --sk-badge-revision-bg:     #EFF6FF;  /* Latar badge Revisi (light) */
+    --sk-badge-revision-text:   #2563EB;  /* Teks badge Revisi (light) */
+    --sk-badge-revision-border: #BFDBFE;  /* Border badge Revisi (light) */
+
+    --sk-badge-rejected-bg:     #FFF1F2;  /* Latar badge Ditolak (light) */
+    --sk-badge-rejected-text:   #E11D48;  /* Teks badge Ditolak (light) */
+    --sk-badge-rejected-border: #FECDD3;  /* Border badge Ditolak (light) */
+
+    --sk-badge-process-bg:      #FFFBEB;  /* Latar badge Proses (light) */
+    --sk-badge-process-text:    #D97706;  /* Teks badge Proses (light) */
+    --sk-badge-process-border:  #FDE68A;  /* Border badge Proses (light) */
+
+    /* ── BORDER RADIUS ───────────────────────────────────────────── */
+    --sk-radius-card:    16px;      /* Radius sudut kartu/panel */
+    --sk-radius-badge:   9999px;    /* Radius sudut badge (pill) */
+    --sk-radius-input:   12px;      /* Radius sudut input & tombol */
+    --sk-radius-modal:   24px;      /* Radius sudut modal */
+
+    /* ── ANIMASI & TRANSISI ──────────────────────────────────────── */
+    --sk-transition-speed: 0.2s;    /* Kecepatan animasi hover/transisi global */
 }
 
-/* SEMANTIC UTILITIES */
-.sk-text-header { color: var(--sk-header-color) !important; font-size: var(--sk-size-header) !important; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
-.sk-text-body-main { font-size: var(--sk-size-body-main) !important; font-weight: 700; }
+/* SEMANTIC UTILITY CLASSES (Gunakan ini, jangan hardcode angka) */
+.sk-text-header   { color: var(--sk-header-color) !important; font-size: var(--sk-size-header) !important; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+.sk-text-body-main{ font-size: var(--sk-size-body-main) !important; font-weight: 700; }
 .sk-text-body-sub { font-size: var(--sk-size-body-sub) !important; font-weight: 400; }
-.sk-text-filter { font-size: var(--sk-size-filter) !important; font-weight: 700; }
-.sk-text-badge { font-size: var(--sk-size-badge) !important; font-weight: 900; }
-.sk-cell-padding { padding-top: var(--sk-table-py) !important; padding-bottom: var(--sk-table-py) !important; padding-left: var(--sk-table-px) !important; padding-right: var(--sk-table-px) !important; }
+.sk-text-filter   { font-size: var(--sk-size-filter) !important; font-weight: 700; }
+.sk-text-badge    { font-size: var(--sk-size-badge) !important; font-weight: 900; }
+.sk-cell-padding  { padding-top: var(--sk-table-py) !important; padding-bottom: var(--sk-table-py) !important; padding-left: var(--sk-table-px) !important; padding-right: var(--sk-table-px) !important; }
+
+/* BADGE SEMANTIC CLASSES (Warna dikendalikan dari variabel di atas) */
+.sk-badge-approved { background: var(--sk-badge-approved-bg) !important; color: var(--sk-badge-approved-text) !important; border: 2px solid var(--sk-badge-approved-border) !important; }
+.sk-badge-revision { background: var(--sk-badge-revision-bg) !important; color: var(--sk-badge-revision-text) !important; border: 2px solid var(--sk-badge-revision-border) !important; }
+.sk-badge-rejected { background: var(--sk-badge-rejected-bg) !important; color: var(--sk-badge-rejected-text) !important; border: 2px solid var(--sk-badge-rejected-border) !important; }
+.sk-badge-process  { background: var(--sk-badge-process-bg) !important;  color: var(--sk-badge-process-text) !important;  border: 2px solid var(--sk-badge-process-border) !important; }
 
 .dark {
-    --sk-surface: #1B2431; 
-    --sk-section: #24303F;
-    --sk-border: rgba(255, 255, 255, 0.05);
-    --sk-text: #FFFFFF;
-    --sk-text-muted: #AEB7C0;
-    --sk-input-bg: rgba(255, 255, 255, 0.02);
-    --sk-input-border: rgba(255, 255, 255, 0.1);
-    --sk-overlay: rgba(0, 0, 0, 0.7);
-    --sk-header-color: #60A5FA; /* Brighter for dark mode visibility */
+    /* ── WARNA DASAR (DARK MODE) ─────────────────────────────────── */
+    --sk-surface:        #1B2431;
+    --sk-section:        #24303F;
+    --sk-border:         rgba(255, 255, 255, 0.05);
+    --sk-text:           #FFFFFF;
+    --sk-text-muted:     #AEB7C0;
+    --sk-input-bg:       rgba(255, 255, 255, 0.02);
+    --sk-input-border:   rgba(255, 255, 255, 0.1);
+    --sk-overlay:        rgba(0, 0, 0, 0.7);
+    --sk-header-color:   #60A5FA;   /* Lebih terang untuk visibilitas dark mode */
+
+    /* ── WARNA BADGE STATUS (DARK MODE) ─────────────────────────── */
+    --sk-badge-approved-bg:     rgba(5, 150, 105, 0.15);
+    --sk-badge-approved-text:   #34D399;
+    --sk-badge-approved-border: rgba(52, 211, 153, 0.3);
+
+    --sk-badge-revision-bg:     rgba(37, 99, 235, 0.15);
+    --sk-badge-revision-text:   #60A5FA;
+    --sk-badge-revision-border: rgba(96, 165, 250, 0.3);
+
+    --sk-badge-rejected-bg:     rgba(225, 29, 72, 0.15);
+    --sk-badge-rejected-text:   #FB7185;
+    --sk-badge-rejected-border: rgba(251, 113, 133, 0.3);
+
+    --sk-badge-process-bg:      rgba(217, 119, 6, 0.15);
+    --sk-badge-process-text:    #FBBF24;
+    --sk-badge-process-border:  rgba(251, 191, 36, 0.3);
 }
 
 /* 2. ANIMATIONS (SHIMMER & REVEAL) */
