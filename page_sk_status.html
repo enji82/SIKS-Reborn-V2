@@ -77,8 +77,8 @@
         </div>
     </div>
 
-    <!-- 3. KARTU TABEL (MATRIX VIEW) -->
-    <div class="sultan-card !p-0 overflow-hidden shadow-2xl border border-gray-100 dark:border-white/5">
+    <!-- 3. KARTU TABEL (EXECUTIVE MATRIX VIEW) -->
+    <div class="sms-table-card shadow-2xl">
         <div id="statussk_loadingState">
             <div class="flex flex-col items-center justify-center py-24">
                 <div class="h-14 w-14 animate-spin rounded-full border-4 border-solid border-primary border-t-transparent shadow-lg"></div>
@@ -346,25 +346,25 @@
         var stLower = rawStatus.toLowerCase();
 
         var iconHtml = "";
-        var baseCls = "inline-flex h-8 w-8 items-center justify-center rounded-xl transition-all shadow-sm active:scale-90 border";
+        var baseCls = "inline-flex h-7 w-7 items-center justify-center rounded-full transition-all shadow-sm active:scale-90 border";
 
         if (stLower.includes('revisi') || stLower.includes('perbaiki')) {
             var safeKet = statussk_escapeJs(ket);
             var cls = "bg-warning/10 text-warning border-warning/20 hover:bg-warning hover:text-white";
-            iconHtml = '<button type="button" class="' + baseCls + ' ' + cls + '" onclick="Sultan.catatan(\'Catatan Revisi\', \'' + safeKet + '\')" title="Klik Lihat Catatan"><i class="fab fa-gg text-[11px]"></i></button>';
+            iconHtml = '<button type="button" class="' + baseCls + ' ' + cls + '" onclick="Sultan.catatan(\'Catatan Revisi\', \'' + safeKet + '\')" title="Klik Lihat Catatan"><i class="fab fa-gg text-[10px]"></i></button>';
         }
         else if (stLower.includes('tolak') || stLower.includes('x') || stLower.includes('salah')) {
             var safeKet = statussk_escapeJs(ket);
             var cls = "bg-danger/10 text-danger border-danger/20 hover:bg-danger hover:text-white";
-            iconHtml = '<button type="button" class="' + baseCls + ' ' + cls + '" onclick="Sultan.catatan(\'Catatan Penolakan\', \'' + safeKet + '\')" title="Klik Lihat Catatan"><i class="fas fa-times text-[11px]"></i></button>';
+            iconHtml = '<button type="button" class="' + baseCls + ' ' + cls + '" onclick="Sultan.catatan(\'Catatan Penolakan\', \'' + safeKet + '\')" title="Klik Lihat Catatan"><i class="fas fa-times text-[10px]"></i></button>';
         }
         else if (stLower.includes('verif') || stLower.includes('setuju') || stLower.includes('ok') || stLower.includes('valid')) {
             var cls = "bg-success/10 text-success border-success/20";
-            iconHtml = '<span class="' + baseCls + ' ' + cls + '" title="Disetujui"><i class="fas fa-check text-[11px]"></i></span>';
+            iconHtml = '<span class="' + baseCls + ' ' + cls + '" title="Disetujui"><i class="fas fa-check text-[10px]"></i></span>';
         }
         else if (stLower.includes('proses') || stLower.includes('tunggu') || rawStatus.length > 3) {
             var cls = "bg-primary/10 text-primary border-primary/20";
-            iconHtml = '<span class="' + baseCls + ' ' + cls + '" title="Diproses"><i class="fas fa-clock text-[11px]"></i></span>';
+            iconHtml = '<span class="' + baseCls + ' ' + cls + '" title="Diproses"><i class="fas fa-clock text-[10px]"></i></span>';
         }
         else {
             return '<span class="text-black dark:text-white font-black text-[11px] uppercase">' + statussk_escapeHtml(rawStatus) + '</span>';
