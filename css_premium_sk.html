@@ -595,54 +595,90 @@ header.sms-header-group {
 
 /* Ghost-to-Branded Action Buttons */
 .sms-action-btn {
-    width: 38px !important;
-    height: 38px !important;
+    width: 34px !important;
+    height: 34px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    border-radius: 12px !important;
+    border-radius: 10px !important;
     background: transparent !important;
     border: 1.5px solid var(--sk-border) !important;
     color: var(--sk-text-muted) !important;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transition: all var(--sk-transition-speed) cubic-bezier(0.4, 0, 0.2, 1) !important;
     cursor: pointer !important;
-    font-size: 16px !important;
+    font-size: 13px !important;
+    opacity: 0.4 !important;   /* Disabled/inactive state: sangat samar */
 }
 
-.sms-action-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+/* ── STATE: ACTIVE (tombol aktif, belum di-hover) ──────────────── */
+/* Tampil sebagai ghost berwarna — tint tipis, ikon berwarna */
+
+.sms-action-btn-success.active {
+    background: rgba(16, 185, 129, 0.08) !important;
+    border-color: rgba(16, 185, 129, 0.35) !important;
+    color: #10B981 !important;
+    opacity: 1 !important;
 }
 
-.sms-action-btn-primary:hover, .sms-action-btn-primary.active {
-    background: var(--sk-primary) !important;
-    border-color: var(--sk-primary) !important;
-    color: #FFFFFF !important;
-    box-shadow: 0 4px 12px rgba(60, 80, 224, 0.3) !important;
+.sms-action-btn-warning.active {
+    background: rgba(249, 115, 22, 0.08) !important;
+    border-color: rgba(249, 115, 22, 0.35) !important;
+    color: #F97316 !important;
+    opacity: 1 !important;
 }
 
-.sms-action-btn-danger:hover, .sms-action-btn-danger.active {
-    background: #FB5454 !important;
-    border-color: #FB5454 !important;
-    color: #FFFFFF !important;
-    box-shadow: 0 4px 12px rgba(251, 84, 84, 0.3) !important;
+.sms-action-btn-danger.active {
+    background: rgba(251, 84, 84, 0.08) !important;
+    border-color: rgba(251, 84, 84, 0.35) !important;
+    color: #FB5454 !important;
+    opacity: 1 !important;
 }
 
-/* Tombol Verifikasi → Hijau */
-.sms-action-btn-success:hover, .sms-action-btn-success.active {
+.sms-action-btn-primary.active {
+    background: rgba(60, 80, 224, 0.08) !important;
+    border-color: rgba(60, 80, 224, 0.35) !important;
+    color: var(--sk-primary) !important;
+    opacity: 1 !important;
+}
+
+/* ── STATE: HOVER (solid fill — tegas & responsif) ─────────────── */
+
+.sms-action-btn-success:hover {
     background: #10B981 !important;
     border-color: #10B981 !important;
     color: #FFFFFF !important;
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
+    opacity: 1 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35) !important;
 }
 
-/* Tombol Edit → Orange */
-.sms-action-btn-warning:hover, .sms-action-btn-warning.active {
+.sms-action-btn-warning:hover {
     background: #F97316 !important;
     border-color: #F97316 !important;
     color: #FFFFFF !important;
-    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3) !important;
+    opacity: 1 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 16px rgba(249, 115, 22, 0.35) !important;
 }
+
+.sms-action-btn-danger:hover {
+    background: #FB5454 !important;
+    border-color: #FB5454 !important;
+    color: #FFFFFF !important;
+    opacity: 1 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 16px rgba(251, 84, 84, 0.35) !important;
+}
+
+.sms-action-btn-primary:hover {
+    background: var(--sk-primary) !important;
+    border-color: var(--sk-primary) !important;
+    color: #FFFFFF !important;
+    opacity: 1 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 16px rgba(60, 80, 224, 0.35) !important;
+}
+
 
 /* 6. PILL BADGES (EXECUTIVE TINT) */
 .sms-badge-pill {
