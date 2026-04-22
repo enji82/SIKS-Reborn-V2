@@ -2,26 +2,31 @@
 
 <div id="sultan-master-scope" class="sms-layout-root p-0 lg:p-4">
     
-    <!-- STANDARD CARD WITH READABLE FONT -->
+    <!-- 
+        MASTER TEMPLATE RULE v7.1: UNIFIED HEADER
+        1. FONT SIZE: Standard 12px (text-[12px]) for BOTH List and Matrix headers.
+        2. FONT COLOR: Always 'text-primary' (Executive Blue) in Light Mode.
+        3. TEXT STYLE: Always Bold, Uppercase, and 'tracking-widest'.
+        4. CONSISTENCY: Matrix headers must NOT be smaller or dimmer than standard headers.
+    -->
+
+    <!-- Example: Unified Header Table -->
     <div class="sms-table-card bg-white dark:bg-[#1e293b] shadow-xl">
         <div class="p-0">
             <div class="overflow-x-auto sultan-scroll">
                 <table class="w-full table-auto border-collapse sms-table-executive">
                     <thead>
+                        <!-- Unified Header Style -->
                         <tr class="sms-thead-executive bg-slate-50 dark:bg-black/20">
-                            <!-- HEADER PRIMARY: 12px | HEADER SUB: 11px -->
-                            <th class="sms-th-executive text-left px-4 py-3 border-b border-slate-200 dark:border-white/10">
-                                <div class="text-[11px] font-normal opacity-60">Sub Header</div>
-                                <div class="text-[12px] font-bold uppercase tracking-widest text-primary">Header Utama</div>
+                            <th class="sms-th-executive text-left px-4 py-3 text-[12px] font-bold uppercase tracking-widest text-primary border-b border-slate-200 dark:border-white/10 align-middle">
+                                Nama Kolom (Unified Style)
                             </th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-100 dark:divide-white/5">
                         <tr class="hover:bg-primary/5 transition-all">
-                            <!-- BODY PRIMARY: 14px | BODY SUB: 12px -->
-                            <td class="px-4 py-3 align-middle">
-                                <div class="text-[14px] font-bold text-slate-800 dark:text-white leading-tight">Nama Utama (14px)</div>
-                                <div class="text-[12px] font-normal text-slate-400 dark:text-gray-500 mt-1">NPSN / Sub-teks (12px)</div>
+                            <td class="px-4 py-3 align-middle h-auto">
+                                <div class="text-[14px] font-bold text-slate-800 dark:text-white leading-tight">Data Row</div>
                             </td>
                         </tr>
                     </tbody>
