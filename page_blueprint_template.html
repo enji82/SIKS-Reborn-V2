@@ -2,31 +2,26 @@
 
 <div id="sultan-master-scope" class="sms-layout-root p-0 lg:p-4">
     
-    <!-- STANDARD HEADER -->
-    <header class="sms-header-group mb-8">
-        <h1 class="sms-header-title uppercase tracking-wider text-slate-800 dark:text-white">Nama Halaman</h1>
-        <div class="sms-header-underline"></div>
-    </header>
-
-    <!-- STANDARD KARTU TABEL -->
+    <!-- STANDARD CARD WITH READABLE FONT -->
     <div class="sms-table-card bg-white dark:bg-[#1e293b] shadow-xl">
         <div class="p-0">
             <div class="overflow-x-auto sultan-scroll">
                 <table class="w-full table-auto border-collapse sms-table-executive">
                     <thead>
                         <tr class="sms-thead-executive bg-slate-50 dark:bg-black/20">
-                            <!-- TH TYPOGRAPHY: text-[11px], bold, tracking-widest -->
-                            <th class="sms-th-executive text-left px-4 py-3 text-[11px] font-bold uppercase tracking-widest text-primary border-b border-slate-200 dark:border-white/10">
-                                Header Kolom
+                            <!-- HEADER PRIMARY: 12px | HEADER SUB: 11px -->
+                            <th class="sms-th-executive text-left px-4 py-3 border-b border-slate-200 dark:border-white/10">
+                                <div class="text-[11px] font-normal opacity-60">Sub Header</div>
+                                <div class="text-[12px] font-bold uppercase tracking-widest text-primary">Header Utama</div>
                             </th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-100 dark:divide-white/5">
                         <tr class="hover:bg-primary/5 transition-all">
-                            <!-- TD TYPOGRAPHY & PADDING: py-3, text-[13px] -->
+                            <!-- BODY PRIMARY: 14px | BODY SUB: 12px -->
                             <td class="px-4 py-3 align-middle">
-                                <div class="text-[13px] font-bold text-slate-800 dark:text-white">Teks Utama Bold</div>
-                                <div class="text-[11px] font-normal text-slate-400 dark:text-gray-500">Teks Sekunder Regular</div>
+                                <div class="text-[14px] font-bold text-slate-800 dark:text-white leading-tight">Nama Utama (14px)</div>
+                                <div class="text-[12px] font-normal text-slate-400 dark:text-gray-500 mt-1">NPSN / Sub-teks (12px)</div>
                             </td>
                         </tr>
                     </tbody>
