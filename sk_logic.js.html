@@ -56,6 +56,62 @@ window.skEscapeHtml = function(t) {
 };
 
 /**
+ * sultanRenderSkeleton - Fungsi Terpusat untuk Skeleton Loading
+ *
+ * Cara mengubah tampilan skeleton:
+ *   1. Ubah bentuk/ukuran  → Edit kelas .sk-skeleton-* di css_premium_sk.html
+ *   2. Ubah jumlah baris   → Ubah parameter 'rows' saat memanggil fungsi ini
+ *   3. Ubah layout kolom   → Ubah parameter 'columns' ('default' | 'matrix' | 'simple')
+ *
+ * @param {string} containerId - ID elemen container (tanpa #)
+ * @param {number} rows        - Jumlah baris skeleton yang ditampilkan (default: 5)
+ * @param {string} layout      - Tipe layout: 'default' | 'matrix' | 'simple'
+ */
+window.sultanRenderSkeleton = function(containerId, rows, layout) {
+    rows = rows || 5;
+    layout = layout || 'default';
+
+    var $cont = $('#' + containerId).empty();
+    var $wrap = $('<div>', { 'class': 'sk-skeleton-wrapper' });
+
+    for (var i = 0; i < rows; i++) {
+        var $row = $('<div>', { 'class': 'sk-skeleton-row' });
+
+        if (layout === 'default') {
+            // Layout standar: [aksi] [nama/sub] [periode] [badge]
+            $row.append($('<div>', { 'class': 'sk-skeleton-avatar sk-shimmer' }));
+
+            var $textGroup = $('<div>', { 'class': 'sk-skeleton-text-group' });
+            $textGroup.append($('<div>', { 'class': 'sk-skeleton-text sk-shimmer' }));
+            $textGroup.append($('<div>', { 'class': 'sk-skeleton-text-sm sk-shimmer' }));
+            $row.append($textGroup);
+
+            $row.append($('<div>', { 'class': 'sk-skeleton-text-xs sk-shimmer', style: 'width:80px; flex-shrink:0' }));
+            $row.append($('<div>', { 'class': 'sk-skeleton-badge sk-shimmer' }));
+            $row.append($('<div>', { 'class': 'sk-skeleton-avatar sk-shimmer', style: 'width:80px' }));
+
+        } else if (layout === 'matrix') {
+            // Layout matriks: [nama/sub] [badge] [badge] [badge] ...
+            var $textGroup = $('<div>', { 'class': 'sk-skeleton-text-group' });
+            $textGroup.append($('<div>', { 'class': 'sk-skeleton-text sk-shimmer' }));
+            $textGroup.append($('<div>', { 'class': 'sk-skeleton-text-sm sk-shimmer' }));
+            $row.append($textGroup);
+            for (var j = 0; j < 4; j++) {
+                $row.append($('<div>', { 'class': 'sk-skeleton-badge sk-shimmer', style: 'flex-shrink:0' }));
+            }
+
+        } else if (layout === 'simple') {
+            // Layout sederhana: hanya bar teks penuh
+            $row.append($('<div>', { 'class': 'sk-skeleton-text sk-shimmer', style: 'height:40px; border-radius:10px' }));
+        }
+
+        $wrap.append($row);
+    }
+
+    $cont.append($wrap);
+};
+
+/**
  * LOGIKA INTEGRASI: Menghubungkan Form Baru ke Mesin Lama yang Stabil
  */
 

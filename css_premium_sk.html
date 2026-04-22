@@ -144,6 +144,93 @@
     background-image: linear-gradient(to right, #24303F 0%, #2C3A4B 20%, #24303F 40%, #24303F 100%);
 }
 
+/* ================================================================
+   SULTAN SKELETON SYSTEM (v1.0) — Komponen Siap Pakai
+   Cara pakai: gunakan kelas di bawah tanpa mendefinisikan ulang.
+   Semua bentuk otomatis mendapat animasi shimmer dari .sk-shimmer.
+   ================================================================ */
+
+/* ── WRAPPER ─────────────────────────────────────────────────── */
+.sk-skeleton-wrapper {
+    padding: 1.5rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+}
+
+/* ── BARIS (row + avatar + teks) ─────────────────────────────── */
+.sk-skeleton-row {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    width: 100% !important;
+}
+
+/* Avatar / Ikon / Tombol Aksi */
+.sk-skeleton-avatar {
+    flex-shrink: 0 !important;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 10px !important;
+}
+
+/* Kolom teks (nama, judul) */
+.sk-skeleton-text {
+    height: 14px !important;
+    border-radius: 6px !important;
+    width: 100% !important;
+}
+
+/* Teks sekunder (sub-judul, NPSN) */
+.sk-skeleton-text-sm {
+    height: 11px !important;
+    border-radius: 4px !important;
+    width: 65% !important;
+    opacity: 0.6 !important;
+}
+
+/* Kolom pendek (tahun, semester) */
+.sk-skeleton-text-xs {
+    height: 11px !important;
+    border-radius: 4px !important;
+    width: 40% !important;
+    opacity: 0.5 !important;
+}
+
+/* Badge / Pill status */
+.sk-skeleton-badge {
+    height: 24px !important;
+    width: 80px !important;
+    border-radius: 9999px !important;
+    flex-shrink: 0 !important;
+}
+
+/* Tombol / Button */
+.sk-skeleton-btn {
+    height: 34px !important;
+    width: 90px !important;
+    border-radius: 10px !important;
+    flex-shrink: 0 !important;
+}
+
+/* Header kolom tabel */
+.sk-skeleton-header {
+    height: 50px !important;
+    border-radius: 0 !important;
+    width: 100% !important;
+    opacity: 0.5 !important;
+}
+
+/* Grup teks (wrapper untuk title + sub-title) */
+.sk-skeleton-text-group {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+    flex: 1 !important;
+    min-width: 0 !important;
+}
+
+
 .sms-reveal {
     animation: sms-reveal 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
