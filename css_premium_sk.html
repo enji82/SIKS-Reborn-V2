@@ -518,20 +518,43 @@ header.sms-header-group {
 
 .sms-input-premium:focus { border-color: var(--sk-primary) !important; box-shadow: 0 0 0 4px rgba(60, 80, 224, 0.1) !important; }
 
-/* Browser Autofill Fix for Premium Inputs */
+/* Ultimate Adaptive Input Fix */
+.sms-input-premium, 
+#tugas_inputNoSk {
+    background-color: var(--sk-input-bg) !important;
+    color: var(--sk-text) !important;
+}
+
+.dark .sms-input-premium, 
+.dark #tugas_inputNoSk {
+    background-color: #0F172A !important; /* Force Sultan Deep Blue */
+    color: #FFFFFF !important;
+}
+
+/* Hard-Fix for Browser Autofill Backgrounds */
 .sms-input-premium:-webkit-autofill,
 .sms-input-premium:-webkit-autofill:hover, 
 .sms-input-premium:-webkit-autofill:focus, 
 .sms-input-premium:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 40px var(--sk-input-bg) inset !important;
-    -webkit-text-fill-color: var(--sk-text) !important;
+    -webkit-box-shadow: 0 0 0 40px #FFFFFF inset !important;
+    -webkit-text-fill-color: #1C2434 !important;
     transition: background-color 5000s ease-in-out 0s;
 }
 
-/* Force Adaptivity for specific IDs if needed */
-#tugas_inputNoSk {
-    background-color: var(--sk-input-bg) !important;
-    color: var(--sk-text) !important;
+.dark .sms-input-premium:-webkit-autofill,
+.dark .sms-input-premium:-webkit-autofill:hover, 
+.dark .sms-input-premium:-webkit-autofill:focus, 
+.dark .sms-input-premium:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 40px #0F172A inset !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+}
+
+/* Adaptive Alert Text */
+.sk-alert-text-adaptive {
+    color: #3C50E0 !important; /* Default Primary */
+}
+.dark .sk-alert-text-adaptive {
+    color: #60A5FA !important; /* Lighter Blue for Dark Mode */
 }
 
 /* 9. INTERACTION ANIMATIONS */

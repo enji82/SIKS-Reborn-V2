@@ -180,7 +180,7 @@
                 
                 <!-- Information Alert (Dynamic Slot Feedback) -->
                 <div id="tugas_alertInfo" class="px-5 py-3 rounded-xl border border-dashed border-primary/20 bg-primary/5 transition-all">
-                    <p id="tugas_alertText" class="text-[11px] font-bold uppercase tracking-wider text-center">
+                    <p id="tugas_alertText" class="text-[11px] font-bold uppercase tracking-wider text-center sk-alert-text-adaptive">
                         Tentukan <b>Sekolah, Tahun, Semester,</b> dan <b>Kriteria</b> untuk memulai pengisian data SK.
                     </p>
                 </div>
@@ -846,8 +846,8 @@
             return;
         }
 
-        $('#tugas_alertInfo').removeClass('border-danger border-success border-warning/30').addClass('border-primary/20 text-primary sk-alert-pulse');
-        $('#tugas_alertText').html('<i class="fas fa-spinner fa-spin mr-1"></i> Mengecek data di server...');
+        $('#tugas_alertInfo').removeClass('border-danger border-success border-warning/30').addClass('border-primary/20 sk-alert-pulse');
+        $('#tugas_alertText').addClass('sk-alert-text-adaptive').html('<i class="fas fa-spinner fa-spin mr-1"></i> Mengecek data di server...');
 
         var payload = { namaSd: vSd, tahunAjaran: vTh, semester: vSm, kriteria: vKr };
 
