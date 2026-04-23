@@ -804,7 +804,7 @@
             var stButton = String(row.status || "").toLowerCase();
             var isApproved = (stButton.includes('setuju') || stButton.includes('ok') || stButton.includes('valid'));
 
-            var badgeStatus = window.buildStatusTag(row.status, row.keterangan); // ✅ Terpusat dari sk_logic.js.html
+            var badgeStatus = window.buildBadgeSultan(row.status, row.keterangan); // ✅ Seragam dengan Status SK
 
             // 1. Tombol Aksi (SMS v45.4 - Interaction Precision)
             var actionButtons = '<div class="flex items-center justify-center gap-2">' +

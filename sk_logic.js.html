@@ -20,60 +20,39 @@
  * @param {string} s - String status dari server (bisa mengandung '|' sebagai pemisah)
  * @returns {string} - HTML string berupa badge pill
  */
-window.buildBadgeSultan = function(s) {
+window.buildBadgeSultan = function(s, ket) {
+    ket = ket || "";
     if (!s || s === "-" || s === "") {
         return '<i class="fas fa-minus text-slate-300 dark:text-gray-600 text-xs"></i>';
     }
-    var parts = String(s).split('|');
-    var raw   = parts[0].toLowerCase();
+    var parts   = String(s).split('|');
+    var raw     = parts[0].toLowerCase();
     var baseCls = "inline-flex h-6 px-3 items-center justify-center rounded-full sk-text-badge font-black uppercase tracking-widest transition-all";
+    var badge   = "";
 
     if (raw.includes('revisi')) {
-        return '<span class="' + baseCls + ' sk-badge-revision">REVISI</span>';
+        badge = '<span class="' + baseCls + ' sk-badge-revision">REVISI</span>';
     } else if (raw.includes('tolak')) {
-        return '<span class="' + baseCls + ' sk-badge-rejected">DITOLAK</span>';
+        badge = '<span class="' + baseCls + ' sk-badge-rejected">DITOLAK</span>';
     } else if (raw.includes('verif') || raw.includes('valid') || raw.includes('ok') || raw.includes('setuj')) {
-        return '<span class="' + baseCls + ' sk-badge-approved">DISETUJUI</span>';
+        badge = '<span class="' + baseCls + ' sk-badge-approved">DISETUJUI</span>';
     } else if (raw.includes('proses') || raw.includes('pending')) {
-        return '<span class="' + baseCls + ' sk-badge-process">PROSES</span>';
+        badge = '<span class="' + baseCls + ' sk-badge-process">PROSES</span>';
     } else {
-        return '<span class="font-bold text-slate-500 sk-text-badge">' + window.skEscapeHtml(parts[0]) + '</span>';
-    }
-};
-
-/**
- * buildStatusTag — Badge kotak dengan border-left (untuk tabel CRUD)
- *
- * Perbedaan dengan buildBadgeSultan:
- *   - buildBadgeSultan → pill bundar, cocok untuk tabel matriks (Status SK)
- *   - buildStatusTag   → tag kotak + border-left, cocok untuk tabel CRUD (Kelola SK)
- *
- * @param {string} st  - String status dari server
- * @param {string} ket - Keterangan/catatan (opsional) → menampilkan tombol BACA CATATAN
- */
-window.buildStatusTag = function(st, ket) {
-    st  = String(st  || "").toLowerCase();
-    ket = ket || "";
-    var badge = "";
-
-    if (st.includes('setuju') || st.includes('acc') || st.includes('ok') || st.includes('valid')) {
-        badge = '<span class="sms-status-tag sms-status-success">DISETUJUI</span>';
-    } else if (st.includes('revisi')) {
-        badge = '<span class="sms-status-tag sms-status-info">REVISI</span>';
-    } else if (st.includes('tolak')) {
-        badge = '<span class="sms-status-tag sms-status-danger">DITOLAK</span>';
-    } else {
-        badge = '<span class="sms-status-tag sms-status-warning">DIPROSES</span>';
+        badge = '<span class="font-bold text-slate-500 sk-text-badge">' + window.skEscapeHtml(parts[0]) + '</span>';
     }
 
-    // Tombol Baca Catatan (hanya untuk Revisi/Ditolak yang ada keterangannya)
-    if (ket && ket.trim().length > 2 && (st.includes('revisi') || st.includes('tolak'))) {
+    // Tombol Baca Catatan (opsional — untuk halaman CRUD seperti Kelola SK)
+    if (ket && ket.trim().length > 2 && (raw.includes('revisi') || raw.includes('tolak'))) {
         var safeKet = window.skEscapeJs(ket);
         badge += '<div class="mt-2"><button type="button" class="sms-btn-ghost !h-7 !px-2 !text-[10px] !rounded-md !whitespace-nowrap" onclick="Sultan.catatan(\'Catatan Admin\', \'' + safeKet + '\')"><i class="fas fa-comment-dots mr-1"></i> BACA CATATAN</button></div>';
     }
 
     return badge;
 };
+
+/* buildStatusTag dihapus — gunakan window.buildBadgeSultan(status, keterangan) untuk semua halaman */
+
 
 
 /**
