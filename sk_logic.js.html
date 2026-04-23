@@ -51,6 +51,38 @@ window.buildBadgeSultan = function(s, ket) {
     return badge;
 };
 
+/**
+ * buildIconBadge — Badge berbentuk ikon (persegi rounded) sangat hemat ruang
+ * Digunakan untuk tabel matriks padat seperti Status Data SK.
+ * 
+ * @param {string} s - String status dari server
+ */
+window.buildIconBadge = function(s) {
+    if (!s || s === "-" || s === "") {
+        return '<i class="fas fa-minus text-slate-300 dark:text-gray-600 text-xs opacity-50"></i>';
+    }
+    var parts   = String(s).split('|');
+    var raw     = parts[0].toLowerCase();
+    
+    // h-7 w-7 rounded-md = kotak melengkung kecil
+    var baseCls = "inline-flex h-7 w-7 items-center justify-center rounded-md text-[13px] transition-all shadow-sm";
+    var badge   = "";
+
+    if (raw.includes('revisi')) {
+        badge = '<div class="' + baseCls + ' sk-badge-revision" title="Revisi"><i class="fas fa-undo"></i></div>';
+    } else if (raw.includes('tolak')) {
+        badge = '<div class="' + baseCls + ' sk-badge-rejected" title="Ditolak"><i class="fas fa-times"></i></div>';
+    } else if (raw.includes('verif') || raw.includes('valid') || raw.includes('ok') || raw.includes('setuj')) {
+        badge = '<div class="' + baseCls + ' sk-badge-approved" title="Disetujui"><i class="fas fa-check"></i></div>';
+    } else if (raw.includes('proses') || raw.includes('pending')) {
+        badge = '<div class="' + baseCls + ' sk-badge-process" title="Diproses"><i class="fas fa-hourglass-half text-[11px]"></i></div>';
+    } else {
+        badge = '<div class="' + baseCls + ' bg-slate-100 text-slate-500 dark:bg-white/5 dark:text-gray-400" title="' + window.skEscapeHtml(parts[0]) + '"><i class="fas fa-info text-[11px]"></i></div>';
+    }
+
+    return badge;
+};
+
 /* buildStatusTag dihapus — gunakan window.buildBadgeSultan(status, keterangan) untuk semua halaman */
 
 

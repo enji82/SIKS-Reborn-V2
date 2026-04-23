@@ -167,7 +167,7 @@
                          '<div class="sk-row-title">' + window.skEscapeHtml(parts[0]) + '</div>' + 
                          '<div class="sk-row-subtitle">' + window.skEscapeHtml(parts[1] || "-") + '</div>' + 
                          '</div>');
-            for (var i = 1; i < row.length; i++) { rowData.push(window.buildBadgeSultan(row[i])); }
+            for (var i = 1; i < row.length; i++) { rowData.push(window.buildIconBadge(row[i])); }
             dtArray.push(rowData);
         });
 
