@@ -804,7 +804,7 @@
             var stButton = String(row.status || "").toLowerCase();
             var isApproved = (stButton.includes('setuju') || stButton.includes('ok') || stButton.includes('valid'));
 
-            var badgeStatus = tugas_buildBadgeStatus(row.status, row.keterangan);
+            var badgeStatus = window.buildStatusTag(row.status, row.keterangan); // ✅ Terpusat dari sk_logic.js.html
 
             // 1. Tombol Aksi (SMS v45.4 - Interaction Precision)
             var actionButtons = '<div class="flex items-center justify-center gap-2">' +
@@ -1252,25 +1252,7 @@
         } catch (e) { return url; }
     }
 
-    function tugas_buildBadgeStatus(st, ket) {
-        st = String(st || "").toLowerCase(); ket = ket || "";
-        var badge = "";
-        
-        if (st.includes('setuju') || st.includes('acc') || st.includes('ok') || st.includes('valid'))
-            badge = '<span class="sms-status-tag sms-status-success">DISETUJUI</span>';
-        else if (st.includes('revisi'))
-            badge = '<span class="sms-status-tag sms-status-info">REVISI</span>';
-        else if (st.includes('tolak'))
-            badge = '<span class="sms-status-tag sms-status-danger">DITOLAK</span>';
-        else
-            badge = '<span class="sms-status-tag sms-status-warning">DIPROSES</span>';
-
-        if (ket && ket.trim().length > 2 && (st.includes('revisi') || st.includes('tolak'))) {
-            var safeKet = window.skEscapeJs(ket);
-            badge += '<div class="mt-2"><button type="button" class="sms-btn-ghost !h-7 !px-2 !text-[10px] !rounded-md !whitespace-nowrap" onclick="Sultan.catatan(\'Catatan Admin\', \'' + safeKet + '\')"><i class="fas fa-comment-dots mr-1"></i> BACA CATATAN</button></div>';
-        }
-        return badge;
-    }
+    /* ✅ tugas_buildBadgeStatus() telah dihapus → gunakan window.buildStatusTag() dari sk_logic.js.html */
 
     
 </script>
