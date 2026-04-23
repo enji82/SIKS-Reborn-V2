@@ -148,13 +148,13 @@
 
     function statussk_renderTabel(rows) {
         var dtArray = [];
-        var headerHtml = '<th class="sms-th-executive text-left sk-text-header sk-cell-padding border-b border-slate-200 dark:border-white/10 align-middle h-auto" style="min-width: 280px;">NAMA SEKOLAH / SATDIK</th>';
+        var headerHtml = '<th class="sms-th-executive text-left sk-text-header border-b border-slate-200 dark:border-white/10 align-middle" style="min-width: 280px;">NAMA SEKOLAH / SATDIK</th>';
         
         if (STATUSSK_RAW_HEADER && STATUSSK_RAW_HEADER.length >= 2) {
             var hRow1 = STATUSSK_RAW_HEADER[0], hRow2 = STATUSSK_RAW_HEADER[1];
             for (var i = 1; i < hRow2.length; i++) {
                 var year = ""; for (var k = i; k >= 1; k--) { if (hRow1[k]) { year = hRow1[k]; break; } }
-                headerHtml += '<th class="sms-th-executive text-center border-b border-slate-200 dark:border-white/10 sk-cell-padding align-middle h-auto">' +
+                headerHtml += '<th class="sms-th-executive text-center border-b border-slate-200 dark:border-white/10 align-middle">' +
                               '<div class="sk-text-header opacity-60 mb-0.5">' + year + '</div>' +
                               '<div class="sk-text-header">' + hRow2[i].replace("SEMESTER ", "SEM ") + '</div></th>';
             }
@@ -163,9 +163,9 @@
 
         rows.forEach(function (row) {
             var rowData = [], parts = String(row[0] || "").split('|');
-            rowData.push('<div class="text-left align-middle sk-cell-padding h-auto">' + 
-                         '<div class="sk-text-body-main text-slate-800 dark:text-white leading-tight">' + window.skEscapeHtml(parts[0]) + '</div>' + 
-                         '<div class="sk-text-body-sub text-slate-400 dark:text-gray-500 font-normal mt-1">' + window.skEscapeHtml(parts[1] || "-") + '</div>' + 
+            rowData.push('<div class="flex flex-col text-left">' + 
+                         '<div class="sk-row-title">' + window.skEscapeHtml(parts[0]) + '</div>' + 
+                         '<div class="sk-row-subtitle">' + window.skEscapeHtml(parts[1] || "-") + '</div>' + 
                          '</div>');
             for (var i = 1; i < row.length; i++) { rowData.push(window.buildBadgeSultan(row[i])); }
             dtArray.push(rowData);
