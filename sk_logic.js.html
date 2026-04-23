@@ -68,40 +68,41 @@ window.skEscapeHtml = function(t) {
  * @param {string} layout      - Tipe layout: 'default' | 'matrix' | 'simple'
  */
 window.sultanRenderSkeleton = function(containerId, rows, layout) {
-    rows = rows || 5;
+    rows   = rows   || 5;
     layout = layout || 'default';
 
     var $cont = $('#' + containerId).empty();
     var $wrap = $('<div>', { 'class': 'sk-skeleton-wrapper' });
 
     for (var i = 0; i < rows; i++) {
-        var $row = $('<div>', { 'class': 'sk-skeleton-row' });
+        var $row       = $('<div>', { 'class': 'sk-skeleton-row' });
+        var $textGroup = $('<div>', { 'class': 'sk-skeleton-text-group' }); // Diperbaiki: dideklarasikan sekali per iterasi
 
         if (layout === 'default') {
-            // Layout standar: [aksi] [nama/sub] [periode] [badge]
-            $row.append($('<div>', { 'class': 'sk-skeleton-avatar sk-shimmer' }));
+            // Layout standar: [avatar-aksi] [teks nama/sub] [teks xs] [badge] [btn-aksi]
+            $textGroup
+                .append($('<div>', { 'class': 'sk-skeleton-text sk-shimmer' }))
+                .append($('<div>', { 'class': 'sk-skeleton-text-sm sk-shimmer' }));
 
-            var $textGroup = $('<div>', { 'class': 'sk-skeleton-text-group' });
-            $textGroup.append($('<div>', { 'class': 'sk-skeleton-text sk-shimmer' }));
-            $textGroup.append($('<div>', { 'class': 'sk-skeleton-text-sm sk-shimmer' }));
-            $row.append($textGroup);
-
-            $row.append($('<div>', { 'class': 'sk-skeleton-text-xs sk-shimmer', style: 'width:80px; flex-shrink:0' }));
-            $row.append($('<div>', { 'class': 'sk-skeleton-badge sk-shimmer' }));
-            $row.append($('<div>', { 'class': 'sk-skeleton-avatar sk-shimmer', style: 'width:80px' }));
+            $row.append($('<div>', { 'class': 'sk-skeleton-avatar sk-shimmer' }))
+                .append($textGroup)
+                .append($('<div>', { 'class': 'sk-skeleton-text-xs sk-shimmer', style: 'width:80px; flex-shrink:0' }))
+                .append($('<div>', { 'class': 'sk-skeleton-badge sk-shimmer' }))
+                .append($('<div>', { 'class': 'sk-skeleton-avatar sk-shimmer', style: 'width:80px' }));
 
         } else if (layout === 'matrix') {
-            // Layout matriks: [nama/sub] [badge] [badge] [badge] ...
-            var $textGroup = $('<div>', { 'class': 'sk-skeleton-text-group' });
-            $textGroup.append($('<div>', { 'class': 'sk-skeleton-text sk-shimmer' }));
-            $textGroup.append($('<div>', { 'class': 'sk-skeleton-text-sm sk-shimmer' }));
+            // Layout matriks: [teks nama/sub] + beberapa badge
+            $textGroup
+                .append($('<div>', { 'class': 'sk-skeleton-text sk-shimmer' }))
+                .append($('<div>', { 'class': 'sk-skeleton-text-sm sk-shimmer' }));
+
             $row.append($textGroup);
             for (var j = 0; j < 4; j++) {
                 $row.append($('<div>', { 'class': 'sk-skeleton-badge sk-shimmer', style: 'flex-shrink:0' }));
             }
 
         } else if (layout === 'simple') {
-            // Layout sederhana: hanya bar teks penuh
+            // Layout sederhana: hanya satu bar penuh
             $row.append($('<div>', { 'class': 'sk-skeleton-text sk-shimmer', style: 'height:40px; border-radius:10px' }));
         }
 

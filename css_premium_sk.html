@@ -124,28 +124,54 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes sk-shimmer {
-    0% { background-position: -468px 0; }
-    100% { background-position: 468px 0; }
+/* ── ANIMASI SHIMMER MODERN (GPU-based, tidak memicu repaint) ── */
+@keyframes sk-shimmer-wave {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
 }
 
+/*
+ * Teknik: pseudo-element ::after yang bergerak dengan translateX().
+ * Lebih performa dibanding teknik background-position lama.
+ * Dark mode tidak perlu override background-size/repeat lagi.
+ */
 .sk-shimmer {
-    background: #f6f7f8;
-    background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
-    background-repeat: no-repeat;
-    background-size: 800px 104px; 
-    display: inline-block;
-    position: relative; 
-    animation: sk-shimmer 1.2s linear infinite forwards;
+    position: relative !important;
+    overflow: hidden !important;
+    display: block !important;                     /* Diperbaiki: sebelumnya inline-block */
+    background-color: #e2e8f0 !important;          /* Light mode base */
 }
 
+.sk-shimmer::after {
+    content: '' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    transform: translateX(-100%) !important;
+    background: linear-gradient(
+        90deg,
+        transparent            0%,
+        rgba(255,255,255,0.55) 50%,
+        transparent            100%
+    ) !important;
+    animation: sk-shimmer-wave 1.5s ease-in-out infinite !important;
+}
+
+/* Dark mode: cukup ubah warna dasar, animasi wave otomatis ikut */
 .dark .sk-shimmer {
-    background: #24303F;
-    background-image: linear-gradient(to right, #24303F 0%, #2C3A4B 20%, #24303F 40%, #24303F 100%);
+    background-color: #2C3A4B !important;          /* Diperbaiki: tidak override shorthand */
+}
+
+.dark .sk-shimmer::after {
+    background: linear-gradient(
+        90deg,
+        transparent           0%,
+        rgba(255,255,255,0.07) 50%,
+        transparent           100%
+    ) !important;
 }
 
 /* ================================================================
-   SULTAN SKELETON SYSTEM (v1.0) — Komponen Siap Pakai
+   SULTAN SKELETON SYSTEM (v1.1) — Komponen Siap Pakai
    Cara pakai: gunakan kelas di bawah tanpa mendefinisikan ulang.
    Semua bentuk otomatis mendapat animasi shimmer dari .sk-shimmer.
    ================================================================ */
